@@ -9,7 +9,7 @@ export gold_path2files="$HOME/veribench/veribench_dataset/lean_src/veribench"
 # path to claude .env file
 export claude_dotenv_path="$HOME/cert-judge/experiments/.env_claude_3_7"
 export judge_prompt_temp_path="$HOME/veribench/veribench_prompts/eval_prompts/file_equiv_prompts/simplest_prompt_varying_score_range.txt"
-export eval_mode="score_the_formal_judge"
+export eval_mode="hsj_demo"
 export max_score=30 
 
 # for property p1 reflexivity p2 monotonicity wrt bugs p3 monotonicity wrt missing specs p4 low variance/stability
@@ -30,6 +30,13 @@ export num_llm_judge_calls_per_file_pair=${num_llm_judge_calls_per_file_pair:-5}
 command -v deactivate >/dev/null 2>&1 && deactivate || true
 source "$HOME/uv_envs/veribench/bin/activate"
 export max_workers=${max_workers:-24}
-python ~/cert-judge/experiments/00_overall_judge_score_metric/main_overall_judge_score.py \
+time python ~/cert-judge/experiments/00_overall_judge_score_metric/main_overall_judge_score.py \
     --mode "$mode" \
-...TODO: add more args
+    --eval_mode "$eval_mode" \
+    --judge_prompt_temp_path "$judge_prompt_temp_path" \
+    --max_score "$max_score" \
+    --paths_p1 "${paths_p1[@]}" \
+    --path_p2 "$path_p2" \
+    --path_p3 "$path_p3" \
+    --num_llm_judge_calls_per_file_pair "$num_llm_judge_calls_per_file_pair" \
+    --max_workers "$max_workers"
