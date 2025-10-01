@@ -1,12 +1,36 @@
 import os
-from typing import Any
+from typing import Any, Dict
 import time
 import logging
 from pathlib import Path
+from statistics import mean
+import sys
 
-# Configure logging
+
+def configure_logging(level: int = logging.INFO) -> logging.Logger:
+    """Minimal logger setup for this script (avoids external deps)."""
+    logger = logging.getLogger("cert_judge")
+    if not logger.handlers:
+        logger.setLevel(level)
+        ch = logging.StreamHandler()
+        ch.setLevel(level)
+        fmt = logging.Formatter("->%(name)s - %(levelname)s - %(message)s")
+        ch.setFormatter(fmt)
+        logger.addHandler(ch)
+    return logger
+
+
+def _ensure_cert_judge_on_path() -> None:
+    """Ensure cert-judge/py_src is on sys.path for local execution."""
+    here = Path(__file__).resolve()
+    repo_root = here.parents[2]  # .../cert-judge
+    py_src = repo_root / "py_src"
+    if str(py_src) not in sys.path:
+        sys.path.insert(0, str(py_src))
+
+
+# Configure logging early
 logger = configure_logging()
-# Get module-specific logger
 logger = logging.getLogger(__name__)
 
 
@@ -48,7 +72,7 @@ def log_model_info_to_wandb(model_name: str, api_url: str, eval_mode: str) -> No
     })
     logger.info(f"Logged model info to wandb with model name: {model_name} and api url: {api_url}")
 
-def main(**kwargs) -> dict[str, Any]:
+def main(**kwargs) -> Dict[str, Any]:
     """
     Main function to evaluate file equivalence between agent and gold files using LLM judge.
     
@@ -66,6 +90,69 @@ def main(**kwargs) -> dict[str, Any]:
     pass
 
 def _main(**kwargs):
+    # Allow a local demo path without WANDB by branching before imports
+    eval_mode = kwargs.get("eval_mode", "").lower()
+    if eval_mode == "hsj_demo":
+        _ensure_cert_judge_on_path()
+        try:
+            from cert_judge.hsj_scoring import (
+                compute_p1_identity,
+                compute_p2_or_p3_ordering_auc,
+                compute_p4_stability,
+                compute_jti,
+                fit_isotonic_calibrator,
+                compute_hsj_scores,
+            )
+        except Exception as e:
+            logger.exception("Failed to import cert_judge.hsj_scoring: %s", e)
+            return {"ok": False, "error": str(e)}
+
+        # Minimal, synthetic demo to test wiring
+        p1 = compute_p1_identity([1.0, 0.99, 1.0, 0.98])
+        p2 = compute_p2_or_p3_ordering_auc([0, 1, 2, 3], [0.92, 0.7, 0.5, 0.2])
+        p3 = compute_p2_or_p3_ordering_auc([0, 1, 2, 3], [0.90, 0.75, 0.6, 0.4])
+        p4 = compute_p4_stability({"ex": [0.9, 0.91, 0.89]}, tau=0.05)
+        jti = compute_jti(p1, p2, p3, p4)
+        fJ = fit_isotonic_calibrator([0.2, 0.5, 0.8], [0.0, 0.5, 1.0])
+        fI = fit_isotonic_calibrator([0.1, 0.6, 0.95], [0.0, 0.6, 1.0])
+        final = compute_hsj_scores([0.35, 0.55, 0.9], [0.25, 0.5, 0.99], fJ, fI, jti, lambda_gt=0.7, gamma=1.5, jti_red=0.70)
+        res = {
+            "p1": p1, "p2": p2, "p3": p3, "p4": p4, "jti": jti,
+            "final": final,
+        }
+
+        # Optionally log to wandb
+        mode = kwargs.get("mode", "dryrun")
+        try:
+            import wandb
+            run = wandb.init(
+                entity="brando-su",
+                project="vb-thm-eq",
+                mode=mode,
+                name=f"hsj_demo_{int(time.time())}",
+                config={
+                    "eval_mode": eval_mode,
+                    "args": kwargs,
+                },
+            )
+            wandb.log({
+                "p1": p1,
+                "p2": p2,
+                "p3": p3,
+                "p4": p4,
+                "jti": jti,
+                "final_scores_mean": mean(final),
+                "final_scores_min": min(final) if final else None,
+                "final_scores_max": max(final) if final else None,
+            })
+            run.finish()
+        except Exception as we:
+            logger.warning("wandb logging skipped: %s", we)
+
+        print(res)
+        logger.info("HSJ demo complete: %s", res)
+        return {"ok": True, **res}
+
     logger.info(f'Starting main execution with kwargs: {kwargs}')
     print(f'{kwargs=}')  # Keep this for immediate user feedback
     from datetime import datetime
@@ -122,12 +209,22 @@ def _main(**kwargs):
 
 
 if __name__ == "__main__":
-    import fire
     import time
-
     start_time = time.time()
-    logger.info("Starting script execution via Fire CLI")
-    fire.Fire(_main)
+    # Always use argparse for predictable CLI parsing
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--eval_mode", default="")
+    parser.add_argument("--mode", default="dryrun")
+    parser.add_argument("--judge_prompt_temp_path", default="")
+    parser.add_argument("--max_score", default=None)
+    parser.add_argument("--paths_p1", nargs='*', default=[])
+    parser.add_argument("--path_p2", default="")
+    parser.add_argument("--path_p3", default="")
+    parser.add_argument("--num_llm_judge_calls_per_file_pair", default=None)
+    parser.add_argument("--max_workers", default=None)
+    args, unknown = parser.parse_known_args()
+    _main(**vars(args))
     elapsed_time = time.time() - start_time
     logger.info(f"Script execution completed in {elapsed_time:.2f} seconds")
-    print(f"\aTime taken: {elapsed_time:.2f} seconds, or {elapsed_time / 60:.2f} minutes, or {elapsed_time / 3600:.2f} hours.\a")  # Keep this for immediate user feedback
+    print(f"\aTime taken: {elapsed_time:.2f} seconds, or {elapsed_time / 60:.2f} minutes, or {elapsed_time / 3600:.2f} hours.\a")
