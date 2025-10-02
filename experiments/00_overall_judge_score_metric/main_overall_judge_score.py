@@ -74,24 +74,225 @@ def log_model_info_to_wandb(model_name: str, api_url: str, eval_mode: str) -> No
 
 def main(**kwargs) -> Dict[str, Any]:
     """
-    Main function to evaluate file equivalence between agent and gold files using LLM judge.
+    Main function to run real HSJ judge evaluation on actual data files.
     
     Args:
         **kwargs: Keyword arguments containing:
             mode (str): "online" for real LLM calls, "dryrun" for testing
-            eval_mode (str): "multiple_scores_multiple_data_points" for variance analysis (recommended)
-            agent_path2files (str): Path to directory containing agent-generated files to evaluate
-            gold_path2files (str): Path to directory containing gold standard reference files  
-            file_equiv_llm_judge_eval_prompt_template_path (str): Path to LLM judge prompt template file
-            max_score (int, optional): Maximum score value (default: 30), e.g. max_score=10 means 0-10 scale
-            num_llm_judge_calls_per_file_pair (int, optional): How many times to evaluate each file pair for variance analysis (default: 5)
-            max_workers (int, optional): Number of concurrent threads for LLM API calls (default: 64)
+            eval_mode (str): "hsj_real" to run actual evaluation
+            claude_dotenv_path (str): Path to .env file with LLM credentials
+            judge_prompt_temp_path (str): Path to LLM judge prompt template file
+            max_score (int): Maximum score value (e.g., 30 for 0-30 scale)
+            paths_p1 (list): List of directories for P1 reflexivity testing
+            path_p2 (str): Path to bug ladder directory for P2
+            path_p3 (str): Path to missing specs ladder directory for P3
+            num_llm_judge_calls_per_file_pair (int): Repeat count for P4 variance (default: 5)
+            max_workers (int, optional): Number of concurrent threads (default: 24)
     """
-    pass
+    from pathlib import Path
+    import re
+    from veribench.metrics.sim_file_eq_llm_judge import get_sim_score_file_eq_llm_result_in_json_str
+    _ensure_cert_judge_on_path()
+    from cert_judge.hsj_scoring import (
+        compute_p1_identity,
+        compute_p2_or_p3_ordering_auc,
+        compute_p4_stability,
+        compute_jti,
+    )
+    
+    # Environment variables should already be loaded by the shell script
+    # The shell script exports them BEFORE Python starts to ensure correct defaults
+    # during module imports (especially veribench.agent.theorem_writing_llm_judge)
+    claude_dotenv_path = kwargs.get("claude_dotenv_path", "")
+    if claude_dotenv_path:
+        logger.info(f"Note: Environment should be loaded by shell script from {claude_dotenv_path}")
+        logger.info(f"Current TRACE_CUSTOMLLM_MODEL: {os.environ.get('TRACE_CUSTOMLLM_MODEL', 'NOT SET')}")
+    
+    # Read prompt template
+    prompt_path = Path(kwargs.get("judge_prompt_temp_path", "")).expanduser().resolve()
+    prompt_template = prompt_path.read_text(encoding="utf-8")
+    
+    max_score = int(kwargs.get("max_score", 30))
+    paths_p1 = kwargs.get("paths_p1", [])
+    path_p2 = kwargs.get("path_p2", "")
+    path_p3 = kwargs.get("path_p3", "")
+    repeats = int(kwargs.get("num_llm_judge_calls_per_file_pair", 5))
+    
+    def list_lean_files(dir_path: str):
+        p = Path(dir_path).expanduser()
+        if not p.exists() or not p.is_dir():
+            return []
+        return sorted([q for q in p.iterdir() if q.is_file() and q.suffix == ".lean"])
+    
+    def score_pair(agent_fp: Path, gold_fp: Path, s_idx: int, n_idx: int):
+        res = get_sim_score_file_eq_llm_result_in_json_str(
+            agent_filepath=agent_fp,
+            gold_filepath=gold_fp,
+            file_equiv_prompt_template=prompt_template,
+            max_score=max_score,
+            s_idx=s_idx,
+            n_idx=n_idx,
+            relative_path=agent_fp.name,
+        )
+        return float(res.get("normalized_score", 0.0))
+    
+    def build_ladder(dir_path: str):
+        items = []
+        for fp in list_lean_files(dir_path):
+            m = re.search(r"_(\d+)_bugs\.lean$", fp.name)
+            if not m:
+                m = re.search(r"_(\d+)_missing\.lean$", fp.name)
+            if m:
+                items.append((int(m.group(1)), fp))
+        items.sort(key=lambda t: t[0])
+        return items
+    
+    # P1: Identity/Reflexivity scores
+    logger.info("Computing P1: Reflexivity & Consistency")
+    identity_scores = []
+    for dir_path in paths_p1:
+        for fp in list_lean_files(dir_path):
+            try:
+                identity_scores.append(score_pair(fp, fp, s_idx=0, n_idx=0))
+                logger.info(f"P1: Scored {fp.name}")
+            except Exception as e:
+                logger.warning(f"P1 scoring failed for {fp}: {e}")
+    p1 = compute_p1_identity(identity_scores) if identity_scores else 0.0
+    logger.info(f"P1 = {p1:.4f} (from {len(identity_scores)} identity pairs)")
+    
+    # P2: Bug monotonicity
+    logger.info("Computing P2: Monotonicity to Bugs")
+    p2_counts, p2_scores = [], []
+    if path_p2:
+        ladder = build_ladder(path_p2)
+        gold_fp = next((fp for k, fp in ladder if k == 0), ladder[0][1] if ladder else None)
+        for k, fp in ladder:
+            try:
+                s = score_pair(fp, gold_fp, s_idx=0, n_idx=k)
+                p2_counts.append(k)
+                p2_scores.append(s)
+                logger.info(f"P2: {k} bugs -> score {s:.4f}")
+            except Exception as e:
+                logger.warning(f"P2 scoring failed for {fp}: {e}")
+    p2 = compute_p2_or_p3_ordering_auc(p2_counts, p2_scores) if p2_counts else 0.0
+    logger.info(f"P2 = {p2:.4f}")
+    
+    # P3: Missing spec monotonicity
+    logger.info("Computing P3: Monotonicity to Missing Specs")
+    p3_counts, p3_scores = [], []
+    if path_p3:
+        ladder3 = build_ladder(path_p3)
+        gold3_fp = next((fp for k, fp in ladder3 if k == 0), ladder3[0][1] if ladder3 else None)
+        for k, fp in ladder3:
+            try:
+                s = score_pair(fp, gold3_fp, s_idx=0, n_idx=k)
+                p3_counts.append(k)
+                p3_scores.append(s)
+                logger.info(f"P3: {k} missing -> score {s:.4f}")
+            except Exception as e:
+                logger.warning(f"P3 scoring failed for {fp}: {e}")
+    p3 = compute_p2_or_p3_ordering_auc(p3_counts, p3_scores) if p3_counts else 0.0
+    logger.info(f"P3 = {p3:.4f}")
+    
+    # P4: Stability/Variance
+    logger.info("Computing P4: Low Variance (Stability)")
+    repeat_scores_by_item = {}
+    # Sample 20 files from P1 paths for repeated scoring (for full VeriBench coverage)
+    id_pairs = []
+    for dir_path in paths_p1:
+        id_pairs.extend(list_lean_files(dir_path))
+        if len(id_pairs) >= 20:
+            break
+    id_pairs = id_pairs[:20]
+    
+    for fp in id_pairs:
+        key = f"p1::{fp.name}"
+        vals = []
+        for r in range(repeats):
+            try:
+                vals.append(score_pair(fp, fp, s_idx=r, n_idx=r))
+            except Exception as e:
+                logger.warning(f"P4 repeat {r} failed for {fp}: {e}")
+        if vals:
+            repeat_scores_by_item[key] = vals
+            logger.info(f"P4: {fp.name} -> {len(vals)} repeats, variance={sum((v-sum(vals)/len(vals))**2 for v in vals)/len(vals):.6f}")
+    
+    p4 = compute_p4_stability(repeat_scores_by_item, tau=0.05) if repeat_scores_by_item else 0.0
+    logger.info(f"P4 = {p4:.4f}")
+    
+    # Judge Trust Index
+    jti = compute_jti(p1, p2, p3, p4)
+    logger.info(f"JTI = {jti:.4f}")
+    
+    return {
+        "p1": p1,
+        "p2": p2,
+        "p3": p3,
+        "p4": p4,
+        "jti": jti,
+        "identity_scores": identity_scores,
+        "p2_counts": p2_counts,
+        "p2_scores": p2_scores,
+        "p3_counts": p3_counts,
+        "p3_scores": p3_scores,
+        "repeat_scores": repeat_scores_by_item,
+    }
 
 def _main(**kwargs):
     # Allow a local demo path without WANDB by branching before imports
     eval_mode = kwargs.get("eval_mode", "").lower()
+    
+    # Handle real HSJ evaluation
+    if eval_mode == "hsj_real":
+        logger.info('Starting REAL HSJ evaluation with actual LLM judge calls')
+        from datetime import datetime
+        from socket import gethostname
+        import wandb
+        start_time = time.time()
+
+        today = datetime.now().strftime("%Y_m%m_d%d_t%Hh_%Mm_%Ss")
+        kwargs = kwargs | {
+            "today": today,
+            "hostname": gethostname(),
+        }
+        logger.info(f'Wandb mode: {kwargs.get("mode", "dryrun")}')
+        run_name = f"hsj_real_{today}"
+        run = wandb.init(
+            entity="brando-su",
+            project="vb-thm-eq",
+            mode=kwargs.get("mode", "dryrun"),
+            name=run_name,
+            save_code=True,
+            config=kwargs,
+        )
+        wandb.save(__file__)
+        logger.info(f"Starting real HSJ eval run: {kwargs}")
+        
+        # Run main evaluation
+        res = main(**kwargs)
+        logger.info(f'Real HSJ evaluation result: {res}')
+        
+        # Log to wandb
+        elapsed_time = time.time() - start_time
+        wandb.log({
+            "p1": res["p1"],
+            "p2": res["p2"],
+            "p3": res["p3"],
+            "p4": res["p4"],
+            "jti": res["jti"],
+            "elapsed_time_seconds": elapsed_time,
+            "elapsed_time_minutes": elapsed_time / 60,
+            "elapsed_time_hours": elapsed_time / 3600,
+        })
+        
+        run.alert(title="HSJ Eval Completed", text=f"JTI={res['jti']:.4f}, P1={res['p1']:.4f}, P2={res['p2']:.4f}, P3={res['p3']:.4f}, P4={res['p4']:.4f}")
+        logger.info(f"Run completed. URL: {run.get_url()}")
+        print(f"{run.get_url()=}")
+        print(f"\aTime taken: {elapsed_time:.2f} seconds, or {elapsed_time / 60:.2f} minutes, or {elapsed_time / 3600:.2f} hours.\a")
+        wandb.finish()
+        return res
+    
+    # Handle demo mode (synthetic data)
     if eval_mode == "hsj_demo":
         _ensure_cert_judge_on_path()
         try:
@@ -214,15 +415,16 @@ if __name__ == "__main__":
     # Always use argparse for predictable CLI parsing
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--eval_mode", default="")
-    parser.add_argument("--mode", default="dryrun")
-    parser.add_argument("--judge_prompt_temp_path", default="")
-    parser.add_argument("--max_score", default=None)
-    parser.add_argument("--paths_p1", nargs='*', default=[])
-    parser.add_argument("--path_p2", default="")
-    parser.add_argument("--path_p3", default="")
-    parser.add_argument("--num_llm_judge_calls_per_file_pair", default=None)
-    parser.add_argument("--max_workers", default=None)
+    parser.add_argument("--eval_mode", default="hsj_demo", help="hsj_demo for synthetic test, hsj_real for actual eval")
+    parser.add_argument("--mode", default="dryrun", help="online for wandb logging, dryrun for local")
+    parser.add_argument("--claude_dotenv_path", default="", help="Path to .env file with LLM credentials")
+    parser.add_argument("--judge_prompt_temp_path", default="", help="Path to judge prompt template")
+    parser.add_argument("--max_score", type=int, default=30, help="Maximum score value")
+    parser.add_argument("--paths_p1", nargs='*', default=[], help="Directories for P1 reflexivity testing")
+    parser.add_argument("--path_p2", default="", help="Bug ladder directory for P2")
+    parser.add_argument("--path_p3", default="", help="Missing specs ladder directory for P3")
+    parser.add_argument("--num_llm_judge_calls_per_file_pair", type=int, default=5, help="Repeats for P4 variance")
+    parser.add_argument("--max_workers", type=int, default=24, help="Concurrent threads")
     args, unknown = parser.parse_known_args()
     _main(**vars(args))
     elapsed_time = time.time() - start_time
