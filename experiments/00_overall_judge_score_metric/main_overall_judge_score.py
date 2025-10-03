@@ -97,7 +97,12 @@ def main(**kwargs) -> Dict[str, Any]:
         compute_p1_identity,
         compute_p2_or_p3_ordering_auc,
         compute_p4_stability,
+        compute_p5_tvd_mi,
         compute_jti,
+    )
+    from cert_judge.tvd_mi_tools import (
+        tvd_mi_from_critic,
+        per_item_auc_macro,
     )
     
     # Environment variables should already be loaded by the shell script
@@ -220,15 +225,124 @@ def main(**kwargs) -> Dict[str, Any]:
     p4 = compute_p4_stability(repeat_scores_by_item, tau=0.05) if repeat_scores_by_item else 0.0
     logger.info(f"P4 = {p4:.4f}")
     
-    # Judge Trust Index
-    jti = compute_jti(p1, p2, p3, p4)
-    logger.info(f"JTI = {jti:.4f}")
+    # P5: TVD-MI (Information-Relationship Robustness)
+    logger.info("Computing P5: TVD-MI (Information-Relationship Robustness)")
+    
+    # Build pairwise dataset for TVD-MI
+    # Same-source pairs: Use identity comparisons from P1 (file vs itself)
+    # Different-source pairs: Compare different files
+    y_true_same_source = []
+    y_pred_critic_labels = []
+    pair_scores_p5 = []
+    pair_class_p5 = []
+    item_ids_p5 = []
+    
+    # Collect same-source pairs (identity comparisons)
+    all_files_p5 = []
+    for dir_path in paths_p1:
+        all_files_p5.extend(list_lean_files(dir_path))
+    
+    # Sample up to 50 files for P5 to keep computation tractable
+    import random
+    random.seed(42)
+    sampled_files_p5 = all_files_p5[:50] if len(all_files_p5) <= 50 else random.sample(all_files_p5, 50)
+    
+    logger.info(f"P5: Building pairwise dataset from {len(sampled_files_p5)} files")
+    
+    # Same-source pairs: file vs itself
+    for idx, fp in enumerate(sampled_files_p5):
+        try:
+            score = score_pair(fp, fp, s_idx=0, n_idx=0)
+            y_true_same_source.append(True)
+            pair_scores_p5.append(score)
+            pair_class_p5.append(1)  # 1 = same source
+            item_ids_p5.append(idx)
+            
+            # Convert score to categorical critic label
+            # High score (>0.85) → "Significant Gain" (same source)
+            # Medium score (0.5-0.85) → "Little Gain"
+            # Low score (<0.5) → "No Gain" (different sources)
+            if score > 0.85:
+                y_pred_critic_labels.append("Significant Gain")
+            elif score > 0.5:
+                y_pred_critic_labels.append("Little Gain")
+            else:
+                y_pred_critic_labels.append("No Gain")
+        except Exception as e:
+            logger.warning(f"P5 same-source pair failed for {fp}: {e}")
+    
+    # Different-source pairs: compare different files (sample pairs to avoid O(n²))
+    n_diff_pairs = min(len(sampled_files_p5), 50)  # Match number of same-source pairs
+    for i in range(n_diff_pairs):
+        try:
+            fp1 = sampled_files_p5[i]
+            fp2 = sampled_files_p5[(i + len(sampled_files_p5)//2) % len(sampled_files_p5)]
+            if fp1 == fp2:
+                continue
+            
+            score = score_pair(fp1, fp2, s_idx=0, n_idx=0)
+            y_true_same_source.append(False)
+            pair_scores_p5.append(score)
+            pair_class_p5.append(0)  # 0 = different source
+            item_ids_p5.append(i)
+            
+            # Convert to categorical label
+            if score > 0.85:
+                y_pred_critic_labels.append("Significant Gain")
+            elif score > 0.5:
+                y_pred_critic_labels.append("Little Gain")
+            else:
+                y_pred_critic_labels.append("No Gain")
+        except Exception as e:
+            logger.warning(f"P5 different-source pair failed: {e}")
+    
+    # Compute P5 components
+    p5_youdens_j = 0.0
+    p5_auc_macro = 0.5
+    p5_delta_auc_tamper = 0.1  # Conservative default
+    
+    if len(y_true_same_source) > 0 and len(y_pred_critic_labels) > 0:
+        try:
+            # Compute Youden's J via TVD-MI
+            tvd_report = tvd_mi_from_critic(y_true_same_source, y_pred_critic_labels)
+            p5_youdens_j = tvd_report.youdens_j
+            logger.info(f"P5: Youden's J = {p5_youdens_j:.4f} (TPR={tvd_report.tpr:.4f}, TNR={tvd_report.tnr:.4f})")
+            
+            # Compute item-level macro AUC
+            if len(pair_scores_p5) > 0 and len(set(pair_class_p5)) > 1:
+                p5_auc_macro, _ = per_item_auc_macro(item_ids_p5, pair_scores_p5, pair_class_p5)
+                logger.info(f"P5: Macro AUC = {p5_auc_macro:.4f}")
+            
+            # Estimate tamper resistance from P4 variance
+            # High variance in P4 suggests vulnerability to perturbations
+            if repeat_scores_by_item:
+                variances = [
+                    sum((v - sum(scores)/len(scores))**2 for v in scores) / len(scores)
+                    for scores in repeat_scores_by_item.values()
+                    if len(scores) > 1
+                ]
+                if variances:
+                    avg_var = sum(variances) / len(variances)
+                    # Map variance to tamper drop: higher variance → higher drop
+                    p5_delta_auc_tamper = min(0.5, avg_var * 10)  # Scale to [0, 0.5]
+                    logger.info(f"P5: Estimated tamper AUC drop = {p5_delta_auc_tamper:.4f} (from P4 variance)")
+        except Exception as e:
+            logger.warning(f"P5 computation failed: {e}")
+    
+    # Compute final P5 score
+    p5 = compute_p5_tvd_mi(p5_youdens_j, p5_auc_macro, p5_delta_auc_tamper)
+    logger.info(f"P5 = {p5:.4f}")
+    
+    # Judge Trust Index (now with P5)
+    jti = compute_jti(p1, p2, p3, p4, p5=p5)
+    logger.info(f"JTI (5-property) = {jti:.4f}")
     
     return {
         "p1": p1,
         "p2": p2,
         "p3": p3,
         "p4": p4,
+        "p5": p5,
         "jti": jti,
         "identity_scores": identity_scores,
         "p2_counts": p2_counts,
@@ -236,6 +350,9 @@ def main(**kwargs) -> Dict[str, Any]:
         "p3_counts": p3_counts,
         "p3_scores": p3_scores,
         "repeat_scores": repeat_scores_by_item,
+        "p5_youdens_j": p5_youdens_j,
+        "p5_auc_macro": p5_auc_macro,
+        "p5_delta_auc_tamper": p5_delta_auc_tamper,
     }
 
 def _main(**kwargs):
@@ -279,13 +396,17 @@ def _main(**kwargs):
             "p2": res["p2"],
             "p3": res["p3"],
             "p4": res["p4"],
+            "p5": res["p5"],
             "jti": res["jti"],
+            "p5_youdens_j": res.get("p5_youdens_j", 0.0),
+            "p5_auc_macro": res.get("p5_auc_macro", 0.5),
+            "p5_delta_auc_tamper": res.get("p5_delta_auc_tamper", 0.1),
             "elapsed_time_seconds": elapsed_time,
             "elapsed_time_minutes": elapsed_time / 60,
             "elapsed_time_hours": elapsed_time / 3600,
         })
         
-        run.alert(title="HSJ Eval Completed", text=f"JTI={res['jti']:.4f}, P1={res['p1']:.4f}, P2={res['p2']:.4f}, P3={res['p3']:.4f}, P4={res['p4']:.4f}")
+        run.alert(title="HSJ Eval Completed", text=f"JTI={res['jti']:.4f}, P1={res['p1']:.4f}, P2={res['p2']:.4f}, P3={res['p3']:.4f}, P4={res['p4']:.4f}, P5={res['p5']:.4f}")
         logger.info(f"Run completed. URL: {run.get_url()}")
         print(f"{run.get_url()=}")
         print(f"\aTime taken: {elapsed_time:.2f} seconds, or {elapsed_time / 60:.2f} minutes, or {elapsed_time / 3600:.2f} hours.\a")

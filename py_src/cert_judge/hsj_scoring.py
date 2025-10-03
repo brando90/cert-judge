@@ -115,25 +115,94 @@ def compute_p4_stability(
     return _clip01(1.0 - pooled_var / (tau * tau))
 
 
+def compute_p5_tvd_mi(
+    youdens_j: float,
+    auc_macro: float,
+    delta_auc_tamper: float,
+    beta1: float = 0.5,
+    beta2: float = 0.3,
+    beta3: float = 0.2,
+) -> float:
+    """
+    P5 — TVD-MI (Information-Relationship Robustness).
+    
+    Combines three facets:
+    1. Normalized Youden's J: (J + 1) / 2, where J ∈ [-1, 1]
+    2. Item-level macro AUC
+    3. Tamper resistance: 1 - max_AUC_drop
+    
+    Formula: P5 = β₁·J̃ + β₂·AUC_macro + β₃·(1 - ΔAUC_tamper)
+    
+    Args:
+        youdens_j: Youden's J statistic (TPR + TNR - 1) ∈ [-1, 1]
+        auc_macro: Macro-averaged item-level AUC ∈ [0, 1]
+        delta_auc_tamper: Maximum AUC drop under tampering ∈ [0, 1]
+        beta1, beta2, beta3: Weights (should sum to 1.0)
+    
+    Returns:
+        P5 score ∈ [0, 1]
+    """
+    # Normalize Youden's J from [-1,1] to [0,1]
+    j_tilde = _clip01((youdens_j + 1.0) / 2.0)
+    
+    # Clip inputs to [0,1]
+    auc_m = _clip01(auc_macro)
+    delta_auc = _clip01(delta_auc_tamper)
+    
+    # Normalize weights
+    total_beta = beta1 + beta2 + beta3
+    if total_beta <= 0:
+        beta1, beta2, beta3 = 0.5, 0.3, 0.2
+        total_beta = 1.0
+    
+    b1 = beta1 / total_beta
+    b2 = beta2 / total_beta
+    b3 = beta3 / total_beta
+    
+    # Combine facets
+    p5 = b1 * j_tilde + b2 * auc_m + b3 * (1.0 - delta_auc)
+    return _clip01(p5)
+
+
 def compute_jti(
     p1: float,
     p2: float,
     p3: float,
     p4: float,
+    p5: Optional[float] = None,
     weights: Optional[Dict[str, float]] = None,
 ) -> float:
-    """Judge Trust Index (JTI) = w1*p1 + w2*p2 + w3*p3 + w4*p4."""
+    """
+    Judge Trust Index (JTI) = w1*p1 + w2*p2 + w3*p3 + w4*p4 + w5*p5.
+    
+    If p5 is None or weights don't include 'p5', falls back to 4-property JTI.
+    """
     if weights is None:
-        weights = {"p1": 0.25, "p2": 0.25, "p3": 0.25, "p4": 0.25}
+        if p5 is not None:
+            weights = {"p1": 0.2, "p2": 0.2, "p3": 0.2, "p4": 0.2, "p5": 0.2}
+        else:
+            weights = {"p1": 0.25, "p2": 0.25, "p3": 0.25, "p4": 0.25}
+    
     total_w = sum(max(0.0, float(v)) for v in weights.values())
     if total_w <= 0:
-        weights = {"p1": 0.25, "p2": 0.25, "p3": 0.25, "p4": 0.25}
+        if p5 is not None:
+            weights = {"p1": 0.2, "p2": 0.2, "p3": 0.2, "p4": 0.2, "p5": 0.2}
+        else:
+            weights = {"p1": 0.25, "p2": 0.25, "p3": 0.25, "p4": 0.25}
         total_w = 1.0
+    
     w1 = weights.get("p1", 0.0) / total_w
     w2 = weights.get("p2", 0.0) / total_w
     w3 = weights.get("p3", 0.0) / total_w
     w4 = weights.get("p4", 0.0) / total_w
-    return _clip01(w1 * _clip01(p1) + w2 * _clip01(p2) + w3 * _clip01(p3) + w4 * _clip01(p4))
+    w5 = weights.get("p5", 0.0) / total_w
+    
+    jti = w1 * _clip01(p1) + w2 * _clip01(p2) + w3 * _clip01(p3) + w4 * _clip01(p4)
+    
+    if p5 is not None:
+        jti += w5 * _clip01(p5)
+    
+    return _clip01(jti)
 
 
 # --- Isotonic Regression (sklearn or PAV fallback) ---------------------------
