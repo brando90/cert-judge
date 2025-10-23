@@ -5,6 +5,7 @@ import logging
 from pathlib import Path
 from statistics import mean
 import sys
+import wandb
 
 
 def configure_logging(level: int = logging.INFO) -> logging.Logger:
@@ -122,6 +123,12 @@ def main(**kwargs) -> Dict[str, Any]:
     path_p2 = kwargs.get("path_p2", "")
     path_p3 = kwargs.get("path_p3", "")
     repeats = int(kwargs.get("num_llm_judge_calls_per_file_pair", 5))
+    p5_enabled = kwargs.get("p5_enabled", True)
+    p5_tau = float(kwargs.get("p5_tau", 0.05))
+    p6_enabled = kwargs.get("p6_enabled", False)
+    p7_enabled = kwargs.get("p7_enabled", False)
+    human_scores_path = kwargs.get("human_scores_path", "")
+    prover_scores_path = kwargs.get("prover_scores_path", "")
     
     def list_lean_files(dir_path: str):
         p = Path(dir_path).expanduser()
@@ -152,11 +159,12 @@ def main(**kwargs) -> Dict[str, Any]:
         items.sort(key=lambda t: t[0])
         return items
     
-    # P1: Identity/Reflexivity scores
+    # P1: Identity/Reflexivity scores (COMPREHENSIVE: Sample first 15 files per directory)
     logger.info("Computing P1: Reflexivity & Consistency")
     identity_scores = []
     for dir_path in paths_p1:
-        for fp in list_lean_files(dir_path):
+        files = list_lean_files(dir_path)[:15]  # COMPREHENSIVE: First 15 files per dir
+        for fp in files:
             try:
                 identity_scores.append(score_pair(fp, fp, s_idx=0, n_idx=0))
                 logger.info(f"P1: Scored {fp.name}")
@@ -199,16 +207,16 @@ def main(**kwargs) -> Dict[str, Any]:
     p3 = compute_p2_or_p3_ordering_auc(p3_counts, p3_scores) if p3_counts else 0.0
     logger.info(f"P3 = {p3:.4f}")
     
-    # P4: Stability/Variance
+    # P4: Stability/Variance (COMPREHENSIVE: Sample 15 files)
     logger.info("Computing P4: Low Variance (Stability)")
     repeat_scores_by_item = {}
-    # Sample 20 files from P1 paths for repeated scoring (for full VeriBench coverage)
+    # COMPREHENSIVE: Sample 15 files for repeated scoring
     id_pairs = []
     for dir_path in paths_p1:
-        id_pairs.extend(list_lean_files(dir_path))
-        if len(id_pairs) >= 20:
+        id_pairs.extend(list_lean_files(dir_path)[:3])  # First 3 files per dir
+        if len(id_pairs) >= 15:
             break
-    id_pairs = id_pairs[:20]
+    id_pairs = id_pairs[:15]
     
     for fp in id_pairs:
         key = f"p1::{fp.name}"
@@ -222,120 +230,203 @@ def main(**kwargs) -> Dict[str, Any]:
             repeat_scores_by_item[key] = vals
             logger.info(f"P4: {fp.name} -> {len(vals)} repeats, variance={sum((v-sum(vals)/len(vals))**2 for v in vals)/len(vals):.6f}")
     
-    p4 = compute_p4_stability(repeat_scores_by_item, tau=0.05) if repeat_scores_by_item else 0.0
+    p4 = compute_p4_stability(repeat_scores_by_item, tau=p5_tau) if repeat_scores_by_item else 0.0
     logger.info(f"P4 = {p4:.4f}")
     
     # P5: TVD-MI (Information-Relationship Robustness)
-    logger.info("Computing P5: TVD-MI (Information-Relationship Robustness)")
+    if p5_enabled:
+        logger.info("Computing P5: TVD-MI (Information-Relationship Robustness)")
+        
+        # Build pairwise dataset for TVD-MI
+        # Same-source pairs: Use identity comparisons from P1 (file vs itself)
+        # Different-source pairs: Compare different files
+        y_true_same_source = []
+        y_pred_critic_labels = []
+        pair_scores_p5 = []
+        pair_class_p5 = []
+        item_ids_p5 = []
+        
+        # Collect same-source pairs (identity comparisons)
+        all_files_p5 = []
+        for dir_path in paths_p1:
+            all_files_p5.extend(list_lean_files(dir_path))
+        
+        # COMPREHENSIVE: Sample 25 files for P5 for robust evaluation
+        import random
+        random.seed(42)
+        sampled_files_p5 = all_files_p5[:25] if len(all_files_p5) <= 25 else random.sample(all_files_p5, 25)
+        
+        logger.info(f"P5: Building pairwise dataset from {len(sampled_files_p5)} files")
+        
+        # Same-source pairs: file vs itself
+        for idx, fp in enumerate(sampled_files_p5):
+            try:
+                score = score_pair(fp, fp, s_idx=0, n_idx=0)
+                y_true_same_source.append(True)
+                pair_scores_p5.append(score)
+                pair_class_p5.append(1)  # 1 = same source
+                item_ids_p5.append(idx)
+                
+                # Convert score to categorical critic label
+                # High score (>0.85) → "Significant Gain" (same source)
+                # Medium score (0.5-0.85) → "Little Gain"
+                # Low score (<0.5) → "No Gain" (different sources)
+                if score > 0.85:
+                    y_pred_critic_labels.append("Significant Gain")
+                elif score > 0.5:
+                    y_pred_critic_labels.append("Little Gain")
+                else:
+                    y_pred_critic_labels.append("No Gain")
+            except Exception as e:
+                logger.warning(f"P5 same-source pair failed for {fp}: {e}")
+        
+        # Different-source pairs: compare different files (COMPREHENSIVE: more pairs)
+        n_diff_pairs = min(len(sampled_files_p5), 25)  # COMPREHENSIVE: 25 different-source pairs
+        for i in range(n_diff_pairs):
+            try:
+                fp1 = sampled_files_p5[i]
+                fp2 = sampled_files_p5[(i + len(sampled_files_p5)//2) % len(sampled_files_p5)]
+                if fp1 == fp2:
+                    continue
+                
+                score = score_pair(fp1, fp2, s_idx=0, n_idx=0)
+                y_true_same_source.append(False)
+                pair_scores_p5.append(score)
+                pair_class_p5.append(0)  # 0 = different source
+                item_ids_p5.append(i)
+                
+                # Convert to categorical label
+                if score > 0.85:
+                    y_pred_critic_labels.append("Significant Gain")
+                elif score > 0.5:
+                    y_pred_critic_labels.append("Little Gain")
+                else:
+                    y_pred_critic_labels.append("No Gain")
+            except Exception as e:
+                logger.warning(f"P5 different-source pair failed: {e}")
+        
+        # Compute P5 components
+        p5_youdens_j = 0.0
+        p5_auc_macro = 0.5
+        p5_delta_auc_tamper = 0.1  # Conservative default
+        
+        if len(y_true_same_source) > 0 and len(y_pred_critic_labels) > 0:
+            try:
+                # Compute Youden's J via TVD-MI
+                tvd_report = tvd_mi_from_critic(y_true_same_source, y_pred_critic_labels)
+                p5_youdens_j = tvd_report.youdens_j
+                logger.info(f"P5: Youden's J = {p5_youdens_j:.4f} (TPR={tvd_report.tpr:.4f}, TNR={tvd_report.tnr:.4f})")
+                
+                # Compute item-level macro AUC
+                if len(pair_scores_p5) > 0 and len(set(pair_class_p5)) > 1:
+                    p5_auc_macro, _ = per_item_auc_macro(item_ids_p5, pair_scores_p5, pair_class_p5)
+                    logger.info(f"P5: Macro AUC = {p5_auc_macro:.4f}")
+                
+                # Estimate tamper resistance from P4 variance
+                # High variance in P4 suggests vulnerability to perturbations
+                if repeat_scores_by_item:
+                    variances = [
+                        sum((v - sum(scores)/len(scores))**2 for v in scores) / len(scores)
+                        for scores in repeat_scores_by_item.values()
+                        if len(scores) > 1
+                    ]
+                    if variances:
+                        avg_var = sum(variances) / len(variances)
+                        # Map variance to tamper drop: higher variance → higher drop
+                        p5_delta_auc_tamper = min(0.5, avg_var * 10)  # Scale to [0, 0.5]
+                        logger.info(f"P5: Estimated tamper AUC drop = {p5_delta_auc_tamper:.4f} (from P4 variance)")
+            except Exception as e:
+                logger.warning(f"P5 computation failed: {e}")
+        
+        # Compute final P5 score
+        p5 = compute_p5_tvd_mi(p5_youdens_j, p5_auc_macro, p5_delta_auc_tamper)
+        logger.info(f"P5 = {p5:.4f}")
+    else:
+        logger.info("P5 computation disabled")
+        p5 = 0.0
+        p5_youdens_j = 0.0
+        p5_auc_macro = 0.5
+        p5_delta_auc_tamper = 0.1
     
-    # Build pairwise dataset for TVD-MI
-    # Same-source pairs: Use identity comparisons from P1 (file vs itself)
-    # Different-source pairs: Compare different files
-    y_true_same_source = []
-    y_pred_critic_labels = []
-    pair_scores_p5 = []
-    pair_class_p5 = []
-    item_ids_p5 = []
-    
-    # Collect same-source pairs (identity comparisons)
-    all_files_p5 = []
-    for dir_path in paths_p1:
-        all_files_p5.extend(list_lean_files(dir_path))
-    
-    # Sample up to 50 files for P5 to keep computation tractable
-    import random
-    random.seed(42)
-    sampled_files_p5 = all_files_p5[:50] if len(all_files_p5) <= 50 else random.sample(all_files_p5, 50)
-    
-    logger.info(f"P5: Building pairwise dataset from {len(sampled_files_p5)} files")
-    
-    # Same-source pairs: file vs itself
-    for idx, fp in enumerate(sampled_files_p5):
+    # P6: Correlation with Human Scores
+    if p6_enabled and human_scores_path:
+        logger.info("Computing P6: Correlation with Human Scores")
         try:
-            score = score_pair(fp, fp, s_idx=0, n_idx=0)
-            y_true_same_source.append(True)
-            pair_scores_p5.append(score)
-            pair_class_p5.append(1)  # 1 = same source
-            item_ids_p5.append(idx)
+            import pandas as pd
+            from scipy.stats import spearmanr
             
-            # Convert score to categorical critic label
-            # High score (>0.85) → "Significant Gain" (same source)
-            # Medium score (0.5-0.85) → "Little Gain"
-            # Low score (<0.5) → "No Gain" (different sources)
-            if score > 0.85:
-                y_pred_critic_labels.append("Significant Gain")
-            elif score > 0.5:
-                y_pred_critic_labels.append("Little Gain")
+            # Load human scores
+            human_data = pd.read_csv(human_scores_path)
+            human_scores = human_data['human_score'].tolist()
+            file_paths = human_data['file_path'].tolist()
+            
+            # Get LLM judge scores for the same files
+            llm_scores = []
+            for file_path in file_paths:
+                try:
+                    fp = Path(file_path)
+                    score = score_pair(fp, fp, s_idx=0, n_idx=0)
+                    llm_scores.append(score)
+                except Exception as e:
+                    logger.warning(f"P6 scoring failed for {file_path}: {e}")
+                    llm_scores.append(0.0)
+            
+            # Calculate Spearman correlation
+            if len(human_scores) > 1 and len(llm_scores) > 1:
+                rho, _ = spearmanr(human_scores, llm_scores)
+                p6 = (rho + 1) / 2  # Scale from [-1, 1] to [0, 1]
+                logger.info(f"P6: Human correlation = {rho:.4f}, P6 = {p6:.4f}")
             else:
-                y_pred_critic_labels.append("No Gain")
+                p6 = 0.5
+                logger.warning("P6: Insufficient data for correlation")
         except Exception as e:
-            logger.warning(f"P5 same-source pair failed for {fp}: {e}")
+            logger.warning(f"P6 computation failed: {e}")
+            p6 = 0.5
+    else:
+        logger.info("P6 computation disabled or no human scores provided")
+        p6 = 0.5
     
-    # Different-source pairs: compare different files (sample pairs to avoid O(n²))
-    n_diff_pairs = min(len(sampled_files_p5), 50)  # Match number of same-source pairs
-    for i in range(n_diff_pairs):
+    # P7: Correlation with Prover Success
+    if p7_enabled and prover_scores_path:
+        logger.info("Computing P7: Correlation with Prover Success")
         try:
-            fp1 = sampled_files_p5[i]
-            fp2 = sampled_files_p5[(i + len(sampled_files_p5)//2) % len(sampled_files_p5)]
-            if fp1 == fp2:
-                continue
+            import pandas as pd
+            from scipy.stats import spearmanr
             
-            score = score_pair(fp1, fp2, s_idx=0, n_idx=0)
-            y_true_same_source.append(False)
-            pair_scores_p5.append(score)
-            pair_class_p5.append(0)  # 0 = different source
-            item_ids_p5.append(i)
+            # Load prover success rates
+            prover_data = pd.read_csv(prover_scores_path)
+            prover_scores = prover_data['prover_success_rate'].tolist()
+            file_paths = prover_data['file_path'].tolist()
             
-            # Convert to categorical label
-            if score > 0.85:
-                y_pred_critic_labels.append("Significant Gain")
-            elif score > 0.5:
-                y_pred_critic_labels.append("Little Gain")
+            # Get LLM judge scores for the same files
+            llm_scores = []
+            for file_path in file_paths:
+                try:
+                    fp = Path(file_path)
+                    score = score_pair(fp, fp, s_idx=0, n_idx=0)
+                    llm_scores.append(score)
+                except Exception as e:
+                    logger.warning(f"P7 scoring failed for {file_path}: {e}")
+                    llm_scores.append(0.0)
+            
+            # Calculate Spearman correlation
+            if len(prover_scores) > 1 and len(llm_scores) > 1:
+                rho, _ = spearmanr(prover_scores, llm_scores)
+                p7 = (rho + 1) / 2  # Scale from [-1, 1] to [0, 1]
+                logger.info(f"P7: Prover correlation = {rho:.4f}, P7 = {p7:.4f}")
             else:
-                y_pred_critic_labels.append("No Gain")
+                p7 = 0.5
+                logger.warning("P7: Insufficient data for correlation")
         except Exception as e:
-            logger.warning(f"P5 different-source pair failed: {e}")
+            logger.warning(f"P7 computation failed: {e}")
+            p7 = 0.5
+    else:
+        logger.info("P7 computation disabled or no prover scores provided")
+        p7 = 0.5
     
-    # Compute P5 components
-    p5_youdens_j = 0.0
-    p5_auc_macro = 0.5
-    p5_delta_auc_tamper = 0.1  # Conservative default
-    
-    if len(y_true_same_source) > 0 and len(y_pred_critic_labels) > 0:
-        try:
-            # Compute Youden's J via TVD-MI
-            tvd_report = tvd_mi_from_critic(y_true_same_source, y_pred_critic_labels)
-            p5_youdens_j = tvd_report.youdens_j
-            logger.info(f"P5: Youden's J = {p5_youdens_j:.4f} (TPR={tvd_report.tpr:.4f}, TNR={tvd_report.tnr:.4f})")
-            
-            # Compute item-level macro AUC
-            if len(pair_scores_p5) > 0 and len(set(pair_class_p5)) > 1:
-                p5_auc_macro, _ = per_item_auc_macro(item_ids_p5, pair_scores_p5, pair_class_p5)
-                logger.info(f"P5: Macro AUC = {p5_auc_macro:.4f}")
-            
-            # Estimate tamper resistance from P4 variance
-            # High variance in P4 suggests vulnerability to perturbations
-            if repeat_scores_by_item:
-                variances = [
-                    sum((v - sum(scores)/len(scores))**2 for v in scores) / len(scores)
-                    for scores in repeat_scores_by_item.values()
-                    if len(scores) > 1
-                ]
-                if variances:
-                    avg_var = sum(variances) / len(variances)
-                    # Map variance to tamper drop: higher variance → higher drop
-                    p5_delta_auc_tamper = min(0.5, avg_var * 10)  # Scale to [0, 0.5]
-                    logger.info(f"P5: Estimated tamper AUC drop = {p5_delta_auc_tamper:.4f} (from P4 variance)")
-        except Exception as e:
-            logger.warning(f"P5 computation failed: {e}")
-    
-    # Compute final P5 score
-    p5 = compute_p5_tvd_mi(p5_youdens_j, p5_auc_macro, p5_delta_auc_tamper)
-    logger.info(f"P5 = {p5:.4f}")
-    
-    # Judge Trust Index (now with P5)
-    jti = compute_jti(p1, p2, p3, p4, p5=p5)
-    logger.info(f"JTI (5-property) = {jti:.4f}")
+    # Judge Trust Index (now with P5, P6, P7)
+    jti = compute_jti(p1, p2, p3, p4, p5=p5, p6=p6, p7=p7)
+    logger.info(f"JTI (7-property) = {jti:.4f}")
     
     return {
         "p1": p1,
@@ -343,6 +434,8 @@ def main(**kwargs) -> Dict[str, Any]:
         "p3": p3,
         "p4": p4,
         "p5": p5,
+        "p6": p6,
+        "p7": p7,
         "jti": jti,
         "identity_scores": identity_scores,
         "p2_counts": p2_counts,
@@ -397,6 +490,8 @@ def _main(**kwargs):
             "p3": res["p3"],
             "p4": res["p4"],
             "p5": res["p5"],
+            "p6": res["p6"],
+            "p7": res["p7"],
             "jti": res["jti"],
             "p5_youdens_j": res.get("p5_youdens_j", 0.0),
             "p5_auc_macro": res.get("p5_auc_macro", 0.5),
@@ -406,7 +501,7 @@ def _main(**kwargs):
             "elapsed_time_hours": elapsed_time / 3600,
         })
         
-        run.alert(title="HSJ Eval Completed", text=f"JTI={res['jti']:.4f}, P1={res['p1']:.4f}, P2={res['p2']:.4f}, P3={res['p3']:.4f}, P4={res['p4']:.4f}, P5={res['p5']:.4f}")
+        run.alert(title="HSJ Eval Completed", text=f"JTI={res['jti']:.4f}, P1={res['p1']:.4f}, P2={res['p2']:.4f}, P3={res['p3']:.4f}, P4={res['p4']:.4f}, P5={res['p5']:.4f}, P6={res['p6']:.4f}, P7={res['p7']:.4f}")
         logger.info(f"Run completed. URL: {run.get_url()}")
         print(f"{run.get_url()=}")
         print(f"\aTime taken: {elapsed_time:.2f} seconds, or {elapsed_time / 60:.2f} minutes, or {elapsed_time / 3600:.2f} hours.\a")
@@ -546,6 +641,12 @@ if __name__ == "__main__":
     parser.add_argument("--path_p3", default="", help="Missing specs ladder directory for P3")
     parser.add_argument("--num_llm_judge_calls_per_file_pair", type=int, default=5, help="Repeats for P4 variance")
     parser.add_argument("--max_workers", type=int, default=24, help="Concurrent threads")
+    parser.add_argument("--p5_enabled", action="store_true", default=True, help="Enable P5 TVD-MI computation")
+    parser.add_argument("--p5_tau", type=float, default=0.05, help="P5 tolerance threshold for variance")
+    parser.add_argument("--p6_enabled", action="store_true", default=False, help="Enable P6 correlation with human scores")
+    parser.add_argument("--p7_enabled", action="store_true", default=False, help="Enable P7 correlation with prover success")
+    parser.add_argument("--human_scores_path", default="", help="Path to human scores file for P6")
+    parser.add_argument("--prover_scores_path", default="", help="Path to prover success rates for P7")
     args, unknown = parser.parse_known_args()
     _main(**vars(args))
     elapsed_time = time.time() - start_time

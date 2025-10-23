@@ -65,15 +65,12 @@ def _pairwise_ordering_auc(xs: Sequence[float], ys: Sequence[float]) -> float:
 def compute_p1_identity(identity_scores_norm: Sequence[float]) -> float:
     """
     P1 — Identity/Consistency.
-    Returns the median normalized score on identity pairs (gold vs gold).
+    Returns the MEAN normalized score on identity/reflexivity pairs s(X,X).
+    Callers may optionally include meaning-preserving variants s(X',X).
+    Empty input returns 0.0.
     """
-    s = sorted(_clip01(v) for v in identity_scores_norm)
-    if not s:
-        return 0.0
-    m = len(s)
-    if m % 2 == 1:
-        return float(s[m // 2])
-    return float(0.5 * (s[m // 2 - 1] + s[m // 2]))
+    vals = [_clip01(float(v)) for v in identity_scores_norm]
+    return _safe_mean(vals)
 
 
 def compute_p2_or_p3_ordering_auc(
@@ -170,39 +167,102 @@ def compute_jti(
     p3: float,
     p4: float,
     p5: Optional[float] = None,
+    p6: Optional[float] = None,
+    p7: Optional[float] = None,
     weights: Optional[Dict[str, float]] = None,
 ) -> float:
     """
-    Judge Trust Index (JTI) = w1*p1 + w2*p2 + w3*p3 + w4*p4 + w5*p5.
-    
-    If p5 is None or weights don't include 'p5', falls back to 4-property JTI.
+    Judge Trust Index (JTI): weighted combination of present properties.
+    Accepts P1–P4 (required) and optional P5–P7. If weights are not
+    provided, use equal weights across properties provided (non-None).
     """
+    props: Dict[str, float] = {
+        "p1": _clip01(p1),
+        "p2": _clip01(p2),
+        "p3": _clip01(p3),
+        "p4": _clip01(p4),
+    }
+    if p5 is not None:
+        props["p5"] = _clip01(p5)
+    if p6 is not None:
+        props["p6"] = _clip01(p6)
+    if p7 is not None:
+        props["p7"] = _clip01(p7)
+
     if weights is None:
-        if p5 is not None:
-            weights = {"p1": 0.2, "p2": 0.2, "p3": 0.2, "p4": 0.2, "p5": 0.2}
-        else:
-            weights = {"p1": 0.25, "p2": 0.25, "p3": 0.25, "p4": 0.25}
-    
+        n = len(props)
+        weights = {k: 1.0 / n for k in props.keys()}
+
     total_w = sum(max(0.0, float(v)) for v in weights.values())
     if total_w <= 0:
-        if p5 is not None:
-            weights = {"p1": 0.2, "p2": 0.2, "p3": 0.2, "p4": 0.2, "p5": 0.2}
-        else:
-            weights = {"p1": 0.25, "p2": 0.25, "p3": 0.25, "p4": 0.25}
+        n = len(props)
+        weights = {k: 1.0 / n for k in props.keys()}
         total_w = 1.0
-    
-    w1 = weights.get("p1", 0.0) / total_w
-    w2 = weights.get("p2", 0.0) / total_w
-    w3 = weights.get("p3", 0.0) / total_w
-    w4 = weights.get("p4", 0.0) / total_w
-    w5 = weights.get("p5", 0.0) / total_w
-    
-    jti = w1 * _clip01(p1) + w2 * _clip01(p2) + w3 * _clip01(p3) + w4 * _clip01(p4)
-    
-    if p5 is not None:
-        jti += w5 * _clip01(p5)
-    
+
+    jti = 0.0
+    for k, v in props.items():
+        jti += (weights.get(k, 0.0) / total_w) * v
     return _clip01(jti)
+
+
+def compute_p5_tamper_resistance(
+    original_scores: Sequence[float],
+    tampered_scores: Sequence[float],
+    tau: float = 0.05,
+) -> float:
+    """P5 (difference-based): clip(1 - mean(|Δ|)/tau, 0, 1)."""
+    if tau <= 0:
+        raise ValueError("tau must be positive")
+    a = list(original_scores)
+    b = list(tampered_scores)
+    if len(a) == 0 or len(a) != len(b):
+        return 0.0
+    diffs = [abs(float(x) - float(y)) for x, y in zip(a, b)]
+    avg_diff = _safe_mean(diffs)
+    return _clip01(1.0 - (avg_diff / tau))
+
+
+def _rankdata(vals: Sequence[float]) -> List[float]:
+    n = len(vals)
+    if n == 0:
+        return []
+    pairs = sorted([(float(v), i) for i, v in enumerate(vals)], key=lambda t: t[0])
+    ranks = [0.0] * n
+    i = 0
+    while i < n:
+        j = i + 1
+        while j < n and pairs[j][0] == pairs[i][0]:
+            j += 1
+        avg_rank = 0.5 * (i + 1 + j) - 0.5
+        for k in range(i, j):
+            ranks[pairs[k][1]] = avg_rank
+        i = j
+    return ranks
+
+
+def _pearson_corr(x: Sequence[float], y: Sequence[float]) -> float:
+    if len(x) != len(y) or len(x) < 2:
+        return 0.0
+    xm = _safe_mean(x)
+    ym = _safe_mean(y)
+    dx = [v - xm for v in x]
+    dy = [v - ym for v in y]
+    num = sum(a * b for a, b in zip(dx, dy))
+    sx2 = sum(a * a for a in dx)
+    sy2 = sum(b * b for b in dy)
+    if sx2 <= 0 or sy2 <= 0:
+        return 0.0
+    return num / ((sx2 ** 0.5) * (sy2 ** 0.5))
+
+
+def compute_spearman_scaled(x: Sequence[float], y: Sequence[float]) -> float:
+    if len(x) != len(y) or len(x) < 2:
+        return 0.5
+    rx = _rankdata([float(v) for v in x])
+    ry = _rankdata([float(v) for v in y])
+    rho = _pearson_corr(rx, ry)
+    # Map from [-1,1] to [0,1]
+    return _clip01(0.5 * (rho + 1.0))
 
 
 # --- Isotonic Regression (sklearn or PAV fallback) ---------------------------
@@ -388,4 +448,3 @@ if __name__ == "__main__":
     fI = fit_isotonic_calibrator([0.1, 0.6, 0.95], [0.0, 0.5, 1.0])
     final = compute_hsj_scores([0.35, 0.55, 0.9], [0.25, 0.5, 0.99], fJ, fI, jti, lambda_gt=0.7, gamma=1.5, jti_red=0.70)
     print({"p1": p1, "p2": p2, "p3": p3, "p4": p4, "jti": jti, "final": final})
-
