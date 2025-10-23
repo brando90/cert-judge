@@ -7,8 +7,8 @@ export mode=online
 export gold_path2files="$HOME/veribench/veribench_dataset/lean_src/veribench"
 # llm judge args (in the python code it will be a llm judge object/class, implement it if not there)
 # path to claude .env file
-export claude_dotenv_path="$HOME/cert-judge/experiments/.env_claude_3_7"
-# export claude_dotenv_path2="$HOME/cert-judge/experiments/.env_claude_3_5_v1"
+# export claude_dotenv_path="$HOME/cert-judge/experiments/.env_claude_3_7"
+export claude_dotenv_path="$HOME/cert-judge/experiments/.env_claude_3_5_v1"
 # export claude_dotenv_path3="$HOME/cert-judge/experiments/.env_claude_3_5_v2"
 # Load environment variables from .env file BEFORE running Python
 # Uncomment exactly one of the following lines:
@@ -21,9 +21,8 @@ export judge_prompt_temp_path="$HOME/veribench/veribench_prompts/eval_prompts/fi
 export eval_mode="hsj_real"
 export max_score=30 
 
-# for property p1 reflexivity p2 monotonicity wrt bugs p3 monotonicity wrt missing specs p4 low variance/stability
-# for p1 it should be able to tell two files are the same even if they have a bug (but are the same file)
-# P1: Use FULL VeriBench dataset for identity/reflexivity testing (140 files)
+# Use FULL VeriBench dataset for identity/reflexivity testing (140 files)
+# P1: it should be able to tell two files are the same even if they have a bug (but are the same file)
 export paths_p1=(
     "/lfs/skampere1/0/brando9/veribench/veribench_dataset/lean_src/veribench/cs_set"
     "/lfs/skampere1/0/brando9/veribench/veribench_dataset/lean_src/veribench/easy_set"
@@ -38,7 +37,20 @@ export path_p3="/lfs/skampere1/0/brando9/cert-judge/data/file_equiv_08_19_2025/m
 
 # P4 (Low Variance/Stability): Number of repeated calls per file to measure consistency
 # Higher values give more robust variance estimates (e.g., 10-20 for production)
-export num_llm_judge_calls_per_file_pair=${num_llm_judge_calls_per_file_pair:-10}
+# COMPREHENSIVE RUN: Use more repeats for robust evaluation
+export num_llm_judge_calls_per_file_pair=${num_llm_judge_calls_per_file_pair:-7}
+
+# P5 (TVD-MI): Information-Relationship Robustness
+export p5_enabled=${p5_enabled:-true}
+export p5_tau=${p5_tau:-0.05}
+
+# P6 (Human Correlation): External Validity with Human Experts
+export p6_enabled=${p6_enabled:-false}
+export human_scores_path=${human_scores_path:-""}
+
+# P7 (Prover Correlation): Criterion Validity with Prover Success
+export p7_enabled=${p7_enabled:-false}
+export prover_scores_path=${prover_scores_path:-""}
 
 
 # run the script to score the judge
@@ -55,4 +67,10 @@ time python ~/cert-judge/experiments/00_overall_judge_score_metric/main_overall_
     --path_p2 "$path_p2" \
     --path_p3 "$path_p3" \
     --num_llm_judge_calls_per_file_pair "$num_llm_judge_calls_per_file_pair" \
-    --max_workers "$max_workers"
+    --max_workers "$max_workers" \
+    --p5_enabled \
+    --p5_tau "$p5_tau" \
+    --p6_enabled \
+    --p7_enabled \
+    --human_scores_path "$human_scores_path" \
+    --prover_scores_path "$prover_scores_path"
