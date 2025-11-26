@@ -23,7 +23,7 @@ dependencies = [
     "seaborn",
     "wandb",
     "twine",
-    "nvidia-htop",
+    "nvidia-htop; sys_platform != 'darwin'",
     "protobuf",
     "torch==2.7.*",
     "torchvision==0.22.0",
@@ -32,24 +32,24 @@ dependencies = [
     "transformers",
     "accelerate>=0.26.0",
     "peft",
-    "bitsandbytes",
+    "bitsandbytes; sys_platform != 'darwin'",
     "einops",
     "sentencepiece",
     "brotli",
     "pexpect",
     "jsonlines",
-    "vllm", # gives issues in hyperturning1, so comment out in hyperturning1 is my suggestion
+    "vllm; sys_platform != 'darwin'", # gives issues in hyperturning1, so comment out in hyperturning1 is my suggestion
     #"vllm==0.6.4.post1", # gives issues in weston's setup in skampere1 and mercury1
     "antlr4-python3-runtime==4.11",
     "trace-opt",
     "fastchat",
     "dspy",
-    "sglang>=0.4.9",
+    "sglang>=0.4.9; sys_platform != 'darwin'",
     "inspect_ai",
     "openai",
     "evaluate",
-    "unsloth>=2025.2.14",
-    "unsloth_zoo>=2025.2.7",
+    "unsloth>=2025.2.14; sys_platform != 'darwin'",
+    "unsloth_zoo>=2025.2.7; sys_platform != 'darwin'",
     "setuptools>=80.3.0",
     "tenacity",
     "python-dotenv",
@@ -69,13 +69,14 @@ build = [
     "psutil>=7.0.0",
 ]
 compile = [
-    "flash-attn>=2.7.4.post1",
+    "flash-attn>=2.7.4.post1; sys_platform != 'darwin'",
 ]
 lean4_pypantograph = [
     "pantograph",
 ]
 
 [tool.uv]
+# GPU-specific find-links - only used on Linux
 find-links = ["https://flashinfer.ai/whl/cu124/torch2.5/"]
 no-build-isolation-package = ["flash-attn"]
 prerelease = "allow"
