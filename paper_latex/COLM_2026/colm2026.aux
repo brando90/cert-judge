@@ -1,0 +1,119 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{veribench_icml25}
+\citation{zhou2025graders,khattab2024dspy,cheng2024trace}
+\citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{Zheng2023MTBench}
+\citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\citation{Zheng2023MTBench,Li2024TrustLLMJudgments}
+\citation{Chan2024ChatEval}
+\citation{Liu2023GEval}
+\citation{Li2024TrustLLMJudgments}
+\citation{Zhuo2024ICEScore}
+\citation{TongZhang2024CodeJudge}
+\citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\citation{chen2021evaluating}
+\citation{veribench_icml25}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-a-Judge.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Improving judge reliability.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code and formal-spec evaluation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Overview of \textsc  {VeriBench}.}{2}{section*.4}\protected@file@percent }
+\citation{TongZhang2024CodeJudge,Zhuo2024ICEScore}
+\citation{Li2024TrustLLMJudgments,Kocmi2024HumanVsLLM}
+\citation{khattab2024dspy,cheng2024trace,chen2021evaluating}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology: A Certification Protocol for LLM Judges}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why is an LLM judge needed for theorem-quality scoring?}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{P1 --- Identity \& Consistency.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{P2 --- Monotonicity to Bugs.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{P3 --- Monotonicity to Missing Specs.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Certification Protocol.}{3}{section*.9}\protected@file@percent }
+\citation{chen2021evaluating}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:judge_identity}{{1a}{4}{Identity (Reflexivity)}{figure.caption.10}{}}
+\newlabel{sub@fig:judge_identity}{{a}{4}{Identity (Reflexivity)}{figure.caption.10}{}}
+\newlabel{fig:judge_mono_bugs}{{1b}{4}{Monotonicity vs.\ Bugs}{figure.caption.10}{}}
+\newlabel{sub@fig:judge_mono_bugs}{{b}{4}{Monotonicity vs.\ Bugs}{figure.caption.10}{}}
+\newlabel{fig:judge_mono_specs}{{1c}{4}{Monotonicity vs.\ Missing Specs}{figure.caption.10}{}}
+\newlabel{sub@fig:judge_mono_specs}{{c}{4}{Monotonicity vs.\ Missing Specs}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {LLM Judge Trustworthiness Sanity Checks.} The judge demonstrates reliability against our certification protocol. \textbf  {(a) Identity:} When comparing a gold-standard file to itself, the judge consistently returns the maximum normalized score of 1.0 ($R^2=1.000$). \textbf  {(b) Monotonicity vs.\ Bugs:} The judge's score shows a strong negative correlation with the number of injected bugs (Pearson $r = -0.973$, Spearman $\rho = -0.985$). \textbf  {(c) Monotonicity vs.\ Missing Specs:} Similarly, the score decreases predictably as specifications are removed (Pearson $r = -0.979$, Spearman $\rho = -0.985$).}}{4}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:judge_sanity_checks}{{1}{4}{\textbf {LLM Judge Trustworthiness Sanity Checks.} The judge demonstrates reliability against our certification protocol. \textbf {(a) Identity:} When comparing a gold-standard file to itself, the judge consistently returns the maximum normalized score of 1.0 ($R^2=1.000$). \textbf {(b) Monotonicity vs.\ Bugs:} The judge's score shows a strong negative correlation with the number of injected bugs (Pearson $r = -0.973$, Spearman $\rho = -0.985$). \textbf {(c) Monotonicity vs.\ Missing Specs:} Similarly, the score decreases predictably as specifications are removed (Pearson $r = -0.979$, Spearman $\rho = -0.985$)}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results: Evaluating Agentic Theorem Generation with a Certified Judge}{4}{section.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Theorem Quality Scores.} Average normalized scores in \textsc  {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots  ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark.}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:theorem_quality_table_split}{{1}{4}{\textbf {Theorem Quality Scores.} Average normalized scores in \textsc {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion, Limitations, and Future Work}{4}{section.5}\protected@file@percent }
+\citation{rice1953}
+\citation{zhou2025graders}
+\bibdata{refs}
+\bibstyle{colm2026_conference}
+\citation{wang2024theoremLlama}
+\citation{ahuja2024improver}
+\citation{sun2024clover}
+\citation{zhou2025graders}
+\citation{cheng2024trace}
+\citation{khattab2024dspy}
+\citation{aniva2025pantograph}
+\citation{kenton2024oversight,Chan2024ChatEval}
+\citation{kenton2024oversight}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work (Cont.)}{5}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Autoformalization.}{5}{section*.12}\protected@file@percent }
+\citation{zheng2024scrit}
+\citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\citation{salaudeen2025measurement}
+\citation{Zhuo2024ICEScore,TongZhang2024CodeJudge}
+\citation{robertson2025stepbystep}
+\citation{zhou2024donttrustverify}
+\citation{liu2025safe}
+\citation{ospanov2023apollo}
+\citation{miranda2025veribench}
+\citation{miranda2025veribench}
+\citation{Zheng2023MTBench,Liu2023GEval}
+\citation{zhang2025goldstandardsepistemicensemble}
+\citation{salaudeen2024imagenot}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Related Work: Scalable Oversight}{6}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scalable Oversight with LLM Judges}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Improving Critics.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Certifying Judges.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Validity-Centered Evaluation.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Robust Evaluation without Ground Truth.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formal Methods as Oversight.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agentic Iterative Pipelines.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks for Judge Reliability.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluating Autoformalization with Reference-Free Judges.}{6}{section*.21}\protected@file@percent }
+\citation{bach2022trusthci}
+\citation{ding2025citations}
+\citation{wang2024trustcode}
+\citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\citation{naik2024ticoder}
+\citation{yan2024intelliexplain}
+\citation{ma2024hypocompass}
+\citation{wu2022promptchainer}
+\citation{shen2024symgen}
+\citation{bursuc2025benchmarkvericodingformallyverified}
+\citation{Zheng2023MTBench,Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\citation{robertson2025stepbystep}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}HCI for Solving Scalable Oversight}{7}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{From more evaluation to \emph  {human-centered} oversight.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hybrid human$\leftrightarrow $AI evaluation.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interfaces that \emph  {operationalize} oversight.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Applying HCI patterns to formal specs/theorems.}{7}{section*.25}\protected@file@percent }
+\citation{nie2025uqassessinglanguagemodels,uq2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Vericode}{8}{subsection.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Discussion (Cont.)}{8}{appendix.B}\protected@file@percent }
+\citation{robertson2025stepbystep}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Future Work (cont.)}{9}{appendix.C}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}Why Judge Scores Are Specification-Relative}{9}{appendix.D}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rice's Theorem.}{10}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Impact on the Gold Standard and the Judge.}{10}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {E}Judge Certification: Additional Plots}{10}{appendix.E}\protected@file@percent }
+\newlabel{app:judge-cert}{{E}{10}{Judge Certification: Additional Plots}{appendix.E}{}}
+\newlabel{fig:app-missing-specs}{{2a}{10}{Monotonicity vs.\ Missing Specs (claude-3-5)}{figure.caption.28}{}}
+\newlabel{sub@fig:app-missing-specs}{{a}{10}{Monotonicity vs.\ Missing Specs (claude-3-5)}{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Missing specs monotonicity across model versions.}}{10}{figure.caption.28}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Monotonicity vs.\ Bugs (claude-3-5).}}{10}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:app-bugs}{{3}{10}{Monotonicity vs.\ Bugs (claude-3-5)}{figure.caption.29}{}}
+\gdef \@abspage@last{10}
