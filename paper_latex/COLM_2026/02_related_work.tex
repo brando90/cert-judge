@@ -1,0 +1,20 @@
+\section{Related Work}
+\paragraph{LLM-as-a-Judge.}
+LLMs are increasingly used as \emph{automated evaluators} across open-ended tasks, often reaching strong agreement with human ratings---e.g., GPT-4 judges achieving $>$80\% agreement with human preference labels in dialogue \citep{Zheng2023MTBench}. However, large-scale audits caution that reliability varies by task and setup, and stress the need for explicit validation before replacing human judgment \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}. Common biases include position and verbosity effects and sensitivity to prompt phrasing \citep{Zheng2023MTBench,Li2024TrustLLMJudgments}.
+
+\paragraph{Improving judge reliability.}
+To mitigate biases and instability, multi-agent debate frameworks such as \emph{ChatEval} emulate panel-style review to yield more robust consensus scores \citep{Chan2024ChatEval}. Structured prompting like \emph{G-Eval} elicits rubric-driven, stepwise reasoning prior to scoring, improving agreement with human criteria on NLG tasks \citep{Liu2023GEval}. Reliability can also be quantified via repeated scorings and internal consistency measures (e.g., Cronbach's $\alpha$) to detect prompt/run sensitivity \citep{Li2024TrustLLMJudgments}.
+
+\paragraph{Code and formal-spec evaluation.}
+For programming, single-pass metrics like pass@k can be brittle or unavailable; early LLM-judge approaches such as \emph{ICE-Score} highlighted difficulty distinguishing partial vs.\ full correctness from a one-shot review \citep{Zhuo2024ICEScore}. \emph{CodeJudge} operationalizes a two-stage ``analyze-then-summarize'' procedure with a taxonomy of code faults, significantly improving correlation with functional ground truth \citep{TongZhang2024CodeJudge}. In formal verification/autoformalization, prior work typically provides fixed target theorems, reducing evaluation to proof success. In contrast, agentic systems must propose specifications, necessitating \emph{semantic} judges. We adopt a certification protocol (akin to metamorphic testing) and verify that our LLM judge obeys \emph{identity/consistency} and \emph{monotonicity} with respect to injected bugs and specification omissions, directly answering recent calls for validated, trustworthy LLM evaluators in safety-critical domains \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
+
+\paragraph{Overview of \textsc{VeriBench}.}
+Concretely, \textsc{VeriBench} consists of 857 theorems divided into five subsets:
+\begin{enumerate}
+    \item \textbf{HumanEval} -- 387 theorems derived from 56 standard programming puzzles from \citet{chen2021evaluating};
+    \item \textbf{EasySet} -- 278 theorems extracted from 41 introductory logic and programming tasks;
+    \item \textbf{CSSet} -- 68 theorems drawn from 10 classical data-structure and algorithm problems;
+    \item \textbf{SecuritySet} -- 112 theorems taken from 28 examples of buffer overflows, privilege escalation, and race-condition labs based on real code;
+    \item \textbf{RealCodeSet} -- 12 theorems extracted from 5 Python standard library programs, used to test model performance on production-grade code.
+\end{enumerate}
+This design covers a spectrum of tasks, from simple correctness theorems to more complex invariants, algorithmic properties, and real-world code verification. See the ICML AI4Math workshop poster for \textsc{VeriBench} for additional context \citep{veribench_icml25}.

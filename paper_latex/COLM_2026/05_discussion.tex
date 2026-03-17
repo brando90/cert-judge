@@ -1,0 +1,9 @@
+\section{Discussion, Limitations, and Future Work}
+We study an LLM judge that \emph{compares each candidate artifact against its task's gold reference} for Lean~4 code verification and a framework to increase confidence in it.
+The judge satisfies two falsifiable properties: (i) \textbf{identity}---gold vs.\ gold yields maximal, repeatable scores; and (ii) \textbf{monotonicity}---scores decrease predictably when we inject semantic bugs or ablate specification elements.
+In experiments, certified judging produces informative method rankings and tracks engineering signals (Pass@$k$, unit-test accuracy); Easy and HumanEval show the strongest agreement, while Security and RealCode remain hardest \citep{chen2021evaluating}.
+
+\textbf{Limitations.} The judge is a \emph{proxy}: scores are prompt/rubric-sensitive and do not constitute kernel-level proof checking; they certify agreement with a rigorous yet necessarily incomplete gold specification since no complete mechanical checks of specification equivalence exist~\citep{rice1953}.
+Our certification relies on a finite perturbation suite, so untested failure modes may persist. Specifications that are exotic to this dataset may be correct but receive incorrect scores.
+We also did \emph{not} collect human expert ratings, leaving the judge--human correlation unmeasured.
+Future work will add human validity studies (correlations and reliability), strengthen semantic equivalence handling (candidate $\Rightarrow$ gold postcondition checks), expand robustness and adversarial tests, and introduce uncertainty reporting and standardized ``judge cards'' for reproducible, certified use \citep{zhou2025graders}.
