@@ -92,55 +92,57 @@
 % https://chatgpt.com/g/g-p-6920f6955d088191aa91680546c35c22-certifying-llm-judges/c/69b89370-f4e8-83e8-99eb-4044533b7a46 
 % https://gemini.google.com/app/889ef610434a5f5a
 \begin{abstract}
-  % 1. PROBLEM MOTIVATION
-  AI agents now generate not only 42\% of all committed code but also
-  the trust itself---the tests and theorems intended to certify their
-  own code---yet 96\% of developers do not trust AI
-  outputs~\citep{sonar2026}; reliably evaluating these artifacts at
-  scale remains the central unsolved bottleneck of automated software
-  verification.
-  % 2. SET UP THE BIT / OLD ASSUMPTION
-  A judge can correlate strongly with human ratings yet systematically
-  fail fundamental consistency properties---rendering any such
-  correlation a spurious proxy for reliability; passing these basic
-  logical checks is therefore a strict prerequisite before human
-  agreement constitutes valid evidence of trustworthiness.
-  % 3. FLIP THE BIT (= CONTRIBUTION)
-  We introduce \emph{judge certification}: a protocol grounded in the
-  induction base-case principle that stress-tests any LLM judge against
-  falsifiable behavioral properties, halting the infinite regress of
-  ``who evaluates the evaluator?'' without requiring human annotators.
-  % 4. INSTANTIATE THE BIT FLIP (= SOLUTION)
-  We certify a Lean~4 judge for scoring AI-generated tests and theorems
-  on four properties---identity ($P_1\!=\!1.000$, $R^2\!=\!1.000$:
-  identical inputs always yield maximal scores), monotonicity to bugs
-  ($P_2\!=\!X.XX$, Pearson $r\!=\!-0.973$, $R^2\!=\!0.947$, Spearman
-  $\rho\!=\!-0.985$), monotonicity to missing specifications
-  ($P_3\!=\!X.XX$, Pearson $r\!=\!-0.979$, $R^2\!=\!0.958$, Spearman
-  $\rho\!=\!-0.985$), and run-to-run reliability
-  ($P_4\!=\!\mathrm{ICC}(2,1)\!=\!X.XX$)---aggregated as a geometric
-  Judge Trust Index $\mathrm{JTI}\!=\!(P_1 P_2 P_3 P_4)^{1/4}$
-  enforcing AND semantics: a single failing property collapses
-  certification.
-  % 5. EVALUATION
-  % PS: prefer this option but need human data to validate the claim
-  % that human-judgement-only is unreliable before using it.
-  % Our protocol exposes that judges achieving high human correlation
-  % frequently fail basic monotonicity tests; our certified judge
-  % ($\mathrm{JTI}\!=\!X.XX$) filters these spurious evaluators and
-  % produces rankings on \textsc{VeriBench} that correctly discriminate
-  % agentic from baseline approaches (0.615 vs.\ 0.470).
-  These properties are non-trivial: our protocol exposes that judges
-  achieving high human correlation frequently fail basic monotonicity
-  tests; applied to \textsc{VeriBench}, our certified judge
-  ($\mathrm{JTI}\!=\!X.XX$) successfully filters these spurious
-  evaluators, yielding a scalable, automated ranking signal that does
-  not rely on questionable human proxies.
-  % 6. BROADER IMPLICATIONS
-  Judge certification formalizes the missing precondition: P1--P4 must
-  hold before human correlation can be safely relied upon for automated
-  verification, providing a reproducible, model-agnostic standard for
-  scalable oversight of AI-generated tests and theorems.
+% 1. PROBLEM MOTIVATION
+GitHub Copilot alone now generates 46\% of code written by its
+20 million active users~\citep{github_copilot_2025}, yet only 3\%
+of developers highly trust AI-generated outputs~\citep{stackoverflow2025};
+as agents increasingly generate not only code but also the tests
+and theorems intended to certify it, reliably evaluating these
+artifacts at scale remains a critical open challenge in scalable
+oversight~\citep{bowman2022scalable, veribench_icml25}.
+% 2. SET UP THE BIT / OLD ASSUMPTION
+A judge can correlate strongly with human ratings yet systematically
+fail fundamental consistency properties---rendering any such
+correlation a spurious proxy for reliability; passing these necessary
+logical checks is therefore a critical prerequisite before human
+agreement constitutes valid evidence of trustworthiness.
+% 3. FLIP THE BIT (= CONTRIBUTION)
+We introduce \emph{judge certification}: a protocol grounded in
+base-case reasoning that stress-tests any LLM judge against
+falsifiable behavioral properties such as identity and monotonicity,
+halting the infinite regress of ``who evaluates the evaluator?'';
+properties are specified once by humans, after which certification
+requires no further human annotation.
+% 4. INSTANTIATE THE BIT FLIP (= SOLUTION)
+We certify a Lean~4 judge for scoring AI-generated tests and theorems
+on four properties---identity ($P_1\!=\!1.000$, $R^2\!=\!1.000$:
+identical inputs always yield maximal scores), monotonicity to bugs
+($P_2\!=\!X.XX$, Pearson $r\!=\!-0.973$, $R^2\!=\!0.947$, Spearman
+$\rho\!=\!-0.985$), monotonicity to missing specifications
+($P_3\!=\!X.XX$, Pearson $r\!=\!-0.979$, $R^2\!=\!0.958$, Spearman
+$\rho\!=\!-0.985$), and run-to-run reliability
+($P_4\!=\!\mathrm{ICC}(2,1)\!=\!X.XX$)---aggregated as a graded
+Judge Trust Index $\mathrm{JTI}\!=\!(P_1 P_2 P_3 P_4)^{1/4}$
+enforcing AND semantics: a single failing property collapses
+certification.
+% 5. EVALUATION
+% PS: prefer this option but need human data to validate the claim
+% that human-judgement-only is unreliable before using it.
+% Our protocol exposes that judges achieving high human correlation
+% frequently fail basic monotonicity tests; our certified judge
+% ($\mathrm{JTI}\!=\!X.XX$) filters these spurious evaluators and
+% produces rankings on \textsc{VeriBench} that correctly discriminate
+% agentic from baseline approaches (0.615 vs.\ 0.470).
+These properties are non-trivial: our protocol exposes that judges
+achieving high human correlation frequently fail basic monotonicity
+tests; applied to \textsc{VeriBench}, our certified judge
+($\mathrm{JTI}\!=\!X.XX$) successfully filters these spurious
+evaluators, yielding a scalable, automated ranking signal.
+% 6. BROADER IMPLICATIONS
+Judge certification formalizes an important precondition: P1--P4 must
+hold before human correlation can be safely relied upon for automated
+verification, providing a reproducible, model-agnostic standard for
+scalable oversight of AI-generated tests and theorems.
 \end{abstract}
 
 \input{01_introduction}
