@@ -2,8 +2,11 @@
 
 | Submission | Main file |
 |---|---|
+| COLM 2026 | `COLM_2026/00_colm2026.tex` |
 | ICML 2026 | `ICML_2026/main.tex` |
 | NeurIPS 2025 | `NeurIPS_2025/mathai_neurips2025_template/neurips_2025.tex` |
+
+Each paper directory contains a compiled **PDF committed to the repo** — no need to rebuild locally just to read the paper. To edit, rebuild with `latexmk -pdf <main_file.tex>` and commit the updated PDF.
 
 ## Overleaf-style workflow in Cursor
 
