@@ -101,11 +101,7 @@ and theorems intended to certify it, reliably evaluating these
 artifacts at scale remains a critical open challenge in scalable
 oversight~\citep{bowman2022scalable, veribench_icml25}.
 % 2. SET UP THE BIT / OLD ASSUMPTION
-A judge can correlate strongly with human ratings yet systematically
-fail fundamental consistency properties---rendering any such
-correlation a spurious proxy for reliability; passing these necessary
-logical checks is therefore a critical prerequisite before human
-agreement constitutes valid evidence of trustworthiness.
+A judge can correlate strongly with human ratings yet systematically fail fundamental consistency properties such as identity and monotonicity---rendering any such correlation a spurious proxy for reliability; passing these necessary behavioral checks is therefore a critical prerequisite before human agreement constitutes valid evidence of trustworthiness.
 % 3. FLIP THE BIT (= CONTRIBUTION)
 We introduce \emph{judge certification}: a protocol grounded in
 base-case reasoning that stress-tests any LLM judge against
@@ -137,7 +133,8 @@ These properties are non-trivial: our protocol exposes that judges
 achieving high human correlation frequently fail basic monotonicity
 tests; applied to \textsc{VeriBench}, our certified judge
 ($\mathrm{JTI}\!=\!X.XX$) successfully filters these spurious
-evaluators, yielding a scalable, automated ranking signal.
+evaluators, yielding a scalable, automated ranking signal that does
+not rely further on human proxies.
 % 6. BROADER IMPLICATIONS
 Judge certification formalizes an important precondition: P1--P4 must
 hold before human correlation can be safely relied upon for automated
