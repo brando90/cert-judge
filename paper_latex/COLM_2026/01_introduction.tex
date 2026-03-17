@@ -1,0 +1,14 @@
+\section{Introduction}
+
+Agentic AI systems are emerging as a powerful tool for formal code verification, capable of not just proving theorems but also generating the code and the theorems themselves. This end-to-end synthesis presents a profound evaluation challenge. In traditional auto-formalization benchmarks, models are given a precise natural language statement to formalize. However, in a more realistic, agentic setting, the system must infer and propose relevant theorems from a source program and its docstring. This autonomy makes manual evaluation intractable and requires automated, scalable solutions \citep{zhou2025graders,khattab2024dspy,cheng2024trace}.
+
+We propose a radical approach: use LLMs themselves as judges of specification quality. But can you really trust such a judge? An unreliable judge can produce misleading results, rewarding stylistic mimicry over semantic correctness and hindering genuine progress. Without a principled validation method, LLM-based evaluation remains ad hoc and its results questionable \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
+
+In this paper, we present evidence indicating that it is possible to trust an LLM judge. We introduce an LLM judge for scoring the quality of synthesized theorems in Lean~4 and, crucially, present a methodology for validating its trustworthiness. We demonstrate that an LLM judge, when properly validated, can serve as a reliable proxy for human evaluation, enabling the scalable assessment of complex, agentic systems.
+
+Our \textbf{contributions} are:
+\begin{enumerate}
+    \item \textbf{An LLM Judge for Theorem Quality:} We design an LLM judge that scores generated Lean~4 artifacts on a 0--10 scale based on correctness, completeness, and semantic alignment.
+    \item \textbf{A Trustworthiness Validation Methodology:} We propose and execute a set of property checks to certify the judge's reliability and trustworthiness, verifying its adherence to logical properties like identity and monotonicity under controlled perturbations.
+    \item \textbf{Empirical Demonstration of the Judge on \textsc{VeriBench}:} We apply our validated judge to evaluate multiple agentic frameworks, providing evidence that feedback-driven methods significantly outperform non-agentic baselines in theorem-synthesis quality.
+\end{enumerate}

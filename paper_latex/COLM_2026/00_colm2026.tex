@@ -1,0 +1,150 @@
+\documentclass{article}
+\usepackage[submission]{colm2026_conference}
+
+% Encoding & typography
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+
+% Colors & hyperlinks
+\usepackage[dvipsnames]{xcolor}
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+\usepackage{url}
+\usepackage{lineno}
+
+% Math & symbols
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools,bm,dsfont}
+\usepackage{nicefrac,xfrac}
+
+% Algorithms
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% Tables & figures
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{rotating}
+\usepackage{arydshln}
+
+% Code
+\usepackage{listings}
+
+% TikZ & icons
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage{fontawesome5}
+
+% Lists
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=4pt}
+\setlist[enumerate]{noitemsep, topsep=4pt}
+
+% Caption spacing
+\usepackage{caption}
+\captionsetup{skip=7pt}
+
+% Float spacing
+\setlength{\textfloatsep}{10pt plus 3pt minus 3pt}
+\setlength{\floatsep}{10pt plus 3pt minus 3pt}
+\setlength{\intextsep}{10pt plus 3pt minus 3pt}
+
+% Math display spacing
+\setlength{\abovedisplayskip}{9pt plus 3pt minus 3pt}
+\setlength{\belowdisplayskip}{9pt plus 3pt minus 3pt}
+\setlength{\abovedisplayshortskip}{6pt plus 2pt minus 2pt}
+\setlength{\belowdisplayshortskip}{6pt plus 2pt minus 2pt}
+
+% Bibliography spacing
+\setlength{\bibsep}{1pt plus 0.4ex}
+
+% Listings style
+\lstset{
+  aboveskip=6pt, belowskip=6pt,
+  basicstyle=\ttfamily\scriptsize,
+  frame=single,
+  numbers=none
+}
+
+\title{Trusting the Formal Judge: Certifying LLM Theorem Scorers for Code Verification in Lean~4}
+
+% Authors must not appear in the submitted version (handled automatically by the "submission" option).
+\author{Anonymous}
+
+\begin{document}
+
+\ifcolmsubmission
+\linenumbers
+\fi
+
+\maketitle
+
+\begin{abstract}
+  % 1. PROBLEM MOTIVATION
+  AI agents now generate not only 41\% of new code but also the trust 
+  itself---the theorems and tests intended to certify that code---yet 
+  96\% of developers do not trust AI outputs~\citep{sonar2026}; reliably 
+  evaluating these artifacts at scale remains the central unsolved 
+  bottleneck of automated software verification.
+  % 2. SET UP THE BIT / OLD ASSUMPTION
+  A judge can correlate strongly with human ratings yet systematically
+  fail fundamental consistency properties---rendering any such
+  correlation a spurious proxy for reliability; satisfying these
+  behavioral base cases is therefore a strict prerequisite before
+  human agreement constitutes valid evidence of trustworthiness.
+  % 3. FLIP THE BIT (= CONTRIBUTION)
+  We introduce \emph{judge certification}: a protocol grounded in the
+  induction base-case principle that stress-tests any LLM judge against
+  falsifiable behavioral properties, halting the infinite regress of
+  ``who evaluates the evaluator?'' without requiring human annotators.
+  % 4. INSTANTIATE THE BIT FLIP (= SOLUTION)
+  We certify a Lean~4 judge for scoring AI-generated theorems and tests
+  on four properties---identity ($P_1\!=\!1.000$, $R^2\!=\!1.000$:
+  identical inputs always yield maximal scores), monotonicity to bugs
+  ($P_2\!=\!X.XX$, Pearson $r\!=\!-0.973$, $R^2\!=\!0.947$, Spearman
+  $\rho\!=\!-0.985$), monotonicity to missing specifications
+  ($P_3\!=\!X.XX$, Pearson $r\!=\!-0.979$, $R^2\!=\!0.958$, Spearman
+  $\rho\!=\!-0.985$), and run-to-run reliability
+  ($P_4\!=\!\mathrm{ICC}(2,1)\!=\!X.XX$)---aggregated as a geometric
+  Judge Trust Index $\mathrm{JTI}\!=\!(P_1 P_2 P_3 P_4)^{1/4}$
+  enforcing AND semantics: a single failing property collapses
+  certification.
+  % 5. EVALUATION
+  These properties are non-trivial: our protocol exposes that judges
+  achieving high human correlation frequently fail basic monotonicity
+  tests; our certified judge ($\mathrm{JTI}\!=\!X.XX$) filters these
+  spurious evaluators and produces rankings on \textsc{VeriBench} that
+  correctly discriminate agentic from baseline approaches
+  (0.615 vs.\ 0.470); by Rice's theorem, scores are
+  specification-relative, certifying gold-standard conformance rather
+  than universal semantic correctness.
+  % 6. BROADER IMPLICATIONS
+  Judge certification formalizes the missing precondition: P1--P4 must
+  hold before any correlation study constitutes valid evidence of
+  reliability, providing a reproducible, model-agnostic standard for
+  scalable oversight of AI-generated theorems and tests.
+\end{abstract}
+
+\input{01_introduction}
+\input{02_related_work}
+\input{03_methodology}
+\input{04_results}
+\input{05_discussion}
+
+\bibliography{refs}
+\bibliographystyle{colm2026_conference}
+
+\appendix
+
+\input{99_appendix}
+
+\end{document}
