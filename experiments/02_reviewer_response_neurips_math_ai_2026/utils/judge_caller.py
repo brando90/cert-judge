@@ -23,7 +23,7 @@ DEFAULT_MODEL = "gpt-4o-mini"  # fallback to OpenAI when Anthropic credits unava
 N_REPEATS = 3
 MAX_RETRIES = 3
 
-JUDGE_PROMPT_TEMPLATE = """You are an expert in Lean 4 formal verification.
+DEFAULT_PROMPT_TEMPLATE = """You are an expert in Lean 4 formal verification.
 Score how well the GENERATED THEOREM captures the correctness properties
 of the REFERENCE IMPLEMENTATION. Score from 0.0 to 1.0.
 
@@ -41,6 +41,7 @@ GENERATED THEOREM:
 
 Respond ONLY with valid JSON, no markdown:
 {{"score": <float 0.0-1.0>, "reasoning": "<one sentence max>"}}"""
+JUDGE_PROMPT_TEMPLATE = DEFAULT_PROMPT_TEMPLATE  # backwards-compatible alias
 
 
 def _sha256(s: str) -> str:
@@ -119,9 +120,15 @@ def _parse_response_text(text: str) -> dict:
         return {"score": 0.5, "reasoning": f"parse_error on: {text[:50]}"}
 
 
-def _call_openai_once(client, generated_theorem: str, reference_impl: str, model: str) -> dict:
+def _call_openai_once(
+    client,
+    generated_theorem: str,
+    reference_impl: str,
+    model: str,
+    prompt_template: str,
+) -> dict:
     """Make one judge API call via OpenAI."""
-    prompt = JUDGE_PROMPT_TEMPLATE.format(
+    prompt = prompt_template.format(
         reference_impl=reference_impl,
         generated_theorem=generated_theorem,
     )
@@ -143,9 +150,15 @@ def _call_openai_once(client, generated_theorem: str, reference_impl: str, model
             return {"score": 0.5, "reasoning": f"openai_error: {str(e)[:80]}"}
 
 
-def _call_anthropic_once(client, generated_theorem: str, reference_impl: str, model: str) -> dict:
+def _call_anthropic_once(
+    client,
+    generated_theorem: str,
+    reference_impl: str,
+    model: str,
+    prompt_template: str,
+) -> dict:
     """Make one judge API call via Anthropic."""
-    prompt = JUDGE_PROMPT_TEMPLATE.format(
+    prompt = prompt_template.format(
         reference_impl=reference_impl,
         generated_theorem=generated_theorem,
     )
@@ -192,6 +205,8 @@ def judge(
     reference_impl: str,
     model: str = DEFAULT_MODEL,
     n_repeats: int = N_REPEATS,
+    prompt_template: str = DEFAULT_PROMPT_TEMPLATE,
+    cache_namespace: str = "default",
 ) -> dict:
     """
     Call the LLM judge n_repeats times, return mean +/- std.
@@ -211,7 +226,12 @@ def judge(
 
     th_hash = _sha256(generated_theorem)
     ref_hash = _sha256(reference_impl)
-    cache_key = f"{model}|{th_hash}|{ref_hash}"
+    if cache_namespace == "default" and prompt_template == DEFAULT_PROMPT_TEMPLATE:
+        # Keep legacy cache behavior for existing experiments.
+        cache_key = f"{model}|{th_hash}|{ref_hash}"
+    else:
+        prompt_hash = _sha256(prompt_template)
+        cache_key = f"{cache_namespace}|{model}|{prompt_hash}|{th_hash}|{ref_hash}"
 
     cache = _load_cache()
     if cache_key in cache:
@@ -224,9 +244,21 @@ def judge(
     reasonings = []
     for i in range(n_repeats):
         if backend == "openai":
-            result = _call_openai_once(client, generated_theorem, reference_impl, model)
+            result = _call_openai_once(
+                client=client,
+                generated_theorem=generated_theorem,
+                reference_impl=reference_impl,
+                model=model,
+                prompt_template=prompt_template,
+            )
         else:
-            result = _call_anthropic_once(client, generated_theorem, reference_impl, model)
+            result = _call_anthropic_once(
+                client=client,
+                generated_theorem=generated_theorem,
+                reference_impl=reference_impl,
+                model=model,
+                prompt_template=prompt_template,
+            )
 
         scores.append(result["score"])
         reasonings.append(result["reasoning"])
