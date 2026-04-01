@@ -7256,5 +7256,2525 @@
     ],
     "reasoning": "The generated theorem is trivially true and does not capture any correctness properties of the reference implementation.",
     "model": "gpt-4o"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem captures most properties of the reference implementation but introduces additional distributive properties that were not originally specified.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem includes additional properties (like distributivity) that are not present in the reference implementation, indicating partial coverage with some important gaps.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem includes the implementation, tests, pre-condition, property theorems, post-condition, correctness theorem, and imperative implementation, but it adds right and left distributive properties which are not in the reference.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem introduces additional properties (distributivity) that enhance its completeness over the reference implementation, but both lack actual proofs for their respective theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem retains most of the essential structural and functional properties but introduces additional properties like right and left distributivity, which are not present in the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem contains additional properties related to distributivity that are not present in the reference implementation, but the core structure and intent are mostly equivalent.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem adds properties like right and left distributivity, which are important for completeness but the original reference implementation does not include these properties, leading to an important missing guarantee.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem adds new properties and theorems such as right and left distributivity that are not present in the reference implementation, indicating substantial omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem retains the original structure and semantics of the reference implementation while introducing harmless stylistic differences in property definitions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem captures the overall structure and intent of the reference implementation but adds additional properties and theorems related to distributivity that were not present in the original.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem includes additional properties like distributivity that are not present in the reference implementation, thus differing in completeness while still being largely correct.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|9343da4795a3748958b52792963f4e2f257f4f1d83186942840cf5a9dac3513e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "Mostly equivalent; missing distributive properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem accurately reflects the correctness properties guaranteed by the reference implementation, including the pre-condition and post-condition relationship.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM is an exact copy of the REFERENCE IMPLEMENTATION, preserving all guarantees and structure.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem completely matches the reference implementation structure and functionality, fulfilling all required aspects and maintaining semantic alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The implementation correctly captures the fundamental properties of addition, but lacks complete proofs for theorems, which diminishes its robustness and miss some guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem aligns perfectly with the reference implementation, accurately capturing the structure, properties, and correctness of addition in the specified format.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM matches the REFERENCE IMPLEMENTATION perfectly, containing all elements and structure.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem matches the reference implementation exactly in structure, content, and all required properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem accurately reflects the structure and functionality of the reference implementation with appropriate implementations, tests, properties, and correctness theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem is equivalent to the reference implementation in both functionality and structure.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem perfectly captures the structure, content, and logical flow of the original reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM closely mirrors the structure and content of the REFERENCE IMPLEMENTATION, demonstrating equivalent semantic correctness guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|3af7689a626789e0a53f56f2afc1f446bf6c503b12d7bbb3e6e9695d66674a4e|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "Fully matches all aspects of implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem captures some properties of addition but misstates the right identity property and lacks completeness in addressing all required properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While both implementations define `myAdd` as a wrapper around `Nat.add` and specify similar properties, the generated theorem has a significant error in defining the right identity property, misstating it as adding one instead of zero.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem contains a critical error in the right-identity property definition, but retains most of the structure and other properties correctly.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains a critical error in the right-identity property, changing its definition to adding one instead of zero, which leads to meaningful gaps in correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem has minor inaccuracies in the right identity property definition, which should state that adding zero leaves the number unchanged, instead of adding one.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem has some minor discrepancies in the right-identity property, where it incorrectly states the condition as adding one instead of zero.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem has a critical error in the right-identity property definition, stating that adding one leaves the number unchanged instead of adding zero.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains some inaccuracies, such as incorrectly stating the right-identity property as adding one instead of zero.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem contains a notable mismatch in the right-identity property, changing it from adding zero to adding one, which affects overall correctness but retains similar structure and most properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem closely follows the reference implementation structure and captures its key aspects, but has a minor inconsistency in the right identity property definition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has some incorrect properties such as the right identity property which states 'adding one on the right leaves the number unchanged' instead of 'adding zero on the right leaves the number unchanged' as in the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|24f9934a4ec5e20d7c903e6d232c5c5a52d425bebffc52fb45502c4ce07f7146|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "Properties mostly align, minor differences exist.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem fails to correctly capture the identity properties, as it wrongly denotes right and left identity with the value '1' instead of '0', missing core properties of verified addition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem diverges from the reference implementation by stating incorrect properties (right/left identity with 1 instead of 0), leading to partial coverage and important gaps.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.6,
+    "mean": 0.6,
+    "std": 0.0,
+    "scores": [
+      0.6
+    ],
+    "reasoning": "The implementation has correct examples and testing but has incorrect properties for right and left identity based on adding one instead of zero.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem incorrectly states the right and left identity properties for addition, which introduces meaningful gaps in core guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The theorem statements and property definitions are mostly aligned, but there are discrepancies in the claimed properties such as the right and left identity properties, which assert adding one instead of zero.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has significant differences, such as incorrectly defining the right and left identity properties, but it retains some structural similarity and key concepts.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem has a significant issue with incorrect definitions for the identity properties, leading to important missing guarantees in the overall correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains minor inaccuracies in the property definitions compared to the reference implementation, but maintains overall structure and purpose.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains critical differences in the properties, specifically incorrect identities, affecting the semantic fidelity despite maintaining the overall structure.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains several errors, such as incorrect property definitions and inconsistent terminology, leading to only moderate capture of the reference's correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Most properties and theorems are correctly stated in both versions, but the generated theorem incorrectly specifies the identity operations with '1' instead of '0', leading to incorrect semantics.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|544da54a05912cb0c0ec1726a23fb327a49b8b3337cf090c9f1f7af429f9046d|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Different identity elements for addition used.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has several inaccuracies in the properties defined, such as right-identity and left-identity properties being incorrectly specified for '1' instead of '0'.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has significant discrepancies in property definitions (e.g., using 1 instead of 0 for identity properties), leading to important gaps in semantic coverage compared to the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The implementation has several minor mistakes in property definitions, such as incorrect identity properties, leading to partial semantic alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has meaningful gaps, specifically in the correctness of properties (right and left identity) and potentially incorrect definitions in the properties and theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "While both implementations define a custom addition function and include various properties and tests, there are minor discrepancies in the stated properties and theorems, such as the incorrect specification of right and left identities.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While both theorems focus on addition with similar structures, there are significant discrepancies in the properties being proposed, especially regarding the right and left identity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem has significant deviations, particularly incorrect identity properties and commutativity not matching the original semantics.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has substantial omissions, such as incorrect right and left identity properties that mistakenly use 1 instead of 0.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has weak semantic fidelity due to incorrect properties stated in the tests and theorems, notably using '1' instead of '0' for identity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "There are several inaccuracies in the generated theorem, particularly regarding the property definitions and expected outcomes related to identity operations.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains several incorrect properties, such as the right and left identity properties being incorrectly defined as adding one rather than zero.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|2a0e15699a116769aff459fd0e4cad35cdeb06d668f8307c0a13a7833adc9e30|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Different properties in theorems affect equivalence.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains misstatements of properties, such as the right and left identity properties inaccurately representing the addition operation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The GENERATED THEOREM shows partial coverage with critical gaps in the properties and guarantees, particularly incorrect definitions of identity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem diverges from the reference implementation in several key properties, particularly the definitions of the right and left identity properties, which incorrectly state the behavior of addition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem includes incorrect properties such as right and left identity for `1` instead of `0`, which alters the fundamental behavior of addition, leading to meaningful gaps in correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While both implementations center around addition, the generated theorem introduces inaccuracies in properties such as the right and left identity, and overstates the commutativity property.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While both theorems cover similar aspects of addition, the generated theorem introduces incorrect properties, such as right and left identities for adding one, leading to meaningful omissions from the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem has important omissions, such as incorrect left and right identity properties (adding zero instead of one) and incorrect commutativity and associativity properties, which reduce its accuracy significantly.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains several inaccuracies, including incorrect definitions of properties and theorems, leading to substantial omissions compared to the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains semantic inaccuracies in the properties and results, particularly in the definitions of identity properties and commutativity.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem captures the structure and purpose of the original implementation but introduces inaccuracies in the property theorems, specifically changing the definitions of the right and left identity properties from zero to one, which is incorrect.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem deviates from the reference implementation mainly in the properties defined, such as using '1' instead of '0' for the right and left identity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|fde0ee3d2225183690bb31bca50041030e5cfa1489611945c007b2172391500a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Different properties stated in theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem captures some properties of addition but has meaningful gaps, such as incorrect definitions of identity and commutativity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem largely follows the structure of the reference implementation but contains significant errors in the property definitions (e.g., the right-identity property is incorrectly defined for addition).",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains critical semantic misalignments, including incorrect properties for identity and commutativity.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem introduces errors in properties, such as claiming 'adding one' rather than 'adding zero' for identity properties, leading to meaningful gaps in correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "While both references and generated theorems cover similar sections and concepts, they have key differences in the properties and theorems stated, notably in defining identity properties with one instead of zero and maintaining some inconsistencies in theorems such as commutativity.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Although both theorems outline a verified addition implementation, the generated theorem introduces incorrect properties like right and left identity stating that adding one leaves the number unchanged instead of confirming that adding zero does.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem has important property omissions like the right-identity property, which affects the overall guarantee of the addition implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains inaccuracies in the property definitions, such as right and left identity incorrectly referencing 'adding one' instead of 'adding zero', indicating substantial omissions in equivalence to the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "There are significant discrepancies in the property theorems, particularly with the identity elements, affecting overall semantic equivalence.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem captures some structural aspects of the reference implementation but contains significant incorrect statements regarding properties like identity and commutativity.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has significant discrepancies from the reference implementation, mainly in the properties defined (specifically, the right identity property is incorrectly stated) and the results of the commutativity and associativity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|4fe49b6f1e6b92945ae93a2b463054be17138040e1f92971818d661ed2472eb3|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Different properties in generated theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem lacks several core properties like right and left identity, leading to significant gaps in capturing the correctness properties compared to the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem introduces incorrect properties and fails to include essential properties like identity, leading to significant gaps in alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "There are significant deviations in the property theorems, particularly incorrectly asserting that adding one leaves the number unchanged instead of zero, leading to partial alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The GENERATED THEOREM lacks several algebraic properties which are crucial in addition, specifically right and left identity, making it weak in comparison to the REFERENCE IMPLEMENTATION.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.6,
+    "mean": 0.6,
+    "std": 0.0,
+    "scores": [
+      0.6
+    ],
+    "reasoning": "The generated theorem contains significant errors in the properties and theorems (e.g., wrong identities and theorems for addition), resulting in partial alignment with the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "There are meaningful omissions in the properties and theorems, particularly regarding the right- and left-identity properties, which significantly differ from the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The implementation is mostly misaligned with the reference due to incorrect properties in the theorems (e.g., the right and left identity properties are incorrectly defined for addition).",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem includes multiple errors in properties and theorems that deviate from the correct addition properties, indicating substantial omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains significant semantic differences, particularly in the improperly defined properties and their corresponding theorems, which impacts overall correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem maintains the structure and intent of the reference, but contains mathematical inaccuracies, specifically altering properties incorrectly, which impacts its overall correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains incorrect properties for addition, such as the right and left identity properties which should assert adding zero rather than one.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|4176a062056636804fc3e36651c63b89805259055c54a19efb6680c1fabba995|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Different properties applied, especially identities.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem has major gaps, incorrectly states the pre-condition and properties, and lacks several essential correctness properties found in the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The generated theorem has significant deviations in the pre-condition, properties, and post-condition, indicating weak alignment with the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The generated theorem has several fundamental errors, such as incorrect pre-conditions and properties, which severely affect semantic alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The GENERATED THEOREM introduces gaps such as incorrect preconditions and properties, demonstrating weak correctness in the proofs with significant deviation from the REFERENCE IMPLEMENTATION.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While both implementations define an addition operation and include pre-conditions and post-conditions, the generated theorem contains significant errors in the properties defined, such as incorrect definitions for identity and commutativity.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem has significant deviations from the reference implementation, including different preconditions and properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem has several significant omissions, including incorrect pre-condition definitions, missing essential properties (like right and left identity), and flaws in the post-condition, leading to a mostly misaligned implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has substantial omissions, such as incorrectly defining the pre-condition and other properties, which deviate significantly from the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has significant semantic differences, including incorrect definitions for pre-conditions and properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem captures the structure and intent of the original reference but introduces several inaccuracies, such as an incorrect pre-condition and misrepresented properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem includes incorrect preconditions and properties, such as defining the pre-condition with positive integers only and misrepresenting identity elements.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|546f53fe4d5bafbe79aacbff5babb9797b01ddf64fd6653aaca5fe1c8b7570ae|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Different preconditions and properties stated.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem does not accurately capture the properties of addition as it omits critical properties such as left identity, right identity, commutativity, and associativity, and misrepresents the pre-condition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "There are significant discrepancies in the properties and pre-conditions between the generated theorem and the reference implementation, which affects the correctness and completeness of the guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has several discrepancies, including an incorrect pre-condition and properties, indicating a partial semantic misalignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The Generated Theorem fails to preserve essential properties such as left and right identity, commutativity, and associativity, while its pre-condition is specified incorrectly, leading to trivialization.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The generated theorem diverges significantly from the original implementation, particularly in defining pre-conditions and properties incorrectly, leading to a weak semantic alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem contains significant deviations from the reference implementation, including changes to the pre-condition, properties, and proofs, which leads to a weak match.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem contains multiple core property omissions, such as failing to include left identity, commutativity, and associativity properties in the post-condition, while also incorrectly stating the pre-condition as both operands being positive instead of non-negative.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has substantial omissions, such as incorrect pre-conditions and properties that do not align with standard addition properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has significant semantic differences from the reference implementation, particularly in the pre-condition and properties defined.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem deviates significantly from the reference's correctness claims and properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem has incorrect pre-condition assumptions and property theorems that deviate significantly from the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|01146e105aa7a8936750dc25ac13b48f9b1a418e72131037a28dba25ab6edd45|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "Inconsistent properties and incorrect pre-condition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem has incorrect properties defined for the addition, such as a wrong pre-condition and incorrect assertions regarding identity and commutativity.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem has significant differences in pre-conditions, property theorems, and the equivalence theorem, leading to weak alignment with the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem fails to meet several essential properties and assertions explained in the reference implementation, such as defining correct pre-conditions for both operands and accurate correctness assertions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem contains multiple misalignments with the properties listed in the reference implementation, including incorrect pre-conditions and properties, leading to minimal functional correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The generated theorem has substantial deviations from the reference implementation, including incorrect properties, preconditions, and the contradictions between post-conditions and the actual implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem has significantly different properties, such as altered pre-conditions and incorrect equivalence outcomes, demonstrating a weak match with the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem is mostly misaligned due to incorrect pre-conditions, missing some core properties in the post-condition, and incorrect statements in the property theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains several significant errors, including incorrect pre-condition definitions and incorrect properties, indicating substantial omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has significant differences, particularly in the pre-condition and property statements, which affects the overall correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Although many parts of the implementation were captured, the generated theorem contains incorrect pre-conditions, faulty properties, and an erroneous equivalence theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The GENERATED THEOREM contains discrepancies such as incorrect properties and preconditions, diverging significantly from the REFERENCE IMPLEMENTATION.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|dcadf2e554da74e5d60f2095e5524c4a6be2fd35de2b862e6009a422aa48cd2c|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "Different pre-conditions and post-conditions exist.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem accurately captures all the correctness properties of the reference implementation, including pre-conditions, post-conditions, and the equivalence of functional and imperative implementations.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM is an exact copy of the REFERENCE IMPLEMENTATION, preserving all semantic guarantees and structure.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem closely matches the reference implementation in structure, required properties, and correctness, with all key components accurately preserved.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While the structure and properties of the REFERENCE IMPLEMENTATION align with the GENERATED THEOREM, both documents lack actual proofs, which is a meaningful gap in their guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem matches the original reference implementation in structure, content, and logic, demonstrating full semantic alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem perfectly mirrors the structure, content, and intent of the reference implementation, demonstrating semantic equivalence.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem matches the reference implementation exactly, including all required properties, tests, pre-conditions, etc.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem closely follows the reference implementation and captures its key components, with minor areas for improvement in the presentation or completeness of proofs.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem is equivalent to the reference implementation with no deviations in semantic content.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem fully replicates the structure, content, and properties of the reference implementation of verified addition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM is semantically identical to the REFERENCE IMPLEMENTATION, both detailing the same properties, theorems, and implementation logic.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|fb7bff96a1d53efc09e2483aba32bd4b492db354c5b2cf3835ad6af38cd76819|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "Content is identical and fully coherent.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The GENERATED THEOREM captures key properties like left identity, commutativity, and associativity but misses the right identity property.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem preserves most of the properties and structure of the reference implementation, but it omits the right identity property.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem is mostly aligned with the reference implementation, but it misses the right identity property and theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The REFERENCE IMPLEMENTATION includes all essential properties and tests, but lacks completeness in the proofs, which impedes its ability to ensure the correctness guarantees comprehensively.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem captures the essential properties of the original implementation but incorrectly omits the right identity property, which is a significant aspect of addition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem omits the right identity property and its theorem, which leads to some meaningful omissions compared to the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem omits the right identity property and its corresponding theorem, which are essential for a complete set of properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "While the generated theorem captures much of the content of the reference implementation, it lacks some details, such as the right identity property and its theorem, leading to minor omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem is mostly equivalent to the reference implementation, though it omits some properties such as the right identity property.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem captures most of the intended structure and properties of the reference implementation but lacks the completeness of property theorems and the right identity property.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem includes tests and properties but is missing some aspects of the original implementation's post-conditions and properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|f75dcf5ee3159c262f96e97ce6a6049e6196ac2a738a3bec81f1f48a88f5e595|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "Most components match, slight property differences.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem captures some properties of the reference implementation but misses key aspects like the identity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem preserves most properties but omits important details such as the right and left identity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The structure is mostly preserved, but the property theorems lack the identity properties, which are essential to fully capture the semantics of addition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The GENERATED THEOREM omits core guarantees such as the right and left identity properties, which are essential to the additive operation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem closely matches the reference implementation in structure and content, accurately capturing the essential properties and correctness of the addition function.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem lacks the definitions and theorems for the right identity and left identity properties, but it includes the main structure and many key features of the reference implementation, making it mostly equivalent.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The implementation is missing the precondition properties, specifically the right and left identity properties, which are crucial for the algebraic structure of addition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The implementation includes basic properties and tests, but lacks completeness in terms of proofs for all stated properties and the correctness theorem is just marked as 'sorry'; thus, there are substantial omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.8,
+    "mean": 0.8,
+    "std": 0.0,
+    "scores": [
+      0.8
+    ],
+    "reasoning": "The generated theorem is mostly equivalent, although it omits some properties from the reference implementation and modifies the overall property structure.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem captures most of the intended structure and properties from the reference implementation, but it omits some properties and their theorems, particularly the identity properties, which reduces its completeness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem is mostly correct, but it lacks the additional properties like left identity and the exhaustive list in the post-condition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|e4a9612a544945d6c47fbc22873658b9015b1a1c4d9a3c583756db9886cd3b05|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "Key properties omitted in generated theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The GENERATED THEOREM only captures the associativity property but misses the other core properties like identity and commutativity guaranteed by the REFERENCE IMPLEMENTATION.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The GENERATED THEOREM captures some critical parts of the REFERENCE IMPLEMENTATION, specifically the implementation and tests, but it lacks important properties such as identity and commutativity, leading to partial coverage.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem contains incomplete property theorems and does not include all necessary properties and theorems to fully match the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem only maintains the associativity property, missing key properties like identity and commutativity, leading to meaningful gaps in functionality.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.8,
+    "mean": 0.8,
+    "std": 0.0,
+    "scores": [
+      0.8
+    ],
+    "reasoning": "The generated theorem retains the overall structure and intent of the reference implementation, but it omits several key properties and their corresponding theorems, leading to minor semantic misses in the completeness of the addition's formal properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While both theorems share some overlapping elements such as the implementation and tests, the Generated Theorem is missing several key properties and theorems such as identity and commutativity, leading to meaningful omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem lacks several important properties (e.g., right and left identity, commutativity) and does not align with the essential structure of the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem has some omissions in the completeness of the property checks, specifically lacking identity and commutativity properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem maintains the overall structure and functionality of the reference implementation but omits some properties, particularly the right and left identity properties and their corresponding theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem captures some implementation elements and test cases but misses key properties like the identities and commutativity, resulting in only partial correctness representation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem only partially includes essential properties and lacks several crucial tests and properties compared to the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|8905c9e523a95cf02b72dcb70c9169be0eaf22468a79df5ddd7c9f01a7648a25|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "missing properties and incomplete theorems",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem replaces the post-condition with 'True', missing essential properties like identity, commutativity, and associativity.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem retains the implementation structure and certain tests, but lacks essential property theorems and the comprehensive post-condition, leading to important semantic gaps.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.6,
+    "mean": 0.6,
+    "std": 0.0,
+    "scores": [
+      0.6
+    ],
+    "reasoning": "The implementation is mostly correct but lacks the full property proofs and the conjunction for the post-condition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The REFERENCE IMPLEMENTATION includes crucial properties and a correctness theorem, but many essential proofs are left unimplemented, leading to meaningful gaps in assurance.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem maintains semantic alignment with the reference implementation, correctly representing the properties and structure of the addition function and its associated proofs.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem omits the details of the property theorems and their proofs, which reduces the completeness of the implementation compared to the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem lacks proper post-condition properties and exhaustiveness in property theorems, which are critical for assessing correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The implementation is mostly correct with a comprehensive structure and tests; however, it has minimal omissions in theorems' proofs, indicated by the use of 'sorry'.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem keeps the overall structure and semantic meaning aligned with the reference implementation, with some minor stylistic changes.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem retains most key components of the reference implementation but simplifies the correctness theorem and lacks some detailed properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem maintains the structure and intent of the reference implementation but lacks detailed post-condition properties.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|f4e837a447ec9f726647cb7626243ad058f26fd4e2f5793320c7fd78555a27c2|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "Mostly equivalent with minor differences in correctness theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem captures all correctness properties of the reference implementation, including the pre-condition implying the post-condition.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "GENERATED THEOREM is an exact semantic match to the REFERENCE IMPLEMENTATION, preserving all properties and structure.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem matches the reference implementation in structure and content, demonstrating full semantic alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While the implementation includes tests and a correctness theorem, all proofs are left as 'sorry', indicating that core guarantees of correctness and properties are not actually verified.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem accurately mirrors the structure and content of the reference implementation with complete semantic alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM is identical to the REFERENCE IMPLEMENTATION in structure and content.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem lacks the definition and proof of essential properties like pre-condition, post-condition, and correctness theorem, which are critical for completeness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem accurately reproduces the reference implementation structure, including implementation, tests, properties, and theorem outlines, with only minor formatting variations.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem is semantically identical to the reference implementation, with only harmless stylistic differences.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem captures all aspects of the reference implementation, including implementation, tests, properties, and theorems, with no omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM perfectly matches the REFERENCE IMPLEMENTATION in structure, functionality, and semantic correctness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|e65fb484df97a213e3085267f23a6988161ccfeae8d454e8c6690d4f2da89fb1|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "Full alignment with reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem captures all the properties and relationships defined in the reference implementation, ensuring the correctness of the addition operation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM is an exact semantic match to the REFERENCE IMPLEMENTATION, preserving all functionality, properties, tests, and the correctness theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem follows the reference implementation closely, adhering to the same structure, functionalities, and testing requirements.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The REFERENCE IMPLEMENTATION guarantees the framework for property-based testing and correctness of the addition function, but it contains many `sorry` placeholders instead of complete proofs, indicating meaningful gaps in guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem maintains identical structure and content as the reference implementation, including the same properties, tests, and theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM is semantically equivalent to the REFERENCE IMPLEMENTATION, containing the same structure, functions, tests, properties, and theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5
+    ],
+    "reasoning": "The generated theorem lacks exhaustive property props and their theorems, which are essential guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The implementation correctly adheres to the structure and requirements specified in the reference, with complete implementations and appropriate tests.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem matches the reference implementation in structure and content, maintaining all essential details and integrity.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem fully captures the structure, implementation, properties, and tests of the original reference implementation without omission.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM is semantically equivalent to the REFERENCE IMPLEMENTATION, maintaining the same structure, properties, and correctness guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|118245e230e9c19f751dcaa887a6f84404d889fe5adfdf1091e3860038362cb9|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "Fully matches the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0
+    ],
+    "reasoning": "The generated theorem lacks any correctness properties or guarantees related to the implementation, making it trivially true.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The GENERATED THEOREM matches the REFERENCE IMPLEMENTATION in structure, definitions, and properties without any omissions or gaps.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The implementation covers key aspects such as addition functionality and testing but lacks the complete structure and theorems found in the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem lacks proofs for key properties and the correctness theorem, which are crucial guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem maintains all aspects and properties of the reference implementation, demonstrating exact semantic alignment.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem closely mirrors the structure and intent of the reference implementation but omits several key details, including pre-conditions, property theorems, post-conditions, and the equivalence theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The generated theorem is mostly misaligned as it lacks the essential property specifications, pre-conditions, post-conditions, and does not include the required correctness theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The implementation presents a correct addition function and basic tests, but lacks property theorems and their proofs which are critical for comprehensive verification.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem maintains all essential elements and structure of the reference implementation, ensuring complete semantic fidelity while only exhibiting harmless stylistic differences.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem captures the structure and intent of the original reference but lacks the complete set of property theorems and correctness theorem, which reduces its overall completeness.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The GENERATED THEOREM retains the structure and semantics of the REFERENCE IMPLEMENTATION but lacks the comprehensive correctness proofs and property theorems, affecting its guarantees.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|c58128aa6bd9229dc8d224e43fd6d7f3eb232719173f28324d3469e7dc605f13|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "Missing properties, theorems, and correctness proof.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem captures the correctness properties of the reference implementation by correctly specifying the implementation details, tests, pre-conditions, property theorems, post-conditions, and the correctness theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0
+    ],
+    "reasoning": "The GENERATED THEOREM lacks the essential structural elements, such as pre-conditions, properties, post-conditions, and the correctness theorem, present in the REFERENCE IMPLEMENTATION.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem is missing some components such as the pre-condition and property theorems, making it a minor miss compared to the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "While both implementations cover the basics of addition with tests and properties, they lack proper verification of the core properties and correctness theorems since all proofs are left as 'sorry'.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem mostly captures the structure and content of the reference implementation for verified addition, but it lacks the complete presentation of properties and the imperative implementation details.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem shares the implementation and test structure but omits the detailed property theorems, pre-conditions, post-conditions, and correctness theorem, leading to a mostly equivalent result with minor omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0
+    ],
+    "reasoning": "The generated theorem is missing the entire structure of properties, pre-conditions, post-conditions, properties theorems, and correctness theorem, leading to a trivial implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "The generated theorem matches the reference implementation perfectly, including the structure, tests, properties, and comments.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "Both the reference implementation and the generated theorem are identical in structure, content, and functionality, ensuring full semantic equivalence.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem captures the implementation structure and most of the intended correctness properties, but it omits completeness in defining pre/post-conditions and the property theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.9,
+    "mean": 0.9,
+    "std": 0.0,
+    "scores": [
+      0.9
+    ],
+    "reasoning": "The generated theorem matches the structure and intent of the reference implementation but lacks the completeness of property and correctness proofs.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|f446f31a7ffdb79d643da8dffd7d5d12c9bc5d9f94411c479bf66ce8bd9d54da|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "Missing property and theorem details.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P1_BASELINE|gpt-4o-mini|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0
+    ],
+    "reasoning": "The generated theorem lacks any mention of correctness properties, pre-conditions, post-conditions, or property theorems; it only contains the implementation and basic tests.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P2_FORMAL|gpt-4o-mini|c92c4c6dd3d27a56f2b4263d5e7048b184b0212c75ccc6ea818e1aea2ac5b204|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The GENERATED THEOREM does not provide the required properties or correctness theorems outlined in the REFERENCE IMPLEMENTATION, severely limiting its utility.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P3_CONCISE|gpt-4o-mini|57d151a0c4e97e4df3ad05a7c3fcbcb3facfbe7340dad479508db9c3291c0fd8|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The generated theorem lacks key components from the reference implementation, including preconditions, exhaustive property theorems, a post-condition, and an equivalence theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P4_CHECKLIST|gpt-4o-mini|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0
+    ],
+    "reasoning": "The GENERATED THEOREM lacks any property theorems or post-conditions, rendering it trivial and incorrect compared to the REFERENCE IMPLEMENTATION.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P5_REORDERED_INPUT_FIRST|gpt-4o-mini|52fa4e3ecfecb6c063392983816387291730dc0f57e4f72ba669142fd48dbdc8|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3
+    ],
+    "reasoning": "The generated theorem only includes the implementation of `myAdd` and its basic test, missing the majority of properties, tests, and theorems present in the reference implementation.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P6_REORDERED_OUTPUT_FIRST|gpt-4o-mini|c0b70f293983a0882934e6355a7300e939919c8503eb6ea15c78efa80564e30b|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem provides only a minimal implementation without the comprehensive structure and properties found in the reference implementation, leading to a weak match.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P7_STRICT_A|gpt-4o-mini|abbfdf496e41b3bd58e24150d5678c863b1ce90e21626960d26d6cad266a2042|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2
+    ],
+    "reasoning": "The implementation is mostly misaligned as it lacks the complete structure outlined in the reference, missing core elements such as property theorems, post-conditions, and the equivalence theorem.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P8_STRICT_B|gpt-4o-mini|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem presents a minimal implementation and lacks several key components such as exhaustive property props, preconditions, and full testing, leading to substantial omissions.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P9_LENIENT_A|gpt-4o-mini|c53e37b84a3281d2e129554b7d9d4036ba86c492de5ad5337494609b77b12c22|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.0,
+    "scores": [
+      0.7
+    ],
+    "reasoning": "The generated theorem includes essential parts of the reference implementation but lacks the detailed properties and tests present in the original.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P10_LENIENT_B|gpt-4o-mini|b51deedb5e39b670f1276d78b4beacee5364636f99b1c20aeee85d7d739be2ed|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.0,
+    "scores": [
+      0.4
+    ],
+    "reasoning": "The generated theorem captures only the implementation and a single test, missing many essential aspects like preconditions, property theorems, post-conditions, and equivalence theorems.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P11_JSON_FIRST|gpt-4o-mini|0f728a2773d1fa719d694c887fbfb628decd3eb928c991853310e00a785851bc|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "The generated theorem lacks the comprehensive structure and properties detailed in the reference implementation, making it semantically incorrect.",
+    "model": "gpt-4o-mini"
+  },
+  "prompt_sensitivity:P12_REASONING_MINIMAL|gpt-4o-mini|f0cae86b83cfe499e408ad7fc1357c736886aa0f804b675f98957b4aa92a79eb|3737bdaa4f65d680d62f80408b4cece588e51d22196b7be397b43deb4df8b99a|a459e0d7359fa7b797ad6a88a246fd2b3a140b9ece91f84e329d1218ef476eb4": {
+    "score": 0.1,
+    "mean": 0.1,
+    "std": 0.0,
+    "scores": [
+      0.1
+    ],
+    "reasoning": "Missing properties, tests, and theorems.",
+    "model": "gpt-4o-mini"
   }
 }
