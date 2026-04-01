@@ -36,6 +36,88 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def _make_figures(
+    out_dir: Path,
+    prompt_names: list,
+    score_by_item: dict,
+    per_item_rows: list,
+    pairwise: list,
+) -> None:
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+        import numpy as np
+    except Exception as e:
+        print(f"WARNING: figure generation skipped (matplotlib unavailable): {e}")
+        return
+
+    figures_dir = out_dir / "figures"
+    ensure_dir(figures_dir)
+
+    idx = {name: i for i, name in enumerate(prompt_names)}
+    n = len(prompt_names)
+    spearman = np.zeros((n, n), dtype=float)
+    kappa = np.zeros((n, n), dtype=float)
+    np.fill_diagonal(spearman, 1.0)
+    np.fill_diagonal(kappa, 1.0)
+    for row in pairwise:
+        i = idx[row["a"]]
+        j = idx[row["b"]]
+        spearman[i, j] = spearman[j, i] = float(row["spearman_r"])
+        kappa[i, j] = kappa[j, i] = float(row["cohen_kappa"])
+
+    # Spearman heatmap
+    fig, ax = plt.subplots(figsize=(9, 8))
+    im = ax.imshow(spearman, vmin=-1.0, vmax=1.0, cmap="coolwarm")
+    ax.set_xticks(range(n))
+    ax.set_yticks(range(n))
+    ax.set_xticklabels(prompt_names, rotation=90, fontsize=8)
+    ax.set_yticklabels(prompt_names, fontsize=8)
+    ax.set_title("Prompt Pairwise Spearman Correlation")
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    fig.tight_layout()
+    fig.savefig(figures_dir / "prompt_pairwise_spearman_heatmap.png", dpi=180)
+    plt.close(fig)
+
+    # Kappa heatmap
+    fig, ax = plt.subplots(figsize=(9, 8))
+    im = ax.imshow(kappa, vmin=-1.0, vmax=1.0, cmap="coolwarm")
+    ax.set_xticks(range(n))
+    ax.set_yticks(range(n))
+    ax.set_xticklabels(prompt_names, rotation=90, fontsize=8)
+    ax.set_yticklabels(prompt_names, fontsize=8)
+    ax.set_title("Prompt Pairwise Cohen's Kappa")
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    fig.tight_layout()
+    fig.savefig(figures_dir / "prompt_pairwise_kappa_heatmap.png", dpi=180)
+    plt.close(fig)
+
+    # Per-prompt score distribution boxplot
+    item_ids = sorted(score_by_item.keys())
+    by_prompt = [[score_by_item[item_id][p] for item_id in item_ids] for p in prompt_names]
+    fig, ax = plt.subplots(figsize=(12, 5))
+    ax.boxplot(by_prompt, labels=prompt_names, showfliers=False)
+    ax.set_ylim(-0.02, 1.02)
+    ax.set_ylabel("Score")
+    ax.set_title("Score Distribution by Prompt Variant")
+    ax.tick_params(axis="x", rotation=90, labelsize=8)
+    fig.tight_layout()
+    fig.savefig(figures_dir / "prompt_score_distribution_boxplot.png", dpi=180)
+    plt.close(fig)
+
+    # Per-item std histogram
+    stds = [float(r["score_std_across_prompts"]) for r in per_item_rows]
+    fig, ax = plt.subplots(figsize=(7, 4))
+    ax.hist(stds, bins=10)
+    ax.set_xlabel("Per-item score std across prompts")
+    ax.set_ylabel("Count")
+    ax.set_title("Prompt Sensitivity Histogram")
+    fig.tight_layout()
+    fig.savefig(figures_dir / "prompt_item_std_histogram.png", dpi=180)
+    plt.close(fig)
+
+
 def main() -> int:
     args = parse_args()
     out_dir = Path(args.out_dir)
@@ -146,6 +228,13 @@ def main() -> int:
     write_rows_csv(out_dir / "per_item.csv", per_item_rows)
     write_rows_csv(out_dir / "pairwise.csv", pairwise)
     write_rows_csv(out_dir / "details.csv", detail_rows)
+    _make_figures(
+        out_dir=out_dir,
+        prompt_names=prompt_names,
+        score_by_item=score_by_item,
+        per_item_rows=per_item_rows,
+        pairwise=pairwise,
+    )
 
     print("\nSummary:")
     print(f"  flip_rate={flip_rate:.4f}")
