@@ -37,6 +37,84 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def _make_figures(
+    out_dir: Path,
+    scale_names: list,
+    score_by_item: dict,
+    per_item_rows: list,
+    pairwise: list,
+) -> None:
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+        import numpy as np
+    except Exception as e:
+        print(f"WARNING: figure generation skipped (matplotlib unavailable): {e}")
+        return
+
+    figures_dir = out_dir / "figures"
+    ensure_dir(figures_dir)
+
+    idx = {name: i for i, name in enumerate(scale_names)}
+    n = len(scale_names)
+    spearman = np.zeros((n, n), dtype=float)
+    kappa = np.zeros((n, n), dtype=float)
+    np.fill_diagonal(spearman, 1.0)
+    np.fill_diagonal(kappa, 1.0)
+    for row in pairwise:
+        i = idx[row["a"]]
+        j = idx[row["b"]]
+        spearman[i, j] = spearman[j, i] = float(row["spearman_r"])
+        kappa[i, j] = kappa[j, i] = float(row["cohen_kappa"])
+
+    fig, ax = plt.subplots(figsize=(8, 7))
+    im = ax.imshow(spearman, vmin=-1.0, vmax=1.0, cmap="coolwarm")
+    ax.set_xticks(range(n))
+    ax.set_yticks(range(n))
+    ax.set_xticklabels(scale_names, rotation=45, ha="right")
+    ax.set_yticklabels(scale_names)
+    ax.set_title("Scale Pairwise Spearman Correlation")
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    fig.tight_layout()
+    fig.savefig(figures_dir / "scale_pairwise_spearman_heatmap.png", dpi=180)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(8, 7))
+    im = ax.imshow(kappa, vmin=-1.0, vmax=1.0, cmap="coolwarm")
+    ax.set_xticks(range(n))
+    ax.set_yticks(range(n))
+    ax.set_xticklabels(scale_names, rotation=45, ha="right")
+    ax.set_yticklabels(scale_names)
+    ax.set_title("Scale Pairwise Cohen's Kappa")
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    fig.tight_layout()
+    fig.savefig(figures_dir / "scale_pairwise_kappa_heatmap.png", dpi=180)
+    plt.close(fig)
+
+    item_ids = sorted(score_by_item.keys())
+    by_scale = [[score_by_item[item_id][s] for item_id in item_ids] for s in scale_names]
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.boxplot(by_scale, labels=scale_names, showfliers=False)
+    ax.set_ylim(-0.02, 1.02)
+    ax.set_ylabel("Normalized Score")
+    ax.set_title("Normalized Score Distribution by Scale Variant")
+    ax.tick_params(axis="x", rotation=45)
+    fig.tight_layout()
+    fig.savefig(figures_dir / "scale_score_distribution_boxplot.png", dpi=180)
+    plt.close(fig)
+
+    stds = [float(r["score_std_across_scales"]) for r in per_item_rows]
+    fig, ax = plt.subplots(figsize=(7, 4))
+    ax.hist(stds, bins=10)
+    ax.set_xlabel("Per-item score std across scales")
+    ax.set_ylabel("Count")
+    ax.set_title("Scale Sensitivity Histogram")
+    fig.tight_layout()
+    fig.savefig(figures_dir / "scale_item_std_histogram.png", dpi=180)
+    plt.close(fig)
+
+
 def main() -> int:
     args = parse_args()
     out_dir = Path(args.out_dir)
@@ -155,6 +233,13 @@ def main() -> int:
     write_rows_csv(out_dir / "per_item.csv", per_item_rows)
     write_rows_csv(out_dir / "pairwise.csv", pairwise)
     write_rows_csv(out_dir / "details.csv", detail_rows)
+    _make_figures(
+        out_dir=out_dir,
+        scale_names=scale_names,
+        score_by_item=score_by_item,
+        per_item_rows=per_item_rows,
+        pairwise=pairwise,
+    )
 
     print("\nSummary:")
     print(f"  pass_flip_rate={pass_flip_rate:.4f}")
