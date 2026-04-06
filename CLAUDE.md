@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+# Claude Code: read `~/agents-config/INDEX_RULES.md` for all agent documentation and routing.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Purpose
