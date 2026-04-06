@@ -248,3 +248,7 @@ If implemented, these steps would move the project from a promising certificatio
 ## An aside on TVD-MI
 
 TVD-MI is not the best immediate extension because we know it measures shared information, and not necessarily direct human correlation. The current paper is strongest when it stays focused on certifying a gold-reference-based judge via identity and monotonicity, whereas TVD-MI pushes toward a broader oracle-free or hybrid oversight framework that the draft explicitly describes as future work. That makes it valuable conceptually, but direct human correlation may be a better option.
+
+## Additional questions:
+
+- Methods for `Trace++` and `DSPy ReAct` agent. What is the standard agent/evaluation framework?
