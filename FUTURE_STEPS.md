@@ -244,3 +244,9 @@ The roadmap above keeps the same philosophy while making the work substantially 
 - connect judge behavior to expert human judgment.
 
 If implemented, these steps would move the project from a promising certification protocol to a much more complete and credible framework for trustworthy LLM-based evaluation in formal verification.
+
+--
+
+## An aside on TVD-MI
+
+TVD-MI is not the best immediate extension because we know it measures shared information, and not necessarily direct human correlation. The current paper is strongest when it stays focused on certifying a gold-reference-based judge via identity and monotonicity, whereas TVD-MI pushes toward a broader oracle-free or hybrid oversight framework that the draft explicitly describes as future work. That makes it valuable conceptually, but direct human correlation may be a better option.
