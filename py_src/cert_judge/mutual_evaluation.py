@@ -42,8 +42,12 @@ def _spearman_rho(x: Sequence[float], y: Sequence[float]) -> float:
     """Spearman rank correlation in [-1,1]."""
     if len(x) != len(y) or len(x) < 2:
         return 0.0
-    rx = _rankdata([float(v) for v in x])
-    ry = _rankdata([float(v) for v in y])
+    x_vals = [float(v) for v in x]
+    y_vals = [float(v) for v in y]
+    if len(set(x_vals)) == 1 and len(set(y_vals)) == 1:
+        return 1.0 if np.isclose(x_vals[0], y_vals[0]) else 0.0
+    rx = _rankdata(x_vals)
+    ry = _rankdata(y_vals)
     return _pearson_corr(rx, ry)
 
 
@@ -216,12 +220,14 @@ def compute_p9_rubric_robustness(
     # Compute welfare on the real response matrix
     welfare_raw = _evaluation_welfare(mat)
 
-    # Permutation null: shuffle row labels to break item-response structure
+    # Permutation null: independently shuffle each question column to break
+    # item-response structure while preserving per-question marginals.
     rng = np.random.default_rng(seed)
     null_welfares: List[float] = []
     for _ in range(n_permutations):
         perm_mat = mat.copy()
-        rng.shuffle(perm_mat)  # shuffle rows (items)
+        for col in range(n_questions):
+            rng.shuffle(perm_mat[:, col])
         null_welfares.append(_evaluation_welfare(perm_mat))
 
     null_95th = float(np.percentile(null_welfares, 95)) if null_welfares else 0.0

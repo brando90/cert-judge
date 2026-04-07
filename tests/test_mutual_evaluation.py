@@ -73,6 +73,17 @@ class TestP8EvaluatorReplicability:
         # Item 0: both bucket 0 (agree), Item 1: 1 vs 2 (disagree), Item 2: both 2 (agree)
         assert report.conclusion_stability == pytest.approx(2 / 3, abs=1e-6)
 
+    def test_constant_identical_scores_are_perfect_agreement(self):
+        """Identical constant scores should still count as perfect agreement."""
+        scores = [
+            [0.5, 0.5, 0.5],
+            [0.5, 0.5, 0.5],
+        ]
+        report = compute_p8_evaluator_replicability(scores)
+        assert report.mean_pairwise_rho == pytest.approx(1.0, abs=1e-6)
+        assert report.p8 == pytest.approx(1.0, abs=1e-6)
+        assert report.conclusion_stability == pytest.approx(1.0, abs=1e-6)
+
     def test_too_few_judges_raises(self):
         with pytest.raises(ValueError, match="at least 2 judges"):
             compute_p8_evaluator_replicability([[0.1, 0.5]])
@@ -96,6 +107,7 @@ class TestP9RubricRobustness:
         report = compute_p9_rubric_robustness(mat, n_permutations=50, seed=42)
         assert report.p9 > 0.5  # structured signal should score well
         assert report.welfare_raw > 0.0
+        assert report.null_95th < report.welfare_raw
         assert report.n_items == 20
         assert report.n_questions == 4
 
