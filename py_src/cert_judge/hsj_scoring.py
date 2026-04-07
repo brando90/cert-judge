@@ -169,12 +169,19 @@ def compute_jti(
     p5: Optional[float] = None,
     p6: Optional[float] = None,
     p7: Optional[float] = None,
+    p8: Optional[float] = None,
+    p9: Optional[float] = None,
     weights: Optional[Dict[str, float]] = None,
 ) -> float:
     """
     Judge Trust Index (JTI): weighted combination of present properties.
-    Accepts P1–P4 (required) and optional P5–P7. If weights are not
+    Accepts P1–P4 (required) and optional P5–P9. If weights are not
     provided, use equal weights across properties provided (non-None).
+
+    P8 (Evaluator Replicability) and P9 (Rubric Specification Robustness)
+    measure inter-rater reliability and rubric signal quality respectively.
+    They can be included additively here, or used multiplicatively via
+    compute_jti_with_mutual_evaluation() from mutual_evaluation.py.
     """
     props: Dict[str, float] = {
         "p1": _clip01(p1),
@@ -188,6 +195,10 @@ def compute_jti(
         props["p6"] = _clip01(p6)
     if p7 is not None:
         props["p7"] = _clip01(p7)
+    if p8 is not None:
+        props["p8"] = _clip01(p8)
+    if p9 is not None:
+        props["p9"] = _clip01(p9)
 
     if weights is None:
         n = len(props)
