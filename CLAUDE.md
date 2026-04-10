@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+Read the home-level agent index for environment context:
+- `~/agents-config/INDEX_RULES.md`
+- Remote fallback: https://raw.githubusercontent.com/brando90/agents-config/main/INDEX_RULES.md
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Purpose
