@@ -1,5 +1,12 @@
 # CLAUDE.md
 
+## Global Agent Rules (load first, every session)
+
+Fetch and follow the global rules from brando90/agents-config before doing anything else:
+- **Primary (always works — cloud, phone, local):** fetch `https://raw.githubusercontent.com/brando90/agents-config/main/INDEX_RULES.md` and follow all Hard Rules, Trigger Rules, and Guidelines listed there.
+- **Local optimization:** if `~/agents-config/` exists locally, read `~/agents-config/INDEX_RULES.md` instead (faster, same content). Run `git -C ~/agents-config pull` first to ensure it's current.
+- **Sync discipline:** after any git commit+push in this repo, also pull agents-config (`git -C ~/agents-config pull` or re-fetch the URL) so all agents stay on the latest rules. If you edit agents-config itself, commit+push there too.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Purpose
