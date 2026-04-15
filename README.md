@@ -7,12 +7,79 @@
 
 Formal proof assistants (Lean 4, Coq) verify that a *proof is correct*, but they cannot verify whether an agent proved the *right* theorem — the specification adequacy problem. This repo provides an **LLM-based judge** that scores AI-generated Lean 4 theorems for correctness, completeness, and semantic alignment with a reference implementation, along with a **certification protocol** that verifies the judge's trustworthiness before deployment.
 
-**Core idea**: a judge is only trustworthy if it satisfies falsifiable logical properties:
-- **P1 Reflexivity** — identical inputs yield the maximum score
-- **P2 Monotonicity (bugs)** — scores decrease as semantic bugs are injected
-- **P3 Monotonicity (specs)** — scores decrease as specifications are removed
+**Core idea**: a judge is only trustworthy if it satisfies falsifiable logical properties. We verify seven such properties via scripted perturbations and rank-correlation tests (Pearson r, Spearman ρ, Kendall τ), producing a **Judge Trust Index (JTI)** that summarises the judge's reliability in [0, 1].
 
-We verify these properties via scripted perturbations and rank-correlation tests (Pearson r, Spearman ρ, Kendall τ), producing a **Judge Trust Index (JTI)** that summarises the judge's reliability in [0, 1].
+## Certification Properties (P1–P7)
+
+The certification protocol tests seven properties, each targeting a different aspect of judge reliability. All properties produce a score in **[0, 1]** (higher = better).
+
+### P1 — Reflexivity (Identity)
+
+A judge must recognize that a file is identical to itself and return the maximum score. This is the most basic sanity check.
+
+**Method:** For each gold-standard file X_i, compute `score_i = Judge(X_i, X_i)` and normalize by max_score.
+
+**Formula:** `P1 = mean(scores / max_score)`
+
+### P2 — Monotonicity to Bugs
+
+Scores must decrease as semantic bugs are progressively injected into code. Tests sensitivity to **correctness**.
+
+**Method:** Create a bug ladder (0, 1, …, K cumulative bugs). Score each version against the original. Compute pairwise ordering AUC — the probability that fewer bugs yields a higher score.
+
+**Formula:** `P2 = 2 · (AUC_bugs − 0.5)`
+
+### P3 — Monotonicity to Missing Specifications
+
+Scores must decrease as theorems/tests are progressively removed. Tests sensitivity to **completeness**.
+
+**Method:** Create an ablation ladder (0, 1, …, M removed specs). Score each version against the original. Compute pairwise ordering AUC.
+
+**Formula:** `P3 = 2 · (AUC_miss − 0.5)`
+
+### P4 — Stability (Low Variance)
+
+A judge must produce consistent scores across repeated runs on the same input pair.
+
+**Method:** For each (candidate, gold) pair, run the judge R times. Compute pooled variance σ² across all pairs. Compare against tolerance threshold τ (default 0.05).
+
+**Formula:** `P4 = clip(1 − σ²_pooled / τ², 0, 1)`
+
+### P5 — TVD-MI (Information-Relationship Robustness)
+
+The judge must score based on semantic substance, not easily-gameable stylistic features. This is a weighted combination of three sub-metrics:
+
+1. **Youden's J** (TVD lower bound): discriminability between same-source pairs (file vs itself) and different-source pairs (file A vs file B). `J̃ = (TPR + TNR − 1 + 1) / 2`
+2. **Item-level macro AUC**: per-item AUC between same-source and different-source scores, macro-averaged.
+3. **Tamper resistance**: `1 − max AUC drop` under adversarial transformations (padding, case-flip, format standardization).
+
+**Formula:** `P5 = β₁·J̃ + β₂·AUC_macro + β₃·(1 − ΔAUC_tamper)` with default weights β₁=0.5, β₂=0.3, β₃=0.2.
+
+### P6 — Correlation with Human Expert Scores
+
+Validates that the judge captures quality aspects valued by human domain experts (**external validity**).
+
+**Method:** Collect human expert ratings on a sample of candidates. Compute Spearman's rank correlation ρ between human and judge scores.
+
+**Formula:** `P6 = (ρ + 1) / 2`
+
+### P7 — Correlation with Prover Success
+
+Validates that the judge predicts a hard, objective outcome: automated theorem prover success rate (**criterion validity**).
+
+**Method:** For each candidate, obtain proof success rate from an automated prover. Compute Spearman's rank correlation ρ between judge scores and prover success.
+
+**Formula:** `P7 = (ρ + 1) / 2`
+
+### Judge Trust Index (JTI)
+
+The JTI combines all available properties into a single reliability score.
+
+- **Required:** P1, P2, P3, P4 (always included)
+- **Optional:** P5, P6, P7 (included when available)
+- **Weights:** equal by default across all present properties (customizable)
+
+**Formula:** `JTI = Σ wᵢ · Pᵢ` where weights are normalized to sum to 1.
 
 ## Key Results
 
