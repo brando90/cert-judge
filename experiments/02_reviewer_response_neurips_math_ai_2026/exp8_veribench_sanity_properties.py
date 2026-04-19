@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import difflib
 import json
 import random
 import re
@@ -34,13 +35,20 @@ REPO_ROOT = EXP_DIR.parents[1]
 sys.path.insert(0, str(EXP_DIR))
 
 from utils.judge_caller import judge
-from utils.metrics import pearson_r, spearman_r, weak_monotonicity_pct
+from utils.metrics import (
+    bleu_score,
+    jaccard_tokens,
+    pearson_r,
+    spearman_r,
+    weak_monotonicity_pct,
+)
 from utils.variant_generator import generate_variants
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Scale identity + monotonicity sanity checks across VeriBench")
     parser.add_argument("--model", type=str, default="gpt-4o-mini")
+    parser.add_argument("--judge-mode", type=str, default="api", choices=["api", "local"])
     parser.add_argument("--n-repeats", type=int, default=1)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--max-files", type=int, default=0, help="0 means all VeriBench Lean files")
@@ -70,6 +78,89 @@ def parse_args() -> argparse.Namespace:
         help="If set, do not copy generated PNGs into paper figures directory",
     )
     return parser.parse_args()
+
+
+def _extract_theorem_lemma_names(text: str) -> set[str]:
+    names = set()
+    for m in re.finditer(r"(?m)^\s*(?:@\[[^\]]+\]\s*)?(?:theorem|lemma)\s+([A-Za-z0-9_'.]+)", text):
+        names.add(m.group(1))
+    return names
+
+
+def _local_prompt_judge(generated_theorem: str, reference_impl: str) -> dict:
+    # Prompt-like rubric approximation for offline use:
+    # semantic overlap + theorem coverage - trivialization penalties.
+    if generated_theorem == reference_impl:
+        return {
+            "score": 1.0,
+            "mean": 1.0,
+            "std": 0.0,
+            "scores": [1.0],
+            "reasoning": "Exact string match.",
+            "model": "local_prompt_judge",
+            "cached": False,
+        }
+
+    # Fast similarity estimate (avoid quadratic pure-Python Levenshtein fallback).
+    ratio = difflib.SequenceMatcher(None, reference_impl, generated_theorem).ratio()  # 0..1
+    lev_like = 1.0 - ratio
+    jacc = jaccard_tokens(reference_impl, generated_theorem)  # 0..1
+    bleu = bleu_score(reference_impl, generated_theorem)  # 0..1
+    textual_sim = max(0.0, min(1.0, 0.45 * (1.0 - lev_like) + 0.35 * jacc + 0.20 * bleu))
+
+    ref_names = _extract_theorem_lemma_names(reference_impl)
+    gen_names = _extract_theorem_lemma_names(generated_theorem)
+    if not ref_names:
+        coverage = 1.0 if not gen_names else 0.8
+    else:
+        coverage = len(ref_names & gen_names) / max(1, len(ref_names))
+
+    theorem_penalty = 0.0
+    if len(gen_names) < max(1, len(ref_names) // 2):
+        theorem_penalty += 0.20
+    if len(gen_names) == 0:
+        theorem_penalty += 0.20
+
+    trivial_hits = 0
+    trivial_hits += generated_theorem.count(": True")
+    trivial_hits += generated_theorem.count(":= trivial")
+    trivial_hits += generated_theorem.count("True.intro")
+    trivial_penalty = min(0.45, 0.08 * trivial_hits)
+
+    score = 0.62 * textual_sim + 0.38 * coverage - theorem_penalty - trivial_penalty
+    score = max(0.0, min(1.0, score))
+
+    return {
+        "score": score,
+        "mean": score,
+        "std": 0.0,
+        "scores": [score],
+        "reasoning": (
+            f"local judge: sim={textual_sim:.3f}, coverage={coverage:.3f}, "
+            f"theorem_penalty={theorem_penalty:.3f}, trivial_penalty={trivial_penalty:.3f}"
+        ),
+        "model": "local_prompt_judge",
+        "cached": False,
+    }
+
+
+def _score_pair(
+    generated_theorem: str,
+    reference_impl: str,
+    model: str,
+    n_repeats: int,
+    cache_namespace: str,
+    judge_mode: str,
+) -> dict:
+    if judge_mode == "local":
+        return _local_prompt_judge(generated_theorem, reference_impl)
+    return judge(
+        generated_theorem=generated_theorem,
+        reference_impl=reference_impl,
+        model=model,
+        n_repeats=n_repeats,
+        cache_namespace=cache_namespace,
+    )
 
 
 def _infer_split(path: Path) -> str:
@@ -339,7 +430,7 @@ def main() -> int:
 
     print("=" * 72)
     print("EXP 8: VeriBench-wide Identity + Monotonicity Sanity Properties")
-    print(f"model={args.model} repeats={args.n_repeats} files={len(files)}")
+    print(f"model={args.model} judge_mode={args.judge_mode} repeats={args.n_repeats} files={len(files)}")
     print(f"veribench_root={args.veribench_root}")
     print("=" * 72)
 
@@ -363,12 +454,13 @@ def main() -> int:
 
         variants = generate_variants(code)
         for v in variants:
-            result = judge(
+            result = _score_pair(
                 generated_theorem=v["code"],
                 reference_impl=code,
                 model=args.model,
                 n_repeats=args.n_repeats,
                 cache_namespace="exp8_identity",
+                judge_mode=args.judge_mode,
             )
             identity_rows.append(
                 {
@@ -384,12 +476,13 @@ def main() -> int:
         bug_codes = build_bug_ladder(code)
         bug_scores: List[float] = []
         for level, cand in enumerate(bug_codes):
-            result = judge(
+            result = _score_pair(
                 generated_theorem=cand,
                 reference_impl=code,
                 model=args.model,
                 n_repeats=args.n_repeats,
                 cache_namespace="exp8_bug_ladder",
+                judge_mode=args.judge_mode,
             )
             s = float(result["mean"])
             bug_scores.append(s)
@@ -410,12 +503,13 @@ def main() -> int:
         missing_codes = build_missing_specs_ladder(code)
         missing_scores: List[float] = []
         for level, cand in enumerate(missing_codes):
-            result = judge(
+            result = _score_pair(
                 generated_theorem=cand,
                 reference_impl=code,
                 model=args.model,
                 n_repeats=args.n_repeats,
                 cache_namespace="exp8_missing_ladder",
+                judge_mode=args.judge_mode,
             )
             s = float(result["mean"])
             missing_scores.append(s)
@@ -449,6 +543,7 @@ def main() -> int:
     summary = {
         "experiment": "exp8_veribench_sanity_properties",
         "model": args.model,
+        "judge_mode": args.judge_mode,
         "n_repeats": args.n_repeats,
         "n_files": len(files),
         "identity": {

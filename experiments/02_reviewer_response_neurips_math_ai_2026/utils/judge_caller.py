@@ -134,12 +134,41 @@ def _call_openai_once(
     )
     for attempt in range(MAX_RETRIES):
         try:
-            response = client.chat.completions.create(
-                model=model,
-                max_tokens=256,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            text = response.choices[0].message.content
+            # Prefer Responses API for newer OpenAI model families (e.g., GPT-5/Codex).
+            text = None
+            try:
+                response = client.responses.create(
+                    model=model,
+                    input=prompt,
+                    max_output_tokens=256,
+                )
+                text = getattr(response, "output_text", None)
+            except Exception:
+                response = None
+
+            # Fallback to chat completions for chat-compatible models.
+            if not text:
+                try:
+                    response = client.chat.completions.create(
+                        model=model,
+                        max_tokens=256,
+                        messages=[{"role": "user", "content": prompt}],
+                    )
+                    text = response.choices[0].message.content
+                except Exception:
+                    response = None
+
+            # Legacy fallback to classic completions endpoint.
+            if not text:
+                response = client.completions.create(
+                    model=model,
+                    max_tokens=256,
+                    prompt=prompt,
+                )
+                text = response.choices[0].text
+
+            if text is None:
+                raise RuntimeError("OpenAI API returned empty text response")
             return _parse_response_text(text)
         except Exception as e:
             if attempt < MAX_RETRIES - 1:
