@@ -117,7 +117,7 @@ Formal methods provide unparalleled rigor in software verification, and with the
 Traditional benchmarks often provide a fixed theorem statement, but agentic systems must infer and synthesize these properties on their own, demanding a scalable and reliable evaluation method.
 We present an LLM-based judge designed to score the quality of generated Lean~4 theorems based on correctness, completeness, and semantic alignment with a reference implementation.
 More importantly, we introduce a novel methodology to certify the judge's trustworthiness by verifying its adherence to fundamental logical properties.
-We demonstrate that our judge satisfies identity (identical inputs yield maximal scores) and monotonicity (scores decrease predictably as bugs are introduced or specifications are removed), with Pearson correlations up to 0.973.
+We demonstrate that our judge satisfies identity (identical inputs yield maximal scores) and monotonicity (scores decrease predictably as bugs are introduced or specifications are removed), with strong trends across runs (e.g., GPT-5.3-Codex: Spearman \(\rho=-0.808\) for bugs and \(\rho=-0.899\) for missing-spec ablations).
 By applying this validated judge to the \textsc{VeriBench}\citep{veribench_icml25}scalable oversight benchmark, we show that agentic approaches for formal code generation significantly outperform baseline prompting, with a top score of 0.615 vs.\ 0.470.
 This work provides a blueprint for creating and validating reliable automated judges, enabling robust and scalable evaluation of next-generation theorem-proving agents.
 \end{abstract}
@@ -197,35 +197,35 @@ We implement three scripted perturbation families on the \emph{candidate} while 
 (iii) \emph{Specification Ablation} (P3), removing $m\!\in\!\{0,\ldots,M\}$ theorems or tests. 
 We then verify monotonicity by computing rank correlations (Kendall’s $\tau$, Spearman’s $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse’’ artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
 
-\textbf{Establishing trust in the LLM judge.} To ensure trustworthiness of the LLM judge in evaluating agentic autoformalization, we systematically validate key properties the judge must satisfy in Figure~\ref{fig:judge_sanity_checks}: (1) scores decrease consistently as more theorems and tests are omitted, (2) scores similarly degrade when more implementation bugs are introduced, and (3) identical file pairs always yield maximal scores.
-Empirical results confirm these properties strongly hold (Pearson correlations up to $-0.973$), thus validating that our Claude~3.5-based LLM judge provides a reliable and semantically meaningful measure for correctness, completeness, and alignment of autonomously inferred theorems across \textsc{VeriBench} subsets (Table~\ref{tab:theorem_quality_table_split}) \citep{Li2024TrustLLMJudgments,Kocmi2024HumanVsLLM}.
+\textbf{Establishing trust in the LLM judge.} To ensure trustworthiness of the LLM judge in evaluating agentic autoformalization, we systematically validate key properties the judge must satisfy in Figure~\ref{fig:judge_sanity_checks}: (1) scores decrease consistently as more theorems and tests are omitted, (2) scores similarly degrade when more implementation bugs are introduced, and (3) semantically preserving edits keep scores high.
+In our latest GPT-5.3-Codex API sanity run (\(n_\text{files}=184\), \(n_\text{repeats}=3\)), monotonic trends remain strong (bugs: Spearman \(\rho=-0.808\), Pearson \(r=-0.687\); missing specs: Spearman \(\rho=-0.899\), Pearson \(r=-0.892\)), supporting use of the judge as a semantically meaningful proxy for correctness/completeness alignment across \textsc{VeriBench} subsets (Table~\ref{tab:theorem_quality_table_split}) \citep{Li2024TrustLLMJudgments,Kocmi2024HumanVsLLM}.
 
 \begin{figure*}[t]
   \centering
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../figures/identity_property.png}
+    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/identity_property_with_std_error_bounds.png}
     \caption{Identity (Reflexivity)}
     \label{fig:judge_identity}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/monotonicity_bugs.png}
+    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/monotonicity_bugs_with_std_error_bounds.png}
     \caption{Monotonicity vs.\ Bugs}
     \label{fig:judge_mono_bugs}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/monotonicity_missing_specs.png}
+    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/monotonicity_missing_specs_with_std_error_bounds.png}
     \caption{Monotonicity vs.\ Missing Specs}
     \label{fig:judge_mono_specs}
   \end{subfigure}
   \vspace{-2mm}
 \caption{\textbf{LLM Judge Trustworthiness Sanity Checks.} 
-The judge demonstrates reliability against our certification protocol. 
-\textbf{(a) Identity:} When comparing a gold-standard file to itself, the judge consistently returns the maximum normalized score of 1.0 ($R^2=1.000$). 
-\textbf{(b) Monotonicity vs.\ Bugs:} The judge's score shows a strong negative correlation with the number of injected bugs (Pearson $r = -0.973$, Spearman $\rho = -0.985$). 
-\textbf{(c) Monotonicity vs.\ Missing Specs:} Similarly, the score decreases predictably as specifications are removed (Pearson $r = -0.979$, Spearman $\rho = -0.985$).}
+VeriBench-wide GPT-5.3-Codex API run (\(n_\text{files}=184\), \(n_\text{repeats}=3\), with standard-error overlays). 
+\textbf{(a) Identity:} 736 syntactic-variant pairs yield mean score \(0.792\) (\(\sigma=0.352\)); \textsc{Style}/\textsc{Rename} remain high while aggressive \textsc{Alpha}-renaming is harder. 
+\textbf{(b) Monotonicity vs.\ Bugs:} 920 ladder points show a negative trend (Pearson \(r=-0.687\), Spearman \(\rho=-0.808\)); full-ladder weak monotonicity is \(52.2\%\). 
+\textbf{(c) Monotonicity vs.\ Missing Specs:} 920 points show stronger monotonic behavior (Pearson \(r=-0.892\), Spearman \(\rho=-0.899\)); weak monotonicity is \(89.1\%\).}
   \label{fig:judge_sanity_checks}
   \vspace{-3mm}
 \end{figure*}
@@ -238,6 +238,38 @@ Conversely, agentic methods leveraging iterative self-debugging and self-improve
 Specifically, the DSPy ReAct agent, which incorporates feedback-driven self-debugging, achieves the highest overall average score of 0.615. 
 The Trace++ agent, employing both self-debugging and self-improvement mechanisms, also shows notable improvement, attaining an average score of 0.588. 
 These results underscore the effectiveness of agentic, feedback-driven approaches in enhancing theorem-generation quality compared to non-agentic baselines \citep{khattab2024dspy,cheng2024trace,chen2021evaluating}.
+
+\subsection{New Codex API Sanity Run (April 18, 2026)}
+We added a new certification run in
+\texttt{codex\_api\_gpt53\_r3\_20260418\_230027} under the experiment results directory.
+This run uses GPT-5.3-Codex in API judge mode with three repeated judge calls per pair (\(n_\text{repeats}=3\)), over \(184\) Lean files (\(736\) identity rows and \(920\) rows each for bug/missing ladders).
+
+\textbf{What the data shows.}
+Monotonicity with missing specifications is strong (\(\rho=-0.899\), \(r=-0.892\), weak monotonicity \(89.1\%\)), indicating stable penalty as theorem content is removed.
+Bug monotonicity is directionally correct but noisier (\(\rho=-0.808\), \(r=-0.687\), weak monotonicity \(52.2\%\)), suggesting some bug ladders induce local score reversals.
+Identity is high for mild semantic-preserving edits but not uniform across all transforms, which is critical for interpreting aggregate identity means.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Identity Variant} & \textbf{Mean Score} & \textbf{Mean Within-Item Std} \\
+\midrule
+RENAME & 0.936 & 0.005 \\
+REORDER & 0.849 & 0.029 \\
+STYLE & 0.982 & 0.001 \\
+ALPHA & 0.399 & 0.096 \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Identity breakdown for the Codex API run.} The low overall identity mean (\(0.792\)) is primarily driven by aggressive alpha-renaming.}
+\label{tab:codex_identity_variants}
+\end{table}
+
+\textbf{Interpretation.}
+The judge reliably captures coarse semantic degradation (especially missing-spec ablations), while lexical/format-level robustness is transformation-dependent.
+Practically, this motivates canonicalization of binder names and stronger structure-aware prompting before using identity as a strict pass/fail criterion.
+The run metadata also notes appended datapoints from 34 added tasks scored in local mode, so direct cross-run comparisons should be treated as provisional until fully re-run under one scoring mode.
 
 \begin{table}[H]
 \renewcommand{\arraystretch}{1.30}
