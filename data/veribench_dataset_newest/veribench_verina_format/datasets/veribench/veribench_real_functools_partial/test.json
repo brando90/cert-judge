@@ -1,0 +1,58 @@
+[
+    {
+        "input": {
+            "func": "<testFunc>",
+            "slots": [
+                {
+                    "value": 1
+                },
+                {
+                    "value": 2
+                }
+            ],
+            "baseKw": {},
+            "pos": [
+                3
+            ],
+            "kw": {}
+        },
+        "expected": 123,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "func": "<testFunc>",
+            "slots": [],
+            "baseKw": {
+                "b": 2,
+                "c": 3
+            },
+            "pos": [
+                1
+            ],
+            "kw": {}
+        },
+        "expected": 123,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "func": "<testFunc>",
+            "slots": [
+                "<Placeholder>",
+                {
+                    "value": 2
+                }
+            ],
+            "baseKw": {
+                "c": 3
+            },
+            "pos": [
+                1
+            ],
+            "kw": {}
+        },
+        "expected": 123,
+        "unexpected": []
+    }
+]

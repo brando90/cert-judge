@@ -1,0 +1,96 @@
+[
+    {
+        "input": {
+            "numerator": 8,
+            "denominator": 6
+        },
+        "expected": "<let f := benchmark_fraction 8 6; Fraction.numerator f = 4 \u2227 Fraction.denominator f = 3>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "numerator": 10,
+            "denominator": -8
+        },
+        "expected": "<let f := benchmark_fraction 10 (-8); Fraction.numerator f = -5 \u2227 Fraction.denominator f = 4>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "numerator": 7,
+            "denominator": 1
+        },
+        "expected": "<benchmark_fraction 7 = benchmark_fraction 7 1>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "numerator": "<1/2 + 1/3>",
+            "denominator": "<n/a>"
+        },
+        "expected": "<benchmark_fraction 1 2 + benchmark_fraction 1 3 = benchmark_fraction 5 6>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "numerator": "<1/2 * 2/3>",
+            "denominator": "<n/a>"
+        },
+        "expected": "<benchmark_fraction 1 2 * benchmark_fraction 2 3 = benchmark_fraction 1 3>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "numerator": "<1/2 / 3/4>",
+            "denominator": "<n/a>"
+        },
+        "expected": "<benchmark_fraction 1 2 / benchmark_fraction 3 4 = benchmark_fraction 2 3>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "numerator": "<3/4 - 1/4>",
+            "denominator": "<n/a>"
+        },
+        "expected": "<benchmark_fraction 3 4 - benchmark_fraction 1 4 = benchmark_fraction 1 2>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "numerator": "<compare 1/2 < 2/3>",
+            "denominator": "<n/a>"
+        },
+        "expected": true,
+        "unexpected": [
+            false
+        ]
+    },
+    {
+        "input": {
+            "numerator": "<compare 1/2 < 1/2>",
+            "denominator": "<n/a>"
+        },
+        "expected": false,
+        "unexpected": [
+            true
+        ]
+    },
+    {
+        "input": {
+            "numerator": "<equality 1/2 = 2/4>",
+            "denominator": "<n/a>"
+        },
+        "expected": true,
+        "unexpected": [
+            false
+        ]
+    },
+    {
+        "input": {
+            "numerator": 120,
+            "denominator": 200
+        },
+        "expected": "<let f := benchmark_fraction 120 200; Fraction.numerator f = 3 \u2227 Fraction.denominator f = 5 \u2227 Nat.gcd (Int.natAbs (Fraction.numerator f)) (Fraction.denominatorNat f) = 1>",
+        "unexpected": []
+    }
+]

@@ -1,0 +1,15 @@
+-----Description-----
+Inserts an element into an array at the rightmost position where it can be placed while maintaining sorted order of a specified slice, using binary search (bisect-right) and returning the updated array.
+
+-----Input-----
+- a: Array of elements to insert into
+- x: Element to insert
+- lo: Lower bound index of the slice to consider (default 0)
+- hi?: Optional upper bound (exclusive) of the slice to consider; if none, uses a.size
+- key?: Optional key function mapping elements into an ordered key space; if none, elements are coerced to the key type
+
+-----Output-----
+A new array equal to the original array with x inserted at the computed bisect-right index (rightmost valid insertion point).
+
+-----Note-----
+The intended precondition is that lo ≤ hi and hi ≤ a.size and that the slice a[lo:hi] is sorted by the key. The implementation includes a runtime bounds check (idx ≤ a.size); if it fails, it returns the original array.

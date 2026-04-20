@@ -1,0 +1,12 @@
+-----Description-----
+Computes the n-th number that is both a Fibonacci number and a prime number (the prime Fibonacci sequence), starting with 2, 3, 5, 13, 89, ...
+
+-----Input-----
+- n: Nat — 1-based index into the prime Fibonacci sequence (must be positive)
+
+-----Output-----
+- Nat — the n-th Fibonacci number that is prime
+
+-----Note-----
+- A precondition requires n > 0; behavior for n = 0 is not specified by the spec (the implementation may return 0 due to bounded search fuel).
+- The implementation searches Fibonacci numbers starting from index 3 and uses a bounded “fuel” to ensure termination.

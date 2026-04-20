@@ -1,0 +1,14 @@
+-----Description-----
+Enqueue an item into a thread-safe queue model using FIFO (append-to-end) behavior, returning either an updated queue state or an error.
+
+-----Input-----
+- q: Current queue state containing stored items, capacity limit, unfinished-task counter, and shutdown flag
+- x: Item to enqueue
+
+-----Output-----
+Returns an `Except`:
+- `ok q'` with the item enqueued and `unfinished` incremented by 1 when enqueue is allowed
+- `error` with `QueueError.shutdown` if the queue is shut down, or `QueueError.full` if at capacity, or `QueueError.invalidTimeout` (not used by `fifoPut` directly)
+
+-----Note-----
+FIFO ordering is achieved by appending the new item to the end of the internal list. Capacity `maxsize = 0` is treated as infinite capacity.

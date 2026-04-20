@@ -1,0 +1,13 @@
+-----Description-----
+Parse a JSON-like value from an input string using an imperative (state-machine) scanner for a restricted subset of JSON.
+
+-----Input-----
+- s: A string to decode (supported literals include: true, false, null, integers with optional +/-, [], {}, and quoted strings)
+
+-----Output-----
+Returns an optional JSON value:
+- some JVal if the entire string matches one of the supported JSON forms
+- none if the string does not match any supported form
+
+-----Note-----
+Quoted strings are accepted only if the string length is at least 2 and both the first and last characters are double quotes; the returned value stores the original string including quotes. Integer parsing requires the whole string to be a signed/unsigned digit sequence (no trailing characters).

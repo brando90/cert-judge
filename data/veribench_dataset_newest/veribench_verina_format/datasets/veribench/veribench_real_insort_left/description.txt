@@ -1,0 +1,15 @@
+-----Description-----
+Insert an element into an array at the leftmost position where it can be inserted while preserving the ordering of the array segment, using a binary search (bisect-left) on a key projection.
+
+-----Input-----
+- a: Array of elements to insert into
+- x: Element to insert
+- lo: Lower bound (start index) of the slice to consider for insertion
+- hi?: Optional upper bound (end index, exclusive) of the slice; if none, defaults to a.size
+- key?: Optional key function mapping elements to comparison keys; if none, elements are coerced to the key type
+
+-----Output-----
+A new array equal to the original array with x inserted at the computed bisect-left index.
+
+-----Note-----
+Insertion index is computed by imperative binary search. Intended to be used when the slice a[lo:hi) is already sorted by the key; under the stated precondition, the result has size increased by 1 and remains sorted on the enlarged slice.

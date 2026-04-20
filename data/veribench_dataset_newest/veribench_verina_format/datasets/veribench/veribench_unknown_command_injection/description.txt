@@ -1,0 +1,12 @@
+-----Description-----
+Constructs a safe command execution plan by allowing only whitelisted command names and turning the user-provided argument string into a list of literal argv tokens (no shell interpretation). Returns `none` for non-whitelisted commands.
+
+-----Input-----
+- cmd_name: String command name to execute; must match a predefined whitelist entry to be accepted
+- args: String of user arguments; split on spaces after trimming (empty/whitespace yields no user arguments)
+
+-----Output-----
+An optional safe execution structure: `some { prog := <whitelisted program>, args := <base args ++ tokenized user args> }` if `cmd_name` is whitelisted, otherwise `none`.
+
+-----Note-----
+Tokenization is done by splitting on spaces and filtering empty tokens; shell metacharacters (e.g., `;`, `|`, `$(`) are treated as literal tokens. The whitelist provides fixed `prog` and `base_args` (including `--` sentinel) per allowed command.

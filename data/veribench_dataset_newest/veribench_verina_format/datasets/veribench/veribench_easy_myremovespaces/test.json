@@ -1,0 +1,62 @@
+[
+    {
+        "input": {
+            "s": "hello world"
+        },
+        "expected": "helloworld",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "   spaces   everywhere   "
+        },
+        "expected": "spaceseverywhere",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "no spaces"
+        },
+        "expected": "nospaces",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "hello"
+        },
+        "expected": "hello",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": ""
+        },
+        "expected": "",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "   "
+        },
+        "expected": "",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "a b c"
+        },
+        "expected": "<no spaces in result>",
+        "unexpected": [
+            "<contains space>"
+        ]
+    },
+    {
+        "input": {
+            "s": "a b"
+        },
+        "expected": "<idempotent: myRemoveSpaces (myRemoveSpaces s) = myRemoveSpaces s>",
+        "unexpected": [
+            "<not idempotent>"
+        ]
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "input": {
+            "input": "<QuoteInput.str \"abc def\">",
+            "safe": "/"
+        },
+        "expected": "abc%20def",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "input": "<QuoteInput.bytes \"abc def\".toUTF8>",
+            "safe": "/"
+        },
+        "expected": "abc%20def",
+        "unexpected": []
+    }
+]

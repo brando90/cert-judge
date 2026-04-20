@@ -1,0 +1,12 @@
+-----Description-----
+Updates an imperative counter (backed by a hash map) by incrementing the stored count for each key appearing in the input list.
+
+-----Input-----
+- c: An existing ImperativeCounter mapping keys to integer counts (missing keys are treated as count 0)
+- s: A list of keys to add; each occurrence increases that key’s count by 1
+
+-----Output-----
+A new ImperativeCounter whose counts equal the original counts plus the frequency of each key in s.
+
+-----Note-----
+The update is performed imperatively using a mutable HashMap inside the Id monad, but the function is pure (returns a new counter). Keys not present initially are inserted with count 1 on first occurrence.

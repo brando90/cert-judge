@@ -1,0 +1,80 @@
+[
+    {
+        "input": {
+            "parenString": "(()()) ((())) () ((())()())"
+        },
+        "expected": [
+            "(()())",
+            "((()))",
+            "()",
+            "((())()())"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "parenString": "( ) (( )) (( )( ))"
+        },
+        "expected": [
+            "()",
+            "(())",
+            "(()())"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "parenString": ""
+        },
+        "expected": [],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "parenString": "   "
+        },
+        "expected": [],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "parenString": "()"
+        },
+        "expected": [
+            "()"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "parenString": "()(())"
+        },
+        "expected": [
+            "()",
+            "(())"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "parenString": "("
+        },
+        "expected": null,
+        "unexpected": [
+            [
+                "("
+            ]
+        ]
+    },
+    {
+        "input": {
+            "parenString": ")"
+        },
+        "expected": null,
+        "unexpected": [
+            [
+                ")"
+            ]
+        ]
+    }
+]

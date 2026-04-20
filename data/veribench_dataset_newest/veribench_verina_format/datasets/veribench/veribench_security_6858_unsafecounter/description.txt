@@ -1,0 +1,11 @@
+-----Description-----
+Increment a counter’s value by 1, modeling a non-atomic (unsafe) increment that can lead to race conditions in concurrent settings.
+
+-----Input-----
+- counter: A Counter record containing an integer field `value`
+
+-----Output-----
+A new Counter whose `value` is the input counter’s value plus 1.
+
+-----Note-----
+This models an unsafe, non-atomic increment; in concurrent execution, multiple increments may lead to lost updates (though this behavior is not simulated by the pure function itself).

@@ -1,0 +1,14 @@
+-----Description-----
+Find an approximate root (zero) of a polynomial within a given bracket [a, b] using a bisection-style binary search for up to `fuel` iterations, stopping early if the polynomial value at the midpoint is within a small epsilon of 0.
+
+-----Input-----
+- xs: List of Float polynomial coefficients [a₀, a₁, ..., aₙ] representing a₀ + a₁x + ... + aₙxⁿ
+- a: Left endpoint of the initial bracket
+- b: Right endpoint of the initial bracket
+- fuel: Maximum number of bisection iterations to perform
+
+-----Output-----
+A Float value x within the bracket (under the intended precondition) that approximately satisfies poly(xs, x) ≈ 0.
+
+-----Note-----
+The intended precondition is: xs is non-empty, a < b, and poly(xs, a) * poly(xs, b) ≤ 0 (the bracket contains a sign change or a root). If fuel = 0, it returns the midpoint (a+b)/2. Early termination occurs when |poly(xs, mid)| < epsilon (epsilon = 1e-10).

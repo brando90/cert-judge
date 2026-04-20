@@ -1,0 +1,29 @@
+[
+    {
+        "input": {
+            "text": "Hi.\nThis is a test.\nTesting.",
+            "pfx": "  ",
+            "predicate": "<function: defaultPred>"
+        },
+        "expected": "  Hi.\n  This is a test.\n  Testing.",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "text": "Hi.\nThis is a test.\n\nTesting.",
+            "pfx": "  ",
+            "predicate": "<function: defaultPred>"
+        },
+        "expected": "  Hi.\n  This is a test.\n\n  Testing.",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "text": "Hi.\nThis is a test.\n\nTesting.",
+            "pfx": "  ",
+            "predicate": "<function: (fun _ => true)>"
+        },
+        "expected": "  Hi.\n  This is a test.\n  \n  Testing.",
+        "unexpected": []
+    }
+]

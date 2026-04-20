@@ -1,0 +1,12 @@
+-----Description-----
+Validate a command name against a fixed whitelist and, if allowed, build a safe execution record consisting of the resolved program plus base arguments and tokenized user arguments (no shell parsing).
+
+-----Input-----
+- cmd_name: String command name requested by the user (e.g., "list", "count", "search")
+- args: String containing user-supplied arguments, split on spaces with empty tokens removed (trimmed-empty yields no arguments)
+
+-----Output-----
+Returns an Option SafeExecution: `some { prog := ..., args := ... }` when cmd_name is whitelisted, otherwise `none`.
+
+-----Note-----
+Arguments are never concatenated into a shell command; instead they are tokenized and appended to the whitelisted base arguments. Unknown/dangerous command names are rejected by returning `none`.

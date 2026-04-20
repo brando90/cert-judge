@@ -1,0 +1,12 @@
+-----Description-----
+Escapes a string for safe inclusion in HTML by replacing special characters with their corresponding HTML entities, optionally escaping quotation marks.
+
+-----Input-----
+- s: The input string to escape
+- quote: If true, also escape double quotes (") and single quotes ('); if false, leave them unchanged
+
+-----Output-----
+A new string where &, <, and > are always replaced with "&amp;", "&lt;", and "&gt;" respectively, and quotes are conditionally replaced with "&quot;" and "&#x27;".
+
+-----Note-----
+The implementation iterates over the characters of the string and appends each encoded fragment to build the result.

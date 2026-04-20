@@ -1,0 +1,12 @@
+-----Description-----
+Validate a requested program name against a fixed whitelist and, if allowed, safely split the user-supplied argument string into tokens to construct an execution plan; otherwise reject the request.
+
+-----Input-----
+- prog_name: String program name requested for execution
+- args: String containing user-provided arguments separated by spaces
+
+-----Output-----
+Returns `some` execution record `{ prog := prog_name, args := tokenizedArgs }` when `prog_name` is whitelisted; otherwise returns `none`.
+
+-----Note-----
+Argument handling is non-shell: it only splits on spaces after trimming and drops empty tokens, so metacharacters like `;`, `|`, and `$(` are treated as literal argument tokens. The whitelist contains only: `cat`, `ls`, `echo`, `wc`.

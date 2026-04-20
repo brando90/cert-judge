@@ -1,0 +1,14 @@
+-----Description-----
+Compute the median of an array of rational numbers by sorting the data and selecting the middle value (or averaging the two middle values for even length). Returns 0 for an empty array.
+
+-----Input-----
+- data: Array Rat — array of rational numbers
+
+-----Output-----
+Returns a Rat equal to the median of the input data (0 if the array is empty).
+
+-----Note-----
+- The array is sorted using `Array.qsort (· ≤ ·)`.
+- For odd length n, returns the element at index n/2 (0-based).
+- For even length n, returns the average of elements at indices (n/2 - 1) and (n/2).
+- Safe indexing defaults to 0 if an index is out of bounds (though indices used are valid when the array is nonempty).

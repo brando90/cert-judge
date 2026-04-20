@@ -1,0 +1,11 @@
+-----Description-----
+Takes a space-delimited string of number words and returns the same words in the same order, with extra spaces removed (normalized to single spaces). If the input is empty, it returns the empty string.
+
+-----Input-----
+- numbers: A string potentially containing number words separated by spaces (may include extra spaces).
+
+-----Output-----
+A string containing the same non-empty tokens as the input, joined by single spaces, preserving their original order (or "" if the input is "").
+
+-----Note-----
+The implementation does not actually sort; it filters out empty tokens produced by splitting on spaces and then intercalates with single spaces. The stated precondition allows any string.

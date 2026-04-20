@@ -1,0 +1,13 @@
+-----Description-----
+Performs a left-to-right reduction over a list using a binary function, optionally starting from an initial accumulator value. If no initializer is provided, the first list element is used as the initial accumulator; if the list is empty and no initializer is provided, it returns none.
+
+-----Input-----
+- f: a binary function that combines two values of type α into one
+- xs: the list of values to reduce
+- init?: optional initial accumulator value
+
+-----Output-----
+An Option α containing the reduced result (some result), or none when reducing an empty list without an initializer.
+
+-----Note-----
+This is the imperative (loop-based) implementation; it matches the behavior of a fold-based reduce, including the empty/no-initializer case returning none.

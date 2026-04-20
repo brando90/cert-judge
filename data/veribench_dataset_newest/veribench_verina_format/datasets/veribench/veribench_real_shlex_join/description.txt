@@ -1,0 +1,13 @@
+-----Description-----
+Join a list of command-line arguments into a single shell-safe command string by quoting/escaping each argument when needed, using an imperative loop.
+
+-----Input-----
+- xs: A list of strings representing command-line arguments to be joined
+
+-----Output-----
+A single string consisting of the (possibly quoted) arguments separated by single spaces.
+
+-----Note-----
+- Empty strings are rendered as "''".
+- Arguments containing characters outside a safe set are wrapped in single quotes, and internal single quotes are escaped using the pattern '\"'\"'.
+- For an empty input list, the result is the empty string.

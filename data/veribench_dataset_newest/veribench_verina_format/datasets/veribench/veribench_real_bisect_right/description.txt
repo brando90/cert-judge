@@ -1,0 +1,15 @@
+-----Description-----
+Returns the insertion index (right-biased) for a value `x` in a sorted slice of an array, i.e., the first index in `[lo, hi)` where elements become strictly greater than `x` (using an optional key function).
+
+-----Input-----
+- a: Array of elements to search within
+- x: Target value in the key space
+- lo: Lower bound (inclusive) of the slice to search (default 0)
+- hi?: Optional upper bound (exclusive); if none, uses a.size
+- key?: Optional key function mapping array elements into the comparison space; if none, elements are coerced to γ
+
+-----Output-----
+A natural number index `idx` such that inserting `x` at `idx` keeps the slice sorted, placing `x` to the right of any existing equal keys.
+
+-----Note-----
+Implements the standard iterative binary search loop (Python-style `bisect_right`). Correct behavior assumes the searched slice `[lo, hi)` is sorted according to the key and bounds are valid.

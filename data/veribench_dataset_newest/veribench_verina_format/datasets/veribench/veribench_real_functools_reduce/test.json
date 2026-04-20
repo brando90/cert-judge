@@ -1,0 +1,48 @@
+[
+    {
+        "input": {
+            "f": "<function add>",
+            "xs": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "init?": null
+        },
+        "expected": "<some 15>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "f": "<function add>",
+            "xs": [
+                1,
+                2,
+                3
+            ],
+            "init?": "<some 10>"
+        },
+        "expected": "<some 16>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "f": "<function add>",
+            "xs": [],
+            "init?": "<some 10>"
+        },
+        "expected": "<some 10>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "f": "<function add>",
+            "xs": [],
+            "init?": null
+        },
+        "expected": null,
+        "unexpected": []
+    }
+]

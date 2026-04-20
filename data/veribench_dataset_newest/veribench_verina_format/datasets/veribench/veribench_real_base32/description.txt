@@ -1,0 +1,11 @@
+-----Description-----
+Encode a byte array into a Base32 string using the RFC 4648 alphabet (A–Z, 2–7), producing output in 8-character blocks with '=' padding for the final partial block.
+
+-----Input-----
+- data: ByteArray of bytes to encode
+
+-----Output-----
+A String containing the Base32 encoding of the input, padded with '=' so the output length is a multiple of 8.
+
+-----Note-----
+Processes the input in chunks of up to 5 bytes (40 bits) and converts them into 8 Base32 characters (5 bits each). For remaining bytes fewer than 5, it appends the appropriate number of '=' padding characters.

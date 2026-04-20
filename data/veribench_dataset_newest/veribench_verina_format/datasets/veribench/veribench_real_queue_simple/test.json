@@ -1,0 +1,35 @@
+[
+    {
+        "input": {
+            "q": "<ImperativeQueue Nat: mkEmptyImp |> put_imp 1 |> put_imp 2>",
+            "block": true,
+            "timeout?": null
+        },
+        "expected": true,
+        "unexpected": [
+            false
+        ]
+    },
+    {
+        "input": {
+            "q": "<ImperativeQueue Nat: mkEmptyImp>",
+            "block": true,
+            "timeout?": null
+        },
+        "expected": true,
+        "unexpected": [
+            false
+        ]
+    },
+    {
+        "input": {
+            "q": "<ImperativeQueue Nat: mkEmptyImp>",
+            "block": true,
+            "timeout?": "<some (-1)>"
+        },
+        "expected": true,
+        "unexpected": [
+            false
+        ]
+    }
+]

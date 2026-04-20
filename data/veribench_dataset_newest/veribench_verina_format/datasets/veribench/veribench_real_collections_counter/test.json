@@ -1,0 +1,72 @@
+[
+    {
+        "input": {
+            "c": "<emptyImp>",
+            "s": [
+                "a",
+                "b",
+                "r",
+                "a",
+                "c",
+                "a",
+                "d",
+                "a",
+                "b",
+                "r",
+                "a"
+            ]
+        },
+        "expected": {
+            "get_imp('a')": 5,
+            "get_imp('b')": 2,
+            "get_imp('d')": 1
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "c": "<emptyImp>",
+            "s": [
+                "a",
+                "a"
+            ]
+        },
+        "expected": {
+            "get_imp('a')": 2
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "c": "<emptyImp>",
+            "s": [
+                "a",
+                "a"
+            ]
+        },
+        "expected": {
+            "after_subtract_imp_s=['a']": {
+                "get_imp('a')": 1
+            }
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "c": "<emptyImp>",
+            "s": [
+                "a",
+                "b",
+                "c"
+            ]
+        },
+        "expected": {
+            "elements_imp": [
+                "a",
+                "b",
+                "c"
+            ]
+        },
+        "unexpected": []
+    }
+]

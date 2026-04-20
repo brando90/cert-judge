@@ -1,0 +1,13 @@
+-----Description-----
+Constructs the shortest palindrome string that starts with the given input string by appending the minimal necessary reversed prefix to the end.
+
+-----Input-----
+- s: String, the starting string that must be a prefix of the resulting palindrome
+
+-----Output-----
+- A String that is a palindrome and begins with s; it is formed by appending characters to s (possibly none).
+
+-----Note-----
+- If s is empty, the result is the empty string.
+- If s is already a palindrome, the result is s unchanged.
+- The construction finds the earliest position where the remaining suffix is a palindrome, then appends the reverse of the preceding prefix.

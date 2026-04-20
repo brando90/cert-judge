@@ -1,0 +1,111 @@
+[
+    {
+        "input": {
+            "path": "."
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                "."
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "path": "/tmp"
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                "/tmp"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "path": ""
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                ""
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "path": "my dir"
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                "my dir"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "path": "; rm -rf /"
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                "; rm -rf /"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "path": "| cat /etc/passwd"
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                "| cat /etc/passwd"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "path": "$(rm -rf /)"
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                "$(rm -rf /)"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "path": "; bash"
+        },
+        "expected": false,
+        "unexpected": [
+            true
+        ]
+    },
+    {
+        "input": {
+            "path": "; echo hack"
+        },
+        "expected": false,
+        "unexpected": [
+            true
+        ]
+    }
+]

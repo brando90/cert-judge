@@ -1,0 +1,11 @@
+-----Description-----
+Remove common leading indentation from all non-blank lines in a multi-line string, while turning blank/whitespace-only lines into empty lines, preserving line breaks.
+
+-----Input-----
+- text: A string possibly containing multiple lines separated by "\n"
+
+-----Output-----
+A new string where the minimal indentation (counting leading spaces and tabs) among non-blank lines is removed from each non-blank line; blank lines become "" and lines are re-joined with "\n".
+
+-----Note-----
+Indentation is counted as the number of leading characters that are either ' ' or '\t'. If all lines are blank, the margin is 0 and the result is a sequence of empty lines joined by "\n".

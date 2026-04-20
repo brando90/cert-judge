@@ -1,0 +1,12 @@
+-----Description-----
+Compute the (Pearson) correlation coefficient between two numeric arrays using a single-pass computational formula. If the arrays have different lengths, have length < 2, or the computed denominator is zero, the function returns 0.0.
+
+-----Input-----
+- xs: Array of floating-point numbers (data series X)
+- ys: Array of floating-point numbers (data series Y)
+
+-----Output-----
+A floating-point number equal to the correlation coefficient of xs and ys, or 0.0 for invalid/degenerate cases.
+
+-----Note-----
+Uses Float arithmetic and a single loop to accumulate Σx, Σy, Σxy, Σx², Σy², then computes sxx, syy, sxy and returns sxy / sqrt(sxx * syy). Due to floating-point precision, results are compared in tests using an approximate equality predicate.

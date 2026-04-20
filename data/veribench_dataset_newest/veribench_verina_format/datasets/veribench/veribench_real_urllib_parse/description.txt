@@ -1,0 +1,14 @@
+-----Description-----
+Percent-encodes (URL-quotes) an input string/byte sequence by leaving “always safe” ASCII characters unchanged and encoding all other bytes as %HH, additionally treating characters listed in the provided `safe` string as safe.
+
+-----Input-----
+- input: QuoteInput (either a String, a ByteArray, or invalid)
+- safe: String of additional ASCII characters (< 128) that should not be percent-encoded
+
+-----Output-----
+A String where each unsafe byte from the normalized input is replaced by its uppercase hexadecimal percent-encoding (%HH), and safe bytes are kept as characters.
+
+-----Note-----
+- The built-in always-safe set is: A–Z a–z 0–9 _ . - ~
+- Only ASCII bytes from `safe` are considered (bytes >= 128 are ignored for the safe set).
+- If `input` is `QuoteInput.invalid`, it is treated as empty input (result is the empty string), though the file’s Pre condition rules this input out.

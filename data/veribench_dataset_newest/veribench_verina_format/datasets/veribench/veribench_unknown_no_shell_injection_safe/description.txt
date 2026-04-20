@@ -1,0 +1,11 @@
+-----Description-----
+Construct a safe `ls` command invocation that is immune to shell-injection by returning a fixed program name and a fixed two-argument list containing the `"--"` sentinel and the user-supplied path as a single literal argument.
+
+-----Input-----
+- `path` (String): The directory/file path to pass to `ls` as a literal argument.
+
+-----Output-----
+A `Command` record with `prog = "ls"` and `args = ["--", path]`.
+
+-----Note-----
+No precondition is required: all strings are accepted and are treated as literal filename bytes (no shell parsing). The `"--"` sentinel prevents option/flag smuggling.

@@ -1,0 +1,12 @@
+-----Description-----
+Attempt to read the data stored in a memory block; if the block is marked invalid (freed), return none to model a use-after-free access.
+
+-----Input-----
+- block: a MemoryBlock containing an optional String payload (data) and a validity flag (isValid)
+
+-----Output-----
+- Returns the block’s data (an Option String) when block.isValid is true; otherwise returns none.
+
+-----Note-----
+- This models unsafe memory access behavior by denying access after free (isValid = false).
+- The file defines Pre as True, so all MemoryBlock values are admissible inputs.

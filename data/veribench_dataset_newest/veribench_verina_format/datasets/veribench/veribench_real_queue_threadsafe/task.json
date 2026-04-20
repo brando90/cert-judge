@@ -1,0 +1,31 @@
+{
+    "id": "veribench_real_queue_threadsafe",
+    "signature": {
+        "name": "fifoPut",
+        "parameters": [
+            {
+                "param_name": "q",
+                "param_type": "QueueCore \u03b1"
+            },
+            {
+                "param_name": "x",
+                "param_type": "\u03b1"
+            }
+        ],
+        "return_type": "Except QueueError (QueueCore \u03b1)"
+    },
+    "description_file": "./description.txt",
+    "lean_file": "./task.lean",
+    "specification": {
+        "preconditions": "",
+        "postconditions": ""
+    },
+    "test_file": "./test.json",
+    "reject_inputs_file": "./reject_inputs.json",
+    "metadata": {
+        "upstream": {
+            "name": "veribench",
+            "source_file": "real_code/7_queue_threadsafe.lean"
+        }
+    }
+}

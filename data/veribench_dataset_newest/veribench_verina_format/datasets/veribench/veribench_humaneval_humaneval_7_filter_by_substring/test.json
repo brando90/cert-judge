@@ -1,0 +1,124 @@
+[
+    {
+        "input": {
+            "strings": [],
+            "substring": "john"
+        },
+        "expected": [],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "strings": [
+                "xxx",
+                "asd",
+                "xxy",
+                "john doe",
+                "xxxAAA",
+                "xxx"
+            ],
+            "substring": "xxx"
+        },
+        "expected": [
+            "xxx",
+            "xxxAAA",
+            "xxx"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "strings": [
+                "xxx",
+                "asd",
+                "aaaxxy",
+                "john doe",
+                "xxxAAA",
+                "xxx"
+            ],
+            "substring": "xx"
+        },
+        "expected": [
+            "xxx",
+            "aaaxxy",
+            "xxxAAA",
+            "xxx"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "strings": [
+                "hello",
+                "world"
+            ],
+            "substring": ""
+        },
+        "expected": [
+            "hello",
+            "world"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "strings": [
+                "grunt",
+                "trumpet",
+                "prune",
+                "gruesome"
+            ],
+            "substring": "run"
+        },
+        "expected": [
+            "grunt",
+            "prune"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "strings": [
+                "AbC",
+                "aBc",
+                "abc",
+                "CAB"
+            ],
+            "substring": "abc"
+        },
+        "expected": [
+            "abc"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "strings": [
+                "short",
+                "list"
+            ],
+            "substring": "verylongsubstring"
+        },
+        "expected": "<not [\"short\"]>",
+        "unexpected": [
+            [
+                "short"
+            ]
+        ]
+    },
+    {
+        "input": {
+            "strings": [
+                "abc",
+                "def"
+            ],
+            "substring": "x"
+        },
+        "expected": "<not [\"abc\"]>",
+        "unexpected": [
+            [
+                "abc"
+            ]
+        ]
+    }
+]

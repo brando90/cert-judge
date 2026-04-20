@@ -1,0 +1,15 @@
+-----Description-----
+Applies a 3-argument integer function using a “partial-application” style: it fills positional placeholder slots from provided positional arguments, appends any leftover positional arguments, merges base keyword arguments with override keyword arguments, then computes final arguments a, b, c with keyword values taking precedence over positional/default values.
+
+-----Input-----
+- func: a function taking three Int arguments (a, b, c) and returning an Int
+- slots: a list of BaseArg tokens; each token is either a fixed Int value or a placeholder to be filled from pos
+- baseKw: base keyword map from String keys to Int values (defaults/partial keywords)
+- pos: positional Int arguments used to fill placeholders (and then appended as leftovers)
+- kw: overriding keyword map from String keys to Int values (takes precedence over baseKw)
+
+-----Output-----
+An Int result equal to func applied to the resolved (a, b, c) arguments.
+
+-----Note-----
+Placeholders with no remaining positional arguments are filled with 0. Keyword resolution uses keys "a", "b", "c"; if a key is absent, the value is taken from the corresponding positional index (0,1,2) with defaults 0,0,10 respectively.

@@ -1,0 +1,52 @@
+[
+    {
+        "input": {
+            "a": 1000,
+            "b": 1000
+        },
+        "expected": 1000000,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "a": 65536,
+            "b": 65536
+        },
+        "expected": 0,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "a": -65536,
+            "b": 65536
+        },
+        "expected": 0,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "a": 0,
+            "b": 1000000
+        },
+        "expected": 0,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "a": 123,
+            "b": 456
+        },
+        "expected": 56088,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "a": 300000,
+            "b": 300000
+        },
+        "expected": "<not_equal_to_300000_times_300000>",
+        "unexpected": [
+            90000000000
+        ]
+    }
+]

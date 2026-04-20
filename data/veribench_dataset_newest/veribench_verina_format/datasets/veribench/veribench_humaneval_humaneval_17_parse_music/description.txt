@@ -1,0 +1,11 @@
+-----Description-----
+Parses a space-separated ASCII string of musical notes and returns the beat duration of each recognized note, ignoring invalid tokens.
+
+-----Input-----
+- musicString: A string containing note tokens separated by spaces (e.g., "o o| .|")
+
+-----Output-----
+A list of natural numbers where each element is the beat duration of a parsed note ("o"→4, "o|"→2, ".|"→1), in the same order as they appear in the input.
+
+-----Note-----
+If the input string is empty, the output is []. Any unrecognized token is skipped (produces no output element).

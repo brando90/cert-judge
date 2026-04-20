@@ -1,0 +1,11 @@
+-----Description-----
+Compute the sample variance of an array of floating-point numbers using a two-pass algorithm (first compute the mean, then compute the sum of squared deviations) and divide by (n - 1). If the array has fewer than 2 elements, return 0.0.
+
+-----Input-----
+- xs: Array Float, the data values to compute sample variance for
+
+-----Output-----
+A Float equal to the sample variance of xs (using denominator n - 1); returns 0.0 when xs.size < 2.
+
+-----Note-----
+Uses Float arithmetic and an imperative loop-based two-pass computation. The provided tests check approximate equality with a small epsilon via approxEq.
