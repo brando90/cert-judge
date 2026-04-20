@@ -1,0 +1,30 @@
+[
+    {
+        "input": {
+            "q": "<mkQueue Nat 5; then fifoPut 111; fifoPut 333; fifoPut 222; then collectN fifoPop 3>"
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "q": "<mkQueue Nat 5; then lifoPut 111; lifoPut 333; lifoPut 222; then collectN lifoPop 3>"
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "q": "<mkQueue Nat 1; then fifoPut 1; then fifoPut 2>"
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "q": "<mkQueue Nat 5; then fifoPut 1; fifoGet; taskDone; taskDone>"
+        },
+        "expected": true,
+        "unexpected": []
+    }
+]

@@ -1,0 +1,12 @@
+-----Description-----
+Computes the greatest common divisor (GCD) of two natural numbers using the recursive Euclidean algorithm (repeatedly replacing (a, b) with (b, a % b) until b = 0).
+
+-----Input-----
+- a: Nat, the first natural number
+- b: Nat, the second natural number
+
+-----Output-----
+Returns a Nat equal to gcd(a, b). If b = 0, it returns a (so gcd 0 0 = 0).
+
+-----Note-----
+Uses recursion with termination ensured by the fact that (a % b) < b when b > 0. Inputs are unrestricted natural numbers (precondition is True).

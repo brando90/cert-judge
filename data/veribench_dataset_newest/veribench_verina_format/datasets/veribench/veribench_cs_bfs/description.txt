@@ -1,0 +1,13 @@
+-----Description-----
+Performs breadth-first search on a directed graph (as an adjacency list) to compute the shortest path length (in number of edges) from `start` to `target`. Returns `none` if `target` is not reachable within the search bound.
+
+-----Input-----
+- g: Graph represented as a list of adjacency lists, where node indices are natural numbers
+- start: starting node index
+- target: target node index
+
+-----Output-----
+Returns `some d` where `d` is the length of the shortest path from `start` to `target` (with `d = 0` if `start = target`), or `none` if no path is found.
+
+-----Note-----
+The functional implementation uses a queue of `(node, distance)` pairs, a `visited` list to avoid revisiting nodes, and a fuel parameter bounded by `g.length * g.length + 1` to guarantee termination. A separate precondition `Pre` specifies that all adjacency entries and both `start` and `target` are valid node indices.

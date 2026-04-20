@@ -1,0 +1,14 @@
+-----Description-----
+Analyze a user-provided URL-like string for common SSRF indicators (localhost/private नेटवर्क, internal services, sensitive paths, suspicious protocols, and blocked internal TLDs) and return a structured result indicating either a detected SSRF-related pattern or a simulated safe request.
+
+-----Input-----
+- service: WebService containing allow/block lists and internal/sensitive metadata (not actively used by the checks in this model)
+- input: UserInput whose content string is scanned for SSRF-related substrings/characters
+
+-----Output-----
+An SSRFResult:
+- one of several detection constructors (e.g., localhost_access, private_network_access, internal_service_access, sensitive_endpoint_access, protocol_detected, blocked_domain_access), or
+- safe_request(url, response, input) if no patterns are detected.
+
+-----Note-----
+Checks are implemented as simple character-presence heuristics (String.contains on characters), not true parsing; results depend on whether the required characters appear anywhere in the string, not on exact substrings or valid IP/URL structure.

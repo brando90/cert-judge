@@ -1,0 +1,13 @@
+-----Description-----
+Prefixes each line of the input text with a given prefix string when the line satisfies a predicate, scanning the text character-by-character and treating lines as ending at newline characters or end-of-string.
+
+-----Input-----
+- text: The full text to process, potentially containing newline characters '\n'
+- pfx: The prefix to insert at the start of each line that should be indented
+- predicate: A function that decides, given the full line string (including its trailing '\n' if present), whether to add the prefix
+
+-----Output-----
+A new string where each line is either unchanged or prefixed with pfx depending on predicate.
+
+-----Note-----
+Lines are formed so that newline characters are kept with the line (i.e., a line ending in '\n' passes that '\n' to predicate). Blank/whitespace-only lines can be skipped by using a predicate like defaultPred (non-whitespace only).

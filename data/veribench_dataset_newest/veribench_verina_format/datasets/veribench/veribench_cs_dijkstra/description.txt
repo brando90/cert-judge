@@ -1,0 +1,13 @@
+-----Description-----
+Computes the shortest-path distance from a start node to a target node in a weighted directed graph using Dijkstra-style exploration; returns the distance if reachable, otherwise returns none.
+
+-----Input-----
+- g: Graph represented as a list of adjacency lists; each adjacency list contains pairs (neighbor, weight)
+- start: Start node index (Nat)
+- target: Target node index (Nat)
+
+-----Output-----
+An Option Nat: some d where d is the computed shortest distance from start to target, or none if no path is found (or exploration runs out of fuel).
+
+-----Note-----
+The functional implementation uses a simple list-based priority queue and a fuel parameter (set to n*n+1 where n = g.length) to guarantee termination; behavior is intended to be used under the Pre condition that node indices in edges, start, and target are within bounds.

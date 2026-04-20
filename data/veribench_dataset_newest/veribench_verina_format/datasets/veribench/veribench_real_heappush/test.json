@@ -1,0 +1,62 @@
+[
+    {
+        "input": {
+            "heap": [],
+            "item": 3
+        },
+        "expected": "<intermediate heap after push 3>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "heap": "<intermediate heap after push 3>",
+            "item": 1
+        },
+        "expected": "<intermediate heap after push 1>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "heap": "<intermediate heap after push 1>",
+            "item": 2
+        },
+        "expected": {
+            "index0": 1
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "heap": [],
+            "item": 5
+        },
+        "expected": "<intermediate heap after push 5>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "heap": "<intermediate heap after push 5>",
+            "item": 3
+        },
+        "expected": "<intermediate heap after push 3>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "heap": "<intermediate heap after push 3>",
+            "item": 7
+        },
+        "expected": "<intermediate heap after push 7>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "heap": "<intermediate heap after push 7>",
+            "item": 1
+        },
+        "expected": {
+            "checkInvariant": true
+        },
+        "unexpected": []
+    }
+]

@@ -1,0 +1,11 @@
+-----Description-----
+Rescales a list of floating-point numbers to the unit interval [0,1] using a linear transformation so that the minimum becomes 0 and the maximum becomes 1. For invalid inputs (lists with fewer than 2 elements), it returns an empty list.
+
+-----Input-----
+- numbers: a list of Float values to be rescaled
+
+-----Output-----
+A list of Float values of the same length as the input for valid inputs (length ≥ 2), rescaled into [0,1]; returns [] for empty or single-element inputs.
+
+-----Note-----
+If the input has length ≥ 2 but all elements are equal (range = 0), the function returns the original list unchanged.

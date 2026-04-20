@@ -1,0 +1,50 @@
+[
+    {
+        "input": {
+            "xs": [
+                "ls",
+                "-l"
+            ]
+        },
+        "expected": "ls -l",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "echo",
+                "hello world"
+            ]
+        },
+        "expected": "echo 'hello world'",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "cp",
+                "",
+                "dest"
+            ]
+        },
+        "expected": "cp '' dest",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": []
+        },
+        "expected": "",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "grep",
+                "foo'bar"
+            ]
+        },
+        "expected": "grep 'foo'\"'\"'bar'",
+        "unexpected": []
+    }
+]

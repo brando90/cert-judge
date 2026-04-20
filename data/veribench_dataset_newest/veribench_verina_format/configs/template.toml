@@ -1,0 +1,74 @@
+# Template Configuration for VeriBench Benchmarks
+# Copy this file and customize for your needs
+#
+# IMPORTANT: Set your API keys in the .env file, not here!
+
+# --- Output Configuration ---
+output_dir = "output/my-experiment"  # Directory where results will be saved
+
+# --- Parallelism and Rounds ---
+max_workers = 4    # Number of parallel workers (reduce if hitting rate limits)
+rounds = 1         # Number of generation rounds per task
+
+# --- Few-shot Examples ---
+# List task IDs to use as few-shot examples (leave empty for zero-shot)
+fewshot_example_names = []
+
+# --- Generation Tasks ---
+# Enable/disable individual generation tasks
+code_gen = true              # Generate code implementation
+spec_gen = true              # Generate precondition/postcondition specifications
+proof_gen = true             # Generate correctness proof
+
+# Combined generation tasks (typically set to false for modular evaluation)
+code_spec_gen = false        # Generate code + spec together
+code_proof_gen = false       # Generate code + proof together
+spec_proof_gen = false       # Generate spec + proof together
+code_spec_proof_gen = false  # Generate all three together
+
+# --- Language Model Configuration ---
+[gen_lm_config]
+# Provider options: "openai", "anthropic", "vertex_ai", "together_ai", "local"
+provider = "openai"
+
+# Model name (depends on provider)
+# OpenAI: "gpt-4o", "gpt-4o-mini", "gpt-4-turbo", etc.
+# Anthropic: "claude-sonnet-4-20250514", "claude-3-5-sonnet-20241022", etc.
+model_name = "gpt-4o"
+
+# Maximum tokens for generation
+max_tokens = 10000
+
+# For local/custom endpoints (uncomment and configure):
+# api_base = "http://localhost:8000/v1"
+# api_key = "your-key-here"  # Or use environment variable
+
+# --- Baseline Configuration ---
+[baseline_config]
+# Baseline method: "baseline", "proof_refinement", "custom_prompt_baseline"
+name = "baseline"
+
+# Resume from previous checkpoint (useful for long runs)
+resume_from_checkpoint = false
+
+# Number of refinement iterations (only for proof_refinement baseline)
+# refinements = 64
+
+# --- Specification Evaluation Configuration ---
+[eval_spec_config]
+# Use formal proving for spec evaluation (requires Lean v4.24.0 with grind)
+formal_proving = false
+
+# Use unit tests for spec evaluation
+unit_test = true
+
+# Attempt to prove unit tests (slower but more thorough)
+unit_test_proving = false
+
+# Use plausible pass criteria
+use_plausible_pass = true
+
+# Evidence directory for spec evaluation
+evidence_rel_dir = "./evidence"
+use_evidence = false
+save_evidence = false

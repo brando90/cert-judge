@@ -1,0 +1,12 @@
+-----Description-----
+Validate a requested program name against a fixed whitelist and, if allowed, safely tokenize the argument string into a list of literal argv tokens, returning an execution plan; otherwise reject the request.
+
+-----Input-----
+- prog_name: String, the program name requested for execution
+- args: String, raw user argument string to be split on spaces (after trimming) into separate tokens
+
+-----Output-----
+Returns `some { prog := prog_name, args := tokenizedArgs }` when `prog_name` is whitelisted; otherwise returns `none`.
+
+-----Note-----
+Tokenization does not interpret shell metacharacters; characters like `;`, `|`, `$(` remain literal tokens. Whitespace-only or empty argument strings produce an empty argument list.

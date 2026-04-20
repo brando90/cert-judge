@@ -1,0 +1,14 @@
+-----Description-----
+Remove and return the minimum element (root) from a binary min-heap stored in an array, along with the updated heap array after restoring the heap property.
+
+-----Input-----
+- heap: Array α representing a min-heap (array-based binary heap)
+
+-----Output-----
+A pair (popped_item, new_heap) where:
+- popped_item is the element removed from the heap (the previous root, if nonempty)
+- new_heap is the heap after removal and re-heapifying
+
+-----Note-----
+- If the heap is empty, the function returns (default, heap).
+- For nonempty heaps, it removes the last element, places it at the root, then performs sift-up/sift-down logic to restore the heap invariant.

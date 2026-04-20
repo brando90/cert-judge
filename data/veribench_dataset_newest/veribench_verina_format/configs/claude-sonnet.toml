@@ -1,0 +1,37 @@
+# Claude Sonnet Configuration for VeriBench
+# Set your ANTHROPIC_API_KEY in the .env file
+
+output_dir = "output/claude-sonnet"
+max_workers = 4
+rounds = 1
+fewshot_example_names = []
+
+# Enable all three generation tasks
+code_gen = true
+spec_gen = true
+proof_gen = true
+
+# Disable combined tasks
+code_spec_gen = false
+code_proof_gen = false
+spec_proof_gen = false
+code_spec_proof_gen = false
+
+[gen_lm_config]
+provider = "anthropic"
+model_name = "claude-sonnet-4-20250514"
+# API key is read from ANTHROPIC_API_KEY environment variable
+max_tokens = 10000
+
+[baseline_config]
+name = "baseline"
+resume_from_checkpoint = false
+
+[eval_spec_config]
+formal_proving = false
+unit_test = true
+unit_test_proving = false
+use_plausible_pass = true
+evidence_rel_dir = "./evidence"
+use_evidence = false
+save_evidence = false

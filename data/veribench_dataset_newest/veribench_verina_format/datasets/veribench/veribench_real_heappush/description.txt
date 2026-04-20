@@ -1,0 +1,13 @@
+-----Description-----
+Insert an element into a min-heap stored as an array, returning a new array that preserves the heap invariant by pushing the element then sifting it up toward the root.
+
+-----Input-----
+- heap: Array α, the current heap represented as an array (assumed to satisfy the heap invariant under ≤)
+- item: α, the element to insert into the heap
+
+-----Output-----
+- Returns a new Array α containing all original elements plus item, arranged to satisfy the heap property; the resulting size is heap.size + 1.
+
+-----Note-----
+- Uses a functional “siftdown” (bubble-up) process from the last index toward the root.
+- Correctness theorems assume the precondition Pre heap (heap invariant holds).

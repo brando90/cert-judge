@@ -1,0 +1,16 @@
+-----Description-----
+Implements the dequeue operation for a simple FIFO queue backed by a list. If the optional timeout is negative, it returns an invalid-timeout error; otherwise, it returns an empty-queue error when the queue has no elements, or returns the front element together with the remaining queue.
+
+-----Input-----
+- q: A functional queue containing a list of elements of type α
+- block: A boolean flag (accepted but does not affect behavior in this implementation)
+- timeout?: Optional integer timeout; if provided and negative, the call fails
+
+-----Output-----
+An `Except QueueError (α × FunctionalQueue α)` which is either:
+- `Except.ok (item, q')` where `item` is the front element and `q'` is the queue with that element removed, or
+- `Except.error QueueError.invalidTimeout` if `timeout? = some t` with `t < 0`, or
+- `Except.error QueueError.empty` if the queue is empty (and timeout is not invalid)
+
+-----Note-----
+The function checks timeout validity before checking emptiness, and ignores `block` in all cases.

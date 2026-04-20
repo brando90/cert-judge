@@ -1,0 +1,11 @@
+-----Description-----
+Construct a safe command description for listing files by always invoking the fixed program "ls" with the argument vector ["--", path], ensuring the input path is treated as a literal filename (no shell parsing and no option injection).
+
+-----Input-----
+- path: String representing the directory/file path to pass as a single literal argument to ls
+
+-----Output-----
+A Command structure with prog = "ls" and args = ["--", path].
+
+-----Note-----
+The "--" sentinel stops ls from interpreting the user-provided path as an option. The precondition is True (all strings are allowed).

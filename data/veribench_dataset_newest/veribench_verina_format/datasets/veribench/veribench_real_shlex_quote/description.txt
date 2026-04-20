@@ -1,0 +1,11 @@
+-----Description-----
+Produce a POSIX shell-safe quoted version of a string. If the string is empty, return "''". If it contains only safe characters, return it unchanged. Otherwise, wrap it in single quotes and escape any internal single quotes using the POSIX pattern '\'' (represented as '\"'\"' in the output string).
+
+-----Input-----
+- s: String to be shell-quoted
+
+-----Output-----
+A String that is safe to paste as a single shell token (according to the implemented safe-character predicate and quoting rules).
+
+-----Note-----
+Safe characters are alphanumeric plus: _ @ % + = : . / - . Unsafe strings are single-quoted and internal ' characters are expanded to '\"'\"' sequences.

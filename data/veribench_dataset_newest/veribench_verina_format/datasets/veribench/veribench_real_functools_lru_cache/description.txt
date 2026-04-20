@@ -1,0 +1,14 @@
+-----Description-----
+Implements an LRU (least-recently-used) cache “call” operation in a pure imperative style using `StateM`: on a cache hit it returns the cached value and updates hit count and recency order; on a miss it computes the value using the provided function, records a miss, inserts the result, and evicts the least-recently-used entry if exceeding `maxsize`.
+
+-----Input-----
+- userFunc: a function from Key (list of integers) to Value (integer) used to compute results on cache misses
+- args: the key to look up/compute and cache
+
+-----Output-----
+Returns the value for `args` (cached if present; otherwise computed by `userFunc`) while updating the internal LRU cache state (cache contents, recency order, hit/miss counters, and possible eviction).
+
+-----Note-----
+- Recency order is stored as a list with most-recently-used at the head.
+- If `maxsize = none`, the cache is unbounded (no eviction).
+- If inserting makes the cache size exceed `maxsize`, the least-recently-used key (tail of the order list) is evicted.

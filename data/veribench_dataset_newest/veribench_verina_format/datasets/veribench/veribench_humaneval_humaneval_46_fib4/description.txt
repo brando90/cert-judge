@@ -1,0 +1,11 @@
+-----Description-----
+Compute the n-th element of the Fib4 sequence, defined by four base cases and a 4-term recurrence (each term from index 4 onward is the sum of the previous four terms).
+
+-----Input-----
+- n: Nat — index of the sequence element to compute (0-based)
+
+-----Output-----
+- Nat — the value fib4(n) where fib4(0)=0, fib4(1)=0, fib4(2)=2, fib4(3)=0, and for n≥4: fib4(n)=fib4(n-1)+fib4(n-2)+fib4(n-3)+fib4(n-4)
+
+-----Note-----
+Uses an efficient tail-recursive loop that maintains a sliding window of the last four values; precondition is always true for Nat.

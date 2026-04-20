@@ -1,0 +1,12 @@
+-----Description-----
+Compute the largest proper divisor of a natural number. If the number is prime, the result is 1. For n ≤ 1, the function returns n.
+
+-----Input-----
+- n: Nat, the number whose largest proper divisor is to be found
+
+-----Output-----
+- A Nat equal to the largest number d such that d < n and d divides n; returns 1 when no such divisor greater than 1 exists (prime case); returns n when n ≤ 1.
+
+-----Note-----
+- The intended precondition is n > 0; under this precondition, n = 0 is considered invalid input.
+- The search checks divisors from n-1 downward and returns the first divisor found.

@@ -1,0 +1,13 @@
+-----Description-----
+Encodes a string using cyclic encoding: split the characters into consecutive groups of 3 and, for each full group of three, move the first character to the end (e.g., "abc" → "bca"). Any remaining group with fewer than 3 characters is left unchanged.
+
+-----Input-----
+- s: String, the input text to encode
+
+-----Output-----
+A String of the same length as s, with each 3-character block cyclically rotated left by 1 position.
+
+-----Note-----
+- Operates on character data; grouping is by 3 characters.
+- If the input length is not a multiple of 3, the final 1–2 characters remain in place.
+- A separate decoder is defined as applying this encoding twice.

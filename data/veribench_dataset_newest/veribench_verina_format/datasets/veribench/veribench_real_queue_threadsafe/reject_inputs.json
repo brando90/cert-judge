@@ -1,0 +1,22 @@
+[
+    {
+        "input": {
+            "q": "<any queue state where canPut q = false (i.e., q.isShutdown = true or (q.maxsize \u2260 0 and qsize q \u2265 q.maxsize)>"
+        }
+    },
+    {
+        "input": {
+            "q": "<any queue state with q.isShutdown = true>"
+        }
+    },
+    {
+        "input": {
+            "q": "<any queue state with finite maxsize where current size is already at capacity>"
+        }
+    },
+    {
+        "input": {
+            "q": "<for Pre_Get: any queue state with q.data = [] or q.isShutdown = true>"
+        }
+    }
+]

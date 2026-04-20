@@ -1,0 +1,192 @@
+[
+    {
+        "input": {
+            "l": [
+                1,
+                2,
+                4,
+                10
+            ],
+            "t": 100
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                20,
+                4,
+                10
+            ],
+            "t": 5
+        },
+        "expected": false,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                20,
+                4,
+                10
+            ],
+            "t": 21
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                20,
+                4,
+                10
+            ],
+            "t": 22
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                8,
+                4,
+                10
+            ],
+            "t": 11
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                8,
+                4,
+                10
+            ],
+            "t": 10
+        },
+        "expected": false,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [],
+            "t": 0
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [],
+            "t": 5
+        },
+        "expected": true,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                0
+            ],
+            "t": 0
+        },
+        "expected": false,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                8,
+                4,
+                10
+            ],
+            "t": 11
+        },
+        "expected": "<decide (\u2200 e, e \u2208 [1, 8, 4, 10] \u2192 e < 11)>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                2,
+                3
+            ],
+            "t": 4
+        },
+        "expected": "<implication: belowThreshold [1,2,3] 4 = true \u2192 4 \u2264 6 \u2192 belowThreshold [1,2,3] 6 = true>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                5,
+                9
+            ],
+            "t": 7
+        },
+        "expected": "<implication: belowThreshold [1,5,9] 7 = false \u2192 5 \u2264 7 \u2192 belowThreshold [1,5,9] 5 = false>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                3,
+                7
+            ],
+            "t": 6
+        },
+        "expected": "<iff: (belowThreshold [3,7] 6 = false) \u2194 (\u2203 e, e \u2208 [3,7] \u2227 e \u2265 6)>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "t": 5
+        },
+        "expected": "<equals: belowThreshold ([1,2]++[3,4]) 5 = (belowThreshold [1,2] 5 && belowThreshold [3,4] 5)>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                2,
+                3
+            ],
+            "t": 0
+        },
+        "expected": "<decide ([1,2,3] = [])>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "l": [
+                1,
+                2,
+                10,
+                3
+            ],
+            "t": 10
+        },
+        "expected": "<equals: belowThreshold [1,2,10,3] 10 = belowThreshold (reverse [1,2,10,3]) 10>",
+        "unexpected": []
+    }
+]

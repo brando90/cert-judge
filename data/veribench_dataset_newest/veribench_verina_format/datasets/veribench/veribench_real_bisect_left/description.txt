@@ -1,0 +1,15 @@
+-----Description-----
+Return the leftmost insertion index for a value `x` in a sorted slice of an array, using binary search. The result is the first position in `a[lo:hi]` where elements are not less than `x` (i.e., elements before are `< x` and elements from the index onward are `≥ x`), optionally comparing via a key function.
+
+-----Input-----
+- a: Array of elements to search within
+- x: Target value to locate/insert
+- lo: Lower bound (start index of the slice to search, inclusive)
+- hi?: Optional upper bound (end index of the slice to search, exclusive); defaults to a.size when none
+- key?: Optional key function mapping array elements to comparable values; if none, elements are coerced to the comparison type
+
+-----Output-----
+A natural number index `idx` (within the searched bounds) representing the leftmost insertion point for `x`.
+
+-----Note-----
+Requires the searched slice `a[lo:hi]` to be sorted with respect to the key (precondition). The algorithm is an imperative while-loop binary search matching Python’s `bisect_left` behavior.

@@ -19,7 +19,7 @@ import logging
 import sys
 
 # Ensure py_src is on sys.path for direct script execution.
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "py_src"))
 
 import importlib.util
@@ -69,15 +69,23 @@ def call_llm(
     api_key = os.environ.get("TRACE_CUSTOMLLM_API_KEY")
     model = model_name or os.environ.get("TRACE_CUSTOMLLM_MODEL")
 
+    # Standard OpenAI fallback.
+    if not api_key:
+        api_key = os.environ.get("OPENAI_API_KEY")
+
     if not base_url or not api_key or not model:
         fallback = _load_config_fallback()
         base_url = base_url or fallback.get("TRACE_CUSTOMLLM_URL")
         api_key = api_key or fallback.get("TRACE_CUSTOMLLM_API_KEY")
         model = model or fallback.get("TRACE_CUSTOMLLM_MODEL")
 
+    # If no custom endpoint is configured but we have OpenAI creds/model, use default OpenAI API.
+    if not base_url and api_key and model:
+        base_url = "https://api.openai.com/v1"
+
     if not base_url or not api_key or not model:
         raise ValueError(
-            "Missing TRACE_CUSTOMLLM_URL / TRACE_CUSTOMLLM_API_KEY / TRACE_CUSTOMLLM_MODEL."
+            "Missing model credentials. Set TRACE_CUSTOMLLM_* or OPENAI_API_KEY + --model."
         )
 
     use_anthropic = "api.anthropic.com" in base_url

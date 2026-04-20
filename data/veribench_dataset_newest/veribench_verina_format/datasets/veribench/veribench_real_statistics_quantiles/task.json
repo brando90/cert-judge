@@ -1,0 +1,35 @@
+{
+    "id": "veribench_real_statistics_quantiles",
+    "signature": {
+        "name": "benchmark_quantiles",
+        "parameters": [
+            {
+                "param_name": "data",
+                "param_type": "List Rat"
+            },
+            {
+                "param_name": "n",
+                "param_type": "Nat"
+            },
+            {
+                "param_name": "method",
+                "param_type": "String"
+            }
+        ],
+        "return_type": "Except QuantilesError (List Rat)"
+    },
+    "description_file": "./description.txt",
+    "lean_file": "./task.lean",
+    "specification": {
+        "preconditions": "",
+        "postconditions": ""
+    },
+    "test_file": "./test.json",
+    "reject_inputs_file": "./reject_inputs.json",
+    "metadata": {
+        "upstream": {
+            "name": "veribench",
+            "source_file": "real_code/31_statistics_quantiles.lean"
+        }
+    }
+}

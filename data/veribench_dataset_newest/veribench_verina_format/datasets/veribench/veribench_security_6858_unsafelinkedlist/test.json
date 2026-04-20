@@ -1,0 +1,53 @@
+[
+    {
+        "input": {
+            "lst": "<some list1 (1 -> 2 -> 3)>"
+        },
+        "expected": "some 3",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "lst": "<some list2 (42)>"
+        },
+        "expected": "some 42",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "lst": "none"
+        },
+        "expected": "none",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "lst": "<some (1 -> 2 -> 3)>"
+        },
+        "expected": "some 3",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "lst": "<some (42)>"
+        },
+        "expected": "some 42",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "lst": "<some (100)>"
+        },
+        "expected": "some 100",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "lst": "none"
+        },
+        "expected": "none",
+        "unexpected": [
+            "some 42"
+        ]
+    }
+]

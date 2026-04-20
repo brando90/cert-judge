@@ -1,0 +1,24 @@
+[
+    {
+        "input": {
+            "service": "<testService>",
+            "input": "<safeInput>"
+        },
+        "expected": "<SSRFResult.safe_request \"https://api.example.com/data\" \"Safe response from https://api.example.com/data\" \"https://api.example.com/data\">",
+        "unexpected": [
+            "<SSRFResult.localhost_access \"127.0.0.1\" \"https://api.example.com/data\">",
+            "<SSRFResult.file_protocol_detected \"file://\" \"https://api.example.com/data\">"
+        ]
+    },
+    {
+        "input": {
+            "service": "<testService>",
+            "input": "<localhostInput>"
+        },
+        "expected": "<SSRFResult.localhost_access \"127.0.0.1\" \"http://127.0.0.1:8080/admin\">",
+        "unexpected": [
+            "<SSRFResult.safe_request \"http://127.0.0.1:8080/admin\" \"Safe response from http://127.0.0.1:8080/admin\" \"http://127.0.0.1:8080/admin\">",
+            "<SSRFResult.private_network_access \"192.168.x.x\" \"http://127.0.0.1:8080/admin\">"
+        ]
+    }
+]

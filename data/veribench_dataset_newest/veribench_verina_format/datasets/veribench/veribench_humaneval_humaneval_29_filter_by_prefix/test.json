@@ -1,0 +1,115 @@
+[
+    {
+        "input": {
+            "xs": [],
+            "p": "a"
+        },
+        "expected": [],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "abc",
+                "bcd",
+                "array"
+            ],
+            "p": "a"
+        },
+        "expected": [
+            "abc",
+            "array"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "xxx",
+                "asd",
+                "xxy",
+                "xxx"
+            ],
+            "p": "xxx"
+        },
+        "expected": [
+            "xxx",
+            "xxx"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "hello",
+                "world"
+            ],
+            "p": "xyz"
+        },
+        "expected": [],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "a",
+                "b",
+                "c"
+            ],
+            "p": ""
+        },
+        "expected": [
+            "a",
+            "b",
+            "c"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "hello",
+                "world",
+                "help"
+            ],
+            "p": "hel"
+        },
+        "expected": [
+            "hello",
+            "help"
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                "abc",
+                "def"
+            ],
+            "p": "xyz"
+        },
+        "expected": null,
+        "unexpected": [
+            [
+                "abc"
+            ]
+        ]
+    },
+    {
+        "input": {
+            "xs": [
+                "abc",
+                "def",
+                "axy"
+            ],
+            "p": "a"
+        },
+        "expected": null,
+        "unexpected": [
+            [
+                "axy",
+                "abc"
+            ]
+        ]
+    }
+]

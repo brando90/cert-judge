@@ -1,0 +1,153 @@
+[
+    {
+        "input": {
+            "cmd_name": "list",
+            "args": "."
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                "."
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "count",
+            "args": "file.txt"
+        },
+        "expected": {
+            "prog": "wc",
+            "args": [
+                "-l",
+                "--",
+                "file.txt"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "search",
+            "args": "pattern file.txt"
+        },
+        "expected": {
+            "prog": "grep",
+            "args": [
+                "-r",
+                "--",
+                "pattern",
+                "file.txt"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "list",
+            "args": ""
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "list",
+            "args": "   "
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "evil",
+            "args": "args"
+        },
+        "expected": null,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "list",
+            "args": "; echo hacked"
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                ";",
+                "echo",
+                "hacked"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "list",
+            "args": "| cat /etc/passwd"
+        },
+        "expected": {
+            "prog": "ls",
+            "args": [
+                "--",
+                "|",
+                "cat",
+                "/etc/passwd"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "search",
+            "args": "$(rm -rf /)"
+        },
+        "expected": {
+            "prog": "grep",
+            "args": [
+                "-r",
+                "--",
+                "$(rm",
+                "-rf",
+                "/)"
+            ]
+        },
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "rm",
+            "args": "-rf /"
+        },
+        "expected": null,
+        "unexpected": []
+    },
+    {
+        "input": {
+            "cmd_name": "list",
+            "args": "; rm -rf /"
+        },
+        "expected": null,
+        "unexpected": [
+            {
+                "prog": "rm",
+                "args": [
+                    "anything"
+                ]
+            }
+        ]
+    }
+]

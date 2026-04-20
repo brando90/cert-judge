@@ -1,0 +1,58 @@
+[
+    {
+        "input": {
+            "xs": [
+                4.0,
+                7.0,
+                13.0,
+                16.0
+            ]
+        },
+        "expected": 30.0,
+        "unexpected": [
+            0.0,
+            29.0
+        ]
+    },
+    {
+        "input": {
+            "xs": [
+                1.0,
+                2.0
+            ]
+        },
+        "expected": 0.5,
+        "unexpected": [
+            0.0,
+            1.0
+        ]
+    },
+    {
+        "input": {
+            "xs": [
+                7.0,
+                7.0,
+                7.0
+            ]
+        },
+        "expected": 0.0,
+        "unexpected": [
+            1.0,
+            0.5
+        ]
+    },
+    {
+        "input": {
+            "xs": [
+                101.0,
+                103.0,
+                105.0
+            ]
+        },
+        "expected": "<same as variance_imp([1.0,3.0,5.0])>",
+        "unexpected": [
+            "<different from variance_imp([1.0,3.0,5.0])>",
+            0.0
+        ]
+    }
+]

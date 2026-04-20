@@ -1,0 +1,13 @@
+-----Description-----
+Attempts to copy the bytes of the source list into the beginning of the destination list. If the source is longer than the destination, it returns none to model a buffer overflow; otherwise it returns some updated destination list.
+
+-----Input-----
+- dst: List UInt8, the destination byte buffer to be overwritten from index 0 upward
+- src: List UInt8, the source byte buffer whose bytes are copied into dst
+
+-----Output-----
+Option (List UInt8): some newDst if src.length ≤ dst.length, otherwise none
+
+-----Note-----
+- On success, the returned list has the same length as dst, with the first src.length elements replaced by src.
+- On overflow (src longer than dst), the function returns none.

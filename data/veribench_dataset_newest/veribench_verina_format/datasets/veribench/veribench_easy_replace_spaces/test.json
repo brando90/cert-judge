@@ -1,0 +1,53 @@
+[
+    {
+        "input": {
+            "s": "hello world"
+        },
+        "expected": "hello_world",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "a b c"
+        },
+        "expected": "a_b_c",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "no-spaces"
+        },
+        "expected": "no-spaces",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "  "
+        },
+        "expected": "__",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": ""
+        },
+        "expected": "",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": " "
+        },
+        "expected": "_",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "s": "test ing"
+        },
+        "expected": "<same length as input>",
+        "unexpected": [
+            "<different length than input>"
+        ]
+    }
+]

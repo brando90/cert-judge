@@ -1,0 +1,13 @@
+-----Description-----
+Checks whether a list of floating-point numbers contains two distinct elements whose absolute difference is strictly less than a given threshold.
+
+-----Input-----
+- numbers: A list of Float values to examine
+- threshold: A Float distance threshold; a pair is considered “close” when abs(x - y) < threshold
+
+-----Output-----
+Returns true if there exists at least one pair of distinct elements in numbers that are closer than threshold; otherwise returns false.
+
+-----Note-----
+- For empty or singleton lists, the result is always false.
+- With a non-positive threshold (≤ 0), the result is false because abs(x - y) is never < 0 and is < 0.0 only if negative, which cannot happen.

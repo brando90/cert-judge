@@ -1,0 +1,14 @@
+-----Description-----
+Compute modular exponentiation for base 2: returns (2^n) modulo p using an iterative loop that multiplies by 2 and reduces modulo p at each step.
+
+-----Input-----
+- n: Nat, the exponent
+- p: Nat, the modulus
+
+-----Output-----
+A Nat equal to (2^n) mod p as computed by repeated modular doubling starting from accumulator 1.
+
+-----Note-----
+- When n = 0, the result is 1.
+- The algorithm performs n iterations, keeping intermediate values small by applying modulo p each step.
+- The provided precondition is True (all natural inputs accepted), though some stated theorems additionally assume p > 0.

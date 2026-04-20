@@ -1,0 +1,12 @@
+-----Description-----
+Simulate C-style 32-bit signed integer multiplication with two’s-complement wraparound (silent overflow) by masking the mathematical product to 32 bits and interpreting it as a signed 32-bit result.
+
+-----Input-----
+- a: Int, the first integer operand
+- b: Int, the second integer operand
+
+-----Output-----
+Returns an Int equal to the 32-bit signed wraparound result of a * b (i.e., the low 32 bits of the product interpreted as a signed value).
+
+-----Note-----
+The function does not signal overflow; it always returns a wrapped 32-bit signed result. Negative intermediate products are adjusted by adding 2^32 before masking, then converted back to a signed range using the 2^31 threshold.

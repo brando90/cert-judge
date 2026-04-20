@@ -1,0 +1,11 @@
+-----Description-----
+Compute the nth Fibonacci number using fast matrix exponentiation (O(log n)) based on powers of the Fibonacci Q-matrix.
+
+-----Input-----
+- n: Nat — the index of the Fibonacci number to compute (0-based)
+
+-----Output-----
+A Nat equal to the nth Fibonacci number (F(0)=0, F(1)=1, F(2)=1, ...).
+
+-----Note-----
+Uses the identity [[1,1],[1,0]]^n = [[F(n+1),F(n)],[F(n),F(n-1)]], extracting the top-left component after exponentiation (with special cases for n=0 and n=1).

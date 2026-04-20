@@ -1,0 +1,12 @@
+-----Description-----
+Look up a key in an imperative ChainMap (a nonempty list of HashMaps), returning the value from the first map in the list that contains the key (shadowing earlier maps over later ones). If the key is not found in any map, return none.
+
+-----Input-----
+- cm: ImperativeChainMap (a nonempty list of HashMap Key Value)
+- k: Key (String) to search for
+
+-----Output-----
+Option Value: some v if k is found in the first HashMap that contains it; otherwise none.
+
+-----Note-----
+Lookup proceeds left-to-right through the list of maps, implementing the usual ChainMap shadowing behavior.

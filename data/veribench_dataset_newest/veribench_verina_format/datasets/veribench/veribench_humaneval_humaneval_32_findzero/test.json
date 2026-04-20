@@ -1,0 +1,116 @@
+[
+    {
+        "input": {
+            "xs": [
+                1.0,
+                2.0
+            ],
+            "a": -1.0,
+            "b": 0.0,
+            "fuel": 100
+        },
+        "expected": "<approx: -0.5 within 0.01>",
+        "unexpected": [
+            0.0
+        ]
+    },
+    {
+        "input": {
+            "xs": [
+                -6.0,
+                11.0,
+                -6.0,
+                1.0
+            ],
+            "a": 0.0,
+            "b": 2.0,
+            "fuel": 100
+        },
+        "expected": "<approx: 1.0 within 0.01>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                0.0,
+                1.0
+            ],
+            "a": -1.0,
+            "b": 1.0,
+            "fuel": 100
+        },
+        "expected": "<approx: 0.0 within 0.01>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                4.0,
+                -4.0,
+                1.0
+            ],
+            "a": 1.0,
+            "b": 3.0,
+            "fuel": 100
+        },
+        "expected": "<approx: 2.0 within 0.01>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                3.0,
+                -1.0
+            ],
+            "a": 0.0,
+            "b": 4.0,
+            "fuel": 100
+        },
+        "expected": "<approx: 3.0 within 0.01>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                -1.0,
+                0.0,
+                1.0
+            ],
+            "a": 0.0,
+            "b": 2.0,
+            "fuel": 100
+        },
+        "expected": "<approx: 1.0 within 0.01>",
+        "unexpected": []
+    },
+    {
+        "input": {
+            "xs": [
+                1.0,
+                2.0
+            ],
+            "a": -1.0,
+            "b": 0.0,
+            "fuel": 100
+        },
+        "expected": "<not_equal_to 0.0>",
+        "unexpected": [
+            0.0
+        ]
+    },
+    {
+        "input": {
+            "xs": [
+                1.0,
+                2.0
+            ],
+            "a": -1.0,
+            "b": 0.0,
+            "fuel": 100
+        },
+        "expected": "<not_equal_to find_zero([2.0,1.0],-2.0,0.0,100)>",
+        "unexpected": [
+            "<equal_to find_zero([2.0,1.0],-2.0,0.0,100)>"
+        ]
+    }
+]

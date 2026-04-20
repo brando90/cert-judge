@@ -1,0 +1,13 @@
+-----Description-----
+Performs a depth-first search on a directed graph (given as adjacency lists) to decide whether there is a path from a start node to a target node.
+
+-----Input-----
+- g: Graph, a list of neighbor lists where node i’s outgoing neighbors are stored at index i
+- start: Nat, the starting node index
+- target: Nat, the target node index
+
+-----Output-----
+Returns true if the search finds target reachable from start (within the function’s bounded recursion), otherwise returns false.
+
+-----Note-----
+Uses a recursive auxiliary function with a visited list to avoid revisiting nodes and a fuel bound (g.length + 1) to ensure termination. The precondition (defined separately as Pre) requires start/target and all neighbor indices to be within bounds of g.

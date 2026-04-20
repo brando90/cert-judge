@@ -1,0 +1,15 @@
+-----Description-----
+Compute (n - 1) quantile cut points that divide the given data into n equal-probability intervals, using either the "exclusive" or "inclusive" interpolation method. The function enforces input validity and returns a statistics-style error when the precondition is not met.
+
+-----Input-----
+- data: List of rational numbers (Rat) representing the dataset (must contain at least 2 elements)
+- n: Number of intervals to divide the data into (must be at least 1; default 4)
+- method: Quantile method, either "exclusive" or "inclusive" (default "exclusive")
+
+-----Output-----
+Returns Except QuantilesError (List Rat): on success, an ok value containing a list of (n - 1) rational cut points; on failure, an error value with QuantilesError.statisticsError.
+
+-----Note-----
+- The input data is internally sorted before computing cut points.
+- If n = 1, the result is an empty list of cut points.
+- Any invalid method or invalid (data, n) combination causes a statisticsError in this benchmark wrapper (even though the lower-level quantiles function distinguishes valueError for unknown methods).

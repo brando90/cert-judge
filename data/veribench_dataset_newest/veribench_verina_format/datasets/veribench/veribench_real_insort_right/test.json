@@ -1,0 +1,66 @@
+[
+    {
+        "input": {
+            "a": [
+                1,
+                2,
+                4,
+                4,
+                10
+            ],
+            "x": 4,
+            "lo": 0,
+            "hi?": null,
+            "key?": null
+        },
+        "expected": [
+            1,
+            2,
+            4,
+            4,
+            4,
+            10
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "a": [
+                1,
+                2
+            ],
+            "x": 0,
+            "lo": 0,
+            "hi?": null,
+            "key?": null
+        },
+        "expected": [
+            0,
+            1,
+            2
+        ],
+        "unexpected": []
+    },
+    {
+        "input": {
+            "a": [
+                "A",
+                "bb",
+                "CC",
+                "ddd"
+            ],
+            "x": "cC",
+            "lo": 0,
+            "hi?": null,
+            "key?": "<function: String.length>"
+        },
+        "expected": [
+            "A",
+            "bb",
+            "CC",
+            "cC",
+            "ddd"
+        ],
+        "unexpected": []
+    }
+]

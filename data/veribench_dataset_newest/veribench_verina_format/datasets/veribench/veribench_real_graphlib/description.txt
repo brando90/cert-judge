@@ -1,0 +1,13 @@
+-----Description-----
+Compute a topological ordering of a directed graph using an imperative version of Kahn’s algorithm. If the graph contains a cycle, return an error.
+
+-----Input-----
+- g: Graphlib.Graph — a graph represented as a hash map from node (Int) to a list of its predecessors (List Int)
+
+-----Output-----
+Returns `Except String (List Int)`:
+- `Except.ok order` where `order` is a list of all nodes forming a valid topological order
+- `Except.error "Cycle detected"` if the graph is not a DAG
+
+-----Note-----
+The algorithm constructs in-degrees and successor lists from the predecessor-map representation, initializes a queue of zero in-degree nodes, then repeatedly removes ready nodes and decrements successors’ in-degrees. It checks that the number of processed nodes equals the total number of discovered nodes.

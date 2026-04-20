@@ -1,0 +1,12 @@
+-----Description-----
+Construct a normalized rational fraction from an integer numerator and an optional integer denominator (default 1), following Python-style fraction behavior (sign moved to numerator and fraction reduced).
+
+-----Input-----
+- numerator: Integer numerator of the fraction
+- denominator: Integer denominator of the fraction (defaults to 1)
+
+-----Output-----
+A Fraction (canonical rational number) representing numerator/denominator in reduced form with positive denominator; if denominator is 0, it returns 0.
+
+-----Note-----
+Normalization uses the absolute value of the denominator and negates the numerator when the denominator is negative. The canonical form has gcd(|num|, den)=1 and den>0.
