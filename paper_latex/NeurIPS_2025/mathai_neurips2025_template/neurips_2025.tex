@@ -192,7 +192,7 @@ For candidates $C_{S_1}$ and $C_{S_2}$ containing precisely these specification 
 
 \paragraph{P4 — Prompt Stability \& Semantic Invariance.}
 The judge should produce stable scores under repeated calls and preserve judgments under semantics-preserving rewrites.
-Concretely, for fixed artifact pairs, repeated-call variance should remain low across prompt templates, prompt-pair rank agreement should remain high, and style-level rewrites should induce near-zero score gaps.
+Concretely, for fixed artifact pairs and fixed judge instructions, repeated-call variance should remain low, prompt-pair rank agreement should remain high under instruction-equivalent prompt rewordings, and style-level rewrites should induce near-zero score gaps.
 This property guards against prompt-fragility in deployment settings where wording and formatting vary.
 
 \paragraph{Certification Protocol.}
@@ -200,7 +200,7 @@ We implement four scripted perturbation families on the \emph{candidate} while h
 (i) \emph{Identity} (P1), pairing each gold file with itself (and a semantically identical reflow) to test idempotence robustness; 
 (ii) a \emph{Bug Ladder} (P2), applying $k\!\in\!\{0,\ldots,K\}$ semantics-changing transformations (e.g., broken identities, violated commutativity, incorrect base cases); and 
 (iii) \emph{Specification Ablation} (P3), removing $m\!\in\!\{0,\ldots,M\}$ theorems or tests; and
-(iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple rubric-equivalent prompts and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.
+(iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple instruction-equivalent prompt templates and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.\footnote{We distinguish \emph{prompt wording} from \emph{task instruction}. P4 varies phrasing/format while preserving the same judging instruction and rubric. We do not include adversarial or instruction-changing prompts (e.g., ``ignore the input'') in this stability metric.}
 We then verify monotonicity by computing rank correlations (Kendall’s $\tau$, Spearman’s $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse’’ artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
 
 \textbf{Establishing trust in the LLM judge.} To ensure trustworthiness of the LLM judge in evaluating agentic autoformalization, we systematically validate key properties the judge must satisfy in Figure~\ref{fig:judge_sanity_checks}: (1) scores decrease consistently as more theorems and tests are omitted, (2) scores similarly degrade when more implementation bugs are introduced, and (3) semantically preserving edits keep scores high.
@@ -279,7 +279,8 @@ The run metadata also notes appended datapoints from 34 added tasks scored in lo
 
 \subsection{Stability and Semantic Invariance (April 20, 2026)}
 We add a dedicated P4 run in \texttt{stability\_gpt-53-codex\_full\_20260420\_185401} using GPT-5.3-Codex in API mode over \(184\) files, \(4\) prompt templates (\texttt{P1\_BASELINE}, \texttt{P2\_FORMAL}, \texttt{P4\_CHECKLIST}, \texttt{P8\_STRICT\_B}), and \(5\) repeats per prompt (\(n_\text{cells}=3680\)).
-Repeat-call noise is low (\(\text{mean\_repeat\_std}=0.0330\)), cross-prompt score dispersion is moderate (\(0.0782\)), and overall internal consistency is high (Cronbach's \(\alpha=0.9416\)).
+With no prompt changes (same template, repeated calls), run-to-run noise is low (\(\text{mean\_repeat\_std}=0.0330\)).
+Under instruction-equivalent prompt rewordings, cross-prompt score dispersion is moderate (\(0.0782\)), while overall internal consistency remains high (Cronbach's \(\alpha=0.9416\)).
 Prompt pairs preserve ranking strongly (minimum Spearman \(\rho=0.9550\)), but binary agreement is weaker near threshold (flip rate \(=31.3\%\), minimum Cohen's \(\kappa=0.4540\)).
 Semantic invariance gaps are smallest for \textsc{Style} (\(0.0042\)), moderate for \textsc{Rename} (\(0.1021\)) and \textsc{Reorder} (\(0.2128\)), and largest for \textsc{Alpha} (\(0.6325\)), indicating that alpha-conversion handling is the dominant robustness bottleneck.
 
@@ -505,7 +506,7 @@ Formal kernels (Lean/Isabelle) already deliver binary checks; HCI contributes th
 \subsection{Vericode}
 \citet{bursuc2025benchmarkvericodingformallyverified} presumes well-formed formal specifications and evaluates end-to-end verification under those specs (in Dafny, Verus/Rust, or Lean) reporting verified pass rates. 
 In practice, impactful problems often lack both complete specifications and ground-truth answers. 
-Our \textsc{VeriBench} program targets this gap by challenging the \emph{generation} of specifications (from code, tests and documentation) and then \emph{certifying} their quality prior to proof search using a Lean-aware LLM judge that we validate via falsifiable principles/properties (Identity and Monotonicity), addressing known pitfalls of LLM-as-a-judge such as bias and prompt sensitivity \citep{Zheng2023MTBench,Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}. 
+Our \textsc{VeriBench} program targets this gap by challenging the \emph{generation} of specifications (from code, tests and documentation) and then \emph{certifying} their quality prior to proof search using a Lean-aware LLM judge that we validate via falsifiable principles/properties (Identity, Monotonicity, and Prompt Stability/Invariance), addressing known pitfalls of LLM-as-a-judge such as bias and prompt sensitivity \citep{Zheng2023MTBench,Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}. 
 However, our framework has only been tested with a judge with gold references files with specifications but we will explore metrics/methods that don't require this like TVD-MI in \citep{robertson2025stepbystep}. 
 
 Beyond spec-first settings, the Unsolved Questions (UQ) paradigm evaluates models on difficult, real-world problems that have neither ground-truth answers nor formal specifications; instead, it relies on validator pipelines and community verification to track progress without oracles \cite{nie2025uqassessinglanguagemodels,uq2025}. 
@@ -598,7 +599,7 @@ This leads to a critical conclusion for our work: the judge's evaluation is **sp
 
 
 \section{Judge Certification: Additional Plots}\label{app:judge-cert}
-We report raw scatterplots used during certification of the LLM judge. These plots visualize the judge’s response to controlled perturbations: (P1) identity/reflexivity, (P2) cumulative bug injection, and (P3) removal of specification items (tests/theorems). Figures A.1–A.3 show that scores drop as artifacts worsen; the bug plot is noisier with an early prompt, which motivated the simplified rubric used in the main experiments.
+We report raw scatterplots used during certification of the LLM judge. These plots visualize the judge’s response to controlled perturbations: (P1) identity/reflexivity, (P2) cumulative bug injection, and (P3) removal of specification items (tests/theorems). Figures A.1–A.3 show that scores drop as artifacts worsen; the bug plot is noisier with an early prompt, which motivated the simplified rubric used in the main experiments. P4 (prompt stability/invariance) is reported in the main text with dedicated aggregate plots.
 
 \textit{Protocol variants.} The scatterplots below are “sanity-check” runs with the simplest prompts to stress visible monotonic behavior. In the bug study (Fig.~\ref{fig:app-bugs}) the earlier, theorem-equivalence prompt produced a noisier trend; this prompted a simplified, rubric-first prompt that we use for all reported results in the main paper, yielding the stronger correlations cited in Fig.~\ref{fig:judge_sanity_checks}. For missing-specs (Fig.~\ref{fig:app-missing-specs}), both Claude 3.5 and 3.7 show clear negative trends; minor non-monotonicity in 3.7 disappears with the finalized rubric.
 

@@ -25,7 +25,6 @@
 \@writefile{toc}{\contentsline {paragraph}{Overview of \textsc  {VeriBench}.}{2}{section*.5}\protected@file@percent }
 \citation{TongZhang2024CodeJudge,Zhuo2024ICEScore}
 \citation{Li2024TrustLLMJudgments,Kocmi2024HumanVsLLM}
-\citation{khattab2024dspy,cheng2024trace,chen2021evaluating}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology: A Certification Protocol for LLM Judges}{3}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Why is an LLM judge needed for theorem-quality scoring?}{3}{section*.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{P1 — Identity \& Consistency.}{3}{section*.7}\protected@file@percent }
@@ -33,6 +32,7 @@
 \@writefile{toc}{\contentsline {paragraph}{P3 — Monotonicity to Missing Specs.}{3}{section*.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{P4 — Prompt Stability \& Semantic Invariance.}{3}{section*.10}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Certification Protocol.}{3}{section*.11}\protected@file@percent }
+\citation{khattab2024dspy,cheng2024trace,chen2021evaluating}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:judge_identity}{{1a}{4}{Identity (Reflexivity)}{figure.caption.12}{}}
 \newlabel{sub@fig:judge_identity}{{a}{4}{Identity (Reflexivity)}{figure.caption.12}{}}
@@ -46,13 +46,12 @@
 \newlabel{tab:codex_identity_variants}{{1}{4}{\textbf {Identity breakdown for the Codex API run.} The low overall identity mean (\(0.792\)) is primarily driven by aggressive alpha-renaming}{table.caption.13}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Results: Evaluating Agentic Theorem Generation with a Certified Judge}{4}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}New Codex API Sanity Run (April 18, 2026)}{4}{subsection.4.1}\protected@file@percent }
-\citation{chen2021evaluating}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {P4 semantic invariance gaps by variant type.} Mean absolute score gap versus ORIGINAL across semantics-preserving perturbations in the dedicated stability run. The judge is highly invariant to STYLE, moderately sensitive to RENAME/REORDER, and most sensitive to ALPHA variants.}}{5}{figure.caption.14}\protected@file@percent }
 \newlabel{fig:p4_semantic_invariance}{{2}{5}{\textbf {P4 semantic invariance gaps by variant type.} Mean absolute score gap versus ORIGINAL across semantics-preserving perturbations in the dedicated stability run. The judge is highly invariant to STYLE, moderately sensitive to RENAME/REORDER, and most sensitive to ALPHA variants}{figure.caption.14}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Stability and Semantic Invariance (April 20, 2026)}{5}{subsection.4.2}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {Theorem Quality Scores.} Average normalized scores in \textsc  {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots  ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark.}}{5}{table.caption.15}\protected@file@percent }
 \newlabel{tab:theorem_quality_table_split}{{2}{5}{\textbf {Theorem Quality Scores.} Average normalized scores in \textsc {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark}{table.caption.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion, Limitations, and Future Work}{5}{section.5}\protected@file@percent }
+\citation{chen2021evaluating}
 \citation{rice1953}
 \citation{zhou2025graders}
 \bibstyle{plainnat}
@@ -73,6 +72,7 @@
 \bibcite{Liu2023GEval}{{14}{2023}{{Liu et~al.}}{{}}}
 \bibcite{ma2024hypocompass}{{15}{2024}{{Ma et~al.}}{{}}}
 \bibcite{miranda2025veribench}{{16}{2025}{{Miranda et~al.}}{{Miranda, Zhou, Nie, Obbad, Aniva, Fronsdal, Kirk, Soylu, Yu, Li, and Koyejo}}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion, Limitations, and Future Work}{6}{section.5}\protected@file@percent }
 \bibcite{naik2024ticoder}{{17}{2024}{{Naik et~al.}}{{}}}
 \bibcite{nie2025uqassessinglanguagemodels}{{18}{2025{}}{{Nie et~al.}}{{Nie, Liu, Wang, Sun, Liu, Shi, Yao, Zhang, Ng, Zou, Koyejo, Choi, Liang, and Muennighoff}}}
 \bibcite{uq2025}{{19}{2025{}}{{Nie et~al.}}{{Nie, Liu, Wang, Sun, Liu, Shi, Yao, Zhang, Ng, Zou, Koyejo, Choi, Liang, and Muennighoff}}}
@@ -96,8 +96,6 @@
 \bibcite{zhou2025graders}{{37}{2025}{{Zhou et~al.}}{{Zhou, Arnold, Ding, Weinberger, Hua, and Sha}}}
 \bibcite{Zhuo2024ICEScore}{{38}{2024}{{Zhuo}}{{}}}
 \citation{wang2024theoremLlama}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work (Cont.)}{7}{appendix.A}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Autoformalization.}{7}{section*.17}\protected@file@percent }
 \citation{ahuja2024improver}
 \citation{sun2024clover}
 \citation{zhou2025graders}
@@ -109,13 +107,15 @@
 \citation{zheng2024scrit}
 \citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
 \citation{salaudeen2025measurement}
-\citation{Zhuo2024ICEScore,TongZhang2024CodeJudge}
-\citation{robertson2025stepbystep}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work (Cont.)}{8}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Autoformalization.}{8}{section*.17}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Related Work: Scalable Oversight}{8}{subsection.A.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Scalable Oversight with LLM Judges}{8}{section*.18}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Self-Improving Critics.}{8}{section*.19}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Certifying Judges.}{8}{section*.20}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Validity-Centered Evaluation.}{8}{section*.21}\protected@file@percent }
+\citation{Zhuo2024ICEScore,TongZhang2024CodeJudge}
+\citation{robertson2025stepbystep}
 \citation{zhou2024donttrustverify}
 \citation{liu2025safe}
 \citation{ospanov2023apollo}
@@ -135,7 +135,6 @@
 \@writefile{toc}{\contentsline {paragraph}{Evaluating Autoformalization with Reference-Free Judges.}{9}{section*.26}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.2}HCI for Solving Scalable Oversight}{9}{subsection.A.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{From more evaluation to \emph  {human-centered} oversight.}{9}{section*.27}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Hybrid human$\leftrightarrow $AI evaluation.}{9}{section*.28}\protected@file@percent }
 \citation{naik2024ticoder}
 \citation{yan2024intelliexplain}
 \citation{ma2024hypocompass}
@@ -145,6 +144,7 @@
 \citation{Zheng2023MTBench,Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
 \citation{robertson2025stepbystep}
 \citation{nie2025uqassessinglanguagemodels,uq2025}
+\@writefile{toc}{\contentsline {paragraph}{Hybrid human$\leftrightarrow $AI evaluation.}{10}{section*.28}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Interfaces that \emph  {operationalize} oversight.}{10}{section*.29}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Applying HCI patterns to formal specs/theorems.}{10}{section*.30}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Vericode}{10}{subsection.A.3}\protected@file@percent }
