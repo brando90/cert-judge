@@ -131,6 +131,54 @@ W&B run: https://wandb.ai/brando-su/trusting-formal-judge/runs/yibfdiz7
 
 ---
 
+## EXP 9 — Stability and Semantic Invariance (Fourth Property)
+*gpt-5.3-codex (API mode), 184 files, 4 prompt templates, 5 repeats per prompt, 3,680 prompt-file-variant cells*
+
+> "As a fourth certification property, we evaluate judge stability under repeated
+> calls and prompt rewordings. Across 4 prompt templates and 5 repeats each, the
+> judge shows low repeat noise (mean per-item std = **0.033**) and high internal
+> consistency (Cronbach's alpha = **0.942**). Prompt pairs preserve ranking
+> strongly (minimum Spearman = **0.955**), but binary decisions are less stable
+> near threshold (flip rate = **31.3%**, minimum kappa = **0.454**). A semantic
+> invariance stress test shows near-perfect robustness to style edits
+> (STYLE gap = **0.004**), moderate sensitivity to reordering/renaming
+> (REORDER = **0.213**, RENAME = **0.102**), and substantial sensitivity to
+> ALPHA variants (**0.632**), indicating a clear target for prompt and rubric
+> hardening."
+
+| Metric | Value |
+|--------|-------|
+| model | gpt-5.3-codex |
+| n_files | 184 |
+| n_prompts | 4 (P1_BASELINE, P2_FORMAL, P4_CHECKLIST, P8_STRICT_B) |
+| n_repeats | 5 |
+| n_cells | 3,680 |
+| mean_repeat_std | **0.0330** |
+| mean_score_std_across_prompts | **0.0782** |
+| flip_rate | **0.3130** |
+| min_pairwise_spearman | **0.9550** |
+| min_pairwise_kappa | **0.4540** |
+| cronbach_alpha | **0.9416** |
+
+Semantic invariance gap (mean absolute score gap vs ORIGINAL):
+| Variant | Mean Abs Gap | Median Abs Gap |
+|---------|---------------|----------------|
+| RENAME  | 0.1021 | 0.010 |
+| REORDER | 0.2128 | 0.032 |
+| STYLE   | 0.0042 | 0.000 |
+| ALPHA   | 0.6325 | 0.812 |
+
+Suggested figures:
+- `figures/stability_gpt-53-codex_full_20260420_185401/semantic_invariance_gap_by_variant.png` (main figure for this property)
+- `figures/stability_gpt-53-codex_full_20260420_185401/prompt_pairwise_spearman_heatmap.png` (ranking stability across prompts)
+- `figures/stability_gpt-53-codex_full_20260420_185401/repeatability_std_histogram.png` (repeat-call noise distribution)
+
+Artifacts:
+- Results: `results/stability_gpt-53-codex_full_20260420_185401/summary.json`
+- Figures: `figures/stability_gpt-53-codex_full_20260420_185401/`
+
+---
+
 ## CERTIFICATION THRESHOLDS
 
 | Metric          | Threshold | Direction |
@@ -160,8 +208,9 @@ All runs: https://wandb.ai/brando-su/trusting-formal-judge
 
 ## NOTES
 
-- All experiments used **gpt-4o-mini** as judge (Anthropic key had zero credits).
-  To replicate with Claude, top up `anthropic_bm_key_koyejolab.txt` and re-run —
+- Exp1-Exp5 used **gpt-4o-mini** as judge (Anthropic key had zero credits at that time).
+- Exp9 stability/invariance used **gpt-5.3-codex** in API mode.
+- To replicate with Claude, top up `anthropic_bm_key_koyejolab.txt` and re-run —
   the judge cache (`results/judge_cache.json`) avoids re-spending on cached pairs.
 - random.seed(42) used throughout for reproducibility
 - Lean 4 not used for validation (lean_available=False); syntactic variants
