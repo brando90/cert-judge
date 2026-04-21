@@ -117,7 +117,7 @@ Formal methods provide unparalleled rigor in software verification, and with the
 Traditional benchmarks often provide a fixed theorem statement, but agentic systems must infer and synthesize these properties on their own, demanding a scalable and reliable evaluation method.
 We present an LLM-based judge designed to score the quality of generated Lean~4 theorems based on correctness, completeness, and semantic alignment with a reference implementation.
 More importantly, we introduce a novel methodology to certify the judge's trustworthiness by verifying its adherence to fundamental logical properties.
-We demonstrate that our judge satisfies identity (identical inputs yield maximal scores) and monotonicity (scores decrease predictably as bugs are introduced or specifications are removed), with strong trends across runs (e.g., GPT-5.3-Codex: Spearman \(\rho=-0.808\) for bugs and \(\rho=-0.899\) for missing-spec ablations).
+We demonstrate that our judge satisfies identity (identical inputs yield maximal scores), monotonicity (scores decrease predictably as bugs are introduced or specifications are removed), and stability/invariance under prompt and rewrite perturbations (e.g., GPT-5.3-Codex: Spearman \(\rho=-0.808\) for bugs, \(\rho=-0.899\) for missing-spec ablations, minimum prompt-pair Spearman \(\rho=0.955\), Cronbach's \(\alpha=0.942\)).
 By applying this validated judge to the \textsc{VeriBench}\citep{veribench_icml25}scalable oversight benchmark, we show that agentic approaches for formal code generation significantly outperform baseline prompting, with a top score of 0.615 vs.\ 0.470.
 This work provides a blueprint for creating and validating reliable automated judges, enabling robust and scalable evaluation of next-generation theorem-proving agents.
 \end{abstract}
@@ -136,7 +136,7 @@ In this paper, we present evidence indicating that it is possible to trust an LL
 Our \textbf{contributions} are:
 \begin{enumerate}
     \item \textbf{An LLM Judge for Theorem Quality:} We design an LLM judge that scores generated Lean~4 artifacts on a 0--10 scale based on correctness, completeness, and semantic alignment.
-    \item \textbf{A Trustworthiness Validation Methodology:} We propose and execute a set of property checks to certify the judge's reliability and trustworthiness, verifying its adherence to logical properties like identity and monotonicity under controlled perturbations.
+    \item \textbf{A Trustworthiness Validation Methodology:} We propose and execute a set of property checks to certify the judge's reliability and trustworthiness, verifying its adherence to logical properties like identity, monotonicity, and prompt-level stability/invariance under controlled perturbations.
     \item \textbf{Empirical Demonstration of the Judge on \textsc{VeriBench}:} We apply our validated judge to evaluate multiple agentic frameworks, providing evidence that feedback-driven methods significantly outperform non-agentic baselines in theorem-synthesis quality.
 \end{enumerate}
 
@@ -148,7 +148,7 @@ LLMs are increasingly used as \emph{automated evaluators} across open-ended task
 To mitigate biases and instability, multi-agent debate frameworks such as \emph{ChatEval} emulate panel-style review to yield more robust consensus scores \citep{Chan2024ChatEval}. Structured prompting like \emph{G-Eval} elicits rubric-driven, stepwise reasoning prior to scoring, improving agreement with human criteria on NLG tasks \citep{Liu2023GEval}. Reliability can also be quantified via repeated scorings and internal consistency measures (e.g., Cronbach’s $\alpha$) to detect prompt/run sensitivity \citep{Li2024TrustLLMJudgments}.
 
 \paragraph{Code and formal-spec evaluation.}
-For programming, single-pass metrics like pass@k can be brittle or unavailable; early LLM-judge approaches such as \emph{ICE-Score} highlighted difficulty distinguishing partial vs.\ full correctness from a one-shot review \citep{Zhuo2024ICEScore}. \emph{CodeJudge} operationalizes a two-stage “analyze-then-summarize’’ procedure with a taxonomy of code faults, significantly improving correlation with functional ground truth \citep{TongZhang2024CodeJudge}. In formal verification/autoformalization, prior work typically provides fixed target theorems, reducing evaluation to proof success. In contrast, agentic systems must propose specifications, necessitating \emph{semantic} judges. We adopt a certification protocol (akin to metamorphic testing) and verify that our LLM judge obeys \emph{identity/consistency} and \emph{monotonicity} with respect to injected bugs and specification omissions, directly answering recent calls for validated, trustworthy LLM evaluators in safety-critical domains \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
+For programming, single-pass metrics like pass@k can be brittle or unavailable; early LLM-judge approaches such as \emph{ICE-Score} highlighted difficulty distinguishing partial vs.\ full correctness from a one-shot review \citep{Zhuo2024ICEScore}. \emph{CodeJudge} operationalizes a two-stage “analyze-then-summarize’’ procedure with a taxonomy of code faults, significantly improving correlation with functional ground truth \citep{TongZhang2024CodeJudge}. In formal verification/autoformalization, prior work typically provides fixed target theorems, reducing evaluation to proof success. In contrast, agentic systems must propose specifications, necessitating \emph{semantic} judges. We adopt a certification protocol (akin to metamorphic testing) and verify that our LLM judge obeys \emph{identity/consistency}, \emph{monotonicity} with respect to injected bugs and specification omissions, and \emph{prompt/rewrite stability}, directly answering recent calls for validated, trustworthy LLM evaluators in safety-critical domains \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
 
 \paragraph{Overview of \textsc{VeriBench}.}
 Concretely, \textsc{VeriBench} consists of 857 theorems divided into five subsets: 
@@ -190,11 +190,17 @@ The judge’s score must decrease as specification elements are removed.
 Let $S_1$ and $S_2$ be sets of specifications (theorems and tests) such that $S_2 \subset S_1$. 
 For candidates $C_{S_1}$ and $C_{S_2}$ containing precisely these specification sets, the expected scores must satisfy $\mathbb{E}[s(C_{S_1})] > \mathbb{E}[s(C_{S_2})]$.
 
+\paragraph{P4 — Prompt Stability \& Semantic Invariance.}
+The judge should produce stable scores under repeated calls and preserve judgments under semantics-preserving rewrites.
+Concretely, for fixed artifact pairs, repeated-call variance should remain low across prompt templates, prompt-pair rank agreement should remain high, and style-level rewrites should induce near-zero score gaps.
+This property guards against prompt-fragility in deployment settings where wording and formatting vary.
+
 \paragraph{Certification Protocol.}
-We implement three scripted perturbation families on the \emph{candidate} while holding the \emph{gold} fixed: 
+We implement four scripted perturbation families on the \emph{candidate} while holding the \emph{gold} fixed: 
 (i) \emph{Identity} (P1), pairing each gold file with itself (and a semantically identical reflow) to test idempotence robustness; 
 (ii) a \emph{Bug Ladder} (P2), applying $k\!\in\!\{0,\ldots,K\}$ semantics-changing transformations (e.g., broken identities, violated commutativity, incorrect base cases); and 
-(iii) \emph{Specification Ablation} (P3), removing $m\!\in\!\{0,\ldots,M\}$ theorems or tests. 
+(iii) \emph{Specification Ablation} (P3), removing $m\!\in\!\{0,\ldots,M\}$ theorems or tests; and
+(iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple rubric-equivalent prompts and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.
 We then verify monotonicity by computing rank correlations (Kendall’s $\tau$, Spearman’s $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse’’ artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
 
 \textbf{Establishing trust in the LLM judge.} To ensure trustworthiness of the LLM judge in evaluating agentic autoformalization, we systematically validate key properties the judge must satisfy in Figure~\ref{fig:judge_sanity_checks}: (1) scores decrease consistently as more theorems and tests are omitted, (2) scores similarly degrade when more implementation bugs are introduced, and (3) semantically preserving edits keep scores high.
@@ -270,6 +276,19 @@ ALPHA & 0.399 & 0.096 \\
 The judge reliably captures coarse semantic degradation (especially missing-spec ablations), while lexical/format-level robustness is transformation-dependent.
 Practically, this motivates canonicalization of binder names and stronger structure-aware prompting before using identity as a strict pass/fail criterion.
 The run metadata also notes appended datapoints from 34 added tasks scored in local mode, so direct cross-run comparisons should be treated as provisional until fully re-run under one scoring mode.
+
+\subsection{Stability and Semantic Invariance (April 20, 2026)}
+We add a dedicated P4 run in \texttt{stability\_gpt-53-codex\_full\_20260420\_185401} using GPT-5.3-Codex in API mode over \(184\) files, \(4\) prompt templates (\texttt{P1\_BASELINE}, \texttt{P2\_FORMAL}, \texttt{P4\_CHECKLIST}, \texttt{P8\_STRICT\_B}), and \(5\) repeats per prompt (\(n_\text{cells}=3680\)).
+Repeat-call noise is low (\(\text{mean\_repeat\_std}=0.0330\)), cross-prompt score dispersion is moderate (\(0.0782\)), and overall internal consistency is high (Cronbach's \(\alpha=0.9416\)).
+Prompt pairs preserve ranking strongly (minimum Spearman \(\rho=0.9550\)), but binary agreement is weaker near threshold (flip rate \(=31.3\%\), minimum Cohen's \(\kappa=0.4540\)).
+Semantic invariance gaps are smallest for \textsc{Style} (\(0.0042\)), moderate for \textsc{Rename} (\(0.1021\)) and \textsc{Reorder} (\(0.2128\)), and largest for \textsc{Alpha} (\(0.6325\)), indicating that alpha-conversion handling is the dominant robustness bottleneck.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/stability_gpt-53-codex_full_20260420_185401/semantic_invariance_gap_by_variant.png}
+  \caption{\textbf{P4 semantic invariance gaps by variant type.} Mean absolute score gap versus ORIGINAL across semantics-preserving perturbations in the dedicated stability run. The judge is highly invariant to STYLE, moderately sensitive to RENAME/REORDER, and most sensitive to ALPHA variants.}
+  \label{fig:p4_semantic_invariance}
+\end{figure}
 
 \begin{table}[H]
 \renewcommand{\arraystretch}{1.30}

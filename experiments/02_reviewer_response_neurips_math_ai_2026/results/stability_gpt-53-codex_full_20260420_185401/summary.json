@@ -1,0 +1,49 @@
+{
+  "experiment": "exp9_stability",
+  "model": "gpt-5.3-codex",
+  "judge_mode": "api",
+  "n_repeats": 5,
+  "n_files": 184,
+  "append_max_files": 34,
+  "n_prompts": 4,
+  "prompt_names": [
+    "P1_BASELINE",
+    "P2_FORMAL",
+    "P4_CHECKLIST",
+    "P8_STRICT_B"
+  ],
+  "n_cells": 3680,
+  "n_repeat_rows": 18400,
+  "n_item_variants": 920,
+  "stability": {
+    "mean_repeat_std": 0.032971,
+    "mean_score_std_across_prompts": 0.078218,
+    "flip_rate": 0.313043,
+    "min_pairwise_spearman": 0.954983,
+    "min_pairwise_kappa": 0.45398,
+    "cronbach_alpha": 0.94156
+  },
+  "invariance_by_variant": {
+    "RENAME": {
+      "n": 736,
+      "mean_abs_gap": 0.102092,
+      "median_abs_gap": 0.01
+    },
+    "REORDER": {
+      "n": 736,
+      "mean_abs_gap": 0.212823,
+      "median_abs_gap": 0.032
+    },
+    "STYLE": {
+      "n": 736,
+      "mean_abs_gap": 0.004168,
+      "median_abs_gap": 0.0
+    },
+    "ALPHA": {
+      "n": 736,
+      "mean_abs_gap": 0.632497,
+      "median_abs_gap": 0.812
+    }
+  },
+  "notes": "Use one judge_mode per run for fair comparisons."
+}
