@@ -291,6 +291,14 @@ Semantic invariance gaps are smallest for \textsc{Style} (\(0.0042\)), moderate 
   \label{fig:p4_semantic_invariance}
 \end{figure}
 
+\subsection{Cross-Model Validation: Claude Sonnet (Preliminary)}
+We replicate the certification protocol using Claude Sonnet~4 as the judge model on a preliminary subset of three VeriBench files (one each from CS, Easy, and HumanEval), with five degradation levels and three repeated calls per pair.
+Identity (P1) remains perfect ($\mu=1.000$, $\sigma=0.000$), confirming that self-comparison yields maximal scores regardless of judge model.
+Bug monotonicity (P2) shows a clear negative trend (Pearson $r=-0.717$, Spearman $\rho=-0.674$, weak monotonicity $66.7\%$), and specification ablation (P3) is directionally correct (Pearson $r=-0.560$, Spearman $\rho=-0.402$).
+Prompt stability (P4) yields a pooled within-item standard deviation of $0.088$, comparable to the Codex run.
+These preliminary cross-model results suggest that the certification properties are not specific to a single LLM family; a full-scale Claude run across all VeriBench files is planned.
+% Script: experiments/05_claude_code_properties_all_vb/run_veribench_properties.py
+
 \begin{table}[H]
 \renewcommand{\arraystretch}{1.30}
 \centering
