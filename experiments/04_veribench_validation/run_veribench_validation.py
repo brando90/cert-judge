@@ -430,7 +430,8 @@ theorem equiv_agent_gold_reverse : GoldMain → AgentMain := by
 
 
 def _run_lean_check(file_path: Path) -> Tuple[bool, str]:
-    cmd = ["zsh", "-lc", f"cd {LEAN_ROOT} && source $HOME/.elan/env && lake env lean {file_path}"]
+    file_abs = file_path.resolve()
+    cmd = ["zsh", "-lc", f"cd {LEAN_ROOT} && source $HOME/.elan/env && lake env lean {file_abs}"]
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
     except subprocess.TimeoutExpired:
