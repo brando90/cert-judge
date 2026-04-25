@@ -1,0 +1,43 @@
+{
+  "experiment": "exp13_threshold_calibration_sweep",
+  "model": "gpt-5.3-codex",
+  "judge_mode": "local",
+  "prompt_name": "P8_STRICT_B",
+  "n_repeats": 3,
+  "n_files": 3,
+  "thresholds": [
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85
+  ],
+  "bootstrap_iters": 100,
+  "selection_rule": "min threshold_flip_rate, tie-break by pass_rate closest to 0.5",
+  "recommended_threshold": 0.75,
+  "recommended_metrics": {
+    "threshold": 0.75,
+    "threshold_flip_rate": 0.0,
+    "threshold_flip_rate_ci_lo": 0.0,
+    "threshold_flip_rate_ci_hi": 0.0,
+    "identity_mean": 0.971123,
+    "identity_mean_ci_lo": 0.941247,
+    "identity_mean_ci_hi": 0.99738,
+    "identity_std": 0.037778,
+    "identity_std_ci_lo": 0.001446,
+    "identity_std_ci_hi": 0.041083,
+    "bug_spearman_r": -0.886956,
+    "bug_spearman_r_ci_lo": -1.0,
+    "bug_spearman_r_ci_hi": -0.886956,
+    "bug_weak_mono_pct": 100.0,
+    "pass_rate": 0.814815,
+    "pass_rate_ci_lo": 0.666667,
+    "pass_rate_ci_hi": 0.888889
+  },
+  "notes": {
+    "flip_definition": "an item flips at threshold t if repeat-level decisions are not all equal",
+    "pass_definition": "item passes at threshold t if mean score across repeats >= t",
+    "ci_method": "bootstrap over files with replacement, percentile 95% CI"
+  }
+}
