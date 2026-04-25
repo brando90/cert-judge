@@ -1,0 +1,93 @@
+{
+  "experiment": "exp17_property_human_analysis",
+  "input_summary": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_multi_judge_human_sets/summary.json",
+  "label_set": "pass2",
+  "n_judges": 7,
+  "per_property_correlations": [
+    {
+      "property": "P1_identity",
+      "spearman_r": -0.25,
+      "spearman_perm_p": 0.5974805038992201,
+      "pearson_r": 0.20091518526397253,
+      "pearson_perm_p": 0.6844631073785243
+    },
+    {
+      "property": "P2_bug_rank",
+      "spearman_r": 0.7857142857142859,
+      "spearman_perm_p": 0.047390521895620874,
+      "pearson_r": 0.7223476756864385,
+      "pearson_perm_p": 0.059988002399520096
+    },
+    {
+      "property": "P3_weak_mono",
+      "spearman_r": 0.9456108576893005,
+      "spearman_perm_p": 0.004199160167966407,
+      "pearson_r": 0.9209321692865498,
+      "pearson_perm_p": 0.001799640071985603
+    },
+    {
+      "property": "P4_stability",
+      "spearman_r": -0.22454435656953595,
+      "spearman_perm_p": 0.6308738252349531,
+      "pearson_r": 0.2205728785953316,
+      "pearson_perm_p": 0.6384723055388922
+    }
+  ],
+  "partial_correlations": [
+    {
+      "property": "P1_identity",
+      "partial_pearson_r": 0.5532152529822427,
+      "partial_pearson_perm_p": 0.2001599680063987,
+      "partial_spearman_r": 0.5714285714285715,
+      "partial_spearman_perm_p": 0.20255948810237953
+    },
+    {
+      "property": "P2_bug_rank",
+      "partial_pearson_r": -0.5122064448684607,
+      "partial_pearson_perm_p": 0.24055188962207558,
+      "partial_spearman_r": -0.4642857142857144,
+      "partial_spearman_perm_p": 0.29994001199760045
+    },
+    {
+      "property": "P3_weak_mono",
+      "partial_pearson_r": 0.7713320199437405,
+      "partial_pearson_perm_p": 0.038992201559688064,
+      "partial_spearman_r": 0.642857142857143,
+      "partial_spearman_perm_p": 0.13737252549490103
+    },
+    {
+      "property": "P4_stability",
+      "partial_pearson_r": -0.6354410114957927,
+      "partial_pearson_perm_p": 0.1201759648070386,
+      "partial_spearman_r": -0.3571428571428572,
+      "partial_spearman_perm_p": 0.4399120175964807
+    }
+  ],
+  "regression": {
+    "r2": 0.929022555913934,
+    "r2_perm_p": 0.09458108378324336,
+    "betas": [
+      {
+        "property": "P1_identity",
+        "beta_std": 1.046769745898153,
+        "beta_perm_p": 0.7192561487702459
+      },
+      {
+        "property": "P2_bug_rank",
+        "beta_std": -1.3371561900755038,
+        "beta_perm_p": 0.7570485902819436
+      },
+      {
+        "property": "P3_weak_mono",
+        "beta_std": 1.931600782312499,
+        "beta_perm_p": 0.4963007398520296
+      },
+      {
+        "property": "P4_stability",
+        "beta_std": -0.42739168492577106,
+        "beta_perm_p": 0.639872025594881
+      }
+    ]
+  },
+  "bad_judge_gap": null
+}
