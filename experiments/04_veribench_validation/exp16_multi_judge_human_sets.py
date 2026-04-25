@@ -58,8 +58,14 @@ Do NOT evaluate semantic correctness or theorem meaning.
 Score ONLY based on superficial lexical/format overlap:
 - high score if tokens/phrases look similar
 - low score if wording/structure differs
+Reference implementation:
+{reference_impl}
+
+Generated theorem:
+{generated_theorem}
+
 Return ONLY a JSON object:
-{"score": <float 0.0 to 1.0>, "reasoning": "<short reason>"}
+{{"score": <float 0.0 to 1.0>, "reasoning": "<short reason>"}}
 """
 
 
@@ -563,11 +569,37 @@ def main() -> int:
 
     # Trend per label set
     trend_by_set: Dict[str, dict] = {}
-    x1 = np.asarray([r["cert_index"] for r in judge_rows], dtype=float)
-    x2 = np.asarray([r["cert_index_v2"] for r in judge_rows], dtype=float)
+    x1_all = np.asarray([r["cert_index"] for r in judge_rows], dtype=float)
+    x2_all = np.asarray([r["cert_index_v2"] for r in judge_rows], dtype=float)
     for set_name in ["pass1", "pass2", "avg"]:
-        y = np.asarray([r[f"human_spearman_r_{set_name}"] for r in judge_rows], dtype=float)
+        y_all = np.asarray([r[f"human_spearman_r_{set_name}"] for r in judge_rows], dtype=float)
+        mask = np.isfinite(x1_all) & np.isfinite(x2_all) & np.isfinite(y_all)
+        x1 = x1_all[mask]
+        x2 = x2_all[mask]
+        y = y_all[mask]
+        if len(y) < 4:
+            nan_trend = {
+                "spearman_r": float("nan"),
+                "spearman_ci_lo": float("nan"),
+                "spearman_ci_hi": float("nan"),
+                "spearman_perm_p": float("nan"),
+                "pearson_r": float("nan"),
+                "pearson_ci_lo": float("nan"),
+                "pearson_ci_hi": float("nan"),
+                "pearson_perm_p": float("nan"),
+                "kendall_tau": float("nan"),
+                "kendall_ci_lo": float("nan"),
+                "kendall_ci_hi": float("nan"),
+                "kendall_perm_p": float("nan"),
+            }
+            trend_by_set[set_name] = {
+                "n_used_judges": int(len(y)),
+                "trend_v1": dict(nan_trend),
+                "trend_v2": dict(nan_trend),
+            }
+            continue
         trend_by_set[set_name] = {
+            "n_used_judges": int(len(y)),
             "trend_v1": _compute_trend(x1, y, args.bootstrap_iters, args.perm_iters, args.seed + 200),
             "trend_v2": _compute_trend(x2, y, args.bootstrap_iters, args.perm_iters, args.seed + 300),
         }
