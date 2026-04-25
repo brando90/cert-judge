@@ -1,0 +1,98 @@
+{
+  "experiment": "exp12_cross_judge_ensemble",
+  "judge_mode": "api",
+  "n_repeats": 3,
+  "n_files": 3,
+  "judges": [
+    {
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "model": "gpt-5.3-codex",
+      "prompt_name": "P1_BASELINE"
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P2_FORMAL",
+      "model": "gpt-5.3-codex",
+      "prompt_name": "P2_FORMAL"
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+      "model": "gpt-5.3-codex",
+      "prompt_name": "P4_CHECKLIST"
+    }
+  ],
+  "pass_threshold": 0.8,
+  "best_config_by_variance_objective": {
+    "config_name": "base::gpt-5.3-codex|P2_FORMAL",
+    "identity_mean": 0.376667,
+    "identity_std_across_items": 0.527857,
+    "bug_spearman_r": -0.732807,
+    "bug_spearman_p": 0.001886,
+    "bug_pearson_r": -0.739656,
+    "bug_pearson_p": 0.001622,
+    "bug_weak_mono_pct": 33.333333,
+    "mean_cross_judge_std": 0.0,
+    "threshold_flip_rate": 1.0
+  },
+  "leaderboard": [
+    {
+      "config_name": "base::gpt-5.3-codex|P2_FORMAL",
+      "identity_mean": 0.376667,
+      "identity_std_across_items": 0.527857,
+      "bug_spearman_r": -0.732807,
+      "bug_spearman_p": 0.001886,
+      "bug_pearson_r": -0.739656,
+      "bug_pearson_p": 0.001622,
+      "bug_weak_mono_pct": 33.333333,
+      "mean_cross_judge_std": 0.0,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "config_name": "base::gpt-5.3-codex|P1_BASELINE",
+      "identity_mean": 0.357778,
+      "identity_std_across_items": 0.530003,
+      "bug_spearman_r": -0.745868,
+      "bug_spearman_p": 0.001409,
+      "bug_pearson_r": -0.796561,
+      "bug_pearson_p": 0.000379,
+      "bug_weak_mono_pct": 33.333333,
+      "mean_cross_judge_std": 0.0,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "config_name": "base::gpt-5.3-codex|P4_CHECKLIST",
+      "identity_mean": 0.06,
+      "identity_std_across_items": 0.103923,
+      "bug_spearman_r": -0.693162,
+      "bug_spearman_p": 0.004167,
+      "bug_pearson_r": -0.766084,
+      "bug_pearson_p": 0.000867,
+      "bug_weak_mono_pct": 0.0,
+      "mean_cross_judge_std": 0.0,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "config_name": "ensemble::mean",
+      "identity_mean": 0.264815,
+      "identity_std_across_items": 0.386951,
+      "bug_spearman_r": -0.743827,
+      "bug_spearman_p": 0.001477,
+      "bug_pearson_r": -0.810169,
+      "bug_pearson_p": 0.00025,
+      "bug_weak_mono_pct": 33.333333,
+      "mean_cross_judge_std": 0.09267,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "config_name": "ensemble::median",
+      "identity_mean": 0.357778,
+      "identity_std_across_items": 0.530003,
+      "bug_spearman_r": -0.756918,
+      "bug_spearman_p": 0.001087,
+      "bug_pearson_r": -0.814474,
+      "bug_pearson_p": 0.000218,
+      "bug_weak_mono_pct": 33.333333,
+      "mean_cross_judge_std": 0.096656,
+      "threshold_flip_rate": 1.0
+    }
+  ]
+}

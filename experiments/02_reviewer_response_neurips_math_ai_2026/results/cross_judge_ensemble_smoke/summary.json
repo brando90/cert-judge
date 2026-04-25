@@ -1,0 +1,81 @@
+{
+  "experiment": "exp12_cross_judge_ensemble",
+  "judge_mode": "local",
+  "n_repeats": 3,
+  "n_files": 2,
+  "judges": [
+    {
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "model": "gpt-5.3-codex",
+      "prompt_name": "P1_BASELINE"
+    },
+    {
+      "judge_id": "claude-sonnet-4-20250514|P4_CHECKLIST",
+      "model": "claude-sonnet-4-20250514",
+      "prompt_name": "P4_CHECKLIST"
+    }
+  ],
+  "pass_threshold": 0.8,
+  "best_config_by_variance_objective": {
+    "config_name": "base::gpt-5.3-codex|P1_BASELINE",
+    "identity_mean": 0.955861,
+    "identity_std_across_items": 0.060531,
+    "bug_spearman_r": -0.888957,
+    "bug_spearman_p": 0.000581,
+    "bug_pearson_r": -0.795041,
+    "bug_pearson_p": 0.005979,
+    "bug_weak_mono_pct": 100.0,
+    "mean_cross_judge_std": 0.0,
+    "threshold_flip_rate": 1.0
+  },
+  "leaderboard": [
+    {
+      "config_name": "base::gpt-5.3-codex|P1_BASELINE",
+      "identity_mean": 0.955861,
+      "identity_std_across_items": 0.060531,
+      "bug_spearman_r": -0.888957,
+      "bug_spearman_p": 0.000581,
+      "bug_pearson_r": -0.795041,
+      "bug_pearson_p": 0.005979,
+      "bug_weak_mono_pct": 100.0,
+      "mean_cross_judge_std": 0.0,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "config_name": "base::claude-sonnet-4-20250514|P4_CHECKLIST",
+      "identity_mean": 0.955861,
+      "identity_std_across_items": 0.060531,
+      "bug_spearman_r": -0.888957,
+      "bug_spearman_p": 0.000581,
+      "bug_pearson_r": -0.795041,
+      "bug_pearson_p": 0.005979,
+      "bug_weak_mono_pct": 100.0,
+      "mean_cross_judge_std": 0.0,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "config_name": "ensemble::mean",
+      "identity_mean": 0.955861,
+      "identity_std_across_items": 0.060531,
+      "bug_spearman_r": -0.888957,
+      "bug_spearman_p": 0.000581,
+      "bug_pearson_r": -0.795041,
+      "bug_pearson_p": 0.005979,
+      "bug_weak_mono_pct": 100.0,
+      "mean_cross_judge_std": 0.0,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "config_name": "ensemble::median",
+      "identity_mean": 0.955861,
+      "identity_std_across_items": 0.060531,
+      "bug_spearman_r": -0.888957,
+      "bug_spearman_p": 0.000581,
+      "bug_pearson_r": -0.795041,
+      "bug_pearson_p": 0.005979,
+      "bug_weak_mono_pct": 100.0,
+      "mean_cross_judge_std": 0.0,
+      "threshold_flip_rate": 1.0
+    }
+  ]
+}

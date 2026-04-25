@@ -1,0 +1,76 @@
+{
+  "experiment": "exp10_prompt_template_ablation",
+  "model": "gpt-5.3-codex",
+  "judge_mode": "api",
+  "n_repeats": 3,
+  "n_files": 3,
+  "prompt_names": [
+    "P1_BASELINE",
+    "P2_FORMAL",
+    "P4_CHECKLIST",
+    "P8_STRICT_B"
+  ],
+  "pass_threshold": 0.8,
+  "best_prompt_by_variance_objective": {
+    "prompt_name": "P2_FORMAL",
+    "identity_mean": 0.769444,
+    "identity_std_across_items": 0.401887,
+    "bug_spearman_r": -0.743827,
+    "bug_spearman_p": 0.001477,
+    "bug_pearson_r": -0.774345,
+    "bug_pearson_p": 0.000702,
+    "bug_weak_mono_pct": 33.333333,
+    "mean_repeat_std": 0.028804,
+    "threshold_flip_rate": 1.0
+  },
+  "leaderboard": [
+    {
+      "prompt_name": "P2_FORMAL",
+      "identity_mean": 0.769444,
+      "identity_std_across_items": 0.401887,
+      "bug_spearman_r": -0.743827,
+      "bug_spearman_p": 0.001477,
+      "bug_pearson_r": -0.774345,
+      "bug_pearson_p": 0.000702,
+      "bug_weak_mono_pct": 33.333333,
+      "mean_repeat_std": 0.028804,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "prompt_name": "P8_STRICT_B",
+      "identity_mean": 0.809722,
+      "identity_std_across_items": 0.320758,
+      "bug_spearman_r": -0.590089,
+      "bug_spearman_p": 0.020578,
+      "bug_pearson_r": -0.698546,
+      "bug_pearson_p": 0.003768,
+      "bug_weak_mono_pct": 0.0,
+      "mean_repeat_std": 0.03646,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "prompt_name": "P4_CHECKLIST",
+      "identity_mean": 0.714722,
+      "identity_std_across_items": 0.423803,
+      "bug_spearman_r": -0.668518,
+      "bug_spearman_p": 0.006438,
+      "bug_pearson_r": -0.758862,
+      "bug_pearson_p": 0.001037,
+      "bug_weak_mono_pct": 0.0,
+      "mean_repeat_std": 0.050801,
+      "threshold_flip_rate": 1.0
+    },
+    {
+      "prompt_name": "P1_BASELINE",
+      "identity_mean": 0.759444,
+      "identity_std_across_items": 0.381536,
+      "bug_spearman_r": -0.723106,
+      "bug_spearman_p": 0.002317,
+      "bug_pearson_r": -0.754064,
+      "bug_pearson_p": 0.001164,
+      "bug_weak_mono_pct": 0.0,
+      "mean_repeat_std": 0.090426,
+      "threshold_flip_rate": 1.0
+    }
+  ]
+}
