@@ -68,6 +68,29 @@ Return ONLY a JSON object:
 {{"score": <float 0.0 to 1.0>, "reasoning": "<short reason>"}}
 """
 
+BAD_FORMAT_BIAS_PROMPT = """You are a style-and-format grader.
+Compare generated theorem text to the reference implementation text.
+Do NOT reason about semantic correctness.
+Score based on:
+- visual formatting similarity
+- line/indentation similarity
+- naming/token overlap
+- similar theorem statement shape
+Reference implementation:
+{reference_impl}
+
+Generated theorem:
+{generated_theorem}
+
+Return ONLY a JSON object:
+{{"score": <float 0.0 to 1.0>, "reasoning": "<short reason>"}}
+"""
+
+BAD_PROMPTS: Dict[str, str] = {
+    "BAD_STRINGY": BAD_STRINGY_PROMPT,
+    "BAD_FORMAT_BIAS": BAD_FORMAT_BIAS_PROMPT,
+}
+
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="EXP16 multi-judge trend across pass1/pass2/avg human labels")
@@ -89,7 +112,7 @@ def parse_args() -> argparse.Namespace:
             "llm:gpt-5.3-codex:P8_STRICT_B,"
             "llm:gpt-5.3-codex:P4_CHECKLIST,"
             "llm:gpt-5.3-codex:P1_BASELINE,"
-            "llm_bad:gpt-5.3-codex:na,"
+            "llm_bad:gpt-5.3-codex:BAD_STRINGY,"
             "llm:gpt-4o-mini:P8_STRICT_B,"
             "llm:gpt-4o-mini:P4_CHECKLIST,"
             "editdist:e1:na,"
@@ -115,8 +138,11 @@ def _parse_judges(raw: str) -> List[JudgeSpec]:
                 raise ValueError(f"Unknown prompt name in judge spec: {prompt_name}")
             judge_id = f"{model}|{prompt_name}"
         elif kind == "llm_bad":
-            judge_id = f"{model}|BAD_STRINGY"
-            prompt_name = "BAD_STRINGY"
+            if prompt_name.lower() == "na":
+                prompt_name = "BAD_STRINGY"
+            if prompt_name not in BAD_PROMPTS:
+                raise ValueError(f"Unknown llm_bad prompt name: {prompt_name}. Choices: {sorted(BAD_PROMPTS)}")
+            judge_id = f"{model}|{prompt_name}"
         elif kind in {"editdist", "random"}:
             suffix = "" if model in {"", "na"} else f"_{model}"
             judge_id = f"{kind}{suffix}"
@@ -203,7 +229,7 @@ def _score_once(spec: JudgeSpec, gold: str, cand: str, repeats: int, seed: int) 
             reference_impl=gold,
             model=spec.model,
             n_repeats=repeats,
-            prompt_template=BAD_STRINGY_PROMPT,
+            prompt_template=BAD_PROMPTS[spec.prompt_name],
             cache_namespace=f"exp16_bad:{spec.judge_id}",
         )
     if spec.kind == "editdist":
