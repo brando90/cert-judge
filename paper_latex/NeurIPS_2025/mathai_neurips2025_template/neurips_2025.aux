@@ -24,7 +24,6 @@
 \@writefile{toc}{\contentsline {paragraph}{Code and formal-spec evaluation.}{2}{section*.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Overview of \textsc  {VeriBench}.}{2}{section*.5}\protected@file@percent }
 \citation{TongZhang2024CodeJudge,Zhuo2024ICEScore}
-\citation{Li2024TrustLLMJudgments,Kocmi2024HumanVsLLM}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology: A Certification Protocol for LLM Judges}{3}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Why is an LLM judge needed for theorem-quality scoring?}{3}{section*.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{P1 — Identity \& Consistency.}{3}{section*.7}\protected@file@percent }
@@ -32,25 +31,44 @@
 \@writefile{toc}{\contentsline {paragraph}{P3 — Monotonicity to Missing Specs.}{3}{section*.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{P4 — Prompt Stability \& Semantic Invariance.}{3}{section*.10}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Certification Protocol.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decision-threshold calibration (Exp13).}{3}{section*.12}\protected@file@percent }
+\citation{Li2024TrustLLMJudgments,Kocmi2024HumanVsLLM}
 \citation{khattab2024dspy,cheng2024trace,chen2021evaluating}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:judge_identity}{{1a}{4}{Identity (Reflexivity)}{figure.caption.12}{}}
-\newlabel{sub@fig:judge_identity}{{a}{4}{Identity (Reflexivity)}{figure.caption.12}{}}
-\newlabel{fig:judge_mono_bugs}{{1b}{4}{Monotonicity vs.\ Bugs}{figure.caption.12}{}}
-\newlabel{sub@fig:judge_mono_bugs}{{b}{4}{Monotonicity vs.\ Bugs}{figure.caption.12}{}}
-\newlabel{fig:judge_mono_specs}{{1c}{4}{Monotonicity vs.\ Missing Specs}{figure.caption.12}{}}
-\newlabel{sub@fig:judge_mono_specs}{{c}{4}{Monotonicity vs.\ Missing Specs}{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {LLM Judge Trustworthiness Sanity Checks.} VeriBench-wide GPT-5.3-Codex API run (\(n_\text  {files}=184\), \(n_\text  {repeats}=3\), with standard-error overlays). \textbf  {(a) Identity:} 736 syntactic-variant pairs yield mean score \(0.792\) (\(\sigma =0.352\)); \textsc  {Style}/\textsc  {Rename} remain high while aggressive \textsc  {Alpha}-renaming is harder. \textbf  {(b) Monotonicity vs.\ Bugs:} 920 ladder points show a negative trend (Pearson \(r=-0.687\), Spearman \(\rho =-0.808\)); full-ladder weak monotonicity is \(52.2\%\). \textbf  {(c) Monotonicity vs.\ Missing Specs:} 920 points show stronger monotonic behavior (Pearson \(r=-0.892\), Spearman \(\rho =-0.899\)); weak monotonicity is \(89.1\%\).}}{4}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:judge_sanity_checks}{{1}{4}{\textbf {LLM Judge Trustworthiness Sanity Checks.} VeriBench-wide GPT-5.3-Codex API run (\(n_\text {files}=184\), \(n_\text {repeats}=3\), with standard-error overlays). \textbf {(a) Identity:} 736 syntactic-variant pairs yield mean score \(0.792\) (\(\sigma =0.352\)); \textsc {Style}/\textsc {Rename} remain high while aggressive \textsc {Alpha}-renaming is harder. \textbf {(b) Monotonicity vs.\ Bugs:} 920 ladder points show a negative trend (Pearson \(r=-0.687\), Spearman \(\rho =-0.808\)); full-ladder weak monotonicity is \(52.2\%\). \textbf {(c) Monotonicity vs.\ Missing Specs:} 920 points show stronger monotonic behavior (Pearson \(r=-0.892\), Spearman \(\rho =-0.899\)); weak monotonicity is \(89.1\%\)}{figure.caption.12}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Identity breakdown for the Codex API run.} The low overall identity mean (\(0.792\)) is primarily driven by aggressive alpha-renaming.}}{4}{table.caption.13}\protected@file@percent }
-\newlabel{tab:codex_identity_variants}{{1}{4}{\textbf {Identity breakdown for the Codex API run.} The low overall identity mean (\(0.792\)) is primarily driven by aggressive alpha-renaming}{table.caption.13}{}}
+\newlabel{fig:judge_identity}{{1a}{4}{Identity (Reflexivity)}{figure.caption.13}{}}
+\newlabel{sub@fig:judge_identity}{{a}{4}{Identity (Reflexivity)}{figure.caption.13}{}}
+\newlabel{fig:judge_mono_bugs}{{1b}{4}{Monotonicity vs.\ Bugs}{figure.caption.13}{}}
+\newlabel{sub@fig:judge_mono_bugs}{{b}{4}{Monotonicity vs.\ Bugs}{figure.caption.13}{}}
+\newlabel{fig:judge_mono_specs}{{1c}{4}{Monotonicity vs.\ Missing Specs}{figure.caption.13}{}}
+\newlabel{sub@fig:judge_mono_specs}{{c}{4}{Monotonicity vs.\ Missing Specs}{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {LLM Judge Trustworthiness Sanity Checks.} VeriBench-wide GPT-5.3-Codex API run (\(n_\text  {files}=184\), \(n_\text  {repeats}=3\), with standard-error overlays). \textbf  {(a) Identity:} 736 syntactic-variant pairs yield mean score \(0.792\) (\(\sigma =0.352\)); \textsc  {Style}/\textsc  {Rename} remain high while aggressive \textsc  {Alpha}-renaming is harder. \textbf  {(b) Monotonicity vs.\ Bugs:} 920 ladder points show a negative trend (Pearson \(r=-0.687\), Spearman \(\rho =-0.808\)); full-ladder weak monotonicity is \(52.2\%\). \textbf  {(c) Monotonicity vs.\ Missing Specs:} 920 points show stronger monotonic behavior (Pearson \(r=-0.892\), Spearman \(\rho =-0.899\)); weak monotonicity is \(89.1\%\).}}{4}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:judge_sanity_checks}{{1}{4}{\textbf {LLM Judge Trustworthiness Sanity Checks.} VeriBench-wide GPT-5.3-Codex API run (\(n_\text {files}=184\), \(n_\text {repeats}=3\), with standard-error overlays). \textbf {(a) Identity:} 736 syntactic-variant pairs yield mean score \(0.792\) (\(\sigma =0.352\)); \textsc {Style}/\textsc {Rename} remain high while aggressive \textsc {Alpha}-renaming is harder. \textbf {(b) Monotonicity vs.\ Bugs:} 920 ladder points show a negative trend (Pearson \(r=-0.687\), Spearman \(\rho =-0.808\)); full-ladder weak monotonicity is \(52.2\%\). \textbf {(c) Monotonicity vs.\ Missing Specs:} 920 points show stronger monotonic behavior (Pearson \(r=-0.892\), Spearman \(\rho =-0.899\)); weak monotonicity is \(89.1\%\)}{figure.caption.13}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Results: Evaluating Agentic Theorem Generation with a Certified Judge}{4}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}New Codex API Sanity Run (April 18, 2026)}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {P4 semantic invariance gaps by variant type.} Mean absolute score gap versus ORIGINAL across semantics-preserving perturbations in the dedicated stability run. The judge is highly invariant to STYLE, moderately sensitive to RENAME/REORDER, and most sensitive to ALPHA variants.}}{5}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:p4_semantic_invariance}{{2}{5}{\textbf {P4 semantic invariance gaps by variant type.} Mean absolute score gap versus ORIGINAL across semantics-preserving perturbations in the dedicated stability run. The judge is highly invariant to STYLE, moderately sensitive to RENAME/REORDER, and most sensitive to ALPHA variants}{figure.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Identity breakdown for the Codex API run.} The low overall identity mean (\(0.792\)) is primarily driven by aggressive alpha-renaming.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:codex_identity_variants}{{1}{5}{\textbf {Identity breakdown for the Codex API run.} The low overall identity mean (\(0.792\)) is primarily driven by aggressive alpha-renaming}{table.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {P4 semantic invariance gaps by variant type.} Mean absolute score gap versus ORIGINAL across semantics-preserving perturbations in the dedicated stability run. The judge is highly invariant to STYLE, moderately sensitive to RENAME/REORDER, and most sensitive to ALPHA variants.}}{5}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:p4_semantic_invariance}{{2}{5}{\textbf {P4 semantic invariance gaps by variant type.} Mean absolute score gap versus ORIGINAL across semantics-preserving perturbations in the dedicated stability run. The judge is highly invariant to STYLE, moderately sensitive to RENAME/REORDER, and most sensitive to ALPHA variants}{figure.caption.15}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Stability and Semantic Invariance (April 20, 2026)}{5}{subsection.4.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {Theorem Quality Scores.} Average normalized scores in \textsc  {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots  ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark.}}{5}{table.caption.15}\protected@file@percent }
-\newlabel{tab:theorem_quality_table_split}{{2}{5}{\textbf {Theorem Quality Scores.} Average normalized scores in \textsc {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Threshold Calibration Sweep (Exp13, 176 files)}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {Threshold calibration summary (Exp13, full 176-file run).} Calibration yields a modest but consistent reduction in decision flips at stricter thresholds, with moderate coverage loss. Ranking behavior is unchanged across thresholds (\(\rho _{\text  {bug}}=-0.790\) at all \(t\)).}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:exp13_threshold_sweep}{{2}{6}{\textbf {Threshold calibration summary (Exp13, full 176-file run).} Calibration yields a modest but consistent reduction in decision flips at stricter thresholds, with moderate coverage loss. Ranking behavior is unchanged across thresholds (\(\rho _{\text {bug}}=-0.790\) at all \(t\))}{table.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Decision calibration curve from Exp13.} As threshold increases, pass rate declines smoothly; flip rate improves modestly and reaches its minimum at \(t=0.85\) in this run. This supports a calibration-first framing: improve binary reliability via threshold selection while preserving score-order semantics.}}{6}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:exp13_threshold_curve}{{3}{6}{\textbf {Decision calibration curve from Exp13.} As threshold increases, pass rate declines smoothly; flip rate improves modestly and reaches its minimum at \(t=0.85\) in this run. This supports a calibration-first framing: improve binary reliability via threshold selection while preserving score-order semantics}{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Human Alignment at Final Robust Settings (Exp16/Exp17)}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment design.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Main result (judge-level trend).}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge-level effect sizes.}{6}{section*.21}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \textbf  {Exp16 final robust trend: certification \(\rightarrow \) human alignment (Spearman, permutation \(p\)).} Each row uses all \(8\) judges. v1 is consistently stronger than v2 under the final robust setup.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:exp16_final_trend}{{3}{7}{\textbf {Exp16 final robust trend: certification \(\rightarrow \) human alignment (Spearman, permutation \(p\)).} Each row uses all \(8\) judges. v1 is consistently stronger than v2 under the final robust setup}{table.caption.20}{}}
+\newlabel{fig:exp16_scatter_avg}{{4a}{7}{Exp16 (avg labels): certification score vs.\ human correlation}{figure.caption.22}{}}
+\newlabel{sub@fig:exp16_scatter_avg}{{a}{7}{Exp16 (avg labels): certification score vs.\ human correlation}{figure.caption.22}{}}
+\newlabel{fig:exp17_property_avg}{{4b}{7}{Exp17 (avg labels): per-property correlation with human agreement}{figure.caption.22}{}}
+\newlabel{sub@fig:exp17_property_avg}{{b}{7}{Exp17 (avg labels): per-property correlation with human agreement}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Final robust human-alignment results.} Left: judge-level scaling trend (Exp16) using averaged human labels. Right: property-level decomposition (Exp17), showing P3 (weak monotonicity) and P2 (bug-rank monotonicity) as the strongest positive predictors of human alignment.}}{7}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:exp16_exp17_main}{{4}{7}{\textbf {Final robust human-alignment results.} Left: judge-level scaling trend (Exp16) using averaged human labels. Right: property-level decomposition (Exp17), showing P3 (weak monotonicity) and P2 (bug-rank monotonicity) as the strongest positive predictors of human alignment}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Property-level interpretation (Exp17).}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Model Validation: Claude Sonnet (Preliminary)}{7}{subsection.4.5}\protected@file@percent }
 \citation{chen2021evaluating}
 \citation{rice1953}
 \citation{zhou2025graders}
@@ -63,6 +81,9 @@
 \bibcite{Chan2024ChatEval}{{5}{2024}{{Chan et~al.}}{{}}}
 \bibcite{chen2021evaluating}{{6}{2021}{{Chen et~al.}}{{}}}
 \bibcite{cheng2024trace}{{7}{2024}{{Cheng et~al.}}{{Cheng, Nie, and Swaminathan}}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \textbf  {Theorem Quality Scores.} Average normalized scores in \textsc  {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots  ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark.}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:theorem_quality_table_split}{{4}{8}{\textbf {Theorem Quality Scores.} Average normalized scores in \textsc {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion, Limitations, and Future Work}{8}{section.5}\protected@file@percent }
 \bibcite{ding2025citations}{{8}{2025}{{Ding et~al.}}{{}}}
 \bibcite{kenton2024oversight}{{9}{2024}{{Kenton et~al.}}{{}}}
 \bibcite{khattab2024dspy}{{10}{2024}{{Khattab et~al.}}{{Khattab, Singhvi, Maheshwari, Zhang, Santhanam, Vardhamanan, Haq, Sharma, Joshi, Moazam, Miller, Zaharia, and Potts}}}
@@ -72,7 +93,6 @@
 \bibcite{Liu2023GEval}{{14}{2023}{{Liu et~al.}}{{}}}
 \bibcite{ma2024hypocompass}{{15}{2024}{{Ma et~al.}}{{}}}
 \bibcite{miranda2025veribench}{{16}{2025}{{Miranda et~al.}}{{Miranda, Zhou, Nie, Obbad, Aniva, Fronsdal, Kirk, Soylu, Yu, Li, and Koyejo}}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion, Limitations, and Future Work}{6}{section.5}\protected@file@percent }
 \bibcite{naik2024ticoder}{{17}{2024}{{Naik et~al.}}{{}}}
 \bibcite{nie2025uqassessinglanguagemodels}{{18}{2025{}}{{Nie et~al.}}{{Nie, Liu, Wang, Sun, Liu, Shi, Yao, Zhang, Ng, Zou, Koyejo, Choi, Liang, and Muennighoff}}}
 \bibcite{uq2025}{{19}{2025{}}{{Nie et~al.}}{{Nie, Liu, Wang, Sun, Liu, Shi, Yao, Zhang, Ng, Zou, Koyejo, Choi, Liang, and Muennighoff}}}
@@ -102,18 +122,13 @@
 \citation{cheng2024trace}
 \citation{khattab2024dspy}
 \citation{aniva2025pantograph}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work (Cont.)}{10}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Autoformalization.}{10}{section*.26}\protected@file@percent }
 \citation{kenton2024oversight,Chan2024ChatEval}
 \citation{kenton2024oversight}
 \citation{zheng2024scrit}
 \citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
 \citation{salaudeen2025measurement}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work (Cont.)}{8}{appendix.A}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Autoformalization.}{8}{section*.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Related Work: Scalable Oversight}{8}{subsection.A.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Scalable Oversight with LLM Judges}{8}{section*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Self-Improving Critics.}{8}{section*.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Certifying Judges.}{8}{section*.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Validity-Centered Evaluation.}{8}{section*.21}\protected@file@percent }
 \citation{Zhuo2024ICEScore,TongZhang2024CodeJudge}
 \citation{robertson2025stepbystep}
 \citation{zhou2024donttrustverify}
@@ -124,17 +139,20 @@
 \citation{Zheng2023MTBench,Liu2023GEval}
 \citation{zhang2025goldstandardsepistemicensemble}
 \citation{salaudeen2024imagenot}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Related Work: Scalable Oversight}{11}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scalable Oversight with LLM Judges}{11}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Improving Critics.}{11}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Certifying Judges.}{11}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Validity-Centered Evaluation.}{11}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Robust Evaluation without Ground Truth.}{11}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formal Methods as Oversight.}{11}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agentic Iterative Pipelines.}{11}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks for Judge Reliability.}{11}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluating Autoformalization with Reference-Free Judges.}{11}{section*.35}\protected@file@percent }
 \citation{bach2022trusthci}
 \citation{ding2025citations}
 \citation{wang2024trustcode}
 \citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
-\@writefile{toc}{\contentsline {paragraph}{Robust Evaluation without Ground Truth.}{9}{section*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Formal Methods as Oversight.}{9}{section*.23}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Agentic Iterative Pipelines.}{9}{section*.24}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Benchmarks for Judge Reliability.}{9}{section*.25}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Evaluating Autoformalization with Reference-Free Judges.}{9}{section*.26}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}HCI for Solving Scalable Oversight}{9}{subsection.A.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{From more evaluation to \emph  {human-centered} oversight.}{9}{section*.27}\protected@file@percent }
 \citation{naik2024ticoder}
 \citation{yan2024intelliexplain}
 \citation{ma2024hypocompass}
@@ -143,21 +161,41 @@
 \citation{bursuc2025benchmarkvericodingformallyverified}
 \citation{Zheng2023MTBench,Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
 \citation{robertson2025stepbystep}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}HCI for Solving Scalable Oversight}{12}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{From more evaluation to \emph  {human-centered} oversight.}{12}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hybrid human$\leftrightarrow $AI evaluation.}{12}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interfaces that \emph  {operationalize} oversight.}{12}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Applying HCI patterns to formal specs/theorems.}{12}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Vericode}{12}{subsection.A.3}\protected@file@percent }
 \citation{nie2025uqassessinglanguagemodels,uq2025}
-\@writefile{toc}{\contentsline {paragraph}{Hybrid human$\leftrightarrow $AI evaluation.}{10}{section*.28}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Interfaces that \emph  {operationalize} oversight.}{10}{section*.29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Applying HCI patterns to formal specs/theorems.}{10}{section*.30}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Vericode}{10}{subsection.A.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {B}Discussion (Cont.)}{10}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Discussion (Cont.)}{13}{appendix.B}\protected@file@percent }
 \citation{robertson2025stepbystep}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Future Work (cont.)}{12}{appendix.C}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {D}Why Judge Scores Are Specification-Relative}{12}{appendix.D}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Rice’s Theorem.}{12}{section*.31}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Impact on the Gold Standard and the Judge.}{12}{section*.32}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {E}Judge Certification: Additional Plots}{12}{appendix.E}\protected@file@percent }
-\newlabel{app:judge-cert}{{E}{12}{Judge Certification: Additional Plots}{appendix.E}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {(P3) Monotonicity w.r.t.\ missing specifications.} Candidate scores decrease as more theorems/tests are withheld. We retain both model variants to show robustness of the trend; 3.7’s small non-monotonicity motivated the simplified rubric used in the main results.}}{13}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:app-missing-specs}{{3}{13}{\textbf {(P3) Monotonicity w.r.t.\ missing specifications.} Candidate scores decrease as more theorems/tests are withheld. We retain both model variants to show robustness of the trend; 3.7’s small non-monotonicity motivated the simplified rubric used in the main results}{figure.caption.33}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {(P2) Non-Monotonicity w.r.t.\ cumulative bugs (Claude 3.5 Sonnet).} Scores drop as more semantic bugs are injected (Pearson \(r=-0.714\), Spearman \(\rho =-0.709\), \(R^2=0.509\)); the higher noise with the initial “theorem-equivalence” prompt led us to simplify the rubric used for the final judge in the main paper.}}{13}{figure.caption.34}\protected@file@percent }
-\newlabel{fig:app-bugs}{{4}{13}{\textbf {(P2) Non-Monotonicity w.r.t.\ cumulative bugs (Claude 3.5 Sonnet).} Scores drop as more semantic bugs are injected (Pearson \(r=-0.714\), Spearman \(\rho =-0.709\), \(R^2=0.509\)); the higher noise with the initial “theorem-equivalence” prompt led us to simplify the rubric used for the final judge in the main paper}{figure.caption.34}{}}
-\gdef \@abspage@last{13}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Future Work (cont.)}{14}{appendix.C}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}Why Judge Scores Are Specification-Relative}{14}{appendix.D}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rice’s Theorem.}{14}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Impact on the Gold Standard and the Judge.}{14}{section*.41}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {(P3) Monotonicity w.r.t.\ missing specifications.} Candidate scores decrease as more theorems/tests are withheld. We retain both model variants to show robustness of the trend; 3.7’s small non-monotonicity motivated the simplified rubric used in the main results.}}{15}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:app-missing-specs}{{5}{15}{\textbf {(P3) Monotonicity w.r.t.\ missing specifications.} Candidate scores decrease as more theorems/tests are withheld. We retain both model variants to show robustness of the trend; 3.7’s small non-monotonicity motivated the simplified rubric used in the main results}{figure.caption.42}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Judge Certification: Additional Plots}{15}{appendix.E}\protected@file@percent }
+\newlabel{app:judge-cert}{{E}{15}{Judge Certification: Additional Plots}{appendix.E}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Final Robust Human-Alignment Appendix}{15}{appendix.F}\protected@file@percent }
+\newlabel{app:exp16-exp17}{{F}{15}{Final Robust Human-Alignment Appendix}{appendix.F}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.1}Naive Codex-Style Blind Baseline}{15}{subsection.F.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \textbf  {(P2) Non-Monotonicity w.r.t.\ cumulative bugs (Claude 3.5 Sonnet).} Scores drop as more semantic bugs are injected (Pearson \(r=-0.714\), Spearman \(\rho =-0.709\), \(R^2=0.509\)); the higher noise with the initial “theorem-equivalence” prompt led us to simplify the rubric used for the final judge in the main paper.}}{16}{figure.caption.43}\protected@file@percent }
+\newlabel{fig:app-bugs}{{6}{16}{\textbf {(P2) Non-Monotonicity w.r.t.\ cumulative bugs (Claude 3.5 Sonnet).} Scores drop as more semantic bugs are injected (Pearson \(r=-0.714\), Spearman \(\rho =-0.709\), \(R^2=0.509\)); the higher noise with the initial “theorem-equivalence” prompt led us to simplify the rubric used for the final judge in the main paper}{figure.caption.43}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \textbf  {Judge-level certification-to-human trend across all human label sets (Exp16).} The strongest and most stable effect is for trend-v1 certification, with averaged labels giving the largest effect size.}}{16}{figure.caption.44}\protected@file@percent }
+\newlabel{fig:app-exp16-all}{{7}{16}{\textbf {Judge-level certification-to-human trend across all human label sets (Exp16).} The strongest and most stable effect is for trend-v1 certification, with averaged labels giving the largest effect size}{figure.caption.44}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.2}Human-Human Agreement Ceiling Context}{16}{subsection.F.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.3}Cross-Model Validation Status (Full vs Preliminary)}{16}{subsection.F.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.4}Failure Modes Found by Certification (Not Hidden)}{16}{subsection.F.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \textbf  {Property-wise human alignment diagnostics (Exp17).} P3 weak monotonicity is consistently the strongest predictor across label sets; P2 is second strongest; P1/P4 are weaker as standalone predictors at this scale.}}{17}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:app-exp17-all}{{8}{17}{\textbf {Property-wise human alignment diagnostics (Exp17).} P3 weak monotonicity is consistently the strongest predictor across label sets; P2 is second strongest; P1/P4 are weaker as standalone predictors at this scale}{figure.caption.45}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces \textbf  {Unplotted diagnostic added for this version:} judge-wise human Spearman across pass1/pass2/avg. GPT-5.3-Codex variants remain above weaker baselines on most label sets; pass-to-pass variation is visible and motivates reporting all three label sets.}}{17}{figure.caption.46}\protected@file@percent }
+\newlabel{fig:app-judge-labelset-bars}{{9}{17}{\textbf {Unplotted diagnostic added for this version:} judge-wise human Spearman across pass1/pass2/avg. GPT-5.3-Codex variants remain above weaker baselines on most label sets; pass-to-pass variation is visible and motivates reporting all three label sets}{figure.caption.46}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces \textbf  {Naive blind baseline vs.\ human labels (0--5 scale).} \(\rho _s\): Spearman, \(r\): Pearson, \(\tau \): Kendall; MAE is absolute error on the 0--5 scale. This baseline is included as a sanity-check negative control and is not used for final ranking claims.}}{18}{table.caption.47}\protected@file@percent }
+\newlabel{tab:app-naive-blind-baseline}{{5}{18}{\textbf {Naive blind baseline vs.\ human labels (0--5 scale).} \(\rho _s\): Spearman, \(r\): Pearson, \(\tau \): Kendall; MAE is absolute error on the 0--5 scale. This baseline is included as a sanity-check negative control and is not used for final ranking claims}{table.caption.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces \textbf  {Human-human agreement ceiling context.} Inter-pass human agreement is moderate, so judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}}{18}{table.caption.48}\protected@file@percent }
+\newlabel{tab:app-human-human-ceiling}{{6}{18}{\textbf {Human-human agreement ceiling context.} Inter-pass human agreement is moderate, so judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context}{table.caption.48}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces \textbf  {Cross-model validation status.} This paper's inferential claims are grounded in full-scale runs; Claude results are explicitly preliminary and not used as primary evidence.}}{18}{table.caption.49}\protected@file@percent }
+\newlabel{tab:app-cross-model-status}{{7}{18}{\textbf {Cross-model validation status.} This paper's inferential claims are grounded in full-scale runs; Claude results are explicitly preliminary and not used as primary evidence}{table.caption.49}{}}
+\gdef \@abspage@last{18}

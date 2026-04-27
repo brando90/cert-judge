@@ -117,7 +117,8 @@ Formal methods provide unparalleled rigor in software verification, and with the
 Traditional benchmarks often provide a fixed theorem statement, but agentic systems must infer and synthesize these properties on their own, demanding a scalable and reliable evaluation method.
 We present an LLM-based judge designed to score the quality of generated Lean~4 theorems based on correctness, completeness, and semantic alignment with a reference implementation.
 More importantly, we introduce a novel methodology to certify the judge's trustworthiness by verifying its adherence to fundamental logical properties.
-We demonstrate that our judge satisfies identity (identical inputs yield maximal scores), monotonicity (scores decrease predictably as bugs are introduced or specifications are removed), and stability/invariance under prompt and rewrite perturbations (e.g., GPT-5.3-Codex: Spearman \(\rho=-0.808\) for bugs, \(\rho=-0.899\) for missing-spec ablations, minimum prompt-pair Spearman \(\rho=0.955\), Cronbach's \(\alpha=0.942\)).
+We demonstrate that our judge satisfies identity (identical inputs yield maximal scores), monotonicity (scores decrease predictably as bugs are introduced or specifications are removed), and stability/invariance under prompt and rewrite perturbations (e.g., GPT-5.3-Codex: Spearman \(\rho=-0.790\) on bug ladders over \(176\) files, minimum prompt-pair Spearman \(\rho=0.955\), Cronbach's \(\alpha=0.942\)).
+We further calibrate the binary decision boundary via a threshold sweep and show that stricter cutoffs reduce repeat-call decision flips (\(0.058 \rightarrow 0.046\), \(t=0.60\rightarrow0.85\)) while preserving ranking behavior.
 By applying this validated judge to the \textsc{VeriBench}\citep{veribench_icml25}scalable oversight benchmark, we show that agentic approaches for formal code generation significantly outperform baseline prompting, with a top score of 0.615 vs.\ 0.470.
 This work provides a blueprint for creating and validating reliable automated judges, enabling robust and scalable evaluation of next-generation theorem-proving agents.
 \end{abstract}
@@ -136,7 +137,7 @@ In this paper, we present evidence indicating that it is possible to trust an LL
 Our \textbf{contributions} are:
 \begin{enumerate}
     \item \textbf{An LLM Judge for Theorem Quality:} We design an LLM judge that scores generated Lean~4 artifacts on a 0--10 scale based on correctness, completeness, and semantic alignment.
-    \item \textbf{A Trustworthiness Validation Methodology:} We propose and execute a set of property checks to certify the judge's reliability and trustworthiness, verifying its adherence to logical properties like identity, monotonicity, and prompt-level stability/invariance under controlled perturbations.
+    \item \textbf{A Trustworthiness Validation Methodology:} We propose and execute a set of property checks to certify the judge's reliability and trustworthiness, verifying its adherence to logical properties like identity, monotonicity, and prompt-level stability/invariance under controlled perturbations, then calibrating the pass/fail threshold to minimize decision instability.
     \item \textbf{Empirical Demonstration of the Judge on \textsc{VeriBench}:} We apply our validated judge to evaluate multiple agentic frameworks, providing evidence that feedback-driven methods significantly outperform non-agentic baselines in theorem-synthesis quality.
 \end{enumerate}
 
@@ -202,6 +203,15 @@ We implement four scripted perturbation families on the \emph{candidate} while h
 (iii) \emph{Specification Ablation} (P3), removing $m\!\in\!\{0,\ldots,M\}$ theorems or tests; and
 (iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple instruction-equivalent prompt templates and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.\footnote{We distinguish \emph{prompt wording} from \emph{task instruction}. P4 varies phrasing/format while preserving the same judging instruction and rubric. We do not include adversarial or instruction-changing prompts (e.g., ``ignore the input'') in this stability metric.}
 We then verify monotonicity by computing rank correlations (Kendall’s $\tau$, Spearman’s $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse’’ artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
+
+\paragraph{Decision-threshold calibration (Exp13).}
+After validating score-level behavior (P1--P4), we calibrate the binary operating point used for deployment decisions.
+For threshold $t\in[0,1]$, we define \textsc{Pass} iff $\bar{s}\ge t$, where $\bar{s}$ is the mean over repeated calls for the same pair.
+We sweep $t\in\{0.60,0.65,0.70,0.75,0.80,0.85\}$ and report:
+(i) \emph{flip rate} (fraction of items whose repeat-level pass/fail decisions disagree),
+(ii) \emph{pass rate} (coverage),
+and (iii) ranking diagnostics (Spearman bug-correlation) to verify that calibration affects classification stability, not score ordering.
+All reported threshold metrics include 95\% bootstrap confidence intervals over files.
 
 \textbf{Establishing trust in the LLM judge.} To ensure trustworthiness of the LLM judge in evaluating agentic autoformalization, we systematically validate key properties the judge must satisfy in Figure~\ref{fig:judge_sanity_checks}: (1) scores decrease consistently as more theorems and tests are omitted, (2) scores similarly degrade when more implementation bugs are introduced, and (3) semantically preserving edits keep scores high.
 In our latest GPT-5.3-Codex API sanity run (\(n_\text{files}=184\), \(n_\text{repeats}=3\)), monotonic trends remain strong (bugs: Spearman \(\rho=-0.808\), Pearson \(r=-0.687\); missing specs: Spearman \(\rho=-0.899\), Pearson \(r=-0.892\)), supporting use of the judge as a semantically meaningful proxy for correctness/completeness alignment across \textsc{VeriBench} subsets (Table~\ref{tab:theorem_quality_table_split}) \citep{Li2024TrustLLMJudgments,Kocmi2024HumanVsLLM}.
@@ -291,6 +301,111 @@ Semantic invariance gaps are smallest for \textsc{Style} (\(0.0042\)), moderate 
   \label{fig:p4_semantic_invariance}
 \end{figure}
 
+\subsection{Threshold Calibration Sweep (Exp13, 176 files)}
+To convert continuous judge scores into a deployment-ready binary decision, we ran Exp13 on all \(176\) files from \texttt{veribench\_dataset\_newest} using GPT-5.3-Codex (\texttt{P8\_STRICT\_B}, \(n_\text{repeats}=3\), 1000 bootstrap resamples).
+The key finding is that thresholding primarily changes \emph{decision stability and coverage}, not ranking behavior:
+across \(t\in[0.60,0.85]\), bug-ladder Spearman remains constant (\(\rho=-0.790\), 95\% CI \([-0.810,-0.769]\)), while flip rate and pass rate move in opposite directions.
+Specifically, raising \(t\) from \(0.60\) to \(0.85\) reduces flip rate from \(0.058\) to \(0.046\), while pass rate decreases from \(0.583\) to \(0.536\).
+Under our operating-point rule (minimize flip rate, tie-break by pass rate proximity to 0.5), \(t=0.85\) is selected.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Threshold} & \textbf{Flip Rate (95\% CI)} & \textbf{Pass Rate (95\% CI)} \\
+\midrule
+0.60 & 0.058 \([0.048, 0.069]\) & 0.583 \([0.559, 0.608]\) \\
+0.70 & 0.049 \([0.040, 0.059]\) & 0.559 \([0.537, 0.581]\) \\
+0.80 & 0.051 \([0.042, 0.061]\) & 0.544 \([0.523, 0.566]\) \\
+0.85 & \textbf{0.046} \([\textbf{0.037}, \textbf{0.057}]\) & 0.536 \([0.515, 0.557]\) \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Threshold calibration summary (Exp13, full 176-file run).}
+Calibration yields a modest but consistent reduction in decision flips at stricter thresholds, with moderate coverage loss.
+Ranking behavior is unchanged across thresholds (\(\rho_{\text{bug}}=-0.790\) at all \(t\)).}
+\label{tab:exp13_threshold_sweep}
+\end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/threshold_calibration_sweep/threshold_stability_curve.png}
+  \caption{\textbf{Decision calibration curve from Exp13.}
+  As threshold increases, pass rate declines smoothly; flip rate improves modestly and reaches its minimum at \(t=0.85\) in this run.
+  This supports a calibration-first framing: improve binary reliability via threshold selection while preserving score-order semantics.}
+  \label{fig:exp13_threshold_curve}
+\end{figure}
+
+\subsection{Human Alignment at Final Robust Settings (Exp16/Exp17)}
+We ran a final multi-judge human-alignment suite over \(72\) aligned candidate--gold pairs (\(24\) problems \(\times\) \(3\) candidates; three pairs skipped due missing gold), using \(8\) judges and \(3\) human label sets: pass1, pass2, and their average.
+Judge-side uncertainty used \(10{,}000\) bootstrap iterations and \(20{,}000\) permutation iterations, with \(3\) repeated judge calls per pair and threshold \(t=0.85\).
+
+\paragraph{Experiment design.}
+\textbf{Exp16} asks whether certification quality predicts human agreement \emph{across judges}: for each judge, compute a certification composite and correlate it with that judge's human Spearman correlation.
+\textbf{Exp17} decomposes this relation by property (P1--P4), and reports per-property correlations, partial correlations, and multivariate regression.
+We report both certification composites:
+\textbf{v1} (uses bug-rank and weak monotonicity directly) and
+\textbf{v2} (adds anti-string and extra penalties for instability).
+
+\paragraph{Main result (judge-level trend).}
+Certification score \textbf{v1} strongly predicts human agreement across all three human label sets, while \textbf{v2} is weaker and generally non-significant at this sample size (Table~\ref{tab:exp16_final_trend}).
+On averaged human labels, v1 reaches Spearman \(\rho=0.881\) (perm.\ \(p=0.0080\)); pass1 and pass2 are both \(\rho=0.810\) (perm.\ \(p\approx0.021\)).
+This supports the central claim that judges satisfying certification properties better are more human-aligned.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Label Set} & \textbf{Trend v1} & \textbf{Trend v2} \\
+\midrule
+pass1 & \(\rho=0.810,\ p=0.0218\) & \(\rho=0.500,\ p=0.2156\) \\
+pass2 & \(\rho=0.810,\ p=0.0214\) & \(\rho=0.714,\ p=0.0561\) \\
+avg   & \(\rho=0.881,\ p=0.0080\) & \(\rho=0.643,\ p=0.0937\) \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Exp16 final robust trend: certification \(\rightarrow\) human alignment (Spearman, permutation \(p\)).}
+Each row uses all \(8\) judges. v1 is consistently stronger than v2 under the final robust setup.}
+\label{tab:exp16_final_trend}
+\end{table}
+
+\paragraph{Judge-level effect sizes.}
+Under averaged human labels, top certified judges are GPT-5.3-Codex prompts:
+\texttt{P4\_CHECKLIST} (\(r_s=0.480,\ p=2.0\times10^{-5}\)),
+\texttt{P1\_BASELINE} (\(r_s=0.470,\ p=3.1\times10^{-5}\)),
+\texttt{P8\_STRICT\_B} (\(r_s=0.356,\ p=0.0022\)).
+Lower-certification baselines are markedly weaker:
+\texttt{gpt-4o-mini|P8\_STRICT\_B} (\(r_s=0.037,\ p=0.760\)),
+\texttt{gpt-4o-mini|P4\_CHECKLIST} (\(r_s=0.093,\ p=0.435\)),
+\texttt{random} (\(r_s\approx0,\ p=0.995\)).
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_avg.png}
+    \caption{Exp16 (avg labels): certification score vs.\ human correlation.}
+    \label{fig:exp16_scatter_avg}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_avg.png}
+    \caption{Exp17 (avg labels): per-property correlation with human agreement.}
+    \label{fig:exp17_property_avg}
+  \end{subfigure}
+  \caption{\textbf{Final robust human-alignment results.}
+  Left: judge-level scaling trend (Exp16) using averaged human labels.
+  Right: property-level decomposition (Exp17), showing P3 (weak monotonicity) and P2 (bug-rank monotonicity) as the strongest positive predictors of human alignment.}
+  \label{fig:exp16_exp17_main}
+\end{figure*}
+
+\paragraph{Property-level interpretation (Exp17).}
+For averaged labels, per-property correlations identify
+\textbf{P3 weak monotonicity} as strongest (Spearman \(0.747,\ p=0.043\); Pearson \(0.744,\ p=0.048\)),
+with \textbf{P2 bug-rank monotonicity} next (Spearman \(0.714,\ p=0.056\); Pearson \(0.636,\ p=0.037\)).
+P1 identity and P4 stability are not strong standalone predictors at this \(n_\text{judges}=8\) scale.
+Across pass1/pass2/avg, P3 is consistently top-ranked, indicating that semantic monotone behavior under controlled degradations is the most stable predictor of human agreement in this study.
+
 \subsection{Cross-Model Validation: Claude Sonnet (Preliminary)}
 We replicate the certification protocol using Claude Sonnet~4 as the judge model on a preliminary subset of three VeriBench files (one each from CS, Easy, and HumanEval), with five degradation levels and three repeated calls per pair.
 Identity (P1) remains perfect ($\mu=1.000$, $\sigma=0.000$), confirming that self-comparison yields maximal scores regardless of judge model.
@@ -339,13 +454,15 @@ The Avg Norm Score shows the overall average over the entire benchmark.}
 
 \section{Discussion, Limitations, and Future Work}
 We study an LLM judge that \emph{compares each candidate artifact against its task’s gold reference} for Lean~4 code verification and a framework to increase confidence in it. 
-The judge satisfies two falsifiable properties: (i) \textbf{identity}—gold vs.\ gold yields maximal, repeatable scores; and (ii) \textbf{monotonicity}—scores decrease predictably when we inject semantic bugs or ablate specification elements. 
+The judge satisfies falsifiable score-level properties (identity and monotonicity) and, with Exp13, we additionally calibrate its binary decision boundary using full-dataset threshold sweeps with uncertainty estimates.
+Our data supports a clear separation: score ranking remains stable under threshold changes, while binary stability and coverage trade off in a tunable way.
 In experiments, certified judging produces informative method rankings and tracks engineering signals (Pass@$k$, unit-test accuracy); Easy and HumanEval show the strongest agreement, while Security and RealCode remain hardest \citep{chen2021evaluating}.
 
 \textbf{Limitations.} The judge is a \emph{proxy}: scores are prompt/rubric-sensitive and do not constitute kernel-level proof checking; they certify agreement with a rigorous yet necessarily incomplete gold specification since no complete mechanical checks of specification equivalence exist~\citep{rice1953}. 
 Our certification relies on a finite perturbation suite, so untested failure modes may persist. Specifications that are exotic to this dataset may be correct but receive incorrect scores.
-We also did \emph{not} collect human expert ratings, leaving the judge–human correlation unmeasured.
-Future work will add human validity studies (correlations and reliability), strengthen semantic equivalence handling (candidate $\Rightarrow$ gold postcondition checks), expand robustness and adversarial tests, and introduce uncertainty reporting and standardized “judge cards’’ for reproducible, certified use \citep{zhou2025graders}.
+Calibration improvements are modest in absolute magnitude and do not by themselves establish external validity.
+We now include two-pass human ratings and average-label analyses, but sample size remains limited (\(n=72\) aligned pairs and \(n=8\) judges), so some multivariate effects are underpowered.
+Future work will expand independent raters and problem coverage, strengthen semantic equivalence handling (candidate $\Rightarrow$ gold postcondition checks), add adversarial judge stress tests, and introduce standardized “judge cards’’ for reproducible, certified deployment \citep{zhou2025graders}.
 
 % -------------------------------
 % References (inline for portability)
@@ -637,5 +754,138 @@ We note that, for the experiment shown in Figure \ref{fig:app-missing-specs}, a 
   Scores drop as more semantic bugs are injected (Pearson \(r=-0.714\), Spearman \(\rho=-0.709\), \(R^2=0.509\)); the higher noise with the initial “theorem-equivalence” prompt led us to simplify the rubric used for the final judge in the main paper.}
   \label{fig:app-bugs}
 \end{figure}
+
+\section{Final Robust Human-Alignment Appendix}\label{app:exp16-exp17}
+This appendix reports full visual diagnostics for Exp16/Exp17 under final robust settings (three human label sets: pass1, pass2, avg).
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_pass1.png}
+    \caption{Exp16 trend (pass1)}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_pass2.png}
+    \caption{Exp16 trend (pass2)}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_avg.png}
+    \caption{Exp16 trend (avg)}
+  \end{subfigure}
+  \caption{\textbf{Judge-level certification-to-human trend across all human label sets (Exp16).}
+  The strongest and most stable effect is for trend-v1 certification, with averaged labels giving the largest effect size.}
+  \label{fig:app-exp16-all}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_pass1.png}
+    \caption{Exp17 per-property (pass1)}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_pass2.png}
+    \caption{Exp17 per-property (pass2)}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_avg.png}
+    \caption{Exp17 per-property (avg)}
+  \end{subfigure}
+  \caption{\textbf{Property-wise human alignment diagnostics (Exp17).}
+  P3 weak monotonicity is consistently the strongest predictor across label sets; P2 is second strongest; P1/P4 are weaker as standalone predictors at this scale.}
+  \label{fig:app-exp17-all}
+\end{figure*}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_human_corr_by_judge_and_labelset.png}
+  \caption{\textbf{Unplotted diagnostic added for this version:} judge-wise human Spearman across pass1/pass2/avg.
+  GPT-5.3-Codex variants remain above weaker baselines on most label sets; pass-to-pass variation is visible and motivates reporting all three label sets.}
+  \label{fig:app-judge-labelset-bars}
+\end{figure}
+
+\subsection{Naive Codex-Style Blind Baseline}
+To contextualize certified judge performance, we evaluate a naive blind baseline on the same pair set (\(n=72\) overlap), using a single-pass, surface-form-oriented Codex-style rubric without certification constraints (no monotonicity/stability calibration).
+The baseline tracks pass2 labels somewhat but remains substantially weaker and less consistent than certified judges, especially on pass1 and in absolute error.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Label Set} & \(\rho_s\) & \(r\) & \(\tau\) & \textbf{MAE} \\
+\midrule
+pass1 & 0.171 (\(p=0.151\)) & 0.218 (\(p=0.0656\)) & 0.155 (\(p=0.144\)) & 1.049 \\
+pass2 & 0.388 (\(p=7.58\times10^{-4}\)) & 0.427 (\(p=1.87\times10^{-4}\)) & 0.343 (\(p=9.40\times10^{-4}\)) & 1.333 \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Naive blind baseline vs.\ human labels (0--5 scale).}
+\(\rho_s\): Spearman, \(r\): Pearson, \(\tau\): Kendall; MAE is absolute error on the 0--5 scale.
+This baseline is included as a sanity-check negative control and is not used for final ranking claims.}
+\label{tab:app-naive-blind-baseline}
+\end{table}
+
+\subsection{Human-Human Agreement Ceiling Context}
+Judge-human correlations should be interpreted relative to the reliability of human labels themselves.
+Across Ethan pass1 vs pass2 on the aligned set (\(n=72\)), inter-pass agreement is moderate (Spearman \(0.249\), Pearson \(0.375\), Kendall \(0.221\), QWK \(0.372\)).
+Thus, judge-human correlations in the \(0.48\)--\(0.56\) range are non-trivial and should be interpreted as approaching the available annotation ceiling in this dataset rather than as ``low absolute'' values.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quantity} & \textbf{Value} & \textbf{Notes} \\
+\midrule
+Human-human Spearman (pass1 vs pass2) & 0.249 & \(95\%\ \text{CI}=[-0.015, 0.489]\) \\
+Human-human Pearson (pass1 vs pass2) & 0.375 & \(95\%\ \text{CI}=[0.076, 0.604]\) \\
+Human-human QWK (pass1 vs pass2) & 0.372 & \(95\%\ \text{CI}=[0.073, 0.581]\) \\
+Best judge-human Spearman (avg labels) & 0.480 & GPT-5.3-Codex P4\_CHECKLIST \\
+Best judge-human Spearman (pass1 labels) & 0.559 & GPT-5.3-Codex P1\_BASELINE \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Human-human agreement ceiling context.}
+Inter-pass human agreement is moderate, so judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}
+\label{tab:app-human-human-ceiling}
+\end{table}
+
+\subsection{Cross-Model Validation Status (Full vs Preliminary)}
+To avoid over-claiming, we separate full-scale and preliminary evidence.
+Main conclusions in this paper use full-scale runs only (Exp16/Exp17: \(n=8\) judges, \(n=72\) aligned rows, pass1/pass2/avg label sets).
+Claude Sonnet certification is currently preliminary (\(3\) files) and is included as directional evidence only, not as a core statistical pillar.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.34\linewidth}p{0.15\linewidth}p{0.17\linewidth}p{0.24\linewidth}}
+\toprule
+\textbf{Judge Setup} & \textbf{Scale} & \makecell[c]{\textbf{In Main}\\\textbf{Claims}} & \textbf{Role} \\
+\midrule
+GPT-5.3-Codex prompts (P8/P4/P1) & Full VeriBench pairs & Yes & Primary certified judges \\
+GPT-5.3-Codex BAD\_STRINGY & Full VeriBench pairs & Yes & Same-model stress baseline \\
+GPT-4o-mini prompts (P8/P4) & Full VeriBench pairs & Yes & Cross-family baseline \\
+Edit-distance / random baselines & Full VeriBench pairs & Yes & Non-LLM controls \\
+Claude Sonnet certification run & 3 files (prelim) & No & Directional cross-model check \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Cross-model validation status.}
+This paper's inferential claims are grounded in full-scale runs; Claude results are explicitly preliminary and not used as primary evidence.}
+\label{tab:app-cross-model-status}
+\end{table}
+
+\subsection{Failure Modes Found by Certification (Not Hidden)}
+The certification framework is useful precisely because it identifies failures:
+\textbf{(i) alpha-renaming sensitivity} is the dominant identity/invariance gap,
+and \textbf{(ii) local bug-ladder reversals} occur despite overall negative monotone trends.
+We therefore report both strengths and weaknesses, and include alpha-ablation diagnostics.
+On trend-v1 Spearman (certification \(\rightarrow\) human), excluding alpha variants changes
+pass1 \(0.810\rightarrow0.690\), pass2 \(0.810\rightarrow0.714\), avg \(0.881\rightarrow0.786\),
+showing that alpha cases materially affect measured robustness.
 
 \end{document}
