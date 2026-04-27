@@ -95,12 +95,18 @@ BAD_PROMPTS: Dict[str, str] = {
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="EXP16 multi-judge trend across pass1/pass2/avg human labels")
     p.add_argument("--pass1-tsv", type=Path, default=DEFAULT_DATA_DIR / "ethan_human_scores_20260425.tsv")
-    p.add_argument("--pass2-tsv", type=Path, default=DEFAULT_DATA_DIR / "ethan_human_scores_second_pass_20260425.tsv")
+    p.add_argument("--pass2-tsv", type=Path, default=DEFAULT_DATA_DIR / "ethan_human_scores_ORIGINAL.tsv")
     p.add_argument("--avg-tsv", type=Path, default=DEFAULT_DATA_DIR / "ethan_human_scores_avg_two_passes_20260425.tsv")
     p.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     p.add_argument("--veribench-root", type=Path, default=DEFAULT_VERIBENCH_ROOT)
     p.add_argument("--generated-agents-dir", type=Path, default=DEFAULT_GENERATED_AGENTS_DIR)
     p.add_argument("--judge-repeats", type=int, default=3)
+    p.add_argument(
+        "--repeat-agg",
+        choices=["mean", "median"],
+        default="mean",
+        help="Aggregate repeat scores with mean (default) or median for robustness.",
+    )
     p.add_argument("--threshold", type=float, default=0.85)
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--bootstrap-iters", type=int, default=5000)
@@ -240,6 +246,17 @@ def _score_once(spec: JudgeSpec, gold: str, cand: str, repeats: int, seed: int) 
         score = _det_random_score(spec.judge_id, gold, cand, seed=seed)
         return {"mean": score, "std": 0.0, "scores": [score] * repeats, "cached": False, "reasoning": "deterministic random baseline"}
     raise ValueError(spec.kind)
+
+
+def _aggregate_repeat_scores(result: dict, repeat_agg: str) -> Tuple[float, List[float]]:
+    reps = [float(x) for x in result.get("scores", [])]
+    if not reps:
+        m = float(result.get("mean", float("nan")))
+        reps = [m]
+    arr = np.asarray(reps, dtype=float)
+    if repeat_agg == "median":
+        return (float(np.median(arr)), reps)
+    return (float(np.mean(arr)), reps)
 
 
 def _bootstrap_ci_stat(x: Sequence[float], y: Sequence[float], stat_fn, n_boot: int, seed: int) -> Tuple[float, float]:
@@ -467,8 +484,7 @@ def main() -> int:
         # Human row scoring once for union.
         for key, row in text_rows.items():
             result = _score_once(spec, row["gold"], row["candidate"], repeats=args.judge_repeats, seed=args.seed)
-            mean_s = float(result["mean"])
-            reps = [float(x) for x in result.get("scores", [mean_s])]
+            mean_s, reps = _aggregate_repeat_scores(result, args.repeat_agg)
             score_map[key] = mean_s
             decs = [x >= args.threshold for x in reps]
             flip_flags.append(len(set(decs)) > 1)
@@ -489,8 +505,7 @@ def main() -> int:
             gold = prow["gold"]
             for v in generate_variants(gold):
                 result = _score_once(spec, gold, v["code"], repeats=args.judge_repeats, seed=args.seed)
-                mean_s = float(result["mean"])
-                reps = [float(x) for x in result.get("scores", [mean_s])]
+                mean_s, reps = _aggregate_repeat_scores(result, args.repeat_agg)
                 identity_scores.append(mean_s)
                 identity_levs.append(float(levenshtein_normalized(gold, v["code"])))
                 identity_probe_scores.append(mean_s)
@@ -511,8 +526,7 @@ def main() -> int:
             ladder_codes: List[str] = []
             for level, cand in enumerate(build_bug_ladder(gold)):
                 result = _score_once(spec, gold, cand, repeats=args.judge_repeats, seed=args.seed)
-                mean_s = float(result["mean"])
-                reps = [float(x) for x in result.get("scores", [mean_s])]
+                mean_s, reps = _aggregate_repeat_scores(result, args.repeat_agg)
                 ladder_scores.append(mean_s)
                 ladder_codes.append(cand)
                 bug_levels_flat.append(level)
@@ -636,6 +650,8 @@ def main() -> int:
         "n_union_rows": len(text_rows),
         "n_skipped_pairs": len(skipped_pairs),
         "threshold": args.threshold,
+        "judge_repeats": int(args.judge_repeats),
+        "repeat_agg": args.repeat_agg,
         "judges": [j.judge_id for j in judges],
         "label_sets": {k: len(v) for k, v in label_sets.items()},
         "trend_by_set": trend_by_set,

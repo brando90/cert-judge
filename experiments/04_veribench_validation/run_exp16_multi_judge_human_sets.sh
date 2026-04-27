@@ -9,12 +9,13 @@ export MPLCONFIGDIR="${MPLCONFIGDIR:-$SCRIPT_DIR/.mplconfig}"
 mkdir -p "$MPLCONFIGDIR"
 
 PASS1_TSV="${PASS1_TSV:-$SCRIPT_DIR/data/ethan_human_scores_20260425.tsv}"
-PASS2_TSV="${PASS2_TSV:-$SCRIPT_DIR/data/ethan_human_scores_second_pass_20260425.tsv}"
+PASS2_TSV="${PASS2_TSV:-$SCRIPT_DIR/data/ethan_human_scores_ORIGINAL.tsv}"
 AVG_TSV="${AVG_TSV:-$SCRIPT_DIR/data/ethan_human_scores_avg_two_passes_20260425.tsv}"
 OUT_DIR="${OUT_DIR:-$SCRIPT_DIR/results_exp16_multi_judge_human_sets}"
 VERIBENCH_ROOT="${VERIBENCH_ROOT:-$SCRIPT_DIR/../../data/veribench_dataset/lean_src/veribench}"
 GENERATED_AGENTS_DIR="${GENERATED_AGENTS_DIR:-$SCRIPT_DIR/../../data/generated_agents}"
 JUDGE_REPEATS="${JUDGE_REPEATS:-3}"
+REPEAT_AGG="${REPEAT_AGG:-mean}"
 THRESHOLD="${THRESHOLD:-0.85}"
 BOOTSTRAP_ITERS="${BOOTSTRAP_ITERS:-5000}"
 PERM_ITERS="${PERM_ITERS:-10000}"
@@ -27,7 +28,7 @@ echo "pass1_tsv=$PASS1_TSV"
 echo "pass2_tsv=$PASS2_TSV"
 echo "avg_tsv=$AVG_TSV"
 echo "out_dir=$OUT_DIR"
-echo "judge_repeats=$JUDGE_REPEATS threshold=$THRESHOLD"
+echo "judge_repeats=$JUDGE_REPEATS repeat_agg=$REPEAT_AGG threshold=$THRESHOLD"
 echo "bootstrap_iters=$BOOTSTRAP_ITERS perm_iters=$PERM_ITERS seed=$SEED"
 echo "judges=$JUDGES"
 echo "============================================================"
@@ -40,6 +41,7 @@ python -u exp16_multi_judge_human_sets.py \
   --veribench-root "$VERIBENCH_ROOT" \
   --generated-agents-dir "$GENERATED_AGENTS_DIR" \
   --judge-repeats "$JUDGE_REPEATS" \
+  --repeat-agg "$REPEAT_AGG" \
   --threshold "$THRESHOLD" \
   --bootstrap-iters "$BOOTSTRAP_ITERS" \
   --perm-iters "$PERM_ITERS" \

@@ -31,7 +31,7 @@ DEFAULT_OUT_DIR = REPO_ROOT / "experiments" / "04_veribench_validation" / "resul
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="EXP18A human label reliability")
     p.add_argument("--pass1-tsv", type=Path, default=DEFAULT_DATA_DIR / "ethan_human_scores_20260425.tsv")
-    p.add_argument("--pass2-tsv", type=Path, default=DEFAULT_DATA_DIR / "ethan_human_scores_second_pass_20260425.tsv")
+    p.add_argument("--pass2-tsv", type=Path, default=DEFAULT_DATA_DIR / "ethan_human_scores_ORIGINAL.tsv")
     p.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     p.add_argument("--bootstrap-iters", type=int, default=10000)
     p.add_argument("--seed", type=int, default=42)
@@ -213,4 +213,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

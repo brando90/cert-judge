@@ -21,7 +21,7 @@ OUT_DIR="${OUT_DIR:-$SCRIPT_DIR/results_final_stat_reliability_suite}"
 
 # Human labels
 OLD_RATINGS="${OLD_RATINGS:-$SCRIPT_DIR/data/ethan_human_scores_20260425.tsv}"
-NEW_RATINGS="${NEW_RATINGS:-$SCRIPT_DIR/data/ethan_human_scores_second_pass_20260425.tsv}"
+NEW_RATINGS="${NEW_RATINGS:-$SCRIPT_DIR/data/ethan_human_scores_ORIGINAL.tsv}"
 
 # Inference settings
 BOOTSTRAP_ITERS="${BOOTSTRAP_ITERS:-10000}"

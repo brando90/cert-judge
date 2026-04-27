@@ -10,12 +10,13 @@ mkdir -p "$MPLCONFIGDIR"
 
 # Human label inputs
 OLD_RATINGS="${OLD_RATINGS:-$SCRIPT_DIR/data/ethan_human_scores_20260425.tsv}"                # pass1
-NEW_RATINGS="${NEW_RATINGS:-$SCRIPT_DIR/data/ethan_human_scores_second_pass_20260425.tsv}"    # pass2
+NEW_RATINGS="${NEW_RATINGS:-$SCRIPT_DIR/data/ethan_human_scores_ORIGINAL.tsv}"                  # pass2
 AVG_RATINGS="${AVG_RATINGS:-$SCRIPT_DIR/data/ethan_human_scores_avg_two_passes_20260425.tsv}" # regenerated below
 
 # Main experiment settings
 JUDGES="${JUDGES:-llm:gpt-5.3-codex:P8_STRICT_B,llm:gpt-5.3-codex:P4_CHECKLIST,llm:gpt-5.3-codex:P1_BASELINE,llm_bad:gpt-5.3-codex:na,llm:gpt-4o-mini:P8_STRICT_B,llm:gpt-4o-mini:P4_CHECKLIST,editdist:e1:na,random:r1:na}"
 JUDGE_REPEATS="${JUDGE_REPEATS:-3}"
+REPEAT_AGG="${REPEAT_AGG:-mean}"
 THRESHOLD="${THRESHOLD:-0.85}"
 BOOTSTRAP_ITERS="${BOOTSTRAP_ITERS:-10000}"
 PERM_ITERS="${PERM_ITERS:-20000}"
@@ -26,7 +27,7 @@ EXP17_PREFIX="${EXP17_PREFIX:-$SCRIPT_DIR/results_exp17_final_robust}"
 
 # Export so inline python (os.environ) can read these values.
 export OLD_RATINGS NEW_RATINGS AVG_RATINGS
-export JUDGES JUDGE_REPEATS THRESHOLD BOOTSTRAP_ITERS PERM_ITERS SEED
+export JUDGES JUDGE_REPEATS REPEAT_AGG THRESHOLD BOOTSTRAP_ITERS PERM_ITERS SEED
 export EXP16_OUT EXP17_PREFIX
 
 echo "============================================================"
@@ -36,7 +37,7 @@ echo "new_ratings=$NEW_RATINGS"
 echo "avg_ratings=$AVG_RATINGS"
 echo "exp16_out=$EXP16_OUT"
 echo "exp17_prefix=$EXP17_PREFIX"
-echo "judge_repeats=$JUDGE_REPEATS threshold=$THRESHOLD seed=$SEED"
+echo "judge_repeats=$JUDGE_REPEATS repeat_agg=$REPEAT_AGG threshold=$THRESHOLD seed=$SEED"
 echo "bootstrap_iters=$BOOTSTRAP_ITERS perm_iters=$PERM_ITERS"
 echo "judges=$JUDGES"
 echo "============================================================"
@@ -91,6 +92,7 @@ python -u exp16_multi_judge_human_sets.py \
   --avg-tsv "$AVG_RATINGS" \
   --out-dir "$EXP16_OUT" \
   --judge-repeats "$JUDGE_REPEATS" \
+  --repeat-agg "$REPEAT_AGG" \
   --threshold "$THRESHOLD" \
   --bootstrap-iters "$BOOTSTRAP_ITERS" \
   --perm-iters "$PERM_ITERS" \
