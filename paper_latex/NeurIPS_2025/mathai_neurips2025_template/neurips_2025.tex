@@ -888,4 +888,56 @@ On trend-v1 Spearman (certification \(\rightarrow\) human), excluding alpha vari
 pass1 \(0.810\rightarrow0.690\), pass2 \(0.810\rightarrow0.714\), avg \(0.881\rightarrow0.786\),
 showing that alpha cases materially affect measured robustness.
 
+\subsection{Newest Results (Latest Rerun at Appendix Bottom)}
+To reduce judge-call noise, we reran Exp16 with higher repeats and robust repeat aggregation:
+\texttt{JUDGE\_REPEATS=9 REPEAT\_AGG=median BOOTSTRAP\_ITERS=10000 PERM\_ITERS=20000}.
+This run writes to \texttt{results\_exp16\_final\_robust\_r9\_median}.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Label Set} & \textbf{v1 Spearman} & \textbf{v2 Spearman} \\
+\midrule
+pass1 & \(0.762\) (\(p=0.0372\), CI \([-0.139, 1.000]\)) & \(0.524\) (\(p=0.1959\), CI \([-0.400, 0.975]\)) \\
+pass2 & \(0.810\) (\(p=0.0222\), CI \([0.291, 1.000]\)) & \(0.571\) (\(p=0.1477\), CI \([-0.231, 0.975]\)) \\
+avg & \(0.762\) (\(p=0.0402\), CI \([0.103, 1.000]\)) & \(0.476\) (\(p=0.2426\), CI \([-0.425, 1.000]\)) \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Latest Exp16 rerun (R9 + median aggregation).}
+Increasing repeats and using median aggregation preserves the v1 trend signal while v2 remains more sensitive at this \(n_\text{judges}=8\) scale.}
+\label{tab:app-latest-r9-median}
+\end{table}
+
+We also generated a low-variance replot package from the same detail rows (\texttt{results\_exp19\_low\_variance\_replot}): a cleaner main monotonicity curve for core judges plus separate failure-mode plots for alpha sensitivity and local bug reversals.
+Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167\), BAD\_STRINGY \(=0.833\), GPT-4o variants \(=0.667\)--\(0.750\), edit-distance/random \(=1.00\).
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_main_monotonicity_lowvar.png}
+    \caption{Main low-variance monotonicity curves (core GPT-5.3 judges, robust repeat aggregation).}
+    \label{fig:app-exp19-main-lowvar}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_alpha_variant_breakdown.png}
+    \caption{Failure-mode isolation: identity variant breakdown with ALPHA shown separately.}
+    \label{fig:app-exp19-alpha-failure}
+  \end{subfigure}
+  \caption{\textbf{EXP19 replot package: cleaner main trend + explicit failure separation.}
+  The left panel is the ``main story'' plot with lower visual variance; the right panel isolates alpha-renaming sensitivity rather than mixing it into the primary monotonicity figure.}
+  \label{fig:app-exp19-main-and-alpha}
+\end{figure*}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_bug_reversal_rates.png}
+  \caption{\textbf{EXP19 failure-mode plot: local bug-ladder reversal rates by judge.}
+  This explicitly surfaces where monotonicity fails locally, separating robustness diagnostics from the primary trend plot.}
+  \label{fig:app-exp19-reversals}
+\end{figure}
+
 \end{document}
