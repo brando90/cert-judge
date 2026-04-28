@@ -19,3 +19,16 @@ Pro1: reframes the contribution as economics of oversight, not yet-another-proxy
 Con1: still requires gold refs for the one-time calibration step (shared with Idea 2). Con2: generalization claim needs hold-out validation (split 12 judges into 8 calibration plus 4 held-out, show JTI predicts held-out human-corr) — about three to four days of work, not yet run. Con3: doesn't go as far as Idea 1's paradigm-shift; doesn't claim humans are insufficient, only that they're expensive.
 ```
 Rewrite paper 2026 version. Git push to main. PR merge to main assign to ethan elyas please.
+Then do this and make sure the paper is clear about the validation validation thing
+```txt
+I think this is a good plan ```Brando — 11:48 AM
+i think we need to adapt the experiments a bit...or this would have been better:
+have the properties correlate with human judgements on some "validation set" of human judgements --> we are allowed to "overfit here" ie do human research optimization over the judge, aggregation, prompt, models, etc
+then test if these properties still correlate give the judge from 1 on a test set of human judgements that are untouched by the "human research optimization"
+idk if we have time to do it...
+I think the current 2 judgements you have @Ethan Hersch we can use them as the "validation"/train for searching for the judge with high corr and low variance
+then I can finish the human judgements protocol and we can collect more human judgements with multiple humans
+and then!
+we can report the "final" human correlation & stability/variance
+I think this is a good plan!``` So we can keep doing what we are doing. We can report for now just the validation errors and admit it's the validation but then later this week produce the new fixed experiments.
+```
