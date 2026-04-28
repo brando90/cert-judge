@@ -1,5 +1,15 @@
 # Experiment 08: P2 bug-ladder with per-x 95% CI error bars
 
+**TLDR:** Re-render the original veribench Figure 6 ("Bug Count vs LLM
+Judge File Equivalence Score") with statistically-honest per-x error
+bars: 15 judge calls per bug-count file, plot mean ± 95% CI (t-based
+primary, percentile bootstrap as ablation that re-uses the raw matrix
+and does **not** re-call the LLM). Pass: per-file Spearman ρ ≤ −0.7.
+Single judge per run; cross-judge overlay is filed as Folder 08b.
+Drop-in figure replaces Fig 6 in `paper_latex/NeurIPS_2025/` and
+`paper_latex/ICML_2026/sections/appendix.tex`. PR title:
+`[Folder 08] P2 bug-ladder with per-x 95% CI error bars + Fig 6 replacement`.
+
 Follow `~/agents-config/INDEX_RULES.md` throughout (writing rules,
 experiment-folder convention, Mega QA workflow, email-via-uutils completion
 rule, PR + QA gating). This experiment is a measurement-rigor complement

@@ -5,6 +5,28 @@ PRIOR to seeing any results. Any deviation observed during execution
 is documented in `REPORT.md` → "Open questions for Ethan", not by
 editing this file.
 
+## Scientific question (locked)
+
+When a single LLM judge is asked the same `(candidate, gold)` query
+multiple times under non-deterministic decoding, how stable is the
+reported P2 monotonicity signal — i.e. does the apparent
+"score ↓ as bug count ↑" trend survive once per-x sampling uncertainty
+is shown as 95% confidence intervals on each bug-count file?
+
+Operational form. For each k ∈ {0..9} on the
+`data/file_equiv_08_19_2025/my_add_file_eq_with_bugs/` ladder, draw
+`num_samples=15` independent judge calls and aggregate per-x mean ±
+95% CI (t-based primary; percentile bootstrap as ablation, re-using
+the same raw matrix). Pass/fail is locked to per-file Spearman
+ρ ≤ −0.7 (matches Folder 07's P2 threshold). A separate finding
+fires if |per-call ρ − per-file ρ| > 0.1, indicating sampling-noise
+dominance over the property signal.
+
+This experiment is the measurement-rigor complement to Folder 07's
+per-judge property sanity checks: it does not redefine P2, it makes
+P2's reported trend statistically defensible by replacing the original
+veribench Figure 6's single-LLM-call scatter with mean ± CI markers.
+
 ## Scope (locked)
 
 Per-x 95% confidence-interval re-plot of the P2 bug-count vs LLM

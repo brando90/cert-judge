@@ -5,6 +5,29 @@ PRIOR to seeing any results. Any deviation observed during execution
 is documented in `REPORT.md` → "Open questions for Ethan", not by
 editing this file.
 
+## Scientific question (locked)
+
+For each judge in the expanded panel, do its individual properties
+behave as the property definitions require, under the canonical
+`(LLM + prompt + n_repeats + aggregation)` judge unit defined in §3 of
+the paper?
+
+A judge passes its property sanity checks iff ALL of the following hold,
+on the data reused from Folder 06's `detail_rows.csv` (Mode A; no new
+LLM-budget spend):
+
+- **P1 Identity:** per-variant score ≥ 0.9 on STYLE, RENAME, REORDER
+  (ALPHA isolated per the halting-problem argument; reported separately,
+  not in pass/fail).
+- **P2 Bug ladder:** per-judge Spearman ρ ≤ −0.7 on the L0..L4 ladder
+  per judge × problem.
+- **P4 Stability:** per-judge median Cronbach's α ≥ 0.9 over the
+  `n_repeats=9` repeat scores per item.
+
+P3 (spec ablation) is **explicitly out of scope** for this folder
+(detail_rows.csv has no `property_spec` row_type) and is filed as
+follow-up Folder 07c.
+
 ## Scope (locked)
 
 Per-judge property sanity checks **for P1, P2, P4 only**.
