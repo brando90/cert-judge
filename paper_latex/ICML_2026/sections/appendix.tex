@@ -95,7 +95,18 @@ Our contribution is a certified, semantics-sensitive judge that enables scalable
 Because specification generation often lacks a unique ground truth, we will extend our oracle-free certification protocol with UQ-style validators, adding cycle-consistency tests (spec to code/docs) alongside our bug and ablation ladders, and enabling abstention when validators disagree to prioritize precision over coverage.
 
 \section{Discussion (Cont.)}
-\textbf{Why Lean 4?} 
+\textbf{Formal methods as scalable oversight.}
+A central concern with LLM-assisted research is that models produce text faster than humans can audit, so trust in the output can erode even when the surface looks correct.
+The concern treats verification as a single unstructured activity: one human eye against a wall of generated tokens.
+With a proof assistant, the activity decomposes.
+The Lean kernel deterministically checks every step of a proof, so what the human must verify is not the proof but a much smaller artifact---the formal statement, its definitions, and its assumptions---and whether they faithfully express the informal claim.
+This is the structural move that makes oversight scalable: the verifier checks the answer, while the human checks the question.
+The premise is timely: autoformalization is improving, language-model-assisted proof search has become usable rather than a demonstration, and the surrounding tooling (\texttt{mathlib4}, Lean's metaprogramming layer, Pantograph, Aesop) has matured to the point where formal verification of nontrivial claims is no longer a niche enterprise.
+This view sharpens, rather than dissolves, the concerns motivating human oversight: shallow reading and unjustified confidence remain failure modes, but the target of human understanding shifts from hundreds of lines of generated argument to a Lean statement together with its definitions and assumptions---a much smaller object, but the one that actually encodes intent.
+Theoretical limits remain---Rice's theorem, the halting problem, and G\"odelian incompleteness bound what any countable formal system can decide---but they constrain what the verifier can settle, not the central oversight claim that humans are best deployed on \emph{asking the right question}.
+For an extended informal discussion of this view, see~\citep{miranda2026formaloversight}.
+
+\textbf{Why Lean 4?}
 Lean 4 is a full fledge programming language and lets VeriBench contain full runnable code and machine-checked proofs in the same dependently-typed language. 
 % \leni{The following sentence should be eliminated. Coq and Isabelle are not inherently less trustworthy}
 % This eliminates the extraction gap that separates proof from execution in systems like Coq to OCaml or Isabelle to SML/Scala -- making Lean 4 more trustworthy. 
