@@ -158,11 +158,8 @@ def main() -> int:
         ax.fill_between(xs, lo, hi, alpha=0.16, color=c)
     ax.set_xlabel("Bug level (L0 clean \u2192 L4 most degraded)")
     ax.set_ylabel("Judge score (robust aggregate)")
-<<<<<<< HEAD
     ax.set_xticks([0, 1, 2, 3, 4])
     ax.set_xticklabels(["0", "1", "2", "3", "4"])
-=======
->>>>>>> ead52147a556eb92c36757636d1413ea9572e989
     ax.set_title(f"EXP19 Main Monotonicity Curves ({args.repeat_agg} over repeats)")
     ax.grid(alpha=0.25)
     ax.legend(frameon=False, fontsize=8)
@@ -265,7 +262,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-<<<<<<< HEAD
-=======
-
->>>>>>> ead52147a556eb92c36757636d1413ea9572e989
