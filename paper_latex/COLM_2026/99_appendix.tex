@@ -80,8 +80,6 @@ Our contribution is a certified, semantics-sensitive judge that enables scalable
 Because specification generation often lacks a unique ground truth, we will extend our oracle-free certification protocol with UQ-style validators, adding cycle-consistency tests (spec to code/docs) alongside our bug and ablation ladders, and enabling abstention when validators disagree to prioritize precision over coverage.
 
 \section{Discussion (Cont.)}
-<<<<<<< HEAD
-=======
 \textbf{Formal methods as scalable oversight.}
 A central concern with LLM-assisted research is that models produce text faster than humans can audit, so trust in the output can erode even when the surface looks correct.
 The concern treats verification as a single unstructured activity: one human eye against a wall of generated tokens.
@@ -93,7 +91,6 @@ This view sharpens, rather than dissolves, the concerns motivating human oversig
 Theoretical limits remain---Rice's theorem, the halting problem, and G\"odelian incompleteness bound what any countable formal system can decide---but they constrain what the verifier can settle, not the central oversight claim that humans are best deployed on \emph{asking the right question}.
 For an extended informal discussion of this view, see~\citep{miranda2026formaloversight}.
 
->>>>>>> ead52147a556eb92c36757636d1413ea9572e989
 \textbf{Why Lean 4?}
 Lean 4 is a full fledge programming language and lets VeriBench contain full runnable code and machine-checked proofs in the same dependently-typed language.
 Ahead-of-time compilation with the Lake toolchain produces fast native binaries, while first-class \texttt{Task} primitives, async I/O, and a thread-pool scheduler enable genuine concurrent programs inside the prover.
