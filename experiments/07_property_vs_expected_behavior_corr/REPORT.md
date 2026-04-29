@@ -21,16 +21,16 @@ P2 ≤ −0.7 (median per-problem ρ), P4 ≥ 0.9 (median per-item α).
 | `gpt-5.3-codex\|P8_STRICT_B`              | 0.999/1.000/0.998 | −0.894 | 1.000 | **PASS** |
 | `gpt-5.3-codex\|P4_CHECKLIST`             | 0.999/1.000/1.000 | −0.866 | 1.000 | **PASS** |
 | `gpt-5.3-codex\|P1_BASELINE`              | 1.000/1.000/1.000 | −0.866 | 1.000 | **PASS** |
-| `editdist_e1`                              | 0.974/0.920/0.893 | **−0.600** | 1.000 | **FAIL (P2)** |
+| `editdist_e1`                              | 0.974/0.920/**0.893** | **−0.600** | 1.000 | **FAIL (P1, P2)** |
 | `random_r1`                                | **0.414/0.451/0.479** | **+0.100** | 1.000 | **FAIL (P1, P2)** |
 
 **7 of 9 judges pass all three sanity checks.** The two failures are
 exactly the baselines that should fail:
 
-- `editdist_e1`: P1 nearly passes (edit-distance is permissive on
-  cosmetic perturbations) but bug-ladder ρ = −0.600 fails the −0.7
-  threshold. This is the canonical "edit-distance is too coarse"
-  finding.
+- `editdist_e1`: P1 fails on REORDER (0.893 < 0.9; line reorderings
+  produce large edit distance even though the theorem is unchanged)
+  and P2 fails (bug-ladder ρ = −0.600 misses the −0.7 gate).
+  Canonical "edit-distance is too coarse" finding.
 - `random_r1`: P1 fails at all variants (mean ~0.45, far below 0.9).
   Bug-ladder ρ ≈ 0 (deterministic-random has no bug-monotonicity
   signal).
