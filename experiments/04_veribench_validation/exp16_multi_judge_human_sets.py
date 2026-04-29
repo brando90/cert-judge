@@ -42,7 +42,10 @@ DEFAULT_DATA_DIR = REPO_ROOT / "experiments" / "04_veribench_validation" / "data
 DEFAULT_OUT_DIR = REPO_ROOT / "experiments" / "04_veribench_validation" / "results_exp16_multi_judge_human_sets"
 DEFAULT_VERIBENCH_ROOT = REPO_ROOT / "data" / "veribench_dataset" / "lean_src" / "veribench"
 DEFAULT_GENERATED_AGENTS_DIR = REPO_ROOT / "data" / "generated_agents"
+<<<<<<< HEAD
 _GLOBAL_CACHE_TAG = ""
+=======
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
 
 
 @dataclass(frozen=True)
@@ -113,6 +116,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--bootstrap-iters", type=int, default=5000)
     p.add_argument("--perm-iters", type=int, default=10000)
     p.add_argument(
+<<<<<<< HEAD
         "--cache-tag",
         type=str,
         default="",
@@ -125,6 +129,8 @@ def parse_args() -> argparse.Namespace:
         help="Whether to draw per-judge CI bars in scatter plots.",
     )
     p.add_argument(
+=======
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
         "--judges",
         type=str,
         default=(
@@ -234,28 +240,41 @@ def _det_random_score(judge_id: str, gold: str, cand: str, seed: int) -> float:
 def _score_once(spec: JudgeSpec, gold: str, cand: str, repeats: int, seed: int) -> dict:
     if spec.kind == "llm":
         prompt = PROMPT_VARIANTS[spec.prompt_name]
+<<<<<<< HEAD
         ns = f"exp16:{spec.judge_id}"
         if _GLOBAL_CACHE_TAG:
             ns = f"{ns}:{_GLOBAL_CACHE_TAG}"
+=======
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
         return judge(
             generated_theorem=cand,
             reference_impl=gold,
             model=spec.model,
             n_repeats=repeats,
             prompt_template=prompt,
+<<<<<<< HEAD
             cache_namespace=ns,
         )
     if spec.kind == "llm_bad":
         ns = f"exp16_bad:{spec.judge_id}"
         if _GLOBAL_CACHE_TAG:
             ns = f"{ns}:{_GLOBAL_CACHE_TAG}"
+=======
+            cache_namespace=f"exp16:{spec.judge_id}",
+        )
+    if spec.kind == "llm_bad":
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
         return judge(
             generated_theorem=cand,
             reference_impl=gold,
             model=spec.model,
             n_repeats=repeats,
             prompt_template=BAD_PROMPTS[spec.prompt_name],
+<<<<<<< HEAD
             cache_namespace=ns,
+=======
+            cache_namespace=f"exp16_bad:{spec.judge_id}",
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
         )
     if spec.kind == "editdist":
         score = 1.0 - levenshtein_normalized(gold, cand)
@@ -394,7 +413,11 @@ def _compute_trend(x: np.ndarray, y: np.ndarray, n_boot: int, n_perm: int, seed:
     }
 
 
+<<<<<<< HEAD
 def _make_plots(judge_rows: List[dict], trend_by_set: Dict[str, dict], out_dir: Path, show_error_bars: bool = True) -> None:
+=======
+def _make_plots(judge_rows: List[dict], trend_by_set: Dict[str, dict], out_dir: Path) -> None:
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
     import matplotlib
 
     matplotlib.use("Agg")
@@ -412,10 +435,16 @@ def _make_plots(judge_rows: List[dict], trend_by_set: Dict[str, dict], out_dir: 
         fig, ax = plt.subplots(figsize=(8.0, 5.6))
         ax.scatter(xs, ys, s=70)
         for i, r in enumerate(judge_rows):
+<<<<<<< HEAD
             if show_error_bars:
                 yerr_low = ys[i] - ylos[i] if math.isfinite(ylos[i]) else 0.0
                 yerr_hi = yhis[i] - ys[i] if math.isfinite(yhis[i]) else 0.0
                 ax.errorbar(xs[i], ys[i], yerr=[[yerr_low], [yerr_hi]], fmt="none", alpha=0.6)
+=======
+            yerr_low = ys[i] - ylos[i] if math.isfinite(ylos[i]) else 0.0
+            yerr_hi = yhis[i] - ys[i] if math.isfinite(yhis[i]) else 0.0
+            ax.errorbar(xs[i], ys[i], yerr=[[yerr_low], [yerr_hi]], fmt="none", alpha=0.6)
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
             ax.annotate(r["judge_id"], (xs[i], ys[i]), xytext=(4, 4), textcoords="offset points", fontsize=8)
         if len(xs) >= 2:
             z = np.polyfit(xs, ys, 1)
@@ -437,8 +466,11 @@ def _make_plots(judge_rows: List[dict], trend_by_set: Dict[str, dict], out_dir: 
 
 def main() -> int:
     args = parse_args()
+<<<<<<< HEAD
     global _GLOBAL_CACHE_TAG
     _GLOBAL_CACHE_TAG = args.cache_tag.strip()
+=======
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
     random.seed(args.seed)
     np.random.seed(args.seed)
 
@@ -674,7 +706,10 @@ def main() -> int:
         "threshold": args.threshold,
         "judge_repeats": int(args.judge_repeats),
         "repeat_agg": args.repeat_agg,
+<<<<<<< HEAD
         "cache_tag": _GLOBAL_CACHE_TAG,
+=======
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
         "judges": [j.judge_id for j in judges],
         "label_sets": {k: len(v) for k, v in label_sets.items()},
         "trend_by_set": trend_by_set,
@@ -698,7 +733,11 @@ def main() -> int:
             w.writeheader()
             w.writerows(skipped_pairs)
 
+<<<<<<< HEAD
     _make_plots(judge_rows, trend_by_set, args.out_dir, show_error_bars=(args.plot_error_bars == "on"))
+=======
+    _make_plots(judge_rows, trend_by_set, args.out_dir)
+>>>>>>> ead52147a556eb92c36757636d1413ea9572e989
 
     print("\nTrend summary by label set (v2 Spearman cert->human):")
     for set_name in ["pass1", "pass2", "avg"]:
