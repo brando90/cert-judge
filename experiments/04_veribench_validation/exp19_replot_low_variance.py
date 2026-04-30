@@ -65,7 +65,11 @@ def _bootstrap_ci(vals: np.ndarray, n_boot: int, seed: int) -> Tuple[float, floa
 
 
 def _is_main_gpt53(jid: str) -> bool:
-    return jid.startswith("gpt-5.3-codex|") and ("BAD_STRINGY" not in jid)
+    main_prefixes = (
+        "gpt-5.3-codex|",
+        "claude-3-7-sonnet-20250219|",
+    )
+    return jid.startswith(main_prefixes) and ("BAD_STRINGY" not in jid)
 
 
 def main() -> int:

@@ -180177,5 +180177,377 @@
     ],
     "reasoning": "The generated theorem text is identical to the reference implementation text. All tokens, structure, formatting, and content match perfectly.",
     "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|0358fe49d5a2b4301aba5c7e847b454322a1be9149a511e7b82f985695e22de4|a8fb5af59dab6fc0a6026364afd5a19a0a4f39e4737534bb964eec7998a6873a": {
+    "score": 0.75,
+    "mean": 0.75,
+    "std": 0.0,
+    "scores": [
+      0.75,
+      0.75,
+      0.75
+    ],
+    "reasoning": "High lexical overlap in function signature (theorem name, parameter list, and general structure are identical). However, the critical difference is the relation operator: reference uses equality '=' while generated uses inequality '\u2264'. This is a significant semantic/logical difference affecting the theorem statement, reducing the score from near-perfect to 0.75.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b|a8fb5af59dab6fc0a6026364afd5a19a0a4f39e4737534bb964eec7998a6873a": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reasoning": "Generated theorem text is empty/missing. Reference contains a complete theorem declaration with signature, name, and body. No lexical overlap possible.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|f971157c43b0a8a2f818299a1887507e5310fc9aeb2ddbc83416220b81d9d328|a8fb5af59dab6fc0a6026364afd5a19a0a4f39e4737534bb964eec7998a6873a": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reasoning": "Generated theorem text is empty/missing. Reference contains a complete theorem declaration with name, parameters, type signature, and body. No lexical or structural overlap to evaluate.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|2a15d33b12c4555e5da5174b93003326c96008e88a544b92dc23b9183fad4f3e|a8fb5af59dab6fc0a6026364afd5a19a0a4f39e4737534bb964eec7998a6873a": {
+    "score": 0.03333333333333333,
+    "mean": 0.03333333333333333,
+    "std": 0.02886751345948129,
+    "scores": [
+      0.0,
+      0.05,
+      0.05
+    ],
+    "reasoning": "Generated text is completely different from reference. Reference is a named theorem with specific signature and parameters; generated is an example of True. No lexical/format overlap in meaningful content.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|d01f37be9c6d10e580b42f6d17c72d0b229c4ff2e80342eba2626644568b1abc|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.85,
+    "mean": 0.85,
+    "std": 0.0,
+    "scores": [
+      0.85,
+      0.85,
+      0.85
+    ],
+    "reasoning": "Both theorems have identical structure, name, and proof skeleton. Main difference is parameter naming: reference uses 'xs' while generated uses 'items'. This is a minor lexical variation that doesn't affect the overall template overlap. Both have matching function calls (insertionSort, insertionSortImp) and identical return types.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|327d127cf339ed541d46f8bf9d73110729d93fb21e00ab2edc15a0eacadea2de|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.95,
+    "mean": 0.95,
+    "std": 0.0,
+    "scores": [
+      0.95,
+      0.95,
+      0.95
+    ],
+    "reasoning": "Nearly identical text. Only difference is the comment '-- reordered' in generated version, which is a minor addition that doesn't affect the theorem signature, proof structure, or main content. All core tokens and formatting match exactly.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|1c63106a2eaca3a5890e6aa1eb7b511fd4ed6b47de1997e78fdc7a63536934f5|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.95,
+    "mean": 0.95,
+    "std": 0.0,
+    "scores": [
+      0.95,
+      0.95,
+      0.95
+    ],
+    "reasoning": "Nearly identical structure and tokens. Only difference is `sorry` vs `by sorry` in the proof term. The theorem signature, name, parameters, and type are all identical. The `by` keyword is a minor formatting variation that doesn't significantly impact lexical overlap.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|22aad5f11c6b0e7a0ed1d6a52ce8f8192cc11f84aa49d407cc849e77b7e9d282|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.94,
+    "mean": 0.94,
+    "std": 0.017320508075688724,
+    "scores": [
+      0.92,
+      0.95,
+      0.95
+    ],
+    "reasoning": "Nearly identical text with one critical syntax error: ':=:=' instead of ':=' in the proof assignment. All other tokens and structure match perfectly, including theorem name, signature, and end statement. The error is a single character duplication that breaks syntactic validity but maintains lexical similarity.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reasoning": "Generated text is identical to reference implementation - same theorem name, identical signature with parameter xs : List Nat, identical proof term (sorry), and identical closing statement",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|69034fa5920296a54886b613eb398cc2215dbffc2c0ce20ec720cdcfbf0e9527|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.8166666666666667,
+    "mean": 0.8166666666666667,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.85,
+      0.85,
+      0.75
+    ],
+    "reasoning": "Nearly identical structure and signature. Main difference is the operator: reference uses '=' (equality) while generated uses '\u2264' (less-than-or-equal). All other tokens match: theorem name, parameter, function names, and sorry placeholder are identical. Operator difference is significant but localized.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reasoning": "Generated theorem text is empty/missing. Reference contains a complete theorem declaration with signature, but generated text provides nothing to compare.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|f971157c43b0a8a2f818299a1887507e5310fc9aeb2ddbc83416220b81d9d328|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reasoning": "Generated theorem text is empty/missing. Reference contains a complete theorem signature with name, parameters, type signature, and body. No lexical or structural overlap to evaluate.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|2a15d33b12c4555e5da5174b93003326c96008e88a544b92dc23b9183fad4f3e|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.05,
+    "mean": 0.05,
+    "std": 0.0,
+    "scores": [
+      0.05,
+      0.05,
+      0.05
+    ],
+    "reasoning": "Generated text is completely different from reference. Reference is a named theorem with signature about insertionSort equivalence; generated is a trivial example with comments about bug levels. No lexical or structural overlap in the actual theorem content.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|a0a5ec0ee76bab88b928003afc985961ca330759d6dc3bdd9f07c89d125486d3|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.85,
+    "mean": 0.85,
+    "std": 0.0,
+    "scores": [
+      0.85,
+      0.85,
+      0.85
+    ],
+    "reasoning": "Both theorems have identical structure and function names (mergeSort_equivalence_thm, mergeSort, mergeSortImp). Only difference is parameter naming: 'xs' vs 'items'. This is a minor lexical variation that doesn't affect the overall format and token similarity.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|88122d174c0f630f206660a9b8e655a700b7e58688ea938a4347e885c9b20e83|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.9633333333333333,
+    "mean": 0.9633333333333333,
+    "std": 0.023094010767585053,
+    "scores": [
+      0.95,
+      0.99,
+      0.95
+    ],
+    "reasoning": "Nearly identical text with only a minor comment difference. Both have the same theorem name, signature, and body structure. The reference lacks a comment while the generated version has '-- reordered' on a preceding line, causing minimal lexical difference.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|301f6c3744df44d92a5cdfbc6c79c3674efa7ba7fd24d67b227a40578202ebb7|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.95,
+    "mean": 0.95,
+    "std": 0.0,
+    "scores": [
+      0.95,
+      0.95,
+      0.95
+    ],
+    "reasoning": "Nearly identical structure and content. Only difference is reference uses `sorry` directly while generated uses `by sorry` (proof tactic). All theorem signature, names, types, and formatting are identical. Minimal lexical variation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|d8d46d4c22a50e0f68ae96bfbecf47532925a1a230f5eb9b0615d97fd846638e|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.85,
+    "mean": 0.85,
+    "std": 0.0,
+    "scores": [
+      0.85,
+      0.85,
+      0.85
+    ],
+    "reasoning": "The generated theorem is nearly identical to the reference. Both have the same theorem name, signature, and parameters. The only difference is a syntax error in the generated version: ':=:=' instead of ':=' before 'sorry'. This is a minor lexical/format deviation that slightly reduces similarity.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reasoning": "Generated text is identical to reference implementation - same theorem name, identical parameters, identical statement, identical proof placeholder, and identical closing statement.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|186835a18945256d4bd18c899c47758b6f949464e6ead806a468c5c07110728f|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.7833333333333333,
+    "mean": 0.7833333333333333,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.75,
+      0.85,
+      0.75
+    ],
+    "reasoning": "Both theorems have identical signatures, function names, and structure. The key difference is in the proposition: reference uses equality (=) while generated uses inequality (\u2264). This is a significant semantic difference but represents only a minor lexical variation (one operator). The overall format, naming, and 85% of tokens match perfectly.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reasoning": "Generated theorem text is empty. Reference contains a complete theorem declaration with name, parameters, type signature, and sorry. No lexical or format overlap exists.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|f971157c43b0a8a2f818299a1887507e5310fc9aeb2ddbc83416220b81d9d328|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reasoning": "Generated theorem text is completely empty (only contains comment '-- bug_level_3'). No tokens or phrases match the reference implementation which includes theorem name, parameters, type signature, and body.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|2a15d33b12c4555e5da5174b93003326c96008e88a544b92dc23b9183fad4f3e|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.05,
+    "mean": 0.05,
+    "std": 0.0,
+    "scores": [
+      0.05,
+      0.05,
+      0.05
+    ],
+    "reasoning": "Generated text is completely different from reference. Reference contains a named theorem about mergeSort equivalence with proper signature and sorry. Generated text is a trivial example with comments about bug levels. No lexical/structural overlap.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|dd9f0a02b8e56cc3062c289a0cc2a2bba90cc20638b6688c9d90b2b54058433b|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 0.85,
+    "mean": 0.85,
+    "std": 0.0,
+    "scores": [
+      0.85,
+      0.85,
+      0.85
+    ],
+    "reasoning": "Nearly identical structure and format. Only difference is parameter name: 'xs' vs 'items'. Both have same theorem name, signature pattern, function calls, and closing statement. High lexical overlap but parameter naming variation prevents perfect score.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|65d4ea4c734abbc59b47c5b43d4a6d578ffd4d9f80e715c4aeadbf93c10302b0|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 0.95,
+    "mean": 0.95,
+    "std": 0.0,
+    "scores": [
+      0.95,
+      0.95,
+      0.95
+    ],
+    "reasoning": "Nearly identical text with only a minor comment addition ('-- reordered'). All significant tokens, theorem name, signature, and structure match perfectly. The only difference is the non-functional comment line.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|38b05cafc790b46945a991d77698ecae53d0b1ecd07f35f0f7433090b4c67e52|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 0.95,
+    "mean": 0.95,
+    "std": 0.0,
+    "scores": [
+      0.95,
+      0.95,
+      0.95
+    ],
+    "reasoning": "Both texts are nearly identical in structure and content. The only difference is the proof term: reference uses 'sorry' while generated uses 'by sorry'. This is a minor stylistic variation in Lean syntax that doesn't affect the theorem declaration itself. Token overlap is extremely high (~98%).",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|9d9526de7da5201999bf7146659a51e826d4548c2e2f42020bbf55bb8330371a|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 0.8833333333333333,
+    "mean": 0.8833333333333333,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.85,
+      0.95,
+      0.85
+    ],
+    "reasoning": "Nearly identical structure and tokens, but the generated version has a syntax error with ':=:=' instead of ':=' before 'sorry', which is a critical superficial difference that would prevent compilation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reasoning": "The generated theorem text is identical to the reference implementation. All tokens, structure, formatting, and content match exactly, including the theorem name, signature, proof body, and closing statement.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|c3ad975cd39e5398515220a2f6a2e471a497e56e5e19a7abbe2dd6db3b6ed3a4|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 0.8166666666666667,
+    "mean": 0.8166666666666667,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.85,
+      0.75,
+      0.85
+    ],
+    "reasoning": "Both theorems have identical structure and signature up to the equality operator. The generated version uses '\u2264' instead of '=' in the theorem statement, which is a significant semantic change but represents only a small lexical difference. Token overlap is very high: theorem name, parameter list, left-hand side, and right-hand side are all identical except for the single operator character. The 'end SelectionSort' lines also match exactly.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reasoning": "Generated theorem text is empty/missing. No tokens or phrases to compare against reference implementation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|f971157c43b0a8a2f818299a1887507e5310fc9aeb2ddbc83416220b81d9d328|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reasoning": "Generated theorem text is completely empty (only contains comment '-- bug_level_3'). No tokens or phrases match the reference implementation which declares a theorem with name, parameters, type signature, and body.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16_bad:claude-3-7-sonnet-20250219|BAD_STRINGY:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778|2a15d33b12c4555e5da5174b93003326c96008e88a544b92dc23b9183fad4f3e|d7f2dedf6ae09a32d3a0cc8ef602aa794b83abdd44442b9740899a26623d39ae": {
+    "score": 0.05,
+    "mean": 0.05,
+    "std": 0.0,
+    "scores": [
+      0.05,
+      0.05,
+      0.05
+    ],
+    "reasoning": "Generated text contains only a trivial example with comments, while reference is a named theorem about selectionSort equivalence. Almost no lexical/format overlap - completely different structure, keywords, and content.",
+    "model": "claude-3-7-sonnet-20250219"
   }
 }
