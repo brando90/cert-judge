@@ -144,10 +144,13 @@ def parse_args() -> argparse.Namespace:
 def _parse_judges(raw: str) -> List[JudgeSpec]:
     judges: List[JudgeSpec] = []
     for token in [t.strip() for t in raw.split(",") if t.strip()]:
-        parts = token.split(":")
-        if len(parts) != 3:
+        # Allow model identifiers that themselves contain ":" (e.g., Bedrock suffixes like "...-v1:0")
+        if ":" not in token:
             raise ValueError(f"Bad judge spec: {token}")
-        kind, model, prompt_name = parts
+        kind, rem = token.split(":", 1)
+        if ":" not in rem:
+            raise ValueError(f"Bad judge spec: {token}")
+        model, prompt_name = rem.rsplit(":", 1)
         kind = kind.lower().strip()
         model = model.strip()
         prompt_name = prompt_name.strip()

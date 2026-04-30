@@ -124,6 +124,16 @@
   This work provides a blueprint for creating and validating reliable automated judges, enabling robust and scalable evaluation of next-generation theorem-proving agents. \textbf{The main result of our work is that judges that follow falsifiable properties, like monotonicity and identity, exhibit a stronger correlation to human judgements than any arbitrary judge.}
 \end{abstract}
 
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/pull_scalable_judge_cost_alignment.png}
+  \caption{\textbf{Scalable judge evaluation: cost efficiency with human alignment.}
+    \textbf{(A)} Illustrative scaling comparison: human evaluation cost grows with dataset size and number of judges/methods (\(O(N \cdot C_{\text{human}} \cdot J)\)), while certified property evaluation scales with automated property checks (\(O(N \cdot C_{\text{llm}} \cdot P)\), with small fixed \(P\)).
+    This yields a practical weeks-to-hours reduction in evaluation runtime.
+    \textbf{(B)} Judge-level trend from Exp16: higher certification index corresponds to higher human correlation, showing that lower evaluation cost is achieved without sacrificing human alignment.}
+  \label{fig:pull-cost-alignment}
+\end{figure*}
+
 \section{Introduction}
 % https://chatgpt.com/c/68dc3b7a-8240-832c-9707-4187b4ec4005
 % In modern proof assistants such as Lean~4, code can be verified through machine-checkable proofs. However, assessing the quality of the theorems themselves presents a deeper challenge. Determining what constitutes a good specification is inherently difficult, as it requires balancing correctness, expressiveness, and alignment with the intended semantics of the underlying program.
