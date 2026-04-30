@@ -1,0 +1,133 @@
+{
+  "experiment": "exp22_geometric_trust_index",
+  "source_summary": "experiments/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json",
+  "label_set": "avg",
+  "formula": "TI = exp(sum_i w_i * log(max(eps, v_i)))",
+  "components_order": [
+    "ident",
+    "mono",
+    "weak",
+    "stab",
+    "anti",
+    "subtle"
+  ],
+  "weights": {
+    "ident": 0.0,
+    "mono": 0.4,
+    "weak": 0.0,
+    "stab": 0.6,
+    "anti": 0.0,
+    "subtle": 0.0
+  },
+  "eps": 1e-06,
+  "trend": {
+    "spearman_r": 0.8571428571428572,
+    "spearman_ci_lo": 0.3424657534246575,
+    "spearman_ci_hi": 1.0,
+    "spearman_ci_width": 0.6575342465753424
+  },
+  "baseline_v1_trend": {
+    "spearman_r": 0.7619047619047621,
+    "spearman_ci_lo": 0.10256410256410257,
+    "spearman_ci_hi": 1.0,
+    "spearman_perm_p": 0.04024798760061997,
+    "pearson_r": 0.7740307326039164,
+    "pearson_ci_lo": 0.4684711426162027,
+    "pearson_ci_hi": 0.9845919601901844,
+    "pearson_perm_p": 0.02094895255237238,
+    "kendall_tau": 0.5714285714285714,
+    "kendall_ci_lo": 0.04,
+    "kendall_ci_hi": 1.0,
+    "kendall_perm_p": 0.05944702764861757
+  },
+  "rows": [
+    {
+      "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+      "geo_trust_index": 0.9485212382909652,
+      "human_spearman": 0.3652094534256896,
+      "ident": 0.7940625,
+      "mono": 0.8808126343919148,
+      "weak": 0.8333333333333333,
+      "stab": 0.9965277777777778,
+      "anti": 0.707776806902275,
+      "subtle": 1.0
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+      "geo_trust_index": 0.9548950973471156,
+      "human_spearman": 0.4192981354479042,
+      "ident": 0.7497916666666666,
+      "mono": 0.8956844726857547,
+      "weak": 1.0,
+      "stab": 0.9965277777777778,
+      "anti": 0.6928463269847374,
+      "subtle": 1.0
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "geo_trust_index": 0.958550241741877,
+      "human_spearman": 0.46642224929062365,
+      "ident": 0.75,
+      "mono": 0.8995746377954087,
+      "weak": 1.0,
+      "stab": 1.0,
+      "anti": 0.7213286523747946,
+      "subtle": 1.0
+    },
+    {
+      "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+      "geo_trust_index": 0.9276355459030902,
+      "human_spearman": 0.4348089142498352,
+      "ident": 0.9539583333333334,
+      "mono": 0.850849079208047,
+      "weak": 0.20833333333333331,
+      "stab": 0.9826388888888888,
+      "anti": 0.8026398602719866,
+      "subtle": 0.2666666666666666
+    },
+    {
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "geo_trust_index": 0.878158203694114,
+      "human_spearman": -0.014160512185608298,
+      "ident": 0.8947916666666667,
+      "mono": 0.8776873863563033,
+      "weak": 0.25,
+      "stab": 0.8784722222222222,
+      "anti": 0.6843548439882344,
+      "subtle": 1.0
+    },
+    {
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "geo_trust_index": 0.8077141534836951,
+      "human_spearman": 0.09161538619482858,
+      "ident": 0.8125,
+      "mono": 0.761219518023524,
+      "weak": 0.33333333333333337,
+      "stab": 0.8402777777777778,
+      "anti": 0.6669944145132685,
+      "subtle": 1.0
+    },
+    {
+      "judge_id": "editdist_e1",
+      "geo_trust_index": 0.9132436862221736,
+      "human_spearman": 0.1986746699690646,
+      "ident": 0.9350203121958514,
+      "mono": 0.7970153687388253,
+      "weak": 0.0,
+      "stab": 1.0,
+      "anti": 1.1102230246251565e-16,
+      "subtle": 0.14292681388009756
+    },
+    {
+      "judge_id": "random_r1",
+      "geo_trust_index": 0.75703252546191,
+      "human_spearman": -0.0008176599049625539,
+      "ident": 0.45499875714442994,
+      "mono": 0.498639120386087,
+      "weak": 0.0,
+      "stab": 1.0,
+      "anti": 0.996432314008146,
+      "subtle": 0.5712319940640903
+    }
+  ]
+}

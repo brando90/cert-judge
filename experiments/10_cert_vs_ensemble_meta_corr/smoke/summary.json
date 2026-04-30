@@ -1,0 +1,41 @@
+{
+  "experiment": "10_cert_vs_ensemble_meta_corr",
+  "label": "smoke",
+  "inputs": {
+    "exp06_summary": "experiments/06_cert_index_vs_human_judge_corr_and_low_var/full_run/median/summary.json",
+    "exp09_summary": "experiments/09_single_certified_judge_vs_ensemble/full_run/median/summary.json"
+  },
+  "n_methods": 11,
+  "corr": {
+    "spearman_cert_v1_vs_rho_human": -0.7889908256880733,
+    "pearson_cert_v1_vs_rho_human": -0.48272433554758465
+  },
+  "model_a_rho_on_cert": {
+    "beta": [
+      5.14520309820612,
+      -5.470082932851836
+    ],
+    "se": [
+      2.9608094895873274,
+      3.3079938544616296
+    ],
+    "r2": 0.2330227841298591,
+    "n": 11,
+    "p": 2
+  },
+  "model_b_rho_on_cert_plus_ensemble": {
+    "beta": [
+      5.143438164633078,
+      -5.472054950449466,
+      0.009706981881606097
+    ],
+    "se": [
+      3.1382039659607806,
+      3.506189604063624,
+      0.09057428088670864
+    ],
+    "r2": 0.2341223672087066,
+    "n": 11,
+    "p": 3
+  }
+}
