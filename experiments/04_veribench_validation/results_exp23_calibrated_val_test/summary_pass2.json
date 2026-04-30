@@ -1,0 +1,90 @@
+{
+  "experiment": "exp23_calibrated_val_report_test",
+  "label_set": "pass2",
+  "inputs": {
+    "summary_json": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json",
+    "detail_csv": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_final_robust_r9_median/detail_rows.csv",
+    "split_dir": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp23_pass_split_for_brando/splits",
+    "val_tsv": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp23_pass_split_for_brando/splits/val_pass2.tsv",
+    "test_tsv": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp23_pass_split_for_brando/splits/test_pass2.tsv"
+  },
+  "search": {
+    "iters": 200000,
+    "seed": 42,
+    "eps": 1e-06,
+    "best_val_r_from_search": 0.8333333333333335
+  },
+  "weights": {
+    "ident": 0.8535561925175972,
+    "mono": 0.008163111120357348,
+    "weak": 0.008715370664084027,
+    "stab": 0.020253518274664872,
+    "anti": 0.09159536829251004,
+    "subtle": 0.01771643913078665
+  },
+  "results": {
+    "val_corr_spearman": 0.8333333333333335,
+    "test_corr_spearman": -0.30952380952380953,
+    "n_judges_val": 8,
+    "n_judges_test": 8
+  },
+  "per_judge": [
+    {
+      "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+      "cert_index_calibrated": 0.7935986785657163,
+      "human_corr_val": 0.12018808625356425,
+      "human_corr_test": 0.7004478583414395
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+      "cert_index_calibrated": 0.7555038886808513,
+      "human_corr_val": 0.17168600603561096,
+      "human_corr_test": 0.8758113121817134
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "cert_index_calibrated": 0.7585570079499143,
+      "human_corr_val": 0.050746293778028445,
+      "human_corr_test": 0.8198397364335105
+    },
+    {
+      "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+      "cert_index_calibrated": 0.9056241758248987,
+      "human_corr_val": 0.3966365708524589,
+      "human_corr_test": 0.6212479719608431
+    },
+    {
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "cert_index_calibrated": 0.8646793450276288,
+      "human_corr_val": 0.38897055645665524,
+      "human_corr_test": 0.08079666780320541
+    },
+    {
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "cert_index_calibrated": 0.7948100459001041,
+      "human_corr_val": 0.15181082994210118,
+      "human_corr_test": 0.154741973913134
+    },
+    {
+      "judge_id": "editdist_e1",
+      "cert_index_calibrated": 0.2277492598006902,
+      "human_corr_val": 0.015073426269248203,
+      "human_corr_test": 0.7863279775715017
+    },
+    {
+      "judge_id": "random_r1",
+      "cert_index_calibrated": 0.44553587488529023,
+      "human_corr_val": -0.1563867975434501,
+      "human_corr_test": -0.03608751587888535
+    }
+  ],
+  "formula": "TI = exp(sum_i w_i * log(max(eps, v_i)))",
+  "components_order": [
+    "ident",
+    "mono",
+    "weak",
+    "stab",
+    "anti",
+    "subtle"
+  ]
+}

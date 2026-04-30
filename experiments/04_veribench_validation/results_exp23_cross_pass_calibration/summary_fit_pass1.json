@@ -1,0 +1,66 @@
+{
+  "fit_on": "pass1",
+  "report_on": "pass2",
+  "n_overlap_pairs": 72,
+  "weights": {
+    "ident": 0.0,
+    "mono": 0.4,
+    "weak": 0.0,
+    "stab": 0.6,
+    "anti": 0.0,
+    "subtle": 0.0
+  },
+  "fit_corr_spearman": 0.880952380952381,
+  "test_corr_spearman": 0.8095238095238096,
+  "formula": "TI = exp(sum_i w_i * log(max(eps, v_i)))",
+  "per_judge": [
+    {
+      "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+      "cert_index": 0.9485212382909652,
+      "human_corr_fit": 0.400438570981908,
+      "human_corr_test": 0.21616133240352264
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+      "cert_index": 0.9548950973471156,
+      "human_corr_fit": 0.43219977838053175,
+      "human_corr_test": 0.3066963448021959
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "cert_index": 0.958550241741877,
+      "human_corr_fit": 0.5445671607442176,
+      "human_corr_test": 0.2724448726417176
+    },
+    {
+      "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+      "cert_index": 0.9276355459030902,
+      "human_corr_fit": 0.4010832732535171,
+      "human_corr_test": 0.2900664967746354
+    },
+    {
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "cert_index": 0.878158203694114,
+      "human_corr_fit": -0.1016361299523124,
+      "human_corr_test": 0.05154275929808147
+    },
+    {
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "cert_index": 0.8077141534836951,
+      "human_corr_fit": 0.007303621939543779,
+      "human_corr_test": 0.13718743304424982
+    },
+    {
+      "judge_id": "editdist_e1",
+      "cert_index": 0.9132436862221736,
+      "human_corr_fit": 0.3033920565957687,
+      "human_corr_test": 0.05673319367412691
+    },
+    {
+      "judge_id": "random_r1",
+      "cert_index": 0.75703252546191,
+      "human_corr_fit": 0.05582210587920711,
+      "human_corr_test": -0.025723852788117434
+    }
+  ]
+}

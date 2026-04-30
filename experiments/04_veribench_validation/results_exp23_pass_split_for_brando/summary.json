@@ -1,0 +1,54 @@
+{
+  "seed": 42,
+  "input": {
+    "pass1": "experiments/04_veribench_validation/data/ethan_human_scores_20260425.tsv",
+    "pass2": "experiments/04_veribench_validation/data/ethan_human_scores_ORIGINAL.tsv"
+  },
+  "counts": {
+    "pass1_rows": 72,
+    "pass2_rows": 75,
+    "overlap_rows": 72,
+    "full_groups": 24,
+    "rows_per_group": 3,
+    "val_rows": 15,
+    "test_rows": 15,
+    "holdout_rows": 42
+  },
+  "splits": {
+    "val_gold_files": [
+      "1_bisect_left.lean",
+      "9_pathTraversal_safe.lean",
+      "bubble_sort.lean",
+      "humaneval_3_below_zero.lean",
+      "selection_sort.lean"
+    ],
+    "test_gold_files": [
+      "4_json_decoder.lean",
+      "4_unsafeCounter_safe.lean",
+      "binary_search.lean",
+      "humaneval_13__gcd.lean",
+      "humaneval_31_is_prime.lean"
+    ],
+    "holdout_gold_files": [
+      "0_bisect_right.lean",
+      "0_unsafeCopy_safe.lean",
+      "13_MyUppercase.lean",
+      "18_MyFibonacci.lean",
+      "1_MyAdd.lean",
+      "2_heappush.lean",
+      "33_MyMinimum.lean",
+      "3_heappop.lean",
+      "43_replace_spaces.lean",
+      "5_unsafeFormatString_safe.lean",
+      "humaneval_47_median.lean",
+      "humaneval_8_sum_product.lean",
+      "insertion_sort.lean",
+      "merge_sort.lean"
+    ]
+  },
+  "notes": [
+    "Splits are by problem (gold_file), not by individual pair rows.",
+    "Each selected problem contributes all 3 candidate rows.",
+    "This yields 15/15 rows for val/test and keeps comparisons internally consistent."
+  ]
+}

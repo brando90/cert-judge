@@ -208,6 +208,33 @@ We implement four scripted perturbation families on the \emph{candidate} while h
 (iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple instruction-equivalent prompt templates and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.\footnote{We distinguish \emph{prompt wording} from \emph{task instruction}. P4 varies phrasing/format while preserving the same judging instruction and rubric. We do not include adversarial or instruction-changing prompts (e.g., ``ignore the input'') in this stability metric.}
 We then verify monotonicity by computing rank correlations (Kendall’s $\tau$, Spearman’s $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse’’ artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
 
+\paragraph{Certification score index (used in Exp16 trends).}
+To compare judges at the \emph{judge level}, we aggregate property diagnostics into a single scalar certification score.
+We first convert each diagnostic so that higher is better and values are in $[0,1]$:
+\[
+  \text{ident}= \text{identity\_mean},\quad
+  \text{mono}= \frac{1-\rho_{\text{bug}}}{2},\quad
+  \text{weak}= \frac{\text{weak\_monotonicity\_pct}}{100},\quad
+  \text{stab}=1-\text{flip\_rate}.
+\]
+Here, $\rho_{\text{bug}}$ is the bug-ladder Spearman correlation (more negative is better, hence the transform), and $\text{flip\_rate}$ is the repeat-call decision disagreement rate.
+Our baseline composite (v1) is the weighted arithmetic mean
+\[
+  \text{v1}=0.30\,\text{ident}+0.30\,\text{mono}+0.25\,\text{weak}+0.15\,\text{stab}.
+\]
+The extended composite (v2) adds anti-string and subtle-bug terms:
+\[
+  \text{v2}=0.20\,\text{ident}+0.20\,\text{mono}+0.15\,\text{weak}+0.10\,\text{stab}
+  +0.20\,\text{anti\_string}+0.15\,\text{subtle\_bug}.
+\]
+In the updated Figure-7-style analysis, we also report a geometric (conjunctive) index,
+\[
+  \text{TI}_{\mathrm{geom}}=\prod_i v_i^{w_i}
+  =\exp\!\Big(\sum_i w_i\log v_i\Big),
+\]
+with the reported setting $\text{TI}_{\mathrm{geom}}=\text{mono}^{0.4}\text{stab}^{0.6}$.
+This form penalizes judges that are strong on one property but weak on another.
+
 \paragraph{Decision-threshold calibration (Exp13).}
 After validating score-level behavior (P1--P4), we calibrate the binary operating point used for deployment decisions.
 For threshold $t\in[0,1]$, we define \textsc{Pass} iff $\bar{s}\ge t$, where $\bar{s}$ is the mean over repeated calls for the same pair.
@@ -356,6 +383,12 @@ Certification score \textbf{v1} strongly predicts human agreement across all thr
 On averaged human labels, v1 reaches Spearman \(\rho=0.881\) (perm.\ \(p=0.0080\)); pass1 and pass2 are both \(\rho=0.810\) (perm.\ \(p\approx0.021\)).
 This supports the central claim that judges satisfying certification properties better are more human-aligned.
 
+\paragraph{Cross-pass train\(\rightarrow\)validation transfer (anti-overfitting check).}
+To avoid over-calibrating on a single annotation pass, we also evaluate a strict cross-pass protocol on the full aligned overlap (\(n=72\) pairs): fit geometric-index weights on one pass and report on the other pass without re-tuning.
+When training on pass1 and validating on pass2, we obtain \(\rho=0.881\rightarrow0.810\).
+In the reverse direction (train pass2, validate pass1), we obtain \(\rho=0.857\rightarrow0.786\).
+Both directions remain \(>0.7\), supporting that the certified index generalizes across independent human passes rather than relying on within-pass split artifacts.
+
 \begin{table}[t]
   \centering
   \small
@@ -387,15 +420,7 @@ Lower-certification baselines are markedly weaker:
   \centering
   \begin{subfigure}[t]{0.48\textwidth}
     \centering
-<<<<<<< HEAD
-    <<<<<<< HEAD
     \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_avg.png}
-    =======
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_avg.png}
-    >>>>>>> ead52147a556eb92c36757636d1413ea9572e989
-=======
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_avg.png}
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
     \caption{Exp16 (avg labels): certification score vs.\ human correlation.}
     \label{fig:exp16_scatter_avg}
   \end{subfigure}\hfill
@@ -781,51 +806,34 @@ We note that, for the experiment shown in Figure \ref{fig:app-missing-specs}, a 
 \section{Final Robust Human-Alignment Appendix}\label{app:exp16-exp17}
 This appendix reports full visual diagnostics for Exp16/Exp17 under final robust settings (three human label sets: pass1, pass2, avg).
 
-\begin{figure*}[t]
+\begin{figure}[H]
   \centering
-  \begin{subfigure}[t]{0.32\textwidth}
+  \begin{subfigure}[t]{0.48\textwidth}
     \centering
-<<<<<<< HEAD
-    <<<<<<< HEAD
     \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_pass1.png}
-    =======
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_pass1.png}
-    >>>>>>> ead52147a556eb92c36757636d1413ea9572e989
-=======
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_pass1.png}
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
     \caption{Exp16 trend (pass1)}
   \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
+  \begin{subfigure}[t]{0.48\textwidth}
     \centering
-<<<<<<< HEAD
-    <<<<<<< HEAD
     \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_pass2.png}
-    =======
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_pass2.png}
-    >>>>>>> ead52147a556eb92c36757636d1413ea9572e989
-=======
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_pass2.png}
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
     \caption{Exp16 trend (pass2)}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-<<<<<<< HEAD
-    <<<<<<< HEAD
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_avg.png}
-    =======
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_avg.png}
-    >>>>>>> ead52147a556eb92c36757636d1413ea9572e989
-=======
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_avg.png}
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
-    \caption{Exp16 trend (avg)}
   \end{subfigure}
-  \caption{\textbf{Judge-level certification-to-human trend across all human label sets (Exp16).}
-    The strongest and most stable effect is for trend-v1 certification, with averaged labels giving the largest effect size.}
+
+  \par\medskip
+
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig_cert_vs_human_scatter_avg.png}
+    \caption{Exp16 trend (avg)}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp16_final_robust_r9_median/fig7_trend_update_baseline_vs_geom.png}
+    \caption{Figure 7 trend update (baseline vs.\ geometric index)}
+  \end{subfigure}
+  \caption{Judge-level certification-to-human trend (Exp16). Top row: pass1/pass2. Bottom row: avg and updated trend comparison.}
   \label{fig:app-exp16-all}
-\end{figure*}
+\end{figure}
 
 \begin{figure*}[t]
   \centering
@@ -848,6 +856,60 @@ This appendix reports full visual diagnostics for Exp16/Exp17 under final robust
     P3 weak monotonicity is consistently the strongest predictor across label sets; P2 is second strongest; P1/P4 are weaker as standalone predictors at this scale.}
   \label{fig:app-exp17-all}
 \end{figure*}
+
+\paragraph{Low-variance certification diagnostics (Codex, Exp19).}
+To make variance behavior explicit, we include the low-variance replot package built from robust repeat aggregation (median over repeated calls), separating core monotonic trends from known failure modes.
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/identity_property_with_std_error_bounds.png}
+    \caption{Codex identity plot with standard-error bars.}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_main_monotonicity_lowvar.png}
+    \caption{Exp19 low-variance monotonicity curves (main judges).}
+  \end{subfigure}
+
+  \par\medskip
+
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_failure_alpha_variant_breakdown.png}
+    \caption{Identity failure-mode breakdown (ALPHA isolated).}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_failure_bug_reversal_rates.png}
+    \caption{Local bug-reversal rates by judge.}
+  \end{subfigure}
+  \caption{Low-variance diagnostics used to contextualize certification behavior. The top row shows core identity/monotonic trends; the bottom row isolates known variance/failure sources that are not visible in aggregate trend plots alone.}
+  \label{fig:app-exp19-lowvar}
+\end{figure*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/exp24_alpha_canonicalized_identity/fig_identity_variance_fig9_style.png}
+  \caption{\textbf{Identity variance with alpha-canonicalized variants (Fig-9-style bars).}
+    Blue: original identity variance; orange/green: alpha-canonicalized proxies (drop/clip).
+    Across judges, canonicalization substantially reduces identity variance (mean reduction: \(53.2\%\) for drop, \(57.6\%\) for clip), indicating that alpha-renaming sensitivity is a dominant variance source.}
+  \label{fig:app-exp24-alpha-canon}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/identity_property_with_std_error_bounds_alpha_clip_overlay.png}
+  \caption{\textbf{Identity plot with alpha-canonicalized overlay.}
+    Same error-bar methodology as the standard identity plot, with an additional alpha-canonicalized bar shown only for the ALPHA variant (orange, far right) to visualize binder-rename sensitivity reduction.}
+  \label{fig:app-identity-alpha-overlay}
+\end{figure}
+\noindent\textit{What is the orange ALPHA bar?}
+The blue ALPHA bar is the original identity score under alpha-renaming perturbations (renaming bound variables while preserving semantics).
+The orange ALPHA bar is an \emph{alpha-canonicalized proxy}: for each file, we replace the ALPHA score with a canonicalized counterpart (here, a STYLE-matched proxy) before aggregating the same mean\(\pm\)std statistics.
+Thus, the blue-to-orange gap estimates how much observed ALPHA variance is attributable to name-surface sensitivity rather than semantic disagreement.
+This is a post-hoc diagnostic (no retraining), included to isolate variance sources; the primary reported judge remains the unmodified scorer.
 
 \begin{figure}[t]
   \centering
@@ -955,32 +1017,15 @@ This run writes to \texttt{results\_exp16\_final\_robust\_r9\_median}.
     avg                & \(0.762\) (\(p=0.0402\), CI \([0.103, 1.000]\))  & \(0.476\) (\(p=0.2426\), CI \([-0.425, 1.000]\)) \\
     \bottomrule
   \end{tabular}
-<<<<<<< HEAD
-  <<<<<<< HEAD
   \caption{\textbf{Latest Exp16 rerun (R9 + median aggregation).}
     Increasing repeats and using median aggregation preserves the v1 trend signal while v2 remains more sensitive at this \(n_\text{judges}=8\) scale.}
   \label{tab:app-latest-r9-median}
-=======
-\caption{\textbf{Latest Exp16 rerun (R9 + median aggregation).}
-Increasing repeats and using median aggregation preserves the v1 trend signal while v2 remains more sensitive at this \(n_\text{judges}=8\) scale.}
-\label{tab:app-latest-r9-median}
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
 \end{table}
 
 Takeaway from Table~\ref{tab:app-latest-r9-median}: single-call judge outputs are noisy enough that robust aggregation matters.
 When we run multiple calls per item and aggregate with a median, the benchmark-level v1 certification trend remains positive and statistically supported across label sets, whereas v2 is more variance-sensitive in this sample.
 Accordingly, we treat repeated-call median aggregation as the default reporting protocol for robust judge benchmarking in this study.
 
-<<<<<<< HEAD
-=======
-\caption{\textbf{Latest Exp16 rerun (R9 + median aggregation).}
-  Increasing repeats and using median aggregation preserves the v1 trend signal while v2 remains more sensitive at this \(n_\text{judges}=8\) scale.}
-\label{tab:app-latest-r9-median}
-\end{table}
-
->>>>>>> ead52147a556eb92c36757636d1413ea9572e989
-=======
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
 We also generated a low-variance replot package from the same detail rows (\texttt{results\_exp19\_low\_variance\_replot}): a cleaner main monotonicity curve for core judges plus separate failure-mode plots for alpha sensitivity and local bug reversals.
 Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167\), BAD\_STRINGY \(=0.833\), GPT-4o variants \(=0.667\)--\(0.750\), edit-distance/random \(=1.00\).
 
@@ -988,29 +1033,13 @@ Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167
   \centering
   \begin{subfigure}[t]{0.48\textwidth}
     \centering
-<<<<<<< HEAD
-    <<<<<<< HEAD
     \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_main_monotonicity_lowvar.png}
-    =======
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_main_monotonicity_lowvar.png}
-    >>>>>>> ead52147a556eb92c36757636d1413ea9572e989
-=======
-    \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_main_monotonicity_lowvar.png}
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
     \caption{Main low-variance monotonicity curves (core GPT-5.3 judges, robust repeat aggregation).}
     \label{fig:app-exp19-main-lowvar}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\textwidth}
     \centering
-<<<<<<< HEAD
-    <<<<<<< HEAD
     \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_failure_alpha_variant_breakdown.png}
-    =======
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_alpha_variant_breakdown.png}
-    >>>>>>> ead52147a556eb92c36757636d1413ea9572e989
-=======
-    \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_failure_alpha_variant_breakdown.png}
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
     \caption{Failure-mode isolation: identity variant breakdown with ALPHA shown separately.}
     \label{fig:app-exp19-alpha-failure}
   \end{subfigure}
@@ -1021,15 +1050,7 @@ Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167
 
 \begin{figure}[t]
   \centering
-<<<<<<< HEAD
-  <<<<<<< HEAD
   \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_failure_bug_reversal_rates.png}
-  =======
-  \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_bug_reversal_rates.png}
-  >>>>>>> ead52147a556eb92c36757636d1413ea9572e989
-=======
-  \includegraphics[width=\linewidth]{figures/exp19_low_variance_replot/fig_failure_bug_reversal_rates.png}
->>>>>>> cf6cfe48a06565c6b1b3478b43fbe9039396239e
   \caption{\textbf{EXP19 failure-mode plot: local bug-ladder reversal rates by judge.}
     This explicitly surfaces where monotonicity fails locally, separating robustness diagnostics from the primary trend plot.}
   \label{fig:app-exp19-reversals}

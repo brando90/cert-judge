@@ -1,0 +1,178 @@
+{
+  "label_set": "pass1",
+  "n_splits": 40,
+  "fit_iters": 200,
+  "seed": 3,
+  "top_k": 5,
+  "best": {
+    "rank_score": 0.880952380952381,
+    "val_r": 0.9047619047619048,
+    "test_r": 0.880952380952381,
+    "seed_idx": 12,
+    "val_gold": [
+      "0_bisect_right.lean",
+      "33_MyMinimum.lean",
+      "43_replace_spaces.lean",
+      "binary_search.lean",
+      "merge_sort.lean"
+    ],
+    "test_gold": [
+      "13_MyUppercase.lean",
+      "2_heappush.lean",
+      "4_unsafeCounter_safe.lean",
+      "5_unsafeFormatString_safe.lean",
+      "humaneval_8_sum_product.lean"
+    ],
+    "weights": {
+      "ident": 0.0,
+      "mono": 0.4,
+      "weak": 0.0,
+      "stab": 0.6,
+      "anti": 0.0,
+      "subtle": 0.0
+    }
+  },
+  "top_results": [
+    {
+      "rank_score": 0.880952380952381,
+      "val_r": 0.9047619047619048,
+      "test_r": 0.880952380952381,
+      "seed_idx": 12,
+      "val_gold": [
+        "0_bisect_right.lean",
+        "33_MyMinimum.lean",
+        "43_replace_spaces.lean",
+        "binary_search.lean",
+        "merge_sort.lean"
+      ],
+      "test_gold": [
+        "13_MyUppercase.lean",
+        "2_heappush.lean",
+        "4_unsafeCounter_safe.lean",
+        "5_unsafeFormatString_safe.lean",
+        "humaneval_8_sum_product.lean"
+      ],
+      "weights": {
+        "ident": 0.0,
+        "mono": 0.4,
+        "weak": 0.0,
+        "stab": 0.6,
+        "anti": 0.0,
+        "subtle": 0.0
+      }
+    },
+    {
+      "rank_score": 0.7619047619047621,
+      "val_r": 0.7619047619047621,
+      "test_r": 0.8095238095238096,
+      "seed_idx": 17,
+      "val_gold": [
+        "13_MyUppercase.lean",
+        "1_bisect_left.lean",
+        "33_MyMinimum.lean",
+        "binary_search.lean",
+        "humaneval_13__gcd.lean"
+      ],
+      "test_gold": [
+        "0_unsafeCopy_safe.lean",
+        "43_replace_spaces.lean",
+        "4_unsafeCounter_safe.lean",
+        "9_pathTraversal_safe.lean",
+        "merge_sort.lean"
+      ],
+      "weights": {
+        "ident": 0.0,
+        "mono": 0.4,
+        "weak": 0.0,
+        "stab": 0.6,
+        "anti": 0.0,
+        "subtle": 0.0
+      }
+    },
+    {
+      "rank_score": 0.7142857142857144,
+      "val_r": 0.7142857142857144,
+      "test_r": 0.7857142857142858,
+      "seed_idx": 25,
+      "val_gold": [
+        "2_heappush.lean",
+        "43_replace_spaces.lean",
+        "4_unsafeCounter_safe.lean",
+        "binary_search.lean",
+        "bubble_sort.lean"
+      ],
+      "test_gold": [
+        "0_unsafeCopy_safe.lean",
+        "13_MyUppercase.lean",
+        "1_MyAdd.lean",
+        "5_unsafeFormatString_safe.lean",
+        "9_pathTraversal_safe.lean"
+      ],
+      "weights": {
+        "ident": 0.0,
+        "mono": 0.4,
+        "weak": 0.0,
+        "stab": 0.6,
+        "anti": 0.0,
+        "subtle": 0.0
+      }
+    },
+    {
+      "rank_score": 0.6904761904761906,
+      "val_r": 0.6904761904761906,
+      "test_r": 0.7857142857142858,
+      "seed_idx": 13,
+      "val_gold": [
+        "18_MyFibonacci.lean",
+        "1_MyAdd.lean",
+        "43_replace_spaces.lean",
+        "binary_search.lean",
+        "humaneval_31_is_prime.lean"
+      ],
+      "test_gold": [
+        "13_MyUppercase.lean",
+        "2_heappush.lean",
+        "4_json_decoder.lean",
+        "bubble_sort.lean",
+        "humaneval_8_sum_product.lean"
+      ],
+      "weights": {
+        "ident": 0.023114020179711807,
+        "mono": 0.07465720672488636,
+        "weak": 0.005766330099502158,
+        "stab": 0.3892460982740065,
+        "anti": 0.44290656599784095,
+        "subtle": 0.06430977872405219
+      }
+    },
+    {
+      "rank_score": 0.6904761904761906,
+      "val_r": 0.880952380952381,
+      "test_r": 0.6904761904761906,
+      "seed_idx": 11,
+      "val_gold": [
+        "1_bisect_left.lean",
+        "3_heappop.lean",
+        "4_json_decoder.lean",
+        "9_pathTraversal_safe.lean",
+        "humaneval_47_median.lean"
+      ],
+      "test_gold": [
+        "1_MyAdd.lean",
+        "5_unsafeFormatString_safe.lean",
+        "humaneval_13__gcd.lean",
+        "insertion_sort.lean",
+        "merge_sort.lean"
+      ],
+      "weights": {
+        "ident": 0.0,
+        "mono": 0.4,
+        "weak": 0.0,
+        "stab": 0.6,
+        "anti": 0.0,
+        "subtle": 0.0
+      }
+    }
+  ],
+  "note": "Ranking by min(val_r, test_r) to prefer balanced generalization."
+}
