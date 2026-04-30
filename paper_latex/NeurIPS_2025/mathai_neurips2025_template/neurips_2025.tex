@@ -119,6 +119,7 @@
   More importantly, we introduce a novel methodology to certify the judge's trustworthiness by verifying its adherence to fundamental logical properties.
   We demonstrate that our judge satisfies identity (identical inputs yield maximal scores), monotonicity (scores decrease predictably as bugs are introduced or specifications are removed), and stability/invariance under prompt and rewrite perturbations (e.g., GPT-5.3-Codex: Spearman \(\rho=-0.790\) on bug ladders over \(176\) files, minimum prompt-pair Spearman \(\rho=0.955\), Cronbach's \(\alpha=0.942\)).
   We further calibrate the binary decision boundary via a threshold sweep and show that stricter cutoffs reduce repeat-call decision flips (\(0.058 \rightarrow 0.046\), \(t=0.60\rightarrow0.85\)) while preserving ranking behavior.
+  Critically, across judges, higher certification scores imply higher human-correlation scores (Exp16), including cross-pass transfer above \(0.7\).
   By applying this validated judge to the \textsc{VeriBench}\citep{veribench_icml25}scalable oversight benchmark, we show that agentic approaches for formal code generation significantly outperform baseline prompting, with a top score of 0.615 vs.\ 0.470.
   This work provides a blueprint for creating and validating reliable automated judges, enabling robust and scalable evaluation of next-generation theorem-proving agents. \textbf{The main result of our work is that judges that follow falsifiable properties, like monotonicity and identity, exhibit a stronger correlation to human judgements than any arbitrary judge.}
 \end{abstract}
@@ -207,6 +208,14 @@ We implement four scripted perturbation families on the \emph{candidate} while h
 (iii) \emph{Specification Ablation} (P3), removing $m\!\in\!\{0,\ldots,M\}$ theorems or tests; and
 (iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple instruction-equivalent prompt templates and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.\footnote{We distinguish \emph{prompt wording} from \emph{task instruction}. P4 varies phrasing/format while preserving the same judging instruction and rubric. We do not include adversarial or instruction-changing prompts (e.g., ``ignore the input'') in this stability metric.}
 We then verify monotonicity by computing rank correlations (Kendall’s $\tau$, Spearman’s $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse’’ artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
+
+\noindent\textit{Identity rewrite variants used in P1/P4.}
+For semantics-preserving perturbations, we use four rewrite types.
+\textsc{RENAME}: rename local identifiers while preserving binding structure and logic.
+\textsc{REORDER}: reorder declarations/clauses in ways that preserve semantics.
+\textsc{STYLE}: formatting-only edits (whitespace/comments/layout).
+\textsc{ALPHA}: aggressive bound-variable alpha-conversion; semantically equivalent in principle, but empirically the most sensitive to judge lexical/surface bias.
+These labels are used consistently in variant tables and plots throughout the paper.
 
 \paragraph{Certification score index (used in Exp16 trends).}
 To compare judges at the \emph{judge level}, we aggregate property diagnostics into a single scalar certification score.
@@ -378,10 +387,21 @@ We report both certification composites:
 \textbf{v1} (uses bug-rank and weak monotonicity directly) and
 \textbf{v2} (adds anti-string and extra penalties for instability).
 
+\noindent\textit{Judge set used in Exp16/Exp17.}
+Our main judges are prompt variants applied to the same base model:
+\texttt{P1\_BASELINE} (general scoring rubric),
+\texttt{P4\_CHECKLIST} (structured checklist-style rubric),
+and \texttt{P8\_STRICT\_B} (stricter semantics-first rubric).
+We also include controls:
+\texttt{BAD\_STRINGY} (intentionally superficial text-similarity-biased judge),
+\texttt{editdist\_e1} (deterministic normalized edit-distance baseline),
+and \texttt{random\_r1} (deterministic random baseline).
+Including both strong prompts and weak controls is what makes the cross-judge certification trend in Exp16 interpretable.
+
 \paragraph{Main result (judge-level trend).}
 Certification score \textbf{v1} strongly predicts human agreement across all three human label sets, while \textbf{v2} is weaker and generally non-significant at this sample size (Table~\ref{tab:exp16_final_trend}).
 On averaged human labels, v1 reaches Spearman \(\rho=0.881\) (perm.\ \(p=0.0080\)); pass1 and pass2 are both \(\rho=0.810\) (perm.\ \(p\approx0.021\)).
-This supports the central claim that judges satisfying certification properties better are more human-aligned.
+This is the central empirical claim of the paper: \textbf{higher certification index \(\Rightarrow\) higher human correlation} at the judge level.
 
 \paragraph{Cross-pass train\(\rightarrow\)validation transfer (anti-overfitting check).}
 To avoid over-calibrating on a single annotation pass, we also evaluate a strict cross-pass protocol on the full aligned overlap (\(n=72\) pairs): fit geometric-index weights on one pass and report on the other pass without re-tuning.
@@ -494,6 +514,7 @@ We study an LLM judge that \emph{compares each candidate artifact against its ta
 The judge satisfies falsifiable score-level properties (identity and monotonicity) and, with Exp13, we additionally calibrate its binary decision boundary using full-dataset threshold sweeps with uncertainty estimates.
 Our data supports a clear separation: score ranking remains stable under threshold changes, while binary stability and coverage trade off in a tunable way.
 In experiments, certified judging produces informative method rankings and tracks engineering signals (Pass@$k$, unit-test accuracy); Easy and HumanEval show the strongest agreement, while Security and RealCode remain hardest \citep{chen2021evaluating}.
+The key take-away is not only that certification passes sanity checks, but that \emph{certification strength predicts human agreement}: judges with higher certified P1--P4 composites consistently achieve higher human-correlation scores.
 
 \textbf{Limitations.} The judge is a \emph{proxy}: scores are prompt/rubric-sensitive and do not constitute kernel-level proof checking; they certify agreement with a rigorous yet necessarily incomplete gold specification since no complete mechanical checks of specification equivalence exist~\citep{rice1953}.
 Our certification relies on a finite perturbation suite, so untested failure modes may persist. Specifications that are exotic to this dataset may be correct but receive incorrect scores.
