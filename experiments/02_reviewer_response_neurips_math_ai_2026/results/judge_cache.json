@@ -170205,5 +170205,245 @@
     ],
     "reasoning": "Generated theorem loses critical partition invariant properties: reference guarantees sorted partition around insertion point (\u2200j<i: proj\u2264x, \u2200j\u2265i+1: x<proj), while generated only specifies bisect correctness and insort structural correctness without preserving the partition ordering property that is core to the sorted array maintenance guarantee.",
     "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|f1d556f0d04a377b1a563c4ccd0fbfa796f442af7c89c942ff3d7f0e51b143f0|e81e180c5bfd4584b14bf9456445c8f75ba3ac4acfb066038dc03aeb347ed5e3": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Generated theorem provides only skeletal specifications with sorry proofs and lacks the core mathematical guarantee: that the partition property (elements \u2264 x before index, elements > x after index) is preserved after insertion, which is the central correctness property of the reference implementation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|d2a0ba750277c167a74169c8eb8cdd12974e3c88e38df7f1c665a9f2fc7d2f12|e97215d33f968bc783a266a274e6efed3f97f2bb0aefd16f16d4a7805fb95806": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Reference implementation guarantees nothing (trivial proof by `trivial` tactic), while generated theorem defines meaningful pre/postconditions for buffer overflow safety but leaves the actual correctness proof as `sorry`, making it incomplete and unverified.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|ed9ae4d06e082a57052ff8149aec4ca30ad970d8babc348bf67417f07f9b7fd1|e97215d33f968bc783a266a274e6efed3f97f2bb0aefd16f16d4a7805fb95806": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Reference implementation is trivial (admits via `trivial` tactic with no actual proof), while generated theorem provides legitimate overflow prevention, capacity verification, and partial correctness specification\u2014but the main proof is `sorry` (incomplete) and the reference guarantees nothing substantive, making this a comparison of trivial vs. incomplete real implementation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|3a55635303b3134656743ca8f5296584d0f659a00bf9542ab2a9fa5c2136bc92|e97215d33f968bc783a266a274e6efed3f97f2bb0aefd16f16d4a7805fb95806": {
+    "score": 0.3833333333333333,
+    "mean": 0.3833333333333333,
+    "std": 0.404145188432738,
+    "scores": [
+      0.85,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Generated theorem preserves the core safety guarantee (overflow prevention via size check) and defines precise pre/postconditions, but lacks formal proof (sorry) and doesn't verify the actual ByteArray mutation semantics, leaving a minor gap in complete correctness assurance.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|5743ef278b38013109c017007018f5141f74cceae656e4836f640ca7bacac46f|fbb79a8a903e6bdcb63d792fbdf6e369ad6d776c6ff0b957915e213568bcef84": {
+    "score": 0.21666666666666667,
+    "mean": 0.21666666666666667,
+    "std": 0.05773502691896258,
+    "scores": [
+      0.15,
+      0.25,
+      0.25
+    ],
+    "reasoning": "REFERENCE guarantees equivalence between two implementations (myUppercase = myUppercaseImp), but GENERATED only provides a specification (post s (prog s)) with sorry proof, missing the core equivalence guarantee and leaving correctness unverified despite test definitions.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|0455ff6b5919a05dea0dc116cac880ccaa77c0f4bab1fcacc3ab3d4cef2e9f0f|fbb79a8a903e6bdcb63d792fbdf6e369ad6d776c6ff0b957915e213568bcef84": {
+    "score": 0.18333333333333332,
+    "mean": 0.18333333333333332,
+    "std": 0.05773502691896258,
+    "scores": [
+      0.15,
+      0.25,
+      0.15
+    ],
+    "reasoning": "Reference implementation provides an equivalence theorem between two implementations (myUppercase vs myUppercaseImp) with no actual proof, while generated theorem proves a different property (correctness of single implementation against specification) using trivial automation; these are fundamentally different theorem statements with no meaningful correspondence.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|54ee4d0b3f4782d6fb0496fdcda59c28b36d0ece3434c8d0520a8e43906afe61|fbb79a8a903e6bdcb63d792fbdf6e369ad6d776c6ff0b957915e213568bcef84": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "REFERENCE IMPLEMENTATION guarantees equivalence between two implementations (myUppercase vs myUppercaseImp), but GENERATED THEOREM trivializes this by defining prog as a direct call to s.toUpper and proving it equals s.toUpper (tautology), missing the core requirement of comparing two distinct implementations and leaving the proof incomplete with sorry.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|884a01bd3fffb85d21e28c866a44caf2e1479602b66f13c88b68aa62a77da753|284042e2ca68f6e36922f3b8e62ac209f1b70c511ed3f303b4f5618882648167": {
+    "score": 0.18333333333333332,
+    "mean": 0.18333333333333332,
+    "std": 0.05773502691896258,
+    "scores": [
+      0.15,
+      0.15,
+      0.25
+    ],
+    "reasoning": "REFERENCE IMPLEMENTATION guarantees equivalence between two specific Fibonacci implementations (myFibonacci and myFibonacciImp); GENERATED THEOREM instead provides a different function (Int\u2192Int vs Nat\u2192Nat), incomplete proof (sorry on inductive case), and conflates specification with correctness rather than equivalence, failing to preserve the core structural guarantee.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|4c7671c1bccdba0d44fb67f9ebc39c1e733e639e9d28a2101ca3bbd4f0993329|284042e2ca68f6e36922f3b8e62ac209f1b70c511ed3f303b4f5618882648167": {
+    "score": 0.5833333333333334,
+    "mean": 0.5833333333333334,
+    "std": 0.28867513459481287,
+    "scores": [
+      0.75,
+      0.25,
+      0.75
+    ],
+    "reasoning": "GENERATED THEOREM provides equivalent core structure (recursive vs iterative definitions with equivalence proof) and adds specification framework (pre/post conditions, dependent type), but leaves critical proofs as `sorry` and lacks the exact naming convention (`myFibonacci`/`myFibonacciImp`) of the reference, creating minor verification gaps.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|213be36d7c68a2b355cde6b483e95df6f90f40a74cf574d1e9ccc1cc86d7da05|284042e2ca68f6e36922f3b8e62ac209f1b70c511ed3f303b4f5618882648167": {
+    "score": 0.2833333333333333,
+    "mean": 0.2833333333333333,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.35,
+      0.25,
+      0.25
+    ],
+    "reasoning": "Generated theorem addresses error handling and iterative implementation correctness but lacks the core equivalence property between recursive and imperative implementations that the reference theorem guarantees; the `fibonacci_correct` proof is stubbed (sorry) and the spec itself is non-executable (panic), creating circular reasoning.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|add65189e1132abd3c8b290c9566c9aab6b13ea2b952bd8d697fa2442a161562|86538ee9cbe40655ec33185b81a747053210be92998418741630611ebee406d4": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Reference guarantees equivalence between two implementations (myAdd = myAddImp); Generated theorem instead proves a single implementation correct against a postcondition with precondition checking, missing the core equivalence property and introducing a different verification paradigm (Hoare-logic style vs. definitional equality).",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|1ce133172f232df867dd582d50ff6f7400f644acf51ac50cf11d811071ba4dac|86538ee9cbe40655ec33185b81a747053210be92998418741630611ebee406d4": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Reference guarantees algorithmic equivalence between two Nat implementations; Generated uses Int with conditional panic, changes the domain entirely, includes incomplete proof (sorry), and the concrete test examples pass trivially by rfl without establishing the actual correctness property.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|2228334dec49279ba151037eda0555aefe5000ac1cc250f7a070dc3a22c34374|86538ee9cbe40655ec33185b81a747053210be92998418741630611ebee406d4": {
+    "score": 0.31666666666666665,
+    "mean": 0.31666666666666665,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.35,
+      0.25,
+      0.35
+    ],
+    "reasoning": "REFERENCE guarantees myAdd \u2261 myAddImp (implementation equivalence); GENERATED provides pre/post specifications with partial correctness proof (sorry), but lacks the concrete implementation equivalence, uses Int instead of Nat, and omits the critical comparison between two actual implementations that the reference demands.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|b4f7d7070bf91c23fce19685114e3eca8ada17097da65808328c05bf4c65f6d3|0127b63190ac70a857a1f6192b82a98f87f826cbb6fb0036a191429eab6b5f47": {
+    "score": 0.25,
+    "mean": 0.25,
+    "std": 0.0,
+    "scores": [
+      0.25,
+      0.25,
+      0.25
+    ],
+    "reasoning": "Generated implementation provides bisect_left and insort_left with basic specs, but critically fails to guarantee the core partition property from the reference (elements < x on left, elements \u2265 x on right with x at position i), lacks the key function integration in insort, omits \u2264 relation handling, uses List instead of Array, and all theorems are stubbed (sorry).",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|d46d07e981863ee858d861b860104b4e82b50bea44a847724433a1271428310b|0127b63190ac70a857a1f6192b82a98f87f826cbb6fb0036a191429eab6b5f47": {
+    "score": 0.25,
+    "mean": 0.25,
+    "std": 0.0,
+    "scores": [
+      0.25,
+      0.25,
+      0.25
+    ],
+    "reasoning": "REFERENCE IMPLEMENTATION guarantees partition properties (elements < x left of index i, elements \u2265 x right of i) with decidable relations and preconditions on sorted arrays, but GENERATED THEOREM uses uninterpreted LT without decidability, weakens postconditions to implications rather than guarantees, provides only high-level specification stubs without the concrete partition invariants, and lacks the Array/indexing structure and precondition enforcement of the reference, resulting in a fundamentally different and weaker logical contract.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|9f749c1de2a536393e352a9ba25ef0cabfb4ed66bfdf8b0b59f4ebb3fb03c12c|0127b63190ac70a857a1f6192b82a98f87f826cbb6fb0036a191429eab6b5f47": {
+    "score": 0.25,
+    "mean": 0.25,
+    "std": 0.0,
+    "scores": [
+      0.25,
+      0.25,
+      0.25
+    ],
+    "reasoning": "Generated theorem lacks critical formal guarantees: missing precondition (PreL) that reference enforces, no partition invariant proof structure, uses List instead of Array (different data structure), omits DecidableRel requirements, and provides only stub proofs (sorry) without actual verification\u2014essentially implementing code examples rather than formalizing the reference's correctness properties.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|e726fe512d80ee23423513b3b17612362c4d09828487c774380e97e7ae6f836d|66ebad1879615d8d92d4e1d017149aa034bfdb55fb3b0ceeb7365b0af0a07e3a": {
+    "score": 0.2833333333333333,
+    "mean": 0.2833333333333333,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.25,
+      0.25,
+      0.35
+    ],
+    "reasoning": "Reference implementation guarantees correctness via three composed properties (invariant, size, multiset), but generated theorem provides only skeletal specs with `sorry` proofs, missing actual guarantees, incomplete heap property definition (using \u2264 without total order), and unverified implementation correctness.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|47b1faa209641d1a6f0b7984df9bd2a5823e8a0a2d292c66f818c40b958a2f0c|66ebad1879615d8d92d4e1d017149aa034bfdb55fb3b0ceeb7365b0af0a07e3a": {
+    "score": 0.35,
+    "mean": 0.35,
+    "std": 0.0,
+    "scores": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "reasoning": "Generated theorem provides three core guarantees (heap invariant, permutation, min-root property) but all three are stated as `sorry` (unproven), lacks explicit precondition handling, uses `List` instead of `Array`, and omits size preservation guarantee present in reference implementation, representing meaningful gaps in both completeness and formal verification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|e275ccd928ab8af95eb1baef1efff7d405e7320c869745a00567a2842b123b99|66ebad1879615d8d92d4e1d017149aa034bfdb55fb3b0ceeb7365b0af0a07e3a": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Generated theorem is trivial (sorry proof) and lacks the core postcondition properties (invariant_thm, size_thm, multiset_thm) that the reference implementation proves; uses weaker specification with permutation instead of multiset equality and provides no actual verification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P4_CHECKLIST:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f|b39f47f5d96217699486d041b083c37260a0954df49bb84d8b3612f6be0df6ab|5ccf9417ff1ecbac54d7b668c92f10549acb97deee5f204db888d82b69ed7cb5": {
+    "score": 0.18333333333333332,
+    "mean": 0.18333333333333332,
+    "std": 0.05773502691896258,
+    "scores": [
+      0.15,
+      0.15,
+      0.25
+    ],
+    "reasoning": "GENERATED THEOREM provides a partial implementation with precondition/postcondition specs and an incomplete proof (contains 'sorry'), while REFERENCE IMPLEMENTATION only states an equivalence claim between two implementations without defining either; the generated version adds substantial scaffolding but fundamentally fails to address the reference's core requirement of proving equivalence between two specific implementations, and the incomplete proof undermines any correctness guarantee.",
+    "model": "claude-3-7-sonnet-20250219"
   }
 }
