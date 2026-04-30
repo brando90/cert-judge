@@ -166704,5 +166704,830 @@
     ],
     "reasoning": "anthropic_error: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'm",
     "model": "claude-3-7-sonnet-20250219"
+  },
+  "smoke_test|claude-3-7-sonnet-20250219|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|c7b24c9c09a7bc0016a491e89f9612ba3e1316105ea2eb1dbec9e6d6b163dc57|beee4a41d51e313a544dc41a93981ec835ec454a4d453058317521f1d9250f9c": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0,
+      1.0
+    ],
+    "reasoning": "The generated theorem proves the exact same property (commutativity of natural number addition) with identical logical structure and proof method, only differing in variable names which are semantically equivalent.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "smoke_test_v2|claude-3-7-sonnet-20250219|05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9|c7b24c9c09a7bc0016a491e89f9612ba3e1316105ea2eb1dbec9e6d6b163dc57|beee4a41d51e313a544dc41a93981ec835ec454a4d453058317521f1d9250f9c": {
+    "score": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "scores": [
+      1.0
+    ],
+    "reasoning": "Both theorems are semantically identical, stating commutativity of natural number addition with different variable names, proven by the same `omega` tactic.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|c452ecb51e65d216ca5d402f4e2ba4d592e7374079a68cee737a0519f697c986|e81e180c5bfd4584b14bf9456445c8f75ba3ac4acfb066038dc03aeb347ed5e3": {
+    "score": 0.31666666666666665,
+    "mean": 0.31666666666666665,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.25,
+      0.35,
+      0.35
+    ],
+    "reasoning": "Generated code provides bisect_right and insort_right implementations with basic specs, but is fundamentally different from the reference theorem which proves partition properties after insertion with projection functions, decidable relations, inhabited types, and pre-conditions\u2014the generated version lacks the precise post-partition guarantees and uses simplified Ord typeclass instead of the reference's more rigorous LT/LE framework.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|4953c6d1991b48e7a751937fc3adb48e7d78165a085fd2a7b119241c4ca94300|e81e180c5bfd4584b14bf9456445c8f75ba3ac4acfb066038dc03aeb347ed5e3": {
+    "score": 0.23333333333333334,
+    "mean": 0.23333333333333334,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.25,
+      0.25,
+      0.2
+    ],
+    "reasoning": "Generated code uses List instead of Array, omits critical precondition checking (Pre predicate), lacks the partition property theorem statement with proper quantified bounds over a', and provides placeholder implementations rather than proofs of the key invariant properties.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|f1d556f0d04a377b1a563c4ccd0fbfa796f442af7c89c942ff3d7f0e51b143f0|e81e180c5bfd4584b14bf9456445c8f75ba3ac4acfb066038dc03aeb347ed5e3": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated implementation uses List instead of Array, lacks the Pre predicate and partition property verification, and the theorem statements define custom specs rather than proving the actual partition invariant about elements before/after the insertion point.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|d2a0ba750277c167a74169c8eb8cdd12974e3c88e38df7f1c665a9f2fc7d2f12|e97215d33f968bc783a266a274e6efed3f97f2bb0aefd16f16d4a7805fb95806": {
+    "score": 0.25,
+    "mean": 0.25,
+    "std": 0.04999999999999999,
+    "scores": [
+      0.2,
+      0.3,
+      0.25
+    ],
+    "reasoning": "Generated code defines a safe copy function with pre/postconditions and tests, but the correctness theorem is left as `sorry` (unproven) rather than proven, which is the core requirement of the reference implementation that uses `by trivial` to discharge the proof.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|ed9ae4d06e082a57052ff8149aec4ca30ad970d8babc348bf67417f07f9b7fd1|e97215d33f968bc783a266a274e6efed3f97f2bb0aefd16f16d4a7805fb95806": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code provides a safe bytearray copy implementation with specifications and tests, but the reference asks for a theorem proof of correctness (theorem correctness_thm with trivial tactics), whereas the generated code leaves the main proof as 'sorry' and focuses on implementation/testing instead of formal verification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|3a55635303b3134656743ca8f5296584d0f659a00bf9542ab2a9fa5c2136bc92|e97215d33f968bc783a266a274e6efed3f97f2bb0aefd16f16d4a7805fb95806": {
+    "score": 0.18333333333333335,
+    "mean": 0.18333333333333335,
+    "std": 0.028867513459481298,
+    "scores": [
+      0.2,
+      0.15,
+      0.2
+    ],
+    "reasoning": "The generated code provides a safe implementation with tests and postcondition specification, but completely fails to match the reference: it defines a full namespace with helper functions and sorry proofs instead of a simple theorem with trivial proof, making it fundamentally incompatible with the reference pattern.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|5743ef278b38013109c017007018f5141f74cceae656e4836f640ca7bacac46f|fbb79a8a903e6bdcb63d792fbdf6e369ad6d776c6ff0b957915e213568bcef84": {
+    "score": 0.36666666666666664,
+    "mean": 0.36666666666666664,
+    "std": 0.11547005383792516,
+    "scores": [
+      0.5,
+      0.3,
+      0.3
+    ],
+    "reasoning": "The generated code implements a correct uppercase conversion function with comprehensive tests and a partial specification, but fails to establish the required equivalence theorem between the two implementations (myUppercase and myUppercaseImp), which is the core requirement of the reference theorem.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|0455ff6b5919a05dea0dc116cac880ccaa77c0f4bab1fcacc3ab3d4cef2e9f0f|fbb79a8a903e6bdcb63d792fbdf6e369ad6d776c6ff0b957915e213568bcef84": {
+    "score": 0.26666666666666666,
+    "mean": 0.26666666666666666,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.3,
+      0.3,
+      0.2
+    ],
+    "reasoning": "The generated code defines a correct uppercase function with proper tests, but fails to match the reference's theorem structure which requires equivalence between two implementations (myUppercase and myUppercaseImp); the generated theorem instead proves a postcondition about String.toUpper without establishing the required equivalence relationship.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|54ee4d0b3f4782d6fb0496fdcda59c28b36d0ece3434c8d0520a8e43906afe61|fbb79a8a903e6bdcb63d792fbdf6e369ad6d776c6ff0b957915e213568bcef84": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements a simple uppercase conversion but fails to match the reference's equivalence theorem structure (myUppercase = myUppercaseImp); instead it proves prog = s.toUpper with a sorry, and lacks the semantic equivalence verification that the reference requires.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|884a01bd3fffb85d21e28c866a44caf2e1479602b66f13c88b68aa62a77da753|284042e2ca68f6e36922f3b8e62ac209f1b70c511ed3f303b4f5618882648167": {
+    "score": 0.18333333333333335,
+    "mean": 0.18333333333333335,
+    "std": 0.028867513459481298,
+    "scores": [
+      0.15,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code defines a completely different function signature (Int \u2192 Int instead of Nat \u2192 Nat), uses an iterative implementation with panic handling rather than matching the recursive specification structure, and lacks the equivalence theorem required by the reference implementation which should prove myFibonacci equals myFibonacciImp.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|4c7671c1bccdba0d44fb67f9ebc39c1e733e639e9d28a2101ca3bbd4f0993329|284042e2ca68f6e36922f3b8e62ac209f1b70c511ed3f303b4f5618882648167": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "reasoning": "The generated code provides Fibonacci implementations with theorems about equivalence, but the reference specifically requires a theorem named `myFibonacci_equivalence_thm` equating `myFibonacci` and `myFibonacciImp`, while the generated version defines different function names (`fibRec` and `fibonacci`) and provides unproven theorems rather than the exact theorem signature required.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|213be36d7c68a2b355cde6b483e95df6f90f40a74cf574d1e9ccc1cc86d7da05|284042e2ca68f6e36922f3b8e62ac209f1b70c511ed3f303b4f5618882648167": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code defines different functions (fib, fibonacci, fibonacci_spec) with an equivalence theorem between fibonacci and fibonacci_spec, but the reference requires proving equivalence between myFibonacci and myFibonacciImp which are entirely absent, making this a weak relation at best despite having some fibonacci correctness logic.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|add65189e1132abd3c8b290c9566c9aab6b13ea2b952bd8d697fa2442a161562|86538ee9cbe40655ec33185b81a747053210be92998418741630611ebee406d4": {
+    "score": 0.16666666666666666,
+    "mean": 0.16666666666666666,
+    "std": 0.028867513459481298,
+    "scores": [
+      0.15,
+      0.2,
+      0.15
+    ],
+    "reasoning": "The generated code defines a general addition function with error handling and test cases, but completely fails to match the reference theorem's structure (equivalence between two named functions myAdd and myAddImp), lacking the required function definitions and equivalence proof.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|1ce133172f232df867dd582d50ff6f7400f644acf51ac50cf11d811071ba4dac|86538ee9cbe40655ec33185b81a747053210be92998418741630611ebee406d4": {
+    "score": 0.16666666666666666,
+    "mean": 0.16666666666666666,
+    "std": 0.028867513459481298,
+    "scores": [
+      0.15,
+      0.2,
+      0.15
+    ],
+    "reasoning": "The generated code defines a different function (sum_nat on Int with preconditions) rather than proving equivalence between myAdd and myAddImp on Nat, making it trivially unrelated to the reference implementation's goal.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|2228334dec49279ba151037eda0555aefe5000ac1cc250f7a070dc3a22c34374|86538ee9cbe40655ec33185b81a747053210be92998418741630611ebee406d4": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated theorem defines a completely different function (sum_of_naturals with Int inputs and error handling) rather than proving equivalence between myAdd and myAddImp on natural numbers as required by the reference implementation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|b4f7d7070bf91c23fce19685114e3eca8ada17097da65808328c05bf4c65f6d3|0127b63190ac70a857a1f6192b82a98f87f826cbb6fb0036a191429eab6b5f47": {
+    "score": 0.25,
+    "mean": 0.25,
+    "std": 0.0,
+    "scores": [
+      0.25,
+      0.25,
+      0.25
+    ],
+    "reasoning": "The generated code implements bisect_left and insort_left functions with basic specifications, but the reference theorem requires a formal proof about partition properties after insertion with specific preconditions (PreL), projection handling (ProjL), and strict/non-strict inequality relationships that are completely absent from the generated implementation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|d46d07e981863ee858d861b860104b4e82b50bea44a847724433a1271428310b|0127b63190ac70a857a1f6192b82a98f87f826cbb6fb0036a191429eab6b5f47": {
+    "score": 0.35,
+    "mean": 0.35,
+    "std": 0.0,
+    "scores": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "reasoning": "The generated theorem uses List instead of Array, uses different precondition naming (bisect_left_pre vs PreL), lacks the key projection abstraction (ProjL), and the postcondition structure differs significantly\u2014it defines separate predicates rather than proving the partition property directly as in the reference's conjunction of two partition conditions.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|9f749c1de2a536393e352a9ba25ef0cabfb4ed66bfdf8b0b59f4ebb3fb03c12c|0127b63190ac70a857a1f6192b82a98f87f826cbb6fb0036a191429eab6b5f47": {
+    "score": 0.31666666666666665,
+    "mean": 0.31666666666666665,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.25,
+      0.35,
+      0.35
+    ],
+    "reasoning": "The generated code implements basic bisect_left and insort_left functions on Lists with simplified signatures, but fundamentally misses the reference's core specification: proving that partition properties hold after insertion (elements before insertion point are < x, elements after are \u2265 x), lacks the Array type, Optional parameters, projection functions, and PreL precondition handling that are essential to the reference theorem.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|e726fe512d80ee23423513b3b17612362c4d09828487c774380e97e7ae6f836d|66ebad1879615d8d92d4e1d017149aa034bfdb55fb3b0ceeb7365b0af0a07e3a": {
+    "score": 0.25,
+    "mean": 0.25,
+    "std": 0.0,
+    "scores": [
+      0.25,
+      0.25,
+      0.25
+    ],
+    "reasoning": "The generated code defines heap operations and specifications but only provides sorry proofs without actual correctness theorems combining invariant, size, and multiset properties; the test cases are also incomplete executable code rather than formal verification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|47b1faa209641d1a6f0b7984df9bd2a5823e8a0a2d292c66f818c40b958a2f0c|66ebad1879615d8d92d4e1d017149aa034bfdb55fb3b0ceeb7365b0af0a07e3a": {
+    "score": 0.39999999999999997,
+    "mean": 0.39999999999999997,
+    "std": 0.08660254037844388,
+    "scores": [
+      0.35,
+      0.35,
+      0.5
+    ],
+    "reasoning": "The generated code provides heap implementation infrastructure (siftdown, heappush, predicates) but uses List instead of Array, leaves all correctness theorems as sorry, and lacks the direct Post_prop composition structure of the reference that combines invariant_thm, size_thm, and multiset_thm into a single correctness statement.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|e275ccd928ab8af95eb1baef1efff7d405e7320c869745a00567a2842b123b99|66ebad1879615d8d92d4e1d017149aa034bfdb55fb3b0ceeb7365b0af0a07e3a": {
+    "score": 0.3333333333333333,
+    "mean": 0.3333333333333333,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.3,
+      0.35,
+      0.35
+    ],
+    "reasoning": "The generated code provides a heap push implementation with specification and test cases, but lacks the formal correctness proof structure (invariant_thm, size_thm, multiset_thm) and uses sorry instead of completing the correctness theorem, making it incomplete relative to the reference's rigorous formal verification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|b39f47f5d96217699486d041b083c37260a0954df49bb84d8b3612f6be0df6ab|5ccf9417ff1ecbac54d7b668c92f10549acb97deee5f204db888d82b69ed7cb5": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3,
+      0.3,
+      0.3
+    ],
+    "reasoning": "The generated code provides a correct implementation of myMinList and useful specifications/tests, but completely fails to provide the required equivalence theorem between myMinList and myMinListImperative (which is undefined), making it unresponsive to the core request.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|a7396425df3135f133271121f3506bb9e2aa55a8d488f75e63a20ea821ae38fe|5ccf9417ff1ecbac54d7b668c92f10549acb97deee5f204db888d82b69ed7cb5": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code defines a different function (my_min_list) with different naming conventions and lacks the equivalence theorem comparing two implementations (myMinList vs myMinListImperative) that the reference requires.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|5bef2aad3c15df52fdb2da0a0b8623af325a7ce63c7c965ab520176f43e16cdd|5ccf9417ff1ecbac54d7b668c92f10549acb97deee5f204db888d82b69ed7cb5": {
+    "score": 0.23333333333333334,
+    "mean": 0.23333333333333334,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.3,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code defines a single `my_min_list` function with pre/postconditions and tests, but completely fails to match the reference theorem which requires proving equivalence between two implementations (`myMinList` and `myListImperative`), showing only weak relation to the actual goal.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|698aa00dfe7e5d4efd2ac46ed6c7d0d4700cff237007c37c9502aebe3a9bd25e|39dcdf5761be13dc8c21c658dac553729ca5c07ae5fa25c4ab89124f63f4049a": {
+    "score": 0.21666666666666667,
+    "mean": 0.21666666666666667,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.25,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code provides heap operation implementations with theorem statements but leaves all proofs as `sorry`, lacks the specific `correctness_thm` structure with `Pre` and `Post_prop` predicates from the reference, uses `List \u03b1` instead of `Array Int`, and defines a different heap property definition that is incomplete and semantically misaligned.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|150056dbe9628a0f7f4791397ea434ad2e617ceb922ebe4dadf858239d63081d|39dcdf5761be13dc8c21c658dac553729ca5c07ae5fa25c4ab89124f63f4049a": {
+    "score": 0.2833333333333333,
+    "mean": 0.2833333333333333,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.25,
+      0.25,
+      0.35
+    ],
+    "reasoning": "The generated code provides a concrete heap pop implementation with heap property verification, but uses List instead of Array, lacks the formal three-part conjunctive proof structure (invariant_thm \u2227 size_thm \u2227 multiset_thm), and the main theorem is left as sorry without actual proof of the semantic equivalence required by the reference.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|80b14edc15ebb9ee96317be3dd94231c8c07b94cbf071c270dc7107a227ab375|39dcdf5761be13dc8c21c658dac553729ca5c07ae5fa25c4ab89124f63f4049a": {
+    "score": 0.26666666666666666,
+    "mean": 0.26666666666666666,
+    "std": 0.07637626158259732,
+    "scores": [
+      0.35,
+      0.25,
+      0.2
+    ],
+    "reasoning": "The generated code provides a complete heap pop implementation with specifications and test cases, but lacks the formal proof structure of the reference (missing invariant_thm, size_thm, multiset_thm decomposition), uses List instead of Array, employs different proof strategy (sorry vs And.intro), and has incomplete/unverified correctness claims.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|8dcb8682d6d47490dd5e10a3acbc4c0c454ef6c6301aa1537fa7087df94df301|7c73976e9971b034d5939452caed7818c20dcfdb5fb2353d72b116d56466e557": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3,
+      0.3,
+      0.3
+    ],
+    "reasoning": "The generated code provides a working implementation of replaceSpaces and tests, but completely misses the target theorem which requires proving equivalence between replaceSpaces and a (missing) replaceSpacesImp function, instead offering an unrelated specification-based correctness theorem.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|144dd7f023ba68468e676ce5d545dd67b4ad0dad3cb9a23edf530b49ff6b00d5|7c73976e9971b034d5939452caed7818c20dcfdb5fb2353d72b116d56466e557": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code provides an implementation and tests for replaceSpaces but completely lacks the required equivalence theorem comparing replaceSpaces to replaceSpacesImp, instead offering an unrelated correctness proof with an overly complex specification that doesn't match the reference theorem's intent.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|49004274f13322991bd4a63e992b960798a0b7bc483a62a7899b0fb6908340a0|7c73976e9971b034d5939452caed7818c20dcfdb5fb2353d72b116d56466e557": {
+    "score": 0.23333333333333334,
+    "mean": 0.23333333333333334,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.2,
+      0.2,
+      0.3
+    ],
+    "reasoning": "The generated code implements a different specification (replacing spaces with underscores) rather than the equivalence theorem between two implementations (replaceSpaces and replaceSpacesImp), showing a fundamental misunderstanding of what was requested.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|89bb87f9cb49af64dae08d1fb48fa54b3987a31d710cb82f2af0c5af25f32d90|07033b9c53d95b14c22bb61409ecf3779240b5b56610106a34596d7cb67815e6": {
+    "score": 0.016666666666666666,
+    "mean": 0.016666666666666666,
+    "std": 0.02886751345948129,
+    "scores": [
+      0.0,
+      0.0,
+      0.05
+    ],
+    "reasoning": "The generated code is a complete JSON decoder implementation that bears no semantic relation to the reference theorem `theorem equivalence_thm (s : String) : loads s = loadsImp s := rfl`, which simply proves two functions are definitionally equal.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|2e14d2d368a62a5d8d819cc5fee196b46ded684333fbbadf270c97b0b8868a70|07033b9c53d95b14c22bb61409ecf3779240b5b56610106a34596d7cb67815e6": {
+    "score": 0.13333333333333333,
+    "mean": 0.13333333333333333,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.15,
+      0.15,
+      0.1
+    ],
+    "reasoning": "The generated code implements a JSON decoder with similar structure but lacks the critical `loads` and `loadsImp` functions that the reference theorem requires, making it impossible to prove the equivalence stated in the reference implementation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|9a6264c071466ce056f8cf8691088b4db821c5660718117dde9cc28fe9e3988f|07033b9c53d95b14c22bb61409ecf3779240b5b56610106a34596d7cb67815e6": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Generated implementation provides a JSON decoder with helper functions and test cases, but lacks the core equivalence theorem `loads s = loadsImp s` and instead contains unrelated correctness properties with sorry placeholders.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|aca6f8383cae56b7da423fe989fd35e63e1e35ef3de03530c00f4591193b76be|6f9d2d89093ac9948e0ac0dd005dad71fe0bedb33f0d92dfdad3759330148971": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "The generated code provides a SafeCounter implementation with pre/post-conditions and theorem statements, but the reference implementation is just `theorem correctness_thm (h:Pre): Post := by trivial` - a minimal correctness proof - making the generated output fundamentally different in scope and purpose with no semantic alignment to the trivial proof structure.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|6e67e164e2a0bf8704209d02994fd703b342b8348f9911e9cacf213deba0d8ce|6f9d2d89093ac9948e0ac0dd005dad71fe0bedb33f0d92dfdad3759330148971": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements a SafeCounter data structure with multiple operations and theorems, but fundamentally diverges from the reference which is a simple single-line proof (trivial), lacks the actual correctness theorem matching the reference signature, uses sorry for all proofs instead of completing them, and provides test code rather than formal verification of the core requirement.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|ed1ccd479d998a7831c2d6d79b7ad95abe0a36133dc8f05ec47b5b56d3d7fffb|6f9d2d89093ac9948e0ac0dd005dad71fe0bedb33f0d92dfdad3759330148971": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "The generated code implements a counter structure with operations but provides only stub theorems (marked `sorry`), whereas the reference requires a complete proof that `Post` follows from `Pre` using `trivial`, making this a fundamentally different and incomplete solution with no actual correctness verification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|573daba6cba4ead055eb33c77fa0f0e44d9938badb663c15c1936f033edb88c4|d279fb7bfefe29112a7c30574be36373503bf58f15be3d3b0764181e6d24f933": {
+    "score": 0.26666666666666666,
+    "mean": 0.26666666666666666,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.25,
+      0.25,
+      0.3
+    ],
+    "reasoning": "The generated code provides a safe formatting implementation with tests and specifications, but fundamentally fails to match the reference: it defines a complete theorem proof stub (with `sorry`) rather than proving `theorem correctness_thm (h:Pre): Post := by trivial`, missing the actual trivial proof strategy and proper Pre/Post predicate definitions that the reference uses.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|efcb9e3ceed11910045f8573903f056ce52f98b4c11f3329bb9e19e35307cb06|d279fb7bfefe29112a7c30574be36373503bf58f15be3d3b0764181e6d24f933": {
+    "score": 0.21666666666666667,
+    "mean": 0.21666666666666667,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.2,
+      0.25,
+      0.2
+    ],
+    "reasoning": "The generated code provides a safe string formatting implementation with tests, but completely diverges from the reference theorem structure\u2014it defines a function and incomplete proof (`sorry`) rather than proving a Pre/Post condition relationship as required by the reference.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|f54b079327e36babac66a7951ff50cd639d99c5f8c4b3e0c90b885b0a32b5238|d279fb7bfefe29112a7c30574be36373503bf58f15be3d3b0764181e6d24f933": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements a safe string replacement function but completely misses the reference theorem structure - it provides a function definition with IO tests instead of proving a `correctness_thm` that takes a precondition and returns a postcondition, making it semantically unrelated to the required proof-based correctness specification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|12841f2dcef0893fe63a919e7068b707f01b9ad1d09122ae1d1fccab12eb8a46|c15789010b2a879445a4e86a0340e89f574c8e0bb6180189b0454867cf42eda2": {
+    "score": 0.21666666666666667,
+    "mean": 0.21666666666666667,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.2,
+      0.25,
+      0.2
+    ],
+    "reasoning": "The generated code provides extensive implementation details with structures, helper functions, and test cases, but the critical theorem statement uses `sorry` instead of an actual proof, failing to meet the reference's requirement of a complete, provable correctness statement with `trivial` or equivalent proof.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|ee25b3a141d4652868d1450697f4ec904879f429b5a4efc1dbef935f717f4757|c15789010b2a879445a4e86a0340e89f574c8e0bb6180189b0454867cf42eda2": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements a complete path traversal safety system with preconditions, postconditions, and test cases, but the core theorem statement `safePathTraversalCorrect` uses `sorry` instead of providing the actual proof, fundamentally failing to match the reference's `by trivial` completeness requirement.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|1eacc84a05b42aa16a0380a75c1007f6ed81b0eff3b68595f3f6b30743e05076|c15789010b2a879445a4e86a0340e89f574c8e0bb6180189b0454867cf42eda2": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "The generated code provides a comprehensive implementation with theorems and specifications, but none of the theorems are actually proven (all use `sorry`), making them semantically invalid compared to the reference implementation which uses `by trivial` to prove the correctness theorem directly.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|19a52f795da4db0605893bea29d1d916310ac15741b10caead5808bbb50fea66|20f855e82d4c8bb3cb84da43aa69b4cefabac929342626dfce35f2bb90fbd07a": {
+    "score": 0.35,
+    "mean": 0.35,
+    "std": 0.0,
+    "scores": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "reasoning": "The generated code implements a functionally correct binary search with comprehensive tests and precondition/postcondition specifications, but fundamentally differs from the reference by proving correctness of a single implementation rather than equivalence between two implementations (binarySearch vs binarySearchImp), making it semantically misaligned with the stated theorem goal.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|50479437c89e0bea530f498bb95a56ad4f743169971f9b63fa9ed03dd50b97d3|20f855e82d4c8bb3cb84da43aa69b4cefabac929342626dfce35f2bb90fbd07a": {
+    "score": 0.21666666666666667,
+    "mean": 0.21666666666666667,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.25,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements a binary search function with pre/post-conditions and test cases, but the reference requires proving equivalence between two implementations (binarySearch and binarySearchImp), which are not both provided in the generated code, making it address a different problem entirely.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|fe3c281c9ffc7285e714e0dd6ad2e01aaf1ffc9087a22991d1d10477b58f0586|20f855e82d4c8bb3cb84da43aa69b4cefabac929342626dfce35f2bb90fbd07a": {
+    "score": 0.5833333333333334,
+    "mean": 0.5833333333333334,
+    "std": 0.14433756729740643,
+    "scores": [
+      0.75,
+      0.5,
+      0.5
+    ],
+    "reasoning": "The generated implementation provides a complete, functional binary search with comprehensive tests and multiple correctness theorems, but differs from the reference in that it targets a specific equivalence proof between two implementations rather than proving properties of a single implementation, and uses Int instead of Nat with added precondition checking.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|9acb9bad7537afb76c7770c8e8b4d16e2246944fd20573b2e57958e0c74ba926|5f381de5de9cba9a418a6939403d71598a46467182082e317644d07841d0d336": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "The generated code provides a bubble sort implementation with correctness properties, but the reference theorem requires an equivalence proof between two specific implementations (bubbleSort and bubbleSortImp), which is completely absent in the generated code.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|cde5a0cd32f36a01bb90ef45b09d25a2fa9907814bc3cc9a3bec10815c3a6cb6|5f381de5de9cba9a418a6939403d71598a46467182082e317644d07841d0d336": {
+    "score": 0.23333333333333334,
+    "mean": 0.23333333333333334,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.25,
+      0.2,
+      0.25
+    ],
+    "reasoning": "The generated code provides a bubble sort implementation with tests and a theorem statement with the correct post-condition signature, but it is fundamentally different from the reference which requires proving equivalence between two implementations (bubbleSort and bubbleSortImp), whereas the generated theorem only proves correctness of a single implementation against a specification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|6a5d050d61d8b8812a35661fe4f393cf62dee6d6715eb56beb5041e3ec54622b|5f381de5de9cba9a418a6939403d71598a46467182082e317644d07841d0d336": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements a bubble sort algorithm with correctness lemmas and tests, but crucially lacks the required `bubbleSort_equivalence_thm` theorem that directly proves equivalence between `bubbleSort` and `bubbleSortImp`, which is the core requirement of the reference implementation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|ab74ed52a49b1e9b96eba2ed891967c0a2ca9c49b357389664b1edf64a598e61|21c33e4f3ec476f1cb3d4036a99b309965e4d5fd7e76ed95d410723137c2f435": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements a GCD function for integers with basic properties, but completely diverges from the reference theorem which proves equivalence between `gcd` and `gcdImp` for naturals\u2014there is no equivalence proof, wrong types (Int vs Nat), and no connection to the reference's theorem structure.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|78e822b62795a1750ba4d9646872530fa661c2c43c8113ba1e1bd843e53831e5|21c33e4f3ec476f1cb3d4036a99b309965e4d5fd7e76ed95d410723137c2f435": {
+    "score": 0.5666666666666667,
+    "mean": 0.5666666666666667,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.6,
+      0.6,
+      0.5
+    ],
+    "reasoning": "The generated code defines a GCD implementation and provides correctness specifications with partial proofs, but crucially lacks the core equivalence theorem structure (myGcd_equivalence) that directly matches the reference, instead offering a broader correctness framework with incomplete proofs (multiple sorries).",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|0f3f2ad129d9e0d6a79ee84f90e59c053ff32e5bd490c3bf991f9afd0252820c|21c33e4f3ec476f1cb3d4036a99b309965e4d5fd7e76ed95d410723137c2f435": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code defines a GCD function for integers and a correctness specification, but completely misses the core requirement: proving equivalence between `gcd` and `gcdImp` for natural numbers as stated in the reference theorem signature.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|46da9a9578a98ac788b8288975a1dac25eceb3de3b6eff0d350dc7438350c6ab|e85f629663cce717b45a368bcfb734d0f9503eb161b1cb204578623bf41a36fe": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3,
+      0.3,
+      0.3
+    ],
+    "reasoning": "The generated code defines a different theorem structure (isPrimeSpec and isPrime_correct) rather than the required equivalence between isPrime and isPrimeImp, lacks the isPrimeImp definition entirely, and provides test cases instead of the semantic equivalence proof requested.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|08d13433273921e04e955032a512fac64c86764ea9a1a6ee6ccc1ca109efe6c2|e85f629663cce717b45a368bcfb734d0f9503eb161b1cb204578623bf41a36fe": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "reasoning": "The generated code implements a working primality test with correct test cases and partial correctness proof structure, but leaves the main proof incomplete (sorry) and uses a different function name (is_prime vs isPrime/isPrimeImp), causing a semantic mismatch with the reference theorem signature.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|3554791457fd6c764b2bda7987f4d089f7cb8034a3269e9f52b8ecd0777482c8|e85f629663cce717b45a368bcfb734d0f9503eb161b1cb204578623bf41a36fe": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code defines isPrime and provides a specification theorem, but completely fails to match the reference requirement of proving `isPrime n = isPrimeImp n` (which requires comparing two implementations); instead it proves a different property about divisibility and omits the critical equivalence proof between two implementations.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|504bbcb9d8d5297a888efbe356f1352b8b04f01139bb998b82cef73be0720a06|7c84afb0fd076e6dee345eadd0b8c78433ee038d30b268f5106cb6aea2d78a3c": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3,
+      0.3,
+      0.3
+    ],
+    "reasoning": "The generated code implements a correct `belowZero` function and provides a specification via `belowZeroSpec`, but the reference theorem requests an equivalence between `belowZero` and `belowZeroImp` (which is undefined/missing in the generated code), making the core requirement unfulfilled despite having semantically related helper theorems.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|b0d2e5a6c072df1fed485e8dad60233765345eb041085407e36cc92b7d875a02|7c84afb0fd076e6dee345eadd0b8c78433ee038d30b268f5106cb6aea2d78a3c": {
+    "score": 0.23333333333333334,
+    "mean": 0.23333333333333334,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.3,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements belowZero and belowZeroSpec identically, provides test cases and postcondition specifications, but fails to provide the required equivalence theorem belowZero_equivalence_thm (which should prove belowZero = belowZeroImp, not belowZero = belowZeroSpec), making it unsuitable as a reference implementation match.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|4d366a9abc0837aea0f5b7a69701942c70d925cdbd724237bfb9ea53f12eda9f|7c84afb0fd076e6dee345eadd0b8c78433ee038d30b268f5106cb6aea2d78a3c": {
+    "score": 0.26666666666666666,
+    "mean": 0.26666666666666666,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.2,
+      0.3,
+      0.3
+    ],
+    "reasoning": "The generated code implements a function with similar logic but the theorem statement is completely different - it proves equivalence to `belowZeroImp` (a non-existent function) rather than proving equivalence to an imperative variant, making it structurally incompatible with the reference specification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|ded807f1cf77f8153d455895861590d8cccd157b8144ec2071836cc33fac6b89|dc5ee35c38003dfe5516c31e131097c05846eebb658dfc5ecb7b64cb5c78e04f": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.05,
+    "scores": [
+      0.25,
+      0.2,
+      0.15
+    ],
+    "reasoning": "The generated code defines `median` and `medianSpec` identically rather than proving equivalence between different implementations, and the theorem statement `median_correct` doesn't match the reference signature `median l = medianImp l`, making it a fundamentally different approach with weak semantic relation to the required proof.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|76d8a71001e74e334530f901edf24c05dd55d38ed24e10e135485914eae671a7|dc5ee35c38003dfe5516c31e131097c05846eebb658dfc5ecb7b64cb5c78e04f": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.0,
+    "scores": [
+      0.3,
+      0.3,
+      0.3
+    ],
+    "reasoning": "The generated code defines a median function and proves correctness, but uses Float instead of Int, provides only a sorry proof, and lacks the equivalence theorem structure (median l = medianImp l) specified in the reference implementation.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|c306897f39c8eeee337aa44ba1f88e9e81503181b39a6c7ac0b6cd3343e0ff49|dc5ee35c38003dfe5516c31e131097c05846eebb658dfc5ecb7b64cb5c78e04f": {
+    "score": 0.23333333333333334,
+    "mean": 0.23333333333333334,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.2,
+      0.2,
+      0.3
+    ],
+    "reasoning": "The generated code defines `median` and `median_spec` functions with test cases, but the theorem statement requires proving equivalence between `median` and `medianImp` (which is undefined in the generated code), making the core semantic requirement unmet despite having related but incomplete median implementations.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|3becc6120ccc08c632cbeae715d5efdc6d7dab7c604a9d571a5bb1f0c86812bf|a8fb5af59dab6fc0a6026364afd5a19a0a4f39e4737534bb964eec7998a6873a": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "Generated code provides correct implementations of sumProduct and helper functions with proper test cases, but the theorem statement is entirely different (proves sumProduct equals a recursive definition rather than equivalence to an imperative version), missing the core semantic requirement of the reference theorem.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|82d78c2b01c1067ad6ea2a39660b603f1617205c07768fac96e212123662c317|a8fb5af59dab6fc0a6026364afd5a19a0a4f39e4737534bb964eec7998a6873a": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "The generated code implements a sum_product function with a correctness theorem, but the reference requires a theorem named `sumProduct_equivalence_thm` comparing `sumProduct` and `sumProductImp` functions which are entirely absent from the generated code, making it fundamentally misaligned with the reference specification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|fc4e25f28ddc0b666a944367e06a524a918438b56fdc45a0beaadcde36542991|a8fb5af59dab6fc0a6026364afd5a19a0a4f39e4737534bb964eec7998a6873a": {
+    "score": 0.3833333333333333,
+    "mean": 0.3833333333333333,
+    "std": 0.10408329997330665,
+    "scores": [
+      0.35,
+      0.3,
+      0.5
+    ],
+    "reasoning": "The generated code defines sumProduct and attempts correctness proofs, but critically fails to match the reference theorem signature (missing sumProductImp function and equivalence statement), has incomplete proofs (multiple sorries), and the overall structure doesn't establish the required equivalence between two implementations.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|bde45d54c855a124e60f2a9748298b35ca0d6fb2de505aa772a9597fe528fd59|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.15,
+    "mean": 0.15,
+    "std": 0.0,
+    "scores": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "reasoning": "The generated code defines insertionSort and correctness properties, but completely omits the required equivalence theorem comparing insertionSort to insertionSortImp (which is also undefined), making it fail to address the core specification.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|67c763516e961af107fc1037138dc9c61725514a9d2d869f242a81d1272ca21f|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.18333333333333335,
+    "mean": 0.18333333333333335,
+    "std": 0.028867513459481298,
+    "scores": [
+      0.2,
+      0.15,
+      0.2
+    ],
+    "reasoning": "The generated code attempts to define insertion sort and correctness properties, but the implementation is fundamentally broken (mutates a supposedly immutable list, uses unsafe indexing without proper bounds), the theorem statement differs critically from the reference (comparing to undefined insertionSortImp rather than two implementations), and the sorry leaves the actual proof unfinished.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|5b9506d7d2b595b6ed72d32c8a7e595553d96137bffefb16637a2abab3d22969|3aa496442d996c7cb31ac720132545a4d4afb5bdda2717c69fe5d63631c2a686": {
+    "score": 0.2,
+    "mean": 0.2,
+    "std": 0.0,
+    "scores": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "reasoning": "Generated code implements insertion sort with correctness properties and tests, but the reference theorem requires proving equivalence between two specific implementations (insertionSort and insertionSortImp) which are completely absent from the generated code; the theorem statement itself is missing entirely.",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "exp16:claude-3-7-sonnet-20250219|P8_STRICT_B:claude_oauth_haiku45_r3_median|claude-3-7-sonnet-20250219|c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4|47e5454689e1b1fe576a6c0b9750795340dfadf0ca48ec328e00b5fec3306e45|952bb1fb451dfd594449258b3b9869426de1d391c27cb203dc1b4797f05d5268": {
+    "score": 0.18333333333333332,
+    "mean": 0.18333333333333332,
+    "std": 0.05773502691896258,
+    "scores": [
+      0.25,
+      0.15,
+      0.15
+    ],
+    "reasoning": "The generated code implements merge sort correctly with helper theorems and tests, but fundamentally differs from the reference which proves equivalence between two specific implementations (mergeSort and mergeSortImp), whereas the generated version defines its own merge_sort function and proves general correctness properties rather than equivalence between named implementations.",
+    "model": "claude-3-7-sonnet-20250219"
   }
 }
