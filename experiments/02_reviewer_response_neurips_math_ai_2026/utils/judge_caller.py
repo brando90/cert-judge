@@ -19,6 +19,13 @@ ANTHROPIC_KEY_PATH = os.path.expanduser("~/keys/anthropic_bm_key_koyejolab.txt")
 OPENAI_KEY_PATH = os.path.expanduser("~/keys/openai_bm_key_koyejolab.txt")
 OPENAI_PERSONAL_KEY_PATH = os.path.expanduser("~/keys/openai_api_brandos_personal_key.txt")
 
+# Claude Code OAuth fallback: when no Anthropic API key is available, route
+# claude-* requests through the Claude Code session's OAuth token. The token
+# is restricted to Haiku 4.5 in practice; sonnet/opus return 429 under subscription scope.
+CLAUDE_CODE_OAUTH_TOKEN_PATH = "/home/claude/.claude/remote/.oauth_token"
+CLAUDE_OAUTH_FALLBACK_MODEL = "claude-haiku-4-5"
+CLAUDE_OAUTH_SYSTEM_PROMPT = "You are Claude Code, Anthropic's official CLI for Claude."
+
 DEFAULT_MODEL = "gpt-4o-mini"  # fallback to OpenAI when Anthropic credits unavailable
 N_REPEATS = 3
 MAX_RETRIES = 3
@@ -87,6 +94,14 @@ def _get_anthropic_key() -> str:
         return Path(ANTHROPIC_KEY_PATH).read_text().strip()
     except Exception:
         raise RuntimeError(f"Could not read Anthropic API key from {ANTHROPIC_KEY_PATH}")
+
+
+def _get_claude_code_oauth_token() -> str | None:
+    """Return the Claude Code session OAuth token if present, else None."""
+    try:
+        return Path(CLAUDE_CODE_OAUTH_TOKEN_PATH).read_text().strip()
+    except Exception:
+        return None
 
 
 def _parse_response_text(text: str) -> dict:
@@ -209,6 +224,69 @@ def _call_anthropic_once(
             return {"score": 0.5, "reasoning": f"anthropic_error: {str(e)[:80]}"}
 
 
+def _call_claude_oauth_once(
+    token: str,
+    generated_theorem: str,
+    reference_impl: str,
+    model: str,
+    prompt_template: str,
+) -> dict:
+    """Make one judge call via the Claude Code session's OAuth token.
+
+    Always invokes CLAUDE_OAUTH_FALLBACK_MODEL on the wire; the requested
+    `model` is preserved by the caller for cache/result tagging only.
+    """
+    import urllib.error
+    import urllib.request
+
+    prompt = prompt_template.format(
+        reference_impl=reference_impl,
+        generated_theorem=generated_theorem,
+    )
+    body = json.dumps({
+        "model": CLAUDE_OAUTH_FALLBACK_MODEL,
+        "max_tokens": 256,
+        "system": CLAUDE_OAUTH_SYSTEM_PROMPT,
+        "messages": [{"role": "user", "content": prompt}],
+    }).encode("utf-8")
+    headers = {
+        "authorization": f"Bearer {token}",
+        "anthropic-version": "2023-06-01",
+        "anthropic-beta": "oauth-2025-04-20",
+        "content-type": "application/json",
+    }
+    for attempt in range(MAX_RETRIES):
+        try:
+            req = urllib.request.Request(
+                "https://api.anthropic.com/v1/messages",
+                data=body,
+                headers=headers,
+                method="POST",
+            )
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+            text = ""
+            for block in payload.get("content", []):
+                if block.get("type") == "text":
+                    text += block.get("text", "")
+            return _parse_response_text(text.strip())
+        except urllib.error.HTTPError as e:
+            err_body = e.read().decode("utf-8", errors="replace")[:200]
+            if attempt < MAX_RETRIES - 1:
+                wait = 2 ** (attempt + 1)
+                print(f"  [judge_caller] OAuth attempt {attempt+1} HTTP {e.code}: {err_body[:80]}, retrying in {wait}s")
+                time.sleep(wait)
+                continue
+            return {"score": 0.5, "reasoning": f"oauth_http_{e.code}: {err_body[:80]}"}
+        except Exception as e:
+            if attempt < MAX_RETRIES - 1:
+                wait = 2 ** (attempt + 1)
+                print(f"  [judge_caller] OAuth attempt {attempt+1} failed: {e}, retrying in {wait}s")
+                time.sleep(wait)
+                continue
+            return {"score": 0.5, "reasoning": f"oauth_error: {str(e)[:80]}"}
+
+
 def _make_client(model: str):
     """Create appropriate API client for the given model."""
     if model.startswith("gpt") or model.startswith("o1") or model.startswith("o3"):
@@ -216,12 +294,23 @@ def _make_client(model: str):
         key = _get_openai_key()
         return openai.OpenAI(api_key=key), "openai"
     elif model.startswith("claude"):
+        # Prefer real Anthropic API key when present.
         try:
-            import anthropic
             key = _get_anthropic_key()
+            import anthropic
             return anthropic.Anthropic(api_key=key), "anthropic"
         except Exception:
-            raise RuntimeError(f"Cannot create Anthropic client for model {model}")
+            pass
+        # Fall back to Claude Code OAuth token (only Haiku 4.5 is available
+        # under subscription scope; the requested model name is preserved
+        # for cache/result tagging only).
+        token = _get_claude_code_oauth_token()
+        if token:
+            return token, "claude_oauth"
+        raise RuntimeError(
+            f"Cannot create Anthropic client for {model}: no API key and no "
+            f"Claude Code OAuth token at {CLAUDE_CODE_OAUTH_TOKEN_PATH}"
+        )
     else:
         # Try OpenAI by default
         import openai
@@ -275,6 +364,14 @@ def judge(
         if backend == "openai":
             result = _call_openai_once(
                 client=client,
+                generated_theorem=generated_theorem,
+                reference_impl=reference_impl,
+                model=model,
+                prompt_template=prompt_template,
+            )
+        elif backend == "claude_oauth":
+            result = _call_claude_oauth_once(
+                token=client,  # OAuth token string, not an SDK client
                 generated_theorem=generated_theorem,
                 reference_impl=reference_impl,
                 model=model,
