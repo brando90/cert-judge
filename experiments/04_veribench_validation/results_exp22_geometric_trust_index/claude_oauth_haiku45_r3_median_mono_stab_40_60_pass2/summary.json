@@ -1,0 +1,84 @@
+{
+  "experiment": "exp25_plot_baseline_vs_geometric",
+  "source_summary": "experiments/04_veribench_validation/results_exp16_claude_oauth_haiku45_r3_median/summary.json",
+  "label_set": "pass2",
+  "n_judges": 6,
+  "formula": "TI_geom = mono^w_mono * stab^w_stab = exp(w_mono*log(mono) + w_stab*log(stab))",
+  "weights": {
+    "mono": 0.4,
+    "stab": 0.6
+  },
+  "eps": 1e-06,
+  "rho_baseline": 0.14285714285714288,
+  "rho_baseline_ci_lo": -1.0,
+  "rho_baseline_ci_hi": 1.0,
+  "rho_baseline_cached_from_summary": 0.14285714285714288,
+  "rho_geometric": 0.14285714285714288,
+  "rho_geometric_ci_lo": -1.0,
+  "rho_geometric_ci_hi": 1.0,
+  "improvement": 0.0,
+  "geometric_better_than_baseline": false,
+  "fig_path": "experiments/04_veribench_validation/results_exp22_geometric_trust_index/claude_oauth_haiku45_r3_median_mono_stab_40_60_pass2/fig7_trend_update_baseline_vs_geom.png",
+  "rows": [
+    {
+      "judge_id": "claude-3-7-sonnet-20250219|P8_STRICT_B",
+      "bug_spearman_r": -0.863993272543253,
+      "flip_rate": 0.003472222222222222,
+      "mono": 0.9319966362716265,
+      "stab": 0.9965277777777778,
+      "cert_index_baseline": 0.8913698242148211,
+      "geo_trust_index": 0.9701957846490339,
+      "human_spearman_r": 0.1907633466426555
+    },
+    {
+      "judge_id": "claude-3-7-sonnet-20250219|P4_CHECKLIST",
+      "bug_spearman_r": -0.7964326109927359,
+      "flip_rate": 0.03819444444444445,
+      "mono": 0.8982163054963679,
+      "stab": 0.9618055555555556,
+      "cert_index_baseline": 0.8597253083155769,
+      "geo_trust_index": 0.9358467632755858,
+      "human_spearman_r": 0.05458062009709303
+    },
+    {
+      "judge_id": "claude-3-7-sonnet-20250219|P1_BASELINE",
+      "bug_spearman_r": -0.8573001484822999,
+      "flip_rate": 0.0,
+      "mono": 0.9286500742411499,
+      "stab": 1.0,
+      "cert_index_baseline": 0.893751272272345,
+      "geo_trust_index": 0.9708247488890586,
+      "human_spearman_r": 0.036148757208140404
+    },
+    {
+      "judge_id": "claude-3-7-sonnet-20250219|BAD_STRINGY",
+      "bug_spearman_r": -0.7453017729508661,
+      "flip_rate": 0.034722222222222224,
+      "mono": 0.872650886475433,
+      "stab": 0.9652777777777778,
+      "cert_index_baseline": 0.7855973492759631,
+      "geo_trust_index": 0.9271021720815027,
+      "human_spearman_r": 0.2676854071301371
+    },
+    {
+      "judge_id": "editdist_e1",
+      "bug_spearman_r": -0.5940307374776506,
+      "flip_rate": 0.0,
+      "mono": 0.7970153687388253,
+      "stab": 1.0,
+      "cert_index_baseline": 0.669610704280403,
+      "geo_trust_index": 0.9132436862221736,
+      "human_spearman_r": 0.058285916099093935
+    },
+    {
+      "judge_id": "random_r1",
+      "bug_spearman_r": 0.002721759227826054,
+      "flip_rate": 0.0,
+      "mono": 0.498639120386087,
+      "stab": 1.0,
+      "cert_index_baseline": 0.4360913632591551,
+      "geo_trust_index": 0.75703252546191,
+      "human_spearman_r": -0.02045751630074112
+    }
+  ]
+}
