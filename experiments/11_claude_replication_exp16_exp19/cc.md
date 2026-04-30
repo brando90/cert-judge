@@ -1,3 +1,11 @@
+## Model policy (SOTA first)
+
+- Preferred: `claude-opus-4-20250514` (Opus ideal).
+- Fallback 1: latest available Claude Sonnet 4.x your account can access.
+- Fallback 2: strongest available coding-capable model in your endpoint.
+
+Use the same model string consistently for `P8_STRICT_B`, `P4_CHECKLIST`, `P1_BASELINE`, and `BAD_STRINGY` so comparisons remain valid.
+
 # Claude Code Prompt + Commands (Exp16 + Exp19 replication)
 
 ## Copy-paste prompt for Claude Code
