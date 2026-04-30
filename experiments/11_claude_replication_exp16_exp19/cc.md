@@ -4,24 +4,37 @@
 - **Exp19** — Replot the Exp16 detail/judge rows as the low-variance package (monotonicity, alpha-variant breakdown, bug-reversal rates) using 4000 bootstrap iters.
 - **Exp22 (GM)** — Re-aggregate the Exp16 summary offline with a geometric cert-index `TI_geom = mono^0.4 · stab^0.6` for each label set (avg/pass1/pass2) and report whether ρ_geometric beats ρ_baseline.
 
-## Model policy (SOTA first — strict)
+## Model policy (best-effort SOTA — must finish)
 
-**Always use the strongest currently available Claude Opus.** As of 2026-04-30 this is `claude-opus-4-7` (released 2026-04-16, knowledge cutoff Jan 2026). Do **not** silently downgrade to older builds (`claude-opus-4-20250514`, `claude-opus-4-6`, etc.) — those are for historical comparison only.
+**The experiment is more important than the exact model. Always complete the run.** Try the strongest Opus first; if it is unreachable, walk *one step at a time* down the ladder until something works — but **never abort** and **never silently substitute**. Log every fallback step to stdout and into the run's `summary.json` under a `model_actually_used` field so the result is auditable.
 
-Before you start, web-search "latest Claude Opus model API ID" and confirm whether anything newer than `claude-opus-4-7` (e.g. `claude-opus-4-8`, `claude-opus-5`) has shipped. If yes, use that instead and update the model string everywhere below in lockstep.
+Current SOTA as of 2026-04-30: `claude-opus-4-7` (released 2026-04-16, knowledge cutoff Jan 2026). Before running, web-search "latest Claude Opus model API ID" and use anything newer (e.g. `claude-opus-4-8`, `claude-opus-5`) if it has shipped — update the model string everywhere below in lockstep.
 
-- Preferred: `claude-opus-4-7` (Opus 4.7, current SOTA).
-- Fallback 1: previous Opus 4.x your key can access (`claude-opus-4-6`, then `claude-opus-4-5`, …).
-- Fallback 2: latest Claude Sonnet 4.x.
-- Fallback 3: strongest coding-capable model your endpoint exposes.
+Fallback ladder (try in order, descend by **one rung at a time**, only on confirmed auth/availability failure of the current rung):
 
-Use the same model string consistently for `P8_STRICT_B`, `P4_CHECKLIST`, `P1_BASELINE`, and `BAD_STRINGY` so comparisons remain valid. The `gpt-4o-mini` judges are intentionally a *weaker-LLM* comparison baseline — leave them as-is, do not upgrade them to a frontier OpenAI model.
+1. `claude-opus-4-7` ← preferred (or newer Opus if shipped).
+2. `claude-opus-4-6`
+3. `claude-opus-4-5`
+4. `claude-opus-4-1` (a.k.a. `claude-opus-4-1-20250805`)
+5. `claude-opus-4-20250514` (original Opus 4 — last-resort Opus).
+6. Latest Claude Sonnet 4.x your key can reach (e.g. `claude-sonnet-4-5`).
+7. Strongest coding-capable model your endpoint exposes (record the exact ID).
+
+Rules of fallback:
+
+- **Never skip rungs** — if 4.7 fails, try 4.6 next, not 4.5. Slow descent so you stay as close to SOTA as possible.
+- **Never escalate weak baselines.** The `gpt-4o-mini` judges are intentionally the *weaker-LLM* control; do not "upgrade" them to GPT-5+ even if Opus is unavailable.
+- **Same Opus model for all four Opus judge slots** (`P8_STRICT_B`, `P4_CHECKLIST`, `P1_BASELINE`, `BAD_STRINGY`) so comparisons remain valid. If you fall back, fall back consistently across all four.
+- **Finish the experiment.** Do not return early or pause for permission. Whatever rung the run settles on, complete Exp16 → Exp19 → Exp22-GM end-to-end and produce all expected outputs.
+- **Print and persist** the chosen model: at start of run echo `MODEL_USED=<id>`, and at end re-echo plus write it into each `summary.json`.
 
 # Claude Code Prompt + Commands (Exp16 + Exp19 replication, plus geometric cert-index reanalysis)
 
 ## Copy-paste prompt for Claude Code
 
 Please run a strict replication of our Codex evaluation pipeline using Claude as the judge model, then re-aggregate the resulting Exp16 summary with a geometric cert-index (GM) and compare it against the baseline weighted-sum index.
+
+**Critical: this experiment must finish end-to-end.** Use SOTA Opus on best-effort (see Model policy above) — if `claude-opus-4-7` is unavailable, descend the fallback ladder one rung at a time (4.6 → 4.5 → 4.1 → 4-20250514 → Sonnet 4.x → next strongest), record the model actually used in stdout and in each `summary.json`, and **complete the full pipeline regardless**. Do not stop, do not ask for confirmation, do not return partial results.
 
 Goal:
 
@@ -68,8 +81,35 @@ After all runs complete, print:
 export ANTHROPIC_API_KEY="<your_anthropic_key>"
 export MPLCONFIGDIR=/tmp/mpl
 
-# SOTA pin (bump if a newer Opus has shipped — verify before running):
-OPUS_MODEL="claude-opus-4-7"
+# SOTA-first ladder. Try rung 0; only descend one rung on confirmed failure.
+# IMPORTANT: never abort the experiment — keep walking down until one works.
+OPUS_LADDER=(
+  "claude-opus-4-7"          # rung 0: SOTA (or newer Opus if shipped — bump here)
+  "claude-opus-4-6"          # rung 1
+  "claude-opus-4-5"          # rung 2
+  "claude-opus-4-1-20250805" # rung 3
+  "claude-opus-4-20250514"   # rung 4: last-resort Opus
+  "claude-sonnet-4-5"        # rung 5: drop family only after Opus exhausted
+)
+
+pick_opus () {
+  for m in "${OPUS_LADDER[@]}"; do
+    if curl -sS -o /dev/null -w "%{http_code}" \
+         -H "x-api-key: ${ANTHROPIC_API_KEY}" \
+         -H "anthropic-version: 2023-06-01" \
+         -H "content-type: application/json" \
+         -d "{\"model\":\"$m\",\"max_tokens\":1,\"messages\":[{\"role\":\"user\",\"content\":\"ping\"}]}" \
+         https://api.anthropic.com/v1/messages | grep -q "^200$"; then
+      echo "$m"; return 0
+    fi
+    echo "[ladder] $m unreachable, trying next rung..." >&2
+  done
+  echo "[ladder] ERROR: no rung reachable; falling back to first rung anyway so the experiment finishes" >&2
+  echo "${OPUS_LADDER[0]}"
+}
+
+OPUS_MODEL="${OPUS_MODEL:-$(pick_opus)}"
+echo "MODEL_USED=${OPUS_MODEL}" | tee experiments/04_veribench_validation/results_exp16_opus47_r3_median.MODEL_USED.txt
 
 # 1) Exp16 — multi-judge certification → human trend
 python3 experiments/04_veribench_validation/exp16_multi_judge_human_sets.py \
@@ -122,7 +162,8 @@ Geometric reanalysis (one dir per label_set ∈ {avg, pass1, pass2}):
 
 ## Important notes
 
-- **SOTA is non-negotiable.** Before running, web-search the latest Claude Opus model ID. As of 2026-04-30 it is `claude-opus-4-7`. If your key cannot reach 4.7, do *not* fall through to `claude-opus-4-20250514` silently — pick the most recent Opus 4.x your key supports (`claude-opus-4-6`, then `4-5`) and **state in stdout which model was actually used** so the run is auditable.
+- **The experiment must finish.** SOTA is best-effort, not a blocker. Try `claude-opus-4-7` first; if it 401/403/404s, descend the ladder one rung at a time (`4-6` → `4-5` → `4-1` → `4-20250514` → Sonnet 4.x → next strongest coding model). Never abort, never skip rungs, never silently substitute. The pre-flight `pick_opus` shell function in the runbook performs this descent automatically; you may also implement equivalent logic inside the Python runner.
+- **Audit trail required.** Every run must echo `MODEL_USED=<id>` to stdout and persist that ID into each `summary.json` (Exp16, Exp22-GM per label set). If multiple rungs were attempted, also log the failure reason for each attempted rung above the chosen one.
 - This script path uses Anthropic direct API for `claude-*` model names.
 - Do **not** use Bedrock-style model IDs (`anthropic....:0`) in `--judges` for this runner.
 - If auth fails, verify `ANTHROPIC_API_KEY` is valid for the selected Claude model.
