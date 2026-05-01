@@ -13,11 +13,16 @@ import time
 from pathlib import Path
 
 _HERE = Path(__file__).parent.parent  # experiments/02_.../
-CACHE_PATH = _HERE / "results" / "judge_cache.json"
+# CACHE_PATH honors $CERT_JUDGE_CACHE_PATH so concurrent runs (e.g. exp12 Leanstral
+# vs exp13 Qwen) can isolate their caches and avoid clobbering each other on the
+# shared DFS-mounted JSON file. Default preserves the original on-disk location.
+CACHE_PATH = Path(os.environ.get("CERT_JUDGE_CACHE_PATH") or (_HERE / "results" / "judge_cache.json"))
 
 ANTHROPIC_KEY_PATH = os.path.expanduser("~/keys/anthropic_bm_key_koyejolab.txt")
 OPENAI_KEY_PATH = os.path.expanduser("~/keys/openai_bm_key_koyejolab.txt")
 OPENAI_PERSONAL_KEY_PATH = os.path.expanduser("~/keys/openai_api_brandos_personal_key.txt")
+MISTRAL_KEY_PATH = os.path.expanduser("~/keys/mistral_api_key.txt")
+MISTRAL_BASE_URL = "https://api.mistral.ai/v1"
 
 # Claude Code OAuth fallback: when no Anthropic API key is available, route
 # claude-* requests through the Claude Code session's OAuth token. The token
@@ -65,8 +70,31 @@ def _load_cache() -> dict:
 
 
 def _save_cache(cache: dict) -> None:
+    """Merge `cache` into the on-disk cache under an exclusive flock + atomic rename.
+
+    This prevents lost-update races when multiple processes (e.g. exp12 Leanstral
+    + exp13 Qwen) share the same cache file: each writer re-reads the disk view
+    inside the lock and merges its own entries on top, instead of clobbering
+    whatever another process wrote since this process's _load_cache().
+    """
+    import fcntl
+
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    CACHE_PATH.write_text(json.dumps(cache, indent=2))
+    lock_path = CACHE_PATH.with_suffix(CACHE_PATH.suffix + ".lock")
+    lock_path.touch(exist_ok=True)
+    with open(lock_path, "r+") as lock_fp:
+        fcntl.flock(lock_fp.fileno(), fcntl.LOCK_EX)
+        try:
+            try:
+                disk_cache = json.loads(CACHE_PATH.read_text()) if CACHE_PATH.exists() else {}
+            except Exception:
+                disk_cache = {}
+            disk_cache.update(cache)
+            tmp = CACHE_PATH.with_suffix(CACHE_PATH.suffix + f".tmp.{os.getpid()}")
+            tmp.write_text(json.dumps(disk_cache, indent=2))
+            tmp.replace(CACHE_PATH)
+        finally:
+            fcntl.flock(lock_fp.fileno(), fcntl.LOCK_UN)
 
 
 def _get_openai_key() -> str:
@@ -94,6 +122,16 @@ def _get_anthropic_key() -> str:
         return Path(ANTHROPIC_KEY_PATH).read_text().strip()
     except Exception:
         raise RuntimeError(f"Could not read Anthropic API key from {ANTHROPIC_KEY_PATH}")
+
+
+def _get_mistral_key() -> str:
+    key = os.environ.get("MISTRAL_API_KEY", "")
+    if key:
+        return key
+    try:
+        return Path(MISTRAL_KEY_PATH).read_text().strip()
+    except Exception:
+        raise RuntimeError(f"Could not read Mistral API key from {MISTRAL_KEY_PATH}")
 
 
 def _get_claude_code_oauth_token() -> str | None:
@@ -128,10 +166,22 @@ def _parse_response_text(text: str) -> dict:
         score = max(0.0, min(1.0, score))
         return {"score": score, "reasoning": str(parsed.get("reasoning", ""))}
     except Exception:
-        # Try regex extraction
-        m = re.search(r'"score"\s*:\s*([0-9.]+)', text)
+        # Tier 1: regex against the JSON-style "score": 0.5 form anywhere in the text.
+        m = re.search(r'"score"\s*:\s*([0-9]+(?:\.[0-9]+)?)', text)
         if m:
-            return {"score": float(m.group(1)), "reasoning": "extracted from malformed json"}
+            v = max(0.0, min(1.0, float(m.group(1))))
+            return {"score": v, "reasoning": "extracted from malformed json"}
+        # Tier 2: prose form like "score: 0.5", "Score = 0.7", "rating: 0.8"
+        m = re.search(r'\b(?:score|rating|grade)\s*[:=]?\s*([0-9]+(?:\.[0-9]+)?)\b', text, re.IGNORECASE)
+        if m:
+            v = max(0.0, min(1.0, float(m.group(1))))
+            return {"score": v, "reasoning": f"extracted from prose: {text[:120]}"}
+        # Tier 3: bare number on first line (e.g. "0.7")
+        first = text.strip().split("\n", 1)[0].strip()
+        m = re.fullmatch(r'([0-9]+(?:\.[0-9]+)?)', first)
+        if m:
+            v = max(0.0, min(1.0, float(m.group(1))))
+            return {"score": v, "reasoning": f"extracted bare number: {first}"}
         return {"score": 0.5, "reasoning": f"parse_error on: {text[:50]}"}
 
 
@@ -147,34 +197,63 @@ def _call_openai_once(
         reference_impl=reference_impl,
         generated_theorem=generated_theorem,
     )
+    # Detect Mistral by base_url; Mistral has no /v1/responses or /v1/completions,
+    # so we go straight to chat completions and respect rate limits properly.
+    base_url = str(getattr(client, "base_url", "") or "")
+    is_mistral = "mistral.ai" in base_url
+
+    # Local retry counter that allows MANY more attempts on 429 (rate limit).
+    # The Mistral Labs free tier rate-limits aggressively; without this the
+    # caller falls back to the legacy completions endpoint (which Mistral 422s)
+    # and silently degrades every score to 0.5/parse_error.
+    rate_limit_retries = 0
+    MAX_RATE_LIMIT_RETRIES = 12  # ~12 attempts with exp backoff = up to ~10 min/call worst case
+
     for attempt in range(MAX_RETRIES):
         try:
-            # Prefer Responses API for newer OpenAI model families (e.g., GPT-5/Codex).
             text = None
-            try:
-                response = client.responses.create(
-                    model=model,
-                    input=prompt,
-                    max_output_tokens=256,
-                )
-                text = getattr(response, "output_text", None)
-            except Exception:
-                response = None
 
-            # Fallback to chat completions for chat-compatible models.
-            if not text:
+            if not is_mistral:
+                # Prefer Responses API for newer OpenAI model families (e.g., GPT-5/Codex).
                 try:
-                    response = client.chat.completions.create(
+                    response = client.responses.create(
                         model=model,
-                        max_tokens=256,
-                        messages=[{"role": "user", "content": prompt}],
+                        input=prompt,
+                        max_output_tokens=256,
                     )
-                    text = response.choices[0].message.content
+                    text = getattr(response, "output_text", None)
                 except Exception:
                     response = None
 
-            # Legacy fallback to classic completions endpoint.
+            # Chat completions — the universal modern path (OpenAI, Mistral, vLLM, etc.).
             if not text:
+                while True:
+                    try:
+                        response = client.chat.completions.create(
+                            model=model,
+                            max_tokens=256,
+                            messages=[{"role": "user", "content": prompt}],
+                        )
+                        text = response.choices[0].message.content
+                        break
+                    except Exception as chat_e:
+                        # Detect 429 / rate-limit and back off generously instead of
+                        # silently falling through to the legacy completions endpoint
+                        # (which Mistral does not accept).
+                        msg = str(chat_e)
+                        is_rate = ("429" in msg or "rate" in msg.lower() or "RateLimit" in type(chat_e).__name__)
+                        if is_rate and rate_limit_retries < MAX_RATE_LIMIT_RETRIES:
+                            wait = min(60.0, 5.0 * (2 ** rate_limit_retries))
+                            rate_limit_retries += 1
+                            print(f"  [judge_caller] 429 rate-limit on chat.completions ({rate_limit_retries}/{MAX_RATE_LIMIT_RETRIES}); sleeping {wait:.1f}s")
+                            time.sleep(wait)
+                            continue
+                        # Non-rate-limit error: re-raise so outer attempt loop handles it.
+                        raise
+
+            # Legacy fallback to classic completions endpoint — only for true OpenAI,
+            # never for Mistral (which 422s without `messages`).
+            if not text and not is_mistral:
                 response = client.completions.create(
                     model=model,
                     max_tokens=256,
@@ -293,6 +372,16 @@ def _make_client(model: str):
         import openai
         key = _get_openai_key()
         return openai.OpenAI(api_key=key), "openai"
+    elif model.lower().startswith("qwen") or model.startswith("Qwen"):
+        # Self-hosted vLLM OpenAI-compatible endpoint.
+        import openai
+        base_url = os.environ.get("QWEN_BASE_URL", "http://127.0.0.1:8765/v1")
+        api_key = os.environ.get("QWEN_API_KEY", "EMPTY")
+        return openai.OpenAI(api_key=api_key, base_url=base_url), "openai"
+    elif model.startswith("leanstral") or model.startswith("labs-leanstral"):
+        import openai
+        key = _get_mistral_key()
+        return openai.OpenAI(api_key=key, base_url=MISTRAL_BASE_URL), "openai"
     elif model.startswith("claude"):
         # Prefer real Anthropic API key when present.
         try:
@@ -358,11 +447,9 @@ def judge(
 
     client, backend = _make_client(model)
 
-    scores = []
-    reasonings = []
-    for i in range(n_repeats):
+    def _one_call() -> dict:
         if backend == "openai":
-            result = _call_openai_once(
+            return _call_openai_once(
                 client=client,
                 generated_theorem=generated_theorem,
                 reference_impl=reference_impl,
@@ -370,7 +457,7 @@ def judge(
                 prompt_template=prompt_template,
             )
         elif backend == "claude_oauth":
-            result = _call_claude_oauth_once(
+            return _call_claude_oauth_once(
                 token=client,  # OAuth token string, not an SDK client
                 generated_theorem=generated_theorem,
                 reference_impl=reference_impl,
@@ -378,7 +465,7 @@ def judge(
                 prompt_template=prompt_template,
             )
         else:
-            result = _call_anthropic_once(
+            return _call_anthropic_once(
                 client=client,
                 generated_theorem=generated_theorem,
                 reference_impl=reference_impl,
@@ -386,10 +473,17 @@ def judge(
                 prompt_template=prompt_template,
             )
 
-        scores.append(result["score"])
-        reasonings.append(result["reasoning"])
-        if i < n_repeats - 1:
-            time.sleep(0.3)  # small delay
+    # Run n_repeats concurrently — vLLM and OpenAI both batch concurrent requests
+    # which gives a near-linear speedup for our serial-row workload.
+    if n_repeats == 1:
+        results = [_one_call()]
+    else:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=n_repeats) as ex:
+            results = list(ex.map(lambda _: _one_call(), range(n_repeats)))
+
+    scores = [r["score"] for r in results]
+    reasonings = [r["reasoning"] for r in results]
 
     mean_score = statistics.mean(scores)
     std_score = statistics.stdev(scores) if len(scores) > 1 else 0.0
