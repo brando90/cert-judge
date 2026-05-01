@@ -1,0 +1,99 @@
+{
+  "experiment": "exp25_plot_baseline_vs_geometric",
+  "source_summary": "experiments/04_veribench_validation/results_exp16_leanstral_r3_median/summary.json",
+  "label_set": "pass1",
+  "formula": "TI_geom = exp(mono_w * log(mono) + stab_w * log(stab))",
+  "weights": {
+    "mono": 0.4,
+    "stab": 0.6
+  },
+  "eps": 1e-06,
+  "rho_geometric": -0.14285714285714288,
+  "rho_baseline": -0.5952380952380953,
+  "rho_baseline_v1": -0.523809523809524,
+  "geometric_better": true,
+  "geometric_ci": [
+    -0.9726027397260274,
+    0.7368421052631581
+  ],
+  "baseline_ci": [
+    -0.9753086419753085,
+    0.2820512820512821
+  ],
+  "model_actually_used": [
+    "labs-leanstral-2603|P8_STRICT_B",
+    "labs-leanstral-2603|P4_CHECKLIST",
+    "labs-leanstral-2603|P1_BASELINE",
+    "labs-leanstral-2603|BAD_STRINGY",
+    "gpt-4o-mini|P8_STRICT_B",
+    "gpt-4o-mini|P4_CHECKLIST",
+    "editdist_e1",
+    "random_r1"
+  ],
+  "rows": [
+    {
+      "judge_id": "labs-leanstral-2603|P8_STRICT_B",
+      "geo_trust_index": 0.7158614427238205,
+      "baseline_v2": 0.524119209201567,
+      "human_spearman": 0.023284025399335818,
+      "mono": 0.58824651999389,
+      "stab": 0.8159722222222222
+    },
+    {
+      "judge_id": "labs-leanstral-2603|P4_CHECKLIST",
+      "geo_trust_index": 0.7172682428957787,
+      "baseline_v2": 0.6407685683325614,
+      "human_spearman": 0.11844825124299907,
+      "mono": 0.5587377302420058,
+      "stab": 0.8472222222222222
+    },
+    {
+      "judge_id": "labs-leanstral-2603|P1_BASELINE",
+      "geo_trust_index": 0.7777588092615133,
+      "baseline_v2": 0.7243657869986854,
+      "human_spearman": -0.13839152309481054,
+      "mono": 0.869172698487545,
+      "stab": 0.7222222222222222
+    },
+    {
+      "judge_id": "labs-leanstral-2603|BAD_STRINGY",
+      "geo_trust_index": 0.7770087451737286,
+      "baseline_v2": 0.7886984664606902,
+      "human_spearman": 0.10633700783347985,
+      "mono": 0.9127659116455227,
+      "stab": 0.6979166666666667
+    },
+    {
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "geo_trust_index": 0.9054659435424817,
+      "baseline_v2": 0.8169365382028081,
+      "human_spearman": -0.17167260841657145,
+      "mono": 0.9095132079696568,
+      "stab": 0.9027777777777778
+    },
+    {
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "geo_trust_index": 0.8295875246027585,
+      "baseline_v2": 0.7269397767919629,
+      "human_spearman": -0.0780397713522088,
+      "mono": 0.8038213244263506,
+      "stab": 0.8472222222222222
+    },
+    {
+      "judge_id": "editdist_e1",
+      "geo_trust_index": 0.9132436862221736,
+      "baseline_v2": 0.46784615826895004,
+      "human_spearman": 0.3033920565957687,
+      "mono": 0.7970153687388253,
+      "stab": 1.0
+    },
+    {
+      "judge_id": "random_r1",
+      "geo_trust_index": 0.75703252546191,
+      "baseline_v2": 0.5756988374173462,
+      "human_spearman": 0.05582210587920711,
+      "mono": 0.498639120386087,
+      "stab": 1.0
+    }
+  ]
+}
