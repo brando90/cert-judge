@@ -135,6 +135,15 @@
   \label{fig:pull-cost-alignment}
 \end{figure*}
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_opus47_per_judge_monotonicity.png}
+  \caption{\textbf{Opus 4.7 per-judge monotonicity diagnostics.}
+    Bars show P2 bug-rank monotonicity, P3 weak monotonicity, and \(1-\)local-reversal rate for each judge.
+    Core Opus prompts cluster near 1.0 on all three monotonicity axes, while stress controls are lower.}
+  \label{fig:opus47_monotonicity_diag}
+\end{figure}
+
 \section{Introduction}
 % https://chatgpt.com/c/68dc3b7a-8240-832c-9707-4187b4ec4005
 % In modern proof assistants such as Lean~4, code can be verified through machine-checkable proofs. However, assessing the quality of the theorems themselves presents a deeper challenge. Determining what constitutes a good specification is inherently difficult, as it requires balancing correctness, expressiveness, and alignment with the intended semantics of the underlying program.
@@ -477,6 +486,64 @@ Prompt stability (P4) yields a pooled within-item standard deviation of $0.088$,
 These preliminary cross-model results suggest that the certification properties are not specific to a single LLM family; a full-scale Claude run across all VeriBench files is planned.
 Our primary replication target is a frontier Claude Opus model (same prompts, same geometric certification index, same error-bar protocol as the Codex runs), while smaller Claude variants (e.g., Haiku) are treated as robustness controls rather than primary evidence.
 % Script: experiments/05_claude_code_properties_all_vb/run_veribench_properties.py
+
+\paragraph{Claude Opus 4.7 replication (full Exp16 panel).}
+Using the same \(8\)-judge Exp16 panel and the same geometric index
+\(
+\mathrm{TI}_{\text{geom}}=\exp(0.4\log(\text{mono})+0.6\log(\text{stab}))
+\),
+Claude Opus 4.7 substantially improves the cross-judge trend over the baseline weighted index.
+For pass1 labels, Spearman rises from \(0.167\) (baseline v2) to \(0.786\) (geometric);
+for averaged labels, from \(0.143\) to \(0.714\);
+for pass2 labels, from \(0.476\) to \(0.690\).
+Thus the same conjunctive geometric formulation that worked for Codex also transfers to a frontier Claude family run.
+
+\paragraph{Flip-rate and monotonicity diagnostics (Opus 4.7).}
+Opus prompt variants show very low repeat-call decision instability at \(t=0.85\):
+\texttt{P4\_CHECKLIST} and \texttt{P1\_BASELINE} both achieve flip rate \(0.000\),
+and \texttt{P8\_STRICT\_B} achieves \(0.0069\).
+Per-judge monotonicity diagnostics are correspondingly strong for the core prompts (P2 bug-rank and P3 weak-monotonicity both near 1.0),
+while controls (BAD\_STRINGY, edit-distance, random) show larger reversal rates.
+At the cross-judge level for Opus (avg labels), monotonicity properties are directionally positive:
+P2 Spearman \(=0.405\), P3 Spearman \(=0.368\).
+For comparison, the Codex run is stronger on the same analysis:
+P2 Spearman \(=0.714\), P3 Spearman \(=0.747\).
+To keep uncertainty reporting conservative and readable, we display trend bars as mean \(\pm\) SE (repeat-noise proxy), with correlations unchanged.
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_opus47_avg_repeat_noise_se.png}
+    \caption{Opus 4.7 Exp16 trend (avg labels): baseline vs geometric index (\(\rho=0.143 \rightarrow 0.714\)).}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_opus47_flip_rate_se.png}
+    \caption{Opus 4.7 repeat-call decision flip rates at \(t=0.85\) (mean \(\pm\) SE).}
+  \end{subfigure}
+  \caption{\textbf{Claude Opus 4.7 replication diagnostics.}
+    Left: geometric trust index restores a strong certification\(\rightarrow\)human trend on the same Exp16 panel.
+    Right: core Opus prompts maintain very low binary instability under repeated calls.}
+  \label{fig:opus47_exp16_flip}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_codex.png}
+    \caption{Codex low-variance monotonicity curves.}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_opus47.png}
+    \caption{Opus 4.7 low-variance monotonicity curves.}
+  \end{subfigure}
+  \caption{\textbf{Low-variance monotonicity trends across model families.}
+    Both judge families show strong non-increasing behavior as bug intensity increases, with robust repeat aggregation.}
+  \label{fig:lowvar_mono_codex_opus}
+\end{figure*}
 
 \begin{table}[H]
   \renewcommand{\arraystretch}{1.30}

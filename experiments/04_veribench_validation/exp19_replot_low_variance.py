@@ -68,6 +68,7 @@ def _is_main_gpt53(jid: str) -> bool:
     main_prefixes = (
         "gpt-5.3-codex|",
         "claude-3-7-sonnet-20250219|",
+        "claude-opus-4-7|",
     )
     return jid.startswith(main_prefixes) and ("BAD_STRINGY" not in jid)
 

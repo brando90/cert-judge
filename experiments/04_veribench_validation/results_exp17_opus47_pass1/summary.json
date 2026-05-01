@@ -1,0 +1,124 @@
+{
+  "experiment": "exp17_property_human_analysis",
+  "input_summary": "experiments/04_veribench_validation/results_exp16_opus47_r3_median/summary.json",
+  "label_set": "pass1",
+  "n_judges": 8,
+  "per_property_correlations": [
+    {
+      "property": "P1_identity",
+      "spearman_r": -0.13173888881045848,
+      "spearman_perm_p": 0.7645117744112795,
+      "pearson_r": 0.22706572281682877,
+      "pearson_perm_p": 0.6496175191240438
+    },
+    {
+      "property": "P2_bug_rank",
+      "spearman_r": 0.4761904761904762,
+      "spearman_perm_p": 0.24033798310084495,
+      "pearson_r": 0.5249681438665466,
+      "pearson_perm_p": 0.17164141792910353
+    },
+    {
+      "property": "P3_weak_mono",
+      "spearman_r": 0.33144431589465956,
+      "spearman_perm_p": 0.4131293435328234,
+      "pearson_r": 0.46010866303546816,
+      "pearson_perm_p": 0.2343382830858457
+    },
+    {
+      "property": "P4_stability",
+      "spearman_r": 0.7610194341477616,
+      "spearman_perm_p": 0.04154792260386981,
+      "pearson_r": 0.6490160592973615,
+      "pearson_perm_p": 0.07189640517974101
+    }
+  ],
+  "partial_correlations": [
+    {
+      "property": "P1_identity",
+      "partial_pearson_r": 0.23331684673882203,
+      "partial_pearson_perm_p": 0.5783210839458027,
+      "partial_spearman_r": 0.04761904761904763,
+      "partial_spearman_perm_p": 0.9346032698365082
+    },
+    {
+      "property": "P2_bug_rank",
+      "partial_pearson_r": -0.07476565711422813,
+      "partial_pearson_perm_p": 0.8729063546822659,
+      "partial_spearman_r": 0.11904761904761905,
+      "partial_spearman_perm_p": 0.7960601969901505
+    },
+    {
+      "property": "P3_weak_mono",
+      "partial_pearson_r": 0.25119359416977355,
+      "partial_pearson_perm_p": 0.5659717014149293,
+      "partial_spearman_r": 0.261904761904762,
+      "partial_spearman_perm_p": 0.5352232388380581
+    },
+    {
+      "property": "P4_stability",
+      "partial_pearson_r": 0.7051225375512347,
+      "partial_pearson_perm_p": 0.051347432628368585,
+      "partial_spearman_r": 0.7142857142857144,
+      "partial_spearman_perm_p": 0.05469726513674316
+    }
+  ],
+  "regression": {
+    "r2": 0.6583112814430858,
+    "r2_perm_p": 0.3696815159242038,
+    "betas": [
+      {
+        "property": "P1_identity",
+        "beta_std": 0.4546284798249323,
+        "beta_perm_p": 0.7398630068496576
+      },
+      {
+        "property": "P2_bug_rank",
+        "beta_std": -0.19883468327763,
+        "beta_perm_p": 0.9206039698015099
+      },
+      {
+        "property": "P3_weak_mono",
+        "beta_std": 0.477020976207016,
+        "beta_perm_p": 0.7285135743212839
+      },
+      {
+        "property": "P4_stability",
+        "beta_std": 0.6779202483046728,
+        "beta_perm_p": 0.15094245287735614
+      }
+    ]
+  },
+  "bad_judge_gap": {
+    "bad_judge_id": "claude-opus-4-7|BAD_STRINGY",
+    "bad_human_corr": 0.25752620153384675,
+    "bad_composite_p1p4": 0.7729772729517408,
+    "bad_composite_percentile": 0.625,
+    "per_property": [
+      {
+        "property": "P1_identity",
+        "value": 0.9435416666666666,
+        "percentile_lower_is_worse": 1.0,
+        "zscore": 0.9972925986817555
+      },
+      {
+        "property": "P2_bug_rank",
+        "value": 0.8601729806958522,
+        "percentile_lower_is_worse": 0.5,
+        "zscore": 0.2904754371255549
+      },
+      {
+        "property": "P3_weak_mono",
+        "value": 0.2916666666666667,
+        "percentile_lower_is_worse": 0.375,
+        "zscore": -0.5241355656615674
+      },
+      {
+        "property": "P4_stability",
+        "value": 0.9965277777777778,
+        "percentile_lower_is_worse": 0.5,
+        "zscore": 0.515589086422795
+      }
+    ]
+  }
+}

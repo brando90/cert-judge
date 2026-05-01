@@ -243,6 +243,15 @@ In our latest GPT-5.3-Codex API sanity run (\(n_\text{files}=184\), \(n_\text{re
   \vspace{-3mm}
 \end{figure*}
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_opus47_per_judge_monotonicity.png}
+  \caption{\textbf{Opus 4.7 per-judge monotonicity diagnostics.}
+    Bars report P2 bug-rank monotonicity, P3 weak monotonicity, and \(1-\)local-reversal rate by judge.
+    Core Opus prompts remain near the top of all three monotonicity diagnostics; stress controls are lower.}
+  \label{fig:opus47_monotonicity_diag}
+\end{figure}
+
 \section{Results: Evaluating Agentic Theorem Generation with a Calibrated Judge}
 Table~\ref{tab:theorem_quality_table_split} presents the normalized average scores across different splits of \textsc{VeriBench}: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), and Security Set (Sec).
 As expected, the baseline prompting approach achieves the lowest overall normalized score (0.470), reflecting its limited capability in autonomously identifying comprehensive theorem properties.
@@ -410,6 +419,44 @@ Bug monotonicity (P2) shows a clear negative trend (Pearson $r=-0.717$, Spearman
 Prompt stability (P4) yields a pooled within-item standard deviation of $0.088$, comparable to the Codex run.
 These preliminary cross-model results suggest that the certification properties are not specific to a single LLM family; a full-scale Claude run across all VeriBench files is planned.
 % Script: experiments/05_claude_code_properties_all_vb/run_veribench_properties.py
+
+\paragraph{Claude Opus 4.7 replication (full Exp16 panel).}
+On the full \(8\)-judge Exp16 validation panel, we re-run the same analysis with Claude Opus 4.7 and apply the same geometric index
+\(
+\mathrm{TI}_{\text{geom}}=\exp(0.4\log(\text{mono})+0.6\log(\text{stab}))
+\).
+The geometric form is consistently stronger than the baseline weighted index:
+pass1 \(\rho: 0.167 \rightarrow 0.786\),
+avg \(\rho: 0.143 \rightarrow 0.714\),
+pass2 \(\rho: 0.476 \rightarrow 0.690\).
+This supports cross-model transfer of the same conjunctive index design, even when absolute judge-level correlations differ by label pass.
+
+\paragraph{Flip-rate and per-judge monotonicity diagnostics (Opus 4.7).}
+At \(t=0.85\), repeat-call decision instability is low for core Opus prompts:
+\texttt{P4\_CHECKLIST} and \texttt{P1\_BASELINE} both have flip rate \(0.000\), and \texttt{P8\_STRICT\_B} has \(0.0069\).
+Per-judge monotonicity diagnostics are also strongest for these core prompts, while stress controls (BAD\_STRINGY, edit-distance, random) show larger local-reversal behavior.
+At the cross-judge level on avg validation labels, Opus monotonicity properties are directionally positive:
+P2 Spearman \(=0.405\), P3 Spearman \(=0.368\).
+For comparison, Codex on the same analysis gives P2 Spearman \(=0.714\), P3 Spearman \(=0.747\).
+For visualization, we report mean \(\pm\) SE error bars (repeat-noise proxy) to separate presentation-scale uncertainty from the ranking statistic itself; the underlying Spearman values are unchanged.
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_opus47_avg_repeat_noise_se.png}
+    \caption{Opus 4.7 Exp16 trend (avg validation labels): baseline vs geometric index (\(\rho=0.143 \rightarrow 0.714\)).}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_opus47_flip_rate_se.png}
+    \caption{Opus 4.7 repeat-call decision flip rates at \(t=0.85\) (mean \(\pm\) SE).}
+  \end{subfigure}
+  \caption{\textbf{Claude Opus 4.7 validation diagnostics.}
+    Left: geometric aggregation strengthens the judge-level certification\(\rightarrow\)human trend.
+    Right: binary decision instability remains low for core Opus prompts.}
+  \label{fig:opus47_validation_flip}
+\end{figure*}
 
 \begin{table}[H]
   \renewcommand{\arraystretch}{1.30}
@@ -796,6 +843,23 @@ We note that, for the experiment shown in Figure \ref{fig:app-missing-specs}, a 
     Scores drop as more semantic bugs are injected (Pearson \(r=-0.714\), Spearman \(\rho=-0.709\), \(R^2=0.509\)); the higher noise with the initial “theorem-equivalence” prompt led us to simplify the rubric used for the final judge in the main paper.}
   \label{fig:app-bugs}
 \end{figure}
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_codex.png}
+    \caption{Codex low-variance monotonicity curves.}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_opus47.png}
+    \caption{Opus 4.7 low-variance monotonicity curves.}
+  \end{subfigure}
+  \caption{\textbf{Low-variance monotonicity trends across model families.}
+    Both judge families show strong non-increasing behavior as bug intensity increases, under robust repeat aggregation.}
+  \label{fig:lowvar_mono_codex_opus}
+\end{figure*}
 
 \section{Validation-Set Human Alignment Appendix}\label{app:exp16-exp17}
 This appendix reports full visual diagnostics for Exp16/Exp17 under final robust settings (three validation label sets: pass1, pass2, avg).
