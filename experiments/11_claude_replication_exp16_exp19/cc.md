@@ -170,3 +170,170 @@ Geometric reanalysis (one dir per label_set ∈ {avg, pass1, pass2}):
 - The geometric reanalysis is **offline**: it reads only the existing Exp16 `summary.json` and makes **no model calls**. If `exp25_plot_baseline_vs_geometric.py` is missing from the repo, fall back to `exp22_geometric_trust_index.py` (which computes the same GM index and writes `summary.json`) and add a small plotting wrapper to produce `fig7_trend_update_baseline_vs_geom.png`.
 - Weight convention for the GM: `mono=0.4`, `stab=0.6`, all other components (ident/weak/anti/subtle) set to `0`. Equivalently, pass `--weights "0,0.4,0,0.6,0,0"` to the 6-component runner.
 - Optional: Opus 4.7 supports a new `xhigh` reasoning-effort level. If the runner exposes a `--reasoning-effort` knob, you may pass `xhigh` for the four `claude-opus-*` judges; leave `gpt-4o-mini` at default.
+
+---
+
+## Multi-Model Replication Matrix (Opus + Leanstral + Qwen2.5-Coder)
+
+Use this when you want the **same exact pipeline** run for additional models, not just Opus.
+
+### Goal
+
+Recreate the full result stack for each target model:
+
+1. Exp16 (`results_exp16_<tag>_r3_median`)
+2. Exp19 (`results_exp19_low_variance_replot_<tag>`)
+3. Exp25/GM for `avg`, `pass1`, `pass2` (`results_exp22_geometric_trust_index/<tag>_mono_stab_40_60_<label>`)
+4. Figure-3-style monotonicity panel (`results_exp27_<tag>_fig3_style`)
+
+### Copy-paste prompt for Claude Code (matrix run)
+
+Run the exact same Exp16/Exp19/Exp25/Exp27 pipeline for three judge-model families:
+
+1. Opus (SOTA Claude, with fallback ladder)
+2. Leanstral (open model endpoint we have configured)
+3. Qwen2.5-Coder-32B-Instruct (open model endpoint we have configured)
+
+Use identical methodology across all families:
+- repeats=3
+- repeat-agg=median
+- threshold=0.85
+- error-bars on
+- same judge prompts: P8_STRICT_B, P4_CHECKLIST, P1_BASELINE, BAD_STRINGY
+- same weak controls: gpt-4o-mini P8/P4 + editdist + random
+
+For each family, produce:
+- Exp16 summary + scatter plots
+- Exp19 low-variance package
+- Exp25 geometric trend plots/summaries for avg/pass1/pass2
+- Exp27 figure-3-style monotonicity panel
+
+Do not alter formulas:
+- mono = (1 - bug_spearman_r) / 2
+- stab = 1 - flip_rate
+- TI_geom = exp(0.4*log(mono) + 0.6*log(stab))
+
+At the end, print a compact comparison table:
+- model family
+- rho_geometric (avg/pass1/pass2)
+- rho_baseline (avg/pass1/pass2)
+- geometric-better flag for each set
+- key monotonicity Spearman for P8/P4/P1 from Exp27 summary
+
+### Shell runbook (matrix)
+
+```bash
+export MPLCONFIGDIR=/tmp/mpl
+
+# Required for Claude direct:
+export ANTHROPIC_API_KEY="<your_anthropic_key>"
+
+# If Leanstral/Qwen are served via OpenAI-compatible endpoint, export these too:
+# export OPENAI_API_KEY="<your_openai_or_router_key>"
+# export OPENAI_BASE_URL="<your_openai_compatible_base_url>"
+
+# ---------- 0) pick Opus model ----------
+OPUS_LADDER=(
+  "claude-opus-4-7"
+  "claude-opus-4-6"
+  "claude-opus-4-5"
+  "claude-opus-4-1-20250805"
+  "claude-opus-4-20250514"
+  "claude-sonnet-4-5"
+)
+
+pick_opus () {
+  for m in "${OPUS_LADDER[@]}"; do
+    if curl -sS -o /dev/null -w "%{http_code}" \
+         -H "x-api-key: ${ANTHROPIC_API_KEY}" \
+         -H "anthropic-version: 2023-06-01" \
+         -H "content-type: application/json" \
+         -d "{\"model\":\"$m\",\"max_tokens\":1,\"messages\":[{\"role\":\"user\",\"content\":\"ping\"}]}" \
+         https://api.anthropic.com/v1/messages | grep -q "^200$"; then
+      echo "$m"; return 0
+    fi
+  done
+  echo "${OPUS_LADDER[0]}"
+}
+
+OPUS_MODEL="${OPUS_MODEL:-$(pick_opus)}"
+echo "MODEL_USED_OPUS=${OPUS_MODEL}"
+
+# ---------- 1) set target families ----------
+# IMPORTANT: Replace LEANSTRAL_MODEL and QWEN_MODEL with the exact model IDs
+# your runner accepts in --judges llm:<MODEL_ID>:<PROMPT>.
+LEANSTRAL_MODEL="${LEANSTRAL_MODEL:-leanstral-latest}"
+QWEN_MODEL="${QWEN_MODEL:-Qwen2.5-Coder-32B-Instruct}"
+
+declare -a FAMILIES=(
+  "opus47:${OPUS_MODEL}"
+  "leanstral:${LEANSTRAL_MODEL}"
+  "qwen25coder32b:${QWEN_MODEL}"
+)
+
+run_family () {
+  TAG="$1"
+  MODEL_ID="$2"
+  echo "=== Running family tag=${TAG} model=${MODEL_ID} ==="
+
+  OUT16="experiments/04_veribench_validation/results_exp16_${TAG}_r3_median"
+  OUT19="experiments/04_veribench_validation/results_exp19_low_variance_replot_${TAG}"
+  OUT27="experiments/04_veribench_validation/results_exp27_${TAG}_fig3_style"
+
+  python3 experiments/04_veribench_validation/exp16_multi_judge_human_sets.py \
+    --judge-repeats 3 \
+    --repeat-agg median \
+    --threshold 0.85 \
+    --plot-error-bars on \
+    --cache-tag "${TAG}_full_r3_median" \
+    --judges "llm:${MODEL_ID}:P8_STRICT_B,llm:${MODEL_ID}:P4_CHECKLIST,llm:${MODEL_ID}:P1_BASELINE,llm_bad:${MODEL_ID}:BAD_STRINGY,llm:gpt-4o-mini:P8_STRICT_B,llm:gpt-4o-mini:P4_CHECKLIST,editdist:e1:na,random:r1:na" \
+    --out-dir "${OUT16}"
+
+  python3 experiments/04_veribench_validation/exp19_replot_low_variance.py \
+    --detail-rows "${OUT16}/detail_rows.csv" \
+    --judge-rows "${OUT16}/judge_rows.csv" \
+    --repeat-agg median \
+    --bootstrap-iters 4000 \
+    --out-dir "${OUT19}"
+
+  for LS in avg pass1 pass2; do
+    python3 experiments/04_veribench_validation/exp25_plot_baseline_vs_geometric.py \
+      --summary-json "${OUT16}/summary.json" \
+      --label-set "${LS}" \
+      --mono-weight 0.4 \
+      --stab-weight 0.6 \
+      --out-dir "experiments/04_veribench_validation/results_exp22_geometric_trust_index/${TAG}_mono_stab_40_60_${LS}"
+  done
+
+  python3 experiments/04_veribench_validation/exp27_plot_claude_opus_monotonicity_figure3.py \
+    --detail-rows "${OUT16}/detail_rows.csv" \
+    --out-dir "${OUT27}" \
+    --repeat-agg median \
+    --judge-ids "${MODEL_ID}|P8_STRICT_B,${MODEL_ID}|P4_CHECKLIST,${MODEL_ID}|P1_BASELINE" \
+    --title "${MODEL_ID} Monotonicity (Figure-3 style)" \
+    --stem "fig3_style_${TAG}_monotonicity"
+
+  echo "DONE family=${TAG}"
+}
+
+for ENTRY in "${FAMILIES[@]}"; do
+  TAG="${ENTRY%%:*}"
+  MODEL="${ENTRY#*:}"
+  run_family "${TAG}" "${MODEL}"
+done
+```
+
+### Expected outputs per family (`<tag>`)
+
+- `results_exp16_<tag>_r3_median/summary.json`
+- `results_exp19_low_variance_replot_<tag>/fig_main_monotonicity_lowvar.png`
+- `results_exp22_geometric_trust_index/<tag>_mono_stab_40_60_avg/summary.json`
+- `results_exp22_geometric_trust_index/<tag>_mono_stab_40_60_pass1/summary.json`
+- `results_exp22_geometric_trust_index/<tag>_mono_stab_40_60_pass2/summary.json`
+- `results_exp27_<tag>_fig3_style/fig3_style_<tag>_monotonicity.png`
+
+### Notes for Leanstral/Qwen
+
+- If your `judge_caller` routes unknown model prefixes to OpenAI-compatible chat-completions, these IDs work directly.
+- If not, map `LEANSTRAL_MODEL` / `QWEN_MODEL` to the exact IDs your endpoint exposes.
+- Keep the same control judges (`gpt-4o-mini`, `editdist`, `random`) unchanged for comparability.
