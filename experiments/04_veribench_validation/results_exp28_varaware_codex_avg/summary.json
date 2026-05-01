@@ -1,0 +1,31 @@
+{
+  "experiment": "exp28_variance_aware_trust_index",
+  "label_set": "avg",
+  "inputs": {
+    "exp16_summary": "experiments/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json",
+    "detail_rows": "experiments/04_veribench_validation/results_exp16_final_robust_r9_median/detail_rows.csv"
+  },
+  "weights": {
+    "w_corr": 0.3333333333333333,
+    "w_vcorr": 0.3333333333333333,
+    "w_vscore": 0.3333333333333333
+  },
+  "correlations": {
+    "rho_TI_vs_human": 0.8333333333333335,
+    "rho_Cf_vs_human": 0.6428571428571429,
+    "rho_VarCorr_vs_human": -0.6666666666666669,
+    "rho_VarScore_vs_human": -0.30952380952380953
+  },
+  "means": {
+    "C_f_mean_across_judges": 0.8167755761772021,
+    "VarCorr_mean_across_judges": 0.016613546875032775,
+    "VarScore_mean_across_judges": 0.006030532407407408
+  },
+  "outputs": {
+    "judge_trust_vector_csv": "experiments/04_veribench_validation/results_exp28_varaware_codex_avg/judge_trust_vector.csv",
+    "per_property_stats_csv": "experiments/04_veribench_validation/results_exp28_varaware_codex_avg/per_property_stats.csv",
+    "fig_varcorr_vs_human": "experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varcorr_vs_human.png",
+    "fig_varscore_vs_human": "experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varscore_vs_human.png",
+    "fig_trust_index_vs_human": "experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_trust_index_vs_human.png"
+  }
+}
