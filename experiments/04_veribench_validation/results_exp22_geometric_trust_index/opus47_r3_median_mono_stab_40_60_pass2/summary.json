@@ -1,0 +1,90 @@
+{
+  "experiment": "exp25_plot_baseline_vs_geometric",
+  "source_summary": "experiments/04_veribench_validation/results_exp16_opus47_r3_median/summary.json",
+  "label_set": "pass2",
+  "formula": "TI_geom = exp(mono_w * log(mono) + stab_w * log(stab))",
+  "weights": {
+    "mono": 0.4,
+    "stab": 0.6
+  },
+  "eps": 1e-06,
+  "rho_geometric": 0.6904761904761906,
+  "rho_baseline": 0.4761904761904762,
+  "rho_baseline_v1": 0.6428571428571429,
+  "geometric_better": true,
+  "geometric_ci": [
+    -0.012658227848101267,
+    0.9999999999999998
+  ],
+  "baseline_ci": [
+    -0.5061728395061728,
+    0.8987341772151901
+  ],
+  "model_actually_used": "claude-opus-4-7",
+  "rows": [
+    {
+      "judge_id": "claude-opus-4-7|P8_STRICT_B",
+      "geo_trust_index": 0.9650401216560806,
+      "baseline_v2": 0.9299910565929923,
+      "human_spearman": 0.10761141800322879,
+      "mono": 0.9244918902981658,
+      "stab": 0.9930555555555556
+    },
+    {
+      "judge_id": "claude-opus-4-7|P4_CHECKLIST",
+      "geo_trust_index": 0.9690823310514507,
+      "baseline_v2": 0.8828781343627438,
+      "human_spearman": 0.3682975357206075,
+      "mono": 0.9244888726154848,
+      "stab": 1.0
+    },
+    {
+      "judge_id": "claude-opus-4-7|P1_BASELINE",
+      "geo_trust_index": 0.9708695842545502,
+      "baseline_v2": 0.8837318192419596,
+      "human_spearman": 0.24815581266446787,
+      "mono": 0.9287572970115645,
+      "stab": 1.0
+    },
+    {
+      "judge_id": "claude-opus-4-7|BAD_STRINGY",
+      "geo_trust_index": 0.939567452561296,
+      "baseline_v2": 0.71554672400043,
+      "human_spearman": 0.26942909430438694,
+      "mono": 0.8601729806958522,
+      "stab": 0.9965277777777778
+    },
+    {
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "geo_trust_index": 0.8966877392321848,
+      "baseline_v2": 0.7913367698945556,
+      "human_spearman": 0.0704340848927101,
+      "mono": 0.8876296248403861,
+      "stab": 0.9027777777777778
+    },
+    {
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "geo_trust_index": 0.7856737659480871,
+      "baseline_v2": 0.7275907865219952,
+      "human_spearman": 0.21783521441501857,
+      "mono": 0.7423224044001504,
+      "stab": 0.8159722222222222
+    },
+    {
+      "judge_id": "editdist_e1",
+      "geo_trust_index": 0.9132436862221736,
+      "baseline_v2": 0.46784615826895004,
+      "human_spearman": 0.058285916099093935,
+      "mono": 0.7970153687388253,
+      "stab": 1.0
+    },
+    {
+      "judge_id": "random_r1",
+      "geo_trust_index": 0.75703252546191,
+      "baseline_v2": 0.5756988374173462,
+      "human_spearman": -0.02045751630074112,
+      "mono": 0.498639120386087,
+      "stab": 1.0
+    }
+  ]
+}
