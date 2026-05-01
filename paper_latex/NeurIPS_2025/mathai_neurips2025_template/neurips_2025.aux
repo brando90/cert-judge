@@ -76,12 +76,164 @@
 \@writefile{toc}{\contentsline {paragraph}{Property-level interpretation (Exp17).}{9}{section*.28}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Model Validation: Claude Family (Preliminary)}{9}{subsection.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Claude Opus 4.7 replication (full Exp16 panel).}{9}{section*.29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Flip-rate and monotonicity diagnostics (Opus 4.7).}{9}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generalization to a larger judge panel.}{9}{section*.30}\protected@file@percent }
 \citation{chen2021evaluating}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \textbf  {Claude Opus 4.7 replication diagnostics.} Left: geometric trust index restores a strong certification\(\rightarrow \)human trend on the same Exp16 panel. Right: core Opus prompts maintain very low binary instability under repeated calls.}}{10}{figure.caption.31}\protected@file@percent }
-\newlabel{fig:opus47_exp16_flip}{{7}{10}{\textbf {Claude Opus 4.7 replication diagnostics.} Left: geometric trust index restores a strong certification\(\rightarrow \)human trend on the same Exp16 panel. Right: core Opus prompts maintain very low binary instability under repeated calls}{figure.caption.31}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \textbf  {Low-variance monotonicity trends across model families.} Both judge families show strong non-increasing behavior as bug intensity increases, with robust repeat aggregation.}}{10}{figure.caption.32}\protected@file@percent }
-\newlabel{fig:lowvar_mono_codex_opus}{{8}{10}{\textbf {Low-variance monotonicity trends across model families.} Both judge families show strong non-increasing behavior as bug intensity increases, with robust repeat aggregation}{figure.caption.32}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \textbf  {Theorem Quality Scores.} Average normalized scores in \textsc  {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots  ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark.}}{10}{table.caption.33}\protected@file@percent }
-\newlabel{tab:theorem_quality_table_split}{{4}{10}{\textbf {Theorem Quality Scores.} Average normalized scores in \textsc {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark}{table.caption.33}{}}
-\@writefile{toc}{\contentsline {section}{\n
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \textbf  {Claude Opus 4.7 replication diagnostics.} Left: geometric trust index restores a strong certification\(\rightarrow \)human trend on the same Exp16 panel. Right: core Opus prompts maintain very low binary instability under repeated calls.}}{10}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:opus47_exp16_flip}{{7}{10}{\textbf {Claude Opus 4.7 replication diagnostics.} Left: geometric trust index restores a strong certification\(\rightarrow \)human trend on the same Exp16 panel. Right: core Opus prompts maintain very low binary instability under repeated calls}{figure.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \textbf  {Model-matched Figure-3-style monotonicity diagnostics.} Both model families show strong monotone score degradation with bug intensity under the same low-variance plotting protocol.}}{10}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:fig3_style_opus_codex}{{8}{10}{\textbf {Model-matched Figure-3-style monotonicity diagnostics.} Both model families show strong monotone score degradation with bug intensity under the same low-variance plotting protocol}{figure.caption.33}{}}
+\@writefile{toc}{\contentsline {paragraph}{Flip-rate and monotonicity diagnostics (Opus 4.7).}{10}{section*.31}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \textbf  {Theorem Quality Scores.} Average normalized scores in \textsc  {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots  ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark.}}{10}{table.caption.34}\protected@file@percent }
+\newlabel{tab:theorem_quality_table_split}{{4}{10}{\textbf {Theorem Quality Scores.} Average normalized scores in \textsc {VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec). All rows use Claude~3.7 as the agent model and as the LLM judge. Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent. The DSPy ReAct agent only performs self-debug. The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots ,10\}$. Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples. The Avg Norm Score shows the overall average over the entire benchmark}{table.caption.34}{}}
+\citation{rice1953}
+\citation{zhou2025graders}
+\bibstyle{plainnat}
+\bibdata{refs}
+\bibcite{ahuja2024improver}{{1}{2024}{{Ahuja et~al.}}{{}}}
+\bibcite{aniva2025pantograph}{{2}{2025}{{Aniva et~al.}}{{}}}
+\bibcite{bach2022trusthci}{{3}{2022}{{Bach et~al.}}{{}}}
+\bibcite{bursuc2025benchmarkvericodingformallyverified}{{4}{2025}{{Bursuc et~al.}}{{Bursuc, Ehrenborg, Lin, Astefanoaei, Chiosa, Kukovec, Singh, Butterley, Bizid, Dougherty, Zhao, Tan, and Tegmark}}}
+\bibcite{Chan2024ChatEval}{{5}{2024}{{Chan et~al.}}{{}}}
+\bibcite{chen2026rethinking}{{6}{2026}{{Chen et~al.}}{{Chen, Gulati, Miranda, Tang, and Koyejo}}}
+\bibcite{chen2021evaluating}{{7}{2021}{{Chen et~al.}}{{}}}
+\bibcite{cheng2024trace}{{8}{2024}{{Cheng et~al.}}{{Cheng, Nie, and Swaminathan}}}
+\bibcite{ding2025citations}{{9}{2025}{{Ding et~al.}}{{}}}
+\bibcite{kenton2024oversight}{{10}{2024}{{Kenton et~al.}}{{}}}
+\bibcite{khattab2024dspy}{{11}{2024}{{Khattab et~al.}}{{Khattab, Singhvi, Maheshwari, Zhang, Santhanam, Vardhamanan, Haq, Sharma, Joshi, Moazam, Miller, Zaharia, and Potts}}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion, Limitations, and Future Work}{11}{section.5}\protected@file@percent }
+\bibcite{Kocmi2024HumanVsLLM}{{12}{2024}{{Kocmi et~al.}}{{}}}
+\bibcite{Li2024TrustLLMJudgments}{{13}{2024}{{Li et~al.}}{{}}}
+\bibcite{liu2025safe}{{14}{2025}{{Liu et~al.}}{{}}}
+\bibcite{Liu2023GEval}{{15}{2023}{{Liu et~al.}}{{}}}
+\bibcite{ma2024hypocompass}{{16}{2024}{{Ma et~al.}}{{}}}
+\bibcite{miranda2026formaloversight}{{17}{2026}{{Miranda}}{{}}}
+\bibcite{miranda2025veribench}{{18}{2025}{{Miranda et~al.}}{{Miranda, Zhou, Nie, Obbad, Aniva, Fronsdal, Kirk, Soylu, Yu, Li, and Koyejo}}}
+\bibcite{naik2024ticoder}{{19}{2024}{{Naik et~al.}}{{}}}
+\bibcite{nie2025uqassessinglanguagemodels}{{20}{2025{}}{{Nie et~al.}}{{Nie, Liu, Wang, Sun, Liu, Shi, Yao, Zhang, Ng, Zou, Koyejo, Choi, Liang, and Muennighoff}}}
+\bibcite{uq2025}{{21}{2025{}}{{Nie et~al.}}{{Nie, Liu, Wang, Sun, Liu, Shi, Yao, Zhang, Ng, Zou, Koyejo, Choi, Liang, and Muennighoff}}}
+\bibcite{ospanov2023apollo}{{22}{2023}{{Ospanov and Yousefzadeh}}{{}}}
+\bibcite{rice1953}{{23}{1953}{{Rice}}{{}}}
+\bibcite{robertson2025stepbystep}{{24}{2025}{{Robertson and Koyejo}}{{}}}
+\bibcite{salaudeen2025measurement}{{25}{2025}{{Salaudeen et~al.}}{{}}}
+\bibcite{salaudeen2024imagenot}{{26}{2024}{{Salaudeen and Hardt}}{{}}}
+\bibcite{shen2024symgen}{{27}{2024}{{Shen et~al.}}{{}}}
+\bibcite{sun2024clover}{{28}{2024}{{Sun et~al.}}{{}}}
+\bibcite{TongZhang2024CodeJudge}{{29}{2024}{{Tong and Zhang}}{{}}}
+\bibcite{veribench_icml25}{{30}{}{{VeriBench}}{{}}}
+\bibcite{wang2024theoremLlama}{{31}{2024{}}{{Wang et~al.}}{{}}}
+\bibcite{wang2024trustcode}{{32}{2024{}}{{Wang et~al.}}{{}}}
+\bibcite{wu2022promptchainer}{{33}{2022}{{Wu et~al.}}{{}}}
+\bibcite{yan2024intelliexplain}{{34}{2024}{{Yan et~al.}}{{}}}
+\bibcite{zhang2025goldstandardsepistemicensemble}{{35}{2025}{{Zhang et~al.}}{{Zhang, Valentino, and Freitas}}}
+\bibcite{zheng2024scrit}{{36}{2024}{{Zheng et~al.}}{{}}}
+\bibcite{Zheng2023MTBench}{{37}{2023}{{Zheng et~al.}}{{}}}
+\bibcite{zhou2024donttrustverify}{{38}{2024}{{Zhou et~al.}}{{}}}
+\bibcite{zhou2025graders}{{39}{2025}{{Zhou et~al.}}{{Zhou, Arnold, Ding, Weinberger, Hua, and Sha}}}
+\bibcite{Zhuo2024ICEScore}{{40}{2024}{{Zhuo}}{{}}}
+\citation{wang2024theoremLlama}
+\citation{ahuja2024improver}
+\citation{sun2024clover}
+\citation{zhou2025graders}
+\citation{cheng2024trace}
+\citation{khattab2024dspy}
+\citation{aniva2025pantograph}
+\citation{kenton2024oversight,Chan2024ChatEval}
+\citation{kenton2024oversight}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work (Cont.)}{13}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Autoformalization.}{13}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Related Work: Scalable Oversight}{13}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scalable Oversight with LLM Judges}{13}{section*.37}\protected@file@percent }
+\citation{zheng2024scrit}
+\citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\citation{salaudeen2025measurement}
+\citation{Zhuo2024ICEScore,TongZhang2024CodeJudge}
+\citation{robertson2025stepbystep}
+\citation{zhou2024donttrustverify}
+\citation{liu2025safe}
+\citation{ospanov2023apollo}
+\citation{miranda2025veribench}
+\citation{miranda2025veribench}
+\citation{Zheng2023MTBench,Liu2023GEval}
+\citation{zhang2025goldstandardsepistemicensemble}
+\citation{salaudeen2024imagenot}
+\@writefile{toc}{\contentsline {paragraph}{Self-Improving Critics.}{14}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Certifying Judges.}{14}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Validity-Centered Evaluation.}{14}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Robust Evaluation without Ground Truth.}{14}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formal Methods as Oversight.}{14}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agentic Iterative Pipelines.}{14}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks for Judge Reliability.}{14}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluating Autoformalization with Reference-Free Judges.}{14}{section*.45}\protected@file@percent }
+\citation{bach2022trusthci}
+\citation{ding2025citations}
+\citation{wang2024trustcode}
+\citation{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\citation{naik2024ticoder}
+\citation{yan2024intelliexplain}
+\citation{ma2024hypocompass}
+\citation{wu2022promptchainer}
+\citation{shen2024symgen}
+\citation{bursuc2025benchmarkvericodingformallyverified}
+\citation{Zheng2023MTBench,Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}
+\citation{robertson2025stepbystep}
+\citation{nie2025uqassessinglanguagemodels,uq2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}HCI for Solving Scalable Oversight}{15}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{From more evaluation to \emph  {human-centered} oversight.}{15}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hybrid human$\leftrightarrow $AI evaluation.}{15}{section*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interfaces that \emph  {operationalize} oversight.}{15}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Applying HCI patterns to formal specs/theorems.}{15}{section*.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Vericode}{15}{subsection.A.3}\protected@file@percent }
+\citation{miranda2026formaloversight}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Discussion (Cont.)}{16}{appendix.B}\protected@file@percent }
+\citation{robertson2025stepbystep}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Future Work (cont.)}{17}{appendix.C}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}Why Judge Scores Are Specification-Relative}{17}{appendix.D}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces \textbf  {(P3) Monotonicity w.r.t.\ missing specifications.} Candidate scores decrease as more theorems/tests are withheld. We retain both model variants to show robustness of the trend; 3.7’s small non-monotonicity motivated the simplified rubric used in the main results.}}{18}{figure.caption.52}\protected@file@percent }
+\newlabel{fig:app-missing-specs}{{9}{18}{\textbf {(P3) Monotonicity w.r.t.\ missing specifications.} Candidate scores decrease as more theorems/tests are withheld. We retain both model variants to show robustness of the trend; 3.7’s small non-monotonicity motivated the simplified rubric used in the main results}{figure.caption.52}{}}
+\@writefile{toc}{\contentsline {paragraph}{Rice’s Theorem.}{18}{section*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Impact on the Gold Standard and the Judge.}{18}{section*.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {E}Judge Certification: Additional Plots}{18}{appendix.E}\protected@file@percent }
+\newlabel{app:judge-cert}{{E}{18}{Judge Certification: Additional Plots}{appendix.E}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces \textbf  {(P2) Non-Monotonicity w.r.t.\ cumulative bugs (Claude 3.5 Sonnet).} Scores drop as more semantic bugs are injected (Pearson \(r=-0.714\), Spearman \(\rho =-0.709\), \(R^2=0.509\)); the higher noise with the initial “theorem-equivalence” prompt led us to simplify the rubric used for the final judge in the main paper.}}{19}{figure.caption.53}\protected@file@percent }
+\newlabel{fig:app-bugs}{{10}{19}{\textbf {(P2) Non-Monotonicity w.r.t.\ cumulative bugs (Claude 3.5 Sonnet).} Scores drop as more semantic bugs are injected (Pearson \(r=-0.714\), Spearman \(\rho =-0.709\), \(R^2=0.509\)); the higher noise with the initial “theorem-equivalence” prompt led us to simplify the rubric used for the final judge in the main paper}{figure.caption.53}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces \textbf  {Appendix: Expanded 13-judge panel trend (avg labels).} Geometric trust index remains strongly aligned with human correlation at larger judge-panel size (\(\rho =0.769\)).}}{19}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:app-exp25-13judge}{{11}{19}{\textbf {Appendix: Expanded 13-judge panel trend (avg labels).} Geometric trust index remains strongly aligned with human correlation at larger judge-panel size (\(\rho =0.769\))}{figure.caption.54}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Final Robust Human-Alignment Appendix}{19}{appendix.F}\protected@file@percent }
+\newlabel{app:exp16-exp17}{{F}{19}{Final Robust Human-Alignment Appendix}{appendix.F}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces \textbf  {Appendix: Low-variance monotonicity trends across model families.} Both judge families show non-increasing score behavior as bug intensity increases under robust repeat aggregation.}}{20}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:app-lowvar_mono_codex_opus}{{12}{20}{\textbf {Appendix: Low-variance monotonicity trends across model families.} Both judge families show non-increasing score behavior as bug intensity increases under robust repeat aggregation}{figure.caption.55}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces \textbf  {Property-wise human alignment diagnostics (Exp17).} P3 weak monotonicity is consistently the strongest predictor across label sets; P2 is second strongest; P1/P4 are weaker as standalone predictors at this scale.}}{20}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:app-exp17-all}{{14}{20}{\textbf {Property-wise human alignment diagnostics (Exp17).} P3 weak monotonicity is consistently the strongest predictor across label sets; P2 is second strongest; P1/P4 are weaker as standalone predictors at this scale}{figure.caption.57}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Judge-level certification-to-human trend (Exp16). Top row: pass1/pass2. Bottom row: avg and updated trend comparison.}}{20}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:app-exp16-all}{{13}{20}{Judge-level certification-to-human trend (Exp16). Top row: pass1/pass2. Bottom row: avg and updated trend comparison}{figure.caption.56}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Low-variance diagnostics used to contextualize certification behavior. The top row shows core identity/monotonic trends; the bottom row isolates known variance/failure sources that are not visible in aggregate trend plots alone.}}{21}{figure.caption.59}\protected@file@percent }
+\newlabel{fig:app-exp19-lowvar}{{15}{21}{Low-variance diagnostics used to contextualize certification behavior. The top row shows core identity/monotonic trends; the bottom row isolates known variance/failure sources that are not visible in aggregate trend plots alone}{figure.caption.59}{}}
+\@writefile{toc}{\contentsline {paragraph}{Low-variance certification diagnostics (Codex, Exp19).}{21}{section*.58}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces \textbf  {Identity variance with alpha-canonicalized variants (Fig-9-style bars).} Blue: original identity variance; orange/green: alpha-canonicalized proxies (drop/clip). Across judges, canonicalization substantially reduces identity variance (mean reduction: \(53.2\%\) for drop, \(57.6\%\) for clip), indicating that alpha-renaming sensitivity is a dominant variance source.}}{21}{figure.caption.60}\protected@file@percent }
+\newlabel{fig:app-exp24-alpha-canon}{{16}{21}{\textbf {Identity variance with alpha-canonicalized variants (Fig-9-style bars).} Blue: original identity variance; orange/green: alpha-canonicalized proxies (drop/clip). Across judges, canonicalization substantially reduces identity variance (mean reduction: \(53.2\%\) for drop, \(57.6\%\) for clip), indicating that alpha-renaming sensitivity is a dominant variance source}{figure.caption.60}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces \textbf  {Unplotted diagnostic added for this version:} judge-wise human Spearman across pass1/pass2/avg. GPT-5.3-Codex variants remain above weaker baselines on most label sets; pass-to-pass variation is visible and motivates reporting all three label sets.}}{22}{figure.caption.62}\protected@file@percent }
+\newlabel{fig:app-judge-labelset-bars}{{18}{22}{\textbf {Unplotted diagnostic added for this version:} judge-wise human Spearman across pass1/pass2/avg. GPT-5.3-Codex variants remain above weaker baselines on most label sets; pass-to-pass variation is visible and motivates reporting all three label sets}{figure.caption.62}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces \textbf  {Identity plot with alpha-canonicalized overlay.} Same error-bar methodology as the standard identity plot, with an additional alpha-canonicalized bar shown only for the ALPHA variant (orange, far right) to visualize binder-rename sensitivity reduction.}}{22}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:app-identity-alpha-overlay}{{17}{22}{\textbf {Identity plot with alpha-canonicalized overlay.} Same error-bar methodology as the standard identity plot, with an additional alpha-canonicalized bar shown only for the ALPHA variant (orange, far right) to visualize binder-rename sensitivity reduction}{figure.caption.61}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.1}Naive Codex-Style Blind Baseline}{22}{subsection.F.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces \textbf  {Naive blind baseline vs.\ human labels (0--5 scale).} \(\rho _s\): Spearman, \(r\): Pearson, \(\tau \): Kendall; MAE is absolute error on the 0--5 scale. This baseline is included as a sanity-check negative control and is not used for final ranking claims.}}{23}{table.caption.63}\protected@file@percent }
+\newlabel{tab:app-naive-blind-baseline}{{5}{23}{\textbf {Naive blind baseline vs.\ human labels (0--5 scale).} \(\rho _s\): Spearman, \(r\): Pearson, \(\tau \): Kendall; MAE is absolute error on the 0--5 scale. This baseline is included as a sanity-check negative control and is not used for final ranking claims}{table.caption.63}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces \textbf  {Human-human agreement ceiling context.} Inter-pass human agreement is moderate, so judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}}{23}{table.caption.64}\protected@file@percent }
+\newlabel{tab:app-human-human-ceiling}{{6}{23}{\textbf {Human-human agreement ceiling context.} Inter-pass human agreement is moderate, so judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context}{table.caption.64}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.2}Human-Human Agreement Ceiling Context}{23}{subsection.F.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.3}Cross-Model Validation Status (Full vs Preliminary)}{23}{subsection.F.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.4}Failure Modes Found by Certification (Not Hidden)}{23}{subsection.F.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.5}Newest Results (Latest Rerun at Appendix Bottom)}{23}{subsection.F.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces \textbf  {Cross-model validation status.} This paper's inferential claims are grounded in full-scale runs; Claude results are explicitly preliminary and not used as primary evidence.}}{24}{table.caption.65}\protected@file@percent }
+\newlabel{tab:app-cross-model-status}{{7}{24}{\textbf {Cross-model validation status.} This paper's inferential claims are grounded in full-scale runs; Claude results are explicitly preliminary and not used as primary evidence}{table.caption.65}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces \textbf  {Latest Exp16 rerun (R9 + median aggregation).} Increasing repeats and using median aggregation preserves the v1 trend signal while v2 remains more sensitive at this \(n_\text  {judges}=8\) scale.}}{24}{table.caption.66}\protected@file@percent }
+\newlabel{tab:app-latest-r9-median}{{8}{24}{\textbf {Latest Exp16 rerun (R9 + median aggregation).} Increasing repeats and using median aggregation preserves the v1 trend signal while v2 remains more sensitive at this \(n_\text {judges}=8\) scale}{table.caption.66}{}}
+\newlabel{fig:app-exp19-main-lowvar}{{19a}{25}{Main low-variance monotonicity curves (core GPT-5.3 judges, robust repeat aggregation)}{figure.caption.67}{}}
+\newlabel{sub@fig:app-exp19-main-lowvar}{{a}{25}{Main low-variance monotonicity curves (core GPT-5.3 judges, robust repeat aggregation)}{figure.caption.67}{}}
+\newlabel{fig:app-exp19-alpha-failure}{{19b}{25}{Failure-mode isolation: identity variant breakdown with ALPHA shown separately}{figure.caption.67}{}}
+\newlabel{sub@fig:app-exp19-alpha-failure}{{b}{25}{Failure-mode isolation: identity variant breakdown with ALPHA shown separately}{figure.caption.67}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces \textbf  {EXP19 replot package: cleaner main trend + explicit failure separation.} The left panel is the ``main story'' plot with lower visual variance; the right panel isolates alpha-renaming sensitivity rather than mixing it into the primary monotonicity figure.}}{25}{figure.caption.67}\protected@file@percent }
+\newlabel{fig:app-exp19-main-and-alpha}{{19}{25}{\textbf {EXP19 replot package: cleaner main trend + explicit failure separation.} The left panel is the ``main story'' plot with lower visual variance; the right panel isolates alpha-renaming sensitivity rather than mixing it into the primary monotonicity figure}{figure.caption.67}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces \textbf  {EXP19 failure-mode plot: local bug-ladder reversal rates by judge.} This explicitly surfaces where monotonicity fails locally, separating robustness diagnostics from the primary trend plot.}}{25}{figure.caption.68}\protected@file@percent }
+\newlabel{fig:app-exp19-reversals}{{20}{25}{\textbf {EXP19 failure-mode plot: local bug-ladder reversal rates by judge.} This explicitly surfaces where monotonicity fails locally, separating robustness diagnostics from the primary trend plot}{figure.caption.68}{}}
+\gdef \@abspage@last{25}

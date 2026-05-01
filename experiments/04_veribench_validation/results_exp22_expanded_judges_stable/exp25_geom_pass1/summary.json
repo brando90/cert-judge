@@ -1,0 +1,144 @@
+{
+  "experiment": "exp25_plot_baseline_vs_geometric",
+  "source_summary": "experiments/04_veribench_validation/results_exp22_expanded_judges_stable/exp16/summary.json",
+  "label_set": "pass1",
+  "formula": "TI_geom = exp(mono_w * log(mono) + stab_w * log(stab))",
+  "weights": {
+    "mono": 0.4,
+    "stab": 0.6
+  },
+  "eps": 1e-06,
+  "rho_geometric": 0.7637362637362637,
+  "rho_baseline": 0.521978021978022,
+  "rho_baseline_v1": 0.6098901098901099,
+  "geometric_better": true,
+  "geometric_ci": [
+    0.3333333333333333,
+    0.9598853868194842
+  ],
+  "baseline_ci": [
+    -0.0700280112044818,
+    0.8539325842696629
+  ],
+  "model_actually_used": [
+    "gpt-5.3-codex|P1_BASELINE",
+    "gpt-5.3-codex|P2_FORMAL",
+    "gpt-5.3-codex|P3_CONCISE",
+    "gpt-5.3-codex|P4_CHECKLIST",
+    "gpt-5.3-codex|P7_STRICT_A",
+    "gpt-5.3-codex|P8_STRICT_B",
+    "gpt-5.3-codex|P11_JSON_FIRST",
+    "gpt-4o-mini|P1_BASELINE",
+    "gpt-4o-mini|P4_CHECKLIST",
+    "gpt-4o-mini|P8_STRICT_B",
+    "gpt-5.3-codex|BAD_STRINGY",
+    "editdist_e1",
+    "random_r1"
+  ],
+  "rows": [
+    {
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "geo_trust_index": 0.9473358235642007,
+      "baseline_v2": 0.8650294165515002,
+      "human_spearman": 0.44574635078106806,
+      "mono": 0.8920128748271505,
+      "stab": 0.9861111111111112
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P2_FORMAL",
+      "geo_trust_index": 0.9652336418139648,
+      "baseline_v2": 0.8785465628097466,
+      "human_spearman": 0.5109870876755561,
+      "mono": 0.9201253841247263,
+      "stab": 0.9965277777777778
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P3_CONCISE",
+      "geo_trust_index": 0.9548159062632083,
+      "baseline_v2": 0.8649830427762205,
+      "human_spearman": 0.3959560278883134,
+      "mono": 0.8908387774686203,
+      "stab": 1.0
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+      "geo_trust_index": 0.9548950973471156,
+      "baseline_v2": 0.8730554027898878,
+      "human_spearman": 0.39519505750310363,
+      "mono": 0.8956844726857547,
+      "stab": 0.9965277777777778
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P7_STRICT_A",
+      "geo_trust_index": 0.9492097648733683,
+      "baseline_v2": 0.8689507181108741,
+      "human_spearman": 0.08009159540309248,
+      "mono": 0.8917167713865559,
+      "stab": 0.9895833333333334
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+      "geo_trust_index": 0.9506884177460038,
+      "baseline_v2": 0.8516749252660933,
+      "human_spearman": 0.2841430511992996,
+      "mono": 0.8858524565523722,
+      "stab": 0.9965277777777778
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P11_JSON_FIRST",
+      "geo_trust_index": 0.9603002694744711,
+      "baseline_v2": 0.8804618741620232,
+      "human_spearman": 0.4503529713547704,
+      "mono": 0.9036861511438263,
+      "stab": 1.0
+    },
+    {
+      "judge_id": "gpt-4o-mini|P1_BASELINE",
+      "geo_trust_index": 0.8108002965404316,
+      "baseline_v2": 0.7446458945896015,
+      "human_spearman": 0.22990100760707943,
+      "mono": 0.8459305180748781,
+      "stab": 0.7881944444444444
+    },
+    {
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "geo_trust_index": 0.7498773698513744,
+      "baseline_v2": 0.7470369247977158,
+      "human_spearman": -0.0412763590246314,
+      "mono": 0.8108370010433122,
+      "stab": 0.7118055555555556
+    },
+    {
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "geo_trust_index": 0.8427434928758173,
+      "baseline_v2": 0.7764055685651507,
+      "human_spearman": -0.11002623312744295,
+      "mono": 0.8733829958899106,
+      "stab": 0.8229166666666666
+    },
+    {
+      "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+      "geo_trust_index": 0.9217975422924525,
+      "baseline_v2": 0.6988736624505667,
+      "human_spearman": 0.41313332884267856,
+      "mono": 0.8510215336349313,
+      "stab": 0.9722222222222222
+    },
+    {
+      "judge_id": "editdist_e1",
+      "geo_trust_index": 0.9132436862221736,
+      "baseline_v2": 0.46784615826895004,
+      "human_spearman": 0.3033920565957687,
+      "mono": 0.7970153687388253,
+      "stab": 1.0
+    },
+    {
+      "judge_id": "random_r1",
+      "geo_trust_index": 0.75703252546191,
+      "baseline_v2": 0.5756988374173462,
+      "human_spearman": 0.05582210587920711,
+      "mono": 0.498639120386087,
+      "stab": 1.0
+    }
+  ]
+}

@@ -498,16 +498,19 @@ for averaged labels, from \(0.143\) to \(0.714\);
 for pass2 labels, from \(0.476\) to \(0.690\).
 Thus the same conjunctive geometric formulation that worked for Codex also transfers to a frontier Claude family run.
 
+\paragraph{Generalization to a larger judge panel.}
+We also evaluate the same geometric index on an expanded \emph{13-judge} panel (additional Codex prompt variants plus extra baselines; same \(72\) aligned rows and \(t=0.85\)).
+The trend remains strong and above \(0.7\): pass1 \(\rho=0.764\), pass2 \(\rho=0.753\), avg \(\rho=0.769\).
+This supports that the certification\(\rightarrow\)human trend is not an artifact of the smaller 8-judge panel.
+
 \paragraph{Flip-rate and monotonicity diagnostics (Opus 4.7).}
 Opus prompt variants show very low repeat-call decision instability at \(t=0.85\):
 \texttt{P4\_CHECKLIST} and \texttt{P1\_BASELINE} both achieve flip rate \(0.000\),
 and \texttt{P8\_STRICT\_B} achieves \(0.0069\).
 Per-judge monotonicity diagnostics are correspondingly strong for the core prompts (P2 bug-rank and P3 weak-monotonicity both near 1.0),
 while controls (BAD\_STRINGY, edit-distance, random) show larger reversal rates.
-At the cross-judge level for Opus (avg labels), monotonicity properties are directionally positive:
-P2 Spearman \(=0.405\), P3 Spearman \(=0.368\).
-For comparison, the Codex run is stronger on the same analysis:
-P2 Spearman \(=0.714\), P3 Spearman \(=0.747\).
+Critically, this section reports \emph{within-judge monotonicity} (bug level vs score), which is strong for Opus:
+\texttt{P8\_STRICT\_B} Spearman \(=-0.849\), \texttt{P4\_CHECKLIST} Spearman \(=-0.849\), and \texttt{P1\_BASELINE} Spearman \(=-0.858\) (all median aggregation).
 To keep uncertainty reporting conservative and readable, we display trend bars as mean \(\pm\) SE (repeat-noise proxy), with correlations unchanged.
 
 \begin{figure*}[t]
@@ -532,17 +535,17 @@ To keep uncertainty reporting conservative and readable, we display trend bars a
   \centering
   \begin{subfigure}[t]{0.49\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_codex.png}
-    \caption{Codex low-variance monotonicity curves.}
+    \includegraphics[width=\linewidth]{figures/fig3_style_claude_opus_monotonicity.png}
+    \caption{Claude Opus 4.7 Figure-3-style monotonicity (mean \(\pm\) SE).}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.49\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_opus47.png}
-    \caption{Opus 4.7 low-variance monotonicity curves.}
+    \includegraphics[width=\linewidth]{figures/fig3_style_gpt53_codex_monotonicity.png}
+    \caption{GPT-5.3-Codex Figure-3-style monotonicity (mean \(\pm\) SE).}
   \end{subfigure}
-  \caption{\textbf{Low-variance monotonicity trends across model families.}
-    Both judge families show strong non-increasing behavior as bug intensity increases, with robust repeat aggregation.}
-  \label{fig:lowvar_mono_codex_opus}
+  \caption{\textbf{Model-matched Figure-3-style monotonicity diagnostics.}
+    Both model families show strong monotone score degradation with bug intensity under the same low-variance plotting protocol.}
+  \label{fig:fig3_style_opus_codex}
 \end{figure*}
 
 \begin{table}[H]
@@ -593,6 +596,7 @@ The key take-away is not only that certification passes sanity checks, but that 
 
 \textbf{Limitations.} The judge is a \emph{proxy}: scores are prompt/rubric-sensitive and do not constitute kernel-level proof checking; they certify agreement with a rigorous yet necessarily incomplete gold specification since no complete mechanical checks of specification equivalence exist~\citep{rice1953}.
 Our certification relies on a finite perturbation suite, so untested failure modes may persist. Specifications that are exotic to this dataset may be correct but receive incorrect scores.
+Despite strong monotonicity overall, alpha-renaming remains a weaker invariance mode (lower mean and larger gaps than STYLE/RENAME in our diagnostics), and improving binder-rename robustness is a concrete open problem.
 Calibration improvements are modest in absolute magnitude and do not by themselves establish external validity.
 We now include two-pass human ratings and average-label analyses, but sample size remains limited (\(n=72\) aligned pairs and \(n=8\) judges), so some multivariate effects are underpowered.
 Future work will expand independent raters and problem coverage, strengthen semantic equivalence handling (candidate $\Rightarrow$ gold postcondition checks), add adversarial judge stress tests, and introduce standardized “judge cards’’ for reproducible, certified deployment \citep{zhou2025graders}.
@@ -901,6 +905,31 @@ We note that, for the experiment shown in Figure \ref{fig:app-missing-specs}, a 
 
 \section{Final Robust Human-Alignment Appendix}\label{app:exp16-exp17}
 This appendix reports full visual diagnostics for Exp16/Exp17 under final robust settings (three human label sets: pass1, pass2, avg).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png}
+  \caption{\textbf{Appendix: Expanded 13-judge panel trend (avg labels).}
+    Geometric trust index remains strongly aligned with human correlation at larger judge-panel size (\(\rho=0.769\)).}
+  \label{fig:app-exp25-13judge}
+\end{figure}
+
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_codex.png}
+    \caption{Codex low-variance monotonicity curves.}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_opus47.png}
+    \caption{Opus 4.7 low-variance monotonicity curves.}
+  \end{subfigure}
+  \caption{\textbf{Appendix: Low-variance monotonicity trends across model families.}
+    Both judge families show non-increasing score behavior as bug intensity increases under robust repeat aggregation.}
+  \label{fig:app-lowvar_mono_codex_opus}
+\end{figure*}
 
 \begin{figure}[H]
   \centering
