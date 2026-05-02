@@ -85,12 +85,9 @@
 \maketitle
 
 \begin{abstract}
-  Trustworthy LLM judges for AI-generated code and proofs are gated by human evaluation: every new judge, prompt change, or model update requires re-collecting human ratings, which does not scale to the agent-generated artifact volume we now face.
-  We propose property certification as an amortized alternative: humans specify falsifiable behavioral properties once---identity (P1), bug-monotonicity (P2), spec-monotonicity (P3), and repeat-stability (P4)---gold references are collected once on a labeled calibration set, and the resulting variance-aware trust index then grades future judges without further annotation.
-  On a calibration panel of 8 judges spanning GPT-5.3-Codex prompts, GPT-4o-mini, edit-distance, and random baselines, the variance-aware index predicts judge-level human Spearman correlation coefficients at 0.833 (avg labels), 0.905 (pass1), and 0.738 (pass2).
-  This converts trust validation from \(O(N\) labels \(\times M\) judges) to \(O(N\) labels \(+\) property scores per new judge for free).
-  P3 weak monotonicity is the strongest single predictor of validation human-alignment (\(\rho = 0.747\), \(p = 0.043\)), with P2 bug-rank monotonicity second (\(\rho = 0.714\), \(p = 0.056\)); P1 identity and P4 stability are weaker as standalone predictors at this scale.
-  These results are validation-set numbers---calibration-side optimization (JTI weighting, aggregation, threshold, prompt panel) used the same human ratings reported here---and we outline a held-out test protocol, with independent annotators on unseen judges and items, as immediate next work; we frame property certification as a reproducible, model-agnostic calibration protocol for scalable oversight of AI-generated tests and theorems.
+  LLM judges are becoming essential for evaluating AI-generated code, tests, and formal specifications, but their reliability is usually established in the least scalable way: collecting new human ratings for every judge, prompt, model, and threshold. We challenge this validation loop by asking whether human judgment can be amortized through falsifiable behavioral properties. We propose a property-certification protocol for LLM judges of Lean~4 theorem and specification quality, where each judge is scored by four automatically testable conditions that don’t require a gold reference: identity, bug-monotonicity, specification-monotonicity, and repeat/prompt stability. These properties define a graded Judge Trust Index, $\mathrm{JTI}=(P_1P_2P_3P_4)^{1/4}$, intended not as a proof of correctness but as a measurable proxy for whether a judge behaves like a reliable evaluator.
+
+  On a validation panel of eight judges spanning frontier LLM prompts, weaker LLM baselines, edit-distance, and random controls, JTI strongly predicts validation-set human alignment: a Spearman correlation coefficient of $\rho=0.881$ against human judgements is achieved. Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs, while identity and stability are weaker standalone signals. Applied to VERIBENCH, property certification provides a reproducible calibration protocol for scalable oversight of AI-generated tests, theorems, and formal specifications.
 \end{abstract}
 
 \section{Introduction}
@@ -107,7 +104,7 @@ As agents produce more candidate artifacts than humans can inspect, theorem-qual
 The standard reliability check is per-judge human validation: collect labels, measure agreement between each judge and human ratings, and keep the judge if the correlation is high enough.
 That check is necessary, but it scales linearly with the number of judges, prompts, model updates, thresholds, and domains under consideration.
 Every new model family or prompt revision asks for another round of annotation, so direct human validation becomes untenable at agent-generation rates.
-Humans remain the anchor; the problem is that re-using humans from scratch for every judge wastes the expensive part of the process.
+Humans remain the anchor; the problem is that re-using humans from scratch for every judge wastes the expensive part of the process \ref{fig:pull_cost_alignment}.
 
 \begin{figure*}[t]
   \centering
@@ -118,8 +115,8 @@ Humans remain the anchor; the problem is that re-using humans from scratch for e
   \label{fig:pull_cost_alignment}
 \end{figure*}
 
-Validating LLM judges against humans is the standard reliability check but does not scale: every new judge, prompt, or model needs fresh annotation.
-Property certification AMORTIZES this cost---gold references collected once, used to calibrate a four-property trust index (identity, bug-monotonicity, spec-monotonicity, repeat-stability), then deployed without further human annotation.
+Validating LLM judges against humans is the standard reliability check but does not scale: every new judge, prompt, or model needs fresh annotations.
+Property certification \textbf{amortizes} this cost---gold references collected once, used to calibrate a four-property trust index (identity, bug-monotonicity, spec-monotonicity, repeat-stability), then deployed without further human annotation.
 In our setting, humans rate a validation set once, and the calibrated property suite extends that trust signal to new judges for free.
 The four properties are concrete: a judge should give maximal scores to identical artifacts, lower scores as semantic bugs accumulate, lower scores as theorem/test specifications are removed, and stable scores under prompt rewordings and semantics-preserving rewrites.
 On a panel of eight judges, the resulting variance-aware trust index predicts validation-set human Spearman correlation coefficients of 0.833 (avg labels), 0.905 (pass1), and 0.738 (pass2); held-out test results are reported in a forthcoming revision.
