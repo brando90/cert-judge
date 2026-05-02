@@ -162,12 +162,45 @@ Recent work has shown that unconstrained chain-of-thought reasoning can reduce e
 \subsection{Calibration Protocol}
 We frame property certification as a calibration protocol, analogous to standardized diagnostic-instrument calibration.
 \textbf{One-time setup:} humans rate a labeled subset of \(N\) gold artifacts under fixed rubrics; here, \(n=72\) aligned candidate--gold pairs are rated by one annotator under two rubrics, R1 and R2.
-\textbf{Per-judge, no human in the loop:} for each new judge tuple, compute P1--P4 via scripted perturbations on the gold artifacts and aggregate them as
+\textbf{Per-judge, no human in the loop:} for each new judge tuple, compute property scores on scripted perturbations of the gold artifacts, then aggregate them with a single family:
 \[
-  \mathrm{JTI} = (P_1 P_2 P_3 P_4)^{1/4}.
+\mathrm{TI}_{f}(\mathbf{v},\mathbf{w})
+=
+f^{-1}\!\Big(\sum_{i=1}^{d} w_i\, f(v_i)\Big),
+\quad
+w_i\ge 0,\ \sum_i w_i=1,\ v_i\in(0,1].
 \]
-\textbf{Calibration claim:} JTI on the validation set predicts the judge's validation-set human Spearman, supported by \(\rho=0.881\) across our \(8\)-judge panel.
-\textbf{Deployment:} any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) tuple is evaluated for trust by computing JTI on the existing gold reference set, with no additional human annotation.
+This gives both arithmetic and geometric forms with one equation:
+\[
+\text{AM: } f(x)=x
+\;\Rightarrow\;
+\mathrm{TI}_{\mathrm{AM}}=\sum_i w_i v_i,
+\qquad
+\text{GM: } f(x)=\log x
+\;\Rightarrow\;
+\mathrm{TI}_{\mathrm{GM}}=\exp\!\Big(\sum_i w_i\log v_i\Big)=\prod_i v_i^{w_i}.
+\]
+\textbf{Index instantiations used in this paper:}
+\[
+\text{v1} = 0.30\,\text{ident} + 0.30\,\text{mono} + 0.25\,\text{weak} + 0.15\,\text{stab},
+\]
+\[
+\text{v2} = 0.20\,\text{ident} + 0.20\,\text{mono} + 0.15\,\text{weak} + 0.10\,\text{stab} + 0.20\,\text{anti\_string} + 0.15\,\text{subtle\_bug},
+\]
+\[
+\text{v3 (geometric)} = \text{mono}^{0.4}\,\text{stab}^{0.6},
+\]
+and a variance-aware geometric index
+\[
+\mathrm{TI}_{\mathrm{var}}
+=
+\exp\!\Big(\tfrac{1}{3}\log C_f
++\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarCorr}})
++\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarScore}})\Big),
+\]
+where \(C_f\) is mean per-file property-correlation quality, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties.
+\textbf{Calibration claim:} trust-index scores on the validation set predict each judge's validation-set human Spearman (best observed with v1 at \(\rho=0.881\) across our \(8\)-judge panel).
+\textbf{Deployment:} any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) tuple is evaluated for trust by computing the same chosen trust-index form on the existing gold reference set, with no additional human annotation.
 Thus P1--P4 are the four calibration targets for the trust index, not binary gates: they grade how strongly a judge preserves identity, monotone degradation, and repeat stability on controlled perturbations.
 
 \paragraph{Why is an LLM judge needed for theorem-quality scoring?}
@@ -1060,6 +1093,39 @@ Claude Sonnet certification is currently preliminary (\(3\) files) and is includ
   \caption{\textbf{Cross-model validation status.}
     This paper's inferential claims are grounded in full-scale runs; Claude results are explicitly preliminary and not used as primary evidence.}
   \label{tab:app-cross-model-status}
+\end{table}
+
+\subsection{Leanstral Negative-Control Reaggregation (AM/GM/Variance-Aware)}
+To stress-test whether index choice alone can ``rescue'' a weak judge family, we re-aggregate the same Leanstral Exp16 outputs under three indices:
+\[
+\mathrm{AM}=\text{cert\_index\_v2} \quad \text{(arithmetic baseline)},
+\]
+\[
+\mathrm{GM}=\mathrm{mono}^{0.4}\cdot \mathrm{stab}^{0.6},
+\]
+\[
+\mathrm{TI}_{\mathrm{var}}=\exp\!\Big(\tfrac{1}{3}\log C_f+\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarCorr}})+\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarScore}})\Big),
+\]
+where \(C_f\) is the mean per-file property-correlation quality term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
+We report Spearman between index score and validation-set human Spearman across judges.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Label Set} & \textbf{AM (v2)} & \textbf{GM} & \textbf{Variance-Aware \(\mathrm{TI}_{\mathrm{var}}\)} \\
+    \midrule
+    val (pass1)  & -0.5952 & -0.1429 & -0.1190 \\
+    test (pass2) & -0.1905 & -0.2619 & -0.0476 \\
+    avg          & -0.4286 & -0.2143 & -0.0952 \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{Leanstral remains low-alignment under multiple index constructions.}
+    Re-aggregation improves over the arithmetic baseline in some splits, but all three settings remain near-zero or negative.
+    This suggests the bottleneck is likely the underlying judge behavior for this ranking task (human-preference alignment), not only index form.
+    One plausible hypothesis is that Leanstral is stronger for Lean proof editing/generation than for calibrated pairwise judging under this rubric; we treat this as a testable conjecture, not a final causal claim.}
+  \label{tab:app-leanstral-index-reagg}
 \end{table}
 
 \subsection{Failure Modes Found by Certification (Not Hidden)}
