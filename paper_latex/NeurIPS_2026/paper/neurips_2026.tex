@@ -109,6 +109,15 @@ That check is necessary, but it scales linearly with the number of judges, promp
 Every new model family or prompt revision asks for another round of annotation, so direct human validation becomes untenable at agent-generation rates.
 Humans remain the anchor; the problem is that re-using humans from scratch for every judge wastes the expensive part of the process.
 
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/pull_scalable_judge_cost_alignment.png}
+  \caption{\textbf{Scalable judge evaluation via property certification.}
+    Left: direct human validation cost scales with the number of judged methods and can become expensive at agentic throughput.
+    Right: higher certification strength is associated with higher human alignment, supporting property certification as an amortized validation protocol.}
+  \label{fig:pull_cost_alignment}
+\end{figure*}
+
 Validating LLM judges against humans is the standard reliability check but does not scale: every new judge, prompt, or model needs fresh annotation.
 Property certification AMORTIZES this cost---gold references collected once, used to calibrate a four-property trust index (identity, bug-monotonicity, spec-monotonicity, repeat-stability), then deployed without further human annotation.
 In our setting, humans rate a validation set once, and the calibrated property suite extends that trust signal to new judges for free.
@@ -153,12 +162,45 @@ Recent work has shown that unconstrained chain-of-thought reasoning can reduce e
 \subsection{Calibration Protocol}
 We frame property certification as a calibration protocol, analogous to standardized diagnostic-instrument calibration.
 \textbf{One-time setup:} humans rate a labeled subset of \(N\) gold artifacts under fixed rubrics; here, \(n=72\) aligned candidate--gold pairs are rated by one annotator under two rubrics, R1 and R2.
-\textbf{Per-judge, no human in the loop:} for each new judge tuple, compute P1--P4 via scripted perturbations on the gold artifacts and aggregate them as
+\textbf{Per-judge, no human in the loop:} for each new judge tuple, compute property scores on scripted perturbations of the gold artifacts, then aggregate them with a single family:
 \[
-  \mathrm{JTI} = (P_1 P_2 P_3 P_4)^{1/4}.
+  \mathrm{TI}_{f}(\mathbf{v},\mathbf{w})
+  =
+  f^{-1}\!\Big(\sum_{i=1}^{d} w_i\, f(v_i)\Big),
+  \quad
+  w_i\ge 0,\ \sum_i w_i=1,\ v_i\in(0,1].
 \]
-\textbf{Calibration claim:} JTI on the validation set predicts the judge's validation-set human Spearman, supported by \(\rho=0.881\) across our \(8\)-judge panel.
-\textbf{Deployment:} any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) tuple is evaluated for trust by computing JTI on the existing gold reference set, with no additional human annotation.
+This gives both arithmetic and geometric forms with one equation:
+\[
+  \text{AM: } f(x)=x
+  \;\Rightarrow\;
+  \mathrm{TI}_{\mathrm{AM}}=\sum_i w_i v_i,
+  \qquad
+  \text{GM: } f(x)=\log x
+  \;\Rightarrow\;
+  \mathrm{TI}_{\mathrm{GM}}=\exp\!\Big(\sum_i w_i\log v_i\Big)=\prod_i v_i^{w_i}.
+\]
+\textbf{Index instantiations used in this paper:}
+\[
+  \text{v1} = 0.30\,\text{ident} + 0.30\,\text{mono} + 0.25\,\text{weak} + 0.15\,\text{stab},
+\]
+\[
+  \text{v2} = 0.20\,\text{ident} + 0.20\,\text{mono} + 0.15\,\text{weak} + 0.10\,\text{stab} + 0.20\,\text{anti\_string} + 0.15\,\text{subtle\_bug},
+\]
+\[
+  \text{v3 (geometric)} = \text{mono}^{0.4}\,\text{stab}^{0.6},
+\]
+and a variance-aware geometric index
+\[
+  \mathrm{TI}_{\mathrm{var}}
+  =
+  \exp\!\Big(\tfrac{1}{3}\log C_f
+  +\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarCorr}})
+  +\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarScore}})\Big),
+\]
+where \(C_f\) is mean per-file property-correlation quality, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties.
+\textbf{Calibration claim:} trust-index scores on the validation set predict each judge's validation-set human Spearman (best observed with v1 at \(\rho=0.881\) across our \(8\)-judge panel).
+\textbf{Deployment:} any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) tuple is evaluated for trust by computing the same chosen trust-index form on the existing gold reference set, with no additional human annotation.
 Thus P1--P4 are the four calibration targets for the trust index, not binary gates: they grade how strongly a judge preserves identity, monotone degradation, and repeat stability on controlled perturbations.
 
 \paragraph{Why is an LLM judge needed for theorem-quality scoring?}
@@ -217,25 +259,25 @@ In our latest GPT-5.3-Codex API sanity run (\(n_\text{files}=184\), \(n_\text{re
   \centering
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/identity_property_with_std_error_bounds.png}
+    \includegraphics[width=\linewidth]{figures/identity_property.png}
     \caption{Identity (Reflexivity)}
     \label{fig:judge_identity}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/monotonicity_bugs_with_std_error_bounds.png}
+    \includegraphics[width=\linewidth]{figures/monotonicity_bugs.png}
     \caption{Monotonicity vs.\ Bugs}
     \label{fig:judge_mono_bugs}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/monotonicity_missing_specs_with_std_error_bounds.png}
+    \includegraphics[width=\linewidth]{figures/monotonicity_missing_specs.png}
     \caption{Monotonicity vs.\ Missing Specs}
     \label{fig:judge_mono_specs}
   \end{subfigure}
   \vspace{-2mm}
   \caption{\textbf{LLM Judge Trustworthiness Sanity Checks.}
-    VeriBench-wide GPT-5.3-Codex API run (\(n_\text{files}=184\), \(n_\text{repeats}=3\), with standard-error overlays).
+    VeriBench-wide GPT-5.3-Codex API run (\(n_\text{files}=184\), \(n_\text{repeats}=3\)), shown in the low-variance rendering used in the 2025 draft.
     \textbf{(a) Identity:} 736 syntactic-variant pairs yield mean score \(0.792\) (\(\sigma=0.352\)); \textsc{Style}/\textsc{Rename} remain high while aggressive \textsc{Alpha}-renaming is harder.
     \textbf{(b) Monotonicity vs.\ Bugs:} 920 ladder points show a negative trend (Pearson \(r=-0.687\), Spearman \(\rho=-0.808\)); full-ladder weak monotonicity is \(52.2\%\).
     \textbf{(c) Monotonicity vs.\ Missing Specs:} 920 points show stronger monotonic behavior (Pearson \(r=-0.892\), Spearman \(\rho=-0.899\)); weak monotonicity is \(89.1\%\).}
@@ -380,6 +422,11 @@ Equivalently, judges that are simultaneously high-certification, monotonic, and 
   \label{tab:exp16_final_trend}
 \end{table}
 
+\paragraph{Human-label verification (pass consistency).}
+To quantify label-pass dispersion directly on the same aligned \(n=72\) pairs, we compute pass1-vs-pass2 absolute error and distribution divergence.
+The inter-pass MAE is \(0.778\) on the 0--5 rubric scale (median absolute difference \(=1.0\)); distribution-level divergence is moderate (Jensen--Shannon divergence \(=0.081\) bits, KL\((\text{pass1}\Vert\text{pass2})=0.415\) bits).
+This confirms non-trivial pass drift while still supporting meaningful judge-level trend analysis.
+
 \begin{table}[t]
   \centering
   \small
@@ -419,6 +466,10 @@ Under averaged validation labels, top JTI-ranked judges are GPT-5.3-Codex prompt
 \texttt{P4\_CHECKLIST} (\(r_s=0.480,\ p=2.0\times10^{-5}\)),
 \texttt{P1\_BASELINE} (\(r_s=0.470,\ p=3.1\times10^{-5}\)),
 \texttt{P8\_STRICT\_B} (\(r_s=0.356,\ p=0.0022\)).
+In the Qwen full-panel replication, the strongest pass2-aligned prompts are
+\texttt{Qwen|BAD\_STRINGY} (\(r_s\approx0.304\)),
+\texttt{Qwen|P4\_CHECKLIST} (\(r_s\approx0.280\)),
+and \texttt{Qwen|P1\_BASELINE} (\(r_s\approx0.194\)).
 Lower-JTI baselines are markedly weaker:
 \texttt{gpt-4o-mini|P8\_STRICT\_B} (\(r_s=0.037,\ p=0.760\)),
 \texttt{gpt-4o-mini|P4\_CHECKLIST} (\(r_s=0.093,\ p=0.435\)),
@@ -464,6 +515,11 @@ On the full \(8\)-judge Exp16 validation panel, we re-run the same analysis with
 The resulting Spearman correlation coefficients are pass1 \(=0.810\), avg \(=0.643\), pass2 \(=0.595\).
 This supports cross-model transfer of the same quality+stability index design, even when absolute judge-level correlations differ by label pass.
 
+\paragraph{Qwen3-Coder replication (full Exp16 panel).}
+We additionally run a full \(8\)-judge open-weights replication with \texttt{Qwen/Qwen3-Coder-30B-A3B-Instruct} as the primary judge family (plus \texttt{gpt-4o-mini}, edit-distance, and random controls), with the same \(n_\text{repeats}=3\), median aggregation, and \(t=0.85\) protocol.
+On pass2 labels, baseline cert-v2 yields \(\rho_s=0.833\), and geometric cert-v3 (\(\mathrm{TI}_{\mathrm{geom}}=\mathrm{mono}^{0.4}\cdot\mathrm{stab}^{0.6}\)) improves to \(\rho_s=0.857\).
+Pass1 and avg trends are weaker/noisier (\(-0.190\), \(0.500\)), so we treat Qwen as cross-model robustness evidence rather than as a standalone primary claim.
+
 \paragraph{Generalization to a larger judge panel.}
 Using a legacy geometric-index variant on an expanded \emph{13-judge} panel (extra Codex prompt variants and baselines, same \(72\) aligned rows, \(t=0.85\)),
 we still observe \(>0.7\) trends across label sets:
@@ -498,6 +554,22 @@ For visualization, we report mean \(\pm\) SE error bars (repeat-noise proxy) to 
 
 \begin{figure*}[t]
   \centering
+  <<<<<<< HEAD
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_qwen_pass2.png}
+    \caption{Qwen pass2: baseline cert-v2 vs geometric cert-v3.}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_exp16_pass2_cert_index3_geom_tight_se.png}
+    \caption{Qwen pass2: cert-v3 geometric vs human Spearman (tight 1-SE bars).}
+  \end{subfigure}
+  \caption{\textbf{Qwen3-Coder cross-model diagnostics (Exp16/Exp25, pass2).}
+    Left: geometric aggregation improves the judge-level certification\(\rightarrow\)human trend over baseline cert-v2.
+    Right: the resulting cert-v3 trend remains strong under tight SE presentation.}
+  \label{fig:qwen_pass2_geom}
+  =======
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
     \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_trust_index_vs_human.png}
@@ -518,6 +590,7 @@ For visualization, we report mean \(\pm\) SE error bars (repeat-noise proxy) to 
     Middle/right: lower variance of per-file correlation and lower repeat-score variance tend to align with higher human agreement.
     This makes the stability requirement explicit alongside monotonicity and supports the claim that high-certified monotonic + stable judges align better with humans.}
   \label{fig:variance_aware_triplet}
+  >>>>>>> origin/main
 \end{figure*}
 
 \begin{table}[H]
@@ -1047,12 +1120,15 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
     Human-human Spearman (pass1 vs pass2)       & 0.249          & \(95\%\ \text{CI}=[-0.015, 0.489]\) \\
     Human-human Pearson (pass1 vs pass2)        & 0.375          & \(95\%\ \text{CI}=[0.076, 0.604]\)  \\
     Human-human QWK (pass1 vs pass2)            & 0.372          & \(95\%\ \text{CI}=[0.073, 0.581]\)  \\
+    Human-human MAE (pass1 vs pass2)            & 0.778          & On aligned \(n=72\), 0--5 rubric    \\
+    JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence      \\
+    KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence               \\
     Best validation-set Spearman (avg labels)   & 0.480          & GPT-5.3-Codex P4\_CHECKLIST         \\
     Best validation-set Spearman (pass1 labels) & 0.559          & GPT-5.3-Codex P1\_BASELINE          \\
     \bottomrule
   \end{tabular}
   \caption{\textbf{Human-human agreement ceiling context.}
-    Inter-pass human agreement is moderate, so validation-set judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}
+    Inter-pass human agreement is moderate, and inter-pass dispersion (MAE/divergence) is non-zero, so validation-set judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}
   \label{tab:app-human-human-ceiling}
 \end{table}
 
@@ -1070,6 +1146,8 @@ Claude Sonnet certification is currently preliminary (\(3\) files) and is includ
     \midrule
     GPT-5.3-Codex prompts (P8/P4/P1) & Full VeriBench pairs & Yes                           & Primary JTI-ranked judges     \\
     GPT-5.3-Codex BAD\_STRINGY       & Full VeriBench pairs & Yes                           & Same-model stress baseline    \\
+    Qwen3-Coder prompts (P8/P4/P1)   & Full VeriBench pairs & Yes                           & Open-weights cross-family run \\
+    Qwen3-Coder BAD\_STRINGY         & Full VeriBench pairs & Yes                           & Open-weights stress baseline  \\
     GPT-4o-mini prompts (P8/P4)      & Full VeriBench pairs & Yes                           & Cross-family baseline         \\
     Edit-distance / random baselines & Full VeriBench pairs & Yes                           & Non-LLM controls              \\
     Claude Sonnet certification run  & 3 files (prelim)     & No                            & Directional cross-model check \\
@@ -1078,6 +1156,39 @@ Claude Sonnet certification is currently preliminary (\(3\) files) and is includ
   \caption{\textbf{Cross-model validation status.}
     This paper's inferential claims are grounded in full-scale runs; Claude results are explicitly preliminary and not used as primary evidence.}
   \label{tab:app-cross-model-status}
+\end{table}
+
+\subsection{Leanstral Negative-Control Reaggregation (AM/GM/Variance-Aware)}
+To stress-test whether index choice alone can ``rescue'' a weak judge family, we re-aggregate the same Leanstral Exp16 outputs under three indices:
+\[
+  \mathrm{AM}=\text{cert\_index\_v2} \quad \text{(arithmetic baseline)},
+\]
+\[
+  \mathrm{GM}=\mathrm{mono}^{0.4}\cdot \mathrm{stab}^{0.6},
+\]
+\[
+  \mathrm{TI}_{\mathrm{var}}=\exp\!\Big(\tfrac{1}{3}\log C_f+\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarCorr}})+\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarScore}})\Big),
+\]
+where \(C_f\) is the mean per-file property-correlation quality term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
+We report Spearman between index score and validation-set human Spearman across judges.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Label Set} & \textbf{AM (v2)} & \textbf{GM} & \textbf{Variance-Aware \(\mathrm{TI}_{\mathrm{var}}\)} \\
+    \midrule
+    val (pass1)        & -0.5952          & -0.1429     & -0.1190                                                \\
+    test (pass2)       & -0.1905          & -0.2619     & -0.0476                                                \\
+    avg                & -0.4286          & -0.2143     & -0.0952                                                \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{Leanstral remains low-alignment under multiple index constructions.}
+    Re-aggregation improves over the arithmetic baseline in some splits, but all three settings remain near-zero or negative.
+    This suggests the bottleneck is likely the underlying judge behavior for this ranking task (human-preference alignment), not only index form.
+    One plausible hypothesis is that Leanstral is stronger for Lean proof editing/generation than for calibrated pairwise judging under this rubric; we treat this as a testable conjecture, not a final causal claim.}
+  \label{tab:app-leanstral-index-reagg}
 \end{table}
 
 \subsection{Failure Modes Found by Certification (Not Hidden)}
@@ -1118,13 +1229,13 @@ Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167
   \centering
   \begin{subfigure}[t]{0.48\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_main_monotonicity_lowvar.png}
+    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_exp19.png}
     \caption{Main low-variance monotonicity curves (core GPT-5.3 judges, robust repeat aggregation).}
     \label{fig:app-exp19-main-lowvar}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_alpha_variant_breakdown.png}
+    \includegraphics[width=\linewidth]{figures/fig_failure_alpha_variant_breakdown_exp19.png}
     \caption{Failure-mode isolation: identity variant breakdown with ALPHA shown separately.}
     \label{fig:app-exp19-alpha-failure}
   \end{subfigure}
@@ -1135,7 +1246,7 @@ Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_bug_reversal_rates.png}
+  \includegraphics[width=\linewidth]{figures/fig_failure_bug_reversal_rates_exp19.png}
   \caption{\textbf{EXP19 failure-mode plot: local bug-ladder reversal rates by judge.}
     This explicitly surfaces where monotonicity fails locally, separating robustness diagnostics from the primary trend plot.}
   \label{fig:app-exp19-reversals}
