@@ -237,7 +237,7 @@ This property guards against prompt-fragility in deployment settings where wordi
 
 \paragraph{Property-scoring protocol.}
 We implement four scripted perturbation families on the \emph{candidate} while holding the \emph{gold} fixed:
-(i) \emph{Identity} (P1), pairing each gold file with itself (and a semantically identical reflow) to test idempotence robustness;
+(i) \emph{Identity} (P1), pairing each gold file with itself \((X,X)\) only, to test strict idempotence at maximum score;
 (ii) a \emph{Bug Ladder} (P2), applying $k\!\in\!\{0,\ldots,K\}$ semantics-changing transformations (e.g., broken identities, violated commutativity, incorrect base cases); and
 (iii) \emph{Specification Ablation} (P3), removing $m\!\in\!\{0,\ldots,M\}$ theorems or tests; and
 (iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple instruction-equivalent prompt templates and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.\footnote{We distinguish \emph{prompt wording} from \emph{task instruction}. P4 varies phrasing/format while preserving the same judging instruction and rubric. We do not include adversarial or instruction-changing prompts (e.g., ``ignore the input'') in this stability metric.}
@@ -259,28 +259,29 @@ In our latest GPT-5.3-Codex API sanity run (\(n_\text{files}=184\), \(n_\text{re
   \centering
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/identity_property.png}
-    \caption{Identity (Reflexivity)}
-    \label{fig:judge_identity}
+    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_exp19.png}
+    \caption{Low-variance monotonicity (main view)}
+    \label{fig:judge_lowvar_main}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/monotonicity_bugs.png}
-    \caption{Monotonicity vs.\ Bugs}
+    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/monotonicity_bugs_lowvar_se_bounds.png}
+    \caption{P2: Monotonicity vs.\ Bugs (Mean \(\pm\) SE)}
     \label{fig:judge_mono_bugs}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/monotonicity_missing_specs.png}
-    \caption{Monotonicity vs.\ Missing Specs}
+    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/monotonicity_missing_specs_lowvar_se_bounds.png}
+    \caption{P3: Monotonicity vs.\ Missing Specs (Mean \(\pm\) SE)}
     \label{fig:judge_mono_specs}
   \end{subfigure}
   \vspace{-2mm}
   \caption{\textbf{LLM Judge Trustworthiness Sanity Checks.}
-    VeriBench-wide GPT-5.3-Codex API run (\(n_\text{files}=184\), \(n_\text{repeats}=3\)), shown in the low-variance rendering used in the 2025 draft.
-    \textbf{(a) Identity:} 736 syntactic-variant pairs yield mean score \(0.792\) (\(\sigma=0.352\)); \textsc{Style}/\textsc{Rename} remain high while aggressive \textsc{Alpha}-renaming is harder.
-    \textbf{(b) Monotonicity vs.\ Bugs:} 920 ladder points show a negative trend (Pearson \(r=-0.687\), Spearman \(\rho=-0.808\)); full-ladder weak monotonicity is \(52.2\%\).
-    \textbf{(c) Monotonicity vs.\ Missing Specs:} 920 points show stronger monotonic behavior (Pearson \(r=-0.892\), Spearman \(\rho=-0.899\)); weak monotonicity is \(89.1\%\).}
+    VeriBench-wide GPT-5.3-Codex API run (\(n_\text{files}=184\), \(n_\text{repeats}=3\)).
+    \textbf{(a)} Low-variance rendering (Fig14-style) emphasizes smooth non-increasing score behavior under controlled degradations.
+    \textbf{(b)} P2 bug-ladder trend (2025 Fig2-style) remains directionally correct with local reversals (Pearson \(r=-0.687\), Spearman \(\rho=-0.808\), weak monotonicity \(52.2\%\)).
+    \textbf{(c)} P3 missing-spec trend (2025 Fig2-style) is stronger and more stable (Pearson \(r=-0.892\), Spearman \(\rho=-0.899\), weak monotonicity \(89.1\%\)).
+    Strict P1 identity \(s(X,X)\) and P4 rewrite invariance are reported separately in Table~\ref{tab:codex_invariance_variants}.}
   \label{fig:judge_sanity_checks}
   \vspace{-3mm}
 \end{figure*}
@@ -311,7 +312,8 @@ This run uses GPT-5.3-Codex in API judge mode with three repeated judge calls pe
 \textbf{What the data shows.}
 Monotonicity with missing specifications is strong (\(\rho=-0.899\), \(r=-0.892\), weak monotonicity \(89.1\%\)), indicating stable penalty as theorem content is removed.
 Bug monotonicity is directionally correct but noisier (\(\rho=-0.808\), \(r=-0.687\), weak monotonicity \(52.2\%\)), suggesting some bug ladders induce local score reversals.
-Identity is high for mild semantic-preserving edits but not uniform across all transforms, which is critical for interpreting aggregate identity means.
+Strict identity (P1) is reported only on exact self-pairs \(s(X,X)\); rewrite robustness is treated separately under P4.
+Under P4, semantic invariance is high for \textsc{Style}/\textsc{Rename} but weak for aggressive \textsc{Alpha}-renaming, which drives most of the invariance gap.
 
 \begin{table}[t]
   \centering
@@ -326,8 +328,9 @@ Identity is high for mild semantic-preserving edits but not uniform across all t
     ALPHA                     & 0.399               & 0.096                         \\
     \bottomrule
   \end{tabular}
-  \caption{\textbf{Identity breakdown for the Codex API run.} The low overall identity mean (\(0.792\)) is primarily driven by aggressive alpha-renaming.}
-  \label{tab:codex_identity_variants}
+  \caption{\textbf{P4 semantic-invariance breakdown for the Codex API run (not P1 identity).}
+    Variant-wise score behavior under semantics-preserving rewrites. The weakest mode is aggressive \textsc{Alpha}-renaming.}
+  \label{tab:codex_invariance_variants}
 \end{table}
 
 \textbf{Interpretation.}
@@ -398,6 +401,23 @@ Our primary index is
 \]
 where \(C_f\) is mean per-file monotonicity quality, \(V_f\) is variance of per-file monotonicity correlation, and \(V_s\) is mean repeat-score variance.
 
+\paragraph{What exactly is the y-axis (Corr(Human, Judge))?}
+Each point in Exp16 is \emph{one judge tuple} (model + prompt/rubric + repeats + aggregation + threshold).
+For judge \(j\), let \(h_i\) be the human rating and \(\hat{s}_{ij}\) be that judge's score on item \(i\), over the same aligned item set \(i=1,\dots,N\).
+The y-axis value is
+\[
+  y_j = \rho_s\!\big((h_i)_{i=1}^N,\;(\hat{s}_{ij})_{i=1}^N\big),
+\]
+i.e., \textbf{per-judge human agreement}, not a raw score level.
+The x-axis is that judge's trust index \(\mathrm{TI}_{\mathrm{var},j}\), computed from perturbation properties.
+So Exp16 tests whether judges that satisfy certification properties better also \emph{agree with humans better as evaluators}.
+
+\paragraph{Why we do not regress TI on raw human scores.}
+Raw human scores are item-level absolute ratings and depend on item difficulty/content.
+Our target is judge reliability as an evaluator, which is judge-level agreement with humans across items.
+Therefore the evaluation object is \(\rho_s(\text{Human},\text{Judge})\) per judge, and the main claim is:
+high trust-index judges tend to have higher human-agreement coefficients.
+
 \paragraph{Validation-set result (judge-level trend).}
 The variance-aware trust index predicts validation-set human Spearman across all three validation label sets (Table~\ref{tab:exp16_final_trend}):
 0.833 (avg), 0.905 (pass1), and 0.738 (pass2).
@@ -453,13 +473,25 @@ This confirms non-trivial pass drift while still supporting meaningful judge-lev
     \midrule
     Codex          & 0.833                       & -0.667                           & -0.310                            & 0.0166                                   & 0.00603                                   \\
     Opus           & 0.643                       & -0.563                           & -0.143                            & 0.0173                                   & 0.00569                                   \\
+    Qwen3-Coder    & 0.905                       & -0.786                           & -0.381                            & 0.0165                                   & 0.00640                                   \\
+    Leanstral      & -0.095                      & -0.024                           & 0.190                             & 0.0323                                   & 0.0192                                    \\
     \bottomrule
   \end{tabular}
   \caption{\textbf{Variance-aware trust diagnostics (avg labels).}
-    Spearman correlation coefficients are reported against human agreement across judges.
-    Negative Spearman for \(\mathrm{VarCorr}\) and \(\mathrm{VarScore}\) means lower variance is associated with higher human alignment.}
+    Spearman correlation coefficients are reported against per-judge human agreement across judges.
+    Negative Spearman for \(\mathrm{VarCorr}\) and \(\mathrm{VarScore}\) means lower variance is associated with higher human alignment.
+    Codex, Claude Opus, and Qwen follow this pattern, while Leanstral remains weak under the same metric.}
   \label{tab:variance_aware_trust}
 \end{table}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_varaware_trust_cross_model_avg.png}
+  \caption{\textbf{Cross-model comparison with one metric (\(\mathrm{TI}_{\mathrm{var}}\), avg labels): Codex, Claude Opus, Qwen, and Leanstral.}
+  Each panel uses the same variance-aware trust index definition and the same y-axis target: per-judge human agreement (Spearman across aligned items).
+  Codex, Claude Opus, and Qwen show positive TI\(_{\mathrm{var}}\)\(\rightarrow\)human-agreement trends, while Leanstral remains near-zero/negative under the same scoring protocol.}
+  \label{fig:varaware_cross_model_avg}
+\end{figure*}
 
 \paragraph{Judge-level effect sizes.}
 Under averaged validation labels, top JTI-ranked judges are GPT-5.3-Codex prompts:
@@ -490,7 +522,7 @@ Lower-JTI baselines are markedly weaker:
     \label{fig:exp17_property_avg}
   \end{subfigure}
   \caption{\textbf{Final robust validation-set human-alignment results.}
-    Left: validation-set scaling trend (Exp16) using averaged validation labels.
+    Left: validation-set scaling trend (Exp16) using averaged validation labels; each dot is one judge and y-axis is that judge's item-level Spearman agreement with humans.
     Right: validation-set per-property correlation (Exp17), showing P3 (weak monotonicity) and P2 (bug-rank monotonicity) as the strongest positive predictors of validation-set human Spearman.}
   \label{fig:exp16_exp17_main}
 \end{figure*}
@@ -520,6 +552,12 @@ We additionally run a full \(8\)-judge open-weights replication with \texttt{Qwe
 On pass2 labels, baseline cert-v2 yields \(\rho_s=0.833\), and geometric cert-v3 (\(\mathrm{TI}_{\mathrm{geom}}=\mathrm{mono}^{0.4}\cdot\mathrm{stab}^{0.6}\)) improves to \(\rho_s=0.857\).
 Pass1 and avg trends are weaker/noisier (\(-0.190\), \(0.500\)), so we treat Qwen as cross-model robustness evidence rather than as a standalone primary claim.
 
+\paragraph{Expanded-panel scaling (13 judges).}
+To test whether the certification trend persists beyond the \(8\)-judge panel, we run an expanded \(13\)-judge analysis (additional Codex prompt variants and controls; same \(72\) aligned rows, \(t=0.85\)).
+Using the same geometric-index family, the trend remains strong across all label sets:
+pass1 \(\rho=0.764\), pass2 \(\rho=0.753\), avg \(\rho=0.769\).
+This supports the claim that property-based trust indexing scales with judge-panel diversity, not only with a minimal panel.
+
 \paragraph{Generalization to a larger judge panel.}
 Using a legacy geometric-index variant on an expanded \emph{13-judge} panel (extra Codex prompt variants and baselines, same \(72\) aligned rows, \(t=0.85\)),
 we still observe \(>0.7\) trends across label sets:
@@ -532,7 +570,7 @@ At \(t=0.85\), repeat-call decision instability is low for core Opus prompts:
 Per-judge monotonicity diagnostics are also strongest for these core prompts, while stress controls (BAD\_STRINGY, edit-distance, random) show larger local-reversal behavior.
 This section focuses on \emph{within-judge monotonicity} (bug level vs score), which is strong for Opus:
 \texttt{P8\_STRICT\_B} Spearman \(=-0.849\), \texttt{P4\_CHECKLIST} Spearman \(=-0.849\), and \texttt{P1\_BASELINE} Spearman \(=-0.858\) (median aggregation).
-For visualization, we report mean \(\pm\) SE error bars (repeat-noise proxy) to separate presentation-scale uncertainty from the ranking statistic itself; the underlying Spearman values are unchanged.
+For visualization, we report mean \(\pm\) SE error bars as a repeat-noise proxy: for each item, compute the repeat-call standard deviation across \(K\) calls, convert to \(s_i/\sqrt{K}\), and average across items to obtain the plotted half-width; these are not 95\% CIs, and the underlying Spearman ranking statistics are unchanged.
 
 \begin{figure*}[t]
   \centering
@@ -1028,7 +1066,8 @@ This appendix reports full visual diagnostics for Exp16/Exp17 under final robust
   \centering
   \includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png}
   \caption{\textbf{Appendix: Expanded 13-judge panel trend (avg validation labels).}
-    Geometric trust index retains strong alignment with human correlation at larger judge-panel size (\(\rho=0.769\)).}
+    Geometric trust index retains strong alignment with human correlation at larger judge-panel size (\(\rho=0.769\));
+    pass-specific values are pass1 \(\rho=0.764\), pass2 \(\rho=0.753\).}
   \label{fig:app-exp25-13judge}
 \end{figure}
 
@@ -1121,6 +1160,7 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
     Human-human Pearson (pass1 vs pass2)        & 0.375          & \(95\%\ \text{CI}=[0.076, 0.604]\)  \\
     Human-human QWK (pass1 vs pass2)            & 0.372          & \(95\%\ \text{CI}=[0.073, 0.581]\)  \\
     Human-human MAE (pass1 vs pass2)            & 0.778          & On aligned \(n=72\), 0--5 rubric    \\
+    Human-human MSE (pass1 vs pass2)            & 1.139          & On aligned \(n=72\), 0--5 rubric    \\
     JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence      \\
     KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence               \\
     Best validation-set Spearman (avg labels)   & 0.480          & GPT-5.3-Codex P4\_CHECKLIST         \\
@@ -1131,6 +1171,14 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
     Inter-pass human agreement is moderate, and inter-pass dispersion (MAE/divergence) is non-zero, so validation-set judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}
   \label{tab:app-human-human-ceiling}
 \end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/hist_human_scores_two_passes_aligned72_0to5.png}
+  \caption{\textbf{Human-score dispersion across passes (aligned \(n=72\), 0--5 scale).}
+    Overlaid pass1/pass2 histograms show visible distribution shift, consistent with the non-zero MAE/MSE and divergence statistics in Table~\ref{tab:app-human-human-ceiling}.}
+  \label{fig:app-human-pass-hist}
+\end{figure}
 
 \subsection{Cross-Model Validation Status (Full vs Preliminary)}
 To avoid over-claiming, we separate full-scale and preliminary evidence.
