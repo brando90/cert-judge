@@ -85,7 +85,7 @@
 \maketitle
 
 \begin{abstract}
-  LLM judges are becoming essential for evaluating AI-generated code, tests, and formal specifications, but their reliability is usually established in the least scalable way: collecting new human ratings for every judge, prompt, model, and threshold. We challenge this validation loop by asking whether human judgment can be amortized through falsifiable behavioral properties. We propose a property-certification protocol for LLM judges of Lean~4 theorem and specification quality, where each judge is scored by four automatically testable conditions that don’t require a gold reference: identity, bug-monotonicity, specification-monotonicity, and repeat/prompt stability. These properties define a graded Judge Trust Index, $\mathrm{JTI}=(P_1P_2P_3P_4)^{1/4}$, intended not as a proof of correctness but as a measurable proxy for whether a judge behaves like a reliable evaluator.
+  LLM judges are becoming essential for evaluating AI-generated code, tests, and formal specifications, but their reliability is usually established in the least scalable way: collecting new human ratings for every judge, prompt, model, and threshold. We challenge this validation loop by asking whether human judgment can be amortized through falsifiable behavioral properties. We propose a property-certification protocol for LLM judges of Lean~4 theorem and specification quality, where each judge is scored by four automatically testable conditions that don't require a gold reference and can work with any arbirary Lean file: identity, bug-monotonicity, specification-monotonicity, and repeat/prompt stability. These properties define a graded Judge Trust Index, $\mathrm{JTI}=(P_1P_2P_3P_4)^{1/4}$, intended not as a proof of correctness but as a measurable proxy for whether a judge behaves like a reliable evaluator.
 
   On a validation panel of eight judges spanning frontier LLM prompts, weaker LLM baselines, edit-distance, and random controls, JTI strongly predicts validation-set human alignment: a Spearman correlation coefficient of $\rho=0.881$ against human judgements is achieved. Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs, while identity and stability are weaker standalone signals. Applied to VERIBENCH, property certification provides a reproducible calibration protocol for scalable oversight of AI-generated tests, theorems, and formal specifications.
 \end{abstract}
@@ -155,11 +155,35 @@ Recent work has shown that unconstrained chain-of-thought reasoning can reduce e
 
 \section{Problem Setup: Judging Lean Theorem/Specification Quality}
 
+\paragraph{Task.}
+Each benchmark item contains a natural-language problem statement, a gold Lean~4 artifact
+$g$, and a candidate artifact $x$ produced by an AI agent. The artifact may include code,
+tests or specification scaffolds, and a target theorem/specification statement. Our goal is
+to assign a score $J(x,g) \in [0,1]$ reflecting how well the candidate captures the intended formal specification represented
+by the gold artifact.
+
+\paragraph{Why this is nontrivial.}
+Lean can check whether a concrete proof script type-checks, but type-checking alone does
+not determine whether $x$ formalizes the same intended property as $g$. A candidate may
+compile while being under-specified, over-constrained, vacuously true, or semantically
+shifted. Thus, exact automatic scoring of theorem/specification quality is unavailable in
+general.
+
+\paragraph{Judge model.}
+We therefore use an LLM judge parameterized by
+\[
+  \theta = (\text{model}, \text{prompt}, n_{\mathrm{repeats}}, \text{aggregation}),
+\]
+which maps a pair $(x,g)$ to a score $J_\theta(x,g)\in[0,1]$. The central question is not
+only how to build such a judge, but when it is trustworthy enough to rank systems. Rather
+than collecting new human labels for every $\theta$, Section~4 tests whether $J_\theta$
+satisfies falsifiable behavioral constraints under controlled perturbations.
+
 \section{Property Certification Protocol}
 \subsection{Calibration Protocol}
-We frame property certification as a calibration protocol, analogous to standardized diagnostic-instrument calibration.
+We frame property certification as a calibration protocol.
 \textbf{One-time setup:} humans rate a labeled subset of \(N\) gold artifacts under fixed rubrics; here, \(n=72\) aligned candidate--gold pairs are rated by one annotator under two rubrics, R1 and R2.
-\textbf{Per-judge, no human in the loop:} for each new judge tuple, compute property scores on scripted perturbations of the gold artifacts, then aggregate them with a single family:
+\textbf{Per-judge, no human in the loop:} for each new judge tuple, compute property scores perturbated Lean artifacts, then aggregate them with a single family in either an arithmetic (AM) or geometric (GM) form:
 \[
   \mathrm{TI}_{f}(\mathbf{v},\mathbf{w})
   =
@@ -167,17 +191,16 @@ We frame property certification as a calibration protocol, analogous to standard
   \quad
   w_i\ge 0,\ \sum_i w_i=1,\ v_i\in(0,1].
 \]
-This gives both arithmetic and geometric forms with one equation:
 \[
   \text{AM: } f(x)=x
   \;\Rightarrow\;
   \mathrm{TI}_{\mathrm{AM}}=\sum_i w_i v_i,
-  \qquad
+  \quad
   \text{GM: } f(x)=\log x
   \;\Rightarrow\;
   \mathrm{TI}_{\mathrm{GM}}=\exp\!\Big(\sum_i w_i\log v_i\Big)=\prod_i v_i^{w_i}.
 \]
-\textbf{Index instantiations used in this paper:}
+In this paper we refer to 3 trust indices:
 \[
   \text{v1} = 0.30\,\text{ident} + 0.30\,\text{mono} + 0.25\,\text{weak} + 0.15\,\text{stab},
 \]
