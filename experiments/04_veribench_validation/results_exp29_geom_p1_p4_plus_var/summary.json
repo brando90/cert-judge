@@ -1,0 +1,33 @@
+{
+  "experiment": "exp29_geom_p1_p4_plus_var",
+  "weights": {
+    "ident": 0.2,
+    "mono": 0.2,
+    "weak": 0.2,
+    "stab": 0.15,
+    "varcorr": 0.125,
+    "varscore": 0.125
+  },
+  "assumptions": {
+    "P1_ident": "identity_mean",
+    "P2_mono": "clip01((-bug_spearman_r + 1)/2)",
+    "P3_weak": "clip01(bug_weak_mono_pct/100)",
+    "P4_stab": "clip01(1-flip_rate)",
+    "VarCorr": "VarCorr_stability_1_minus (from exp28)",
+    "VarScore": "VarScore_stability_1_minus (from exp28)"
+  },
+  "by_split": {
+    "pass1": {
+      "spearman_ti_vs_human": 0.7619047619047619,
+      "n_judges": 8
+    },
+    "pass2": {
+      "spearman_ti_vs_human": 0.8095238095238095,
+      "n_judges": 8
+    },
+    "avg": {
+      "spearman_ti_vs_human": 0.7619047619047619,
+      "n_judges": 8
+    }
+  }
+}

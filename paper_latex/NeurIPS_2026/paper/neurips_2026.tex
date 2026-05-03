@@ -183,7 +183,7 @@ satisfies falsifiable behavioral constraints under controlled perturbations.
 \subsection{Calibration Protocol}
 We frame property certification as a calibration protocol.
 \textbf{One-time setup:} humans rate a labeled subset of \(N\) gold artifacts under fixed rubrics; here, \(n=72\) aligned candidate--gold pairs are rated by one annotator under two rubrics, R1 and R2.
-\textbf{Per-judge, no human in the loop:} for each new judge tuple, compute property scores perturbated Lean artifacts, then aggregate them with a single family in either an arithmetic (AM) or geometric (GM) form:
+\textbf{Per-judge, no human in the loop:} for each new judge tuple, compute property scores on scripted perturbations of Lean artifacts, then aggregate them in either arithmetic (AM) or geometric (GM) form:
 \[
   \mathrm{TI}_{f}(\mathbf{v},\mathbf{w})
   =
@@ -200,17 +200,21 @@ We frame property certification as a calibration protocol.
   \;\Rightarrow\;
   \mathrm{TI}_{\mathrm{GM}}=\exp\!\Big(\sum_i w_i\log v_i\Big)=\prod_i v_i^{w_i}.
 \]
-In this paper we refer to 3 trust indices:
+\textbf{Shorthand labels (all in \([0,1]\)):}
+\(\text{ident}\) (P1: identity/consistency),
+\(\text{mono}\) (P2: bug monotonicity),
+\(\text{weak}\) (P3: specification-ablation monotonicity),
+\(\text{stab}\) (P4: repeat/prompt stability),
+\(\text{flip}=\) repeat-level pass/fail disagreement rate.
+
+\textbf{Indices used in this paper:}
 \[
   \text{v1} = 0.30\,\text{ident} + 0.30\,\text{mono} + 0.25\,\text{weak} + 0.15\,\text{stab},
 \]
 \[
   \text{v2} = 0.20\,\text{ident} + 0.20\,\text{mono} + 0.15\,\text{weak} + 0.10\,\text{stab} + 0.20\,\text{anti\_string} + 0.15\,\text{subtle\_bug},
 \]
-\[
-  \text{v3 (geometric)} = \text{mono}^{0.4}\,\text{stab}^{0.6},
-\]
-and a variance-aware geometric index
+\textbf{Primary metric in this revision:}
 \[
   \mathrm{TI}_{\mathrm{var}}
   =
@@ -218,8 +222,8 @@ and a variance-aware geometric index
   +\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarCorr}})
   +\tfrac{1}{3}\log(1-\widetilde{\mathrm{VarScore}})\Big),
 \]
-where \(C_f\) is mean per-file property-correlation quality, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties.
-\textbf{Calibration claim:} trust-index scores on the validation set predict each judge's validation-set human Spearman (best observed with v1 at \(\rho=0.881\) across our \(8\)-judge panel).
+where \(C_f\) is a per-judge quality term computed from property behavior (P1--P4 diagnostics), and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties.
+\textbf{Calibration claim:} trust-index scores on the validation set predict each judge's validation-set human Spearman.
 \textbf{Deployment:} any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) tuple is evaluated for trust by computing the same chosen trust-index form on the existing gold reference set, with no additional human annotation.
 Thus P1--P4 are the four calibration targets for the trust index, not binary gates: they grade how strongly a judge preserves identity, monotone degradation, and repeat stability on controlled perturbations.
 
@@ -487,31 +491,29 @@ This confirms non-trivial pass drift while still supporting meaningful judge-lev
 \begin{table}[t]
   \centering
   \small
-  \begin{tabular}{lccccc}
+  \begin{tabular}{lccc}
     \toprule
-    \textbf{Model} & \textbf{Spearman(TI,Human)} & \textbf{Spearman(VarCorr,Human)} & \textbf{Spearman(VarScore,Human)} & \(\mathbf{\overline{\mathrm{VarCorr}}}\) & \(\mathbf{\overline{\mathrm{VarScore}}}\) \\
+    \textbf{Model} & \textbf{pass1} & \textbf{pass2} & \textbf{avg} \\
     \midrule
-    Codex          & 0.833                       & -0.667                           & -0.310                            & 0.0166                                   & 0.00603                                   \\
-    Opus           & 0.643                       & -0.563                           & -0.143                            & 0.0173                                   & 0.00569                                   \\
-    Qwen3-Coder    & 0.905                       & -0.786                           & -0.381                            & 0.0165                                   & 0.00640                                   \\
-    Leanstral      & -0.095                      & -0.024                           & 0.190                             & 0.0323                                   & 0.0192                                    \\
+    Codex          & 0.905          & 0.738          & 0.833        \\
+    Claude Opus    & 0.810          & 0.595          & 0.643        \\
+    Qwen3-Coder    & 0.476          & 0.905          & 0.905        \\
+    Leanstral      & -0.119         & -0.048         & -0.095       \\
     \bottomrule
   \end{tabular}
-  \caption{\textbf{Variance-aware trust diagnostics (avg labels).}
-    Spearman correlation coefficients are reported against per-judge human agreement across judges.
-    Negative Spearman for \(\mathrm{VarCorr}\) and \(\mathrm{VarScore}\) means lower variance is associated with higher human alignment.
-    Codex, Claude Opus, and Qwen follow this pattern, while Leanstral remains weak under the same metric.}
+  \caption{\textbf{Cross-model trends for \(\mathrm{TI}_{\mathrm{var}}\).}
+  Entries are Spearman\((\mathrm{TI}_{\mathrm{var}},\) per-judge human Spearman\()\) across judges for each validation label set.}
   \label{tab:variance_aware_trust}
 \end{table}
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=\linewidth]{figures/fig_varaware_trust_cross_model_avg.png}
-  \caption{\textbf{Cross-model comparison with one metric (\(\mathrm{TI}_{\mathrm{var}}\), avg labels): Codex, Claude Opus, Qwen, and Leanstral.}
-  Each panel uses the same variance-aware trust index definition and the same y-axis target: per-judge human agreement (Spearman across aligned items).
-  Codex, Claude Opus, and Qwen show positive TI\(_{\mathrm{var}}\)\(\rightarrow\)human-agreement trends, while Leanstral remains near-zero/negative under the same scoring protocol.}
+  \includegraphics[width=\linewidth]{figures/fig_tivar_scatter_3models_avg.png}
+  \caption{\textbf{\(\mathrm{TI}_{\mathrm{var}}\) vs human agreement (avg labels).}
+  Each panel plots per-judge \(\mathrm{TI}_{\mathrm{var}}\) against per-judge human Spearman for one model family (Codex, Claude Opus, Qwen3-Coder), with a dashed linear trend line.}
   \label{fig:varaware_cross_model_avg}
 \end{figure*}
+
 
 \paragraph{Judge-level effect sizes.}
 Under averaged validation labels, top JTI-ranked judges are GPT-5.3-Codex prompts:
@@ -569,7 +571,7 @@ This supports cross-model transfer of the same quality+stability index design, e
 
 \paragraph{Qwen3-Coder replication (full Exp16 panel).}
 We additionally run a full \(8\)-judge open-weights replication with \texttt{Qwen/Qwen3-Coder-30B-A3B-Instruct} as the primary judge family (plus \texttt{gpt-4o-mini}, edit-distance, and random controls), with the same \(n_\text{repeats}=3\), median aggregation, and \(t=0.85\) protocol.
-On pass2 labels, baseline cert-v2 yields \(\rho_s=0.833\), and geometric cert-v3 (\(\mathrm{TI}_{\mathrm{geom}}=\mathrm{mono}^{0.4}\cdot\mathrm{stab}^{0.6}\)) improves to \(\rho_s=0.857\).
+On pass2 labels, baseline cert-v2 yields \(\rho_s=0.833\), and a legacy geometric baseline (\(\mathrm{TI}_{\mathrm{geom}}=\mathrm{mono}^{0.4}\cdot\mathrm{stab}^{0.6}\)) improves to \(\rho_s=0.857\).
 Pass1 and avg trends are weaker/noisier (\(-0.190\), \(0.500\)), so we treat Qwen as cross-model robustness evidence rather than as a standalone primary claim.
 
 \paragraph{Expanded-panel scaling (13 judges).}
@@ -616,16 +618,16 @@ For visualization, we report mean \(\pm\) SE error bars as a repeat-noise proxy:
   \begin{subfigure}[t]{0.49\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_qwen_pass2.png}
-    \caption{Qwen pass2: baseline cert-v2 vs geometric cert-v3.}
+    \caption{Qwen pass2: baseline cert-v2 vs legacy geometric baseline.}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.49\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/fig_exp16_pass2_cert_index3_geom_tight_se.png}
-    \caption{Qwen pass2: cert-v3 geometric vs human Spearman (tight 1-SE bars).}
+    \caption{Qwen pass2: legacy geometric baseline vs human Spearman (tight 1-SE bars).}
   \end{subfigure}
   \caption{\textbf{Qwen3-Coder cross-model diagnostics (Exp16/Exp25, pass2).}
     Left: geometric aggregation improves the judge-level certification\(\rightarrow\)human trend over baseline cert-v2.
-    Right: the resulting cert-v3 trend remains strong under tight SE presentation.}
+    Right: the resulting legacy geometric trend remains strong under tight SE presentation.}
   \label{fig:qwen_pass2_geom}
   =======
   \begin{subfigure}[t]{0.32\textwidth}
