@@ -307521,5 +307521,1733 @@
     ],
     "reasoning": "The generated theorem is a trivial `True` statement and provides no relation between `selectionSort` and `selectionSortImp` for any input list.",
     "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f7cff20fe9d697f4698939d4763167ccbfb571dfd0cb2d549403ad4912f6b5f1|2dc442d66718a018ae54a3471eccb628033198de258067b818ab27327a027183": {
+    "score": 0.8,
+    "mean": 0.8,
+    "std": 0.019999999999999962,
+    "scores": [
+      0.82,
+      0.8,
+      0.78
+    ],
+    "reasoning": "Candidate A is semantically closer because it at least states left/right partition and sortedness-style guarantees over arrays matching the reference intent, whereas Candidate B drifts further (redefines core types, uses lists, and gives a weaker insort spec as mere splice equality without the reference\u2019s sorted-slice/partition postconditions).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|43fb4a0838e8f638532f729aa9814ee2ab6aa59fdf475c80830c9ce5956b69be|2dc442d66718a018ae54a3471eccb628033198de258067b818ab27327a027183": {
+    "score": 0.31666666666666665,
+    "mean": 0.31666666666666665,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.35,
+      0.35,
+      0.25
+    ],
+    "reasoning": "Candidate B is slightly closer to the reference because it keeps Array-based APIs and right-biased insertion behavior, whereas A diverges more in data structures and custom Option redefinition, though both miss major reference guarantees (notably preconditioned sorted-slice/partition insertion theorems) and have weakened or mismatched specs.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|98540e6c6697dd3277674c45e68a67a05e26b7007a66088c62db99cf7f5f59b6|2dc442d66718a018ae54a3471eccb628033198de258067b818ab27327a027183": {
+    "score": 0.7333333333333333,
+    "mean": 0.7333333333333333,
+    "std": 0.028867513459481315,
+    "scores": [
+      0.75,
+      0.75,
+      0.7
+    ],
+    "reasoning": "Candidate A is semantically closer because it uses Arrays like the reference and includes right-biased bisect/insort behavior plus core partition-style specs, whereas Candidate B switches to Lists and introduces more target drift despite adding a keyed spec.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|490af99e96e9fa322cd4f834d882f0ff7a0c1bf829f1aa588179d2f533788dca|2dc442d66718a018ae54a3471eccb628033198de258067b818ab27327a027183": {
+    "score": 0.35,
+    "mean": 0.35,
+    "std": 0.0,
+    "scores": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "reasoning": "Candidate B is structurally closer on arrays and optional hi/key, but its specs are weaker/wrong (global sortedness and set-like membership lose right-bias and slice-partition guarantees), while Candidate A at least states explicit left\u2264x/right>x partition specs and keyed correctness despite using lists and diverging from array-based reference APIs.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|0f5b10de7aa5543f82e330104605f0baa3a36a1d1d25c390df86cfb2d04ce16e|2dc442d66718a018ae54a3471eccb628033198de258067b818ab27327a027183": {
+    "score": 0.44,
+    "mean": 0.44,
+    "std": 0.24248711305964282,
+    "scores": [
+      0.72,
+      0.3,
+      0.3
+    ],
+    "reasoning": "Candidate B is semantically closer because it includes explicit correctness theorems with precondition-like bounds and both keyed/non-keyed bisect specs in \u2264/> form closer to the reference, whereas A\u2019s spec is weaker/misaligned (uses \u00ac(x<y) instead of \u2264 and lacks the richer pre/post insertion properties).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|b6c5513883da247ba4323bde14ac3c8531204d58370c7deb05ae0b3788dfa08c|2dc442d66718a018ae54a3471eccb628033198de258067b818ab27327a027183": {
+    "score": 0.7,
+    "mean": 0.7,
+    "std": 0.08000000000000002,
+    "scores": [
+      0.78,
+      0.62,
+      0.7
+    ],
+    "reasoning": "Candidate A is semantically closer because its specs explicitly state the key bisect partition in \u2264/> form and bounded lo/hi guarantees, whereas Candidate B weakens the left condition to \u00ac(x<...) and makes insort correctness largely a splice tautology with less alignment to the reference\u2019s sortedness/partition intent.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|353cfa42e6e929196b724734cf22ba1dee2b0f509e286ddf441397c2ab5a4459|07a1f29ce9bf78b7acb82c34c11357c2705b03d6c0e71c88d7e55e136eb1f720": {
+    "score": 0.4166666666666667,
+    "mean": 0.4166666666666667,
+    "std": 0.11547005383792519,
+    "scores": [
+      0.35,
+      0.55,
+      0.35
+    ],
+    "reasoning": "Both diverge from the trivial reference (Pre=True, Post=True), but B\u2019s theorem directly states unconditional correctness of safeCopy against its own spec while A weakens it with an unnecessary implication from a trivial precondition, so B is slightly closer semantically.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ce254fb38279bb660f6807215d843738eb92009af0f709eaf2e164af0b699f0d|07a1f29ce9bf78b7acb82c34c11357c2705b03d6c0e71c88d7e55e136eb1f720": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "reasoning": "Both A and B are far from the reference\u2019s trivial guarantee (Pre=True, Post=True) by targeting a different nontrivial safeCopy spec, and neither is semantically closer since each still proves (via sorry) a stronger, unrelated property that would imply the reference theorem.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|5ac145b147560345b1a02d0f3f8dea2c219cf125ee77bed210bbe79c2799de1a|07a1f29ce9bf78b7acb82c34c11357c2705b03d6c0e71c88d7e55e136eb1f720": {
+    "score": 0.9299999999999999,
+    "mean": 0.9299999999999999,
+    "std": 0.06999999999999999,
+    "scores": [
+      0.85,
+      0.96,
+      0.98
+    ],
+    "reasoning": "Candidate A is semantically closer because it provides a richer, behaviorally accurate postcondition about resulting contents and size (despite being unfinished), whereas Candidate B\u2019s postcondition is weaker/wrong-target (only Unit success) and does not capture actual copy semantics.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|3e174461d47f0aba6d10adf4c7c579817f2d329aa223d79efea9318da5315c42|07a1f29ce9bf78b7acb82c34c11357c2705b03d6c0e71c88d7e55e136eb1f720": {
+    "score": 0.15666666666666668,
+    "mean": 0.15666666666666668,
+    "std": 0.040414518843273815,
+    "scores": [
+      0.2,
+      0.15,
+      0.12
+    ],
+    "reasoning": "B is semantically closer because it states a substantive postcondition about returned array contents and preservation, whereas A\u2019s postcondition is effectively wrong/vacuous (expects `Except.ok ()` despite returning `Except.ok` of a copied array) and does not capture copy semantics.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|664d3b4602740216d1190565e409a4b2aed32aa08236abeede2cc7c9a720dc03|07a1f29ce9bf78b7acb82c34c11357c2705b03d6c0e71c88d7e55e136eb1f720": {
+    "score": 0.8533333333333333,
+    "mean": 0.8533333333333333,
+    "std": 0.11015141094572203,
+    "scores": [
+      0.86,
+      0.74,
+      0.96
+    ],
+    "reasoning": "Candidate A is semantically closer because it gives a richer postcondition about returned data content and size (despite being unfinished), whereas Candidate B\u2019s postcondition is much weaker and even mismatched with likely ByteArray immutability by returning Unit and asserting only success/error without copied-value guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f0e68629be8e0f53a3d0f5ce03901e24cafbb4b5d322a91f4203cda1bb90992f|07a1f29ce9bf78b7acb82c34c11357c2705b03d6c0e71c88d7e55e136eb1f720": {
+    "score": 0.056666666666666664,
+    "mean": 0.056666666666666664,
+    "std": 0.025166114784235832,
+    "scores": [
+      0.03,
+      0.08,
+      0.06
+    ],
+    "reasoning": "Candidate B is far semantically closer because it states a substantive postcondition about returned copied bytes and unchanged tail on success, whereas Candidate A\u2019s postcondition is actually incorrect for its own implementation (expects `Except.ok ()` despite returning `Except.ok` of `copySlice`) and thus largely misses the meaningful guarantee.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|65c548933edf65cf4ca67b743dd69e9b4943ef54ca6ed4645c65d51a658d398a|4659203095e51e2ef46bd67be2881f5bf66736aaded6d619d22d06bccff2ee0b": {
+    "score": 0.5933333333333334,
+    "mean": 0.5933333333333334,
+    "std": 0.18583146486355137,
+    "scores": [
+      0.38,
+      0.68,
+      0.72
+    ],
+    "reasoning": "B is slightly closer to the reference because it directly specifies and implements full-string uppercase via `toUpper` with a proved correctness theorem (despite weaker postconditions and Bool-based specs), whereas A\u2019s postcondition is more detailed but appears ill-typed/incomplete (`&&` with `\u2200`) and lacks the pre\u2192post correctness structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f4cc2925e0ed417ca87681201c936db23c88181babc84d23dd15a9c3111461e5|4659203095e51e2ef46bd67be2881f5bf66736aaded6d619d22d06bccff2ee0b": {
+    "score": 0.16666666666666666,
+    "mean": 0.16666666666666666,
+    "std": 0.0862167810425171,
+    "scores": [
+      0.09,
+      0.26,
+      0.15
+    ],
+    "reasoning": "Candidate B is much closer because it models per-character uppercase behavior with length preservation and unchanged non-lowercase characters, whereas Candidate A collapses the spec to mere equality with `toUpper` and misses the richer reference guarantees (idempotence, append/single-char properties, and structural postcondition style).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|92104668c09ce9775a5e1e2e76268b761bae19e8fe96572b1c43bdb4ded56c15|4659203095e51e2ef46bd67be2881f5bf66736aaded6d619d22d06bccff2ee0b": {
+    "score": 0.5666666666666667,
+    "mean": 0.5666666666666667,
+    "std": 0.2444040370643115,
+    "scores": [
+      0.3,
+      0.62,
+      0.78
+    ],
+    "reasoning": "Candidate B is semantically closer because it directly implements full-string uppercasing via `s.toUpper` (matching the reference behavior), whereas Candidate A\u2019s spec is ill-typed/misaligned (mixing `Bool` with `Prop`, problematic indexing) despite having a richer intended postcondition.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|e613899760eccdb02a8cd049c28bb87a56199b9848a81f31b6b3c67957dff3dc|4659203095e51e2ef46bd67be2881f5bf66736aaded6d619d22d06bccff2ee0b": {
+    "score": 0.06333333333333334,
+    "mean": 0.06333333333333334,
+    "std": 0.03785938897200183,
+    "scores": [
+      0.02,
+      0.08,
+      0.09
+    ],
+    "reasoning": "Candidate B is far semantically closer because it specifies characterwise uppercase behavior and length preservation akin to the reference, whereas Candidate A\u2019s theorem is essentially tautological (prog = s.toUpper by definition) and omits the reference\u2019s substantive postcondition guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|468d89fd66759e9f82fafab51a4063d25497d2a344a423dbc2ca3b64ed20b82c|4659203095e51e2ef46bd67be2881f5bf66736aaded6d619d22d06bccff2ee0b": {
+    "score": 0.75,
+    "mean": 0.75,
+    "std": 0.08660254037844388,
+    "scores": [
+      0.8,
+      0.8,
+      0.65
+    ],
+    "reasoning": "Candidate A is semantically closer because it provides a complete correctness statement without gaps (proved `post s (prog s)`), while Candidate B\u2019s main theorem is left with `sorry`, making its guarantee weaker/vacuous despite similar implementation intent.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|27f404fc9a92b49109d8986fcd3f353b18b97bcfb53baf3a24c886caad1eeaf7|4659203095e51e2ef46bd67be2881f5bf66736aaded6d619d22d06bccff2ee0b": {
+    "score": 0.24,
+    "mean": 0.24,
+    "std": 0.0529150262212918,
+    "scores": [
+      0.2,
+      0.22,
+      0.3
+    ],
+    "reasoning": "Candidate B is semantically closer because it includes an explicit postcondition relation and a correctness theorem proving `post s (prog s)`, whereas Candidate A\u2019s theorem is effectively tautological (`prog = s.toUpper` by definition) and even has an unnecessary `sorry`, so B better matches the reference\u2019s pre/post correctness intent despite both omitting most richer properties.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|7fc077bffb6a619b6846c44086cd4d617989961a1f991283d24290849fc4a3bc|4e221afcbd0025dccc4f66a74850b924cd86610232a39bcd03b2e34e0693d59f": {
+    "score": 0.12,
+    "mean": 0.12,
+    "std": 0.05291502622129181,
+    "scores": [
+      0.18,
+      0.1,
+      0.08
+    ],
+    "reasoning": "B is semantically closer because it uses Nat with a True precondition and states direct equivalence to a recursive Fibonacci spec, whereas A changes domain to Int with panic behavior and a weaker/shifted postcondition that diverges from the reference guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|e39547947e29b918e33e21ce53d9e839550bed865180c2aef2cbad637a96f0ab|4e221afcbd0025dccc4f66a74850b924cd86610232a39bcd03b2e34e0693d59f": {
+    "score": 0.9733333333333333,
+    "mean": 0.9733333333333333,
+    "std": 0.023094010767585053,
+    "scores": [
+      0.96,
+      0.96,
+      1.0
+    ],
+    "reasoning": "Candidate A is much closer because it uses Nat inputs, matches the recursive/iterative Fibonacci intent, and states direct equivalence to the recursive spec, whereas Candidate B changes the domain to Int with panic behavior and a weaker/misaligned postcondition that references the implementation itself.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|1ea2d0da9bdbb7c809b48cd7d90b132c95645c7e84a2aa2ee4b06edf7e012044|4e221afcbd0025dccc4f66a74850b924cd86610232a39bcd03b2e34e0693d59f": {
+    "score": 0.19333333333333333,
+    "mean": 0.19333333333333333,
+    "std": 0.023094010767585035,
+    "scores": [
+      0.18,
+      0.22,
+      0.18
+    ],
+    "reasoning": "B is semantically closer because it matches the Nat-based Fibonacci recurrence and proves equivalence between an iterative implementation and a recursive spec, whereas A shifts to an Int/boolean precondition style with a weaker, different postcondition and mismatched contract structure from the reference.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|3428b9ae3516b3339c878487f642f31acc4b1c28f2c7254e0da9a00124113d6a|4e221afcbd0025dccc4f66a74850b924cd86610232a39bcd03b2e34e0693d59f": {
+    "score": 0.7133333333333333,
+    "mean": 0.7133333333333333,
+    "std": 0.011547005383792526,
+    "scores": [
+      0.72,
+      0.7,
+      0.72
+    ],
+    "reasoning": "Candidate A is semantically closer because it directly proves equivalence between an iterative implementation and a recursive Fibonacci spec over nonnegative inputs (matching the reference\u2019s key equivalence flavor), whereas Candidate B\u2019s postcondition is weaker/self-referential to the same function and uses a Bool precondition with less faithful property structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|cffdaffd705eb327d8cf4da87f251231b9636233920c8008ea79a48809c0cd8f|4e221afcbd0025dccc4f66a74850b924cd86610232a39bcd03b2e34e0693d59f": {
+    "score": 0.9166666666666667,
+    "mean": 0.9166666666666667,
+    "std": 0.023094010767585053,
+    "scores": [
+      0.89,
+      0.93,
+      0.93
+    ],
+    "reasoning": "Candidate A is much closer semantically because it stays on Nat inputs and proves iterative-recursive equivalence akin to the reference, whereas Candidate B changes the domain to Int with panic behavior for negatives and a different spec target, diverging from the reference guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|8eeda866ec6d31ad162c587180e0ef3075d356e8db5256664bb270fb6dfd335b|4e221afcbd0025dccc4f66a74850b924cd86610232a39bcd03b2e34e0693d59f": {
+    "score": 0.17333333333333334,
+    "mean": 0.17333333333333334,
+    "std": 0.04618802153517007,
+    "scores": [
+      0.2,
+      0.12,
+      0.2
+    ],
+    "reasoning": "Candidate B is semantically closer because it stays in Nat, matches the recursive/iterative Fibonacci target and proves equivalence-style correctness, whereas Candidate A changes the domain to Int with panic behavior on negatives and targets a different precondition/specification shape than the reference.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|b454b016133d7662743001d22241793c5240166afc918c6ceabd79cf738b0acc|ff969189ab4cb14a174bb2cb5e6af898a3f8a7b0e1596a0877c0b7f219e93f29": {
+    "score": 0.7066666666666667,
+    "mean": 0.7066666666666667,
+    "std": 0.08082903768654762,
+    "scores": [
+      0.62,
+      0.78,
+      0.72
+    ],
+    "reasoning": "Candidate A is slightly closer because it models a verified program with explicit success/error result and precondition-guarded correctness shape, whereas B\u2019s postcondition is weakened/vacuous (implication inside post) and uses panic-based behavior, though both miss the reference\u2019s algebraic properties and full Pre\u2192Post structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|a69e4179c3d7b33c94a252c0f5bccfeeb3a6d625f2545428a096c8f95ca2fdda|ff969189ab4cb14a174bb2cb5e6af898a3f8a7b0e1596a0877c0b7f219e93f29": {
+    "score": 0.26,
+    "mean": 0.26,
+    "std": 0.05291502622129181,
+    "scores": [
+      0.2,
+      0.3,
+      0.28
+    ],
+    "reasoning": "Candidate B is semantically closer overall because it states a proper pre\u2192successful-result correctness shape with explicit error behavior, whereas Candidate A\u2019s postcondition is vacuous/weak (implication inside post), uses panic-based undefined failure semantics, and misses the richer algebraic guarantees of the reference even more starkly.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ee9a54e13b4eaa8ed81c7eee0a0283f90fc343e9da1448e0f8fdf8fecfdf96ac|ff969189ab4cb14a174bb2cb5e6af898a3f8a7b0e1596a0877c0b7f219e93f29": {
+    "score": 0.24,
+    "mean": 0.24,
+    "std": 0.06,
+    "scores": [
+      0.3,
+      0.24,
+      0.18
+    ],
+    "reasoning": "Candidate B is slightly closer because it uses a Prop precondition and direct pre\u2192post theorem structure, but both miss most of the reference\u2019s core guarantees (algebraic properties, Post conjunction, imperative equivalence), while A is further off with Bool preconditions and Result/error-oriented semantics not matching the target theorem layer.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|415af1ab07faa81be95e21bde8fdca60e22f78a542070ed3978d46cc50d68a72|ff969189ab4cb14a174bb2cb5e6af898a3f8a7b0e1596a0877c0b7f219e93f29": {
+    "score": 0.35,
+    "mean": 0.35,
+    "std": 0.0,
+    "scores": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "reasoning": "B is slightly closer because it models total error-aware behavior in the return type and states correctness over the actual program result shape, whereas A uses `panic!` with a mismatched proof setup; however, both are far from the reference (wrong domain `Int`, missing algebraic/postcondition structure, and no imperative equivalence properties).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|2f3cb1f9eaa76cae63c270c5a654beb6e7c332e8df19870769b05e56b4ed2974|ff969189ab4cb14a174bb2cb5e6af898a3f8a7b0e1596a0877c0b7f219e93f29": {
+    "score": 0.54,
+    "mean": 0.54,
+    "std": 0.12165525060596437,
+    "scores": [
+      0.4,
+      0.6,
+      0.62
+    ],
+    "reasoning": "Candidate B is slightly closer because it at least states the standard Hoare-style correctness (pre \u2192 exact sum) without embedding the precondition inside post, whereas Candidate A\u2019s post is weakened/vacuous and both candidates miss the reference\u2019s key Nat-specific algebraic guarantees (identity, commutativity, associativity, and imperative equivalence).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|e250d493b3af45fd712d9ff14ff690f677672af8a210540761d1829437af5915|ff969189ab4cb14a174bb2cb5e6af898a3f8a7b0e1596a0877c0b7f219e93f29": {
+    "score": 0.6833333333333333,
+    "mean": 0.6833333333333333,
+    "std": 0.07094598884597587,
+    "scores": [
+      0.67,
+      0.62,
+      0.76
+    ],
+    "reasoning": "Candidate A is semantically closer because it states a standard Hoare-style correctness theorem (pre \u2192 post of concrete result) with explicit panic behavior on pre-violation and matching tests, whereas Candidate B weakens/spec-shifts the postcondition to include the precondition implication inside it, making the guarantee more vacuous and less aligned with the reference\u2019s direct correctness structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|1ae32cf2e31fd6329119faa94843f4953c8ac4a5eb7629fd2e363c86551237fb|b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9": {
+    "score": 0.27,
+    "mean": 0.27,
+    "std": 0.08544003745317531,
+    "scores": [
+      0.28,
+      0.18,
+      0.35
+    ],
+    "reasoning": "B is somewhat closer because it mirrors the optional-key unified interface and includes explicit pre\u2192post correctness theorems for both bisect and insort, whereas A omits preconditions and has a much weaker insort spec, though both miss the reference\u2019s slice-sortedness/partition-strength details and are partially ill-typed.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|dde7a57cc50b493dc11a6f4519f21ea76574e36f54683f1f69b734b5062fa5ae|b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9": {
+    "score": 0.8,
+    "mean": 0.8,
+    "std": 0.052915026221291794,
+    "scores": [
+      0.76,
+      0.86,
+      0.78
+    ],
+    "reasoning": "Candidate A is closer because it models both optional-key bisect/insort in one interface and includes explicit pre/post correctness statements for both functions, whereas Candidate B splits keyed/non-keyed variants and has a much weaker insort spec that omits insertion-at-bisect shape/partition guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|89cc843fef8517c29ac7227e3362d45df7fc0b5776f3955b03bea7d0c914a66d|b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9": {
+    "score": 0.7033333333333334,
+    "mean": 0.7033333333333334,
+    "std": 0.047258156262526066,
+    "scores": [
+      0.65,
+      0.72,
+      0.74
+    ],
+    "reasoning": "Candidate A is semantically closer because it at least packages bisect correctness as full boundary/partition specs (including keyed variant) and an insort postcondition with length/membership, whereas Candidate B has fragmented theorems, a broken keyed comparison expression, and less complete alignment to the reference\u2019s structured guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|1178230d210e9c71ad38f0bc2724aabe3096fc42a41c30e96f4d019cbbfbcd24|b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9": {
+    "score": 0.4166666666666667,
+    "mean": 0.4166666666666667,
+    "std": 0.11547005383792519,
+    "scores": [
+      0.35,
+      0.35,
+      0.55
+    ],
+    "reasoning": "Candidate B is slightly closer because it includes explicit bisect correctness specs and a correctness theorem structure (including keyed version), whereas A\u2019s theorems are less tied to a formal pre/post framework, but both miss important reference guarantees (slice-sorted precondition, splice-shape, and post-insert partition/slice properties), with B still weakened by a very loose insort spec.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|02ca16b25b44090064d8743dd10cebdeaa704ebbce94ab751de4f55233a69e77|b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9": {
+    "score": 0.8266666666666667,
+    "mean": 0.8266666666666667,
+    "std": 0.030550504633038912,
+    "scores": [
+      0.8,
+      0.86,
+      0.82
+    ],
+    "reasoning": "Candidate A is semantically closer because it provides an integrated pre/post correctness framing for both bisect and insort with key-option support (despite some weaknesses like vacuous `lo \u2265 0` and missing sorted-slice precondition), whereas Candidate B is more fragmented, omits unified optional-key semantics, and its guarantees are less aligned with the reference\u2019s Pre\u2192Post structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|6e794b22e258170265595db39d7828ad75da50a065810c0d396321da30d1b45c|b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9": {
+    "score": 0.18666666666666668,
+    "mean": 0.18666666666666668,
+    "std": 0.011547005383792526,
+    "scores": [
+      0.2,
+      0.18,
+      0.18
+    ],
+    "reasoning": "Candidate B is semantically closer because it includes explicit pre/post specs and correctness theorems for both bisect and insort with optional key handling, whereas Candidate A only gives loose standalone lemmas (some over-strong without sortedness assumptions) and lacks the reference-style precondition/postcondition structure despite both diverging from the array/slice-sorted guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f1b92782a20a9722acc70119e9b73e561d221f253e4318c1b530d62394ab2c3b|eeadcd500e318eb14991b95cad32bbebc9d104673fe8941feaf09df7a846c3d8": {
+    "score": 0.5833333333333334,
+    "mean": 0.5833333333333334,
+    "std": 0.22546248764114474,
+    "scores": [
+      0.6,
+      0.35,
+      0.8
+    ],
+    "reasoning": "Candidate A is slightly closer because it includes heap-invariant preservation and exact size +1 like the reference (despite extra/incorrect details), whereas Candidate B has invariant and permutation-style claims but misses the explicit size guarantee and adds a root-min theorem not aligned with the reference postcondition.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|75c07eff0e41957c0b2da87583fdbd779c1ccb32bf8a334842a506d1f7d4f1a0|eeadcd500e318eb14991b95cad32bbebc9d104673fe8941feaf09df7a846c3d8": {
+    "score": 0.44,
+    "mean": 0.44,
+    "std": 0.24758836806279894,
+    "scores": [
+      0.25,
+      0.35,
+      0.72
+    ],
+    "reasoning": "Candidate B is semantically closer because it includes both heap-invariant preservation and explicit size-increase guarantees like the reference, whereas Candidate A omits the size property and adds off-target/stronger-but-unrequired root-min claims despite having a permutation-style theorem.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|41010d3f30cbda2046caf1f75b3454475c366882c93e94fde5680bafb87202e2|eeadcd500e318eb14991b95cad32bbebc9d104673fe8941feaf09df7a846c3d8": {
+    "score": 0.2733333333333333,
+    "mean": 0.2733333333333333,
+    "std": 0.10785793124908957,
+    "scores": [
+      0.32,
+      0.35,
+      0.15
+    ],
+    "reasoning": "Candidate B is somewhat closer because it includes both heap-invariant and permutation/content guarantees in one correctness spec (matching key postconditions), whereas A misses the multiset/permutation guarantee and adds a non-reference root\u2264item property, though both diverge from the reference by using List/Ord and weaker precondition handling.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|2793e56a3e9a52c658de0cb63779f9c910d2c07bffcaab0180dc5fcf2274406b|eeadcd500e318eb14991b95cad32bbebc9d104673fe8941feaf09df7a846c3d8": {
+    "score": 0.79,
+    "mean": 0.79,
+    "std": 0.06557438524302002,
+    "scores": [
+      0.85,
+      0.72,
+      0.8
+    ],
+    "reasoning": "Candidate A is semantically closer because it directly specifies both heap-invariant preservation and permutation/content preservation (matching key postconditions), whereas Candidate B lacks the multiset/permutation guarantee and instead adds a different root/min theorem not in the reference.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|c7aaa4dd5d6210c7968e0abbb82694ac9ce5ed57c9622d40b44506ae8818cb44|eeadcd500e318eb14991b95cad32bbebc9d104673fe8941feaf09df7a846c3d8": {
+    "score": 0.24333333333333335,
+    "mean": 0.24333333333333335,
+    "std": 0.04041451884327381,
+    "scores": [
+      0.2,
+      0.28,
+      0.25
+    ],
+    "reasoning": "Candidate B is semantically closer because it at least packages the key postcondition pieces together (heap invariant + permutation of item-added contents) for `heappush`, whereas Candidate A has a mismatched/incorrect `siftdown` guard and weaker/misaligned guarantees (no unified correctness theorem, no size property, and extra irrelevant root-min theorem).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f610b25b27d66f43d5acc63cb4740b2eb573d2bb3001cdde6574fcc1b246c3fb|eeadcd500e318eb14991b95cad32bbebc9d104673fe8941feaf09df7a846c3d8": {
+    "score": 0.37,
+    "mean": 0.37,
+    "std": 0.35538711287833724,
+    "scores": [
+      0.78,
+      0.15,
+      0.18
+    ],
+    "reasoning": "Candidate A is closer because it directly specifies heappush as yielding both heap-invariant satisfaction and permutation with the pushed element (matching the reference postcondition structure), whereas Candidate B has extra/partly mismatched predicates (count-based permutation needing BEq, additional root-min theorem) and less direct alignment to the reference\u2019s combined correctness contract.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|055cf0597bf66286f341451bce8db5650b00fa01e7665da9117892bf2f0f8f2f|4e17395df867ae8a6c79b285591a18f1a540dbf96d2241d92ff83bbe03ff43d7": {
+    "score": 0.24000000000000002,
+    "mean": 0.24000000000000002,
+    "std": 0.06928203230275509,
+    "scores": [
+      0.2,
+      0.32,
+      0.2
+    ],
+    "reasoning": "B is semantically closer because its postcondition includes both lower-bound and membership (matching key minimum guarantees), whereas A weakens the target further to only a lower-bound property and omits membership entirely, despite both diverging from the reference on empty-list behavior and precondition strength.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|2783e277a3872266184482d16d21be77643279ec81f171dc32ae7dfdc1cae9b3|4e17395df867ae8a6c79b285591a18f1a540dbf96d2241d92ff83bbe03ff43d7": {
+    "score": 0.8266666666666667,
+    "mean": 0.8266666666666667,
+    "std": 0.025166114784235794,
+    "scores": [
+      0.8,
+      0.83,
+      0.85
+    ],
+    "reasoning": "Candidate A is semantically closer because its postcondition includes both global minimality and membership (matching the reference\u2019s key minimum/membership guarantees), whereas Candidate B only proves a lower-bound property and omits membership and other reference-level properties.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|21ffb3bf9652a7e112ca39c92b88a70a4580b1a45742a3412f47bd0ef6b66ba4|4e17395df867ae8a6c79b285591a18f1a540dbf96d2241d92ff83bbe03ff43d7": {
+    "score": 0.17666666666666667,
+    "mean": 0.17666666666666667,
+    "std": 0.02516611478423584,
+    "scores": [
+      0.15,
+      0.2,
+      0.18
+    ],
+    "reasoning": "Candidate B is semantically closer because its postcondition captures both membership and minimality (matching the reference\u2019s key minimum guarantee), whereas Candidate A only proves a weaker lower-bound property and omits that the result is actually an element of the list.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|1e66a562328419c0b9e8b28ee00ecc43c0c1b3ee9c45d2577f685ab287334f5b|4e17395df867ae8a6c79b285591a18f1a540dbf96d2241d92ff83bbe03ff43d7": {
+    "score": 0.47333333333333333,
+    "mean": 0.47333333333333333,
+    "std": 0.21361959960016152,
+    "scores": [
+      0.35,
+      0.35,
+      0.72
+    ],
+    "reasoning": "B is slightly closer overall because it keeps a theorem over an unconditional correctness implication with list-based precondition, but both diverge from the reference by panicking on empty input instead of returning 0 and omitting major required guarantees (empty/single/two-element properties, membership in postcondition, and imperative equivalence), while A at least includes membership in its postcondition.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|bcef0e6fbaa0041794653cbe0e0317d87c328a97ce65b9a6a08f1d2cfc40dbc1|4e17395df867ae8a6c79b285591a18f1a540dbf96d2241d92ff83bbe03ff43d7": {
+    "score": 0.55,
+    "mean": 0.55,
+    "std": 0.2,
+    "scores": [
+      0.35,
+      0.55,
+      0.75
+    ],
+    "reasoning": "B is slightly closer because its recursive definition and spec align more directly with the reference minimum-on-nonempty behavior (despite wrong empty-case handling and missing many reference guarantees), whereas A also diverges by changing semantics via fold/panic and similarly omits the broader Pre=True, empty-list, conjunction postcondition, and imperative-equivalence coverage.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|6ff26e4263a7010f792e5c1e89722e233a03542c699a2ad543f011c2a898ad2b|4e17395df867ae8a6c79b285591a18f1a540dbf96d2241d92ff83bbe03ff43d7": {
+    "score": 0.23333333333333334,
+    "mean": 0.23333333333333334,
+    "std": 0.07571877794400365,
+    "scores": [
+      0.32,
+      0.18,
+      0.2
+    ],
+    "reasoning": "Candidate B is only slightly closer because it at least packages the min-spec with nonempty precondition and a total fold implementation, but both diverge substantially from the reference (which allows empty input with result 0, includes multiple specific properties/postcondition structure, and imperative-equivalence), while A additionally mismatches empty-list semantics via panic and weaker overall guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|9d6e50e8cfc2cf1e573071412dc1b517d75e7d82bd0a90a2f30739c4906276e0|2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812": {
+    "score": 0.13333333333333333,
+    "mean": 0.13333333333333333,
+    "std": 0.02886751345948128,
+    "scores": [
+      0.1,
+      0.15,
+      0.15
+    ],
+    "reasoning": "B is much closer to the reference because it matches the non-empty precondition/panic behavior and includes key postconditions like size decrease and heap preservation, whereas A changes the API to `Option`, uses a malformed heap predicate, and omits the required multiset/permutation guarantee and exact reference-style contract.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|c6c1f1fdd6926bc98dfd048c5549fe2ec6d7307b92a324bda82a588d4ff59ff0|2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812": {
+    "score": 0.7666666666666666,
+    "mean": 0.7666666666666666,
+    "std": 0.05033222956847165,
+    "scores": [
+      0.72,
+      0.82,
+      0.76
+    ],
+    "reasoning": "Candidate A is closer because it matches the non-empty precondition style and includes all three key post aspects (min element relation, size decrease, and heap invariant), whereas Candidate B weakens/changes the target more substantially by returning Option, omitting size/permutation guarantees, and using a nonstandard weak IsHeap predicate.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|da7dfd6777966c1ef8dcf5c22be56d9805691a331cbac31649391f77cd28dc01|2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812": {
+    "score": 0.7933333333333333,
+    "mean": 0.7933333333333333,
+    "std": 0.10066445913694336,
+    "scores": [
+      0.78,
+      0.7,
+      0.9
+    ],
+    "reasoning": "Candidate A is semantically closer because it at least states a meaningful nonempty-heappop correctness shape (result exists, heap property preserved, popped minimal in new heap), whereas Candidate B contains severe spec/definition issues and apparent ill-typed or malformed constructs that undermine the intended guarantees despite mentioning size/content conditions.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|54d041c8dd6c9ddfe0166dd288673856607303972be5624fd5f32abc301294f2|2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812": {
+    "score": 0.83,
+    "mean": 0.83,
+    "std": 0.017320508075688787,
+    "scores": [
+      0.82,
+      0.85,
+      0.82
+    ],
+    "reasoning": "Candidate A is semantically closer because it includes a stronger postcondition structure matching the reference (nonempty precondition, size decrease, heap invariant, and element-content preservation), whereas Candidate B weakens/changes the API to Option and its heap predicate/correctness theorem misses key guarantees like exact size-minus-one and permutation-style multiset preservation.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|052a32bb529fdd928f89be844a6b9c7e7d321b06e2317555157643c9025a4fc3|2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812": {
+    "score": 0.7733333333333333,
+    "mean": 0.7733333333333333,
+    "std": 0.08082903768654762,
+    "scores": [
+      0.86,
+      0.76,
+      0.7
+    ],
+    "reasoning": "Candidate A is semantically closer because its theorem directly targets postconditions analogous to the reference (returned element is a lower bound, size decreases by one, and heap invariant on result under nonempty-heap precondition), whereas Candidate B\u2019s spec is less aligned and partly ill-posed (uses minimum? equality and custom IsHeap/ordering machinery that is inconsistent and weakerly connected to the concrete heappop guarantee).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|fabee94af5e38796af066a68eca73ada37b3d0552936eac435b85379c8ac6eaa|2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812": {
+    "score": 0.2833333333333333,
+    "mean": 0.2833333333333333,
+    "std": 0.11547005383792514,
+    "scores": [
+      0.35,
+      0.15,
+      0.35
+    ],
+    "reasoning": "B is semantically closer because it states key postconditions aligned with the reference (size decreases, output remains heap, popped element is minimal), whereas A\u2019s spec is less faithful and partly ill-targeted (uses a problematic minimum? equality, omits explicit precondition-to-postcondition structure, and weakens multiset/permutation to one-way membership conditions).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|8a91d4388a451b86dfcd7e87d39678b459beb760326e89b1528a0b12c108708d|ef54d562f0568fb58ef6f69c48b3db077a58a1cf89cb1c5d038563d5825fdd5e": {
+    "score": 0.73,
+    "mean": 0.73,
+    "std": 0.017320508075688787,
+    "scores": [
+      0.75,
+      0.72,
+      0.72
+    ],
+    "reasoning": "Candidate A is closer because its spec directly enforces per-index character replacement behavior (matching the reference intent), whereas Candidate B\u2019s predicate is overcomplicated and misses key guarantees like preserving non-underscore non-space characters while only adding a length constraint.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|d548f77075eb7fa618d77a2c17f817bbb4a3a7693e5b6cc51de20a40810ff2e1|ef54d562f0568fb58ef6f69c48b3db077a58a1cf89cb1c5d038563d5825fdd5e": {
+    "score": 0.5866666666666667,
+    "mean": 0.5866666666666667,
+    "std": 0.25006665778014736,
+    "scores": [
+      0.76,
+      0.3,
+      0.7
+    ],
+    "reasoning": "Candidate B is semantically closer because its spec directly enforces per-index character preservation/replacement behavior (matching the reference intent and length preservation implicitly), whereas A\u2019s predicate is overly convoluted and weaker/misaligned (it does not clearly guarantee full positional correspondence or underscore occurrence for every space).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|41f1866ec82b8c9085c97220b7d095c744224196a493f9a817021d5289a6e1ba|ef54d562f0568fb58ef6f69c48b3db077a58a1cf89cb1c5d038563d5825fdd5e": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.15000000000000002,
+    "scores": [
+      0.25,
+      0.55,
+      0.4
+    ],
+    "reasoning": "Candidate B is semantically closer because its spec/theorem exactly matches its implementation behavior (`result = s.replace \" \" \"_\"`), whereas Candidate A\u2019s index-based spec is incomplete/fragile (no explicit length preservation and potentially vacuous for out-of-range cases) and less aligned with the reference\u2019s concrete guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|601c5a9fa4cf78ac73e5fd73c0373ceba8ab9a56d1486442d99a51c55f481113|ef54d562f0568fb58ef6f69c48b3db077a58a1cf89cb1c5d038563d5825fdd5e": {
+    "score": 0.75,
+    "mean": 0.75,
+    "std": 0.11789826122551596,
+    "scores": [
+      0.62,
+      0.85,
+      0.78
+    ],
+    "reasoning": "Candidate A is slightly closer because its spec directly matches its implemented transformation and avoids B\u2019s likely unsound index-based spec obligations with `sorry` bounds/length handling, even though both miss most of the richer reference postconditions (no-spaces, length preservation, per-character properties, and imperative equivalence).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|5c58b788f928a5a1ffc168e170708cd3bd726d54eafac1066a21fbf0a6537e06|ef54d562f0568fb58ef6f69c48b3db077a58a1cf89cb1c5d038563d5825fdd5e": {
+    "score": 0.5733333333333334,
+    "mean": 0.5733333333333334,
+    "std": 0.10785793124908957,
+    "scores": [
+      0.65,
+      0.62,
+      0.45
+    ],
+    "reasoning": "Candidate A is somewhat closer because it at least states extra semantic guarantees (no spaces and length preservation) akin to the reference postconditions, whereas Candidate B only specifies equality to `s.replace \" \" \"_\"` with less explicit property coverage despite both omitting much of the full reference structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ddd1b53645eace939eb7846559651415db204ca90cc8f112c6e304ed73fd4981|ef54d562f0568fb58ef6f69c48b3db077a58a1cf89cb1c5d038563d5825fdd5e": {
+    "score": 0.77,
+    "mean": 0.77,
+    "std": 0.15132745950421553,
+    "scores": [
+      0.72,
+      0.94,
+      0.65
+    ],
+    "reasoning": "Candidate A is semantically closer because it directly specifies and proves the exact replacement behavior `result = s.replace \" \" \"_\"`, while Candidate B adds a very convoluted and likely mis-specified positional predicate that does not cleanly capture the reference\u2019s full guarantees despite including length preservation.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|320c7f9d09a3f3a1d4dbefc2f26ab598dc9e9a2a7121c9374ceb776dd927d69d|5a58ffe5b5a1697498abf2dcfe74e1f9d3b4f6671f226105f191c0ff8333e8bb": {
+    "score": 0.23666666666666666,
+    "mean": 0.23666666666666666,
+    "std": 0.09814954576223638,
+    "scores": [
+      0.18,
+      0.35,
+      0.18
+    ],
+    "reasoning": "Candidate B is slightly closer because it at least provides a complete parser function with a top-level theorem (albeit vacuous), whereas Candidate A is unfinished/truncated and its stated properties are largely irrelevant or unproven with no clear soundness/completeness correspondence to the reference spec.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|0800bc514ae4fdf3f4532ed711fd2113b964bb5be2ab5a7f02a974152f1e375e|5a58ffe5b5a1697498abf2dcfe74e1f9d3b4f6671f226105f191c0ff8333e8bb": {
+    "score": 0.19999999999999998,
+    "mean": 0.19999999999999998,
+    "std": 0.1322875655532295,
+    "scores": [
+      0.1,
+      0.15,
+      0.35
+    ],
+    "reasoning": "Candidate B is slightly closer because it at least states nontrivial success-related properties (despite being weak/misaligned), whereas Candidate A\u2019s main theorem is fully vacuous (`True` in both success and error cases) and neither candidate matches the reference\u2019s soundness/completeness/rejection guarantees for the minimal `loads` spec.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|c2b510a47a56845852d45fcca089affea6142251fb8f0e0d153372c2ea7c858c|5a58ffe5b5a1697498abf2dcfe74e1f9d3b4f6671f226105f191c0ff8333e8bb": {
+    "score": 0.6166666666666667,
+    "mean": 0.6166666666666667,
+    "std": 0.2516611478423583,
+    "scores": [
+      0.65,
+      0.35,
+      0.85
+    ],
+    "reasoning": "Candidate A is somewhat closer because it at least states a nontrivial success-implies-valid theorem analogous to soundness/completeness flavor, whereas Candidate B\u2019s verification theorems are largely vacuous boolean matches or rely on undefined IsValidJson predicates, though both diverge substantially from the reference\u2019s precise JSpec-based guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|62f1855bc1781d7d6c800e615acb684b039200d40b765d82db461ebf04275187|5a58ffe5b5a1697498abf2dcfe74e1f9d3b4f6671f226105f191c0ff8333e8bb": {
+    "score": 0.19999999999999998,
+    "mean": 0.19999999999999998,
+    "std": 0.1322875655532295,
+    "scores": [
+      0.35,
+      0.1,
+      0.15
+    ],
+    "reasoning": "Candidate B is slightly closer because it at least states a decode-level validity implication and deterministic-style triviality over a decoder result, whereas Candidate A\u2019s key theorems are mostly vacuous (`true`-valued matches) or rely on an unspecified `IsValidJson`, and both diverge substantially from the reference\u2019s precise `loads`/`JSpec` soundness-completeness-rejection guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|a9fe18d1abcf1a32c5a430ffb5cb5c190e62df0b7bc3c1726c3817dda55daa71|5a58ffe5b5a1697498abf2dcfe74e1f9d3b4f6671f226105f191c0ff8333e8bb": {
+    "score": 0.4,
+    "mean": 0.4,
+    "std": 0.3122498999199199,
+    "scores": [
+      0.15,
+      0.75,
+      0.3
+    ],
+    "reasoning": "B is slightly closer only because it includes nontrivial shape constraints for object/array parser outputs, whereas A\u2019s main correctness theorem is entirely vacuous (`True` in both branches), but both miss the reference\u2019s key soundness/completeness/rejection semantics and target a much broader different decoder.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|7d55b40c70576ffc17ea5a83f14335c6fff7c4b243d40d159b1ff3813372d50b|5a58ffe5b5a1697498abf2dcfe74e1f9d3b4f6671f226105f191c0ff8333e8bb": {
+    "score": 0.13333333333333333,
+    "mean": 0.13333333333333333,
+    "std": 0.12583057392117916,
+    "scores": [
+      0.25,
+      0.0,
+      0.15
+    ],
+    "reasoning": "Candidate B is slightly closer because it at least models decode/parse behavior and errors without introducing undefined predicates, whereas Candidate A contains similarly vacuous theorems plus extra wrong-target assumptions (e.g., undefined IsValidJson) and mismatches the reference\u2019s minimal integer/string semantics more severely.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|9b94e576dc58d3f0064c5910d6c8cc86d6cd450479975df917bde67c72b113d8|0bd2cc12d5556ed84ae425ca51306238dd1796c21a8dc07d4183730de62f4e3a": {
+    "score": 0.39999999999999997,
+    "mean": 0.39999999999999997,
+    "std": 0.08660254037844388,
+    "scores": [
+      0.5,
+      0.35,
+      0.35
+    ],
+    "reasoning": "Both candidates miss the reference\u2019s exact trivial theorem shape (`Pre := True`, `Post := True`, and `correctness_thm : Pre \u2192 Post`) and instead provide unrelated SafeCounter specs with unfinished proofs, making them semantically similarly distant from the target.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|79f1b99109e4e603c1898e617d9f6328fa31f6a3c0ff09ef43dec7b35f192565|0bd2cc12d5556ed84ae425ca51306238dd1796c21a8dc07d4183730de62f4e3a": {
+    "score": 0.45,
+    "mean": 0.45,
+    "std": 0.08660254037844388,
+    "scores": [
+      0.5,
+      0.35,
+      0.5
+    ],
+    "reasoning": "Both candidates miss the reference\u2019s simple global contract (Pre := True, Post := True, correctness_thm : Pre \u2192 Post) and instead specify unrelated counter APIs with unfinished proofs, so neither is semantically closer in any clear way.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|c575ed82609ea3a244e2f125caebe23d00836d1addd0a4064216afe5902be292|0bd2cc12d5556ed84ae425ca51306238dd1796c21a8dc07d4183730de62f4e3a": {
+    "score": 0.4866666666666667,
+    "mean": 0.4866666666666667,
+    "std": 0.03214550253664318,
+    "scores": [
+      0.5,
+      0.51,
+      0.45
+    ],
+    "reasoning": "Both candidates miss the reference\u2019s minimal `Pre := True` / `Post := True` correctness theorem entirely and instead prove unrelated SafeCounter specs, making them semantically equally off-target despite being internally plausible.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|6688b051f1f2f9dfc3e1b68b4754518f22c006a366b3e24dfdb85d78b9a64c72|0bd2cc12d5556ed84ae425ca51306238dd1796c21a8dc07d4183730de62f4e3a": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "reasoning": "Both candidates are far from the reference\u2019s minimal `Pre := True`, `Post := True`, and trivial correctness theorem, adding unrelated SafeCounter machinery with only sorry-backed proofs, so neither is semantically closer in any meaningful way.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|d812137ce3cac2f838852f5d99b61f22ce83b7cafbf1bb1a1ae50edb415c3e56|0bd2cc12d5556ed84ae425ca51306238dd1796c21a8dc07d4183730de62f4e3a": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "reasoning": "Both candidates miss the reference\u2019s simple Pre/Post correctness theorem entirely and instead prove unrelated counter-operation specs, so neither is semantically closer to the target guarantees in a meaningful way.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|0e1ac2adc61db07749d833fa1de230be4dbad06892aed005f86f07482d695b15|0bd2cc12d5556ed84ae425ca51306238dd1796c21a8dc07d4183730de62f4e3a": {
+    "score": 0.4966666666666667,
+    "mean": 0.4966666666666667,
+    "std": 0.04041451884327381,
+    "scores": [
+      0.52,
+      0.52,
+      0.45
+    ],
+    "reasoning": "Both diverge from the trivial reference Pre/Post correctness theorem, but A is marginally closer by at least providing direct operation-spec theorems in theorem form (despite being mostly unrelated and with sorrys), whereas B similarly remains off-target and introduces extra spec defs/tests without matching the reference guarantee.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ccd7ab1d19b006632ec29ae773b0b5d0fc9adeabb3ed107ac615ec038e64097b|d1f9957c77bbef5b8d8b6230d383996b3f834c2599adec20f0eb23baf8bd386c": {
+    "score": 0.9433333333333334,
+    "mean": 0.9433333333333334,
+    "std": 0.020816659994661285,
+    "scores": [
+      0.96,
+      0.95,
+      0.92
+    ],
+    "reasoning": "Candidate A is much closer to the reference because it mirrors the trivial Pre=True/Post=True style with a direct postcondition exactly matching the implementation, whereas Candidate B introduces a different and likely incorrect stronger spec (notably dubious length formula and placeholder conditions) that diverges from the reference target.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|480d1cbd4d962d750ab34161dcec540dcf15d69d1ab20ddcd024bcafdc955544|d1f9957c77bbef5b8d8b6230d383996b3f834c2599adec20f0eb23baf8bd386c": {
+    "score": 0.06,
+    "mean": 0.06,
+    "std": 0.05291502622129181,
+    "scores": [
+      0.04,
+      0.02,
+      0.12
+    ],
+    "reasoning": "B is much closer to the reference because it keeps the trivial Pre=True/Post-style correctness shape (with a direct definitional postcondition), whereas A introduces an unrelated and likely incorrect stronger spec with extra constraints and an unproven theorem, making it farther from the reference\u2019s guaranteed semantics.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f406ce060af5e0166cb5c586f0b34ba4a7f7c004336f66841a4ec09c14403717|d1f9957c77bbef5b8d8b6230d383996b3f834c2599adec20f0eb23baf8bd386c": {
+    "score": 0.6666666666666666,
+    "mean": 0.6666666666666666,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.6,
+      0.7,
+      0.7
+    ],
+    "reasoning": "Candidate A is slightly closer because it explicitly models pre/post conditions (with trivial pre like the reference) and states a correctness theorem in that style, whereas Candidate B only gives direct equality lemmas, though both diverge from the minimal True\u2192True reference and A is weakened by an unfinished `sorry` proof.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|cc2036dcb979a50ac1f323a6136a297ea1f0557795b331808009604f9978953a|d1f9957c77bbef5b8d8b6230d383996b3f834c2599adec20f0eb23baf8bd386c": {
+    "score": 0.07666666666666667,
+    "mean": 0.07666666666666667,
+    "std": 0.025166114784235832,
+    "scores": [
+      0.08,
+      0.1,
+      0.05
+    ],
+    "reasoning": "Candidate B is much closer to the reference\u2019s Pre/Post/correctness structure (with explicit True precondition, postcondition predicate, and a correctness theorem from Pre to Post), whereas A only proves definitional equalities and lacks the reference-style semantic contract entirely.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|de8397172216b2fc070f649cdf8e5324bef357f06db25fd545941213e84a0f70|d1f9957c77bbef5b8d8b6230d383996b3f834c2599adec20f0eb23baf8bd386c": {
+    "score": 0.31666666666666665,
+    "mean": 0.31666666666666665,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.35,
+      0.35,
+      0.25
+    ],
+    "reasoning": "A attempts a stronger behavioral spec but includes likely incorrect/arithmetic conditions and an unproven sorry, while B at least provides valid proved equalities (though trivial and far from the reference), so B is somewhat semantically closer overall.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ceeec7564a7075f184948262954d230987d115a0be5edf7dd1cd7d9f293b324f|d1f9957c77bbef5b8d8b6230d383996b3f834c2599adec20f0eb23baf8bd386c": {
+    "score": 0.9033333333333333,
+    "mean": 0.9033333333333333,
+    "std": 0.11239810200058242,
+    "scores": [
+      0.78,
+      0.93,
+      1.0
+    ],
+    "reasoning": "A is semantically closer because it provides fully proved theorems (albeit trivial equalities) consistent with its definition, while B introduces a stronger but likely incorrect/overconstrained spec and leaves the main correctness theorem unproved with `sorry`.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|89dcac3adc69c9691d95b7cf2918f173b6cd34dbb56fe58011a82835f843d9b2|9288a1d825ee084f1f803c98b200fdfbead527ed473fd5542ddbd687a82dcea0": {
+    "score": 0.7266666666666667,
+    "mean": 0.7266666666666667,
+    "std": 0.025166114784235857,
+    "scores": [
+      0.75,
+      0.7,
+      0.73
+    ],
+    "reasoning": "Candidate A is semantically closer because its postcondition tightly equates the returned safety flag to a concrete safety predicate for all outputs, whereas Candidate B\u2019s postcondition is weaker/vacuous on Unsafe results and can be satisfied even if unsafe paths are misclassified.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|4406505be61ca553674266e9a137135daca927122f57510b7961dc1b817814ee|9288a1d825ee084f1f803c98b200fdfbead527ed473fd5542ddbd687a82dcea0": {
+    "score": 0.36,
+    "mean": 0.36,
+    "std": 0.08544003745317531,
+    "scores": [
+      0.28,
+      0.35,
+      0.45
+    ],
+    "reasoning": "B is semantically closer because its postcondition directly constrains the returned safety flag to equal the spec predicate for all outcomes, whereas A\u2019s postcondition is weaker/vacuous on Unsafe results and only requires a safety predicate when Safe, despite both diverging from the trivial True/True reference.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|89c02ae4169ce14975b9639c23d8ac8b473560c4e88cb35372cb03892c43a490|9288a1d825ee084f1f803c98b200fdfbead527ed473fd5542ddbd687a82dcea0": {
+    "score": 0.22666666666666668,
+    "mean": 0.22666666666666668,
+    "std": 0.05033222956847168,
+    "scores": [
+      0.28,
+      0.22,
+      0.18
+    ],
+    "reasoning": "B is somewhat more internally specified, but the reference target is the trivial Pre=True/Post=True correctness theorem and A more directly mirrors that shape with explicit pre/post and a correctness statement (albeit stronger and with nontrivial precondition), while B omits the pre/post correctness form entirely and instead proves different safety properties.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|724159e3211fc4e191e3342ea8a0526699302e3d5af2610be7c7c948821bf760|9288a1d825ee084f1f803c98b200fdfbead527ed473fd5542ddbd687a82dcea0": {
+    "score": 0.21666666666666665,
+    "mean": 0.21666666666666665,
+    "std": 0.11930353445448852,
+    "scores": [
+      0.12,
+      0.18,
+      0.35
+    ],
+    "reasoning": "B is semantically closer because it at least states a single end-to-end correctness theorem relating pre/post for safePathTraversal, whereas A introduces many richer but largely mismatched/incomplete (and likely ill-typed) specs with sorrys and no direct analogue of the trivial Pre\u2192Post guarantee.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ac0df0cb572d6810d42018235547e45b5806c29e68c29c85be1ab1566dfee14d|9288a1d825ee084f1f803c98b200fdfbead527ed473fd5542ddbd687a82dcea0": {
+    "score": 0.13333333333333333,
+    "mean": 0.13333333333333333,
+    "std": 0.04163331998932265,
+    "scores": [
+      0.12,
+      0.1,
+      0.18
+    ],
+    "reasoning": "B is semantically closer because it actually states and proves-shaped correctness relations between implementation and spec, while A introduces a stronger nontrivial precondition and leaves the main theorem as sorry, diverging more from the reference\u2019s trivial Pre=True/Post=True guarantee.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|7a1df2a7e9b376e9e8b576e597b1d15835f4bc11681bf5de6eaf1701ea69391f|9288a1d825ee084f1f803c98b200fdfbead527ed473fd5542ddbd687a82dcea0": {
+    "score": 0.56,
+    "mean": 0.56,
+    "std": 0.33045423283716613,
+    "scores": [
+      0.18,
+      0.78,
+      0.72
+    ],
+    "reasoning": "Candidate B is semantically closer because it at least states an explicit pre/post correctness theorem akin to the reference shape, whereas Candidate A replaces the trivial Pre/Post guarantee with unrelated complex specs and additional unproven properties that do not target the reference contract.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|d3491cd8d2205be634c7755372808f44c4682685554bc0791232b626e3e18e3f|65f2345d0a508677bddc6f179a9e7eba7f27b07e6b87e2e1904be67269c8557c": {
+    "score": 0.81,
+    "mean": 0.81,
+    "std": 0.07937253933193772,
+    "scores": [
+      0.9,
+      0.78,
+      0.75
+    ],
+    "reasoning": "Candidate A is semantically closer because it uses a Prop precondition and theorem shape matching the reference\u2019s correctness style and gives a stronger none-case plus bounds-on-some guarantee, whereas Candidate B weakens preconditions to Bool with panic behavior and has a less faithful spec interface despite similar core search intent.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|46f58f922b8b8c8b61e78cadf1151981cad74186c5ab5c8b75f61890afd8c5da|65f2345d0a508677bddc6f179a9e7eba7f27b07e6b87e2e1904be67269c8557c": {
+    "score": 0.31666666666666665,
+    "mean": 0.31666666666666665,
+    "std": 0.12342339054382412,
+    "scores": [
+      0.35,
+      0.18,
+      0.42
+    ],
+    "reasoning": "B is semantically closer overall because its pre/post are Prop-based and align with the reference\u2019s correctness shape, whereas A\u2019s Bool precondition plus panic-on-unsorted behavior and flawed sortedness check significantly diverge despite both omitting several reference guarantees (notably linear-search equivalence and full postcondition conjunction structure).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|8073e82d9b177e41745e97faf5efa9c3716bd41e7f1100005658f54754c1e393|65f2345d0a508677bddc6f179a9e7eba7f27b07e6b87e2e1904be67269c8557c": {
+    "score": 0.74,
+    "mean": 0.74,
+    "std": 0.07211102550927974,
+    "scores": [
+      0.68,
+      0.82,
+      0.72
+    ],
+    "reasoning": "Candidate A is semantically closer because it states a clean precondition\u2192postcondition correctness theorem with both found and not-found guarantees (and bounds), whereas B mixes Bool-level preconditions with panic behavior on unsorted input and adds extra non-reference assumptions in key lemmas, making its guarantees less aligned.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|285a087c54f7b5e3095610620baef020aebf62336dcdb87d441d7d8ae707fbaa|65f2345d0a508677bddc6f179a9e7eba7f27b07e6b87e2e1904be67269c8557c": {
+    "score": 0.18333333333333332,
+    "mean": 0.18333333333333332,
+    "std": 0.035118845842842465,
+    "scores": [
+      0.18,
+      0.22,
+      0.15
+    ],
+    "reasoning": "B is semantically closer because it uses a Prop precondition and a direct correctness theorem of the form pre \u2192 post (including both found and not-found guarantees), whereas A weakens/changes the contract by making pre a Bool checked via panic inside the function and lacks the reference\u2019s clean preconditioned total-spec structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|0d594716aebafb95f868d6a7d7fcbaa2a7aad12789e633fa1155dc8cfe87eedd|65f2345d0a508677bddc6f179a9e7eba7f27b07e6b87e2e1904be67269c8557c": {
+    "score": 0.6866666666666666,
+    "mean": 0.6866666666666666,
+    "std": 0.05773502691896256,
+    "scores": [
+      0.72,
+      0.72,
+      0.62
+    ],
+    "reasoning": "Candidate A is semantically closer because it provides a direct pre\u2192post correctness theorem over the full result with both found and not-found guarantees, whereas Candidate B\u2019s extra lemmas are partly over-strong/specialized and less aligned to the reference\u2019s main contract despite a similar final correctness statement.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|29ae990dbbff77b82a64b3ff8c88c2bf1fc16e3f91c0e880a668e0a2f7a4c3e7|65f2345d0a508677bddc6f179a9e7eba7f27b07e6b87e2e1904be67269c8557c": {
+    "score": 0.4666666666666667,
+    "mean": 0.4666666666666667,
+    "std": 0.12583057392117916,
+    "scores": [
+      0.45,
+      0.35,
+      0.6
+    ],
+    "reasoning": "Both diverge from the reference by using Bool preconditions with panic and lacking the full post-condition bundle (notably linear-search equivalence and imperative equivalence), but B is slightly closer semantically because it gives a direct pre\u2192post correctness theorem over the function result, whereas A\u2019s extra theorems include stronger/irrelevant assumptions and less aligned structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|c5a056febcba2320fe1e23ad36cc692f7bf7ccf9902f771920d0f3328cab1f43|5cd1679538927bb8ee480dd514d8d52963d57221d14667b0a48552b7cc1434e7": {
+    "score": 0.16666666666666666,
+    "mean": 0.16666666666666666,
+    "std": 0.04163331998932266,
+    "scores": [
+      0.2,
+      0.12,
+      0.18
+    ],
+    "reasoning": "Candidate B is semantically closer because its postcondition directly uses propositional sortedness and permutation (matching the reference\u2019s core guarantees), whereas Candidate A weakens/mis-targets the spec by using Bool predicates (`isSorted`, `sameElements`) instead of standard relational properties and omits explicit permutation/length-style theorem structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|53b0b75f39109b1db5d20f053973ce1dd7bd939ff28d67dfac2a8b726dd942e4|5cd1679538927bb8ee480dd514d8d52963d57221d14667b0a48552b7cc1434e7": {
+    "score": 0.8833333333333333,
+    "mean": 0.8833333333333333,
+    "std": 0.040414518843273836,
+    "scores": [
+      0.86,
+      0.86,
+      0.93
+    ],
+    "reasoning": "Candidate A is semantically closer because its postcondition uses genuine `Sorted` and `Perm` propositions matching the reference\u2019s core guarantees, whereas Candidate B weakens both via boolean predicates (`isSorted`, `sameElements`) and omits direct permutation/length-style logical guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|e226d6dbd613728a02593040e78d0ec54e77f082135bf35a079fe934b044ab00|5cd1679538927bb8ee480dd514d8d52963d57221d14667b0a48552b7cc1434e7": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.08660254037844384,
+    "scores": [
+      0.35,
+      0.35,
+      0.2
+    ],
+    "reasoning": "Candidate B is semantically closer because it explicitly includes length preservation plus sortedness/permutation-style correctness structure, whereas Candidate A weakens guarantees to Bool-based predicates (not standard `Sorted`/`Perm`) and omits key reference properties like length and idempotence, despite B having some type-level issues in its predicate definitions.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|75ed3e346c36962dae216060ccc81efb87b0f9c719e075a954fe92f18dd8be15|5cd1679538927bb8ee480dd514d8d52963d57221d14667b0a48552b7cc1434e7": {
+    "score": 0.7433333333333333,
+    "mean": 0.7433333333333333,
+    "std": 0.07505553499465131,
+    "scores": [
+      0.67,
+      0.74,
+      0.82
+    ],
+    "reasoning": "Candidate A is closer because it explicitly specifies sortedness and permutation via `List.perm` plus a length theorem and pre/post correctness structure, whereas Candidate B uses a weaker ad-hoc `sameElements` boolean and omits explicit length/permutation theorems tied to the reference-style guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|62d5458e6baeded5b2ceaa2928748a2a1f413e10e000b21e4b06e0c07b2993d7|5cd1679538927bb8ee480dd514d8d52963d57221d14667b0a48552b7cc1434e7": {
+    "score": 0.45333333333333337,
+    "mean": 0.45333333333333337,
+    "std": 0.1877054430040145,
+    "scores": [
+      0.35,
+      0.34,
+      0.67
+    ],
+    "reasoning": "Candidate B is slightly closer to the reference because it includes explicit length-preservation and pre/post correctness structure, but both are semantically weakened versus the reference and B\u2019s use of Bool-valued sorted/permutation predicates (instead of Prop-level guarantees) and dubious permutation encoding makes its guarantees less faithful, so A remains competitive despite missing length/idempotence/equivalence coverage.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|bcd629926b46bb87bada1cfa90371c6e684fe4179d691bfc99aa2bb3c9875b16|5cd1679538927bb8ee480dd514d8d52963d57221d14667b0a48552b7cc1434e7": {
+    "score": 0.8333333333333333,
+    "mean": 0.8333333333333333,
+    "std": 0.011547005383792526,
+    "scores": [
+      0.84,
+      0.82,
+      0.84
+    ],
+    "reasoning": "Candidate A is semantically closer because it includes explicit sorted/permutation/length theorems and a pre\u2192post correctness statement matching more of the reference guarantees, whereas Candidate B only states the single correctness theorem (with weaker coverage and no separate length/idempotence-style guarantees).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|7fdbfbb8a77725d72fde303eb645b2d3b55c03af71d9b3589ced4ad621c93495|c151de43e88d33763edff18c34c0633aa5c82aeda5e44e5b9eac35c8c55ed957": {
+    "score": 0.13333333333333333,
+    "mean": 0.13333333333333333,
+    "std": 0.06110100926607787,
+    "scores": [
+      0.08,
+      0.12,
+      0.2
+    ],
+    "reasoning": "Candidate B is much closer to the reference because it stays on Nat, includes explicit pre/post-style specification with a correctness theorem proving divisibility and maximality via Nat.gcd, whereas Candidate A changes the domain to Int and omits the reference-style overall correctness structure and imperative/equivalence guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|86f27d3094af83925caa627f01edeefb7599f9bed32aee9bf83674c063e26492|c151de43e88d33763edff18c34c0633aa5c82aeda5e44e5b9eac35c8c55ed957": {
+    "score": 0.95,
+    "mean": 0.95,
+    "std": 0.017320508075688724,
+    "scores": [
+      0.96,
+      0.96,
+      0.93
+    ],
+    "reasoning": "Candidate A is much closer to the reference because it uses Nat inputs, defines an explicit pre/post correctness theorem for gcd-as-greatest-common-divisor, and aligns with the reference\u2019s core guarantee structure, whereas Candidate B switches to Int semantics and lacks the reference-style Pre \u2192 Post correctness framing.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|0e426d4b715876e9abdce6d4f21e7ddc2d5d38c8cbfa3d469b3f80f9113f7a3a|c151de43e88d33763edff18c34c0633aa5c82aeda5e44e5b9eac35c8c55ed957": {
+    "score": 0.29333333333333333,
+    "mean": 0.29333333333333333,
+    "std": 0.09814954576223638,
+    "scores": [
+      0.35,
+      0.35,
+      0.18
+    ],
+    "reasoning": "Candidate B is slightly closer to the reference\u2019s pre/post-style correctness structure by providing a single spec plus correctness theorem (including divisibility/maximality flavor), whereas Candidate A has more individual properties but no unified postcondition/correctness theorem and also shifts semantics to Int with some questionable maximality formulation.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|81d1c3e2546bdf6910a44b31b6fb6667565971fbb80c9704a47bf8c09d4c0532|c151de43e88d33763edff18c34c0633aa5c82aeda5e44e5b9eac35c8c55ed957": {
+    "score": 0.7266666666666667,
+    "mean": 0.7266666666666667,
+    "std": 0.011547005383792526,
+    "scores": [
+      0.72,
+      0.72,
+      0.74
+    ],
+    "reasoning": "Candidate A is closer because it gives a single end-to-end correctness theorem with a bundled GCD spec (divides both, greatest via divisibility, sign conditions) akin to the reference\u2019s Pre\u2192Post style, while Candidate B has several relevant lemmas but weaker/misaligned maximality over Int (using \u2264 without positivity constraints) and no unified correctness statement.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|045835e62f48c777e83440b1304e5ba08ec8133a7e2b43e120ea74693200c9ca|c151de43e88d33763edff18c34c0633aa5c82aeda5e44e5b9eac35c8c55ed957": {
+    "score": 0.87,
+    "mean": 0.87,
+    "std": 0.06244997998398397,
+    "scores": [
+      0.85,
+      0.94,
+      0.82
+    ],
+    "reasoning": "Candidate A is much closer to the reference semantics because it keeps Nat inputs, Euclidean recursion, explicit pre/post structure, and a maximal common-divisor spec, whereas Candidate B changes the domain to Int and has a malformed/weaker specification structure despite including some extra sign constraints.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|70b0e394fa6e7c86a926e7904ab668126186b7f44df33878cc56b0ba90c34990|c151de43e88d33763edff18c34c0633aa5c82aeda5e44e5b9eac35c8c55ed957": {
+    "score": 0.10666666666666666,
+    "mean": 0.10666666666666666,
+    "std": 0.07505553499465135,
+    "scores": [
+      0.15,
+      0.15,
+      0.02
+    ],
+    "reasoning": "Candidate B is semantically closer to the reference because it stays in Nat with explicit pre/post and a correctness theorem structure aligned to Pre \u2192 Post, whereas Candidate A switches to Int, has a malformed spec (quantifier/conjunction precedence issue) and diverges more from the target guarantees despite including a correctness statement.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|20c8e3beba9f16c829f7b432d6e860f58c99da483609bed6350aba8897a1a946|e54b35de647bb54dad994690b796c30287b1c939e50c3f1c1d4aefab32719cc1": {
+    "score": 0.35,
+    "mean": 0.35,
+    "std": 0.0,
+    "scores": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "reasoning": "B is semantically closer because it states a proper pre/post correctness implication with `result = true \u2194 Nat.Prime n`, whereas A\u2019s central spec is ill-typed (`isPrime n = Nat.Prime n`) and thus misses the core guarantee despite having a theorem placeholder.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|9f773b76a59353101f2140b99782500cbb2bbeb8032789699a84c189c46b415c|e54b35de647bb54dad994690b796c30287b1c939e50c3f1c1d4aefab32719cc1": {
+    "score": 0.7766666666666666,
+    "mean": 0.7766666666666666,
+    "std": 0.07505553499465135,
+    "scores": [
+      0.78,
+      0.7,
+      0.85
+    ],
+    "reasoning": "Candidate A is semantically closer because it states a well-typed correctness relation (`result = true \u2194 Nat.Prime n`) with pre/post structure akin to the reference, whereas Candidate B\u2019s main spec `isPrime n = Nat.Prime n` is type-incorrect (Bool vs Prop) and thus targets the guarantee less faithfully.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|94cdc044cd8f3b1f71ed670c5d1b685f614fb004999d93fc375e327102bcf33d|e54b35de647bb54dad994690b796c30287b1c939e50c3f1c1d4aefab32719cc1": {
+    "score": 0.48333333333333334,
+    "mean": 0.48333333333333334,
+    "std": 0.23094010767585033,
+    "scores": [
+      0.35,
+      0.75,
+      0.35
+    ],
+    "reasoning": "Candidate B is slightly closer because its spec states a meaningful primality characterization on the `true` case, whereas Candidate A\u2019s main spec is semantically malformed (`Bool = Prop`) and thus fails to correctly capture the reference guarantees despite both missing the reference\u2019s broader pre/post property structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|28f48b246abda871c78ed279e92e317a0fa2a38e48eaadfa729f2e02986fbe26|e54b35de647bb54dad994690b796c30287b1c939e50c3f1c1d4aefab32719cc1": {
+    "score": 0.16,
+    "mean": 0.16,
+    "std": 0.017320508075688773,
+    "scores": [
+      0.15,
+      0.15,
+      0.18
+    ],
+    "reasoning": "Candidate B is semantically closer because it directly states full correctness against `Nat.Prime` (despite a likely typing bug using Bool equality with a Prop), whereas Candidate A only gives one implication-style characterization over nontrivial divisors and omits the broader reference guarantees/postcondition structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|1e1429d98d6445fd1d3eff6beba2afeb2cfc4060cc1d7777ff608e0d4fd632fb|e54b35de647bb54dad994690b796c30287b1c939e50c3f1c1d4aefab32719cc1": {
+    "score": 0.53,
+    "mean": 0.53,
+    "std": 0.15588457268119896,
+    "scores": [
+      0.62,
+      0.35,
+      0.62
+    ],
+    "reasoning": "Candidate A is slightly closer because it includes explicit pre/post specification structure with correctness theorem (despite an unfinished proof), whereas B has only a single spec theorem and omits the broader pre/post-style guarantees present in the reference.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f08c257e07bb023fd10e2fec7b28ceac7187969fef765a5ad2312ccba48642f9|e54b35de647bb54dad994690b796c30287b1c939e50c3f1c1d4aefab32719cc1": {
+    "score": 0.32666666666666666,
+    "mean": 0.32666666666666666,
+    "std": 0.040414518843273774,
+    "scores": [
+      0.35,
+      0.28,
+      0.35
+    ],
+    "reasoning": "Candidate B is somewhat closer to the reference\u2019s pre/post-correctness structure (explicit precondition, postcondition via primality, and a correctness theorem), but it is still incomplete with a `sorry`, while Candidate A gives a complete biconditional spec theorem (also with `sorry`) yet omits the broader reference guarantees; overall B is slightly better aligned to the reference framework.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|c9dbe21fe84586afb4fd0f1c70beaa239636f1e4cb5a9282c6ac4cf262950cd4|b1cb8cac217e787239482083821d8749a573455ee6f96b0a293f1448adb31177": {
+    "score": 0.29333333333333333,
+    "mean": 0.29333333333333333,
+    "std": 0.09814954576223638,
+    "scores": [
+      0.35,
+      0.18,
+      0.35
+    ],
+    "reasoning": "Candidate B is semantically closer because it at least mirrors the reference\u2019s pre/post-correctness shape (even if weak/vacuous by defining spec identically to implementation), whereas Candidate A omits that contract structure entirely despite having a more meaningful independent spec equivalence theorem.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|8a39157bf8f9dbcaa54fc6ca90955381d00a94805b89015481afbe090c745444|b1cb8cac217e787239482083821d8749a573455ee6f96b0a293f1448adb31177": {
+    "score": 0.2833333333333333,
+    "mean": 0.2833333333333333,
+    "std": 0.11547005383792514,
+    "scores": [
+      0.35,
+      0.35,
+      0.15
+    ],
+    "reasoning": "Candidate B is semantically closer because its spec states the intended prefix-sum negativity condition (via running sums) whereas Candidate A\u2019s postcondition is largely tautological (function equals a duplicate implementation), though both miss much of the reference\u2019s richer pre/post property structure and imperative equivalence guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|9799d3c10038249a83461eeb11481f456ba63012b9a0ea7b386168e8ac24b2b9|b1cb8cac217e787239482083821d8749a573455ee6f96b0a293f1448adb31177": {
+    "score": 0.9133333333333333,
+    "mean": 0.9133333333333333,
+    "std": 0.01527525231651948,
+    "scores": [
+      0.91,
+      0.9,
+      0.93
+    ],
+    "reasoning": "Candidate A is much closer because it gives a direct executable-spec equivalence (`belowZero = any negative running sum`) matching the reference behavior, whereas Candidate B\u2019s theorem is ill-typed/semantically off (`!` on a Prop) and thus fails to correctly capture the guarantee.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|1bc76bb69554f5f8e02c3af13c5a55d1faae7e647acb7f2b32139d2215127548|b1cb8cac217e787239482083821d8749a573455ee6f96b0a293f1448adb31177": {
+    "score": 0.18333333333333335,
+    "mean": 0.18333333333333335,
+    "std": 0.028867513459481298,
+    "scores": [
+      0.2,
+      0.15,
+      0.2
+    ],
+    "reasoning": "Candidate B is semantically closer because its correctness theorem cleanly matches the intended boolean spec ('true iff some running balance is negative'), whereas Candidate A states an ill-typed/semantically mismatched theorem using boolean negation of a Prop (`!NeverBelowZero`).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|cc605bd91cb8858d5c38d7a06893fa777fea88919fd70d672a4db0a99edd089b|b1cb8cac217e787239482083821d8749a573455ee6f96b0a293f1448adb31177": {
+    "score": 0.78,
+    "mean": 0.78,
+    "std": 0.06,
+    "scores": [
+      0.84,
+      0.78,
+      0.72
+    ],
+    "reasoning": "Candidate A is semantically closer because it includes an explicit pre/post correctness framing (even if tautological via identical spec), whereas Candidate B\u2019s stated theorem targets a mismatched Bool/Prop negation (`!NeverBelowZero`) and omits the reference\u2019s contract structure, making its core guarantee less well-aligned.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|dae09ab3dac9e1df471b0789782e001f8da758d47d3baadccf52c3f9455beebe|b1cb8cac217e787239482083821d8749a573455ee6f96b0a293f1448adb31177": {
+    "score": 0.29333333333333333,
+    "mean": 0.29333333333333333,
+    "std": 0.09814954576223638,
+    "scores": [
+      0.18,
+      0.35,
+      0.35
+    ],
+    "reasoning": "Candidate B is semantically closer because it includes an explicit pre/post correctness theorem shape (even though vacuous via spec duplication), whereas Candidate A\u2019s main theorem is ill-typed/mistargeted (`!` on a Prop) and omits the broader reference guarantee structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|bd88251952a6092c72dfcfcc8894acede3af6a8269123a71781815a47aa1dd2c|14cb89ded62fc3d614f20520947ca701f4027f97c1cf5244642cc155626f0737": {
+    "score": 0.8166666666666667,
+    "mean": 0.8166666666666667,
+    "std": 0.06506407098647712,
+    "scores": [
+      0.82,
+      0.88,
+      0.75
+    ],
+    "reasoning": "Candidate A is semantically closer because it matches the intended Int-input median setting and gives a coherent Pre\u2192Post correctness shape (despite weakening/altering preconditions and omitting many reference properties), whereas Candidate B shifts to Float lists and similarly misses most required guarantees, making it farther from the reference target.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|491b0ac71f755cbebe87e16997af440a7e2add338a1f2dba568978ee0d488d7a|14cb89ded62fc3d614f20520947ca701f4027f97c1cf5244642cc155626f0737": {
+    "score": 0.16666666666666666,
+    "mean": 0.16666666666666666,
+    "std": 0.028867513459481298,
+    "scores": [
+      0.2,
+      0.15,
+      0.15
+    ],
+    "reasoning": "Candidate B is semantically closer because it matches the reference input domain (`List Int`) and expected float conversion behavior, whereas A changes the domain to `List Float` and omits empty-list handling (the reference returns `0.0`), though both are weaker than the full reference spec.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|c5b89dfcc69765edea1d68c60ed072044b30424a65f3f788b62fc2ad18fc2bae|14cb89ded62fc3d614f20520947ca701f4027f97c1cf5244642cc155626f0737": {
+    "score": 0.55,
+    "mean": 0.55,
+    "std": 0.0,
+    "scores": [
+      0.55,
+      0.55,
+      0.55
+    ],
+    "reasoning": "Both candidates are similarly weakened relative to the reference (notably requiring non-empty input and omitting the richer postconditions and imperative equivalence), but A is marginally closer by including a theoremized test aggregate and a slightly more specification-oriented structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|20ae66f0b7a904845d277a7b7d236bc958fe2e790244f420b70840f29b1d88db|14cb89ded62fc3d614f20520947ca701f4027f97c1cf5244642cc155626f0737": {
+    "score": 0.5,
+    "mean": 0.5,
+    "std": 0.0,
+    "scores": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "reasoning": "Both A and B are semantically almost identical and equally distant from the reference (they omit the empty-list behavior/precondition True setup, richer postcondition properties, and imperative/equivalence parts while proving only a tautological median=medianSpec under nonempty input), so neither is clearly better.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|77e7b3c3d73d8b329bd30899e4382a7853044ae5be8fddc9b152bf1d52d5d137|14cb89ded62fc3d614f20520947ca701f4027f97c1cf5244642cc155626f0737": {
+    "score": 0.5033333333333333,
+    "mean": 0.5033333333333333,
+    "std": 0.2926317367158479,
+    "scores": [
+      0.75,
+      0.58,
+      0.18
+    ],
+    "reasoning": "Candidate B is semantically closer because it keeps the reference input type (`List Int`) and matching median computation structure, whereas Candidate A changes the domain to `List Float`, though both similarly weaken the reference by requiring nonempty input and omitting the empty-list behavior and richer postcondition properties.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|bd6d48042a2eebc1d6b92c7c722b9ef328ae96fbcd0c5a4dfa154193aa3d9cd7|14cb89ded62fc3d614f20520947ca701f4027f97c1cf5244642cc155626f0737": {
+    "score": 0.6933333333333334,
+    "mean": 0.6933333333333334,
+    "std": 0.12220201853215572,
+    "scores": [
+      0.8,
+      0.72,
+      0.56
+    ],
+    "reasoning": "Candidate A is semantically closer because it keeps the Int-input median setting and similar functional structure to the reference (despite missing empty-list handling and weakening the spec), whereas Candidate B shifts the domain to List Float and similarly omits the reference\u2019s richer guarantees, making it a larger semantic deviation.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|2aceaa56e7edffdbc482121f7d4fadf39b7c4c1d7a26c29ff6c618610089c0e9|e397672848e086e00c8fa26a3cc7ac06d1b3422dae5536200a87f1d024b567a1": {
+    "score": 0.5166666666666667,
+    "mean": 0.5166666666666667,
+    "std": 0.057735026918962595,
+    "scores": [
+      0.55,
+      0.55,
+      0.45
+    ],
+    "reasoning": "Both are partial relative to the rich reference postcondition suite, but A is slightly closer semantically because it states correctness against explicit recursive sum/product definitions aligned with the intended math, whereas B\u2019s foldl-based spec is also valid yet similarly omits the broader properties, pre/post framing, and equivalence guarantees.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ef276d40ced8756627522634e665d18cdca136f8d181e5f71ddacbf3253d0e38|e397672848e086e00c8fa26a3cc7ac06d1b3422dae5536200a87f1d024b567a1": {
+    "score": 0.5166666666666666,
+    "mean": 0.5166666666666666,
+    "std": 0.1457166199626293,
+    "scores": [
+      0.35,
+      0.58,
+      0.62
+    ],
+    "reasoning": "Both are far from the reference\u2019s full pre/post property suite and imperative equivalence, but B is slightly closer in naming and explicit recursive sum/product characterization while A introduces a fold-based spec and unrelated imports/tests without covering the required property theorems.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|1e351e1d1f451f82a6a428a9351bf618eb7583bec2b5ba01c09ac53ef8133d7b|e397672848e086e00c8fa26a3cc7ac06d1b3422dae5536200a87f1d024b567a1": {
+    "score": 0.4066666666666667,
+    "mean": 0.4066666666666667,
+    "std": 0.051316014394468853,
+    "scores": [
+      0.35,
+      0.45,
+      0.42
+    ],
+    "reasoning": "Candidate B is somewhat closer because it includes explicit pre/post predicates and a correctness theorem linking implementation to a formal spec, whereas A only proves equality to recursively defined sum/product, but B is still imperfect relative to the reference\u2019s richer property suite (cons/append/zero-product/equivalence).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|144d33819f848fc4fa723e8ea60f47b36c73618511e99e3418db1ac112c6c8e4|e397672848e086e00c8fa26a3cc7ac06d1b3422dae5536200a87f1d024b567a1": {
+    "score": 0.42000000000000004,
+    "mean": 0.42000000000000004,
+    "std": 0.14,
+    "scores": [
+      0.56,
+      0.28,
+      0.42
+    ],
+    "reasoning": "Candidate A is slightly closer because it includes explicit pre/postcondition structure and a correctness theorem tied to a fold-based spec, whereas B has a simpler single correctness theorem, but neither captures the reference\u2019s full property suite (cons/append/zero-product/global Post conjunction/imperative equivalence).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|3065e15f47d42e8390ed06ee23b70a3c8bc0710769fc8822a77e00f6e7a3773c|e397672848e086e00c8fa26a3cc7ac06d1b3422dae5536200a87f1d024b567a1": {
+    "score": 0.35,
+    "mean": 0.35,
+    "std": 0.0,
+    "scores": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "reasoning": "Candidate B adds a Pre/Post framing closer to the reference structure, but its key theorem relies on inaccessible internals (`sumProduct.loop`) and lacks the richer property suite, while Candidate A at least gives a clean direct correctness theorem to a fold-based spec, so B is only slightly closer overall and A is somewhat likely better semantically executable.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|2882c7e3650b7e0840f369424e3eb801e3247e86fc882954e413b87c1f0af4eb|e397672848e086e00c8fa26a3cc7ac06d1b3422dae5536200a87f1d024b567a1": {
+    "score": 0.7433333333333333,
+    "mean": 0.7433333333333333,
+    "std": 0.040414518843273836,
+    "scores": [
+      0.75,
+      0.78,
+      0.7
+    ],
+    "reasoning": "Candidate A is semantically closer because it includes explicit pre/postcondition structure and a correctness theorem over that contract (despite incomplete proofs), whereas B only states direct functional correctness and lacks the contract-style guarantees present in the reference.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|af697073bbadf2bdc5d9794e900233d7497a60373c2a0c892b70118f06838c23|473701255f45e9104b33b1799aabea1a13bf1b4d76a9f855913ec7feb81aeff2": {
+    "score": 0.77,
+    "mean": 0.77,
+    "std": 0.04582575694955838,
+    "scores": [
+      0.76,
+      0.82,
+      0.73
+    ],
+    "reasoning": "Candidate A is semantically closer because it specifies the core correctness as sortedness plus permutation under a true precondition in a direct theorem shape, whereas Candidate B uses a more error-prone/index-based implementation and a nonstandard sorted predicate that weakens alignment with the reference guarantees despite similar high-level intent.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ab9f58ac0f61ef23e6db713cd94908f31bfdc77b9cc59f9846e5464c789c9381|473701255f45e9104b33b1799aabea1a13bf1b4d76a9f855913ec7feb81aeff2": {
+    "score": 0.17666666666666667,
+    "mean": 0.17666666666666667,
+    "std": 0.02516611478423584,
+    "scores": [
+      0.18,
+      0.2,
+      0.15
+    ],
+    "reasoning": "Candidate B is semantically closer because it gives the key sorted+permutation postcondition over insertion sort in a plausible functional style, whereas Candidate A\u2019s algorithm/spec pairing is less aligned (custom index-based sortedness, missing several reference guarantees, and a likely ill-formed/nonstandard list-update implementation).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|8c61334724cb9710811e49308bc740456078d935185e6f5dd500cf3e5007f7be|473701255f45e9104b33b1799aabea1a13bf1b4d76a9f855913ec7feb81aeff2": {
+    "score": 0.7233333333333333,
+    "mean": 0.7233333333333333,
+    "std": 0.09504384952922167,
+    "scores": [
+      0.63,
+      0.72,
+      0.82
+    ],
+    "reasoning": "Candidate A is semantically closer because it states correctness using standard `List.Perm` and `List.Sorted` directly on the algorithm result (closer to the reference\u2019s core guarantees), whereas B uses weaker/nonstandard custom predicates (`is_sorted`, count-based permutation) and omits more of the reference postcondition structure.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f1c54eb7fc97359ccf1ea9472df2a6e510da76a3638cc2cb50b1703c33d9445e|473701255f45e9104b33b1799aabea1a13bf1b4d76a9f855913ec7feb81aeff2": {
+    "score": 0.24333333333333332,
+    "mean": 0.24333333333333332,
+    "std": 0.09712534856222309,
+    "scores": [
+      0.22,
+      0.16,
+      0.35
+    ],
+    "reasoning": "Candidate B is semantically closer because it states correctness using standard `List.Perm` and `List.Sorted` directly on the sorter result, whereas A\u2019s permutation spec is malformed (`count` usage) and both omit several reference guarantees but A is more wrong-target in formalization.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|a42e030039f3096bd2ca725919e8065c9707ceea3333fa5dd060586caeeb322a|473701255f45e9104b33b1799aabea1a13bf1b4d76a9f855913ec7feb81aeff2": {
+    "score": 0.27,
+    "mean": 0.27,
+    "std": 0.03605551275463988,
+    "scores": [
+      0.28,
+      0.3,
+      0.23
+    ],
+    "reasoning": "Candidate B is semantically closer because its insertion-sort implementation is structurally correct and its spec captures sortedness plus element preservation, whereas A\u2019s algorithm is much less faithful/riskier (index/set-based pseudo-array list mutation) despite similar pre/post shape, though both miss key reference guarantees like explicit length/idempotence and imperative-equivalence theorems.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|fda9add14b7726c0ea03a306ba522b4b387aaf82a7fddcf01b01d9faccf550da|473701255f45e9104b33b1799aabea1a13bf1b4d76a9f855913ec7feb81aeff2": {
+    "score": 0.5166666666666666,
+    "mean": 0.5166666666666666,
+    "std": 0.1457166199626293,
+    "scores": [
+      0.62,
+      0.35,
+      0.58
+    ],
+    "reasoning": "Candidate B is slightly closer because it uses a standard permutation notion (`List.Perm`) and a Pre\u2192Post theorem shape more aligned with the reference, whereas A uses a nonstandard count-based permutation and similarly omits key reference guarantees (length preservation, idempotence, and imperative-equivalence), making both incomplete but B marginally better targeted.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|c821427cf612f190c867c9925f3b81c1ff0e8ce1e60b6af5c1591d2d8f08ad87|2c72742cf85b1148475dbf76a6344b81427eabb1b5029f5f3dd893cca558b8fa": {
+    "score": 0.6166666666666667,
+    "mean": 0.6166666666666667,
+    "std": 0.16258331197676265,
+    "scores": [
+      0.44,
+      0.76,
+      0.65
+    ],
+    "reasoning": "Both capture the main sortedness+permutation-style correctness, but B is slightly closer semantically because its permutation predicate via element counts is directly aligned with the reference\u2019s permutation guarantee and includes merge-level permutation lemmas, while A uses a multiset equality notion and similarly misses the reference\u2019s extra postconditions (length/idempotence/equivalence).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|820a15b18283ecc4657bdeb85c93e148b43df3f6c0d21bbaa361e5f75c355e49|2c72742cf85b1148475dbf76a6344b81427eabb1b5029f5f3dd893cca558b8fa": {
+    "score": 0.45,
+    "mean": 0.45,
+    "std": 0.14798648586948743,
+    "scores": [
+      0.35,
+      0.62,
+      0.38
+    ],
+    "reasoning": "Candidate B is slightly closer overall because it includes separate sortedness and element-preservation theorems akin to the reference property structure, whereas Candidate A has similar core postcondition but weaker alignment to the reference\u2019s explicit property decomposition and misses more of the reference guarantees (e.g., length/idempotence/imperative equivalence) in comparable degree.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|e169fca2b123c2721e1ad7072bc44d154f23da06c9fc6f3065ac6488d47aac15|2c72742cf85b1148475dbf76a6344b81427eabb1b5029f5f3dd893cca558b8fa": {
+    "score": 0.6766666666666667,
+    "mean": 0.6766666666666667,
+    "std": 0.005773502691896263,
+    "scores": [
+      0.68,
+      0.67,
+      0.68
+    ],
+    "reasoning": "Candidate A is semantically closer because it gives an explicit Prop-level pre/post framework and includes sortedness plus multiset element preservation theorems (and even extra merge lemmas), whereas Candidate B has only sorted+permutation postconditions with a Bool precondition and misses more of the reference\u2019s richer postcondition structure (e.g., length/idempotence and imperative equivalence).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ae68f197ae7bd51fdfb45babb2f8a8e6658b209bfbf549bf34160ebd5786046f|2c72742cf85b1148475dbf76a6344b81427eabb1b5029f5f3dd893cca558b8fa": {
+    "score": 0.49,
+    "mean": 0.49,
+    "std": 0.18520259177452134,
+    "scores": [
+      0.35,
+      0.7,
+      0.42
+    ],
+    "reasoning": "Candidate B is slightly closer because it states a pre\u2192post correctness theorem with sortedness and element preservation in Prop form, whereas Candidate A\u2019s recursive mergeSort is non-terminating as written in Lean (no partial/termination argument) and its spec misses more of the reference postcondition structure (e.g., no length/idempotence and weaker integration).",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|f8a52fbd1cf86cbac7170e06d86228031bfeca4f465ef4bda20395f117171c56|2c72742cf85b1148475dbf76a6344b81427eabb1b5029f5f3dd893cca558b8fa": {
+    "score": 0.75,
+    "mean": 0.75,
+    "std": 0.07999999999999996,
+    "scores": [
+      0.83,
+      0.67,
+      0.75
+    ],
+    "reasoning": "Candidate A is semantically closer because it models pre/post as Props and states overall correctness in that style (plus helper merge properties), whereas Candidate B weakens/mismatches the precondition to Bool and omits several reference guarantees like explicit length preservation, idempotence, and imperative equivalence.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|ae77a3a4ced9a874b24cede509288f5d9137fb51819c638298a07a11afba5d1f|2c72742cf85b1148475dbf76a6344b81427eabb1b5029f5f3dd893cca558b8fa": {
+    "score": 0.35,
+    "mean": 0.35,
+    "std": 0.0,
+    "scores": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "reasoning": "Candidate B is semantically closer because its spec structure includes explicit pre/post predicates and a correctness theorem in Prop form matching the reference style, whereas A weakens/changes this by using a Bool precondition and omits several reference guarantees (length preservation, idempotence, imperative equivalence), though both miss those extra properties overall.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|1cf3ccf871013aee546ce4658556d7491a308b4b2341c583fd6bcd5efedce2ec|cdf52394eb5fff5f696d9ea092669e94ccf48069c60c7c24d6f21f9661bd5650": {
+    "score": 0.19333333333333333,
+    "mean": 0.19333333333333333,
+    "std": 0.023094010767585035,
+    "scores": [
+      0.18,
+      0.22,
+      0.18
+    ],
+    "reasoning": "Candidate B is semantically closer because it includes explicit pre/post conditions and a correctness theorem with sortedness plus permutation in the theorem statement, whereas A lacks a precondition/correctness structure aligned to the reference and omits key guarantees like length preservation/idempotence beyond an ad-hoc post predicate.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|7f41c92f161895590d299ce790b35710c96f225ded1e7f478afd67b182186426|cdf52394eb5fff5f696d9ea092669e94ccf48069c60c7c24d6f21f9661bd5650": {
+    "score": 0.66,
+    "mean": 0.66,
+    "std": 0.06928203230275509,
+    "scores": [
+      0.62,
+      0.62,
+      0.74
+    ],
+    "reasoning": "Candidate A is slightly closer because it includes an explicit pre/post framing with sortedness and permutation tied directly to the function output (closer to the reference contract style), whereas Candidate B has a similar but less aligned spec setup and both miss key reference guarantees like length preservation, idempotence, and imperative-equivalence.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|32df90f770026d4da7ae33d8a3feb9ae1157b9ec52437a8ae0d9e2aabe4782b6|cdf52394eb5fff5f696d9ea092669e94ccf48069c60c7c24d6f21f9661bd5650": {
+    "score": 0.3,
+    "mean": 0.3,
+    "std": 0.04999999999999999,
+    "scores": [
+      0.3,
+      0.35,
+      0.25
+    ],
+    "reasoning": "Candidate B is semantically closer because it states separate sortedness and permutation preservation theorems and combines them in a correctness theorem, whereas A only gives a single postcondition theorem and both miss key reference guarantees like Pre/Post structure, length/idempotence properties, and imperative-equivalence results.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|e60783a1f5a35d617d3912e37e15da002947c3bddb07bb5adf1cfb850ba9603c|cdf52394eb5fff5f696d9ea092669e94ccf48069c60c7c24d6f21f9661bd5650": {
+    "score": 0.69,
+    "mean": 0.69,
+    "std": 0.06557438524302,
+    "scores": [
+      0.75,
+      0.62,
+      0.7
+    ],
+    "reasoning": "Candidate A is semantically closer because it explicitly proves separate sortedness and permutation theorems and combines them, whereas B has only a single postcondition theorem and additionally uses a fixed outer length in the algorithm that weakens alignment with intended selection-sort behavior.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|bf06517ca3d575be5b52ba76351d8f174eb2992bf8c9bbda8b8f903c53e7eb4b|cdf52394eb5fff5f696d9ea092669e94ccf48069c60c7c24d6f21f9661bd5650": {
+    "score": 0.28,
+    "mean": 0.28,
+    "std": 0.07999999999999999,
+    "scores": [
+      0.36,
+      0.2,
+      0.28
+    ],
+    "reasoning": "Candidate B is semantically closer because it states separate sortedness and permutation preservation theorems plus a combined correctness theorem, whereas A only gives a single weaker postcondition and omits key reference guarantees like length preservation, idempotence, and imperative-equivalence structure despite both diverging from the Nat-based full spec.",
+    "model": "gpt-5.3-codex"
+  },
+  "exp16_p4_pairwise_bt_v1|gpt-5.3-codex|92b9d152a85a550c077b3fb989a4bb086a431778451e04e88842d19f7c78815b|01d4f2805fbdee2e25ec08e6b675db05428f361fbb723f484ead7e1b9952d87a|cdf52394eb5fff5f696d9ea092669e94ccf48069c60c7c24d6f21f9661bd5650": {
+    "score": 0.22,
+    "mean": 0.22,
+    "std": 0.05291502622129183,
+    "scores": [
+      0.28,
+      0.2,
+      0.18
+    ],
+    "reasoning": "Candidate B is semantically closer because it includes an explicit pre/post correctness theorem using standard sortedness and permutation notions, whereas Candidate A omits key reference guarantees (length preservation, idempotence, and overall Pre\u2192Post structure) and uses a weaker custom spec despite extra lemmas/tests.",
+    "model": "gpt-5.3-codex"
   }
 }
