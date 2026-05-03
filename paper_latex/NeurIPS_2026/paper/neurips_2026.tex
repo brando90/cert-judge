@@ -371,19 +371,12 @@ Under instruction-equivalent prompt rewordings, cross-prompt score dispersion is
 Prompt pairs preserve ranking strongly (minimum Spearman \(\rho=0.9550\)), but binary agreement is weaker near threshold (flip rate \(=31.3\%\), minimum Cohen's \(\kappa=0.4540\)).
 Semantic invariance gaps are smallest for \textsc{Style} (\(0.0042\)), moderate for \textsc{Rename} (\(0.1021\)) and \textsc{Reorder} (\(0.2128\)), and largest for \textsc{Alpha} (\(0.6325\)), indicating that alpha-conversion handling is the dominant robustness bottleneck.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{figures/stability_gpt-53-codex_full_20260420_185401/semantic_invariance_gap_by_variant.png}
-  \caption{\textbf{P4 semantic invariance gaps by variant type.} Mean absolute score gap versus ORIGINAL across semantics-preserving perturbations in the dedicated stability run. The judge is highly invariant to STYLE, moderately sensitive to RENAME/REORDER, and most sensitive to ALPHA variants.}
-  \label{fig:p4_semantic_invariance}
-\end{figure}
-
-\subsection{Property decomposition: P3/P2 drive alignment}
-To convert continuous judge scores into a deployment-ready binary decision, we ran Exp13 on all \(176\) files from \texttt{veribench\_dataset\_newest} using GPT-5.3-Codex (\texttt{P8\_STRICT\_B}, \(n_\text{repeats}=3\), 1000 bootstrap resamples).
-The key finding is that thresholding primarily changes \emph{decision stability and coverage}, not ranking behavior:
-across \(t\in[0.60,0.85]\), bug-ladder Spearman remains constant (\(\rho=-0.790\), 95\% CI \([-0.810,-0.769]\)), while flip rate and pass rate move in opposite directions.
-Specifically, raising \(t\) from \(0.60\) to \(0.85\) reduces flip rate from \(0.058\) to \(0.046\), while pass rate decreases from \(0.583\) to \(0.536\).
-Under our operating-point rule (minimize flip rate, tie-break by pass rate proximity to 0.5), \(t=0.85\) is selected.
+\subsection{Threshold Calibration: Stability vs Coverage}
+We run Exp13 to choose a binary pass/fail threshold for deployment from continuous judge scores.
+On \(176\) files (\texttt{veribench\_dataset\_newest}) with GPT-5.3-Codex (\texttt{P8\_STRICT\_B}, \(n_\text{repeats}=3\), 1000 bootstrap resamples), changing \(t\) mostly affects decision behavior, not ranking behavior.
+Across \(t\in[0.60,0.85]\), bug-ladder Spearman is essentially unchanged (\(\rho=-0.790\), 95\% CI \([-0.810,-0.769]\)).
+As \(t\) increases, flip rate improves (0.058 \(\rightarrow\) 0.046) while pass rate drops (0.583 \(\rightarrow\) 0.536).
+Using our rule (minimize flip rate, then prefer pass rate near 0.5), we select \(t=0.85\).
 
 \begin{table}[t]
   \centering
@@ -404,17 +397,28 @@ Under our operating-point rule (minimize flip rate, tie-break by pass rate proxi
   \label{tab:exp13_threshold_sweep}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure*}[t]
   \centering
-  \includegraphics[width=\linewidth]{figures/threshold_calibration_sweep/threshold_stability_curve.png}
-  \caption{\textbf{Decision calibration curve from Exp13.}
-    As threshold increases, pass rate declines smoothly; flip rate improves modestly and reaches its minimum at \(t=0.85\) in this run.
-    This supports a calibration-first framing: improve binary reliability via threshold selection while preserving score-order semantics.}
-  \label{fig:exp13_threshold_curve}
-\end{figure}
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/stability_gpt-53-codex_full_20260420_185401/semantic_invariance_gap_by_variant.png}
+    \caption{P4 semantic invariance gaps by variant type.}
+    \label{fig:p4_semantic_invariance}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/threshold_calibration_sweep/threshold_stability_curve.png}
+    \caption{Decision calibration curve from Exp13.}
+    \label{fig:exp13_threshold_curve}
+  \end{subfigure}
+  \caption{\textbf{Stability diagnostics and deployment calibration.}
+    Left: mean absolute gap vs ORIGINAL across semantics-preserving variants; ALPHA remains the dominant invariance failure mode.
+    Right: as threshold increases, pass rate declines while flip rate improves, reaching minimum flip rate at \(t=0.85\).}
+  \label{fig:p4_and_exp13}
+\end{figure*}
 
 \subsection{Robustness: Opus / expanded judge panel / R9 median}\label{sec:validation-human-alignment}
-We ran a final multi-judge validation-set human-alignment suite over \(72\) aligned candidate--gold pairs (\(24\) problems \(\times\) \(3\) candidates; three pairs skipped due missing gold), using \(8\) judges and \(3\) validation label sets: pass1, pass2, and their average.
+We ran a final multi-judge validation-set human-alignment suite over \(72\) aligned candidate--gold pairs (\(24\) problems \(\times\) \(3\) candidates), using \(8\) judges and \(3\) validation label sets: pass1, pass2, and their average.
 Judge-side uncertainty used \(10{,}000\) bootstrap iterations and \(20{,}000\) permutation iterations, with \(3\) repeated judge calls per pair and threshold \(t=0.85\).
 
 \paragraph{Experiment design.}
@@ -427,7 +431,6 @@ Our primary index is
 \]
 where \(C_f\) is mean per-file monotonicity quality, \(V_f\) is variance of per-file monotonicity correlation, and \(V_s\) is mean repeat-score variance.
 
-\paragraph{What exactly is the y-axis (Corr(Human, Judge))?}
 Each point in Exp16 is \emph{one judge tuple} (model + prompt/rubric + repeats + aggregation + threshold).
 For judge \(j\), let \(h_i\) be the human rating and \(\hat{s}_{ij}\) be that judge's score on item \(i\), over the same aligned item set \(i=1,\dots,N\).
 The y-axis value is
@@ -447,8 +450,7 @@ high trust-index judges tend to have higher human-agreement coefficients.
 \paragraph{Validation-set result (judge-level trend).}
 The variance-aware trust index predicts validation-set human Spearman across all three validation label sets (Table~\ref{tab:exp16_final_trend}):
 0.833 (avg), 0.905 (pass1), and 0.738 (pass2).
-Thus, trust defined as quality + stability is strongly aligned with human judgment at the judge level; held-out test results are reported in a forthcoming revision.
-Equivalently, judges that are simultaneously high-certification, monotonic, and stable are the ones that align best with humans, and this pattern persists as we scale to larger judge panels.
+Thus, trust defined as quality + stability is strongly aligned with human judgment at the judge level. Judges that are simultaneously high-certification, monotonic, and stable are the ones that align best with humans, and this pattern persists as we scale to larger judge panels.
 
 \begin{table}[t]
   \centering
@@ -470,7 +472,7 @@ Equivalently, judges that are simultaneously high-certification, monotonic, and 
 
 \paragraph{Human-label verification (pass consistency).}
 To quantify label-pass dispersion directly on the same aligned \(n=72\) pairs, we compute pass1-vs-pass2 absolute error and distribution divergence.
-The inter-pass MAE is \(0.778\) on the 0--5 rubric scale (median absolute difference \(=1.0\)); distribution-level divergence is moderate (Jensen--Shannon divergence \(=0.081\) bits, KL\((\text{pass1}\Vert\text{pass2})=0.415\) bits).
+The inter-pass MAE is \(0.778\) on the 0--5 rubric scale (median absolute difference \(=1.0\)); distribution-level divergence is moderate.
 This confirms non-trivial pass drift while still supporting meaningful judge-level trend analysis.
 
 \begin{table}[t]
@@ -522,7 +524,7 @@ Under averaged validation labels, top JTI-ranked judges are GPT-5.3-Codex prompt
 \texttt{P4\_CHECKLIST} (\(r_s=0.480,\ p=2.0\times10^{-5}\)),
 \texttt{P1\_BASELINE} (\(r_s=0.470,\ p=3.1\times10^{-5}\)),
 \texttt{P8\_STRICT\_B} (\(r_s=0.356,\ p=0.0022\)).
-In the Qwen full-panel replication, the strongest pass2-aligned prompts are
+In the Qwen replication, the strongest pass2-aligned prompts are
 \texttt{Qwen|BAD\_STRINGY} (\(r_s\approx0.304\)),
 \texttt{Qwen|P4\_CHECKLIST} (\(r_s\approx0.280\)),
 and \texttt{Qwen|P1\_BASELINE} (\(r_s\approx0.194\)).
