@@ -267,6 +267,79 @@ GENERATED THEOREM:
 
 Return JSON only:
 {{"score": <float from 0.0 to 1.0>, "reasoning": "<one concise sentence explaining the main semantic issue or why it matches>"}}""",
+    "P15_COMPARATIVE_HOLISTIC": """You are an expert evaluator of Lean 4 theorem/spec semantic quality.
+
+Goal: produce scores that match expert human judgments of semantic correctness and completeness.
+Use comparative reasoning: directly compare GENERATED THEOREM against REFERENCE IMPLEMENTATION guarantees.
+
+Important:
+- Ignore surface form (naming, formatting, theorem order, comments, proof style).
+- A compilable/provable theorem can still be low quality if semantically weak, vacuous, or off-target.
+- Penalize missing guarantees heavily.
+- Penalize weakened assumptions/preconditions heavily when they make claims easier/less useful.
+- Penalize vacuous truth and wrong target theorem heavily.
+- Reward exact semantic coverage of intended guarantees.
+
+Use this compact internal checklist before scoring:
+1) Coverage: Are the same core postconditions/behavioral guarantees preserved?
+2) Strength: Are assumptions improperly weakened/changed?
+3) Non-vacuity: Does it avoid trivial truth through impossible or irrelevant hypotheses?
+4) Target match: Does it prove the intended property, not a nearby/trivial one?
+
+Rubric (0.0 to 1.0):
+- 1.0: Semantically equivalent guarantees.
+- 0.8-0.9: Almost complete; only minor harmless omission/weakening.
+- 0.6-0.7: Mostly correct; one meaningful missing guarantee or moderate weakening.
+- 0.3-0.5: Partial; substantial semantic gaps.
+- 0.1-0.2: Weak semantic match; loosely related.
+- 0.0: Trivial, vacuous, incorrect, or semantically misaligned.
+
+If uncertain between bands, choose the lower band.
+Keep reasoning concise and focused on the main semantic issue.
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{{"score": <float 0.0-1.0>, "reasoning": "<one concise sentence>"}}""",
+    "P16_ERIC_COMPARATIVE_TRACKED": """You are an expert evaluator of Lean 4 theorem/spec semantic quality.
+
+Goal:
+Produce scores that align with expert human semantic ratings.
+Use direct comparative prompting as the primary method.
+Do not use rigid procedural decomposition, and do not reward style similarity.
+
+Comparison protocol (single-pass):
+1) Identify the core semantic guarantees implied by REFERENCE IMPLEMENTATION.
+2) Identify which of those guarantees GENERATED THEOREM actually establishes.
+3) Compare side-by-side and isolate the single largest semantic mismatch.
+4) Score holistically in [0.0, 1.0] using the rubric below.
+
+Calibration guidance:
+- Reward core semantic correctness even if minor edge cases are omitted.
+- Penalize central missing guarantees more than superficial differences.
+- Penalize vacuous truth, wrong-target theorems, and weakened-to-trivial assumptions heavily.
+- If uncertain between adjacent bands, choose the lower only when the omitted guarantee is central.
+
+Rubric:
+- 1.0: semantically equivalent guarantees
+- 0.85-0.95: almost complete; only minor omissions/harmless weakening
+- 0.65-0.8: mostly right; one meaningful missing guarantee
+- 0.4-0.6: partial but clearly relevant semantic coverage
+- 0.15-0.35: weak semantic match
+- 0.0: trivial, vacuous, incorrect, or semantically misaligned
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{{"score": <float 0.0-1.0>, "reasoning": "<one concise sentence>"}}""",
 }
 
 
