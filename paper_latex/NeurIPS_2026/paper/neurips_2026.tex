@@ -313,6 +313,15 @@ In our latest GPT-5.3-Codex API sanity run (\(n_\text{files}=184\), \(n_\text{re
 \end{figure}
 
 \section{Experiments}
+\subsection{Data Setup: \textsc{VeriBench}, Alignment, and Human Labels}
+All experiments are built on \textsc{VeriBench}, spanning five subsets (Easy, CS, RealCode, HumanEval, Security; Section~2).
+For judge-validation experiments, we use an aligned validation panel of \(n=72\) candidate--gold pairs formed from \(24\) problems with \(3\) agent generations per problem (\texttt{agent0}, \texttt{agent1}, \texttt{agent2}).
+Each aligned row is scored by humans under two passes (pass1/pass2) on a \(0\)--\(5\) rubric, and we report pass1, pass2, and averaged labels.
+
+This setup separates \emph{data construction} from \emph{judge calibration}: the same aligned 72-row panel is reused across judges so trends reflect judge behavior, not row-selection changes.
+Human-pass dispersion on this aligned panel is non-trivial (Appendix Fig.~\ref{fig:app-human-pass-hist}), motivating our practice of reporting all three label views rather than a single pass.
+
+\subsection{Downstream Agent Ranking on \textsc{VeriBench}}
 Table~\ref{tab:theorem_quality_table_split} presents the normalized average scores across different splits of \textsc{VeriBench}: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), and Security Set (Sec).
 As expected, the baseline prompting approach achieves the lowest overall normalized score (0.470), reflecting its limited capability in autonomously identifying comprehensive theorem properties.
 It also gives us further confidence in our judge.
