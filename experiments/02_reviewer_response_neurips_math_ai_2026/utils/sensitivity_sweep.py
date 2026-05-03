@@ -204,6 +204,69 @@ GENERATED THEOREM:
 
 Return JSON only:
 {{"score": <float>, "reasoning": "<very short phrase>"}}""",
+    "P13_HUMAN_ALIGN_STRICT": """You are grading semantic theorem/spec quality in Lean 4.
+
+Goal: match expert human ratings of semantic correctness/completeness, not text similarity.
+
+Scoring rules:
+- Ignore superficial differences: variable names, formatting, theorem order, comments.
+- Penalize missing guarantees heavily.
+- Penalize vacuous truth / weakened preconditions heavily.
+- Penalize wrong target theorem even if proof compiles.
+- Reward exact semantic coverage of reference guarantees.
+
+Rubric (0.0 to 1.0):
+1.0 = semantically equivalent guarantees
+0.8-0.9 = almost complete, minor omission
+0.6-0.7 = mostly right, one meaningful missing guarantee
+0.3-0.5 = partial, substantial gaps
+0.1-0.2 = weak semantic match
+0.0 = trivial/incorrect/misaligned
+
+If uncertain between two bands, choose the lower band.
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{{"score": <float 0.0-1.0>, "reasoning": "<one sentence>"}}""",
+    "P14_HUMAN_ALIGN_V2": """You are grading the semantic quality of a generated Lean 4 theorem/specification.
+
+Goal: match expert human ratings of semantic correctness and completeness.
+Do not grade surface similarity, proof style, theorem ordering, variable names, formatting, or comments.
+
+Your task is to compare the GENERATED THEOREM against the semantic guarantees implied by the REFERENCE IMPLEMENTATION.
+A theorem that compiles or is provable is not necessarily good: it may be vacuous, too weak, target the wrong property, or omit key guarantees.
+
+Scoring principles:
+- Reward exact coverage of the reference guarantees.
+- Ignore superficial differences: names, formatting, theorem order, comments, auxiliary lemmas.
+- Penalize missing postconditions or behavioral guarantees heavily.
+- Penalize weakened assumptions/preconditions heavily if they make the theorem easier or less useful.
+- Penalize vacuous truth heavily, including impossible assumptions or hypotheses that avoid the real case.
+- Penalize wrong target theorem heavily, even if the Lean proof compiles.
+- Penalize theorems that prove only type-correctness, existence, or trivial facts when the reference requires functional correctness.
+- If uncertain between two score bands, choose the lower band.
+
+Rubric:
+1.0 = semantically equivalent guarantees
+0.8-0.9 = almost complete; only minor omissions or harmless weakening
+0.6-0.7 = mostly right; one meaningful missing guarantee or moderate weakening
+0.3-0.5 = partial; substantial semantic gaps
+0.1-0.2 = weak match; only loosely related to the intended guarantee
+0.0 = trivial, vacuous, incorrect, or semantically misaligned
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{{"score": <float from 0.0 to 1.0>, "reasoning": "<one concise sentence explaining the main semantic issue or why it matches>"}}""",
 }
 
 

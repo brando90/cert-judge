@@ -182,8 +182,8 @@ def _parse_judges(raw: str) -> List[JudgeSpec]:
             continue
         seen.add(j.judge_id)
         uniq.append(j)
-    if len(uniq) < 4:
-        raise ValueError("Provide at least 4 unique judges")
+    if len(uniq) < 2:
+        raise ValueError("Provide at least 2 unique judges")
     return uniq
 
 

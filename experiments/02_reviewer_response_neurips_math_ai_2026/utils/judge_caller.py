@@ -193,6 +193,13 @@ def _call_openai_once(
     prompt_template: str,
 ) -> dict:
     """Make one judge API call via OpenAI."""
+    def _chat_token_kwargs(model_name: str, n_tokens: int = 256) -> dict:
+        # GPT-5.x chat.completions expects max_completion_tokens (not max_tokens).
+        m = (model_name or "").lower()
+        if m.startswith("gpt-5"):
+            return {"max_completion_tokens": n_tokens}
+        return {"max_tokens": n_tokens}
+
     prompt = prompt_template.format(
         reference_impl=reference_impl,
         generated_theorem=generated_theorem,
@@ -231,7 +238,7 @@ def _call_openai_once(
                     try:
                         response = client.chat.completions.create(
                             model=model,
-                            max_tokens=256,
+                            **_chat_token_kwargs(model, 256),
                             messages=[{"role": "user", "content": prompt}],
                         )
                         text = response.choices[0].message.content
@@ -251,9 +258,11 @@ def _call_openai_once(
                         # Non-rate-limit error: re-raise so outer attempt loop handles it.
                         raise
 
-            # Legacy fallback to classic completions endpoint — only for true OpenAI,
-            # never for Mistral (which 422s without `messages`).
-            if not text and not is_mistral:
+            # Legacy fallback to classic completions endpoint — only for older
+            # OpenAI text-completion models. Skip for chat-only families (e.g., GPT-5.x)
+            # and Mistral (which 422s without `messages`).
+            is_chat_only_openai = (model or "").lower().startswith("gpt-5")
+            if not text and not is_mistral and not is_chat_only_openai:
                 response = client.completions.create(
                     model=model,
                     max_tokens=256,
