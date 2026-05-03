@@ -256,16 +256,9 @@ For candidates $C_{S_1}$ and $C_{S_2}$ containing precisely these specification 
 
 \paragraph{P4 — Prompt Stability \& Semantic Invariance.}
 The judge should produce stable scores under repeated calls and preserve judgments under semantics-preserving rewrites.
-Concretely, for fixed artifact pairs and fixed judge instructions, repeated-call variance should remain low, prompt-pair rank agreement should remain high under instruction-equivalent prompt rewordings, and style-level rewrites should induce near-zero score gaps.
-This property guards against prompt-fragility in deployment settings where wording and formatting vary.
+For artifact pairs and fixed judge instructions, repeated-call variance should remain low and prompt-pair rank agreement should remain high.
 
-\paragraph{Property-scoring protocol.}
-We implement four scripted perturbation families on the \emph{candidate} while holding the \emph{gold} fixed:
-(i) \emph{Identity} (P1), pairing each gold file with itself \((X,X)\) only, to test strict idempotence at maximum score;
-(ii) a \emph{Bug Ladder} (P2), applying $k\!\in\!\{0,\ldots,K\}$ semantics-changing transformations (e.g., broken identities, violated commutativity, incorrect base cases); and
-(iii) \emph{Specification Ablation} (P3), removing $m\!\in\!\{0,\ldots,M\}$ theorems or tests; and
-(iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple instruction-equivalent prompt templates and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.\footnote{We distinguish \emph{prompt wording} from \emph{task instruction}. P4 varies phrasing/format while preserving the same judging instruction and rubric. We do not include adversarial or instruction-changing prompts (e.g., ``ignore the input'') in this stability metric.}
-We then verify monotonicity by computing rank correlations (Kendall’s $\tau$, Spearman’s $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse’’ artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
+We verify monotonicity by computing rank correlations (Kendall's $\tau$, Spearman's $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse'' artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
 
 \paragraph{Decision-threshold calibration (Exp13).}
 After validating score-level behavior (P1--P4), we calibrate the binary operating point used for deployment decisions.
