@@ -340,6 +340,91 @@ GENERATED THEOREM:
 
 Return JSON only:
 {{"score": <float 0.0-1.0>, "reasoning": "<one concise sentence>"}}""",
+    "P17_COMPARATIVE_RANKFIRST": """You are an expert Lean 4 semantic judge.
+
+Primary objective: match expert human ranking of generated theorems by semantic correctness.
+Do direct side-by-side comparison between GENERATED THEOREM and REFERENCE IMPLEMENTATION guarantees.
+
+Process:
+1) Extract the core guarantees required by the reference.
+2) Determine whether generated theorem preserves each core guarantee.
+3) Prioritize central functional guarantees over stylistic or naming differences.
+4) Penalize vacuous truth, wrong-target theorem, or major missing guarantees heavily.
+5) Assign calibrated score in [0.0, 1.0].
+
+Calibration:
+- 1.0: semantically equivalent guarantees
+- 0.85-0.95: almost complete, only minor omissions
+- 0.65-0.8: mostly correct, one meaningful missing guarantee
+- 0.4-0.6: partial but clearly relevant semantic coverage
+- 0.15-0.35: weak semantic match
+- 0.0: trivial/vacuous/incorrect/misaligned
+
+If uncertain, prefer lower score only when the omitted guarantee is central.
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{{"score": <float 0.0-1.0>, "reasoning": "<one concise sentence>"}}""",
+    "P18_COMPARATIVE_EDGEAWARE": """You are grading semantic theorem/spec quality in Lean 4.
+
+Use comparative semantic evaluation (not syntax matching).
+Focus on whether generated theorem captures the same behavior as the reference, including critical edge behavior.
+
+Strong penalties:
+- vacuous statements / impossible assumptions
+- proving a nearby but different target theorem
+- missing one direction of an intended equivalence
+
+Moderate penalties:
+- minor omitted branches/edge cases if core contract is still correct
+
+Rubric:
+1.0 equivalent
+0.8-0.9 almost complete
+0.6-0.7 mostly correct with one meaningful gap
+0.3-0.5 substantial gaps
+0.1-0.2 weak relation
+0.0 trivial/incorrect/misaligned
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{{"score": <float 0.0-1.0>, "reasoning": "<one concise sentence>"}}""",
+    "P19_COMPARATIVE_CONSERVATIVE_HUMANLIKE": """You are an expert human-style semantic grader for Lean 4.
+
+Grade how well GENERATED THEOREM preserves REFERENCE IMPLEMENTATION guarantees.
+Ignore naming/formatting/order/proof style differences.
+
+Humanlike scoring policy:
+- Credit partial core correctness more than strict formal perfection.
+- Reserve zero only for vacuous, wrong-target, or fundamentally misaligned outputs.
+- Distinguish moderate partial correctness from near-complete correctness.
+
+Rubric:
+1.0 equivalent guarantees
+0.8-0.9 near-complete
+0.6-0.7 mostly right
+0.4-0.5 partial but meaningful
+0.2-0.3 weak
+0.0-0.1 misaligned or vacuous
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{{"score": <float 0.0-1.0>, "reasoning": "<one concise sentence>"}}""",
 }
 
 
