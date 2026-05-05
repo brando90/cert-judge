@@ -30,6 +30,16 @@ def metrics(yhat, y):
     }
 
 
+def cohens_dz_from_paired_diff(diff: np.ndarray) -> float:
+    diff = np.asarray(diff, dtype=float)
+    if diff.size < 2:
+        return float("nan")
+    sd = float(np.std(diff, ddof=1))
+    if sd == 0.0:
+        return float("nan")
+    return float(np.mean(diff) / sd)
+
+
 def load_human(path: Path) -> pd.DataFrame:
     d = pd.read_csv(path, sep="\t")
     d["item_id"] = d["gold_file"].astype(str) + "::" + d["candidate_file"].astype(str)
@@ -68,6 +78,8 @@ def main() -> int:
     }
 
     all_rows = []
+    pred_rows = []
+    effect_rows = []
     for pass_name, hp in pass_map.items():
         h = load_human(hp)
         m = wide.merge(h, on="item_id", how="inner").copy()
@@ -118,9 +130,57 @@ def main() -> int:
         all_rows.append({"pass": pass_name, "model": "stacked_ridge_cv", **metrics(pred_ridge, y), "n": len(y)})
         all_rows.append({"pass": pass_name, "model": "stacked_ridge_plus_isotonic_cv", **metrics(pred_iso, y), "n": len(y)})
 
+        # Per-item predictions for auditability.
+        pass_pred = pd.DataFrame(
+            {
+                "pass": pass_name,
+                "item_id": m["item_id"].astype(str).to_numpy(),
+                "task": m["task"].astype(str).to_numpy(),
+                "human": y,
+                "pred_best_single_prompt_cv": pred_best_single,
+                "pred_stacked_ridge_cv": pred_ridge,
+                "pred_stacked_ridge_plus_isotonic_cv": pred_iso,
+            }
+        )
+        pred_rows.append(pass_pred)
+
+        # Practical significance: paired effect sizes on absolute-error reduction.
+        err_best = np.abs(pred_best_single - y)
+        err_ridge = np.abs(pred_ridge - y)
+        err_iso = np.abs(pred_iso - y)
+
+        # Positive diff means model_a has lower error than model_b.
+        diff_iso_vs_best = err_best - err_iso
+        diff_iso_vs_ridge = err_ridge - err_iso
+
+        effect_rows.append(
+            {
+                "pass": pass_name,
+                "comparison": "stacked_ridge_plus_isotonic_cv vs best_single_prompt_cv",
+                "n": int(len(y)),
+                "mean_abs_err_model_a": float(np.mean(err_iso)),
+                "mean_abs_err_model_b": float(np.mean(err_best)),
+                "mean_abs_err_reduction_a_minus_b": float(np.mean(diff_iso_vs_best)),
+                "cohens_dz_abs_err_reduction": cohens_dz_from_paired_diff(diff_iso_vs_best),
+            }
+        )
+        effect_rows.append(
+            {
+                "pass": pass_name,
+                "comparison": "stacked_ridge_plus_isotonic_cv vs stacked_ridge_cv",
+                "n": int(len(y)),
+                "mean_abs_err_model_a": float(np.mean(err_iso)),
+                "mean_abs_err_model_b": float(np.mean(err_ridge)),
+                "mean_abs_err_reduction_a_minus_b": float(np.mean(diff_iso_vs_ridge)),
+                "cohens_dz_abs_err_reduction": cohens_dz_from_paired_diff(diff_iso_vs_ridge),
+            }
+        )
+
     out_df = pd.DataFrame(all_rows)
     out_csv = out / "exp31_stacked_calibration_results.csv"
     out_df.to_csv(out_csv, index=False)
+    pd.concat(pred_rows, ignore_index=True).to_csv(out / "exp31_stacked_calibration_predictions.csv", index=False)
+    pd.DataFrame(effect_rows).to_csv(out / "exp31_stacked_calibration_effect_sizes.csv", index=False)
     print(out_df.to_string(index=False, float_format=lambda v: f"{v:.6f}"))
     print(f"\nWrote {out_csv}")
     return 0

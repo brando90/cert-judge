@@ -1,0 +1,201 @@
+{
+  "experiment": "exp16_multi_judge_human_sets",
+  "n_judges": 2,
+  "n_union_rows": 72,
+  "n_skipped_pairs": 3,
+  "threshold": 0.85,
+  "judge_repeats": 1,
+  "repeat_agg": "mean",
+  "cache_tag": "tc_card_fast_v1",
+  "judges": [
+    "gpt-5.3-codex|P20_TC_RATER_CARD",
+    "random_r1"
+  ],
+  "label_sets": {
+    "pass1": 72,
+    "pass2": 75,
+    "avg": 75
+  },
+  "trend_by_set": {
+    "pass1": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    },
+    "pass2": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    },
+    "avg": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    }
+  },
+  "skipped_pairs": [
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent0.lean",
+      "reason": "missing_gold"
+    },
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent1.lean",
+      "reason": "missing_gold"
+    },
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent2.lean",
+      "reason": "missing_gold"
+    }
+  ],
+  "judge_rows": [
+    {
+      "judge_id": "gpt-5.3-codex|P20_TC_RATER_CARD",
+      "kind": "llm",
+      "model": "gpt-5.3-codex",
+      "prompt_name": "P20_TC_RATER_CARD",
+      "n_union_rows": 72,
+      "identity_mean": 0.7979166666666667,
+      "identity_std": 0.3930927750856805,
+      "bug_spearman_r": -0.882111251499304,
+      "bug_spearman_p": 2.1850973764108355e-40,
+      "bug_weak_mono_pct": 100.0,
+      "flip_rate": 0.0,
+      "lev_score_spearman": 0.17344745590004668,
+      "anti_string_score": 0.8265525440999533,
+      "lvl1_mean_drop": 0.5166666666666667,
+      "subtle_bug_sensitivity": 1.0,
+      "cert_index": 0.9216916877248956,
+      "cert_index_v2": 0.9131049673032544,
+      "n_human_rows_pass1": 72,
+      "human_spearman_r_pass1": 0.236292473245575,
+      "human_spearman_p_pass1": 0.045682769740910144,
+      "human_spearman_ci_lo_pass1": -0.0025524510128989977,
+      "human_spearman_ci_hi_pass1": 0.4284111477964413,
+      "n_human_rows_pass2": 72,
+      "human_spearman_r_pass2": 0.12827756736463342,
+      "human_spearman_p_pass2": 0.28288299965816893,
+      "human_spearman_ci_lo_pass2": -0.17093608859439471,
+      "human_spearman_ci_hi_pass2": 0.349982975063857,
+      "n_human_rows_avg": 72,
+      "human_spearman_r_avg": 0.21186139663645495,
+      "human_spearman_p_avg": 0.07400513563963632,
+      "human_spearman_ci_lo_avg": 0.004495478090962017,
+      "human_spearman_ci_hi_avg": 0.4259619912806163
+    },
+    {
+      "judge_id": "random_r1",
+      "kind": "random",
+      "model": "na",
+      "prompt_name": "na",
+      "n_union_rows": 72,
+      "identity_mean": 0.45499875714442994,
+      "identity_std": 0.2682175215102637,
+      "bug_spearman_r": 0.002721759227826054,
+      "bug_spearman_p": 0.9764631430324433,
+      "bug_weak_mono_pct": 0.0,
+      "flip_rate": 0.0,
+      "lev_score_spearman": 0.0035676859918540196,
+      "anti_string_score": 0.996432314008146,
+      "lvl1_mean_drop": 0.14280799851602258,
+      "subtle_bug_sensitivity": 0.5712319940640903,
+      "cert_index": 0.4360913632591551,
+      "cert_index_v2": 0.5756988374173462,
+      "n_human_rows_pass1": 72,
+      "human_spearman_r_pass1": 0.05582210587920711,
+      "human_spearman_p_pass1": 0.6414017155105088,
+      "human_spearman_ci_lo_pass1": -0.1864501895100293,
+      "human_spearman_ci_hi_pass1": 0.29039050046514264,
+      "n_human_rows_pass2": 72,
+      "human_spearman_r_pass2": -0.02045751630074112,
+      "human_spearman_p_pass2": 0.8645638100185483,
+      "human_spearman_ci_lo_pass2": -0.2567615771367096,
+      "human_spearman_ci_hi_pass2": 0.16531500147137518,
+      "n_human_rows_avg": 72,
+      "human_spearman_r_avg": -0.0008176599049625539,
+      "human_spearman_p_avg": 0.994561144834301,
+      "human_spearman_ci_lo_avg": -0.24473322419558863,
+      "human_spearman_ci_hi_avg": 0.24313107697551986
+    }
+  ]
+}

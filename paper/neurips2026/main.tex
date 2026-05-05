@@ -1046,6 +1046,64 @@ This appendix reports full visual diagnostics for Exp16/Exp17 under final robust
   \label{fig:app-judge-labelset-bars}
 \end{figure}
 
+\subsection{Human--Judge Alignment (Zero-Shot vs.\ Leakage-Safe Remapping)}
+\label{app:human_judge_alignment}
+
+We report judge--human agreement under two settings: (i) \textbf{zero-shot judge score} and (ii) \textbf{post-hoc supervised score remapping} fit on train tasks only and evaluated on disjoint held-out tasks.
+
+\paragraph{Evaluation protocol (leakage-safe).}
+Each example is a \((\texttt{gold\_file}, \texttt{candidate\_file})\) pair with a human label.
+Splits are task-level by \texttt{gold\_file} (not row-level), so all candidates for one task stay in one partition.
+For each split: fit remapping on train tasks only, then evaluate Pearson/Spearman/Kendall on held-out tasks only.
+This prevents task leakage between calibration and test.
+
+\paragraph{Judge/model/prompt setup used in these runs.}
+Zero-shot and calibration analyses use \texttt{gpt-5.3-codex} judge outputs on the same human-labeled pair set.
+Core prompt families in the robust panel include \texttt{P1\_BASELINE}, \texttt{P2\_FORMAL}, \texttt{P4\_CHECKLIST}, and \texttt{P8\_STRICT\_B}; the stacked calibration analysis excludes intentionally bad controls.
+No separate ``agent model'' is introduced in this appendix section: the evaluated items are the fixed generated candidate Lean files already present in the benchmark artifacts.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Method} & \textbf{Pearson \(r\) \(\uparrow\)} & \textbf{Spearman \(\rho\) \(\uparrow\)} & \textbf{Kendall \(\tau\) \(\uparrow\)} \\
+    \midrule
+    Zero-shot (avg labels) & 0.5154 (\(p=3.60\times10^{-6}\)) & 0.4720 (\(p=2.84\times10^{-5}\)) & 0.4115 (\(p\approx3.18\times10^{-7}\)) \\
+    Isotonic (pass1 \(\rightarrow\) pass2) & 0.6537 (\(p=2.04\times10^{-10}\)) & 0.3777 (\(p=8.34\times10^{-4}\)) & 0.3236 (\(p=1.36\times10^{-3}\)) \\
+    Isotonic (pass2 \(\rightarrow\) pass1) & 0.5468 (\(p=6.71\times10^{-7}\)) & 0.4008 (\(p=4.84\times10^{-4}\)) & 0.3719 (\(p=5.72\times10^{-4}\)) \\
+    \textbf{Isotonic CV2 task-split (held-out avg)} & \textbf{0.7033} (\(p=5.61\times10^{-12}\)) & 0.3211 (\(p\approx5.95\times10^{-3}\)) & 0.2651 (\(p\approx9.90\times10^{-4}\)) \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{Human--judge alignment under leakage-safe evaluation.}
+  Zero-shot row is the raw judge score; isotonic rows are post-hoc monotone remappings fit on train tasks only.
+  The strongest positive result is Pearson \(r=0.7033\) for isotonic CV2 task-split (held-out tasks), while rank-based metrics remain more modest.
+  Entries marked \(p\approx\) use asymptotic tests from reported \((n,\rho/\tau)\).}
+  \label{tab:human_judge_alignment}
+\end{table}
+
+\paragraph{Interpretation (including negative results).}
+The direct zero-shot judge already tracks human labels moderately (\(r=0.5154,\rho=0.4720\)).
+Post-hoc isotonic remapping improves linear-scale alignment substantially (up to \(r=0.7033\), held-out), which is the main positive result.
+At the same time, rank metrics do not uniformly improve (e.g., CV2 isotonic \(\rho=0.3211\)), so gains are concentrated in calibration-to-human-scale matching rather than global rank recovery.
+We keep these negative outcomes explicit to avoid overstating robustness.
+
+\paragraph{Practical significance (effect size).}
+Beyond p-values and correlations, we compute paired practical significance using \textbf{Cohen's \(d_z\)} on per-item absolute-error reductions:
+\[
+d_z = \frac{\mathbb{E}[\Delta \mathrm{AE}]}{\mathrm{SD}(\Delta \mathrm{AE})},
+\quad
+\Delta \mathrm{AE} = | \hat{y}_{\text{baseline}} - y | - | \hat{y}_{\text{method}} - y |.
+\]
+Positive \(d_z\) indicates lower absolute error for the method.
+We report this for
+\texttt{stacked\_ridge\_plus\_isotonic\_cv} vs.\ \texttt{best\_single\_prompt\_cv}
+and vs.\ \texttt{stacked\_ridge\_cv}
+in \texttt{results\_exp31\_stacked\_calibration/exp31\_stacked\_calibration\_effect\_sizes.csv}.
+Using conventional thresholds (\(\approx 0.2/0.5/0.8\): small/medium/large), this gives a direct practical-significance interpretation in addition to hypothesis tests.
+On the averaged-label evaluation split, \(d_z=3.264\) for isotonic vs.\ best-single-prompt baseline (very large), and \(d_z=0.223\) for isotonic vs.\ ridge-only stacking (small).
+For completeness: pass1 gives \(d_z=2.816\) (vs best-single) and \(0.375\) (vs ridge), while pass2 gives \(d_z=2.226\) and \(0.423\), respectively.
+
 \subsection{Naive Codex-Style Blind Baseline}
 To contextualize JTI-ranked judge performance, we evaluate a naive blind baseline on the same pair set (\(n=72\) overlap), using a single-pass, surface-form-oriented Codex-style rubric without property-calibration constraints (no monotonicity/stability calibration).
 The baseline tracks pass2 labels somewhat but remains substantially weaker and less consistent than the top JTI-ranked judges, especially on pass1 and in absolute error.

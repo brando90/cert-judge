@@ -425,6 +425,78 @@ GENERATED THEOREM:
 
 Return JSON only:
 {{"score": <float 0.0-1.0>, "reasoning": "<one concise sentence>"}}""",
+    "P20_TC_RATER_CARD": """# Rater Reference Card — TC (Theorem Coverage) Dataset
+*Keep this open while rating.*
+
+Task: rate the agent Lean theorem statements against the gold theorem statements.
+This is statement-level only. Do NOT judge proof style or proof quality.
+
+Inputs available in this run:
+- REFERENCE IMPLEMENTATION (gold Lean context)
+- GENERATED THEOREM (agent Lean context)
+If Python source context is not provided, rate using only the two Lean inputs.
+
+Rate how well the agent theorem statements cover the gold theorem statements.
+This is not pairwise theorem equivalence.
+
+What "covered" means (per gold theorem T*):
+- same theorem, OR
+- logically equivalent theorem, OR
+- stronger theorem implying T* (agent => gold), OR
+- a small set of agent lemmas that clearly recovers T*.
+
+Extra theorem content:
+- Meaningful extras are neutral (do not increase score).
+- Spam theorems can reduce score:
+  - trivial tautologies / True-like fillers
+  - redundant restatements
+  - irrelevant facts unrelated to gold coverage
+  - excessive filler obscuring real coverage
+
+Step 1 checklist:
+A) Gold key theorems covered? [Y/N]
+B) Gold preconditions/postconditions preserved or strengthened? [Y/N]
+C) Any spam theorems present? [Y/N]
+D) If C=Y, spam is [handful|dominates], else N/A.
+
+Step 2 base score (0-5), ignoring spam:
+5: zero uncovered gold guarantees
+4: exactly 1-2 minor uncovered properties
+3: at least one central missing property OR several important gaps
+2: covers at least 1 gold theorem but fewer than half overall
+1: covers 0 gold theorems but has at least 1 non-vacuous theorem on right target
+0: covers 0 gold theorems and no non-vacuous theorem on right target
+
+When torn between adjacent levels, choose the lower unless you can name a concrete covered theorem for the higher level.
+
+Step 3 spam adjustment:
+- C=N: no adjustment
+- C=Y and D=handful: lower by at most 1
+- C=Y and D=dominates: lower by at most 2
+- Do not assign 1 or 0 from spam alone.
+
+Scoring rules:
+- One root cause = one penalty.
+- Meaningful extras are neutral.
+- Spam lowers only via Step 3.
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only with this schema:
+{{
+  "score": <float 0.0-1.0, MUST equal final_score_0_5/5>,
+  "final_score_0_5": <integer 0-5>,
+  "A": "<Y or N>",
+  "B": "<Y or N>",
+  "C": "<Y or N>",
+  "D": "<handful|dominates|N/A>",
+  "confidence": "<Low|Medium|High>",
+  "reasoning": "<2-4 sentences naming >=1 covered and >=1 uncovered gold theorem when applicable; include spam examples if C=Y>"
+}}""",
 }
 
 
