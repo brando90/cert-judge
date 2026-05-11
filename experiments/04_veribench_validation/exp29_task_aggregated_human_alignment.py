@@ -179,6 +179,7 @@ def make_plots(
     out_dir: Path,
     judge_target_rows: List[dict],
     meta_rows: List[dict],
+    task_level_score_rows: List[dict],
 ) -> None:
     import matplotlib
 
@@ -231,6 +232,45 @@ def make_plots(
     ax.grid(alpha=0.25)
     fig.tight_layout()
     fig.savefig(out_dir / "fig_pair_vs_task_ethan_avg.png", dpi=180)
+    plt.close(fig)
+
+    # Per-judge task-level scatter panels for the aggregated Ethan target.
+    interesting_judges = [
+        "claude-opus-4-7|P4_CHECKLIST",
+        "claude-opus-4-7|BAD_STRINGY",
+        "gpt-5.3-codex|P11_JSON_FIRST",
+        "gpt-4o-mini|P1_BASELINE",
+        "gpt-4o-mini|P4_CHECKLIST",
+        "labs-leanstral-2603|P4_CHECKLIST",
+    ]
+    score_lookup: Dict[Tuple[str, str], List[dict]] = defaultdict(list)
+    for row in task_level_score_rows:
+        score_lookup[(row["target_name"], row["judge_id"])].append(row)
+
+    fig, axes = plt.subplots(2, 3, figsize=(14, 8.5), sharex=False, sharey=False)
+    axes = axes.flatten()
+    for ax, judge_id in zip(axes, interesting_judges):
+        rows = score_lookup.get(("ethan_avg", judge_id), [])
+        xs = [float(r["human_task_score"]) for r in rows]
+        ys = [float(r["judge_task_score"]) for r in rows]
+        if xs and ys:
+            ax.scatter(xs, ys, s=36)
+            corr = safe_corr(xs, ys)
+            for r in rows:
+                task = str(r["task"]).replace(".lean", "")
+                ax.annotate(task, (float(r["human_task_score"]), float(r["judge_task_score"])), xytext=(3, 3), textcoords="offset points", fontsize=5.5)
+            lo = min(xs + ys)
+            hi = max(xs + ys)
+            ax.plot([lo, hi], [lo, hi], "k--", linewidth=0.8)
+            ax.set_title(f"{judge_id}\nSpearman={corr['spearman_r']:.3f}, Pearson={corr['pearson_r']:.3f}", fontsize=8)
+        else:
+            ax.set_title(f"{judge_id}\nno overlap", fontsize=8)
+        ax.grid(alpha=0.25)
+        ax.set_xlabel("Human task score")
+        ax.set_ylabel("Judge task score")
+    fig.suptitle("Task-aggregated judge vs human scores on ethan_avg", fontsize=12)
+    fig.tight_layout()
+    fig.savefig(out_dir / "fig_task_scatter_ethan_avg_selected_judges.png", dpi=180)
     plt.close(fig)
 
 
@@ -289,6 +329,7 @@ def write_report(
     lines.append(f"- [Trust vs task-level 2-rater human ensemble](./fig_trust_vs_task_human_ensemble_2r.png)")
     lines.append(f"- [Trust vs task-level 3-rater human ensemble](./fig_trust_vs_task_human_ensemble_3r.png)")
     lines.append(f"- [Pair-level vs task-level alignment for Ethan average](./fig_pair_vs_task_ethan_avg.png)")
+    lines.append(f"- [Per-judge task-level scatter panels for selected judges](./fig_task_scatter_ethan_avg_selected_judges.png)")
     lines.append("")
     lines.append("## Best Judges On Ethan Avg Task Target")
     lines.append("")
@@ -304,6 +345,20 @@ def write_report(
     lines.append("- `gpt-4o-mini|P1_BASELINE` improves from pair-level Spearman `0.287` to task-level Spearman `0.463` on `ethan_avg`.")
     lines.append("- `gpt-4o-mini|P4_CHECKLIST` improves from `0.065` to `0.233` on `ethan_avg`.")
     lines.append("- `labs-leanstral-2603|P4_CHECKLIST` improves from `0.206` to `0.301` on `ethan_avg`, but the other LeanStral prompts remain near zero or negative.")
+    lines.append("")
+    lines.append("## Relation To VeriBench Appendix")
+    lines.append("")
+    lines.append("- VeriBench Appendix H/G explicitly reports that task-level averaging can raise judge-human correlation into the `~0.85` range, while also warning that these aggregated numbers are more flattering than the stricter item-level held-out result.")
+    lines.append("- EXP29 is consistent with that logic. Task aggregation can improve absolute judge scores here too: for example, `claude-opus-4-7|P4_CHECKLIST` rises from pair-level Spearman `0.451` to task-level Spearman `0.693` on `ethan_avg`, and `gpt-4o-mini|P1_BASELINE` rises from `0.287` to `0.463`.")
+    lines.append("- But the same aggregation can also make weak or obviously suspect judges look better. In this panel, `claude-opus-4-7|BAD_STRINGY` rises to task-level Spearman `0.631` on `ethan_avg`, despite being a deliberately bad lexical-overlap judge.")
+    lines.append("- So aggregation is usable as an auxiliary diagnostic of the aggregate human evaluation function, but it is not a safe substitute for stricter item-level evaluation when the scientific claim is about genuine judge quality rather than smoothed task-level agreement.")
+    lines.append("")
+    lines.append("## Can We Use Aggregation To Get Better Judge Scores?")
+    lines.append("")
+    lines.append("- Yes, if the target is explicitly the task-level aggregate human function `H(t)`, then task-level aggregation is a legitimate target and can produce higher absolute judge-human correlations.")
+    lines.append("- No, if the goal is to claim stronger judge validity without qualification. Aggregation removes within-task noise, but it also compresses the evaluation problem and can reward judges that get coarse task ordering right for the wrong reasons.")
+    lines.append("- In this run, aggregation helps some plausible judges, but it also helps `BAD_STRINGY`; that is the main reason not to treat the aggregated number alone as the headline quality metric.")
+    lines.append("- The defensible use is: report task-level aggregated correlation as a secondary diagnostic, keep stricter item-level held-out alignment as the main honesty check, and avoid conflating absolute judge-human correlation with trust-index meta-correlation across judges.")
     lines.append("")
     lines.append("## Notes")
     lines.append("")
@@ -376,6 +431,16 @@ def main() -> int:
                     "task_kendall_tau": task_corr["kendall_tau"],
                 }
             )
+            for task in common_tasks:
+                task_level_score_rows.append(
+                    {
+                        "judge_id": judge_id,
+                        "target_name": target_name,
+                        "task": task,
+                        "judge_task_score": judge_tasks[task],
+                        "human_task_score": human_tasks[task],
+                    }
+                )
 
         for ensemble_target_name in ["human_ensemble_2r", "human_ensemble_3r"]:
             human_tasks = target_task_maps[ensemble_target_name]
@@ -473,7 +538,7 @@ def main() -> int:
     }
     (args.out_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
-    make_plots(args.out_dir, judge_target_rows, meta_rows)
+    make_plots(args.out_dir, judge_target_rows, meta_rows, task_level_score_rows)
     write_report(args.out_dir, judge_target_rows, meta_rows, ensemble_2r_tasks, ensemble_3r_tasks)
 
     print(f"Wrote {args.out_dir}")

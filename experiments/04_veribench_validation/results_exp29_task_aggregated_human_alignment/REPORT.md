@@ -24,6 +24,7 @@ The ensemble analysis reports two targets: a 20-task 2-rater ensemble over `etha
 - [Trust vs task-level 2-rater human ensemble](./fig_trust_vs_task_human_ensemble_2r.png)
 - [Trust vs task-level 3-rater human ensemble](./fig_trust_vs_task_human_ensemble_3r.png)
 - [Pair-level vs task-level alignment for Ethan average](./fig_pair_vs_task_ethan_avg.png)
+- [Per-judge task-level scatter panels for selected judges](./fig_task_scatter_ethan_avg_selected_judges.png)
 
 ## Best Judges On Ethan Avg Task Target
 
@@ -43,6 +44,20 @@ The ensemble analysis reports two targets: a 20-task 2-rater ensemble over `etha
 - `gpt-4o-mini|P1_BASELINE` improves from pair-level Spearman `0.287` to task-level Spearman `0.463` on `ethan_avg`.
 - `gpt-4o-mini|P4_CHECKLIST` improves from `0.065` to `0.233` on `ethan_avg`.
 - `labs-leanstral-2603|P4_CHECKLIST` improves from `0.206` to `0.301` on `ethan_avg`, but the other LeanStral prompts remain near zero or negative.
+
+## Relation To VeriBench Appendix
+
+- VeriBench Appendix H/G explicitly reports that task-level averaging can raise judge-human correlation into the `~0.85` range, while also warning that these aggregated numbers are more flattering than the stricter item-level held-out result.
+- EXP29 is consistent with that logic. Task aggregation can improve absolute judge scores here too: for example, `claude-opus-4-7|P4_CHECKLIST` rises from pair-level Spearman `0.451` to task-level Spearman `0.693` on `ethan_avg`, and `gpt-4o-mini|P1_BASELINE` rises from `0.287` to `0.463`.
+- But the same aggregation can also make weak or obviously suspect judges look better. In this panel, `claude-opus-4-7|BAD_STRINGY` rises to task-level Spearman `0.631` on `ethan_avg`, despite being a deliberately bad lexical-overlap judge.
+- So aggregation is usable as an auxiliary diagnostic of the aggregate human evaluation function, but it is not a safe substitute for stricter item-level evaluation when the scientific claim is about genuine judge quality rather than smoothed task-level agreement.
+
+## Can We Use Aggregation To Get Better Judge Scores?
+
+- Yes, if the target is explicitly the task-level aggregate human function `H(t)`, then task-level aggregation is a legitimate target and can produce higher absolute judge-human correlations.
+- No, if the goal is to claim stronger judge validity without qualification. Aggregation removes within-task noise, but it also compresses the evaluation problem and can reward judges that get coarse task ordering right for the wrong reasons.
+- In this run, aggregation helps some plausible judges, but it also helps `BAD_STRINGY`; that is the main reason not to treat the aggregated number alone as the headline quality metric.
+- The defensible use is: report task-level aggregated correlation as a secondary diagnostic, keep stricter item-level held-out alignment as the main honesty check, and avoid conflating absolute judge-human correlation with trust-index meta-correlation across judges.
 
 ## Notes
 
