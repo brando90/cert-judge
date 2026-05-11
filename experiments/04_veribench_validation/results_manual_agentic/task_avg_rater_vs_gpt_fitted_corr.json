@@ -1,0 +1,90 @@
+{
+  "aggregation": "mean per gold_file",
+  "eval": "out-of-fold task-level predictions",
+  "results": [
+    {
+      "rater": "ethan_same_prompt",
+      "n_tasks": 20,
+      "zero_shot_corr_y_vs_x": {
+        "pearson_r": 0.5172561343541935,
+        "pearson_p": 0.019510804073351862,
+        "spearman_rho": 0.3552689481020954,
+        "spearman_p": 0.12425454120934223,
+        "kendall_tau": 0.23019319157594959,
+        "kendall_p": 0.1831314869027486
+      },
+      "linear_oof_corr_y_vs_pred": {
+        "pearson_r": 0.45220302541745133,
+        "pearson_p": 0.04530471322641273,
+        "spearman_rho": 0.30109560138831876,
+        "spearman_p": 0.19704267387058497,
+        "kendall_tau": 0.18478533770531397,
+        "kendall_p": 0.26681594740038383
+      },
+      "isotonic_oof_corr_y_vs_pred": {
+        "pearson_r": 0.5431557296018156,
+        "pearson_p": 0.013326274076858033,
+        "spearman_rho": 0.31267295013059865,
+        "spearman_p": 0.1795232734051943,
+        "kendall_tau": 0.2191876147538454,
+        "kendall_p": 0.19899339364209545
+      }
+    },
+    {
+      "rater": "jolene_pass1",
+      "n_tasks": 21,
+      "zero_shot_corr_y_vs_x": {
+        "pearson_r": 0.643023856767798,
+        "pearson_p": 0.0016653779646181213,
+        "spearman_rho": 0.5205270401820743,
+        "spearman_p": 0.015555123701279741,
+        "kendall_tau": 0.3947017528263721,
+        "kendall_p": 0.021054467313641363
+      },
+      "linear_oof_corr_y_vs_pred": {
+        "pearson_r": 0.5888333942567171,
+        "pearson_p": 0.004979430944574325,
+        "spearman_rho": 0.4592300058410186,
+        "spearman_p": 0.03624165742947157,
+        "kendall_tau": 0.34455232251793516,
+        "kendall_p": 0.03693438877792124
+      },
+      "isotonic_oof_corr_y_vs_pred": {
+        "pearson_r": 0.5453334117599803,
+        "pearson_p": 0.010564438390703123,
+        "spearman_rho": 0.37438100596545626,
+        "spearman_p": 0.09452000994707074,
+        "kendall_tau": 0.2670193665359559,
+        "kendall_p": 0.11489298621767713
+      }
+    },
+    {
+      "rater": "steven_pass1",
+      "n_tasks": 10,
+      "zero_shot_corr_y_vs_x": {
+        "pearson_r": 0.3717611978224573,
+        "pearson_p": 0.2901522418452283,
+        "spearman_rho": 0.07667770763151253,
+        "spearman_p": 0.833250218760696,
+        "kendall_tau": 0.05195243334661311,
+        "kendall_p": 0.8489623140309248
+      },
+      "linear_oof_corr_y_vs_pred": {
+        "pearson_r": -0.6146811194947805,
+        "pearson_p": 0.058613257666790826,
+        "spearman_rho": -0.6605932246247093,
+        "spearman_p": 0.03759340457094896,
+        "kendall_tau": -0.5310850045437944,
+        "kendall_p": 0.04178638462363461
+      },
+      "isotonic_oof_corr_y_vs_pred": {
+        "pearson_r": -0.4341249153132394,
+        "pearson_p": 0.20999657023486368,
+        "spearman_rho": -0.37856584884380157,
+        "spearman_p": 0.2807091533828905,
+        "kendall_tau": -0.3291402943021916,
+        "kendall_p": 0.222034013487182
+      }
+    }
+  ]
+}
