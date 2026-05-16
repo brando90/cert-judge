@@ -74,9 +74,9 @@
 \printAffiliationsAndNotice{}
 
 \begin{abstract}
-  LLM judges are becoming essential for evaluating AI-generated code, tests, and formal specifications, but their reliability is usually established in the least scalable way: collecting new human ratings for every judge, prompt, model, and threshold. We challenge this validation loop by asking whether human judgment can be amortized through falsifiable behavioral properties. We propose a property-certification protocol for LLM judges of Lean~4 theorem and specification quality, where each judge is scored by four automatically testable conditions: identity, bug monotonicity, specification monotonicity, and repeat/prompt stability. Our variance-aware trust index \(\mathrm{TI}_{\mathrm{var}}\) is a calibrated \emph{instance} derived from those diagnostics; the contribution is methodological (how properties compose into an auditable signal), rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled calibration pairs constitute a universally fixed evaluator constant.
+  LLM judges are increasingly central to evaluating AI-generated code, tests, and formal specifications, yet their reliability is still checked in the least scalable way possible: fresh human ratings for every new judge, prompt, model, and threshold. We challenge this validation loop by asking whether human judgment can be amortized and \textbf{scaled} through falsifiable behavioral properties. We propose a property-certification protocol for LLM judges of Lean~4 theorem and specification quality, where each judge is scored by four automatically testable conditions: identity, bug monotonicity, specification monotonicity, and repeat/prompt stability. Our variance-aware trust index \(\mathrm{TI}_{\mathrm{var}}\) is one calibrated instantiation of these diagnostics. The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled calibration pairs constitute a universally fixed evaluator constant.
 
-  On eight judge configurations spanning frontier prompts, weaker baselines, edit-distance, and random controls, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on that calibration suite, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2). Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs, while identity and stability are weaker standalone signals. Applied to \textsc{VeriBench}, the protocol illustrates validation-set calibration for scalable evaluation settings involving AI-generated code, tests, theorems, and formal specifications (not deployed generalization guarantees).
+  On eight judge configurations spanning frontier prompts, weaker baselines, edit-distance, and random controls, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on that calibration suite, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2). Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs, while identity and stability are weaker standalone signals. Applied to \textsc{VeriBench}, the protocol illustrates validation-set calibration for scalable evaluation settings involving AI-generated code, tests, theorems, and formal specifications, while explicitly not claiming deployed generalization guarantees.
 \end{abstract}
 
 \section{Introduction}
@@ -634,7 +634,9 @@ In experiments, calibrated judge scoring produces informative method rankings an
 \subsection{Validation vs. test protocol}
 The results in Section~\ref{sec:validation-human-alignment} are validation-set numbers. The same human labels were used to choose the trust-index form, repeat aggregation, threshold, and prompt panel, so the reported trends should be interpreted as calibration findings rather than out-of-sample generalization claims.
 
-We additionally hold validation labels from a reviewer pool broader than the single-annotator panel foregrounded above; gathering diverse raters targets more reliable estimation of certification and judge--human agreement. Extending the present calibration results using this corpus is natural future work---for example alongside frozen preprocessing with independent reviewers, unseen judge families, and held-out \textsc{VeriBench} items.
+Beyond the \(n=75\) panel used in Section~5.3, which was scored under two closely related rubric prompts corresponding to stricter and more lenient rating views, we have now collected a substantially broader independent annotation pool in \texttt{experiments/human\_labels}. This newer pool contains five reviewers and \(\mathbf{343}\) scored labels over \(78\) distinct candidate--gold pairs, with many pairs receiving \(4\) or \(5\) independent ratings. We do not use those labels in the present paper's calibration numbers. Instead, the intended next step is a locked held-out analysis: freeze the current property definitions and \(\mathrm{TI}_{\mathrm{var}}\) formulation, aggregate the independent reviewer labels with noise-aware estimators where appropriate, and test whether the judge-level \(\mathrm{TI}_{\mathrm{var}}\) trend persists under broader rubric variation and multi-rater supervision.
+
+This corpus directly addresses the concern that the present \(n=75\) panel may overfit to a narrow rubric interpretation and provides a path from calibration evidence to locked-test generalization.
 
 An encouraging sign is that a separate expanded 13-judge analysis remains above \(0.75\) across label sets (Appendix Figure~\ref{fig:app-exp25-13judge}), suggesting that scaling the judge panel is promising even though it does not yet establish held-out generalization.
 
@@ -656,7 +658,7 @@ Our certification relies on a finite perturbation suite, so untested failure mod
 \textsc{Alpha}-renaming sensitivity is the standout P4 weakness in our runs, as detailed in the preceding paragraph.
 Calibration improvements are modest in absolute magnitude and do not by themselves establish external validity.
 
-The primary validation corpus in this draft remains two annotator passes on an aligned panel of \(n {=} 75\) candidate--gold pairs and eight judge tuples. The growing multi-reviewer dataset noted above is intended to support more reliable downstream estimates of agreement and will underpin expanded empirical sections in future work.
+The primary validation corpus in this draft remains the \(n=75\) aligned panel scored under two closely related rubric prompts, yielding stricter and more lenient label views across eight judge tuples. A much larger independent reviewer pool has now been collected---five reviewers, \(\mathbf{343}\) scored labels, and \(78\) distinct candidate--gold pairs---but it is intentionally held out from the reported calibration results. This new corpus is recent and not yet analyzed in the present submission; its purpose is to support a frozen held-out test of whether the current \(\mathrm{TI}_{\mathrm{var}}\) formulation continues to predict human agreement under broader item coverage and multi-rater aggregation.
 The current validation-set human-alignment results should therefore be read as calibration evidence because judge, prompt, aggregation, threshold, and reporting choices were developed with this label set in view.
 
 BAD\_STRINGY, an intentionally bad baseline, achieves moderate validation-set human Spearman (\(\approx0.45\)) while failing weak monotonicity (12.5\%).
@@ -871,7 +873,7 @@ Theoretical limits remain---Rice's theorem, the halting problem, and G\"odelian 
 For complementary perspectives on verifier-present oversight and HCI patterns for exposing judge evidence, see the discussion in Section~\ref{sec:related-work-cont}.
 
 \textbf{Why Lean 4?}
-Lean 4 is a full fledge programming language and lets VeriBench contain full runnable code and machine-checked proofs in the same dependently-typed language.
+Lean 4 is a fully-fledged programming language and lets VeriBench contain full runnable code and machine-checked proofs in the same dependently-typed language.
 % \leni{The following sentence should be eliminated. Coq and Isabelle are not inherently less trustworthy}
 % This eliminates the extraction gap that separates proof from execution in systems like Coq to OCaml or Isabelle to SML/Scala -- making Lean 4 more trustworthy.
 Ahead-of-time compilation with the Lake toolchain produces fast native binaries, while first-class \texttt{Task} primitives, async I/O, and a thread-pool scheduler enable genuine concurrent programs inside the prover.
@@ -921,7 +923,7 @@ However, TLA+ specifications are not executable programs; a separate implementat
 VeriBench instead needs a prover where the specification, proof, and runnable code live in the same language.
 Lean 4’s dependently-typed core lets us capture fine-grained, data-dependent invariants and then compile the very same artifacts to fast native binaries—capabilities outside TLA+’s scope.
 
-\textbf{Lean 4 verus Verus.}
+\textbf{Lean 4 versus Verus.}
 Verus is a verification framework for Rust programs using SMT solvers. A user state intermediate goals and an SMT backend fills in the intermediate steps. Compared to Verus, users have the option to use or not use SMT Solver-based tactics in Lean. This enables more fine-grained control and steering of the proof process. Verus also has a much larger kernel compared to Lean, and is more susceptible to soundness problem than Lean whose kernel is small.
 
 \section{Future Work (cont.)}
