@@ -127,7 +127,7 @@ To mitigate biases and instability, multi-agent debate frameworks such as \emph{
 For programming, single-pass metrics like pass@k can be brittle or unavailable; early LLM-judge approaches such as \emph{ICE-Score} highlighted difficulty distinguishing partial vs.\ full correctness from a one-shot review \citep{Zhuo2024ICEScore}. \emph{CodeJudge} operationalizes a two-stage “analyze-then-summarize’’ procedure with a taxonomy of code faults, significantly improving correlation with functional ground truth \citep{TongZhang2024CodeJudge}. In formal verification/autoformalization, prior work typically provides fixed target theorems, reducing evaluation to proof success. In contrast, agentic systems must propose specifications, necessitating \emph{semantic} judges. We adopt a certification protocol (akin to metamorphic testing) and verify that our LLM judge obeys \emph{identity/consistency}, \emph{monotonicity} with respect to injected bugs and specification omissions, and \emph{prompt/rewrite stability}, directly answering recent calls for validated, trustworthy LLM evaluators in safety-critical domains \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
 
 \paragraph{Evaluation Consistency.}
-Recent work has shown that unconstrained chain-of-thought reasoning can reduce evaluation consistency, and that simple comparative prompting often outperforms complex multi-step pipelines \citep{anonymous2026rethinkingJudges}. We interpret these findings as evidence that stability, rather than reasoning complexity, is the primary driver of reliable grading. Our work formalizes this intuition by introducing falsifiable structural diagnostics---identity, monotonicity under controlled edits, and reliability under prompt variation---that aggregate into a graded trust signal aligned with human judgments.
+Recent work has shown that unconstrained chain-of-thought reasoning can reduce evaluation consistency, and that simple comparative prompting often outperforms complex multi-step pipelines \citep{chen2026rethinking}. We interpret these findings as evidence that stability, rather than reasoning complexity, is the primary driver of reliable grading. Our work formalizes this intuition by introducing falsifiable structural diagnostics---identity, monotonicity under controlled edits, and reliability under prompt variation---that aggregate into a graded trust signal aligned with human judgments.
 
 \section{Problem Setup: Judging Lean Theorem/Specification Quality}\label{sec:problem-setup}
 \paragraph{Task.}
@@ -1150,27 +1150,27 @@ Early \textbf{Claude 3.x Sonnet} scatterplots reported in Appendix~\ref{app:judg
   \scriptsize
   \setlength{\tabcolsep}{3pt}%
   \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.52\linewidth}
-                  >{\centering\arraybackslash}p{0.09\linewidth}
-                  >{\centering\arraybackslash}p{0.07\linewidth}
-                  >{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+    >{\centering\arraybackslash}p{0.09\linewidth}
+    >{\centering\arraybackslash}p{0.07\linewidth}
+    >{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
     \toprule
-    \textbf{Judge setup} &
-    \textbf{Scale} &
-    \textbf{Main?} &
-    \textbf{Role} \\
+    \textbf{Judge setup}                 &
+    \textbf{Scale}                       &
+    \textbf{Main?}                       &
+    \textbf{Role}                                                                     \\
     \midrule
-      GPT-5.3-Codex prompts (P8/P4/P1) & \(n{=}8\) & Yes & Primary judges \\
-      GPT-5.3-Codex BAD\_STRINGY       & \(n{=}8\) & Yes & Same-model stress \\
-      Qwen3-Coder prompts              & \(n{=}8\) & Yes & Open-weights \\
-      Qwen3-Coder BAD\_STRINGY          & \(n{=}8\) & Yes & Open-weights stress \\
-      Claude Opus 4.x + controls       & \(n{=}8\) & Yes & Third cross-model family \\
-      GPT-4o-mini prompts               & \(n{=}8\) & Yes & Lightweight baseline \\
-      Edit-distance + random            & \(n{=}8\) & Yes & Non-LLM controls \\
-      Claude 3 Sonnet (narrow App.\ slice) & Small & No & Prompt diagnostics \\
-      \bottomrule
-    \end{tabular}
+    GPT-5.3-Codex prompts (P8/P4/P1)     & \(n{=}8\) & Yes & Primary judges           \\
+    GPT-5.3-Codex BAD\_STRINGY           & \(n{=}8\) & Yes & Same-model stress        \\
+    Qwen3-Coder prompts                  & \(n{=}8\) & Yes & Open-weights             \\
+    Qwen3-Coder BAD\_STRINGY             & \(n{=}8\) & Yes & Open-weights stress      \\
+    Claude Opus 4.x + controls           & \(n{=}8\) & Yes & Third cross-model family \\
+    GPT-4o-mini prompts                  & \(n{=}8\) & Yes & Lightweight baseline     \\
+    Edit-distance + random               & \(n{=}8\) & Yes & Non-LLM controls         \\
+    Claude 3 Sonnet (narrow App.\ slice) & Small     & No  & Prompt diagnostics       \\
+    \bottomrule
+  \end{tabular}
   \caption{\textbf{Cross-model validation status.}
-    Main \(\mathrm{TI}_{\mathrm{var}}\) claims use full eight-configuration panels on overlapping human-aligned rows; Sonnet exploratory figures are withheld from headline statistics.}
+  Main \(\mathrm{TI}_{\mathrm{var}}\) claims use full eight-configuration panels on overlapping human-aligned rows; Sonnet exploratory figures are withheld from headline statistics.}
   \label{tab:app-cross-model-status}
 \end{table}
 
