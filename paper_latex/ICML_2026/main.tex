@@ -49,7 +49,25 @@
 \lstset{
   basicstyle=\ttfamily\scriptsize,
   frame=single,
-  numbers=none
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  keepspaces=true
+}
+
+\lstdefinestyle{promptstyle}{
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=none,
+  numbers=none,
+  xleftmargin=0pt,
+  xrightmargin=0pt,
+  aboveskip=0.4\baselineskip,
+  belowskip=0.4\baselineskip
 }
 
 \icmltitlerunning{Certifying the Judge}
@@ -101,7 +119,7 @@ Humans remain the anchor; the problem is that re-using humans from scratch for e
 %   \label{fig:pull_cost_alignment}
 % \end{figure*}
 
-Our focus is the \emph{DL4C} setting: code agents and compilers produce candidate formal artifacts at high throughput, humans must assess quality with limited time, and calibrated LLM judgments can scale evaluation if their reliability is evidenced rather than assumed.
+We focus on a core \emph{DL4C} bottleneck: code agents can generate candidate formal artifacts far faster than humans can inspect them. In this setting, LLM judges are useful only if their reliability can be measured scalably rather than assumed.
 
 Validating LLM judges against humans is the standard reliability check but does not scale: every new judge, prompt, or model needs fresh annotations.
 Property certification \textbf{amortizes} this cost---gold references collected once, used to calibrate a four-property trust metric, then deployed without re-annotating every new judge configuration.
@@ -111,7 +129,8 @@ On a panel of eight judge configurations, \(\mathrm{TI}_{\mathrm{var}}\) fits th
 
 Our \textbf{contributions} are:
 \begin{enumerate}
-  \item \textbf{An amortized trust-validation protocol:} we formalize property certification as one-time calibration on gold references, after which any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) judge tuple can be scored by computing four falsifiable properties without repeating the full labeling budget.
+  \item \textbf{An amortized trust-validation protocol:} we formalize property certification as one-time calibration on a fixed panel of Lean artifacts with scripted perturbations. After calibration, any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) judge configuration can be screened by computing four falsifiable properties, without repeating the full human-labeling budget.
+
   \item \textbf{Proof-of-concept calibration on \(\bm{n{=}75}\):} \(\mathrm{TI}_{\mathrm{var}}\) is one concrete geometric aggregation of diagnostics that tracks human agreement on eight judge tuples; we report validation-set correlations (avg \(=0.833\), pass1 \(=0.905\), pass2 \(=0.738\) Spearman) as evidence toward amortized oversight feasibility, \emph{not} as universally fixed aggregation weights or constants.
   \item \textbf{End-to-end use on \textsc{VeriBench}:} the same calibrated judge ranks agent-generation methods consistently with benchmark expectations (e.g., DSPy ReAct \(0.615\) vs.\ baseline prompting \(0.470\) on normalized specs), illustrating how trust signals propagate to scalable code/spec evaluation workloads.
 \end{enumerate}
@@ -142,7 +161,9 @@ For non-formal-methods readers, a Lean artifact is a code file in a programming 
 Lean can check whether a concrete proof script type-checks, but type-checking alone does
 not determine whether $x$ formalizes the same intended property as $g$. A candidate may
 compile while being under-specified, over-constrained, vacuously true, or semantically
-shifted. Thus, exact automatic scoring of theorem/specification quality is unavailable in
+shifted. In \textsc{VeriBench}, this often appears as a coverage gap: candidate artifacts
+may capture only part of the behavior specified by the gold reference
+\citep{anonymous2026veribench}. Thus, exact automatic scoring of theorem/specification quality is unavailable in
 general.
 
 \paragraph{Judge model.}
@@ -165,6 +186,7 @@ The judge compares a candidate Lean~4 artifact against its gold reference and re
 \(\text{weak}\) (P3 specification-ablation monotonicity), and
 \(\text{stab}\) (P4 repeat/prompt stability).
 These are graded calibration targets, not binary gates.
+As simple first-pass baselines, we also consider arithmetic variants \(v1\) and \(v2\) that aggregate these property scores without explicit variance penalties; Appendix~\ref{app:index-definitions} gives the exact formulas. These are useful comparators, but later results show that geometric and variance-aware formulations are more informative.
 
 \textbf{Primary metric.}
 \[
@@ -178,7 +200,7 @@ These are graded calibration targets, not binary gates.
     \Big),
   \end{aligned}
 \]
-where \(C_f\) summarizes quality under the P1--P4 diagnostics, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties. Our calibration claim is simple: judges with higher trust-index scores should also have higher human agreement on the validation panel.
+where \(C_f\) is the mean per-file monotonicity-quality term over bug ladders and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties; Appendix~\ref{app:index-definitions} gives the exact definitions. Our calibration claim is simple: judges with higher trust-index scores should also have higher human agreement on the validation panel. The equal-weighted form above is a simple variance-aware instantiation; other task-specific calibrations are possible, but we treat \(\mathrm{TI}_{\mathrm{var}}\) as a validation-set trust signal rather than a universal constant.
 
 To be trustworthy, the judge should satisfy the following falsifiable calibration targets.
 
@@ -193,7 +215,7 @@ Scores should decrease as specification elements (theorems/tests) are removed.
 
 \paragraph{P4 — Prompt Stability \& Semantic Invariance.}
 Scores should remain stable across repeated calls and under semantics-preserving rewrites.
-In particular, \textsc{Alpha}-renaming changes only bound variable names---for example, renaming local theorem variables or lambda binders without changing the proof or program structure. These edits should preserve Lean semantics exactly, so a robust judge should score the original and renamed artifact almost identically.
+In particular, \textsc{Alpha}-renaming changes only bound variable names---for example, renaming local theorem variables or lambda binders without changing the proof or program structure. In ordinary programming terms, this is the kind of edit where a loop variable or local placeholder gets renamed but the program still means exactly the same thing. These edits should preserve Lean semantics exactly, so a robust judge should score the original and renamed artifact almost identically.
 
 We evaluate these targets with rank-based monotonicity statistics (Kendall's $\tau$, Spearman's $\rho$) and pairwise ordering accuracy, following prior judge-evaluation work \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
 
@@ -271,7 +293,7 @@ For judge-validation, we use an aligned panel of \(n=75\) candidate--gold pairs 
 The same aligned panel is reused across judges, so differences in trend reflect judge behavior rather than row selection. Human-pass dispersion is non-trivial (Appendix Figure~\ref{fig:app-human-pass-hist}), which is why we report all three label views rather than a single pass.
 
 \subsection{Property sanity checks on GPT-5.3-Codex}
-\textbf{Establishing trust in the judge.} Figure~\ref{fig:judge_sanity_checks} shows that the Codex judge satisfies the intended qualitative behavior: scores decrease as semantic bugs accumulate and as specifications are removed, while identity and rewrite robustness are handled separately through P1/P4 diagnostics. The strongest signal is specification-ablation monotonicity (\(\rho=-0.899\), \(r=-0.892\)); bug monotonicity is also directionally correct but noisier (\(\rho=-0.808\), \(r=-0.687\)), indicating occasional local reversals.
+\textbf{Establishing trust in the judge.} Figure~\ref{fig:judge_sanity_checks} shows that the Codex judge satisfies the intended qualitative behavior: scores decrease as semantic bugs accumulate and as specifications are removed, while identity and rewrite robustness are handled separately through P1/P4 diagnostics. The strongest signal is specification-ablation monotonicity (\(\rho=-0.899\), \(r=-0.892\)); bug monotonicity is also directionally correct but noisier (\(\rho=-0.808\), \(r=-0.687\)), indicating occasional local reversals. Appendix Figures~\ref{fig:fig3_style_opus_codex} and~\ref{fig:lowvar_mono_codex_opus} show that the same monotone degradation pattern is also visible for Claude Opus under matched plotting protocols.
 
 \begin{table}[t]
   \centering
@@ -299,7 +321,7 @@ These sanity checks support using the judge as a semantically meaningful proxy f
 
 A central question for our protocol is whether the primary trust metric \(\mathrm{TI}_{\mathrm{var}}\) yields a calibrated signal that aligns with how humans judge candidate Lean artifacts under the same rubric. We do \emph{not} claim that \(\mathrm{TI}_{\mathrm{var}}\) certifies universally correct evaluator behavior---no finite scripted suite can enumerate all plausible failure modes (Section~\ref{sec:limitations-finite}).
 
-Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\mathrm{var}}\) also have higher correlation with human ratings. Figure~\ref{fig:tivar_cross_model_avg} plots judge-level \(\mathrm{TI}_{\mathrm{var}}\) against human Spearman agreement (averaged validation labels) separately for those three judge families while holding fixed the \(\sim\!\!72\)–\(75\) overlapping human-aligned rows that define the calibration panel within each regression. \(\mathrm{TI}_{\mathrm{var}}\) does not only reward average property satisfaction---it also penalizes instability across repeats, prompts, and perturbations---so the signal targets configurations that behave more coherently on the perturbation suite used for calibration.
+Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\mathrm{var}}\) also have higher correlation with human ratings. Figure~\ref{fig:tivar_cross_model_avg} plots judge-level \(\mathrm{TI}_{\mathrm{var}}\) against human Spearman agreement (averaged validation labels) separately for those three judge families while holding fixed the \(75\) overlapping human-aligned rows that define the calibration panel within each regression. \(\mathrm{TI}_{\mathrm{var}}\) does not only reward average property satisfaction---it also penalizes instability across repeats, prompts, and perturbations---so the signal targets configurations that behave more coherently on the perturbation suite used for calibration.
 
 \begin{figure*}[t]
   \centering
@@ -474,7 +496,7 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
   \caption{\textbf{$\mathrm{TI}_{\mathrm{var}}$ vs.\ judge-level human alignment (avg labels).}
   Each panel shows one judge family with one point per judge configuration.
   The \(x\)-axis is \(\mathrm{TI}_{\mathrm{var}}\); the \(y\)-axis is Spearman agreement with averaged human scores on the aligned panel.
-  Vertical error bars show bootstrap-style uncertainty (approximate SE) for each judge's Spearman correlation with averaged human ratings on the aligned panel.
+  Vertical error bars show bootstrap-style uncertainty (approximate standard error) for each judge's Spearman correlation with averaged human ratings on the aligned panel.
   A compact two-column legend is inset in the upper-left corner of the Codex panel only (same keys in every panel); marker colors match the legend.
   The dashed line is an OLS guide to the scatter; it is illustrative and not interpreted as causal identification.
   Panel subtitles give Spearman \(\rho\) on \texttt{avg} labels for that family, matching Table~\ref{tab:tivar_cross_model_results}.
@@ -501,16 +523,16 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
   \label{tab:tivar_cross_model_results}
 \end{table}
 
-Table~\ref{tab:tivar_cross_model_results} reports the same relationship for pass1, pass2, and averaged labels. Codex is strongest on pass1 and avg, Qwen strongest on pass2 and avg, and Claude Opus stays positive on all three. The point is not that one family dominates every split; it is that the same certification signal remains informative across distinct judge families.
+Table~\ref{tab:tivar_cross_model_results} reports the same relationship for pass1, pass2, and averaged labels. Codex is strongest on pass1 and avg, Qwen strongest on pass2 and avg, and Claude Opus stays positive on all three. The point is not that one family dominates every split; it is that the same certification signal remains informative across distinct judge families. Most coefficients are large in magnitude---six of nine family/pass combinations exceed \(0.7\).
 
-Because the judge-level trend is estimated over a small panel, we treat the effect size as calibration evidence and report cross-pass and cross-family robustness rather than claiming deployment-ready generalization.
+However, because the judge-level trend is estimated over a small panel, we treat the effect size as calibration evidence and report cross-pass and cross-family robustness rather than claiming deployment-ready generalization.
 
 For the Codex calibration panel (\(n=8\) judges), Pearson shows the same qualitative pattern (avg \(r=0.774\), pass1 \(r=0.661\), pass2 \(r=0.837\)), while Kendall \(\tau\) is noisier at this scale (avg \(\tau=0.571\), pass1 \(\tau=0.571\), pass2 \(\tau=0.643\)).
 
 Thus \(\mathrm{TI}_{\mathrm{var}}\) behaves as a calibrated reliability signal: falsifiable properties correlate with the quantity we care about---agreement with human assessments of Lean theorem and specification quality---so new judge configurations can be compared by automated property checks after the calibration relationship is measured once.
 
 \paragraph{Human-pass dispersion and cross-pass robustness.}
-Annotators scored each aligned pair twice under different rubric strictness. Agreement between passes is moderate (Spearman \(=0.249\), Pearson \(=0.375\), QWK \(=0.372\), MAE \(=0.778\) on the \(0\)--\(5\) scale), so judge--human numbers are calibration evidence rather than ceiling performance. Table~\ref{tab:app-human-human-ceiling} gathers full diagnostics.
+Annotators scored each aligned pair twice under different rubric strictness. Agreement between passes is moderate (Spearman \(=0.249\), Pearson \(=0.375\), quadratic-weighted kappa (QWK) \(=0.372\), MAE \(=0.778\) on the \(0\)--\(5\) scale), so judge--human numbers are calibration evidence rather than ceiling performance. Table~\ref{tab:app-human-human-ceiling} gathers full diagnostics.
 
 \begin{table}[t]
   \centering
@@ -532,7 +554,7 @@ Annotators scored each aligned pair twice under different rubric strictness. Agr
 Table~\ref{tab:cross_pass_generalization} shows that test Spearman stays above \(0.7\) in both directions when \(\mathrm{TI}_{\mathrm{var}}\) is fit using one human pass alone.
 
 \subsection{Why \texorpdfstring{\(\mathrm{TI}_{\mathrm{var}}\)}{TI-var} is the primary trust metric}
-Figure~\ref{fig:tivar_cross_model_avg} with Table~\ref{tab:tivar_cross_model_results} states the headline cross-family trend. Table~\ref{tab:cross_model_index_compare_avg} then asks a narrower question: which trust-index formulation best captures that trend on averaged labels? Relative to arithmetic baselines, \(\mathrm{TI}_{\mathrm{var}}\) uniformly improves over \(v2\) for every family: Codex \(0.476\!\rightarrow\!0.833\), Claude Opus \(0.143\!\rightarrow\!0.643\), Qwen3-Coder \(0.500\!\rightarrow\!0.905\). The geometric index (GM) is competitive for Codex and Opus (\(0.857\) and \(0.714\) respectively), while \(\mathrm{TI}_{\mathrm{var}}\) stays most consistently strong across families and is the strongest formulation for Qwen. This matters because the workshop claim is not that one formula is theoretically canonical, but that a variance-aware trust metric can track human alignment more reliably than simpler arithmetic aggregation. We therefore adopt \(\mathrm{TI}_{\mathrm{var}}\) as the paper's primary metric because it couples property quality with explicit variance penalties yet yields positive judge-level trends everywhere we test. See Figure~\ref{fig:app-exp25-13judge} for a baseline-vs-geometric visualization on an expanded judge panel.
+Figure~\ref{fig:tivar_cross_model_avg} with Table~\ref{tab:tivar_cross_model_results} states the headline cross-family trend. Table~\ref{tab:cross_model_index_compare_avg} then asks a narrower question: which trust-index formulation best captures that trend on averaged labels? Relative to arithmetic baselines, \(\mathrm{TI}_{\mathrm{var}}\) uniformly improves over \(v2\) for every family: Codex \(0.476\!\rightarrow\!0.833\), Claude Opus \(0.143\!\rightarrow\!0.643\), Qwen3-Coder \(0.500\!\rightarrow\!0.905\). The geometric index (GM) is competitive for Codex and Opus (\(0.857\) and \(0.714\) respectively), while \(\mathrm{TI}_{\mathrm{var}}\) stays most consistently strong across families and is the strongest formulation for Qwen. These comparisons suggest that a variance-aware trust metric can track human alignment more reliably than simpler arithmetic aggregation, while geometric aggregation also improves over the arithmetic baseline. We therefore adopt \(\mathrm{TI}_{\mathrm{var}}\) as the paper's primary metric because it combines property quality with explicit variance penalties while yielding positive judge-level trends everywhere we test. Figure~\ref{fig:app-exp25-13judge} provides a baseline-vs-geometric visualization on an expanded judge panel.
 
 \begin{table}[t]
   \centering
@@ -626,7 +648,8 @@ The main failure mode remains the same throughout the study: alpha-renaming is s
 The calibrated judge is useful not only as a validation object but also as an evaluation tool. Table~\ref{tab:theorem_quality_table_split} shows that it ranks agentic theorem-generation methods in the expected direction: the weakest baseline is simple prompting (0.470 average normalized score), while feedback-driven methods score substantially higher, led by DSPy ReAct (0.615) and followed by Trace++ (0.588). We use this only as a downstream sanity check, not as independent proof of judge correctness. The result still matters because it shows that the same calibrated judge that aligns with humans on the validation panel also produces sensible system-level rankings on \textsc{VeriBench} \citep{khattab2024dspy,cheng2024trace,chen2021evaluating}.
 
 \section{Limitations and Held-Out Test Protocol}
-We study an LLM judge that \emph{compares each candidate artifact against its task's gold reference} for Lean~4 code verification alongside a graded trust signal built from falsifiable perturbation checks.
+We study an LLM judge that \emph{compares each candidate artifact against its task's gold reference} for Lean~4 code verification alongside a graded trust signal built from falsifiable perturbation checks. Our experiments have access to gold references, yet this certification protocol can be used for broader Lean formalization settings.
+
 The judge satisfies falsifiable score-level properties (identity and monotonicity), and we additionally calibrate its binary decision boundary using full-dataset threshold sweeps with uncertainty estimates.
 Our data supports a clear separation: score ranking remains stable under threshold changes, while binary stability and coverage trade off in a tunable way.
 In experiments, calibrated judge scoring produces informative method rankings and tracks engineering signals (Pass@$k$, unit-test accuracy); Easy and HumanEval show the strongest agreement, while Security and RealCode remain hardest \citep{chen2021evaluating}.
@@ -951,13 +974,104 @@ Rice's theorem directly implies that the gold reference files used by our judge 
 
 This leads to a critical limitation for interpreting our artifact scores: evaluations are \textbf{specification-relative}. A maximal score denotes close agreement with \emph{our} audited gold formalization and rubric-conditioned human ratings, not a universal guarantee beyond that reference.
 
+\section{Judge Prompt Templates}\label{app:judge-prompts}
+For reproducibility, we include the main judge prompt templates used in the paper's principal judge panels. The primary Codex / Opus / Qwen comparisons use the prompt variants \texttt{P1\_BASELINE}, \texttt{P4\_CHECKLIST}, and \texttt{P8\_STRICT\_B}; the BAD\_STRINGY lexical baseline is included as a negative control.
+
+\noindent\textbf{\texttt{P1\_BASELINE}}\par
+\vspace{0.25em}\begin{lstlisting}[style=promptstyle]
+You are an expert in Lean 4 formal verification.
+Score how well the GENERATED THEOREM captures the correctness properties
+of the REFERENCE IMPLEMENTATION. Score from 0.0 to 1.0.
+
+- 1.0: Semantically equivalent to what the reference guarantees
+- 0.7-0.9: Captures most properties, misses minor ones
+- 0.4-0.6: Captures some properties, has meaningful gaps
+- 0.1-0.3: Technically valid Lean but misses core properties
+- 0.0: Trivially true (e.g., `True`) or incorrect
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Respond ONLY with valid JSON, no markdown:
+{"score": <float 0.0-1.0>,
+ "reasoning": "<one sentence max>"}
+\end{lstlisting}
+
+\noindent\textbf{\texttt{P4\_CHECKLIST}}\par
+\vspace{0.25em}
+\begin{lstlisting}[style=promptstyle]
+Evaluate this in order:
+1) What properties does REFERENCE IMPLEMENTATION guarantee?
+2) Which are preserved by GENERATED THEOREM?
+3) Are there missing core guarantees or trivialization?
+4) Map to score in [0.0, 1.0]:
+   1.0 equivalent; 0.7-0.9 minor gaps;
+   0.4-0.6 meaningful gaps; 0.1-0.3 weak;
+   0.0 trivial/incorrect.
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{"score": <float 0.0-1.0>,
+ "reasoning": "<one sentence>"}
+\end{lstlisting}
+
+\noindent\textbf{\texttt{P8\_STRICT\_B}}\par
+\vspace{0.25em}
+\begin{lstlisting}[style=promptstyle]
+Evaluate conservatively. If uncertain, choose the lower score.
+Use [0.0,1.0]:
+1.0 equivalent semantics
+0.7-0.9 mostly right, minor misses
+0.4-0.6 substantial omissions
+0.1-0.3 weak relation
+0.0 trivial/incorrect
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return valid JSON only:
+{"score": <float>,
+ "reasoning": "<one sentence>"}
+\end{lstlisting}
+
+\noindent\textbf{\texttt{BAD\_STRINGY negative control}}\par
+\vspace{0.25em}
+\begin{lstlisting}[style=promptstyle]
+You are a text similarity grader.
+Compare generated theorem text to the reference implementation text.
+Do NOT evaluate semantic correctness or theorem meaning.
+Score ONLY based on superficial lexical/format overlap:
+- high score if tokens/phrases look similar
+- low score if wording/structure differs
+Reference implementation:
+{reference_impl}
+
+Generated theorem:
+{generated_theorem}
+
+Return ONLY a JSON object:
+{"score": <float 0.0 to 1.0>,
+ "reasoning": "<short reason>"}
+\end{lstlisting}
+
 
 \section{Judge Certification: Additional Plots}\label{app:judge-cert}
 We report raw scatterplots used during certification of the LLM judge. These plots visualize the judge’s response to controlled perturbations: (P1) identity/reflexivity, (P2) cumulative bug injection, and (P3) removal of specification items (tests/theorems). Figures A.1–A.3 show that scores drop as artifacts worsen; the bug plot is noisier with an early prompt, which motivated the simplified rubric used in the main experiments. P4 (prompt stability/invariance) is reported in the main text with dedicated aggregate plots.
 
 \textit{Protocol variants.} The scatterplots below are “sanity-check” runs with the simplest prompts to stress visible monotonic behavior. In the bug study (Fig.~\ref{fig:app-bugs}) the earlier, theorem-equivalence prompt produced a noisier trend; this prompted a simplified, rubric-first prompt that we use for all reported results in the main paper, yielding the stronger correlations cited in Fig.~\ref{fig:judge_sanity_checks}. For missing-specs (Fig.~\ref{fig:app-missing-specs}), both Claude 3.5 and 3.7 show clear negative trends; minor non-monotonicity in 3.7 disappears with the finalized rubric.
 
-We note that, for the experiment shown in Figure \ref{fig:app-missing-specs}, a more complex judge (Claude 3.7) does not satisfy the property that the LLM Judge Score should monotonically increase with the number of missing specs. Indeed, the Judge File Equivalence score was not monotonic, even for Claude 3.5, leading us to simplify the rubric used in our main paper.
+We note that, for the experiment shown in Figure \ref{fig:app-missing-specs}, a more complex judge (Claude 3.7) does not satisfy the property that the LLM Judge Score should monotonically decrease with the number of missing specs. Indeed, the Judge File Equivalence score was not monotonic, even for Claude 3.5, leading us to simplify the rubric used in our main paper.
 
 \begin{figure*}[t]
   \centering
@@ -1135,9 +1249,37 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{figures/hist_human_scores_two_passes_aligned72_0to5.png}
+  \begin{tikzpicture}
+    \begin{axis}[
+        width=\linewidth,
+        height=0.62\linewidth,
+        ybar,
+        bar width=7pt,
+        ymin=0,
+        ymax=48,
+        ylabel={Count},
+        xlabel={Human score (0--5)},
+        symbolic x coords={1,1.5,2,3,4,5},
+        xtick=data,
+        x tick label style={font=\scriptsize},
+        y tick label style={font=\scriptsize},
+        label style={font=\scriptsize},
+        legend style={font=\scriptsize, draw=none, at={(0.02,0.98)}, anchor=north west},
+        enlarge x limits=0.12,
+        axis line style={black!60},
+        tick style={black!60},
+      ]
+      \addplot+[fill=blue!55, draw=blue!70!black] coordinates {
+          (1,1) (1.5,0) (2,7) (3,18) (4,44) (5,5)
+        };
+      \addplot+[fill=red!55, draw=red!70!black] coordinates {
+          (1,0) (1.5,3) (2,6) (3,10) (4,33) (5,23)
+        };
+      \legend{Stricter pass,Lenient pass}
+    \end{axis}
+  \end{tikzpicture}
   \caption{\textbf{Human-score dispersion across passes (aligned \(n=75\), 0--5 scale).}
-    Overlaid pass1/pass2 histograms show visible distribution shift, consistent with the non-zero MAE/MSE and divergence statistics in Table~\ref{tab:app-human-human-ceiling}.}
+    Score counts are computed on the full set of \(75\) aligned candidate--gold pairs shared across both passes. The lenient pass includes three \(1.5\) scores because duplicated legacy entries for one problem were averaged before plotting. The visible distribution shift is consistent with the non-zero MAE/MSE and divergence statistics in Table~\ref{tab:app-human-human-ceiling}.}
   \label{fig:app-human-pass-hist}
 \end{figure}
 
@@ -1198,6 +1340,25 @@ To stress-test whether index choice alone can ``rescue'' a weak judge family, we
 \]
 where \(C_f\) is the mean per-file property-correlation quality term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
 We report Spearman between index score and validation-set human Spearman across judges.
+
+\subsection{Index Definitions}\label{app:index-definitions}
+For reference, the simple arithmetic baselines in the main text are
+\[
+  v1 = 0.30\,\text{ident} + 0.30\,\text{mono\_rank} + 0.25\,\text{weak} + 0.15\,\text{stab},
+\]
+\[
+  \begin{aligned}
+    v2 ={} & 0.20\,\text{ident} + 0.20\,\text{mono\_rank} + 0.15\,\text{weak} \\
+           & + 0.10\,\text{stab} + 0.20\,\text{anti} + 0.15\,\text{subtle},
+  \end{aligned}
+\]
+where \(\text{mono\_rank}=(1-\rho_{\text{bug}})/2\) rescales bug-ladder Spearman so that larger is better, and \(\text{stab}=1-\text{flip\_rate}\).
+
+For the variance-aware index, the quality term is
+\[
+  C_f = \frac{1}{|\mathcal{F}|}\sum_{f \in \mathcal{F}} \mathrm{clip}\!\left(\frac{1-\rho_f}{2},\,0,\,1\right),
+\]
+where \(\rho_f\) is the Spearman correlation between bug level and judge score for file \(f\). Thus \(C_f\) is the mean per-file bug-ladder monotonicity-quality term before the variance penalties are applied.
 
 \begin{table}[t]
   \centering
