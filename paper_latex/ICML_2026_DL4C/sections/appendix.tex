@@ -42,6 +42,15 @@ Certifying judges requires not only behavioral properties but also principled va
 \paragraph{Robust Evaluation without Ground Truth.}
 Standard judge queries can be brittle in the absence of ground truth, particularly under adversarial manipulation \citep{Zhuo2024ICEScore,TongZhang2024CodeJudge}. \citet{robertson2025stepbystep} model the overseer as an agent and propose using information-theoretic, incentive-compatible queries instead of direct ratings. They introduce bounded $f$-divergence measures such as TVD-MI, which exhibit polynomial robustness to adversarial strategies, unlike unbounded KL-based criteria. This work highlights a pathway toward robust, certifiable judges when explicit ground truth is unavailable.
 
+\paragraph{Specializing judges to a test set vs.\ certifying judges across configurations.}
+\citet{finkelstein2024specialist} propose the \emph{Specialist} method, which deliberately abandons cross-test-set generalization and instead overfits a prompted LLM autorater to a single fixed benchmark.
+For each test example, in-context demonstrations are drawn from historical human ratings of the \emph{same source}, yielding 54--119\% character-level F1 gains over \textsc{XCOMET} on the WMT'23/'24 MQM tasks.
+Their work and ours share a common motivation---amortizing the expensive part of human evaluation rather than re-annotating from scratch---but amortize along orthogonal axes.
+Specialist amortizes \emph{within} a test set: it reuses many historical ratings (under a pseudo-SxS, single-rater-per-input regime) as inference-time demonstrations, so the judge must be re-specialized for each new benchmark and, as the authors show, to the individual rater.
+Property certification instead amortizes \emph{across judge configurations}: a one-time calibration panel relates falsifiable behavioral properties (P1--P4) to human agreement, after which any new $(\text{model},\text{prompt},n_\text{repeats},\text{aggregation})$ tuple is screened by fully automated perturbation checks, with no human-vs-gold labels required on the perturbed variants.
+The two approaches are complementary: Specialist still consumes human ratings at scoring time and presumes a curated pool of same-source annotations, whereas our property-certification protocol targets the setting where new judges proliferate faster than any per-test-set rating pool can be maintained.
+Notably, their finding that a Specialist autorater specializes to a \emph{single} rater echoes our own concern with human-pass dispersion; both works suggest single-rater ground truth is an imperfect ceiling, motivating the multi-rater held-out protocol we defer to future work.
+
 \paragraph{Formal Methods as Oversight.}
 Proof assistants provide binary, kernel-level guarantees. \citet{zhou2024donttrustverify} autoformalize math solutions into Isabelle/HOL and show that filtering via proof checking outperforms majority voting by 12\% on GSM8K. \citet{liu2025safe} extend this approach with SAFE, which verifies every intermediate step in Lean 4 and introduces the FormalStep benchmark, reducing hallucinations and enabling fine-grained oversight.
 

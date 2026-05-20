@@ -1,6 +1,14 @@
 \section{Related Work}
 \paragraph{LLM-as-a-Judge.}
-LLMs are increasingly used as \emph{automated evaluators} across open-ended tasks, often reaching strong agreement with human ratings---e.g., GPT-4 judges achieving $>$80\% agreement with human preference labels in dialogue \citep{Zheng2023MTBench}. However, large-scale audits caution that reliability varies by task and setup, and stress the need for explicit validation before replacing human judgment \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}. Common biases include position and verbosity effects and sensitivity to prompt phrasing \citep{Zheng2023MTBench,Li2024TrustLLMJudgments}.
+LLMs are increasingly used as \emph{automated evaluators} across open-ended tasks.
+In prominent LLM-as-a-judge work, reliability is commonly validated by agreement with people.
+\textsc{G-Eval} reports Spearman correlation with human scores \citep{Liu2023GEval}.
+MT-Bench reports GPT-4 judge agreement with human preference labels \citep{Zheng2023MTBench}.
+Judge-Bench evaluates whether LLMs replicate existing human annotations across 20 NLP datasets \citep{Kocmi2024HumanVsLLM}.
+These studies make human agreement the standard validation target.
+Our contribution keeps that target but amortizes it: one human calibration panel selects falsifiable property checks that screen future judge configurations without new labels.
+However, large-scale audits caution that reliability varies by task and setup, and stress the need for explicit validation before replacing human judgment \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
+Common biases include position and verbosity effects and sensitivity to prompt phrasing \citep{Zheng2023MTBench,Li2024TrustLLMJudgments}.
 
 \paragraph{Improving judge reliability.}
 To mitigate biases and instability, multi-agent debate frameworks such as \emph{ChatEval} emulate panel-style review to yield more robust consensus scores \citep{Chan2024ChatEval}. Structured prompting like \emph{G-Eval} elicits rubric-driven, stepwise reasoning prior to scoring, improving agreement with human criteria on NLG tasks \citep{Liu2023GEval}. Reliability can also be quantified via repeated scorings and internal consistency measures (e.g., Cronbach's $\alpha$) to detect prompt/run sensitivity \citep{Li2024TrustLLMJudgments}.

@@ -137,7 +137,15 @@ Our \textbf{contributions} are:
 
 \section{Related Work}
 \paragraph{LLM-as-a-Judge.}
-LLMs are increasingly used as \emph{automated evaluators} across open-ended tasks, often reaching strong agreement with human ratings—e.g., GPT-4 judges achieving $>$80\% agreement with human preference labels in dialogue \citep{Zheng2023MTBench}. However, large-scale audits caution that reliability varies by task and setup, and stress the need for explicit validation before replacing human judgment \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}. Common biases include position and verbosity effects and sensitivity to prompt phrasing \citep{Zheng2023MTBench,Li2024TrustLLMJudgments}.
+LLMs are increasingly used as \emph{automated evaluators} across open-ended tasks.
+In prominent LLM-as-a-judge work, reliability is commonly validated by agreement with people.
+\textsc{G-Eval} reports Spearman correlation with human scores \citep{Liu2023GEval}.
+MT-Bench reports GPT-4 judge agreement with human preference labels \citep{Zheng2023MTBench}.
+Judge-Bench evaluates whether LLMs replicate existing human annotations across 20 NLP datasets \citep{Kocmi2024HumanVsLLM}.
+These studies make human agreement the standard validation target.
+Our contribution keeps that target but amortizes it: one human calibration panel selects falsifiable property checks that screen future judge configurations without new labels.
+However, large-scale audits caution that reliability varies by task and setup, and stress the need for explicit validation before replacing human judgment \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
+Common biases include position and verbosity effects and sensitivity to prompt phrasing \citep{Zheng2023MTBench,Li2024TrustLLMJudgments}.
 
 \paragraph{Improving judge reliability.}
 To mitigate biases and instability, multi-agent debate frameworks such as \emph{ChatEval} emulate panel-style review to yield more robust consensus scores \citep{Chan2024ChatEval}. Structured prompting like \emph{G-Eval} elicits rubric-driven, stepwise reasoning prior to scoring, improving agreement with human criteria on NLG tasks \citep{Liu2023GEval}. Reliability can also be quantified via repeated scorings and internal consistency measures (e.g., Cronbach’s $\alpha$) to detect prompt/run sensitivity \citep{Li2024TrustLLMJudgments}.
@@ -820,6 +828,15 @@ They trace the failure to structurally correlated LLM errors: in MATH plurality-
 A central diagnosis is that self-reported confidence and consensus track \emph{what the crowd will say} more reliably than \emph{what is true}, separating social prediction from truth verification, and the paper concludes that inference-time scaling improves truthfulness only when an external verifier is available.
 Our work sits on the verifier-present side of that boundary: instead of aggregating across a judge population, we calibrate a single judge against falsifiable properties (P1--P4) over Lean~4-checked gold artifacts and explicitly constructed bug/specification ladders, yielding a calibrated trust metric with no inter-judge consensus dependency.
 For oracle-free extensions, TVD-MI-style cross-judge information should be used as a robustness diagnostic rather than as a truth proxy, side-stepping the consensus-as-truth failure mode they document; conversely, their negative results sharpen the case for property-based, single-judge certification whenever a verifier or calibrated reference exists.
+
+\paragraph{Specializing judges to a test set vs.\ certifying judges across configurations.}
+\citet{finkelstein2024specialist} propose the \emph{Specialist} method, which deliberately abandons cross-test-set generalization and instead overfits a prompted LLM autorater to a single fixed benchmark.
+For each test example, in-context demonstrations are drawn from historical human ratings of the \emph{same source}, yielding 54--119\% character-level F1 gains over \textsc{XCOMET} on the WMT'23/'24 MQM tasks.
+Their work and ours share a common motivation---amortizing the expensive part of human evaluation rather than re-annotating from scratch---but amortize along orthogonal axes.
+Specialist amortizes \emph{within} a test set: it reuses many historical ratings (under a pseudo-SxS, single-rater-per-input regime) as inference-time demonstrations, so the judge must be re-specialized for each new benchmark and, as the authors show, to the individual rater.
+Property certification instead amortizes \emph{across judge configurations}: a one-time calibration panel relates falsifiable behavioral properties (P1--P4) to human agreement, after which any new $(\text{model},\text{prompt},n_\text{repeats},\text{aggregation})$ tuple is screened by fully automated perturbation checks, with no human-vs-gold labels required on the perturbed variants.
+The two approaches are complementary: Specialist still consumes human ratings at scoring time and presumes a curated pool of same-source annotations, whereas our property-certification protocol targets the setting where new judges proliferate faster than any per-test-set rating pool can be maintained.
+Notably, their finding that a Specialist autorater specializes to a \emph{single} rater echoes our own concern with human-pass dispersion; both works suggest single-rater ground truth is an imperfect ceiling, motivating the multi-rater held-out protocol we defer to future work.
 
 \paragraph{Formal Methods as Oversight.}
 Proof assistants provide binary, kernel-level guarantees. \citet{zhou2024donttrustverify} autoformalize math solutions into Isabelle/HOL and show that filtering via proof checking outperforms majority voting by 12\% on GSM8K. \citet{liu2025safe} extend this approach with SAFE, which verifies every intermediate step in Lean 4 and introduces the FormalStep benchmark, reducing hallucinations and enabling fine-grained oversight.
