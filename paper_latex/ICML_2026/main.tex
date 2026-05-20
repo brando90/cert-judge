@@ -3,7 +3,6 @@
 % Keep the existing ICML style file in this repo until the official
 % ICML 2026 style files are added locally.
 \usepackage{icml2025}
-
 % Encoding & typography
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} % (only if using pdfLaTeX; not needed for XeLaTeX/LuaLaTeX)
@@ -78,7 +77,7 @@
 \begin{document}
 
 \twocolumn[
-  \icmltitle{Certifying the Judge: Falsifiable Properties for LLM-Based Evaluation of Formal Code}
+  \icmltitle{CertJudge: Evaluating Lean Formal-Code With Falsifiable Properties}
 
   \begin{icmlauthorlist}
     \icmlauthor{Anonymous Authors}{anon}
@@ -92,12 +91,89 @@
 \printAffiliationsAndNotice{}
 
 \begin{abstract}
-  LLM judges are increasingly central to evaluating AI-generated code, tests, and formal specifications, yet their reliability is still checked in the least scalable way possible: fresh human ratings for every new judge, prompt, model, and threshold. We challenge this validation loop by asking whether human judgment can be amortized and \textbf{scaled} through falsifiable behavioral properties. We propose a property-certification protocol for LLM judges of Lean~4 theorem and specification quality, where each judge is scored by four automatically testable conditions: identity, bug monotonicity, specification monotonicity, and repeat/prompt stability. Our variance-aware trust index \(\mathrm{TI}_{\mathrm{var}}\) is one calibrated instantiation of these diagnostics. The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled calibration pairs constitute a universally fixed evaluator constant.
+  LLM judges are increasingly used to evaluate AI-generated code, tests, theorems, and formal specifications. In our setting, a judge scores the quality of a candidate Lean~4 artifact relative to a gold reference, but validating each new judge, prompt, model, or threshold with fresh human ratings is expensive and does not scale. We ask whether this validation can be amortized through behavioral checks that are automatic and falsifiable.
 
-  On eight judge configurations spanning frontier prompts, weaker baselines, edit-distance, and random controls, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on that calibration suite, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2). Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs, while identity and stability are weaker standalone signals. Applied to \textsc{VeriBench}, the protocol illustrates validation-set calibration for scalable evaluation settings involving AI-generated code, tests, theorems, and formal specifications, while explicitly not claiming deployed generalization guarantees.
+  We propose \textsc{CertJudge}, a property-certification protocol for LLM judges of Lean~4 theorem and specification quality. Instead of treating human agreement as the only validation signal, \textsc{CertJudge} tests whether a judge behaves correctly under controlled perturbations measuring identity, bug monotonicity, specification monotonicity, and stability. These diagnostics are combined into a variance-aware trust index, \(\mathrm{TI}_{\mathrm{var}}\), which provides a summary of judge reliability rather than a universal evaluator constant.
+
+  %The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled calibration pairs constitute a universally fixed evaluator constant.
+
+  On a human-labeled validation suite, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2) (Appendix~\ref{app:exp16-exp17}). On \textsc{VeriBench} (Section~\ref{sec:veribench-overview}), we use the calibrated judge to rank theorem-generation methods, illustrating how a small human calibration set can support scalable judge selection. These results are validation-set calibration evidence, not a claim of universal reliability or deployment-time generalization.%validation-set calibration for scalable evaluation settings involving AI-generated code, tests, theorems, and formal specifications, while explicitly not claiming deployed generalization guarantees.
 \end{abstract}
 
 \section{Introduction}
+
+\begin{figure}[t]
+  \centering
+  \resizebox{\columnwidth}{!}{%
+    \begin{tikzpicture}[
+        font=\sffamily\scriptsize,
+        >=Latex,
+        node distance=4.8mm,
+        box/.style={
+            draw=#1!70!black,
+            rounded corners=2pt,
+            line width=0.65pt,
+            fill=#1!13,
+            align=center,
+            inner xsep=5.5pt,
+            inner ysep=5pt,
+            minimum height=0.90cm
+          },
+        box/.default=RoyalBlue,
+        score/.style={
+            draw=#1!75!black,
+            rounded corners=2pt,
+            line width=0.75pt,
+            fill=#1!18,
+            align=center,
+            inner xsep=5.5pt,
+            inner ysep=5pt,
+            minimum height=0.90cm
+          },
+        score/.default=ForestGreen,
+        arrow/.style={->, line width=0.65pt, draw=black!60}
+      ]
+
+      \node[box=RoyalBlue, text width=1.58cm] (input) {
+        \textbf{Lean pair}\\[-1pt]
+        candidate\\[-1pt]
+        + reference
+      };
+
+      \node[box=BurntOrange, right=of input, text width=1.42cm] (judge) {
+        \textbf{LLM judge}\\[-1pt]
+        score
+      };
+
+      \node[box=MidnightBlue, right=of judge, text width=2.42cm, minimum height=1.22cm] (props) {
+        \textbf{P1--P4 checks}\\[-1pt]
+        \begin{tabular}{@{}cc@{}}
+          identity           & bug $\downarrow$ \\
+          spec. $\downarrow$ & stability
+        \end{tabular}
+      };
+
+      \node[score=ForestGreen, right=of props, text width=1.32cm] (ti) {
+      \textbf{$\mathrm{TI}_{\mathrm{var}}$}\\[-1pt]
+      trust
+      };
+
+      \node[box=Plum, right=of ti, text width=1.76cm] (out) {
+        \textbf{Use judge}\\[-1pt]
+        select\\[-1pt]
+        + evaluate
+      };
+
+      \draw[arrow] (input) -- (judge);
+      \draw[arrow] (judge) -- (props);
+      \draw[arrow] (props) -- (ti);
+      \draw[arrow] (ti) -- (out);
+    \end{tikzpicture}
+  }
+  \caption{\textbf{\textsc{CertJudge} overview.} An LLM judge scores a candidate Lean artifact against a reference; property checks convert these scores into \(\mathrm{TI}_{\mathrm{var}}\), which supports judge selection and downstream evaluation.}
+  \label{fig:certjudge_overview}
+\end{figure}
+
 Agentic AI systems increasingly generate both code and the trust artifacts meant to evaluate that code: tests, specifications, and formal theorems.
 In Lean~4, these artifacts are code-adjacent formal objects: runnable programs paired with theorem or specification statements and, sometimes, proofs that those statements hold.
 In classical autoformalization, the target theorem is supplied, so evaluation can often reduce to proof success.
@@ -129,9 +205,9 @@ On a panel of eight judge configurations, \(\mathrm{TI}_{\mathrm{var}}\) fits th
 
 Our \textbf{contributions} are:
 \begin{enumerate}
-  \item \textbf{An amortized trust-validation protocol:} we formalize property certification as one-time calibration on a fixed panel of Lean artifacts with scripted perturbations. After calibration, any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) judge configuration can be screened by computing four falsifiable properties, without repeating the full human-labeling budget.
+  \item \textbf{An amortized trust-validation protocol:} we formalize property certification as one-time calibration on a fixed panel of Lean artifacts with perturbations. After calibration, any new judge configuration can be screened by computing four falsifiable properties, without repeating the full human-labeling budget.
 
-  \item \textbf{Proof-of-concept calibration on \(\bm{n{=}75}\):} \(\mathrm{TI}_{\mathrm{var}}\) is one concrete geometric aggregation of diagnostics that tracks human agreement on eight judge tuples; we report validation-set correlations (avg \(=0.833\), pass1 \(=0.905\), pass2 \(=0.738\) Spearman) as evidence toward amortized oversight feasibility, \emph{not} as universally fixed aggregation weights or constants.
+  \item \textbf{Proof-of-concept calibration on \(\bm{n{=}75}\):} \(\mathrm{TI}_{\mathrm{var}}\) is one geometric aggregation of diagnostics that tracks human agreement on judges; we report correlations (avg \(=0.833\), pass1 \(=0.905\), pass2 \(=0.738\) Spearman) as evidence toward amortized oversight feasibility, \emph{not} as universally fixed aggregation weights or constants.
   \item \textbf{End-to-end use on \textsc{VeriBench}:} the same calibrated judge ranks agent-generation methods consistently with benchmark expectations (e.g., DSPy ReAct \(0.615\) vs.\ baseline prompting \(0.470\) on normalized specs), illustrating how trust signals propagate to scalable code/spec evaluation workloads.
 \end{enumerate}
 
@@ -148,11 +224,11 @@ For programming, single-pass metrics like pass@k can be brittle or unavailable; 
 \paragraph{Evaluation Consistency.}
 Recent work has shown that unconstrained chain-of-thought reasoning can reduce evaluation consistency, and that simple comparative prompting often outperforms complex multi-step pipelines \citep{chen2026rethinking}. We interpret these findings as evidence that stability, rather than reasoning complexity, is the primary driver of reliable grading. Our work formalizes this intuition by introducing falsifiable structural diagnostics---identity, monotonicity under controlled edits, and reliability under prompt variation---that aggregate into a graded trust signal aligned with human judgments.
 
-\section{Problem Setup: Judging Lean Theorem/Specification Quality}\label{sec:problem-setup}
+\section{Evaluating Lean Theorem/Specification Quality}\label{sec:problem-setup}
 \paragraph{Task.}
 Each benchmark item contains a natural-language problem statement, a gold Lean~4 artifact
 $g$, and a candidate artifact $x$ produced by an AI agent. The artifact may include code,
-tests or specification scaffolds, and a target theorem/specification statement. Our goal is
+tests or specifications, and a target theorem/specification statement. Our goal is
 to assign a score $J(x,g) \in [0,1]$ reflecting how well the candidate captures the intended formal specification represented
 by the gold artifact.
 For non-formal-methods readers, a Lean artifact is a code file in a programming language and proof assistant where executable code, tests, definitions, and theorem statements can live together.
@@ -200,7 +276,7 @@ As simple first-pass baselines, we also consider arithmetic variants \(v1\) and 
     \Big),
   \end{aligned}
 \]
-where \(C_f\) is the mean per-file monotonicity-quality term over bug ladders and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties; Appendix~\ref{app:index-definitions} gives the exact definitions. Our calibration claim is simple: judges with higher trust-index scores should also have higher human agreement on the validation panel. The equal-weighted form above is a simple variance-aware instantiation; other task-specific calibrations are possible, but we treat \(\mathrm{TI}_{\mathrm{var}}\) as a validation-set trust signal rather than a universal constant.
+where \(C_f\) is the geometric aggregate of the four property scores and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties; Appendix~\ref{app:index-definitions} gives the exact definitions. Our calibration claim is simple: judges with higher trust-index scores should also have higher human agreement on the validation panel. The equal-weighted form above is a simple variance-aware instantiation; other task-specific calibrations are possible, but we treat \(\mathrm{TI}_{\mathrm{var}}\) as a validation-set trust signal rather than a universal constant.
 
 To be trustworthy, the judge should satisfy the following falsifiable calibration targets.
 
@@ -244,10 +320,11 @@ We evaluate these targets with rank-based monotonicity statistics (Kendall's $\t
 
 \begin{figure*}[t]
   \centering
+  \captionsetup[subfigure]{font=small,labelfont=bf,justification=centering}
   \begin{subfigure}[t]{0.315\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_exp19.png}
-    \caption{Low-variance monotonicity (main view)}
+    \caption{Average score under increasing degradation}
     \label{fig:judge_lowvar_main}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.315\textwidth}
@@ -493,15 +570,10 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
       \end{axis}
     \end{tikzpicture}
   \end{subfigure}
-  \caption{\textbf{$\mathrm{TI}_{\mathrm{var}}$ vs.\ judge-level human alignment (avg labels).}
-  Each panel shows one judge family with one point per judge configuration.
-  The \(x\)-axis is \(\mathrm{TI}_{\mathrm{var}}\); the \(y\)-axis is Spearman agreement with averaged human scores on the aligned panel.
-  Vertical error bars show bootstrap-style uncertainty (approximate standard error) for each judge's Spearman correlation with averaged human ratings on the aligned panel.
-  A compact two-column legend is inset in the upper-left corner of the Codex panel only (same keys in every panel); marker colors match the legend.
-  The dashed line is an OLS guide to the scatter; it is illustrative and not interpreted as causal identification.
-  Panel subtitles give Spearman \(\rho\) on \texttt{avg} labels for that family, matching Table~\ref{tab:tivar_cross_model_results}.
-  The shared upward trend is the main result: higher certification strength tracks higher human alignment.
-  Robustness: Table~\ref{tab:cross_pass_generalization}; Appendix Figure~\ref{fig:app-exp25-13judge}.}
+  \caption{\textbf{$\mathrm{TI}_{\mathrm{var}}$ vs.\ judge-level human alignment.}
+  Each point is one judge configuration; the \(x\)-axis is \(\mathrm{TI}_{\mathrm{var}}\), and the \(y\)-axis is Spearman agreement with averaged human labels on the aligned validation panel.
+  Vertical bars show approximate bootstrap SE; dashed lines are OLS guides.
+  Across model families, higher certification strength tracks higher human alignment.}
   \label{fig:tivar_cross_model_avg}
   \vspace{-2mm}
 \end{figure*}
@@ -657,7 +729,7 @@ In experiments, calibrated judge scoring produces informative method rankings an
 \subsection{Validation vs. test protocol}
 The results in Section~\ref{sec:validation-human-alignment} are validation-set numbers. The same human labels were used to choose the trust-index form, repeat aggregation, threshold, and prompt panel, so the reported trends should be interpreted as calibration findings rather than out-of-sample generalization claims.
 
-Beyond the \(n=75\) panel used in Section~5.3, which was scored under two closely related rubric prompts corresponding to stricter and more lenient rating views, we have now collected a substantially broader independent annotation pool in \texttt{experiments/human\_labels}. This newer pool contains five reviewers and \(\mathbf{343}\) scored labels over \(78\) distinct candidate--gold pairs, with many pairs receiving \(4\) or \(5\) independent ratings. We do not use those labels in the present paper's calibration numbers. Instead, the intended next step is a locked held-out analysis: freeze the current property definitions and \(\mathrm{TI}_{\mathrm{var}}\) formulation, aggregate the independent reviewer labels with noise-aware estimators where appropriate, and test whether the judge-level \(\mathrm{TI}_{\mathrm{var}}\) trend persists under broader rubric variation and multi-rater supervision.
+Beyond the \(n=75\) panel used in Section~5.3, which was scored under two closely related rubric prompts corresponding to stricter and more lenient rating views, we have now collected a substantially broader independent annotation pool. This newer pool contains five reviewers and \(\mathbf{343}\) scored labels over \(78\) distinct candidate--gold pairs, with many pairs receiving \(4\) or \(5\) independent ratings. We do not use those labels in the present paper's calibration numbers. Instead, the intended next step is a locked held-out analysis: freeze the current property definitions and \(\mathrm{TI}_{\mathrm{var}}\) formulation, aggregate the independent reviewer labels with noise-aware estimators where appropriate, and test whether the judge-level \(\mathrm{TI}_{\mathrm{var}}\) trend persists under broader rubric variation and multi-rater supervision.
 
 This corpus directly addresses the concern that the present \(n=75\) panel may overfit to a narrow rubric interpretation and provides a path from calibration evidence to locked-test generalization.
 
@@ -667,7 +739,7 @@ An encouraging sign is that a separate expanded 13-judge analysis remains above 
 We treat \(\mathrm{TI}_{\mathrm{var}}\) as a graded trust signal rather than a binary pass/fail gate.
 Individual properties are necessary conditions on the perturbations we test (a judge that scores \(X=X\) at less than \(1.0\) has, by definition, failed identity), but no finite property suite can certify all possible judge failures.
 TI is multiplicative, so a single low-scoring property collapses the index, but it does not impose a hard threshold.
-The empirical question we answer is whether higher-TI judges are more validation-human-aligned in expectation; the answer (\(\rho=0.881\) across \(8\) judges) is supportive but graded, and generalization to held-out humans and judges is reported separately.
+The empirical question we answer is whether higher-TI judges are more validation-human-aligned in expectation; the answer (\(\rho=0.881\) across \(8\) judges) is supportive but graded, and generalization to held-out humans and judges is left to future work.
 
 \paragraph{\textsc{Alpha}-renaming robustness.}
 Among semantics-preserving rewrite probes, aggressive \textsc{Alpha}-renaming (systematically changing bound variable and binder names while leaving Lean-semantics intact) is systematically the hardest for our judges: mean scores and score stability remain much worse than under milder RENAME/REORDER/STYLE edits (Table~\ref{tab:codex_invariance_variants} and appendix failure-mode plots).
@@ -694,6 +766,8 @@ We present an amortized human-validation protocol for LLM judges based on falsif
 Rather than re-labeling every new judge configuration, we calibrate once with human labels and then score new judges via property diagnostics.
 Our main empirical result is that this property-based trust index tracks judge-level human alignment on the validation panel, with strong signals from monotonicity and stability.
 The key next step is a locked held-out test with independent annotators and unseen judge families.
+
+\newpage
 
 % -------------------------------
 % References (inline for portability)
@@ -1134,6 +1208,9 @@ We note that, for the experiment shown in Figure \ref{fig:app-missing-specs}, a 
 
 \section{Validation-Set Human Alignment Appendix}\label{app:exp16-exp17}
 This appendix reports full visual diagnostics for the final robust validation-set human-alignment analyses under three label views: pass1, pass2, and avg.
+We evaluate eight judge configurations spanning frontier-model prompts, weaker LLM baselines, edit-distance heuristics, and random controls.
+Across this panel, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on the calibration suite, with validation-set Spearman correlations of \(0.833\) under averaged labels, \(0.905\) under pass1 labels, and \(0.738\) under pass2 labels.
+Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs; identity and stability are weaker standalone signals at this scale.
 
 \begin{figure}[t]
   \centering
@@ -1338,7 +1415,7 @@ To stress-test whether index choice alone can ``rescue'' a weak judge family, we
     \Big)
   \end{aligned}
 \]
-where \(C_f\) is the mean per-file property-correlation quality term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
+where \(C_f\) is the aggregated P1--P4 quality term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
 We report Spearman between index score and validation-set human Spearman across judges.
 
 \subsection{Index Definitions}\label{app:index-definitions}
@@ -1356,9 +1433,9 @@ where \(\text{mono\_rank}=(1-\rho_{\text{bug}})/2\) rescales bug-ladder Spearman
 
 For the variance-aware index, the quality term is
 \[
-  C_f = \frac{1}{|\mathcal{F}|}\sum_{f \in \mathcal{F}} \mathrm{clip}\!\left(\frac{1-\rho_f}{2},\,0,\,1\right),
+  C_f = \left(\text{ident}\cdot\text{mono\_rank}\cdot\text{weak}\cdot\text{stab}\right)^{1/4},
 \]
-where \(\rho_f\) is the Spearman correlation between bug level and judge score for file \(f\). Thus \(C_f\) is the mean per-file bug-ladder monotonicity-quality term before the variance penalties are applied.
+so the variance-aware index combines all four property scores before applying the variance penalties.
 
 \begin{table}[t]
   \centering
