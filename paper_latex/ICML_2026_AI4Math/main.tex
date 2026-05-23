@@ -71,7 +71,7 @@
 
 \icmltitlerunning{Certifying the Judge}
 \makeatletter
-\renewcommand{\Notice@String}{Anonymous submission to the ICML 2026 DL4C Workshop.}
+\renewcommand{\Notice@String}{Anonymous submission to the ICML 2026 AI4Math Workshop.}
 \makeatother
 
 \begin{document}
@@ -91,86 +91,19 @@
 \printAffiliationsAndNotice{}
 
 \begin{abstract}
-  LLM judges are increasingly used to evaluate AI-generated code, tests, theorems, and formal specifications. In our setting, a judge scores the quality of a candidate Lean~4 artifact relative to a gold reference, but validating each new judge, prompt, model, or threshold with fresh human ratings is expensive and does not scale. We ask whether this validation can be amortized through behavioral checks that are automatic and falsifiable.
-
-  We propose \textsc{CertJudge}, a property-certification protocol for LLM judges of Lean~4 theorem and specification quality. Instead of treating human agreement as the only validation signal, \textsc{CertJudge} tests whether a judge behaves correctly under controlled perturbations measuring identity, bug monotonicity, specification monotonicity, and stability. These diagnostics are combined into a variance-aware trust index, \(\mathrm{TI}_{\mathrm{var}}\), which provides a summary of judge reliability rather than a universal evaluator constant.
+  LLM judges are increasingly used to evaluate AI-generated code, tests, theorems, and formal specifications. In our setting, a judge scores the quality of a candidate Lean~4 artifact relative to a gold reference, but validating each new judge, prompt, model, or threshold with fresh human ratings is expensive and does not scale. We ask whether this validation can be amortized through behavioral checks that are automatic and falsifiable. We propose \textsc{CertJudge}, a property-certification protocol for LLM judges of Lean~4 theorem and specification quality. Instead of treating human agreement as the only validation signal, \textsc{CertJudge} tests whether a judge behaves correctly under controlled perturbations measuring identity, bug monotonicity, specification monotonicity, and stability. These diagnostics are combined into a variance-aware trust index, \(\mathrm{TI}_{\mathrm{var}}\), which provides a summary of judge reliability rather than a universal evaluator constant. On a human-labeled validation suite, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2) (Appendix~\ref{app:exp16-exp17}). On \textsc{VeriBench} (Section~\ref{sec:veribench-overview}), we use the calibrated judge to rank theorem-generation methods, illustrating how a small human calibration set can support scalable judge selection. These results are validation-set calibration evidence, not a claim of universal reliability or deployment-time generalization.
 
   %The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled calibration pairs constitute a universally fixed evaluator constant.
 
-  On a human-labeled validation suite, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2) (Appendix~\ref{app:exp16-exp17}). On \textsc{VeriBench} (Section~\ref{sec:veribench-overview}), we use the calibrated judge to rank theorem-generation methods, illustrating how a small human calibration set can support scalable judge selection. These results are validation-set calibration evidence, not a claim of universal reliability or deployment-time generalization.%validation-set calibration for scalable evaluation settings involving AI-generated code, tests, theorems, and formal specifications, while explicitly not claiming deployed generalization guarantees.
+  %validation-set calibration for scalable evaluation settings involving AI-generated code, tests, theorems, and formal specifications, while explicitly not claiming deployed generalization guarantees.
 \end{abstract}
 
 \section{Introduction}
 
 \begin{figure}[t]
   \centering
-  \resizebox{\columnwidth}{!}{%
-    \begin{tikzpicture}[
-        font=\sffamily\scriptsize,
-        >=Latex,
-        node distance=4.8mm,
-        box/.style={
-            draw=#1!70!black,
-            rounded corners=2pt,
-            line width=0.65pt,
-            fill=#1!13,
-            align=center,
-            inner xsep=5.5pt,
-            inner ysep=5pt,
-            minimum height=0.90cm
-          },
-        box/.default=RoyalBlue,
-        score/.style={
-            draw=#1!75!black,
-            rounded corners=2pt,
-            line width=0.75pt,
-            fill=#1!18,
-            align=center,
-            inner xsep=5.5pt,
-            inner ysep=5pt,
-            minimum height=0.90cm
-          },
-        score/.default=ForestGreen,
-        arrow/.style={->, line width=0.65pt, draw=black!60}
-      ]
-
-      \node[box=RoyalBlue, text width=1.58cm] (input) {
-        \textbf{Lean pair}\\[-1pt]
-        candidate\\[-1pt]
-        + reference
-      };
-
-      \node[box=BurntOrange, right=of input, text width=1.42cm] (judge) {
-        \textbf{LLM judge}\\[-1pt]
-        score
-      };
-
-      \node[box=MidnightBlue, right=of judge, text width=2.42cm, minimum height=1.22cm] (props) {
-        \textbf{P1--P4 checks}\\[-1pt]
-        \begin{tabular}{@{}cc@{}}
-          identity           & bug $\downarrow$ \\
-          spec. $\downarrow$ & stability
-        \end{tabular}
-      };
-
-      \node[score=ForestGreen, right=of props, text width=1.32cm] (ti) {
-      \textbf{$\mathrm{TI}_{\mathrm{var}}$}\\[-1pt]
-      trust
-      };
-
-      \node[box=Plum, right=of ti, text width=1.76cm] (out) {
-        \textbf{Use judge}\\[-1pt]
-        select\\[-1pt]
-        + evaluate
-      };
-
-      \draw[arrow] (input) -- (judge);
-      \draw[arrow] (judge) -- (props);
-      \draw[arrow] (props) -- (ti);
-      \draw[arrow] (ti) -- (out);
-    \end{tikzpicture}
-  }
-  \caption{\textbf{\textsc{CertJudge} overview.} An LLM judge scores a candidate Lean artifact against a reference; property checks convert these scores into \(\mathrm{TI}_{\mathrm{var}}\), which supports judge selection and downstream evaluation.}
+  \includegraphics[width=\linewidth]{figures/pull_fig.png}
+  \caption{\textbf{Scalable trust calibration for LLM judges.} A small human-labeled calibration set is paired with falsifiable property checks (P1--P4) to compute \(\mathrm{TI}_{\mathrm{var}}\), enabling judge selection and downstream evaluation with reduced relabeling overhead.}
   \label{fig:certjudge_overview}
 \end{figure}
 
@@ -195,7 +128,7 @@ Humans remain the anchor; the problem is that re-using humans from scratch for e
 %   \label{fig:pull_cost_alignment}
 % \end{figure*}
 
-We focus on a core \emph{DL4C} bottleneck: code agents can generate candidate formal artifacts far faster than humans can inspect them. In this setting, LLM judges are useful only if their reliability can be measured scalably rather than assumed.
+We focus on a core \emph{AI for math} bottleneck: code agents can generate candidate formal artifacts far faster than humans can inspect them. In this setting, LLM judges are useful only if their reliability can be measured scalably rather than assumed.
 
 Validating LLM judges against humans is the standard reliability check but does not scale: every new judge, prompt, or model needs fresh annotations.
 Property certification \textbf{amortizes} this cost---gold references collected once, used to calibrate a four-property trust metric, then deployed without re-annotating every new judge configuration.
@@ -647,7 +580,7 @@ Figure~\ref{fig:tivar_cross_model_avg} with Table~\ref{tab:tivar_cross_model_res
 \end{table}
 
 \paragraph{Takeaway for calibrated code evaluation.}
-The main empirical claim is not that any finite property suite certifies judge correctness. Rather, the claim is that falsifiable diagnostics can predict which LLM judges agree more strongly with human assessments of formal-code artifacts. This matters for deep learning for code because code agents can generate far more tests, specifications, and theorems than humans can inspect, while a one-time human calibration panel plus automated property checks provides a scalable way to compare judge configurations before deploying them on larger agent evaluations.
+The main empirical claim is not that any finite property suite certifies judge correctness. Rather, the claim is that falsifiable diagnostics can predict which LLM judges agree more strongly with human assessments of formal-code artifacts. This matters for AI for math because code agents can generate far more tests, specifications, and theorems than humans can inspect, while a one-time human calibration panel plus automated property checks provides a scalable way to compare judge configurations before deploying them on larger agent evaluations.
 
 \paragraph{Property-level interpretation.}
 For averaged labels, per-property correlations identify

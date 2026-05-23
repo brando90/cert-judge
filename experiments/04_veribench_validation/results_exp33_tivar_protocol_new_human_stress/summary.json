@@ -1,0 +1,227 @@
+{
+  "experiment": "exp33_tivar_protocol_new_human_stress",
+  "inputs": {
+    "tivar_dir": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp30_tivar_v3_all_models",
+    "human_dir": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/human_labels",
+    "include_old_prompt": false,
+    "result_dirs": [
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp22_expanded_judges_stable/exp16",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_final_robust_r9_median",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_opus47_r3_median",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_leanstral_r3_median",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_codex_good_only_r9_med",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_codex_p14_only_r5_med",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_tc_card_fast",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/13_qwen_replication_exp16_exp19/results/exp16_qwen_r3_median"
+    ]
+  },
+  "legacy_aligned": {
+    "n_family_label_rows": 12,
+    "avg_label_rows": [
+      {
+        "panel": "legacy_aligned",
+        "family": "codex",
+        "label_set": "avg",
+        "n_judges": 8,
+        "n_items_per_judge": 75,
+        "ti_var_human_spearman": 0.7619047619047621,
+        "ti_var_human_pearson": 0.8108916665192278,
+        "ti_var_human_kendall": 0.5714285714285714,
+        "source": "experiments/04_veribench_validation/results_exp30_tivar_v3_all_models/judge_trust_vector_codex_avg.csv"
+      },
+      {
+        "panel": "legacy_aligned",
+        "family": "claude_opus",
+        "label_set": "avg",
+        "n_judges": 8,
+        "n_items_per_judge": 75,
+        "ti_var_human_spearman": 0.4285714285714286,
+        "ti_var_human_pearson": 0.6079144114682107,
+        "ti_var_human_kendall": 0.2857142857142857,
+        "source": "experiments/04_veribench_validation/results_exp30_tivar_v3_all_models/judge_trust_vector_claude_opus_avg.csv"
+      },
+      {
+        "panel": "legacy_aligned",
+        "family": "qwen",
+        "label_set": "avg",
+        "n_judges": 8,
+        "n_items_per_judge": 75,
+        "ti_var_human_spearman": 0.6666666666666669,
+        "ti_var_human_pearson": 0.5724381121831317,
+        "ti_var_human_kendall": 0.5714285714285714,
+        "source": "experiments/04_veribench_validation/results_exp30_tivar_v3_all_models/judge_trust_vector_qwen_avg.csv"
+      },
+      {
+        "panel": "legacy_aligned",
+        "family": "leanstral",
+        "label_set": "avg",
+        "n_judges": 8,
+        "n_items_per_judge": 75,
+        "ti_var_human_spearman": -0.3333333333333334,
+        "ti_var_human_pearson": -0.4524480610300739,
+        "ti_var_human_kendall": -0.2857142857142857,
+        "source": "experiments/04_veribench_validation/results_exp30_tivar_v3_all_models/judge_trust_vector_leanstral_avg.csv"
+      }
+    ]
+  },
+  "expanded_new_human": {
+    "n_usable_labels": 837,
+    "n_distinct_items": 90,
+    "n_overlap_items": 72,
+    "n_overlap_tasks": 24,
+    "summary_rows": [
+      {
+        "panel": "expanded_new_human",
+        "family": "codex",
+        "label_set": "avg_item",
+        "n_judges": 8,
+        "n_items_per_judge": 72,
+        "n_tasks_per_judge": 24,
+        "ti_var_human_spearman": -0.07142857142857144,
+        "ti_var_human_pearson": -0.3118903778987256,
+        "ti_var_human_kendall": 0.0,
+        "source": "new human TSVs aggregated by item"
+      },
+      {
+        "panel": "expanded_new_human",
+        "family": "codex",
+        "label_set": "avg_task",
+        "n_judges": 8,
+        "n_items_per_judge": 72,
+        "n_tasks_per_judge": 24,
+        "ti_var_human_spearman": -0.4285714285714286,
+        "ti_var_human_pearson": -0.5118417893614852,
+        "ti_var_human_kendall": -0.2857142857142857,
+        "source": "new human TSVs aggregated by item"
+      },
+      {
+        "panel": "expanded_new_human",
+        "family": "claude_opus",
+        "label_set": "avg_item",
+        "n_judges": 8,
+        "n_items_per_judge": 72,
+        "n_tasks_per_judge": 24,
+        "ti_var_human_spearman": 0.261904761904762,
+        "ti_var_human_pearson": 0.0519706605441345,
+        "ti_var_human_kendall": 0.21428571428571427,
+        "source": "new human TSVs aggregated by item"
+      },
+      {
+        "panel": "expanded_new_human",
+        "family": "claude_opus",
+        "label_set": "avg_task",
+        "n_judges": 8,
+        "n_items_per_judge": 72,
+        "n_tasks_per_judge": 24,
+        "ti_var_human_spearman": 0.04761904761904763,
+        "ti_var_human_pearson": -0.03399527317024023,
+        "ti_var_human_kendall": 0.07142857142857142,
+        "source": "new human TSVs aggregated by item"
+      },
+      {
+        "panel": "expanded_new_human",
+        "family": "qwen",
+        "label_set": "avg_item",
+        "n_judges": 8,
+        "n_items_per_judge": 72,
+        "n_tasks_per_judge": 24,
+        "ti_var_human_spearman": -0.30952380952380953,
+        "ti_var_human_pearson": -0.4845694636402838,
+        "ti_var_human_kendall": -0.21428571428571427,
+        "source": "new human TSVs aggregated by item"
+      },
+      {
+        "panel": "expanded_new_human",
+        "family": "qwen",
+        "label_set": "avg_task",
+        "n_judges": 8,
+        "n_items_per_judge": 72,
+        "n_tasks_per_judge": 24,
+        "ti_var_human_spearman": -0.14285714285714288,
+        "ti_var_human_pearson": -0.47638332844833225,
+        "ti_var_human_kendall": -0.07142857142857142,
+        "source": "new human TSVs aggregated by item"
+      },
+      {
+        "panel": "expanded_new_human",
+        "family": "leanstral",
+        "label_set": "avg_item",
+        "n_judges": 8,
+        "n_items_per_judge": 72,
+        "n_tasks_per_judge": 24,
+        "ti_var_human_spearman": -0.14285714285714288,
+        "ti_var_human_pearson": 0.06826359762102678,
+        "ti_var_human_kendall": -0.07142857142857142,
+        "source": "new human TSVs aggregated by item"
+      },
+      {
+        "panel": "expanded_new_human",
+        "family": "leanstral",
+        "label_set": "avg_task",
+        "n_judges": 8,
+        "n_items_per_judge": 72,
+        "n_tasks_per_judge": 24,
+        "ti_var_human_spearman": -0.09523809523809526,
+        "ti_var_human_pearson": -0.09230635754760338,
+        "ti_var_human_kendall": 0.0,
+        "source": "new human TSVs aggregated by item"
+      }
+    ],
+    "rater_diagnostics": [
+      {
+        "rater": "expert_harsh_set_data",
+        "n_overlap_items": 78,
+        "spearman_vs_other_raters_mean": 0.9410494027146092,
+        "pearson_vs_other_raters_mean": 0.9140244625716797
+      },
+      {
+        "rater": "participant2_data_pass_1",
+        "n_overlap_items": 75,
+        "spearman_vs_other_raters_mean": 0.8713134884410461,
+        "pearson_vs_other_raters_mean": 0.8284579736525979
+      },
+      {
+        "rater": "participant1_data_correct_prompt",
+        "n_overlap_items": 75,
+        "spearman_vs_other_raters_mean": 0.8569148803715566,
+        "pearson_vs_other_raters_mean": 0.8262137059477341
+      },
+      {
+        "rater": "participant4_data_pass_1",
+        "n_overlap_items": 75,
+        "spearman_vs_other_raters_mean": 0.5512021795054117,
+        "pearson_vs_other_raters_mean": 0.6648048616752298
+      },
+      {
+        "rater": "participant3_data_pass_1",
+        "n_overlap_items": 45,
+        "spearman_vs_other_raters_mean": 0.5239219224455812,
+        "pearson_vs_other_raters_mean": 0.7296846632834788
+      },
+      {
+        "rater": "lenient_set_data",
+        "n_overlap_items": 78,
+        "spearman_vs_other_raters_mean": 0.48899216344070245,
+        "pearson_vs_other_raters_mean": 0.6658831704272206
+      },
+      {
+        "rater": "participant5_data_pass_1",
+        "n_overlap_items": 75,
+        "spearman_vs_other_raters_mean": 0.3503091868758543,
+        "pearson_vs_other_raters_mean": 0.4099235271552014
+      }
+    ]
+  },
+  "isotonic_appendix_files": [
+    "experiments/04_veribench_validation/results_exp33_tivar_protocol_new_human_stress/appendix_isotonic_oracle/test_isotonic_oracle_per_judge.csv",
+    "experiments/04_veribench_validation/results_exp33_tivar_protocol_new_human_stress/appendix_isotonic_oracle/test_isotonic_oracle_predictions.csv",
+    "experiments/04_veribench_validation/results_exp33_tivar_protocol_new_human_stress/appendix_isotonic_oracle/summary.json",
+    "experiments/04_veribench_validation/results_exp33_tivar_protocol_new_human_stress/appendix_isotonic_oracle/fig_exp32_test_isotonic_top3_fig3_style.pdf",
+    "experiments/04_veribench_validation/results_exp33_tivar_protocol_new_human_stress/appendix_isotonic_oracle/fig_exp32_test_isotonic_top3_fig3_style.png"
+  ],
+  "interpretation": {
+    "headline": "Use the legacy aligned-panel TI_var protocol for judge-selection claims.",
+    "held_out_check": "The expanded new-human panel is larger but does not reproduce high TI_var-human correlations.",
+    "isotonic": "The EXP32 test-set isotonic oracle remains an appendix-only upper-bound calibration diagnostic."
+  }
+}

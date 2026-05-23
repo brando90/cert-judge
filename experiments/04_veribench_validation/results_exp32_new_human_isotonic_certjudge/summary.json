@@ -1,0 +1,90 @@
+{
+  "experiment": "exp32_new_human_isotonic_certjudge",
+  "inputs": {
+    "human_dir": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/human_labels",
+    "include_old_prompt": false,
+    "split_dir": "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp23_pass_split_for_brando/splits",
+    "result_dirs": [
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp22_expanded_judges_stable/exp16",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_final_robust_r9_median",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_opus47_r3_median",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_leanstral_r3_median",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_codex_good_only_r9_med",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_codex_p14_only_r5_med",
+      "/Users/ethanhersch/Documents/Documents/Stanford_Research/cert-judge/experiments/04_veribench_validation/results_exp16_tc_card_fast"
+    ]
+  },
+  "data": {
+    "n_human_files_used": 7,
+    "n_usable_labels": 837,
+    "n_dropped_labels": 60,
+    "n_distinct_items": 90,
+    "n_distinct_tasks": 30,
+    "n_items_with_judge_scores": 72,
+    "n_train_items_overlap": 57,
+    "n_test_items_overlap": 15,
+    "n_judges": 24
+  },
+  "test_isotonic_oracle": {
+    "note": "IsotonicRegression is fit and evaluated on the test split; this is an oracle/upper-bound mapping, not a leakage-free deployment estimate.",
+    "top_judge_by_isotonic_spearman": {
+      "judge_id": "editdist_e1",
+      "n_test_items": 15,
+      "raw_pearson_r": 0.3592528393536017,
+      "raw_spearman_rho": 0.08944558140439413,
+      "raw_kendall_tau": -0.06731080401072015,
+      "raw_mae_0_1": 0.5745486,
+      "raw_rmse_0_1": 0.6019652494466646,
+      "test_isotonic_oracle_pearson_r": 0.9289334699130238,
+      "test_isotonic_oracle_spearman_rho": 0.6956083436402524,
+      "test_isotonic_oracle_kendall_tau": 0.5911975668985759,
+      "test_isotonic_oracle_mae_0_1": 0.059555555555555584,
+      "test_isotonic_oracle_rmse_0_1": 0.06935149334823029,
+      "model": "na",
+      "prompt_name": "na",
+      "kind": "editdist",
+      "source_dir": "experiments/04_veribench_validation/results_exp22_expanded_judges_stable/exp16"
+    }
+  },
+  "train_certjudge": {
+    "note": "Weights are optimized on train judge-level human Spearman, then also evaluated on test for a leakage check.",
+    "search_iters": 200000,
+    "seed": 42,
+    "components": [
+      "ident",
+      "mono_rank",
+      "weak_mono",
+      "stability",
+      "anti_string",
+      "subtle_bug"
+    ],
+    "weights": {
+      "ident": 0.07580390202411648,
+      "mono_rank": 0.261516702628434,
+      "weak_mono": 0.08985829940442296,
+      "stability": 0.005512637224518113,
+      "anti_string": 0.5416448063176496,
+      "subtle_bug": 0.025663652400858796
+    },
+    "best_train_spearman": 0.2834782608695652,
+    "recomputed_train_spearman": 0.2834782608695652,
+    "test_spearman_same_weights": 0.28521739130434776,
+    "baseline_indices": [
+      {
+        "index_name": "cert_index",
+        "train_spearman": 0.09043478260869564,
+        "test_spearman": 0.13304347826086957
+      },
+      {
+        "index_name": "cert_index_v2",
+        "train_spearman": 0.15217391304347824,
+        "test_spearman": 0.11043478260869564
+      },
+      {
+        "index_name": "certjudge_train_optimized",
+        "train_spearman": 0.2834782608695652,
+        "test_spearman": 0.28521739130434776
+      }
+    ]
+  }
+}
