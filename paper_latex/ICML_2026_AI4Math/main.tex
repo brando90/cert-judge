@@ -311,7 +311,7 @@ For judge-validation, we use an aligned panel of \(n=75\) candidate--gold pairs 
 The same aligned panel is reused across judges, so differences in trend reflect judge behavior rather than row selection. Human-pass dispersion is non-trivial (Appendix Figure~\ref{fig:app-human-pass-hist}), which is why we report all three label views rather than a single pass.
 
 \subsection{Property sanity checks on GPT-5.3-Codex}
-\textbf{Establishing trust in the judge.} Figure~\ref{fig:judge_sanity_checks} shows that the Codex judge satisfies the intended qualitative behavior: scores decrease as semantic bugs accumulate and as specifications are removed, while identity and rewrite robustness are handled separately through P1/P4 diagnostics. The strongest signal is specification-ablation monotonicity (\(\rho=-0.899\), \(r=-0.892\)); bug monotonicity is also directionally correct but noisier (\(\rho=-0.808\), \(r=-0.687\)), indicating occasional local reversals. Appendix Figures~\ref{fig:fig3_style_opus_codex} and~\ref{fig:lowvar_mono_codex_opus} show that the same monotone degradation pattern is also visible for Claude Opus under matched plotting protocols.
+\textbf{Establishing trust in the judge.} Figure~\ref{fig:judge_sanity_checks} shows that the Codex judge satisfies the intended qualitative behavior: scores decrease as semantic bugs accumulate and as specifications are removed, while identity and rewrite robustness are handled separately through P1/P4 diagnostics. The strongest signal is specification-ablation monotonicity (\(\rho=-0.899\), \(r=-0.892\)); bug monotonicity is also directionally correct but noisier (\(\rho=-0.808\), \(r=-0.687\)), indicating occasional local reversals. Appendix Figures~\ref{fig:fig3_style_opus_codex} and~\ref{fig:lowvar_mono_codex_opus} show that the same monotone degradation pattern is also visible for Claude Opus 4.7 under matched plotting protocols.
 
 \begin{table}[t]
   \centering
@@ -526,8 +526,8 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
     \toprule
     \textbf{Model Family} & \textbf{pass1} & \textbf{pass2} & \textbf{avg} \\
     \midrule
-    Codex                 & 0.905          & 0.738          & 0.833        \\
-    Claude Opus           & 0.810          & 0.595          & 0.643        \\
+    GPT-5.3-Codex         & 0.905          & 0.738          & 0.833        \\
+    Claude Opus 4.7       & 0.810          & 0.595          & 0.643        \\
     Qwen3-Coder           & 0.476          & 0.905          & 0.905        \\
     \bottomrule
   \end{tabular}
