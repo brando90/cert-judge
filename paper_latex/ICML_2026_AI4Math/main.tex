@@ -103,7 +103,7 @@
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/pull_fig.png}
-  \caption{\textbf{Scalable trust calibration for LLM judges.} A small human-labeled calibration set is paired with falsifiable property checks (P1--P4) to compute \(\mathrm{TI}_{\mathrm{var}}\), enabling judge selection and downstream evaluation with reduced relabeling overhead.}
+  \caption{\textbf{Scalable trust calibration for LLM judges.} A small human-labeled calibration set is paired with falsifiable property checks (P1--P4) to compute \(\mathrm{TI}_{\mathrm{var}}\), enabling judge selection and evaluation with reduced relabeling overhead.}
   \label{fig:certjudge_overview}
 \end{figure}
 
@@ -512,9 +512,9 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
     \end{tikzpicture}
   \end{subfigure}
   \caption{\textbf{$\mathrm{TI}_{\mathrm{var}}$ vs.\ judge-level human alignment.}
-  Each point is one judge configuration; the \(x\)-axis is \(\mathrm{TI}_{\mathrm{var}}\), and the \(y\)-axis is Spearman agreement with averaged human labels on the aligned validation panel.
+  Each point is one judge configuration; the \(x\)-axis is \(\mathrm{TI}_{\mathrm{var}}\), and the \(y\)-axis is Spearman agreement with averaged human labels on the validation panel.
   Vertical bars show approximate bootstrap SE; dashed lines are OLS guides.
-  Across model families, higher certification strength tracks higher human alignment.}
+  Across models, higher certification strength tracks higher human alignment.}
   \label{fig:tivar_cross_model_avg}
   \vspace{-2mm}
 \end{figure*}
@@ -567,7 +567,7 @@ Annotators scored each aligned pair twice under different rubric strictness. Agr
 Table~\ref{tab:cross_pass_generalization} shows that test Spearman stays above \(0.7\) in both directions when \(\mathrm{TI}_{\mathrm{var}}\) is fit using one human pass alone.
 
 \subsection{Why \texorpdfstring{\(\mathrm{TI}_{\mathrm{var}}\)}{TI-var} is the primary trust metric}
-Figure~\ref{fig:tivar_cross_model_avg} with Table~\ref{tab:tivar_cross_model_results} states the headline cross-family trend. Table~\ref{tab:cross_model_index_compare_avg} then asks a narrower question: which trust-index formulation best captures that trend on averaged labels? Relative to arithmetic baselines, \(\mathrm{TI}_{\mathrm{var}}\) uniformly improves over \(v2\) for every family: Codex \(0.476\!\rightarrow\!0.833\), Claude Opus \(0.143\!\rightarrow\!0.643\), Qwen3-Coder \(0.500\!\rightarrow\!0.905\). The geometric index (GM) is competitive for Codex and Opus (\(0.857\) and \(0.714\) respectively), while \(\mathrm{TI}_{\mathrm{var}}\) stays most consistently strong across families and is the strongest formulation for Qwen. These comparisons suggest that a variance-aware trust metric can track human alignment more reliably than simpler arithmetic aggregation, while geometric aggregation also improves over the arithmetic baseline. We therefore adopt \(\mathrm{TI}_{\mathrm{var}}\) as the paper's primary metric because it combines property quality with explicit variance penalties while yielding positive judge-level trends everywhere we test. Figure~\ref{fig:app-exp25-13judge} provides a baseline-vs-geometric visualization on an expanded judge panel.
+Figure~\ref{fig:tivar_cross_model_avg} with Table~\ref{tab:tivar_cross_model_results} states the headline cross-family trend. Table~\ref{tab:cross_model_index_compare_avg} then asks a narrower question: which trust-index formulation best captures that trend on averaged labels? Relative to arithmetic baselines, \(\mathrm{TI}_{\mathrm{var}}\) uniformly improves over \(v2\) for every family: Codex \(0.476\!\rightarrow\!0.833\), Claude Opus \(0.143\!\rightarrow\!0.643\), Qwen3-Coder \(0.500\!\rightarrow\!0.905\). The geometric index (GM) is competitive for Codex and Opus (\(0.857\) and \(0.714\) respectively), while \(\mathrm{TI}_{\mathrm{var}}\) stays most consistently strong across families and is the strongest formulation for Qwen. We optimize for cross-judge consistency rather than single-family peak correlation. Figure~\ref{fig:app-exp25-13judge} provides a baseline-vs-geometric visualization on an expanded judge panel.
 
 \begin{table}[t]
   \centering
@@ -588,7 +588,7 @@ Figure~\ref{fig:tivar_cross_model_avg} with Table~\ref{tab:tivar_cross_model_res
 \end{table}
 
 \paragraph{Takeaway for calibrated code evaluation.}
-The main empirical claim is not that any finite property suite certifies judge correctness. Rather, the claim is that falsifiable diagnostics can predict which LLM judges agree more strongly with human assessments of formal-code artifacts. This matters for AI for math because code agents can generate far more tests, specifications, and theorems than humans can inspect, while a one-time human calibration panel plus automated property checks provides a scalable way to compare judge configurations before deploying them on larger agent evaluations.
+The main empirical claim is not that any finite property suite certifies judge correctness. Rather, the claim is that this set of falsifiable diagnostics can predict which LLM judges agree more strongly with human assessments of formal-code artifacts. This matters for AI for math because code agents can generate far more tests, specifications, and theorems than humans can inspect, while a one-time human calibration panel plus automated property checks provides a scalable way to compare judges before deploying them on evaluations.
 
 \paragraph{Property-level interpretation.}
 For averaged labels, per-property correlations identify
