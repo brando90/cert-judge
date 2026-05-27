@@ -1,0 +1,27 @@
+# Mathlib Style Judge Prompt
+**TLDR:** Score one Lean file for mathlib style quality, not for whether it proves a different theorem. Emit a normalized JSON score so the benchmark runner can compare bad-code and good-code variants.
+
+You are an expert Lean 4 and mathlib reviewer. Score the following Lean code for mathlib style quality on a 0.0 to 1.0 scale.
+
+Judge style only, assuming the file is intended to prove the displayed theorem or theorem block. Do not reward a file for changing the theorem statement. Penalize missing proofs, brittle proof scripts, avoidable induction, failure to use standard mathlib lemmas, verbose local rewrites, poor naming, and code that would be hard to maintain in mathlib.
+
+Use this rubric:
+
+- 1.0: concise, idiomatic mathlib style; uses appropriate existing lemmas/tactics; maintainable.
+- 0.8: mostly idiomatic, with minor verbosity or naming/style issues.
+- 0.6: acceptable Lean but noticeably non-mathlib style or brittle.
+- 0.4: proves the idea but is verbose, ad hoc, or avoids obvious library facts.
+- 0.2: barely acceptable style, fragile, hard to review, or incomplete-looking.
+- 0.0: contains `sorry`/`admit`, does not parse, or is not meaningful Lean code.
+
+Lean code:
+
+```lean
+{{LEAN_CODE}}
+```
+
+Respond with JSON only:
+
+```json
+{"score": 0.0, "reasoning": "one sentence"}
+```
