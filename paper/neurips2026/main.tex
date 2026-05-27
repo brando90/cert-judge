@@ -753,6 +753,16 @@ Naïve LLM judges are often inconsistent, rewarding stylistic cues over correctn
 \paragraph{Validity-Centered Evaluation.}
 Certifying judges requires not only behavioral properties but also principled validity evidence. \citet{salaudeen2025measurement} introduce a framework that distinguishes between measurement, claims, and evidence, grounded in psychometrics. They emphasize construct, content, and criterion validity, and systematically enumerate threats to validity. This framework provides a blueprint for reporting and interpreting judge certification results, complementing identity/monotonicity checks with broader validity cards.
 
+\paragraph{Adaptive metric induction vs.\ property certification.}
+\citet{ryan2025autometrics} introduce \textsc{AutoMetrics}, a low-data framework for synthesizing task-specific evaluators from fewer than 100 human feedback points.
+It combines generated LLM-as-judge criteria with MetricBank, a curated set of 48 existing metrics, and fits Partial Least Squares regression against human labels.
+Across five tasks, they report up to 33.4\% higher Kendall correlation than LLM-as-judge baselines.
+Their construct-validity audit tests sensitivity to degraded outputs and stability under quality-preserving perturbations, paralleling our bug ladders, specification-ablation ladders, identity checks, and repeat stability.
+The difference is the object being certified.
+\textsc{AutoMetrics} selects a weighted evaluator for an open-ended application when human preferences are sparse.
+Our protocol tests whether a fixed Lean~4 judge configuration satisfies falsifiable properties before its scores support formal-verification claims.
+This separates metric induction from judge certification: high human correlation can select a useful evaluator, but it does not by itself certify invariance, monotonicity, or repeat reliability.
+
 \paragraph{Robust Evaluation without Ground Truth.}
 Standard judge queries can be brittle in the absence of ground truth, particularly under adversarial manipulation \citep{Zhuo2024ICEScore,TongZhang2024CodeJudge}. \citet{robertson2025stepbystep} model the overseer as an agent and propose using information-theoretic, incentive-compatible queries instead of direct ratings. They introduce bounded $f$-divergence measures such as TVD-MI, which exhibit polynomial robustness to adversarial strategies, unlike unbounded KL-based criteria. This work highlights a pathway toward robust, certifiable judges when explicit ground truth is unavailable.
 
