@@ -1,14 +1,25 @@
-\section{Results: Evaluating Agentic Theorem Generation with a Certified Judge}
-Table~\ref{tab:theorem_quality_table_split} presents the normalized average scores across different splits of \textsc{VeriBench}: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), and Security Set (Sec).
-As expected, the baseline prompting approach achieves the lowest overall normalized score (0.470), reflecting its limited capability in autonomously identifying comprehensive theorem properties.
-It also gives us further confidence in our judge.
-Conversely, agentic methods leveraging iterative self-debugging and self-improvement demonstrate significant enhancements.
-Specifically, the DSPy ReAct agent, which incorporates feedback-driven self-debugging, achieves the highest overall average score of 0.615.
-The Trace++ agent, employing both self-debugging and self-improvement mechanisms, also shows notable improvement, attaining an average score of 0.588.
-These results underscore the effectiveness of agentic, feedback-driven approaches in enhancing theorem-generation quality compared to non-agentic baselines \citep{khattab2024dspy,cheng2024trace,chen2021evaluating}.
+\section{Results}
 
-\begin{table}[H]
-\renewcommand{\arraystretch}{1.30}
+\paragraph{Property-level certification.}
+The judge satisfies identity exactly on the P1 suite (\(R^2=1.000\)).
+Under controlled perturbations, it shows strong monotonic behavior:
+for bug ladders, Pearson \(r=-0.973\) and Spearman \(\rho=-0.985\);
+for specification-ablation ladders, Pearson \(r=-0.979\) and Spearman \(\rho=-0.985\).
+These trends indicate that the judge tracks directional quality changes rather than only superficial similarity.
+
+\paragraph{Calibration to human agreement.}
+On a fixed human-labeled panel, the variance-aware trust index correlates with judge-level human alignment.
+We observe Spearman correlations of \(0.833\) (average labels), \(0.905\) (pass1), and \(0.738\) (pass2).
+These results support the calibration claim that higher trust-index values correspond to better human agreement on this suite.
+
+\paragraph{Downstream ranking on \textsc{VeriBench}.}
+After certification, we evaluate agent families on \textsc{VeriBench}.
+Table~\ref{tab:theorem_quality_table_split} shows that feedback-driven methods outperform baseline prompting.
+\textsc{DSPy ReAct} attains the highest average normalized score (\(0.615\)) versus baseline prompting (\(0.470\)).
+This demonstrates practical utility: certified judges can provide scalable ranking signals across agent configurations.
+
+\begin{table}[t]
+\renewcommand{\arraystretch}{1.25}
 \centering
 \begin{tabular}{@{}llccccc c@{}}
 \toprule
@@ -17,30 +28,25 @@ These results underscore the effectiveness of agentic, feedback-driven approache
 \textbf{Agent} & \textbf{Eval} & \textbf{Easy} & \textbf{CS} & \textbf{Real} & \textbf{HE} & \textbf{Sec} & \textbf{Avg} \\
 \midrule
 \multirow{1}{*}{\makecell[l]{Baseline Prompting}}
-& Normalized & 0.580 & 0.690 & 0.472 & 0.410 & 0.347 & \makecell{\textbf{0.470}} \\
+& Normalized & 0.580 & 0.690 & 0.472 & 0.410 & 0.347 & \textbf{0.470} \\
 \addlinespace[2pt]
 \hdashline[0.5pt/4pt]
 \addlinespace[2pt]
 \multirow{1}{*}{\makecell[l]{\textsc{DSPy ReAct}}}
-& Normalized & 0.659 & 0.754 & 0.580 & 0.650 & 0.454 & \makecell{\textbf{0.615}} \\
+& Normalized & 0.659 & 0.754 & 0.580 & 0.650 & 0.454 & \textbf{0.615} \\
 \addlinespace[2pt]
 \hdashline[0.5pt/4pt]
 \addlinespace[2pt]
 \multirow{1}{*}{\makecell[l]{\textsc{Trace+} (Self-Debug)}}
-& Normalized & 0.342 & 0.680 & 0.592 & 0.573 & 0.411 & \makecell{\textbf{0.477}} \\
+& Normalized & 0.342 & 0.680 & 0.592 & 0.573 & 0.411 & \textbf{0.477} \\
 \addlinespace[2pt]
 \hdashline[0.5pt/4pt]
 \addlinespace[2pt]
 \multirow{1}{*}{\makecell[l]{\textsc{Trace++} (Self-Improve)}}
-& Normalized & 0.620 & 0.756 & 0.504 & 0.645 & 0.432 & \makecell{\textbf{0.588}} \\
+& Normalized & 0.620 & 0.756 & 0.504 & 0.645 & 0.432 & \textbf{0.588} \\
 \bottomrule
 \end{tabular}
-\caption{\textbf{Theorem Quality Scores.} Average normalized scores in \textsc{VeriBench} split: Easy Set (Easy), CS Set (CS), Real Python Code (Real), HumanEval Set (HE), Security Set (Sec).
-All rows use Claude~3.7 as the agent model and as the LLM judge.
-Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent.
-The DSPy ReAct agent only performs self-debug.
-The LLM judge issues 5 scoring calls per file pair and returns an integer rubric score in $\{0,1,\dots,10\}$.
-Normalized scores are computed by dividing by the maximum score (10) and averaging across all examples.
-The Avg Norm Score shows the overall average over the entire benchmark.}
+\caption{\textbf{Certified-judge rankings on \textsc{VeriBench}.}
+Normalized scores are averages over rubric outputs mapped from \(\{0,\dots,10\}\) to \([0,1]\).}
 \label{tab:theorem_quality_table_split}
 \end{table}

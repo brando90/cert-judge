@@ -1,0 +1,106 @@
+\section{Extended Analysis: Strategic Pressure, Theory, and Scope}
+
+\paragraph{Strategic pressure on evaluators.}
+When benchmarks become optimization targets, evaluators become attack surfaces.
+In coding and formal-reasoning domains, agents can discover rubric-sensitive shortcuts that improve judged scores without improving semantic correctness.
+This failure mode is familiar in LLM-as-a-judge studies and in broader benchmark-gaming discussions.
+Our certification protocol treats this risk explicitly by requiring directional behavioral checks under controlled degradations.
+If a judge cannot reliably rank easier versus harder perturbation states, then it should not be trusted as the sole optimization objective for agent training loops.
+
+\paragraph{Why monotonicity checks matter in practice.}
+Monotonicity is a low-level but high-leverage validity criterion.
+If an evaluator scores a more heavily bugged artifact above a less bugged one, optimization dynamics can amplify the error.
+In iterative agent loops, this can induce selection for stylistic artifacts that correlate with judge preferences while breaking intended behavior.
+Bug and specification ladders are therefore not only diagnostics.
+They are preventive tests against reward misspecification in evaluator-mediated training and search.
+
+\paragraph{Connection to interactive measurement.}
+Interactive evaluation differs from static benchmark scoring because an evaluator's signal changes the policy trajectory.
+A weak evaluator can create feedback loops where successive proposals become increasingly tuned to evaluator idiosyncrasies.
+A certified evaluator does not eliminate this risk, but it raises the bar by enforcing auditable invariants at the score-function level.
+This makes iterative improvement pipelines easier to monitor and easier to shut down when drift indicators fire.
+
+\paragraph{Formal-methods framing and evaluator role.}
+In Lean-oriented workflows, kernel checking verifies whether a submitted proof is valid under a stated theorem.
+The evaluator's role is orthogonal: assessing whether the stated theorem/specification is aligned with task intent.
+This distinction matters for measurement claims.
+Kernel-level soundness does not imply specification quality, and specification quality cannot be reduced to syntax-level matching.
+Judge certification therefore targets the semantic layer between raw generated artifact and intended task meaning.
+
+\paragraph{Specification-relative interpretation of scores.}
+Judge scores are specification-relative by design.
+A high score means strong conformance to the chosen reference and rubric, not universal correctness across all possible properties.
+This is not a weakness unique to LLM judges.
+It is a general limitation of finite evaluation under open-ended semantics.
+Making this conditionality explicit improves scientific communication and reduces over-interpretation of benchmark numbers.
+
+\paragraph{Residual validity risks.}
+Even when P1--P4 are strong, several risks remain:
+\begin{itemize}
+\item \textbf{content validity gaps}: perturbation ladders may not cover all error classes observed in deployment;
+\item \textbf{criterion drift}: correlation with humans can degrade as rubric standards evolve;
+\item \textbf{construct shift}: new domains may require new notions of theorem quality;
+\item \textbf{optimization leakage}: agents may overfit to known perturbation families.
+\end{itemize}
+For this reason, we view trust indices as dynamic artifacts with explicit maintenance requirements.
+
+\paragraph{Operational recommendations.}
+Based on our experiments, we recommend four implementation rules for teams deploying judge-based evaluation:
+\begin{enumerate}
+\item publish per-property scores alongside aggregate trust values;
+\item maintain a frozen anchor subset for longitudinal recalibration;
+\item run disagreement audits between primary and secondary judges;
+\item treat large prompt or model updates as mandatory re-certification events.
+\end{enumerate}
+These rules keep evaluator governance lightweight while preserving interpretability under change.
+
+\paragraph{Relation to robustness-without-ground-truth methods.}
+Information-theoretic evaluation approaches and incentive-compatible query designs offer complementary tools in settings with weak or absent gold references.
+Our setting includes curated references, so we emphasize supervised property checks.
+A promising direction is hybridization: combine robust unsupervised disagreement signals with supervised perturbation diagnostics and human-anchor calibration.
+Such hybrids may improve resilience to evaluator gaming while retaining semantic grounding.
+
+\paragraph{Why this scope is suitable for a workshop contribution.}
+This paper does not claim a final universal metric for formal-verification judges.
+Instead, it contributes a practical, testable methodology and an empirical case study showing that the methodology can support useful ranking decisions.
+For AI Measurement Science, this is the key step: move from evaluator intuition to evaluator evidence.
+The broader research program is to standardize these evidence bundles across tasks, domains, and model generations.
+
+\paragraph{A minimal reporting template for evaluator cards.}
+To support comparability across papers, we propose a concise evaluator-card template with five fields.
+Field 1 is \emph{intended use}: rank model variants for research iteration, not certify deployment correctness.
+Field 2 is \emph{evidence}: calibration panel size, rating protocol, and measured human-alignment statistics.
+Field 3 is \emph{behavioral validity}: per-property scores with confidence intervals where possible.
+Field 4 is \emph{known blind spots}: uncovered perturbation classes and domains with weak support.
+Field 5 is \emph{maintenance policy}: re-certification triggers and latest calibration date.
+This template is short enough for workshop papers and strong enough to improve reproducibility.
+
+\paragraph{Error analysis priorities for next iterations.}
+Our current protocol highlights whether monotonicity holds, but not always \emph{why} failures occur.
+The next iteration should classify monotonicity violations by semantic category:
+arithmetic specification drift, boundary-condition omission, theorem weakening, and proof-irrelevant style changes.
+That taxonomy would make calibration interventions more targeted.
+For example, if failures cluster in boundary-condition omissions, perturbation suites should over-sample those edits and judge prompts should include boundary-sensitive criteria.
+This turns property failures into actionable engineering signals.
+
+\paragraph{Human factors in measurement operations.}
+Evaluator quality is partly a human-systems problem.
+Annotator instructions, rubric granularity, and quality-control policies can all alter apparent judge alignment.
+Even with fixed models, small rubric wording changes can shift correlations enough to reorder judge candidates.
+For that reason, calibration metadata should be versioned as carefully as model checkpoints.
+We recommend including rubric hashes and annotation-guideline versions in experiment logs to keep judge comparisons auditable over time.
+
+\paragraph{Positioning against ``single-number'' evaluation culture.}
+A recurring anti-pattern in LLM evaluation is collapsing complex reliability behavior into one headline number.
+Single-number reporting is attractive for leaderboard communication but often hides the mechanisms behind failure.
+Property-based certification addresses this by preserving a decomposition:
+identity, directional monotonicity, and stability are reported separately and then aggregated for selection.
+The aggregate is still useful, but it is no longer opaque.
+For workshop goals focused on rigorous evaluation, this decomposition is a practical compromise between scientific clarity and operational simplicity.
+
+\paragraph{Takeaway for AI measurement science.}
+As AI systems become increasingly agentic, evaluator design must be treated as model design.
+A judge is not only a metric; it is part of the control loop that shapes what systems learn to optimize.
+CertJudge provides one concrete recipe for this perspective:
+define falsifiable evaluator properties, calibrate against humans once, monitor under drift, and re-certify on change.
+We view this as a broadly reusable pattern for moving from benchmark-centric evaluation to measurement-centric evaluation.

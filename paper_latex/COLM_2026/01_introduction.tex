@@ -1,14 +1,35 @@
 \section{Introduction}
 
-Agentic AI systems are emerging as a powerful tool for formal code verification, capable of not just proving theorems but also generating the code and the theorems themselves. This end-to-end synthesis presents a profound evaluation challenge. In traditional auto-formalization benchmarks, models are given a precise natural language statement to formalize. However, in a more realistic, agentic setting, the system must infer and propose relevant theorems from a source program and its docstring. This autonomy makes manual evaluation intractable and requires automated, scalable solutions \citep{zhou2025graders,khattab2024dspy,cheng2024trace}.
+AI systems increasingly generate both solutions and the artifacts used to evaluate those solutions.
+In formal verification workflows, these artifacts include tests, theorem statements, and proof-oriented specifications in Lean~4.
+This creates a measurement bottleneck: humans can audit only a small fraction of generated artifacts, yet deployment decisions depend on reliable evaluation.
 
-We propose a radical approach: use LLMs themselves as judges of specification quality. But can you really trust such a judge? An unreliable judge can produce misleading results, rewarding stylistic mimicry over semantic correctness and hindering genuine progress. Without a principled validation method, LLM-based evaluation remains ad hoc and its results questionable \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
+Current LLM-as-a-judge practice often treats human agreement as the main validity target.
+That target is necessary but insufficient.
+A judge may correlate with humans on a finite panel while violating basic behavioral constraints that any trustworthy evaluator should satisfy.
+For example, it may fail to assign maximal scores to identical inputs, fail to penalize progressively worse artifacts, or produce unstable scores under small prompt changes.
+If these failures are not detected, benchmark rankings can be brittle or strategically gamed.
 
-In this paper, we present evidence indicating that it is possible to trust an LLM judge. We introduce an LLM judge for scoring the quality of synthesized theorems in Lean~4 and, crucially, present a methodology for validating its trustworthiness. We demonstrate that an LLM judge, when properly validated, can serve as a reliable proxy for human evaluation, enabling the scalable assessment of complex, agentic systems.
+We frame this as an AI measurement science problem.
+A valid judge should satisfy explicit, falsifiable properties under controlled perturbations.
+In this paper, we operationalize that framing with \textsc{CertJudge}, a certification protocol for Lean~4 judge reliability.
+The protocol tests identity (P1), monotonicity to injected bugs (P2), monotonicity to specification ablations (P3), and run-level stability (P4), and then aggregates them into a trust index for judge selection.
 
-Our \textbf{contributions} are:
+This framing aligns with three core problems in AI Measurement Science.
+First, it supports \emph{interactive measurement} by evaluating judges in agentic settings where artifacts are generated end-to-end rather than in isolated subtasks.
+Second, it addresses \emph{measurement under strategic optimization} by making important failure modes auditable before judge deployment.
+Third, it supports \emph{measurement under non-stationarity} by enabling repeated recalibration as prompts, models, and task mixtures evolve.
+
+Beyond this specific Lean~4 setting, the key claim is measurement-theoretic:
+evaluation quality must be measured and governed as a first-class object.
+Property certification supplies a concrete validity layer that can be reused across domains where evaluators are expensive, gameable, and subject to drift.
+
+Our contributions are:
 \begin{enumerate}
-    \item \textbf{An LLM Judge for Theorem Quality:} We design an LLM judge that scores generated Lean~4 artifacts on a 0--10 scale based on correctness, completeness, and semantic alignment.
-    \item \textbf{A Trustworthiness Validation Methodology:} We propose and execute a set of property checks to certify the judge's reliability and trustworthiness, verifying its adherence to logical properties like identity and monotonicity under controlled perturbations.
-    \item \textbf{Empirical Demonstration of the Judge on \textsc{VeriBench}:} We apply our validated judge to evaluate multiple agentic frameworks, providing evidence that feedback-driven methods significantly outperform non-agentic baselines in theorem-synthesis quality.
+\item \textbf{A measurement-science framing for LLM judges in formal verification.}
+We recast judge validation from one-shot correlation to property-based certification with explicit validity constraints.
+\item \textbf{A concrete certification protocol for Lean~4 judge reliability with general measurement value.}
+We provide a reproducible four-property suite and trust-index aggregation for amortized judge screening.
+\item \textbf{Empirical evidence on calibration and downstream ranking.}
+On a human-labeled validation panel, the trust index tracks judge-level human alignment, and on \textsc{VeriBench} the certified judge recovers meaningful method ordering between baseline and feedback-driven agents.
 \end{enumerate}
