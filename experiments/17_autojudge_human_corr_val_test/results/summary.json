@@ -1,0 +1,195 @@
+{
+  "experiment": "17_autojudge_human_corr_val_test",
+  "mode": "primary_llm_prompt_selection",
+  "no_new_llm_calls": true,
+  "human_sources": [
+    {
+      "source_id": "participant1",
+      "path": "experiments/human_labels/participant1_data_correct_prompt.tsv"
+    },
+    {
+      "source_id": "participant2",
+      "path": "experiments/human_labels/participant2_data_pass_1.tsv"
+    },
+    {
+      "source_id": "participant3",
+      "path": "experiments/human_labels/participant3_data_pass_1.tsv"
+    },
+    {
+      "source_id": "participant4",
+      "path": "experiments/human_labels/participant4_data_pass_1.tsv"
+    },
+    {
+      "source_id": "participant5",
+      "path": "experiments/human_labels/participant5_data_pass_1.tsv"
+    },
+    {
+      "source_id": "ethan_pass1",
+      "path": "experiments/04_veribench_validation/data/ethan_human_scores_20260425.tsv"
+    },
+    {
+      "source_id": "ethan_pass2",
+      "path": "experiments/04_veribench_validation/data/ethan_human_scores_ORIGINAL.tsv"
+    }
+  ],
+  "family_specs": {
+    "Codex": {
+      "model": "gpt-5.3-codex",
+      "result_dir": "experiments/04_veribench_validation/results_exp22_expanded_judges_stable/exp16"
+    },
+    "Opus": {
+      "model": "claude-opus-4-7",
+      "result_dir": "experiments/04_veribench_validation/results_exp16_opus47_r3_median"
+    },
+    "Leanstral": {
+      "model": "labs-leanstral-2603",
+      "result_dir": "experiments/04_veribench_validation/results_exp16_leanstral_r3_median"
+    }
+  },
+  "label_pool": {
+    "source_counts": {
+      "participant1": 74,
+      "participant2": 75,
+      "participant3": 44,
+      "participant4": 75,
+      "participant5": 75,
+      "ethan_pass1": 75,
+      "ethan_pass2": 78
+    },
+    "missing_sources": [],
+    "n_sources_found": 7,
+    "n_nonblank_labels": 496,
+    "n_unique_pairs": 90,
+    "ratings_per_pair_distribution": {
+      "2": 9,
+      "3": 9,
+      "5": 13,
+      "6": 27,
+      "7": 32
+    }
+  },
+  "split": {
+    "salt": "cert-judge-exp17-autojudge-val-test-v1",
+    "train_frac": 0.5,
+    "n_tasks": 24,
+    "n_train_tasks": 12,
+    "n_test_tasks": 12,
+    "n_train_pairs": 36,
+    "n_test_pairs": 36,
+    "train_gold_files": [
+      "0_unsafeCopy_safe.lean",
+      "18_MyFibonacci.lean",
+      "2_heappush.lean",
+      "4_json_decoder.lean",
+      "4_unsafeCounter_safe.lean",
+      "9_pathTraversal_safe.lean",
+      "binary_search.lean",
+      "bubble_sort.lean",
+      "humaneval_3_below_zero.lean",
+      "insertion_sort.lean",
+      "merge_sort.lean",
+      "selection_sort.lean"
+    ],
+    "test_gold_files": [
+      "0_bisect_right.lean",
+      "13_MyUppercase.lean",
+      "1_MyAdd.lean",
+      "1_bisect_left.lean",
+      "33_MyMinimum.lean",
+      "3_heappop.lean",
+      "43_replace_spaces.lean",
+      "5_unsafeFormatString_safe.lean",
+      "humaneval_13__gcd.lean",
+      "humaneval_31_is_prime.lean",
+      "humaneval_47_median.lean",
+      "humaneval_8_sum_product.lean"
+    ]
+  },
+  "coverage": {
+    "n_common_scored_pairs": 72,
+    "n_human_pairs_without_common_scores": 18
+  },
+  "selection_rule": {
+    "objective": "maximize train Spearman(judge_score, human_mean_0_5) within family",
+    "tie_break": "lexicographic judge_id",
+    "primary_kind_allowlist": [
+      "llm"
+    ],
+    "include_bad_controls": false,
+    "candidate_counts_by_family": {
+      "Codex": 7,
+      "Opus": 3,
+      "Leanstral": 3
+    }
+  },
+  "bootstrap": {
+    "iters": 5000,
+    "unit": "candidate pair rows"
+  },
+  "selected_rows": [
+    {
+      "family": "Codex",
+      "selected_judge_id": "gpt-5.3-codex|P7_STRICT_A",
+      "selected_prompt": "P7_STRICT_A",
+      "train_spearman": 0.18918112604825718,
+      "train_ci_lo": -0.243291210703931,
+      "train_ci_hi": 0.5689169482837864,
+      "train_pearson": 0.1784068554963092,
+      "n_train": 36,
+      "test_spearman": -0.23743565225491317,
+      "test_ci_lo": -0.5478559438956122,
+      "test_ci_hi": 0.09543305571897803,
+      "test_pearson": -0.17870892165246507,
+      "n_test": 36,
+      "result_dir": "experiments/04_veribench_validation/results_exp22_expanded_judges_stable/exp16"
+    },
+    {
+      "family": "Opus",
+      "selected_judge_id": "claude-opus-4-7|P1_BASELINE",
+      "selected_prompt": "P1_BASELINE",
+      "train_spearman": 0.2796678860928703,
+      "train_ci_lo": -0.14364808071213903,
+      "train_ci_hi": 0.6268606086142039,
+      "train_pearson": 0.40168928377392216,
+      "n_train": 36,
+      "test_spearman": 0.25415095423761197,
+      "test_ci_lo": -0.11482403837738198,
+      "test_ci_hi": 0.5594141798053412,
+      "test_pearson": 0.30899160175605844,
+      "n_test": 36,
+      "result_dir": "experiments/04_veribench_validation/results_exp16_opus47_r3_median"
+    },
+    {
+      "family": "Leanstral",
+      "selected_judge_id": "labs-leanstral-2603|P1_BASELINE",
+      "selected_prompt": "P1_BASELINE",
+      "train_spearman": 0.34617284706381773,
+      "train_ci_lo": -0.009227594365320953,
+      "train_ci_hi": 0.6293156008196533,
+      "train_pearson": 0.5196783376617528,
+      "n_train": 36,
+      "test_spearman": 0.2677789630355567,
+      "test_ci_lo": -0.07310179723589459,
+      "test_ci_hi": 0.5556441548082176,
+      "test_pearson": 0.27344802118561856,
+      "n_test": 36,
+      "result_dir": "experiments/04_veribench_validation/results_exp16_leanstral_r3_median"
+    }
+  ],
+  "outputs": {
+    "pair_label_aggregates_csv": "experiments/17_autojudge_human_corr_val_test/results/pair_label_aggregates.csv",
+    "frozen_split_csv": "experiments/17_autojudge_human_corr_val_test/results/frozen_split.csv",
+    "all_candidate_correlations_csv": "experiments/17_autojudge_human_corr_val_test/results/all_candidate_correlations.csv",
+    "selection_table_csv": "experiments/17_autojudge_human_corr_val_test/results/selection_table.csv",
+    "missing_pairs_csv": "experiments/17_autojudge_human_corr_val_test/results/missing_pairs.csv",
+    "summary_json": "experiments/17_autojudge_human_corr_val_test/results/summary.json",
+    "report_md": "experiments/17_autojudge_human_corr_val_test/REPORT.md"
+  },
+  "caveats": [
+    "The primary analysis uses exact gold_file::candidate_file matches only; 18 aggregated human-labeled pairs lack saved scores from every primary family and are excluded rather than newly judged.",
+    "The split is held out by problem, but rows within a problem share the same gold file; bootstrap intervals over pair rows therefore understate uncertainty if task-level dependence dominates.",
+    "This is prompt selection over saved judge outputs, not a full AutoMetrics implementation with newly generated evaluator criteria or regression-composed metrics.",
+    "The candidate pool is not identical across families: Codex has 7 eligible prompts; Opus has 3 eligible prompts; Leanstral has 3 eligible prompts.",
+    "The human target is an aggregate of ordinal 0-5 labels; Spearman uses rank information and does not model rater-specific reliability."
+  ]
+}
