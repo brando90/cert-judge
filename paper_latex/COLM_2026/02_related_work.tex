@@ -10,6 +10,10 @@ Prior work improves judge reliability via structured prompting and multi-agent j
 These methods reduce some noise sources, but they do not by themselves guarantee core evaluator behaviors such as identity or monotone response to controlled degradation.
 We complement these approaches with explicit falsification tests on perturbation ladders.
 
+\paragraph{Adaptive metric induction.}
+\citet{ryan2025autometrics} propose \textsc{AutoMetrics}, which starts from sparse human feedback, generates or retrieves candidate evaluators from a MetricBank, and composes them with partial least-squares regression to improve correlation with human judgments.
+This is complementary to our trust-index view: learned metric composition can help calibrate judge-selection scores, while our core contribution keeps the underlying evidence falsifiable through behavioral diagnostics rather than replacing it with an opaque reward model.
+
 \paragraph{Code and formal-verification evaluation.}
 In code tasks, judge-based metrics are useful when exact execution-based grading is unavailable or incomplete \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
 In formal verification, many benchmarks provide fixed target theorems, allowing proof success to dominate evaluation.
