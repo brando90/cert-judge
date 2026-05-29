@@ -1,0 +1,28 @@
+% Status: DRAFT -- check surrounding flow before direct reuse.
+% Source: experiments/17_pseudo_formalization_related_work/paper_summary_and_contrast.md
+
+\paragraph{Pseudo-formal proof verification vs.\ judge certification.}
+\citet{barkallah2026pseudoformalization} propose \textsc{Pseudo-Formalization} plus Block Verification, which rewrites a natural-language mathematical proof into modules with explicit premises, conclusions, and local proof text before asking an LLM to verify each module.
+The method targets a complementary bottleneck: long informal proofs are difficult for a verifier to inspect as one monolithic object.
+Our protocol instead targets the verifier itself.
+Rather than changing the proof representation, we test whether a Lean-aware theorem/specification judge obeys identity, bug-monotonicity, specification-monotonicity, and repeat-stability checks before its scores support benchmark claims.
+Thus pseudo-formalization makes proofs easier to judge, whereas property certification asks whether the chosen judge is reliable enough to use.
+
+\paragraph{Pseudo-formal proof verification vs.\ code-to-Lean autoformalization.}
+\citet{barkallah2026pseudoformalization} introduce a structured natural-language proof format and a block verifier that improves error localization on competition and research-level math proofs.
+This is closest to \textsc{VeriBench} in its scalable-oversight motivation, but the evaluated object is different.
+PF+BV starts from a mathematical proof and keeps the intermediate representation in natural language, while \textsc{VeriBench} starts from executable Python and scores whether an agent produces Lean~4 code, specifications, and proofs that compile and cover gold obligations.
+The contrast is therefore not informal versus formal prose style, but verifier target: PF+BV improves LLM verification of a proof argument, whereas \textsc{VeriBench} evaluates end-to-end source-code formalization.
+
+\paragraph{Pseudo-formal proof verification vs.\ differential source grounding.}
+\citet{barkallah2026pseudoformalization} decompose natural-language mathematical proofs into premise/conclusion/proof modules and verify each block with an LLM.
+That decomposition is useful evidence that localizing a verification task can improve LLM oversight.
+\textsc{VeriBench-DT} localizes a different relation: whether a generated Lean artifact is behaviorally grounded in the original source program.
+Its adapters and differential tests define executable observations across Python and Lean, while theorem coverage handles semantic claims that cannot be reduced to sampled outputs.
+PF+BV has no executable source-program oracle; \textsc{VeriBench-DT} has no need to rewrite an informal proof into pseudo-formal natural language.
+
+\paragraph{Pseudo-formal proof verification vs.\ repository-scale dependency formalization.}
+\citet{barkallah2026pseudoformalization} verify mathematical proof arguments by translating them into structured natural-language modules.
+\textsc{VeriBench-Deps} instead evaluates repository-scale code formalization, where the hard boundary is dependency disposition: which internal callees must be formalized, which internal effects must be axiomatized, and which external dependencies are legitimately outside the source tree.
+The shared idea is modular verification.
+The difference is the module type: PF+BV modules are proof-argument blocks, while VeriBench-Deps modules are cross-file software functions with explicit formalize/axiomatize decisions.
