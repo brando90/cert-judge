@@ -849,6 +849,13 @@ In a complementary direction, \citet{zhou2025graders} improve general-purpose LL
 Building on modular composition, \textsc{DSPy}~\citep{khattab2024dspy} treats LLM calls as declarative modules in a computational graph. Users define concise input–output signatures, and DSPy’s compiler automatically bootstraps or fine-tunes pipelines using built-in “teleprompters.” This enables a few-line programs to outperform expert-crafted prompts in math, QA, and agent workflows.
 Extending agentic capabilities to formal reasoning, \textsc{Pantograph}~\citep{aniva2025pantograph} offers a programmatic interface to Lean 4 with support for advanced proof search. It exposes internal proof states and tactics for integration with learning agents, replacing human-facing interfaces with API-level control.
 
+\paragraph{Agentic proving and benchmark bugs.}
+Sosso et al.~\citep{sosso2026agenticproving} evaluate Claude Code in a compiler-in-the-loop proving framework on \textsc{CLEVER}, with preliminary experiments on both \textsc{CLEVER} and \textsc{VERINA}.
+The similarity to our setting is that both works treat formal-verification evaluation as a pipeline whose reliability depends on benchmark and scoring validity, not just Lean elaboration.
+The difference is the evaluated object.
+Their study evaluates agentic provers and shows that they can expose incorrect specifications and implementations in existing benchmarks.
+Our protocol certifies a semantic judge for candidate--gold Lean artifact scoring, testing identity, bug monotonicity, specification monotonicity, and stability before judge scores support benchmark claims.
+
 \subsection{Related Work: Scalable Oversight}
 
 \paragraph{Scalable Oversight with LLM Judges}
