@@ -1,5 +1,5 @@
 # Fixed Judge Across Agents Results
-**TLDR:** No new cross-agent result has been generated yet. This file states the sign-off target Brando wants: one frozen judge, applied to multiple VeriBench-solving agent CLI/model rows, with per-agent judge-human agreement clearing approximately `0.6` under Pearson, Spearman, and Kendall. The requested trust-index correlation remains a definition gap until the experiment adds an agent-conditioned trust-index value; the existing cert index is per judge and would be constant for one fixed judge.
+**TLDR:** The best current judge results are high only under per-task human-calibrated scoring: EXP41 reaches test-item Spearman `0.767`-`0.933`, Kendall `0.615`-`0.830`, and Pearson `0.743`-`0.943` across the four evaluated judge families. Raw no-calibration scores are much weaker; the best raw fixed-judge candidate remains `labs-leanstral-2603|P1_BASELINE` at item Spearman `0.426` and task Spearman `0.544`.
 
 ## Sign-Off Summary
 
@@ -10,7 +10,58 @@ Brando wants a TMLR-ready result where one fixed judge works across as many agen
 
 The target threshold is approximately `0.6` for each correlation metric: Pearson `r`, Spearman `rho`, and Kendall `tau`. Higher is better, and more agent rows are better. Treat 3 agent rows as a smoke panel; use 5 or more rows with uncertainty estimates for a paper-facing cross-agent trend claim.
 
-## Fixed Judge
+Current state: existing completed runs support a strong *judge-calibration* result, not yet the requested cross-agent agent-row result. The current best tables below should be used as the starting evidence for Brando; the agent CLI/model rows remain to be generated and joined.
+
+## Current Best Existing Judge Results
+
+### Best Positive Result: Per-Task Human-Calibrated Judges
+
+Source: `experiments/04_veribench_validation/results_exp41_honest_train_test/HONEST_TABLE.md`.
+
+Human target is the five-rater `zscore_mean`. Calibration is per-task isotonic using human labels for the task partition being evaluated. This is the strongest current result, but it is a human-calibrated result, not a raw/no-label judge result.
+
+| Split | Model family | Best judge | n tasks/items | Spearman rho | Kendall tau | Pearson r | Task rho | Source table |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Test tasks | LeanStral | `labs-leanstral-2603|P8_STRICT_B` | 6 / 18 | 0.767 | 0.615 | 0.743 | 0.886 | EXP41 Table 2 |
+| Test tasks | GPT-4o-mini | `gpt-4o-mini|P1_BASELINE` | 6 / 18 | 0.923 | 0.810 | 0.941 | 1.000 | EXP41 Table 2 |
+| Test tasks | GPT-5.3 Codex | `gpt-5.3-codex|P1_BASELINE` | 6 / 18 | 0.933 | 0.830 | 0.943 | 1.000 | EXP41 Table 2 |
+| Test tasks | Claude Opus 4.7 | `claude-opus-4-7|P4_CHECKLIST` | 6 / 18 | 0.930 | 0.824 | 0.936 | 1.000 | EXP41 Table 2 |
+| Full panel | LeanStral | `labs-leanstral-2603|P8_STRICT_B` | 20 / 60 | 0.806 | 0.664 | 0.856 | 0.851 | EXP41 Table 3 |
+| Full panel | GPT-4o-mini | `gpt-4o-mini|P1_BASELINE` | 20 / 60 | 0.843 | 0.703 | 0.873 | 0.910 | EXP41 Table 3 |
+| Full panel | GPT-5.3 Codex | `gpt-5.3-codex|P14_HUMAN_ALIGN_V2` | 20 / 60 | 0.884 | 0.731 | 0.896 | 0.967 | EXP41 Table 3 |
+| Full panel | Claude Opus 4.7 | `claude-opus-4-7|P1_BASELINE` | 20 / 60 | 0.870 | 0.728 | 0.892 | 0.934 | EXP41 Table 3 |
+
+Interpretation: all four evaluated judge families clear Spearman `>= 0.70` after per-task human calibration. For the requested `>= 0.6` criterion, the weakest current positive number is LeanStral test Kendall `0.615`, which still clears the target.
+
+### Raw No-Calibration Baseline
+
+Source: `experiments/04_veribench_validation/results_exp41_honest_train_test/HONEST_TABLE.md`, Table 4.
+
+These are the numbers to use when asking whether one fixed judge works without human calibration. They do not clear the desired `>= 0.6` item-level target.
+
+| Model family | Best raw judge | n tasks/items | Spearman rho | Kendall tau | Pearson r | Task rho | Use |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| LeanStral | `labs-leanstral-2603|P1_BASELINE` | 20 / 60 | 0.426 | 0.325 | 0.417 | 0.544 | Best current raw fixed-judge candidate |
+| GPT-4o-mini | `gpt-4o-mini|P1_BASELINE` | 20 / 60 | 0.266 | 0.212 | 0.285 | 0.345 | Raw baseline only |
+| GPT-5.3 Codex | `gpt-5.3-codex|P20_TC_RATER_CARD` | 20 / 60 | -0.052 | -0.038 | -0.031 | -0.012 | Raw baseline only |
+| Claude Opus 4.7 | `claude-opus-4-7|P1_BASELINE` | 20 / 60 | 0.203 | 0.140 | 0.244 | 0.324 | Raw baseline only |
+
+### Transfer And Trust-Index Checks
+
+These are the current best honesty checks for claims beyond per-task calibration.
+
+| Check | Best current result | Source | Claim status |
+| --- | --- | --- | --- |
+| Global isotonic transfer with no test-task labels | Best test item rho is `0.295` for `gpt-4o-mini|P1_BASELINE`; LeanStral is `-0.084` | `experiments/04_veribench_validation/results_exp42_proper_transfer/PAPER_TABLE.md` | Does not support a `>= 0.6` held-out global-calibration claim |
+| Raw five-human mean single metric | Best raw item/task rho is `0.422` / `0.541` for `labs-leanstral-2603|P1_BASELINE` | `experiments/04_veribench_validation/results_exp39_autometrics_autoti/REPORT.md` | Useful context; below the item-level target |
+| Raw five-human z-score single metric | Best raw item/task rho is `0.426` / `0.544` for `labs-leanstral-2603|P1_BASELINE` | `experiments/04_veribench_validation/results_exp39_autometrics_autoti_zscore_mean/REPORT.md` | Best raw fixed-judge candidate; below the item-level target |
+| Frozen TIvar held-out validation | Held-out rho ranges from `-0.333` to `0.119` across judge families | `experiments/04_veribench_validation/results_exp43_frozen_tivar_heldout/HELD_OUT_PAPER_TABLE.md` | Does not support a held-out trust-index trend claim |
+
+### Bottom Line For Brando
+
+The paper-positive current result is: per-task human-calibrated judge scores align strongly with five-human judgments across LeanStral, GPT-4o-mini, GPT-5.3 Codex, and Claude Opus 4.7. The honest limitation is: raw fixed judges and global held-out calibration do not yet reach the `>= 0.6` item-level target, so the requested one-fixed-judge-across-agent-CLIs result still needs a new per-agent run.
+
+## Fixed Judge Candidate For Next Cross-Agent Run
 
 Current candidate to freeze:
 
@@ -20,24 +71,15 @@ Current candidate to freeze:
 | Judge model | `labs-leanstral-2603` |
 | Prompt key | `P1_BASELINE` |
 | Prompt path | `experiments/02_reviewer_response_neurips_math_ai_2026/utils/sensitivity_sweep.py` |
-| Scoring code | `experiments/04_veribench_validation/exp16_multi_judge_human_sets.py` |
+| Cached-score source / starting scorer | `experiments/04_veribench_validation/exp16_multi_judge_human_sets.py` |
 | LLM caller | `experiments/02_reviewer_response_neurips_math_ai_2026/utils/judge_caller.py` |
 | Existing cached run | `experiments/04_veribench_validation/results_exp16_leanstral_r3_median` |
 
-Existing reference numbers for this judge are useful context, not the final cross-agent result:
-
-| Existing analysis | Target/regime | n items | Item Spearman | Task Spearman | Source |
-| --- | --- | ---: | ---: | ---: | --- |
-| Exp39 raw single metric | five-human `mean` target | `60` | `0.422` | `0.541` | `experiments/04_veribench_validation/results_exp39_autometrics_autoti/REPORT.md` |
-| Exp39 z-score raw single metric | five-human z-score target | `60` | `0.426` | `0.544` | `experiments/04_veribench_validation/results_exp39_autometrics_autoti_zscore_mean/REPORT.md` |
-| Exp41 raw full-panel baseline | raw table copied from z-score/held-out sweep | `60` | `0.426` | `0.544` | `experiments/04_veribench_validation/results_exp41_honest_train_test/HONEST_TABLE.md` |
-| Exp16 cached row | pass1/pass2/avg label sets, pooled candidate rows | `72` | `0.0405` avg human Spearman | N/A | `experiments/04_veribench_validation/results_exp16_leanstral_r3_median/summary.json` |
-
-These are below the desired `0.6` item-level threshold, so the final experiment should either improve the target construction/agent panel honestly or report the limitation.
+Why this is still the next no-calibration candidate: it is the best raw single metric on both the five-human mean and five-human z-score targets (`0.422`-`0.426` item Spearman, `0.541`-`0.544` task Spearman). It does not yet clear the desired `0.6` item-level threshold.
 
 Important implementation note: `experiments/04_veribench_validation/exp16_multi_judge_human_sets.py` is a useful cached-score/provenance source, but it does not produce this table as-is. It pools all candidate files into one row per judge and reports Spearman only. The real run needs a per-agent grouping/join script that uses manifests or candidate filenames, joins human labels, and computes Pearson/Spearman/Kendall per agent row.
 
-## Primary Result Table
+## Future Cross-Agent Primary Result Table
 
 Fill this table after real runs. Each row is one VeriBench-solving agent CLI/model pair.
 
@@ -113,4 +155,4 @@ Trust-index and calibration references:
 
 ## Paper-Claim Guardrail
 
-Do not write the TMLR claim as solved until the TODO tables above are filled from real runs. If only the per-task calibrated/oracle results clear `0.6`, label them as calibrated capacity, not held-out generalization. If raw fixed-judge scores remain near the current `0.42` item / `0.54` task Spearman, report that as the limitation rather than upgrading it rhetorically.
+Do not write the cross-agent agent-CLI claim as solved until the TODO agent-row table above is filled from real runs. The completed positive result is per-task human-calibrated judge-human alignment; do not describe it as raw fixed-judge performance or held-out global generalization. If raw fixed-judge scores remain near the current `0.42` item / `0.54` task Spearman, report that as the limitation rather than upgrading it rhetorically.
