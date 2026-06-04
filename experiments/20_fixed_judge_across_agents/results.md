@@ -1,5 +1,5 @@
 # Fixed Judge Across Agents Results
-**TLDR:** The best current judge results are high only under per-task human-calibrated scoring: EXP41 reaches test-item Spearman `0.767`-`0.933`, Kendall `0.615`-`0.830`, and Pearson `0.743`-`0.943` across the four evaluated judge families. Raw no-calibration scores are much weaker; the best raw fixed-judge candidate remains `labs-leanstral-2603|P1_BASELINE` at item Spearman `0.426` and task Spearman `0.544`.
+**TLDR:** For the fixed judge `labs-leanstral-2603|P1_BASELINE`, the best full-panel calibrated item-rank result is five-human mean per-task calibration: item Spearman `0.840`, Kendall `0.721`, Pearson `0.857`, and task Spearman `0.914`. The five-human trimmed mean target has slightly better full-panel Pearson/task Spearman (`0.862` / `0.934`) but lower item-rank correlation. The best raw no-calibration result is much lower: item Spearman `0.426`, Kendall `0.325`, Pearson `0.417`, and task Spearman `0.544`.
 
 ## Sign-Off Summary
 
@@ -12,7 +12,33 @@ The target threshold is approximately `0.6` for each correlation metric: Pearson
 
 Current state: existing completed runs support a strong *judge-calibration* result, not yet the requested cross-agent agent-row result. The current best tables below should be used as the starting evidence for Brando; the agent CLI/model rows remain to be generated and joined.
 
-## Current Best Existing Judge Results
+## Current Best Results For The Fixed Judge
+
+This section is the answer for the single judge currently proposed for the next cross-agent run:
+
+```text
+labs-leanstral-2603|P1_BASELINE
+```
+
+The judge performs best when per-task human calibration is allowed. Without human calibration, it is the best raw fixed-judge candidate, but it does not clear the desired `>= 0.6` item-level target.
+
+| Regime | Human target | Split | Uses evaluation-task human labels? | n tasks/items | Item Spearman rho | Kendall tau | Pearson r | Task rho | Source |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Best raw no-calibration | five-human `zscore_mean` | full | No | 20 / 60 | 0.426 | 0.325 | 0.417 | 0.544 | EXP41 Table 4; EXP39 z-score |
+| Raw no-calibration | five-human `mean` | full | No | 20 / 60 | 0.422 | 0.325 | 0.433 | 0.541 | EXP39 mean; EXP41 sweep |
+| Best full-panel calibrated | five-human `mean` | full | Yes, per-task | 20 / 60 | 0.840 | 0.721 | 0.857 | 0.914 | EXP38; EXP41 sweep |
+| Best full-panel calibrated Pearson/task rho | five-human `trimmed_mean` | full | Yes, per-task | 20 / 60 | 0.830 | 0.687 | 0.862 | 0.934 | EXP41 sweep |
+| Full-panel calibrated | five-human `zscore_mean` | full | Yes, per-task | 20 / 60 | 0.675 | 0.558 | 0.700 | 0.759 | EXP42 oracle; EXP41 sweep |
+| Best held-out-task calibrated | five-human `mean` | test | Yes, per-task test labels | 6 / 18 | 0.619 | 0.469 | 0.711 | 0.754 | EXP41 sweep |
+| Held-out-task calibrated | five-human `trimmed_mean` | test | Yes, per-task test labels | 6 / 18 | 0.572 | 0.430 | 0.676 | 0.600 | EXP41 sweep |
+| Held-out-task calibrated | five-human `zscore_mean` | test | Yes, per-task test labels | 6 / 18 | 0.344 | 0.279 | 0.330 | 0.429 | EXP41 sweep; EXP42 oracle |
+| LOO global calibration | five-human `zscore_mean` | leave-one-task-out | No task-specific labels | 20 / 60 | 0.170 | 0.100 | 0.352 | 0.533 | EXP41 Table 5 |
+| Global train-to-test transfer | five-human `zscore_mean` | test | No test-task labels | 6 / 18 | -0.084 | -0.084 | -0.102 | -0.174 | EXP42 primary table |
+| Legacy pooled human-label regime | pass1/pass2/avg labels | pooled | No new calibration | 72 rows | 0.041 avg Spearman | N/A | N/A | N/A | EXP16 cached row |
+
+Bottom line for this judge: the strongest honest item-rank number is `0.840` item Spearman / `0.721` Kendall under five-human mean per-task calibration. The strongest full-panel Pearson/task-rho numbers are `0.862` / `0.934` under five-human trimmed-mean per-task calibration. The strongest raw no-calibration number is `0.426` item Spearman / `0.544` task Spearman, so the raw fixed-judge claim still needs either a better construction or a clearly labeled limitation.
+
+## Current Best Across Judge Families (Context)
 
 ### Best Positive Result: Per-Task Human-Calibrated Judges
 
