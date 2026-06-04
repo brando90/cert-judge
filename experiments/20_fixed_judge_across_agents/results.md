@@ -36,6 +36,17 @@ The judge performs best when per-task human calibration is allowed. Without huma
 | Global train-to-test transfer | five-human `zscore_mean` | test | No test-task labels | 6 / 18 | -0.084 | -0.084 | -0.102 | -0.174 | EXP42 primary table |
 | Legacy pooled human-label regime | pass1/pass2/avg labels | pooled | No new calibration | 72 rows | 0.041 avg Spearman | N/A | N/A | N/A | EXP16 cached row |
 
+Source key for this fixed-judge table:
+
+- EXP16 cached row: `experiments/04_veribench_validation/results_exp16_leanstral_r3_median/judge_rows.csv`
+- EXP38: `experiments/04_veribench_validation/results_exp38_five_human_per_task_isotonic/per_judge_metrics.csv`
+- EXP39 mean: `experiments/04_veribench_validation/results_exp39_autometrics_autoti/REPORT.md`
+- EXP39 z-score: `experiments/04_veribench_validation/results_exp39_autometrics_autoti_zscore_mean/REPORT.md`
+- EXP41 Table 4: `experiments/04_veribench_validation/results_exp41_honest_train_test/HONEST_TABLE.md`
+- EXP41 sweep: `experiments/04_veribench_validation/results_exp41_honest_train_test/sweep_results.csv`
+- EXP42 oracle / primary table: `experiments/04_veribench_validation/results_exp42_proper_transfer/PAPER_TABLE.md`
+- EXP42 sweep: `experiments/04_veribench_validation/results_exp42_proper_transfer/sweep_results.csv`
+
 Bottom line for this judge: the strongest honest item-rank number is `0.840` item Spearman / `0.721` Kendall under five-human mean per-task calibration. The strongest full-panel Pearson/task-rho numbers are `0.862` / `0.934` under five-human trimmed-mean per-task calibration. The strongest raw no-calibration number is `0.426` item Spearman / `0.544` task Spearman, so the raw fixed-judge claim still needs either a better construction or a clearly labeled limitation.
 
 ## Current Best Across Judge Families (Context)
@@ -171,12 +182,18 @@ VeriBench agent/gold/human inputs:
 
 Trust-index and calibration references:
 
+- `experiments/04_veribench_validation/results_exp16_leanstral_r3_median/judge_rows.csv`
+- `experiments/04_veribench_validation/results_exp38_five_human_per_task_isotonic/per_judge_metrics.csv`
+- `experiments/04_veribench_validation/results_exp39_autometrics_autoti/REPORT.md`
+- `experiments/04_veribench_validation/results_exp39_autometrics_autoti_zscore_mean/REPORT.md`
+- `experiments/04_veribench_validation/results_exp41_honest_train_test/sweep_results.csv`
 - `experiments/04_veribench_validation/exp28_variance_aware_trust_index.py`
 - `experiments/04_veribench_validation/exp30_specialist_judge_task_split.py`
 - `experiments/04_veribench_validation/exp40_train_test_calibration_sweep.py`
 - `experiments/04_veribench_validation/exp43_frozen_tivar_heldout.py`
 - `experiments/04_veribench_validation/results_exp41_honest_train_test/HONEST_TABLE.md`
 - `experiments/04_veribench_validation/results_exp42_proper_transfer/PAPER_TABLE.md`
+- `experiments/04_veribench_validation/results_exp42_proper_transfer/sweep_results.csv`
 - `experiments/04_veribench_validation/results_exp43_frozen_tivar_heldout/HELD_OUT_PAPER_TABLE.md`
 
 ## Paper-Claim Guardrail
