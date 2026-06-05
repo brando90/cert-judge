@@ -1,5 +1,5 @@
 # Fixed Judge Across Agents Results
-**TLDR:** For the fixed judge `labs-leanstral-2603|P1_BASELINE`, the best full-panel calibrated item-rank result is five-human mean per-task calibration: item Spearman `0.840`, Kendall `0.721`, Pearson `0.857`, and task Spearman `0.914`. The best reportable full-panel family rows are LeanStral `labs-leanstral-2603|P1_BASELINE`, Codex `gpt-5.3-codex|P14_HUMAN_ALIGN_V2`, and Claude `claude-opus-4-7|P1_BASELINE`; Qwen is not comparable yet because there is no item-level five-human cache. The best raw no-calibration LeanStral result is much lower: item Spearman `0.426`, Kendall `0.325`, Pearson `0.417`, and task Spearman `0.544`.
+**TLDR:** For the fixed judge `labs-leanstral-2603|P1_BASELINE`, the best full-panel calibrated item-rank result is five-human mean per-task calibration: item Spearman `0.840`, Kendall `0.721`, Pearson `0.857`, and task Spearman `0.914`. The best reportable full-panel family rows are LeanStral `labs-leanstral-2603|P1_BASELINE`, GPT-4o-mini `gpt-4o-mini|P1_BASELINE`, Codex `gpt-5.3-codex|P14_HUMAN_ALIGN_V2`, and Claude `claude-opus-4-7|P1_BASELINE`; Qwen is not comparable yet because there is no item-level five-human cache. The best raw no-calibration LeanStral result is much lower: item Spearman `0.426`, Kendall `0.325`, Pearson `0.417`, and task Spearman `0.544`.
 
 ## Sign-Off Summary
 
@@ -14,11 +14,12 @@ Current state: existing completed runs support a strong *judge-calibration* resu
 
 ## Best Judge Rows To Report
 
-Use this table for the short sign-off version: one best currently reportable judge row for the LeanStral judge being discussed, plus the best full-panel calibrated rows for Codex and Claude. Qwen is listed honestly as unavailable for this same five-human human-alignment comparison.
+Use this table for the short sign-off version: one best currently reportable judge row for the LeanStral judge being discussed, plus the best full-panel calibrated rows for GPT-4o-mini, Codex, and Claude. Qwen is listed honestly as unavailable for this same five-human human-alignment comparison.
 
 | Family | Judge to report | Regime | Human target | n tasks/items | Spearman rho | Kendall tau | Pearson r | Task rho | Source |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | LeanStral | `labs-leanstral-2603|P1_BASELINE` | Best fixed LeanStral candidate, per-task calibrated | five-human `mean` | 20 / 60 | 0.840 | 0.721 | 0.857 | 0.914 | EXP38; EXP41 sweep |
+| GPT-4o-mini | `gpt-4o-mini|P1_BASELINE` | Best full-panel calibrated GPT-4o-mini row | five-human `zscore_mean` | 20 / 60 | 0.843 | 0.703 | 0.873 | 0.910 | EXP41 Table 3 |
 | Codex | `gpt-5.3-codex|P14_HUMAN_ALIGN_V2` | Best full-panel calibrated Codex row | five-human `zscore_mean` | 20 / 60 | 0.884 | 0.731 | 0.896 | 0.967 | EXP41 Table 3 |
 | Claude | `claude-opus-4-7|P1_BASELINE` | Best full-panel calibrated Claude row | five-human `zscore_mean` | 20 / 60 | 0.870 | 0.728 | 0.892 | 0.934 | EXP41 Table 3 |
 | Qwen | N/A | Not comparable yet | N/A | N/A | N/A | N/A | N/A | N/A | EXP41/EXP42 exclude Qwen: no item-level five-human judge cache |
