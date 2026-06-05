@@ -1,5 +1,5 @@
 # Fixed Judge Across Agents Results
-**TLDR:** For the fixed judge `labs-leanstral-2603|P1_BASELINE`, the best full-panel calibrated item-rank result is five-human mean per-task calibration: item Spearman `0.840`, Kendall `0.721`, Pearson `0.857`, and task Spearman `0.914`. The five-human trimmed mean target has slightly better full-panel Pearson/task Spearman (`0.862` / `0.934`) but lower item-rank correlation. The best raw no-calibration result is much lower: item Spearman `0.426`, Kendall `0.325`, Pearson `0.417`, and task Spearman `0.544`.
+**TLDR:** For the fixed judge `labs-leanstral-2603|P1_BASELINE`, the best full-panel calibrated item-rank result is five-human mean per-task calibration: item Spearman `0.840`, Kendall `0.721`, Pearson `0.857`, and task Spearman `0.914`. The best reportable full-panel family rows are LeanStral `labs-leanstral-2603|P1_BASELINE`, Codex `gpt-5.3-codex|P14_HUMAN_ALIGN_V2`, and Claude `claude-opus-4-7|P1_BASELINE`; Qwen is not comparable yet because there is no item-level five-human cache. The best raw no-calibration LeanStral result is much lower: item Spearman `0.426`, Kendall `0.325`, Pearson `0.417`, and task Spearman `0.544`.
 
 ## Sign-Off Summary
 
@@ -11,6 +11,19 @@ Brando wants a TMLR-ready result where one fixed judge works across as many agen
 The target threshold is approximately `0.6` for each correlation metric: Pearson `r`, Spearman `rho`, and Kendall `tau`. Higher is better, and more agent rows are better. Treat 3 agent rows as a smoke panel; use 5 or more rows with uncertainty estimates for a paper-facing cross-agent trend claim.
 
 Current state: existing completed runs support a strong *judge-calibration* result, not yet the requested cross-agent agent-row result. The current best tables below should be used as the starting evidence for Brando; the agent CLI/model rows remain to be generated and joined.
+
+## Best Judge Rows To Report
+
+Use this table for the short sign-off version: one best currently reportable judge row for the LeanStral judge being discussed, plus the best full-panel calibrated rows for Codex and Claude. Qwen is listed honestly as unavailable for this same five-human human-alignment comparison.
+
+| Family | Judge to report | Regime | Human target | n tasks/items | Spearman rho | Kendall tau | Pearson r | Task rho | Source |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| LeanStral | `labs-leanstral-2603|P1_BASELINE` | Best fixed LeanStral candidate, per-task calibrated | five-human `mean` | 20 / 60 | 0.840 | 0.721 | 0.857 | 0.914 | EXP38; EXP41 sweep |
+| Codex | `gpt-5.3-codex|P14_HUMAN_ALIGN_V2` | Best full-panel calibrated Codex row | five-human `zscore_mean` | 20 / 60 | 0.884 | 0.731 | 0.896 | 0.967 | EXP41 Table 3 |
+| Claude | `claude-opus-4-7|P1_BASELINE` | Best full-panel calibrated Claude row | five-human `zscore_mean` | 20 / 60 | 0.870 | 0.728 | 0.892 | 0.934 | EXP41 Table 3 |
+| Qwen | N/A | Not comparable yet | N/A | N/A | N/A | N/A | N/A | N/A | EXP41/EXP42 exclude Qwen: no item-level five-human judge cache |
+
+Note: the best EXP41 full-panel calibrated LeanStral family row on the five-human `zscore_mean` target is `labs-leanstral-2603|P8_STRICT_B` with Spearman `0.806`, Kendall `0.664`, Pearson `0.856`, and task rho `0.851`. The table above keeps `labs-leanstral-2603|P1_BASELINE` because that is the fixed LeanStral judge candidate already selected for the cross-agent run and it has the strongest calibrated five-human mean item-rank result among the fixed-candidate summaries.
 
 ## Current Best Results For The Fixed Judge
 
