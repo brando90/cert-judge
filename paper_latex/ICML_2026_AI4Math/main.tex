@@ -73,6 +73,7 @@
 \makeatletter
 \renewcommand{\Notice@String}{ICML 2026 AI4Math Workshop.}
 \makeatother
+\icmlsetsymbol{equal}{*}
 
 \begin{document}
 
@@ -80,24 +81,23 @@
   \icmltitle{CertJudge: Evaluating Lean Formal-Code With Falsifiable Properties}
 
   \begin{icmlauthorlist}
-    \icmlauthor{Ethan S Hersch}{stanford}
-    \icmlauthor{Brando Miranda}{stanford}
+    \icmlauthor{Ethan S Hersch}{equal,stanford}
+    \icmlauthor{Brando Miranda}{equal,stanford}
     \icmlauthor{Elyas Obbad}{stanford}
     \icmlauthor{Srivatsava Daruru}{stanford,servicenow}
     \icmlauthor{Zhanke Zhou}{stanford,hkbu}
     \icmlauthor{Kirill Acharya}{stanford}
-    \icmlauthor{Sanmi Koyejo}{virtueai,stanford}
+    \icmlauthor{Sanmi Koyejo}{stanford}
   \end{icmlauthorlist}
   \icmlaffiliation{stanford}{Stanford University}
   \icmlaffiliation{servicenow}{ServiceNow Inc.}
   \icmlaffiliation{hkbu}{Hong Kong Baptist University}
-  \icmlaffiliation{virtueai}{Virtue AI}
   \icmlcorrespondingauthor{Ethan S Hersch}{herschethan@gmail.com}
 
   \vskip 0.3in
 ]
 
-\printAffiliationsAndNotice{}
+\printAffiliationsAndNotice{\icmlEqualContribution}
 
 \begin{abstract}
   LLM judges are increasingly used to evaluate AI-generated code, tests, theorems, and formal specifications. In our setting, a judge scores the quality of a candidate Lean~4 artifact relative to a gold reference, but validating each new judge, prompt, model, or threshold with fresh human ratings is expensive and does not scale. We ask whether this validation can be amortized through behavioral checks that are automatic and falsifiable. We propose \textsc{CertJudge}, a property-certification protocol for LLM judges of Lean~4 theorem and specification quality. Instead of treating human agreement as the only validation signal, \textsc{CertJudge} tests whether a judge behaves correctly under controlled perturbations measuring identity, bug monotonicity, specification monotonicity, and stability. These diagnostics are combined into a variance-aware trust index, \(\mathrm{TI}_{\mathrm{var}}\), which provides a summary of judge reliability rather than a universal evaluator constant. On a human-labeled validation suite, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2) (Appendix~\ref{app:exp16-exp17}). On \textsc{VeriBench} (Section~\ref{sec:veribench-overview}), we use the calibrated judge to rank theorem-generation methods, illustrating how a small human calibration set can support scalable judge selection. These results are validation-set calibration evidence, not a claim of universal reliability or deployment-time generalization.
