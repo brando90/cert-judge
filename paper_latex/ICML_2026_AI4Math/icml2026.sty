@@ -156,10 +156,9 @@
 % final/accepted version of the ``appearing in'' note.  Modify it to
 % change that text.
 %%%%%%%%%%%%%%%%%%%%
-\newcommand{\ICML@appearing}{\textit{Proceedings of the
-$\mathit{43}^{rd}$ International Conference on Machine Learning},
-Seoul, South Korea. PMLR 306, 2026.
-Copyright 2026 by the author(s).}
+\newcommand{\ICML@appearing}{The \textit{$\mathit{3}^{rd}$ AI for Math Workshop} at the $\mathrm{43}^{rd}$
+  International Conference on Machine Learning (ICML), Seoul, South Korea, 2026.
+  Copyright 2026 by the author(s).}
 
 %%%%%%%%%%%%%%%%%%%%
 % This string is printed at the bottom of the page for the draft/under
@@ -167,7 +166,7 @@ Copyright 2026 by the author(s).}
 % that text.
 %%%%%%%%%%%%%%%%%%%%
 \newcommand{\Notice@String}{Preliminary work.  Under review by the
-International Conference on Machine Learning (ICML)\@.  Do not distribute.}
+  International Conference on Machine Learning (ICML)\@.  Do not distribute.}
 
 % Cause the declared options to actually be parsed and activated
 \ProcessOptions\relax
@@ -177,22 +176,22 @@ International Conference on Machine Learning (ICML)\@.  Do not distribute.}
 \ifdefined\ispreprint \icmlshowauthorstrue \fi
 
 \ifdefined\isaccepted\else\ifdefined\ispreprint\else\ifdefined\hypersetup
-  \hypersetup{pdfauthor={Anonymous Authors}}
-\fi\fi\fi
+      \hypersetup{pdfauthor={Anonymous Authors}}
+    \fi\fi\fi
 
 \ifdefined\nohyperref\else\ifdefined\hypersetup
-  \definecolor{mydarkblue}{rgb}{0,0.08,0.45}
-  \hypersetup{ %
-    pdftitle={},
-    pdfsubject={Proceedings of the International Conference on Machine Learning 2026},
-    pdfkeywords={},
-    pdfborder=0 0 0,
-    pdfpagemode=UseNone,
-    colorlinks=true,
-    linkcolor=mydarkblue,
-    citecolor=mydarkblue,
-    filecolor=mydarkblue,
-    urlcolor=mydarkblue,
+    \definecolor{mydarkblue}{rgb}{0,0.08,0.45}
+    \hypersetup{ %
+      pdftitle={},
+      pdfsubject={Proceedings of the International Conference on Machine Learning 2026},
+      pdfkeywords={},
+      pdfborder=0 0 0,
+      pdfpagemode=UseNone,
+      colorlinks=true,
+      linkcolor=mydarkblue,
+      citecolor=mydarkblue,
+      filecolor=mydarkblue,
+      urlcolor=mydarkblue,
     }
   \fi
 \fi
@@ -238,18 +237,18 @@ International Conference on Machine Learning (ICML)\@.  Do not distribute.}
 \newif\ifpdf %adapted from ifpdf.sty
 \ifx\pdfoutput\undefined
 \else
-   \ifx\pdfoutput\relax
-   \else
-     \ifcase\pdfoutput
-     \else
-       \pdftrue
-     \fi
-   \fi
+  \ifx\pdfoutput\relax
+  \else
+    \ifcase\pdfoutput
+    \else
+      \pdftrue
+    \fi
+  \fi
 \fi
 
 \ifpdf
-%    \pdfpagewidth=\paperwidth
-%    \pdfpageheight=\paperheight
+  %    \pdfpagewidth=\paperwidth
+  %    \pdfpageheight=\paperheight
   \setlength{\pdfpagewidth}{8.5in}
   \setlength{\pdfpageheight}{11in}
 \fi
@@ -272,32 +271,32 @@ International Conference on Machine Learning (ICML)\@.  Do not distribute.}
 % bud here. -- Iain Murray 2018.
 %\RequirePackage{printlen}
 \AtBeginDocument{%
-\newif\ifmarginsmessedwith
-\marginsmessedwithfalse
-\ifdim\oddsidemargin=-16.62178pt     \else oddsidemargin has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\headheight=10.0pt             \else headheight has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\textheight=650.43pt           \else textheight has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\marginparsep=11.0pt           \else marginparsep has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\footskip=25.0pt               \else footskip has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\hoffset=0.0pt                 \else hoffset has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\paperwidth=614.295pt          \else paperwidth has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\topmargin=-24.95781pt         \else topmargin has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\headsep=10.0pt                \else headsep has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\textwidth=487.8225pt          \else textwidth has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\marginparpush=5.0pt           \else marginparpush has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\voffset=0.0pt                 \else voffset has been altered.\\ \marginsmessedwithtrue\fi
-\ifdim\paperheight=794.96999pt       \else paperheight has been altered.\\ \marginsmessedwithtrue\fi
-\ifmarginsmessedwith
+  \newif\ifmarginsmessedwith
+  \marginsmessedwithfalse
+  \ifdim\oddsidemargin=-16.62178pt     \else oddsidemargin has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\headheight=10.0pt             \else headheight has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\textheight=650.43pt           \else textheight has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\marginparsep=11.0pt           \else marginparsep has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\footskip=25.0pt               \else footskip has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\hoffset=0.0pt                 \else hoffset has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\paperwidth=614.295pt          \else paperwidth has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\topmargin=-24.95781pt         \else topmargin has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\headsep=10.0pt                \else headsep has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\textwidth=487.8225pt          \else textwidth has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\marginparpush=5.0pt           \else marginparpush has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\voffset=0.0pt                 \else voffset has been altered.\\ \marginsmessedwithtrue\fi
+  \ifdim\paperheight=794.96999pt       \else paperheight has been altered.\\ \marginsmessedwithtrue\fi
+  \ifmarginsmessedwith
 
-\textbf{\large \em The page layout violates the ICML style.}
+    \textbf{\large \em The page layout violates the ICML style.}
 
-Please do not change the page layout, or include packages like geometry,
-savetrees, or fullpage, which change it for you.
+    Please do not change the page layout, or include packages like geometry,
+    savetrees, or fullpage, which change it for you.
 
-We're not able to reliably undo arbitrary changes to the style. Please remove
-the offending package(s), or layout-changing commands and try again.
+    We're not able to reliably undo arbitrary changes to the style. Please remove
+    the offending package(s), or layout-changing commands and try again.
 
-\fi}
+  \fi}
 
 
 %% The following is adapted from code in the acmconf.sty conference
@@ -319,15 +318,15 @@ the offending package(s), or layout-changing commands and try again.
 %%%
 \def\ftype@copyrightbox{8}
 \def\@copyrightspace{
-\@float{copyrightbox}[b]
-\begin{center}
-\setlength{\unitlength}{1pc}
-\begin{picture}(20,1.5)
-\put(0,2.5){\line(1,0){4.818}}
-\put(0,0){\parbox[b]{19.75pc}{\small \Notice@String}}
-\end{picture}
-\end{center}
-\end@float}
+  \@float{copyrightbox}[b]
+  \begin{center}
+    \setlength{\unitlength}{1pc}
+    \begin{picture}(20,1.5)
+      \put(0,2.5){\line(1,0){4.818}}
+      \put(0,0){\parbox[b]{19.75pc}{\small \Notice@String}}
+    \end{picture}
+  \end{center}
+  \end@float}
 
 \setlength\footskip{25.0pt}
 \flushbottom \twocolumn
@@ -355,52 +354,52 @@ the offending package(s), or layout-changing commands and try again.
 % main definition adapting \icmltitle from 2004
 \long\def\icmltitle#1{%
 
-   %check whether @icmltitlerunning exists
-   % if not \icmltitle is used as running head
-   \ifx\undefined\@icmltitlerunning%
-      \gdef\@icmltitlerunning{#1}
-   \fi
+  %check whether @icmltitlerunning exists
+  % if not \icmltitle is used as running head
+  \ifx\undefined\@icmltitlerunning%
+    \gdef\@icmltitlerunning{#1}
+  \fi
 
-   %add it to pdf information
+  %add it to pdf information
   \ifdefined\nohyperref\else\ifdefined\hypersetup
-     \hypersetup{pdftitle={#1}}
-   \fi\fi
+      \hypersetup{pdftitle={#1}}
+    \fi\fi
 
-   %get the dimension of the running title
-   \global\setbox\titrun=\vbox{\small\bf\@icmltitlerunning}
+  %get the dimension of the running title
+  \global\setbox\titrun=\vbox{\small\bf\@icmltitlerunning}
 
-   % error flag
-   \gdef\@runningtitleerror{0}
+  % error flag
+  \gdef\@runningtitleerror{0}
 
-    % running title too long
-    \ifdim\wd\titrun>\textwidth%
-      \gdef\@runningtitleerror{1}%
-      % running title breaks a line
-    \else \ifdim\ht\titrun>6.25pt
-    \gdef\@runningtitleerror{2}%
-      \fi
+  % running title too long
+  \ifdim\wd\titrun>\textwidth%
+    \gdef\@runningtitleerror{1}%
+    % running title breaks a line
+  \else \ifdim\ht\titrun>6.25pt
+      \gdef\@runningtitleerror{2}%
     \fi
+  \fi
 
-       % if there is somthing wrong with the running title
-    \ifnum\@runningtitleerror>0
-      \typeout{}%
-                 \typeout{}%
-                 \typeout{*******************************************************}%
-                 \typeout{Title exceeds size limitations for running head.}%
-                 \typeout{Please supply a shorter form for the running head}
-                 \typeout{with \string\icmltitlerunning{...}\space prior to \string\begin{document}}%
-      \typeout{*******************************************************}%
-      \typeout{}%
-      \typeout{}%
-      % set default running title
-      \gdef\@icmltitlerunning{Title Suppressed Due to Excessive Size}
-    \fi
+  % if there is somthing wrong with the running title
+  \ifnum\@runningtitleerror>0
+    \typeout{}%
+    \typeout{}%
+    \typeout{*******************************************************}%
+    \typeout{Title exceeds size limitations for running head.}%
+    \typeout{Please supply a shorter form for the running head}
+    \typeout{with \string\icmltitlerunning{...}\space prior to \string\begin{document}}%
+    \typeout{*******************************************************}%
+    \typeout{}%
+    \typeout{}%
+    % set default running title
+    \gdef\@icmltitlerunning{Title Suppressed Due to Excessive Size}
+  \fi
 
-    % no running title on the first page of the paper
-    \thispagestyle{plain}
+  % no running title on the first page of the paper
+  \thispagestyle{plain}
 
-    {\center\baselineskip 18pt
-      \toptitlebar{\Large\bf #1}\bottomtitlebar}
+  {\center\baselineskip 18pt
+    \toptitlebar{\Large\bf #1}\bottomtitlebar}
 }
 
 % set running title header
@@ -527,7 +526,7 @@ the offending package(s), or layout-changing commands and try again.
         \fi
       }.%
       \ifdefined\icmlcorrespondingauthor@text
-         { }Correspondence to: \icmlcorrespondingauthor@text.
+        { }Correspondence to: \icmlcorrespondingauthor@text.
       \else
         {\bf AUTHORERR: Missing \textbackslash{}icmlcorrespondingauthor.}
       \fi
