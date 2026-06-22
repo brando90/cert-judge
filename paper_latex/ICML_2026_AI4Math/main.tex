@@ -1,8 +1,5 @@
 \documentclass{article}
 
-% Keep the existing ICML style file in this repo until the official
-% ICML 2026 style files are added locally.
-\usepackage[accepted]{icml2026}
 % Encoding & typography
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} % (only if using pdfLaTeX; not needed for XeLaTeX/LuaLaTeX)
@@ -11,16 +8,30 @@
 % Colors
 \usepackage[dvipsnames]{xcolor}
 
+% Tables & figures
+\usepackage{graphicx}
+\usepackage{subcaption} % loads caption
+\usepackage{booktabs}
+
+% Hyperlinks should be loaded before the ICML style, as in the official
+% ICML 2026 example paper.
+\usepackage{hyperref}
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+\usepackage[accepted]{icml2026}
+\makeatletter
+\renewcommand{\ICML@appearing}{The \textit{$\mathit{3}^{rd}$ AI for Math Workshop} at the $\mathrm{43}^{rd}$
+  International Conference on Machine Learning (ICML), Seoul, South Korea, 2026.
+  Copyright 2026 by the author(s).}
+\makeatother
+
 % Math & symbols
 \usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools,bm}
 \usepackage{nicefrac,xfrac}
 
-% Tables & figures
-\usepackage{graphicx}
-\usepackage{subcaption} % loads caption
+% Additional tables & figures
 \usepackage{float}
 \usepackage{wrapfig}
-\usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{makecell}
 \usepackage{colortbl}
@@ -38,11 +49,6 @@
 \usetikzlibrary{arrows.meta,positioning}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-
-% Bibliography
-% \usepackage[numbers]{natbib}
-% Hyperlinks (load last)
-\usepackage{hyperref}
 
 % Listings
 \lstset{
@@ -359,8 +365,9 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
   \definecolor{jrand}{HTML}{BCBD22}%
   \noindent
   \centering
-  \begin{subfigure}[t]{0.323\textwidth}
+  \begin{subfigure}[t]{0.30\textwidth}
     \centering
+    \begin{adjustbox}{width=\linewidth}
     \begin{tikzpicture}
       \begin{axis}[
         width=\linewidth,
@@ -425,9 +432,11 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
         \addplot+[domain=0.0083:0.9208, samples=2, dashed, color=red!65!black, thick, forget plot] {0.5080*x - 0.0128};
       \end{axis}
     \end{tikzpicture}
+    \end{adjustbox}
   \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.323\textwidth}
+  \begin{subfigure}[t]{0.30\textwidth}
     \centering
+    \begin{adjustbox}{width=\linewidth}
     \begin{tikzpicture}
       \begin{axis}[
         width=\linewidth,
@@ -470,9 +479,11 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
         \addplot+[domain=0.0083:0.9474, samples=2, dashed, color=red!65!black, thick, forget plot] {0.2776*x + 0.0571};
       \end{axis}
     \end{tikzpicture}
+    \end{adjustbox}
   \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.323\textwidth}
+  \begin{subfigure}[t]{0.30\textwidth}
     \centering
+    \begin{adjustbox}{width=\linewidth}
     \begin{tikzpicture}
       \begin{axis}[
         width=\linewidth,
@@ -515,6 +526,7 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
         \addplot+[domain=0.0083:0.9420, samples=2, dashed, color=red!65!black, thick, forget plot] {0.2337*x + 0.0687};
       \end{axis}
     \end{tikzpicture}
+    \end{adjustbox}
   \end{subfigure}
   \caption{\textbf{$\mathrm{TI}_{\mathrm{var}}$ vs.\ judge-level human alignment.}
   Each point is one judge configuration; the \(x\)-axis is \(\mathrm{TI}_{\mathrm{var}}\), and the \(y\)-axis is Spearman agreement with averaged human labels on the validation panel.
@@ -1263,20 +1275,21 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
 
 \begin{table}[t]
   \centering
-  \small
-  \begin{tabular}{@{}p{0.46\columnwidth}p{0.14\columnwidth}p{0.30\columnwidth}@{}}
+  \scriptsize
+  \setlength{\tabcolsep}{2pt}%
+  \begin{tabular}{@{}p{0.42\columnwidth}p{0.12\columnwidth}p{0.34\columnwidth}@{}}
     \toprule
-    \textbf{Quantity}                           & \textbf{Value} & \textbf{Notes}                      \\
+    \textbf{Quantity}                           & \textbf{Value} & \textbf{Notes}                       \\
     \midrule
-    Human-human Spearman (pass1 vs pass2)       & 0.249          & \(95\%\ \text{CI}=[-0.015, 0.489]\) \\
-    Human-human Pearson (pass1 vs pass2)        & 0.375          & \(95\%\ \text{CI}=[0.076, 0.604]\)  \\
-    Human-human QWK (pass1 vs pass2)            & 0.372          & \(95\%\ \text{CI}=[0.073, 0.581]\)  \\
-    Human-human MAE (pass1 vs pass2)            & 0.778          & On aligned \(n=75\), 0--5 rubric    \\
-    Human-human MSE (pass1 vs pass2)            & 1.139          & On aligned \(n=75\), 0--5 rubric    \\
-    JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence      \\
-    KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence               \\
-    Best validation-set Spearman (avg labels)   & 0.480          & Best single judge on avg labels     \\
-    Best validation-set Spearman (pass1 labels) & 0.559          & Best single judge on pass1 labels   \\
+    Human-human Spearman (pass1 vs pass2)       & 0.249          & \(95\%\ \text{CI}=[-0.015, 0.489]\)  \\
+    Human-human Pearson (pass1 vs pass2)        & 0.375          & \(95\%\ \text{CI}=[0.076, 0.604]\)   \\
+    Human-human QWK (pass1 vs pass2)            & 0.372          & \(95\%\ \text{CI}=[0.073, 0.581]\)   \\
+    Human-human MAE (pass1 vs pass2)            & 0.778          & Aligned \(n=75\), 0--5 rubric        \\
+    Human-human MSE (pass1 vs pass2)            & 1.139          & Aligned \(n=75\), 0--5 rubric        \\
+    JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence       \\
+    KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence                \\
+    Best validation-set Spearman (avg labels)   & 0.480          & Best single judge on avg labels      \\
+    Best validation-set Spearman (pass1 labels) & 0.559          & Best single judge on pass1 labels    \\
     \bottomrule
   \end{tabular}
   \caption{\textbf{Human-human agreement ceiling context.}
@@ -1332,12 +1345,12 @@ Early \textbf{Claude 3.x Sonnet} scatterplots reported in Appendix~\ref{app:judg
   \setlength{\tabcolsep}{3pt}%
   \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.52\linewidth}
     >{\centering\arraybackslash}p{0.09\linewidth}
-    >{\centering\arraybackslash}p{0.07\linewidth}
+    >{\centering\arraybackslash}p{0.08\linewidth}
     >{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
     \toprule
     \textbf{Judge setup}                 &
     \textbf{Scale}                       &
-    \textbf{Main?}                       &
+    \textbf{Main}                        &
     \textbf{Role}                                                                     \\
     \midrule
     GPT-5.3-Codex prompts (P8/P4/P1)     & \(n{=}8\) & Yes & Primary judges           \\
