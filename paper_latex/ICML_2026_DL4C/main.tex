@@ -2,7 +2,7 @@
 
 % Keep the existing ICML style file in this repo until the official
 % ICML 2026 style files are added locally.
-\usepackage{icml2025}
+\usepackage[accepted]{icml2026}
 
 % Encoding & typography
 \usepackage[T1]{fontenc}
@@ -72,19 +72,29 @@
 
 \icmltitlerunning{Certifying the Judge}
 \makeatletter
-\renewcommand{\Notice@String}{Anonymous submission to the ICML 2026 DL4C Workshop.}
+\renewcommand{\ICML@appearing}{\textit{Proceedings of the
+$\mathit{43}^{rd}$ International Conference on Machine Learning},
+Seoul, South Korea. PMLR 306, 2026.
+Copyright 2026 by the author(s).}
 \makeatother
-
+\icmlsetsymbol{equal}{*}
 \begin{document}
 
 \twocolumn[
   \icmltitle{Certifying the Judge: Falsifiable Properties for LLM-Based Evaluation of Formal Code}
 
   \begin{icmlauthorlist}
-    \icmlauthor{Anonymous Authors}{anon}
+    \icmlauthor{Ethan S Hersch}{equal,stanford}
+    \icmlauthor{Brando Miranda}{equal,stanford}
+    \icmlauthor{Elyas Obbad}{stanford}
+    \icmlauthor{Srivatsava Daruru}{stanford}
+    \icmlauthor{Zhanke Zhou}{hkbu}
+    \icmlauthor{Kirill Acharya}{stanford}
+    \icmlauthor{Sanmi Koyejo}{stanford}
   \end{icmlauthorlist}
-  \icmlaffiliation{anon}{Anonymous Institution}
-  \icmlcorrespondingauthor{Anonymous Authors}{anon.email@domain.com}
+  \icmlaffiliation{stanford}{Stanford University}
+  \icmlaffiliation{hkbu}{Hong Kong Baptist University}
+  \icmlcorrespondingauthor{Ethan S Hersch}{ehersch@stanford.edu}
 
   \vskip 0.3in
 ]
@@ -171,7 +181,7 @@ not determine whether $x$ formalizes the same intended property as $g$. A candid
 compile while being under-specified, over-constrained, vacuously true, or semantically
 shifted. In \textsc{VeriBench}, this often appears as a coverage gap: candidate artifacts
 may capture only part of the behavior specified by the gold reference
-\citep{anonymous2026veribench}. Thus, exact automatic scoring of theorem/specification quality is unavailable in
+\citep{miranda2026veribench}. Thus, exact automatic scoring of theorem/specification quality is unavailable in
 general.
 
 \paragraph{Judge model.}
@@ -283,7 +293,7 @@ We evaluate these targets with rank-based monotonicity statistics (Kendall's $\t
 
 \section{Experiments}
 \subsection{Data and human-validation protocol}\label{sec:data-human-protocol}\label{sec:veribench-overview}
-All experiments use \textsc{VeriBench}~\citep{anonymous2026veribench}.
+All experiments use \textsc{VeriBench}~\citep{miranda2026veribench}.
 
 \paragraph{Overview of \textsc{VeriBench}.}
 Concretely, \textsc{VeriBench} consists of 857 theorems divided into five subsets:
@@ -842,12 +852,12 @@ Notably, their finding that a Specialist autorater specializes to a \emph{single
 Proof assistants provide binary, kernel-level guarantees. \citet{zhou2024donttrustverify} autoformalize math solutions into Isabelle/HOL and show that filtering via proof checking outperforms majority voting by 12\% on GSM8K. \citet{liu2025safe} extend this approach with SAFE, which verifies every intermediate step in Lean 4 and introduces the FormalStep benchmark, reducing hallucinations and enabling fine-grained oversight.
 
 \paragraph{Agentic Iterative Pipelines.}
-\citet{ospanov2023apollo} integrate Lean feedback into recursive repair cycles, boosting general-purpose LLM proof success from 3--7\% to over 40\% on miniF2F, and achieving 75\% with fewer than 1000 samples. \citet{anonymous2026veribench} extend this paradigm to program verification, showing that self-debugging agents quadruple success compared to one-shot prompting.
+\citet{ospanov2023apollo} integrate Lean feedback into recursive repair cycles, boosting general-purpose LLM proof success from 3--7\% to over 40\% on miniF2F, and achieving 75\% with fewer than 1000 samples. \citet{miranda2026veribench} extend this paradigm to program verification, showing that self-debugging agents quadruple success compared to one-shot prompting.
 Incorporating an LLM judge improved completeness on security tasks but required calibration to avoid regressions on simpler cases.
 
 \paragraph{Benchmarks for Judge Reliability.}
 Benchmarks such as VeriBench and FormalStep quantify judge reliability across compilation, proof success, and specification quality.
-\citet{anonymous2026veribench} report normalized specification scores of 0.470 for one-shot prompting versus 0.615 for self-debugging agents.
+\citet{miranda2026veribench} report normalized specification scores of 0.470 for one-shot prompting versus 0.615 for self-debugging agents.
 Outside formal mathematics, MT-Bench and G-Eval provide complementary judge-evaluation settings using pairwise preferences and rubric-guided scoring, underscoring the need for calibration and validity reporting \citep{Zheng2023MTBench,Liu2023GEval}.
 Together with validity frameworks and robust information-theoretic scoring, these benchmarks advance the agenda of certifying LLM judges for formal verification.
 
