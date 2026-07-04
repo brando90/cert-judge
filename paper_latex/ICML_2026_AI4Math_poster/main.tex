@@ -54,7 +54,7 @@
 
 \footercontent{
   \href{mailto:brando9@stanford.edu}{brando9@stanford.edu} \hfill
-  ICML 2026 Math-AI Workshop \hfill
+  ICML 2026 Math-AI Workshop \hfill % TODO: confirm official workshop name (Math-AI vs AI4Math) before printing
   \href{https://github.com/brando90/cert-judge}{github.com/brando90/cert-judge}
   \quad {\small\emph{[Author list to be confirmed]}}}
 
@@ -97,7 +97,7 @@
   \begin{alertblock}{Key idea: certify the judge --- don't re-label it}
 
     \begin{itemize}
-      \item \textbf{CertJudge}: humans rate a small panel \textbf{once} ($n{=}75$ candidate--gold Lean pairs); every new judge configuration is then screened by \textbf{automatic, falsifiable property checks}.
+      \item \textbf{CertJudge}: a human rates a small panel \textbf{once} ($n{=}75$ candidate--gold Lean pairs, single annotator, two rubric passes); every new judge configuration is then screened by \textbf{automatic, falsifiable property checks}.
       \item Controlled perturbations test four behaviors, aggregated into a \textbf{variance-aware trust index} \tivar.
       \item Judges with higher \tivar{} agree more with humans --- certification predicts \emph{which judge to trust}, with no new labels.
     \end{itemize}
@@ -131,7 +131,7 @@
     $C_f$: geometric aggregate of P1--P4; the variance terms penalize unstable judges. Multiplicative: \textbf{one failed property collapses the index}.
 
     \heading{Calibration setup}
-    \textsc{VeriBench} Lean~4 artifacts \cite{anonymous2026veribench}: $n{=}75$ aligned candidate--gold pairs from 24 problems (3 agent generations per problem), two human passes each on a 0--5 rubric. 8 judge configurations per family: GPT-5.3-Codex, Claude Opus 4.7, Qwen3-Coder.
+    \textsc{VeriBench} Lean~4 artifacts \cite{anonymous2026veribench}: $n{=}75$ aligned candidate--gold pairs from 24 problems (3 agent generations per problem), two human passes each on a 0--5 rubric. 8 judge configurations per family panel (incl.\ cross-family and edit/random controls): GPT-5.3-Codex, Claude Opus 4.7, Qwen3-Coder.
 
   \end{block}
 
@@ -188,7 +188,7 @@
   \begin{alertblock}{Takeaways}
 
     \begin{itemize}
-      \item \textbf{Amortized oversight:} one $n{=}75$ human panel + automated falsifiable checks screen every new judge configuration --- no re-labeling.
+      \item \textbf{Amortized oversight:} one $n{=}75$ single-annotator panel + automated falsifiable checks screen every new judge configuration --- no re-labeling.
       \item \textbf{Measure trust, don't assume it:} behavioral properties expose failures (broken baselines, $\alpha$-renaming brittleness) that human-agreement scores miss.
       \item \textbf{Scope:} \emph{validation-set calibration evidence, not universal reliability} --- a locked held-out test on an independent pool (5 raters, 343 labels, 78 pairs) is next.
     \end{itemize}
