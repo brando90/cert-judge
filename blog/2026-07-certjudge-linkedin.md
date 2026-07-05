@@ -25,7 +25,7 @@ Instead of treating human agreement as the only validation signal, CertJudge tes
 These aggregate into **TI_var**, a variance-aware trust index: unstable judges are penalized, and one failed property collapses the index. Calibration uses a single n=75 candidate–gold panel (one annotator, two rubric passes) and 8 judge configurations per family panel.
 
 **Empirical Results**
-- TI_var strongly predicts judge-level human alignment: validation-set Spearman **0.833** (avg labels), **0.905** (pass1), **0.738** (pass2) across GPT-5.3-Codex, Claude Opus 4.7, and Qwen3-Coder judge families.
+- TI_var strongly predicts judge-level human alignment on the primary 8-configuration panel: validation-set Spearman **0.833** (avg labels), **0.905** (pass1), **0.738** (pass2); the trend replicates across the GPT-5.3-Codex, Claude Opus 4.7, and Qwen3-Coder judge families (6 of 9 family/pass combinations exceed 0.7).
 - It catches what agreement misses: an intentionally broken judge still reaches ≈0.45 human Spearman yet fails weak monotonicity (12.5%).
 - Known failure mode surfaced: aggressive α-renaming scores 0.399 vs ≥0.849 for milder rewrites — LLM judges key on surface strings the Lean kernel ignores.
 - Downstream, the certified judge ranks theorem-generation agents on VeriBench: DSPy ReAct 0.615 > Trace++ 0.588 > Trace+ 0.477 > baseline 0.470.

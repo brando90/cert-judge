@@ -28,7 +28,7 @@ Certify judges with automatic, falsifiable behavioral checks instead of re-label
 2️⃣ P2 Bug monotonicity
 3️⃣ P3 Spec monotonicity
 4️⃣ P4 Stability
-Controlled perturbations of arbitrary Lean files — no gold labels needed.
+Controlled perturbations of Lean artifacts — no new human labels needed.
 
 ---
 
@@ -41,7 +41,7 @@ Properties aggregate into TI_var, a variance-aware trust index — unstable judg
 
 5/8: Results 📊
 
-TI_var predicts judge-level human alignment: validation-set Spearman 0.833 (avg labels), 0.905 (pass1), 0.738 (pass2) — across GPT-5.3-Codex, Claude Opus 4.7, and Qwen3-Coder judge families.
+TI_var predicts judge-level human alignment: validation-set Spearman 0.833 (avg labels), 0.905 (pass1), 0.738 (pass2) on the primary 8-config panel — and the trend replicates across Codex, Opus & Qwen judge families (6/9 family-pass combos >0.7).
 <!-- attach: 3-family scatter -->
 
 ---
@@ -54,7 +54,7 @@ A deliberately broken judge still hits ≈0.45 human Spearman — yet fails weak
 
 7/8: Downstream + scope 📈
 
-The certified judge ranks theorem-generation agents on VeriBench: DSPy ReAct 0.615 > Trace++ 0.588 > Trace+ 0.477 > baseline 0.470. Scope, stated honestly: validation-set calibration evidence — not universal reliability. A locked held-out test is next.
+The certified judge ranks theorem-generation agents on VeriBench: DSPy ReAct 0.615 > Trace++ 0.588 > Trace+ 0.477 > baseline 0.470. Scope: validation-set calibration evidence — not universal reliability. A locked held-out test is next.
 
 ---
 
