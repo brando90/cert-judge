@@ -27,6 +27,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 \usepackage{qrcode}
 
 % ====================
@@ -97,17 +98,87 @@
 
     \begin{figure}
       \centering
-      \includegraphics[width=\linewidth]{figures/pull_fig.png}
-      \caption{Label once, then certify automatically --- labeling cost stops growing with the number of judges.}
+      % ---------- Panel (a): CertJudge overview flowchart (uniform box size) ----------
+      \resizebox{\linewidth}{!}{%
+      \begin{tikzpicture}[
+        every node/.style={font=\sffamily},
+        box/.style={rectangle, rounded corners=3pt, minimum width=5.0cm, minimum height=2.5cm, inner sep=5pt, align=center},
+        parrow/.style={-{Latex[length=3.5mm,width=2.5mm]}, thick, gray!70!black},
+      ]
+        \node[box, draw=blue!65!black, fill=blue!10] (lean) at (0,0) {\textcolor{blue!55!black}{\textbf{Lean pair}} \\[2pt] candidate + reference};
+        \node[box, draw=orange!65!black, fill=orange!10, right=0.9cm of lean] (judge) {\textcolor{orange!70!black}{\textbf{Judge score}}};
+        \node[box, draw=teal!65!black, fill=teal!10, right=0.9cm of judge] (prop) {\textcolor{teal!55!black}{\textbf{Property checks}}\\[4pt]
+          \footnotesize\begin{tabular}{@{}l@{\hspace{6pt}}l@{}} P1 identity & P2 bug $\downarrow$ \\[2pt] P3 spec $\downarrow$ & P4 stability \end{tabular}};
+        \node[box, draw=green!65!black, fill=green!10, right=0.9cm of prop] (tivar) {\textcolor{green!35!black}{\textbf{$\mathrm{TI}_{\mathrm{var}}$}} \\[2pt] trust score};
+        \node[box, draw=violet!65!black, fill=violet!10, right=0.9cm of tivar] (cert) {\textcolor{violet!55!black}{\textbf{Certified judge}} \\[2pt] reuse for \\ selection + evaluation};
+
+        \draw[parrow] (lean) -- (judge);
+        \draw[parrow] (judge) -- (prop);
+        \draw[parrow] (prop) -- (tivar);
+        \draw[parrow] (tivar) -- (cert);
+      \end{tikzpicture}%
+      }
+
+      \vspace{0.5ex}
+
+      % ---------- Panel (b): amortized-cost schematic ----------
+      % Human-only is drawn as a single straight ray from the origin, with the same (gentle)
+      % slope as CertJudge's first (pre-calibration) segment: both incur identical per-judge
+      % labeling cost until the calibration point, where CertJudge breaks away and flattens.
+      \resizebox{0.76\linewidth}{!}{%
+      \begin{tikzpicture}[every node/.style={font=\sffamily}]
+        % axes
+        \draw[-{Latex[length=3mm]}, thick] (0,0) -- (0,8.7);
+        \draw[-{Latex[length=3mm]}, thick] (0,0) -- (15.3,0);
+        \node[font=\sffamily\bfseries, rotate=90, anchor=south] at (-1.6,4.2) {Expert labeling cost};
+        \node[font=\sffamily\bfseries, anchor=north] at (7.2,-0.9) {More judges / evaluation rounds};
+
+        % Human-only: straight ray, slope = 0.55 = CertJudge's pre-calibration slope
+        \draw[blue!70!black, dashed, very thick] (0,0) -- (14,7.7);
+        \node[blue!70!black, font=\sffamily\bfseries, anchor=south] at (13.6,7.85) {Human-only};
+
+        % CertJudge curve (solid dark green): shares the Human-only slope up to the
+        % calibration point (2,1.1), then breaks away and flattens
+        \draw[green!30!black, very thick]
+          (0,0) -- (2,1.1) -- (2.3,1.2) -- (14,1.75);
+        \node[green!30!black, font=\sffamily\bfseries, anchor=west] at (14.2,1.75) {CertJudge};
+
+        % calibration point + callout
+        \filldraw[green!30!black] (2,1.1) circle (5pt);
+        \node[cardinalred, font=\sffamily\bfseries, align=center, anchor=south west] (calib) at (1.15,4.0) {one-time\\calibration};
+        \draw[cardinalred, thick, -{Latex[length=2.5mm]}] (calib.south) to[bend left=15] (1.9,1.4);
+
+        % reuse label
+        \node[green!30!black, font=\sffamily, align=center, anchor=south west] at (5.6,1.9) {reuse certified judge\\+ occasional audits};
+
+        % cost savings double arrow
+        \draw[gray!60!black, thick, {Latex[length=2.5mm]}-{Latex[length=2.5mm]}] (14.5,1.75) -- (14.5,7.7);
+        \node[gray!30!black, font=\sffamily, align=center, anchor=west] at (14.8,4.7) {substantial\\cost savings};
+
+        % amortized-cost bracket (sits between the x-axis and the flat CertJudge line)
+        \draw[gray!55!black, dashed, thick] (2.3,0.35) -- (13.7,0.35);
+        \draw[gray!55!black, thick] (2.3,0.18) -- (2.3,0.52);
+        \draw[gray!55!black, thick] (13.7,0.18) -- (13.7,0.52);
+        \node[gray!30!black, font=\sffamily\footnotesize, anchor=south] at (8.0,0.6) {cost amortized after calibration};
+      \end{tikzpicture}%
+      }
+      \caption{Upper: certification pipeline. Lower: schematic (not measured data) — cost stops growing after one-time calibration.}
     \end{figure}
 
-    % P1-P4 as a 2x2 mini-grid, one phrase each (\tabularnewline keeps \raggedright safe in p-cells)
+    % P1-P4 as a 2x2 grid of uniform-size boxed cards, matching panel (a)'s "Property checks" color
     \begin{center}
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{@{}p{0.46\linewidth}@{\hspace{0.03\linewidth}}p{0.49\linewidth}@{}}
-      \raggedright\textbf{P1 Identity:} $s(X,X)=1$ & \raggedright\textbf{P2 Bug monotonicity:} score $\downarrow$ as bugs injected \tabularnewline[1.0ex]
-      \raggedright\textbf{P3 Spec monotonicity:} score $\downarrow$ as specs removed & \raggedright\textbf{P4 Stability:} invariant across repeats \& rewrites \tabularnewline
-    \end{tabular}
+    \resizebox{\linewidth}{!}{%
+    \begin{tikzpicture}[
+      every node/.style={font=\sffamily\footnotesize},
+      pbox/.style={rectangle, rounded corners=3pt, draw=teal!65!black, fill=teal!6,
+                   minimum width=8.2cm, minimum height=1.8cm, text width=7.8cm, inner sep=5pt, align=left},
+    ]
+      \node[pbox] (p1) at (0,0) {\textbf{P1 Identity:} $s(X,X)=1$};
+      \node[pbox, right=0.6cm of p1] (p2) {\textbf{P2 Bug monotonicity:} score $\downarrow$ as bugs injected};
+      \node[pbox, below=0.5cm of p1] (p3) {\textbf{P3 Spec monotonicity:} score $\downarrow$ as specs removed};
+      \node[pbox, below=0.5cm of p2] (p4) {\textbf{P4 Stability:} invariant across repeats \& rewrites};
+    \end{tikzpicture}%
+    }
     \end{center}
 
     \[
@@ -120,19 +191,23 @@
 
     \begin{itemize}
       \setlength{\leftmargini}{2.2em}
-      \item $C_f$ aggregates P1--P4 into a single geometric-mean score.
-      \item \textbf{One failed property collapses the index.}
+      \item $C_f$: geometric mean of the four property scores P1--P4.
+      \item $\widetilde{\mathrm{VarCorr}}$: normalized variance of judge--reference correlation across repeats.
+      \item $\widetilde{\mathrm{VarScore}}$: normalized variance of raw judge scores across repeats.
+      \item \textbf{One failed property, or high instability, collapses the index.}
     \end{itemize}
 
   \end{block}
 
-  % References moved from the right column to rebalance (right carries results + takeaways)
-  \begin{block}{References}
-
-    % Draft B keeps 3 entries (drops G-Eval); VeriBench is cited in the stress-test caption
-    \nocite{Zheng2023MTBench,TongZhang2024CodeJudge}
-    \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
-
+  % Materials (QR code) moved here from the right column to balance the two columns
+  \vspace{-0.44cm}
+  \begin{block}{Materials}
+    \vspace{1ex}
+    {\centering
+      \qrcode[height=4.5cm]{https://github.com/brando90/cert-judge}\\[0.8ex]
+      {\small \textbf{Code}}
+      % TODO: arXiv link when live
+    \par}
   \end{block}
 
 \end{column}
@@ -147,13 +222,13 @@
   % CS197 move 5: headline result — big number + the ONE alignment visual
   \begin{block}{Result: \tivar{} predicts judge-level human alignment}
 
-    \vspace{0.8cm}
+    \vspace{0.55cm}
     {\centering
       {\Huge $\boldsymbol{\rho = 0.833}$}\\[1.6ex]
       validation-set Spearman between \tivar{} and human agreement\\
       {\small avg labels; $0.905$ pass1 / $0.738$ pass2}\par
     }
-    \vspace{0.4cm}
+    \vspace{0.25cm}
 
     \begin{figure}
       \centering
@@ -166,7 +241,7 @@
   \end{block}
 
   % CS197 move 5 (stress evidence + honest failure mode + downstream one-liner)
-  \vspace{0.6cm}
+  \vspace{0.4cm}
   \begin{block}{Stress tests keep the judge honest}
 
     \begin{figure}
@@ -184,12 +259,12 @@
   \end{block}
 
   % CS197 move 6: takeaways — vision, not self-congratulation; caveat is part of the claim
-  \vspace{0.6cm}
+  \vspace{0.4cm}
   \begin{alertblock}{Takeaways}
 
     \begin{itemize}
       \setlength{\leftmargini}{2.2em}
-      \setlength{\itemsep}{1.2ex}
+      \setlength{\itemsep}{0.9ex}
       \item \textbf{Amortized oversight:} one $n{=}75$ panel + automatic falsifiable checks screen every new judge --- no re-labeling.
       \item \textbf{Measure trust, don't assume it:} behavioral properties expose failures human-agreement scores miss.
       \item \textbf{Scope:} \emph{validation-set calibration evidence, not universal reliability} --- locked held-out test (5 raters, 343 labels, 78 pairs) is next.
@@ -197,16 +272,14 @@
 
   \end{alertblock}
 
-  % QR moved out of the References block to the bottom-right corner (rebalances columns,
-  % and puts the scan target where walk-by readers expect it); extra drop so the block
-  % sits vertically centered on the References block in the left column
-  \vspace{1.2cm}
-  \begin{block}{Materials}
-    {\centering
-      \qrcode[height=7cm]{https://github.com/brando90/cert-judge}\\[0.8ex]
-      {\small \textbf{Code}}
-      % TODO: arXiv link when live
-    \par}
+  % References moved here from the left column to balance the two columns
+  \vspace{-0.85cm}
+  \begin{block}{References}
+
+    % Draft B keeps 3 entries (drops G-Eval); VeriBench is cited in the stress-test caption
+    \nocite{Zheng2023MTBench,TongZhang2024CodeJudge}
+    {\small\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}\bibliographystyle{plain}\bibliography{poster}}
+
   \end{block}
 
 \end{column}
