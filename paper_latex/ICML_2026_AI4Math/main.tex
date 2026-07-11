@@ -88,12 +88,16 @@
     \icmlauthor{Brando Miranda}{equal,stanford}
     \icmlauthor{Elyas Obbad}{stanford}
     \icmlauthor{Srivatsava Daruru}{stanford}
-    \icmlauthor{Zhanke Zhou}{hkbu}
     \icmlauthor{Kirill Acharya}{stanford}
+    \icmlauthor{Zixiao Jolene Wang}{harvard}
+    \icmlauthor{Zhanke Zhou}{hkbu}
+    \icmlauthor{Steven Dillman}{stanford}
+    \icmlauthor{Yegor Denisov-Blanch}{stanford}
     \icmlauthor{Sanmi Koyejo}{stanford}
   \end{icmlauthorlist}
   \icmlaffiliation{stanford}{Stanford University}
   \icmlaffiliation{hkbu}{Hong Kong Baptist University}
+  \icmlaffiliation{harvard}{Harvard University}
   \icmlcorrespondingauthor{Ethan S Hersch}{ehersch@stanford.edu}
 
   \vskip 0.3in
@@ -368,164 +372,164 @@ Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\m
   \begin{subfigure}[t]{0.30\textwidth}
     \centering
     \begin{adjustbox}{width=\linewidth}
-    \begin{tikzpicture}
-      \begin{axis}[
-        width=\linewidth,
-        height=5.05cm,
-        clip=false,
-        xmin=0, xmax=1.0,
-        ymin=-0.1, ymax=0.62,
-        xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
-        ylabel={Human Spearman (avg)},
-        title={\parbox{\linewidth}{\centering Codex $\rho=0.833$}},
-        title style={font=\small},
-        grid=major,
-        grid style={draw=gray!20},
-        tick label style={font=\scriptsize},
-        label style={font=\scriptsize},
-        legend pos=north west,
-        legend columns=2,
-        legend cell align=left,
-        legend style={
-            font=\fontsize{7}{8}\selectfont,
-            draw=gray!50,
-            fill=white,
-            fill opacity=0.94,
-            text opacity=1,
-            inner sep=2pt,
-            column sep=3.5pt,
-            row sep=1.5pt,
-          },
-        ]
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.0083,-0.0008) +- (0,0.0684)};
-        \addlegendentry{rand}
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.0595,0.1987) +- (0,0.0769)};
-        \addlegendentry{edit}
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.1141,0.0916) +- (0,0.0697)};
-        \addlegendentry{4o-P4}
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.4709,-0.0142) +- (0,0.0702)};
-        \addlegendentry{4o-P8}
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.6964,0.4348) +- (0,0.0635)};
-        \addlegendentry{BAD}
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.9208,0.4664) +- (0,0.0588)};
-        \addlegendentry{P1}
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.9199,0.4193) +- (0,0.0614)};
-        \addlegendentry{P4}
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.8919,0.3652) +- (0,0.0683)};
-        \addlegendentry{P8}
-        \addplot+[domain=0.0083:0.9208, samples=2, dashed, color=red!65!black, thick, forget plot] {0.5080*x - 0.0128};
-      \end{axis}
-    \end{tikzpicture}
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth,
+          height=5.05cm,
+          clip=false,
+          xmin=0, xmax=1.0,
+          ymin=-0.1, ymax=0.62,
+          xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
+          ylabel={Human Spearman (avg)},
+          title={\parbox{\linewidth}{\centering Codex $\rho=0.833$}},
+          title style={font=\small},
+          grid=major,
+          grid style={draw=gray!20},
+          tick label style={font=\scriptsize},
+          label style={font=\scriptsize},
+          legend pos=north west,
+          legend columns=2,
+          legend cell align=left,
+          legend style={
+              font=\fontsize{7}{8}\selectfont,
+              draw=gray!50,
+              fill=white,
+              fill opacity=0.94,
+              text opacity=1,
+              inner sep=2pt,
+              column sep=3.5pt,
+              row sep=1.5pt,
+            },
+          ]
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.0083,-0.0008) +- (0,0.0684)};
+          \addlegendentry{rand}
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.0595,0.1987) +- (0,0.0769)};
+          \addlegendentry{edit}
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.1141,0.0916) +- (0,0.0697)};
+          \addlegendentry{4o-P4}
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.4709,-0.0142) +- (0,0.0702)};
+          \addlegendentry{4o-P8}
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.6964,0.4348) +- (0,0.0635)};
+          \addlegendentry{BAD}
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.9208,0.4664) +- (0,0.0588)};
+          \addlegendentry{P1}
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.9199,0.4193) +- (0,0.0614)};
+          \addlegendentry{P4}
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.8919,0.3652) +- (0,0.0683)};
+          \addlegendentry{P8}
+          \addplot+[domain=0.0083:0.9208, samples=2, dashed, color=red!65!black, thick, forget plot] {0.5080*x - 0.0128};
+        \end{axis}
+      \end{tikzpicture}
     \end{adjustbox}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.30\textwidth}
     \centering
     \begin{adjustbox}{width=\linewidth}
-    \begin{tikzpicture}
-      \begin{axis}[
-        width=\linewidth,
-        height=5.05cm,
-        clip=false,
-        xmin=0, xmax=1.0,
-        ymin=-0.1, ymax=0.62,
-        xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
-        title={\parbox{\linewidth}{\centering Claude Opus $\rho=0.643$}},
-        title style={font=\small},
-        grid=major,
-        grid style={draw=gray!20},
-        tick label style={font=\scriptsize},
-        label style={font=\scriptsize},
-        ]
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.0083,-0.0008) +- (0,0.0672)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.0595,0.1987) +- (0,0.0772)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.1134,0.1910) +- (0,0.0668)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.5585,0.0888) +- (0,0.0738)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.7458,0.3243) +- (0,0.0604)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.9284,0.3153) +- (0,0.0702)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.9270,0.4514) +- (0,0.0614)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.9474,0.1453) +- (0,0.0730)};
-        \addplot+[domain=0.0083:0.9474, samples=2, dashed, color=red!65!black, thick, forget plot] {0.2776*x + 0.0571};
-      \end{axis}
-    \end{tikzpicture}
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth,
+          height=5.05cm,
+          clip=false,
+          xmin=0, xmax=1.0,
+          ymin=-0.1, ymax=0.62,
+          xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
+          title={\parbox{\linewidth}{\centering Claude Opus $\rho=0.643$}},
+          title style={font=\small},
+          grid=major,
+          grid style={draw=gray!20},
+          tick label style={font=\scriptsize},
+          label style={font=\scriptsize},
+          ]
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.0083,-0.0008) +- (0,0.0672)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.0595,0.1987) +- (0,0.0772)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.1134,0.1910) +- (0,0.0668)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.5585,0.0888) +- (0,0.0738)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.7458,0.3243) +- (0,0.0604)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.9284,0.3153) +- (0,0.0702)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.9270,0.4514) +- (0,0.0614)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.9474,0.1453) +- (0,0.0730)};
+          \addplot+[domain=0.0083:0.9474, samples=2, dashed, color=red!65!black, thick, forget plot] {0.2776*x + 0.0571};
+        \end{axis}
+      \end{tikzpicture}
     \end{adjustbox}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.30\textwidth}
     \centering
     \begin{adjustbox}{width=\linewidth}
-    \begin{tikzpicture}
-      \begin{axis}[
-        width=\linewidth,
-        height=5.05cm,
-        clip=false,
-        xmin=0, xmax=1.0,
-        ymin=-0.1, ymax=0.62,
-        xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
-        title={\parbox{\linewidth}{\centering Qwen3-Coder $\rho=0.905$}},
-        title style={font=\small},
-        grid=major,
-        grid style={draw=gray!20},
-        tick label style={font=\scriptsize},
-        label style={font=\scriptsize},
-        ]
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.0083,-0.0008) +- (0,0.0672)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.0595,0.1987) +- (0,0.0772)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.1267,0.0759) +- (0,0.0722)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.7059,0.0789) +- (0,0.0703)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.8860,0.1742) +- (0,0.0756)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.8869,0.3603) +- (0,0.0585)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.9396,0.1207) +- (0,0.0724)};
-        \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
-          error bars/.cd, y dir=both, y explicit]
-        coordinates {(0.9420,0.3705) +- (0,0.0649)};
-        \addplot+[domain=0.0083:0.9420, samples=2, dashed, color=red!65!black, thick, forget plot] {0.2337*x + 0.0687};
-      \end{axis}
-    \end{tikzpicture}
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth,
+          height=5.05cm,
+          clip=false,
+          xmin=0, xmax=1.0,
+          ymin=-0.1, ymax=0.62,
+          xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
+          title={\parbox{\linewidth}{\centering Qwen3-Coder $\rho=0.905$}},
+          title style={font=\small},
+          grid=major,
+          grid style={draw=gray!20},
+          tick label style={font=\scriptsize},
+          label style={font=\scriptsize},
+          ]
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.0083,-0.0008) +- (0,0.0672)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.0595,0.1987) +- (0,0.0772)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.1267,0.0759) +- (0,0.0722)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.7059,0.0789) +- (0,0.0703)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.8860,0.1742) +- (0,0.0756)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.8869,0.3603) +- (0,0.0585)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.9396,0.1207) +- (0,0.0724)};
+          \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
+            error bars/.cd, y dir=both, y explicit]
+          coordinates {(0.9420,0.3705) +- (0,0.0649)};
+          \addplot+[domain=0.0083:0.9420, samples=2, dashed, color=red!65!black, thick, forget plot] {0.2337*x + 0.0687};
+        \end{axis}
+      \end{tikzpicture}
     \end{adjustbox}
   \end{subfigure}
   \caption{\textbf{$\mathrm{TI}_{\mathrm{var}}$ vs.\ judge-level human alignment.}
@@ -1279,17 +1283,17 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
   \setlength{\tabcolsep}{2pt}%
   \begin{tabular}{@{}p{0.42\columnwidth}p{0.12\columnwidth}p{0.34\columnwidth}@{}}
     \toprule
-    \textbf{Quantity}                           & \textbf{Value} & \textbf{Notes}                       \\
+    \textbf{Quantity}                           & \textbf{Value} & \textbf{Notes}                      \\
     \midrule
-    Human-human Spearman (pass1 vs pass2)       & 0.249          & \(95\%\ \text{CI}=[-0.015, 0.489]\)  \\
-    Human-human Pearson (pass1 vs pass2)        & 0.375          & \(95\%\ \text{CI}=[0.076, 0.604]\)   \\
-    Human-human QWK (pass1 vs pass2)            & 0.372          & \(95\%\ \text{CI}=[0.073, 0.581]\)   \\
-    Human-human MAE (pass1 vs pass2)            & 0.778          & Aligned \(n=75\), 0--5 rubric        \\
-    Human-human MSE (pass1 vs pass2)            & 1.139          & Aligned \(n=75\), 0--5 rubric        \\
-    JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence       \\
-    KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence                \\
-    Best validation-set Spearman (avg labels)   & 0.480          & Best single judge on avg labels      \\
-    Best validation-set Spearman (pass1 labels) & 0.559          & Best single judge on pass1 labels    \\
+    Human-human Spearman (pass1 vs pass2)       & 0.249          & \(95\%\ \text{CI}=[-0.015, 0.489]\) \\
+    Human-human Pearson (pass1 vs pass2)        & 0.375          & \(95\%\ \text{CI}=[0.076, 0.604]\)  \\
+    Human-human QWK (pass1 vs pass2)            & 0.372          & \(95\%\ \text{CI}=[0.073, 0.581]\)  \\
+    Human-human MAE (pass1 vs pass2)            & 0.778          & Aligned \(n=75\), 0--5 rubric       \\
+    Human-human MSE (pass1 vs pass2)            & 1.139          & Aligned \(n=75\), 0--5 rubric       \\
+    JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence      \\
+    KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence               \\
+    Best validation-set Spearman (avg labels)   & 0.480          & Best single judge on avg labels     \\
+    Best validation-set Spearman (pass1 labels) & 0.559          & Best single judge on pass1 labels   \\
     \bottomrule
   \end{tabular}
   \caption{\textbf{Human-human agreement ceiling context.}
