@@ -1,0 +1,36 @@
+# Evidence Map — cert-judge artifacts for the TMLR 2026 submission
+
+**TLDR:** Every paper number traced to a local artifact (compiled 2026-07-17 by an Explore agent + spot-checks). Headline validation numbers (0.833/0.905/0.738) trace to `results_exp28_varaware_codex_*`. **No positive locked held-out result exists anywhere**: the zero-leakage transfer (exp42) and frozen-TIvar held-out on the 343-label five-reviewer pool (exp43) are null/negative with CIs spanning zero — the TMLR paper reports this honestly as a stress test. The exp23 numbers quoted in `../18_open_revievew_feedback_ICML_2026_mathai_ws/agent_prompt.md` (−0.238, p=0.58, path `results_exp23_heldout_human_labels`) do not exist in any artifact; exp23 is `results_exp23_calibrated_val_test` and is superseded by exp41/42/43.
+
+Root: `/Users/brandomiranda/cert-judge/experiments/` (`…/04_vb/` = `04_veribench_validation/`).
+
+## Priority 1 — named artifacts, exact numbers
+
+1. `…/04_vb/results_exp16_final_robust_r9_median/summary.json` — n_judges=8, n_union_rows=72, threshold=0.85, repeats=9 median. trend_v1 spearman: pass1 0.7619 (perm_p 0.0372, CI [−0.139,1.0]); pass2 0.8095 (0.0222, [0.291,1.0]); avg 0.7619 (0.0402, [0.103,1.0]). v2 weaker (avg 0.4762, p 0.243). Per-judge e.g. codex|P1_BASELINE human_spearman pass1 0.5446 (p 7.6e−7), avg 0.4664.
+2. `…/04_vb/results_exp23_heldout_human_labels/` — **DOES NOT EXIST**. Actual exp23 = `results_exp23_calibrated_val_test/summary_{avg,pass1,pass2}.json`: val/test spearman avg 0.7619/−0.1429; pass1 0.4286/+0.6905; pass2 0.8333/−0.3095 (n=8, 15/15 rows split in `results_exp23_pass_split_for_brando`). The "−0.238, p=0.58" in agent_prompt.md matches nothing (closest strays: 0.238 Codex P1 train ρ and −0.234 LeanStral P1 test ρ in exp42 PER_REVIEWER_TABLE.md). Superseded by exp41/42/43.
+3. `…/04_vb/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json` — inter-pass n_overlap_pairs=72: spearman 0.2486 [−0.0154,0.4887], pearson 0.3747, kendall 0.2214, QWK 0.3718 [0.0726,0.5809], MAE(0–5) 0.7708, RMSE 1.0590.
+4. `…/04_vb/results_exp18_alpha_ablation_r9/summary.json` — TI-v1 spearman all vs exclude-alpha: avg 0.7619→0.6190; pass2 0.8095→0.6905; pass1 0.7619→0.6429 (n=8).
+5. `…/04_vb/results_exp24_alpha_canonicalized_identity/summary.json` — mean within-item std 0.2501→0.0697 after post-hoc alpha canonicalization; median pct std reduction 64.28 (mean 57.61). Note: post-hoc proxy; true canonicalization requires rescoring.
+6. `…/04_vb/results_exp21_cert_index_sweep/median/summary.md` — baseline v1 rho 0.762 CI [0.103,1.000]; best swept config rho 0.881 CI [0.392,1.000] (in-sample weight search — not held-out).
+7. `…/04_vb/results_exp29_geom_p1_p4_plus_var/summary.json` — geometric TIvar (Codex, n=8): 0.7619/0.8095/0.7619 (pass1/pass2/avg).
+8. `…/04_vb/results_exp30_tivar_v3_all_models/summary.json` — TIvar spearman by family (pass1/pass2/avg, n=8): codex 0.7619/0.8095/0.7619; claude_opus 0.4048/0.6429/0.4286; qwen −0.0476/0.9048/0.6667; leanstral −0.6667/0.1667/−0.3333.
+- Abstract headline 0.833/0.905/0.738 traces to `…/04_vb/results_exp28_varaware_codex_{avg_newindex,pass1,pass2_newindex}/summary.json` field `rho_TI_vs_human` (0.8333/0.9048/0.7381).
+
+## Priority 2 — held-out status (authoritative: `…/04_vb/CALIBRATION_STATUS.md`)
+
+**No positive locked held-out validation exists.** All ρ ≥ 0.70 results use same-item per-task isotonic calibration (oracle upper bound; exp38/exp41 are explicitly "NOT held-out evidence").
+
+- `…/04_vb/results_exp42_proper_transfer/PAPER_TABLE.md` (zero-leakage global transfer, 18 train / 8 test tasks, seed 42): test item ρ — LeanStral −0.084, GPT-4o-mini 0.295, GPT-5.3-Codex −0.460, Claude Opus 4.7 −0.108. Multi-seed (10× 70/30, MULTISEED_TABLE.md): LeanStral 0.457±0.218, 4o-mini 0.439±0.173, Codex 0.119±0.275, Claude 0.291±0.273. Oracle same-item upper bound: 4o-mini 0.843, Claude 0.870.
+- `…/04_vb/results_exp43_frozen_tivar_heldout/HELD_OUT_PAPER_TABLE.md` (TIvar frozen from exp30; independent pool: 5 reviewers, 343 labels, 78 pairs, 60 items/judge, 8 judges/family): held-out ρ [95% CI] — Codex −0.071 [−0.852,0.950]; Claude 0.119 [−0.852,0.918]; Qwen −0.333 [−1.0,0.615]; LeanStral 0.048 [−0.919,0.974]. Raw: `heldout_summary.csv`.
+- `…/04_vb/results_exp41_honest_train_test/HONEST_TABLE.md` — "test" 0.767–0.933 uses per-task isotonic WITH test-task labels (leakage; cite only as oracle bound).
+- exp37/exp38/exp39 supporting (exp39 leave-one-task-out item ρ 0.22–0.34).
+- Dirs 17/18/19/20: planning or reuse of exp30; no new positive held-out. Sibling repo `~/cert-judge-autojudge-human-corr-val-test` stops at exp33 — does not supersede.
+
+## Priority 3 — top-level 00–20 one-liners
+
+00 metric impl (P5 verified) · 01 no-gold-ref notes · 02 NeurIPS MathAI rebuttal suite (identity 1.000 OOD; judge-vs-editdist r=−0.054) · 03 human validation + TVDMI crossover · 04 efg/mutual: stubs · 04_vb main suite · 05 CC properties all-VB · 06 cert-index vs human 9-judge REPORT (null: v1 −0.133) · 07 property sanity checks · 08 P2 bug ladder CI · 09 single vs ensemble (auto-reports) · 10 protocol only · 11/12/13 Claude/LeanStral/Qwen replications · 17 val/test TODO · 18 human study TODO (symlink veribench/41) · 19 exp30 readout · 20 fixed-judge (guardrail: not held-out) · 21 this submission.
+
+## Known issues (repo hygiene, flagged by stage-3 QA — not blocking submission)
+
+- `…/04_vb/results_exp19_low_variance_replot/bug_reversal_rates.csv` contains an unresolved git merge conflict (HEAD 0.7916 vs 0.8333 for BAD_STRINGY); the paper quotes 0.833 (matches one branch + the published workshop version). Resolve the conflict in the artifact to lock provenance.
+- Bib stubs remaining ("Ding, Z. and others" AAAI 2025, "Naik, A. and others" TSE 2024, "{Ospanov et al.}" 2023 no eprint) — appendix-only HCI/related cites; fill full author lists + arXiv/DOI when convenient.
