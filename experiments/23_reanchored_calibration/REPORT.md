@@ -9,11 +9,13 @@ Provenance: analysis run 2026-07-21 evening, results committed AFTER prereg 241f
 **Analysis 1 — screen, 14 real configs, pool anchor (ρ / raw perm p / Holm):**
 ident **−0.539 / 0.051 / 0.459** · v1 −0.266/0.36/1.0 · GM −0.226/0.44/1.0 · ti_var_v3 −0.218/0.46/1.0 · stab −0.162/0.57/1.0 · varscore −0.143/0.63/1.0 · weak −0.095/0.75/1.0 · varcorr −0.026/0.93/1.0 · mono +0.020/0.95/1.0
 
+Per the PREREG disclosure, the ti_var_v3-vs-y direction was already known to be ≈0/negative before registration (dir-22 real-14: −0.218); its row above reproduces that disclosed value and is consistency, not novel evidence.
+
 **Analysis 2 — LOO selection-transfer:** predictive Spearman **+0.539**, permutation p **0.155** (2k whole-pipeline perms). Folds predominantly select `ident` with negative sign — the LOO result is the −ident relationship transferring across folds, not an independent positive signal.
 
 **Analysis 3a — strict-set anchor (sensitivity):** same shape; ident −0.517/0.062/0.555; all others |ρ|≤0.22. Anchors agree → no (c)-by-conflict; (c) arises from the middle-zone criteria on both.
 
-**Analysis 3b — all 20 configs (controls included):** ident +0.055 (controls break the trend by design — lexical controls have high ident AND low y, but so do some real judges; mixing populations flattens it); varcorr −0.338/0.145; everything Holm-ns.
+**Analysis 3b — all 20 configs (controls included):** ident **−0.642/0.0034/0.031** — the only Holm-significant row in any screen, but it mixes populations by design: five of six controls are lexical/stringy with high ident (0.86–0.95) and mostly negative y, so adding them amplifies the same anti-correlation rather than independently confirming it on real judges (the registered population for the decision criteria remains the 14 real configs). varcorr −0.338/0.145; all other candidates Holm-ns.
 
 **Analysis 4 — directional validity:** controls' pool-alignment is appropriately low/negative (editdist −0.566, Codex-BAD −0.457, Opus-BAD −0.308, Qwen-BAD −0.259; LeanStral-BAD +0.032 and random +0.181 are the two soft spots). Property signals do detect controls: ti_var_v3/GM/v1/weak rank 5/6 controls below the real-config median (mono 4/6) — the suite flags degenerate judges; what it does not do (at n=14) is rank the *real* judges by semantic alignment.
 
