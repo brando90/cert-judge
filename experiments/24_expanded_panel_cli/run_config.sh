@@ -11,7 +11,7 @@ export CERT_JUDGE_CACHE_PATH="$D/cache_$TAG.json"
 export CERT_JUDGE_CLI_FAILLOG="$D/cli_failures_$TAG.log"
 cd "$HOME/cert-judge/experiments/04_veribench_validation" || exit 3
 python3 exp16_multi_judge_human_sets.py \
-  --judges "llm:$MODEL:$PROMPT" \
+  --judges "llm:$MODEL:$PROMPT,editdist:na:na" \
   --judge-repeats 3 --repeat-agg mean --seed 42 \
   --out-dir "$D/cfg_$TAG" \
   --bootstrap-iters 200 --perm-iters 200 --plot-error-bars off \

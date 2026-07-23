@@ -400,6 +400,7 @@ def _call_cli_once(
     no metered API key — the Hard-Rule-9 sanctioned path. Hard-retries on
     transient failure and logs exhausted failures rather than silently
     contaminating results with a 0.5 fallback."""
+    import re
     import subprocess
 
     prompt = prompt_template.format(
