@@ -375,8 +375,77 @@ def _call_claude_oauth_once(
             return {"score": 0.5, "reasoning": f"oauth_error: {str(e)[:80]}"}
 
 
+_CLI_SETTINGS_PATH = Path.home() / ".claude" / "cli_judge_settings.json"
+
+
+def _cli_settings_file() -> str:
+    """Hooks-off settings so each `clauded -p` scoring call skips the
+    agents-config git-pull hook and MCP startup (auth is preserved)."""
+    try:
+        if not _CLI_SETTINGS_PATH.exists():
+            _CLI_SETTINGS_PATH.write_text('{"disableAllHooks":true}')
+    except Exception:
+        pass
+    return str(_CLI_SETTINGS_PATH)
+
+
+def _call_cli_once(
+    model: str,
+    generated_theorem: str,
+    reference_impl: str,
+    prompt_template: str,
+) -> dict:
+    """One judge call routed through a locally-authenticated subscription CLI
+    (`clauded` for cli-fable*, `codex exec` for cli-sol*). Subscription-billed,
+    no metered API key — the Hard-Rule-9 sanctioned path. Hard-retries on
+    transient failure and logs exhausted failures rather than silently
+    contaminating results with a 0.5 fallback."""
+    import subprocess
+
+    prompt = prompt_template.format(
+        reference_impl=reference_impl,
+        generated_theorem=generated_theorem,
+    )
+    m = (model or "").lower()
+    if m.startswith("cli-sol") or m.startswith("cli-codex"):
+        argv = ["codex", "exec", "--full-auto", "-m", "gpt-5.6-sol",
+                "-c", 'model_reasoning_effort="xhigh"', prompt]
+    else:  # cli-fable / default → Claude subscription
+        argv = ["claude", "--dangerously-skip-permissions", "--no-session-persistence",
+                "--strict-mcp-config", "--settings", _cli_settings_file(), "-p", prompt]
+
+    MAX_CLI_RETRIES = 6
+    last_err = ""
+    for attempt in range(MAX_CLI_RETRIES):
+        try:
+            r = subprocess.run(argv, capture_output=True, text=True, timeout=240)
+            out = (r.stdout or "").strip()
+            # Take the LAST score-bearing JSON object (codex prints scaffolding first).
+            matches = re.findall(r'\{[^{}]*"score"[^{}]*\}', out, re.DOTALL)
+            if matches:
+                parsed = _parse_response_text(matches[-1])
+                if isinstance(parsed.get("score"), (int, float)):
+                    return parsed
+            last_err = f"nojson rc={r.returncode}: {out[:60]}{(r.stderr or '')[:60]}"
+        except Exception as e:
+            last_err = f"{type(e).__name__}: {str(e)[:80]}"
+        if attempt < MAX_CLI_RETRIES - 1:
+            time.sleep(min(30.0, 3.0 * (2 ** attempt)))
+    # Exhausted — log so data quality is auditable; do NOT pretend it's 0.5 silently.
+    try:
+        fp = Path(os.environ.get("CERT_JUDGE_CLI_FAILLOG", "/tmp/cli_judge_failures.log"))
+        with fp.open("a") as f:
+            f.write(f"{model}\t{last_err}\n")
+    except Exception:
+        pass
+    return {"score": 0.5, "reasoning": f"cli_failed: {last_err[:80]}", "_cli_failed": True}
+
+
 def _make_client(model: str):
     """Create appropriate API client for the given model."""
+    if model.startswith("cli-"):
+        # Subscription-CLI backend (clauded / codex exec). No metered key.
+        return model, "cli"
     if model.startswith("gpt") or model.startswith("o1") or model.startswith("o3"):
         import openai
         key = _get_openai_key()
@@ -463,6 +532,13 @@ def judge(
                 generated_theorem=generated_theorem,
                 reference_impl=reference_impl,
                 model=model,
+                prompt_template=prompt_template,
+            )
+        elif backend == "cli":
+            return _call_cli_once(
+                model=model,
+                generated_theorem=generated_theorem,
+                reference_impl=reference_impl,
                 prompt_template=prompt_template,
             )
         elif backend == "claude_oauth":
