@@ -1,0 +1,220 @@
+{
+  "prereg_commit": "c5a621c",
+  "seed": 42,
+  "n_existing": 20,
+  "n_new_clean": 13,
+  "n_real_analyzed": 26,
+  "drift_gate": {
+    "ident_rank_spearman_vs_exp30": 0.9984951091045898,
+    "ident_max_abs_diff": 0.023958333333333748,
+    "n_shared": 20,
+    "passes": true
+  },
+  "primary_ident_vs_y": {
+    "spearman": 0.146007866726182,
+    "perm_p": 0.46932653367331634,
+    "n": 26,
+    "pass1_was": -0.539
+  },
+  "registered_verdict": "b",
+  "excluded_high_error": {},
+  "new_config_error_rates": {
+    "4omini_P13_HUMAN_ALIGN_STRICT": 0.041666666666666664,
+    "4omini_P14_HUMAN_ALIGN_V2": 0.04861111111111111,
+    "4omini_P16_ERIC_COMPARATIVE_TRACKED": 0.059027777777777776,
+    "4omini_P2_FORMAL": 0.03819444444444445,
+    "4omini_P3_CONCISE": 0.0763888888888889,
+    "4omini_P7_STRICT_A": 0.041666666666666664,
+    "codex_P13_HUMAN_ALIGN_STRICT": 0.05555555555555555,
+    "codex_P14_HUMAN_ALIGN_V2": 0.04513888888888889,
+    "codex_P16_ERIC_COMPARATIVE_TRACKED": 0.052083333333333336,
+    "codex_P2_FORMAL": 0.04861111111111111,
+    "codex_P3_CONCISE": 0.052083333333333336,
+    "codex_P7_STRICT_A": 0.04513888888888889,
+    "smoke_4omini_p2": 0.027777777777777776
+  },
+  "per_config": {
+    "Qwen/Qwen3-Coder-30B-A3B-Instruct|P1_BASELINE": {
+      "ident": 0.8406250000000001,
+      "y": -0.2891755073759111,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "Qwen/Qwen3-Coder-30B-A3B-Instruct|P4_CHECKLIST": {
+      "ident": 0.7260416666666668,
+      "y": -0.1818817358964435,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "Qwen/Qwen3-Coder-30B-A3B-Instruct|P8_STRICT_B": {
+      "ident": 0.9208333333333338,
+      "y": -0.35421830314302977,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "claude-opus-4-7|P1_BASELINE": {
+      "ident": 0.7489583333333334,
+      "y": 0.1933200106984918,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "claude-opus-4-7|P4_CHECKLIST": {
+      "ident": 0.7489583333333334,
+      "y": -0.2512845628909459,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "claude-opus-4-7|P8_STRICT_B": {
+      "ident": 0.8395833333333332,
+      "y": -0.23715122009896503,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "gpt-4o-mini|P13_HUMAN_ALIGN_STRICT": {
+      "ident": 0.8812499999999998,
+      "y": 0.16993613282478282,
+      "n_he": 60,
+      "source": "new:4omini_P13_HUMAN_ALIGN_STRICT",
+      "err": 0.041666666666666664
+    },
+    "gpt-4o-mini|P14_HUMAN_ALIGN_V2": {
+      "ident": 0.9420138958333334,
+      "y": 0.35157487682325916,
+      "n_he": 60,
+      "source": "new:4omini_P14_HUMAN_ALIGN_V2",
+      "err": 0.04861111111111111
+    },
+    "gpt-4o-mini|P16_ERIC_COMPARATIVE_TRACKED": {
+      "ident": 0.9310763645833332,
+      "y": 0.013673807210704872,
+      "n_he": 60,
+      "source": "new:4omini_P16_ERIC_COMPARATIVE_TRACKED",
+      "err": 0.059027777777777776
+    },
+    "gpt-4o-mini|P2_FORMAL": {
+      "ident": 0.9427083333333334,
+      "y": -0.0013728885979768248,
+      "n_he": 60,
+      "source": "new:smoke_4omini_p2",
+      "err": 0.027777777777777776
+    },
+    "gpt-4o-mini|P3_CONCISE": {
+      "ident": 0.8718749999999998,
+      "y": 0.13643173031529074,
+      "n_he": 60,
+      "source": "new:4omini_P3_CONCISE",
+      "err": 0.0763888888888889
+    },
+    "gpt-4o-mini|P4_CHECKLIST": {
+      "ident": 0.8125000000000004,
+      "y": -0.0488981656598471,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "gpt-4o-mini|P7_STRICT_A": {
+      "ident": 0.8461805312499999,
+      "y": -0.028728065209427143,
+      "n_he": 60,
+      "source": "new:4omini_P7_STRICT_A",
+      "err": 0.041666666666666664
+    },
+    "gpt-4o-mini|P8_STRICT_B": {
+      "ident": 0.8947916666666668,
+      "y": -0.3451510658235154,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "gpt-5.3-codex|P13_HUMAN_ALIGN_STRICT": {
+      "ident": 0.7545138958333334,
+      "y": -0.09409221418757836,
+      "n_he": 60,
+      "source": "new:codex_P13_HUMAN_ALIGN_STRICT",
+      "err": 0.05555555555555555
+    },
+    "gpt-5.3-codex|P14_HUMAN_ALIGN_V2": {
+      "ident": 0.8229166666666669,
+      "y": -0.10184653585963564,
+      "n_he": 60,
+      "source": "new:codex_P14_HUMAN_ALIGN_V2",
+      "err": 0.04513888888888889
+    },
+    "gpt-5.3-codex|P16_ERIC_COMPARATIVE_TRACKED": {
+      "ident": 0.7361111145833333,
+      "y": -0.14022285382790908,
+      "n_he": 60,
+      "source": "new:codex_P16_ERIC_COMPARATIVE_TRACKED",
+      "err": 0.052083333333333336
+    },
+    "gpt-5.3-codex|P1_BASELINE": {
+      "ident": 0.75,
+      "y": -0.19116453154338114,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "gpt-5.3-codex|P2_FORMAL": {
+      "ident": 0.7509027708333335,
+      "y": -0.24037360947779804,
+      "n_he": 60,
+      "source": "new:codex_P2_FORMAL",
+      "err": 0.04861111111111111
+    },
+    "gpt-5.3-codex|P3_CONCISE": {
+      "ident": 0.7352430416666667,
+      "y": -0.4784044753483159,
+      "n_he": 60,
+      "source": "new:codex_P3_CONCISE",
+      "err": 0.052083333333333336
+    },
+    "gpt-5.3-codex|P4_CHECKLIST": {
+      "ident": 0.7497916666666667,
+      "y": -0.32036709885813075,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "gpt-5.3-codex|P7_STRICT_A": {
+      "ident": 0.7277777708333334,
+      "y": -0.13081791171480373,
+      "n_he": 60,
+      "source": "new:codex_P7_STRICT_A",
+      "err": 0.04513888888888889
+    },
+    "gpt-5.3-codex|P8_STRICT_B": {
+      "ident": 0.7940625000000002,
+      "y": -0.25305959284168483,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "labs-leanstral-2603|P1_BASELINE": {
+      "ident": 0.6421874999999999,
+      "y": 0.4210600807240017,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "labs-leanstral-2603|P4_CHECKLIST": {
+      "ident": 0.3979166666666669,
+      "y": -0.27645935764387103,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    },
+    "labs-leanstral-2603|P8_STRICT_B": {
+      "ident": 0.3958333333333335,
+      "y": -0.018798305027997893,
+      "n_he": 60,
+      "source": "existing",
+      "err": 0.0
+    }
+  }
+}
