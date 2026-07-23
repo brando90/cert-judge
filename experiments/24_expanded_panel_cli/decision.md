@@ -4,7 +4,7 @@
 
 ## Recommendation
 
-**Ship outcome (b).** Frame the paper as: (1) a falsifiable property-certification protocol for LLM judges; (2) an audit that caught our own calibration construct drifting lexical→semantic (dir 22); (3) a pre-registered, powered test showing the property signals do **not** predict the semantic-protocol target (dir 23 → dir 24), with the pass-1 lead explicitly shown to be underpowered noise. Calibration-scoped positive results stay; no generalization/transfer claim is made.
+**Ship in the (b) direction** (formal registered (b) completes once the pre-registered screen + LOO run on the panel). Frame the paper as: (1) a falsifiable property-certification protocol for LLM judges; (2) an audit that caught our own calibration construct drifting lexical→semantic (dir 22); (3) a pre-registered, powered test showing the identity signal is **sign-unstable across judge populations** (dir 23 → dir 24), so it is not a reliable population-independent certification criterion. Calibration-scoped positive results stay; no generalization/transfer claim is made.
 
 ## Rationale
 
@@ -14,7 +14,7 @@
 
 ## What to do
 
-- **Paper:** update §5.5 to add the pass-2 powered result (identity lead did not replicate; property signals null against the semantic target at n=26) and keep the honest calibration framing. No transfer claim. (Being applied + mega-QA'd tonight.)
+- **Paper:** update §5.5 to add the pass-2 powered result (identity's sample sign is population-dependent — −0.62 diverse vs +0.85 narrow/pseudo-replicated, pooled +0.15 non-significant — so no stable signal) and keep the honest calibration framing. No transfer claim. (Being applied + mega-QA'd tonight.)
 - **Submit:** TMLR OpenReview, `paper_latex/TMLR_2026/main.pdf`, once the §5.5 update passes QA. Tonight or morning per your call.
 - **Morning confirmation (optional, non-blocking):** full 9-candidate screen + LOO on the n≈32 panel (with GPT-5.6-Sol configs) as a robustness appendix + the CLI-vs-metered cross-method sign check. Does not change the (b) decision; strengthens it.
 
