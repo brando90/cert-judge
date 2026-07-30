@@ -1,0 +1,201 @@
+{
+  "experiment": "exp16_multi_judge_human_sets",
+  "n_judges": 2,
+  "n_union_rows": 72,
+  "n_skipped_pairs": 3,
+  "threshold": 0.85,
+  "judge_repeats": 3,
+  "repeat_agg": "mean",
+  "cache_tag": "",
+  "judges": [
+    "cli-sol|P14_HUMAN_ALIGN_V2",
+    "editdist"
+  ],
+  "label_sets": {
+    "pass1": 75,
+    "pass2": 75,
+    "avg": 75
+  },
+  "trend_by_set": {
+    "pass1": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    },
+    "pass2": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    },
+    "avg": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    }
+  },
+  "skipped_pairs": [
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent0.lean",
+      "reason": "missing_gold"
+    },
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent1.lean",
+      "reason": "missing_gold"
+    },
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent2.lean",
+      "reason": "missing_gold"
+    }
+  ],
+  "judge_rows": [
+    {
+      "judge_id": "cli-sol|P14_HUMAN_ALIGN_V2",
+      "kind": "llm",
+      "model": "cli-sol",
+      "prompt_name": "P14_HUMAN_ALIGN_V2",
+      "n_union_rows": 72,
+      "identity_mean": 0.9236111111111112,
+      "identity_std": 0.22930949828539296,
+      "bug_spearman_r": -0.8658064608912847,
+      "bug_spearman_p": 2.778121393096521e-37,
+      "bug_weak_mono_pct": 100.0,
+      "flip_rate": 0.04861111111111111,
+      "lev_score_spearman": 0.3314180616352781,
+      "anti_string_score": 0.6685819383647219,
+      "lvl1_mean_drop": 0.5138888888888888,
+      "subtle_bug_sensitivity": 1.0,
+      "cert_index": 0.9496626358003594,
+      "cert_index_v2": 0.900158144873184,
+      "n_human_rows_pass1": 72,
+      "human_spearman_r_pass1": 0.35828815872986775,
+      "human_spearman_p_pass1": 0.001999833597358525,
+      "human_spearman_ci_lo_pass1": 0.07343028667420162,
+      "human_spearman_ci_hi_pass1": 0.5517780981408988,
+      "n_human_rows_pass2": 72,
+      "human_spearman_r_pass2": 0.20534128849449568,
+      "human_spearman_p_pass2": 0.08356314279137025,
+      "human_spearman_ci_lo_pass2": -0.07398671728345747,
+      "human_spearman_ci_hi_pass2": 0.43270815648208005,
+      "n_human_rows_avg": 72,
+      "human_spearman_r_avg": 0.30875578270071374,
+      "human_spearman_p_avg": 0.008319058522057022,
+      "human_spearman_ci_lo_avg": 0.047113269825735535,
+      "human_spearman_ci_hi_avg": 0.5319675025117551
+    },
+    {
+      "judge_id": "editdist",
+      "kind": "editdist",
+      "model": "na",
+      "prompt_name": "na",
+      "n_union_rows": 72,
+      "identity_mean": 0.9350203121958514,
+      "identity_std": 0.04614006354432115,
+      "bug_spearman_r": -0.5940307374776506,
+      "bug_spearman_p": 8.575628806416427e-13,
+      "bug_weak_mono_pct": 0.0,
+      "flip_rate": 0.0,
+      "lev_score_spearman": -0.9999999999999999,
+      "anti_string_score": 1.1102230246251565e-16,
+      "lvl1_mean_drop": 0.03573170347002439,
+      "subtle_bug_sensitivity": 0.14292681388009756,
+      "cert_index": 0.669610704280403,
+      "cert_index_v2": 0.46784615826895004,
+      "n_human_rows_pass1": 72,
+      "human_spearman_r_pass1": 0.3033920565957687,
+      "human_spearman_p_pass1": 0.009578520116605104,
+      "human_spearman_ci_lo_pass1": 0.004454555387110606,
+      "human_spearman_ci_hi_pass1": 0.4991393590331826,
+      "n_human_rows_pass2": 72,
+      "human_spearman_r_pass2": 0.058285916099093935,
+      "human_spearman_p_pass2": 0.6267328907696449,
+      "human_spearman_ci_lo_pass2": -0.2537428435229323,
+      "human_spearman_ci_hi_pass2": 0.300877601849559,
+      "n_human_rows_avg": 72,
+      "human_spearman_r_avg": 0.1986746699690646,
+      "human_spearman_p_avg": 0.09432153361609176,
+      "human_spearman_ci_lo_avg": -0.08973669209776966,
+      "human_spearman_ci_hi_avg": 0.4745418972011237
+    }
+  ]
+}

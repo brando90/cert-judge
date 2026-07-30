@@ -1,0 +1,201 @@
+{
+  "experiment": "exp16_multi_judge_human_sets",
+  "n_judges": 2,
+  "n_union_rows": 72,
+  "n_skipped_pairs": 3,
+  "threshold": 0.85,
+  "judge_repeats": 3,
+  "repeat_agg": "mean",
+  "cache_tag": "",
+  "judges": [
+    "gpt-5.3-codex|P16_ERIC_COMPARATIVE_TRACKED",
+    "editdist"
+  ],
+  "label_sets": {
+    "pass1": 75,
+    "pass2": 75,
+    "avg": 75
+  },
+  "trend_by_set": {
+    "pass1": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    },
+    "pass2": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    },
+    "avg": {
+      "n_used_judges": 2,
+      "trend_v1": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      },
+      "trend_v2": {
+        "spearman_r": NaN,
+        "spearman_ci_lo": NaN,
+        "spearman_ci_hi": NaN,
+        "spearman_perm_p": NaN,
+        "pearson_r": NaN,
+        "pearson_ci_lo": NaN,
+        "pearson_ci_hi": NaN,
+        "pearson_perm_p": NaN,
+        "kendall_tau": NaN,
+        "kendall_ci_lo": NaN,
+        "kendall_ci_hi": NaN,
+        "kendall_perm_p": NaN
+      }
+    }
+  },
+  "skipped_pairs": [
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent0.lean",
+      "reason": "missing_gold"
+    },
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent1.lean",
+      "reason": "missing_gold"
+    },
+    {
+      "gold_file": "0_unsafeMultiply_safe.lean",
+      "candidate_file": "0_unsafeMultiply_safe__agent2.lean",
+      "reason": "missing_gold"
+    }
+  ],
+  "judge_rows": [
+    {
+      "judge_id": "gpt-5.3-codex|P16_ERIC_COMPARATIVE_TRACKED",
+      "kind": "llm",
+      "model": "gpt-5.3-codex",
+      "prompt_name": "P16_ERIC_COMPARATIVE_TRACKED",
+      "n_union_rows": 72,
+      "identity_mean": 0.7361111111111112,
+      "identity_std": 0.426920611562616,
+      "bug_spearman_r": -0.7551638477758457,
+      "bug_spearman_p": 2.2016626296177513e-23,
+      "bug_weak_mono_pct": 91.66666666666667,
+      "flip_rate": 0.013888888888888888,
+      "lev_score_spearman": 0.23631289570774727,
+      "anti_string_score": 0.7636871042922527,
+      "lvl1_mean_drop": 0.6701388888888888,
+      "subtle_bug_sensitivity": 1.0,
+      "cert_index": 0.8611912438330436,
+      "cert_index_v2": 0.8615871389693686,
+      "n_human_rows_pass1": 72,
+      "human_spearman_r_pass1": 0.4856599821476262,
+      "human_spearman_p_pass1": 1.5299826024969518e-05,
+      "human_spearman_ci_lo_pass1": 0.2731207777563942,
+      "human_spearman_ci_hi_pass1": 0.6662880316061504,
+      "n_human_rows_pass2": 72,
+      "human_spearman_r_pass2": 0.22719249673273975,
+      "human_spearman_p_pass2": 0.054954973503570384,
+      "human_spearman_ci_lo_pass2": -0.060037644880383996,
+      "human_spearman_ci_hi_pass2": 0.44123592508216847,
+      "n_human_rows_avg": 72,
+      "human_spearman_r_avg": 0.3949480737291872,
+      "human_spearman_p_avg": 0.0005962728971963459,
+      "human_spearman_ci_lo_avg": 0.15365977514881812,
+      "human_spearman_ci_hi_avg": 0.5879408444969244
+    },
+    {
+      "judge_id": "editdist",
+      "kind": "editdist",
+      "model": "na",
+      "prompt_name": "na",
+      "n_union_rows": 72,
+      "identity_mean": 0.9350203121958514,
+      "identity_std": 0.04614006354432115,
+      "bug_spearman_r": -0.5940307374776506,
+      "bug_spearman_p": 8.575628806416427e-13,
+      "bug_weak_mono_pct": 0.0,
+      "flip_rate": 0.0,
+      "lev_score_spearman": -0.9999999999999999,
+      "anti_string_score": 1.1102230246251565e-16,
+      "lvl1_mean_drop": 0.03573170347002439,
+      "subtle_bug_sensitivity": 0.14292681388009756,
+      "cert_index": 0.669610704280403,
+      "cert_index_v2": 0.46784615826895004,
+      "n_human_rows_pass1": 72,
+      "human_spearman_r_pass1": 0.3033920565957687,
+      "human_spearman_p_pass1": 0.009578520116605104,
+      "human_spearman_ci_lo_pass1": 0.004454555387110606,
+      "human_spearman_ci_hi_pass1": 0.4991393590331826,
+      "n_human_rows_pass2": 72,
+      "human_spearman_r_pass2": 0.058285916099093935,
+      "human_spearman_p_pass2": 0.6267328907696449,
+      "human_spearman_ci_lo_pass2": -0.2537428435229323,
+      "human_spearman_ci_hi_pass2": 0.300877601849559,
+      "n_human_rows_avg": 72,
+      "human_spearman_r_avg": 0.1986746699690646,
+      "human_spearman_p_avg": 0.09432153361609176,
+      "human_spearman_ci_lo_avg": -0.08973669209776966,
+      "human_spearman_ci_hi_avg": 0.4745418972011237
+    }
+  ]
+}

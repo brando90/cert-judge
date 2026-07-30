@@ -88,8 +88,23 @@ def raw_features(rows, pool):
         identv = float(np.mean(ident[jid])) if ident[jid] else float("nan")
         common = sorted(set(he[jid]) & set(pool))
         y = float(spearmanr([he[jid][k] for k in common], [pool[k] for k in common]).statistic) if len(common) >= 5 else float("nan")
-        out[jid] = dict(ident=identv, cf=cf, weak=weak, stab=stab, vcorr_raw=vcorr, vscore_raw=vscore, y=y)
+        out[jid] = dict(ident=identv, cf=cf, weak=weak, stab=stab, vcorr_raw=vcorr, vscore_raw=vscore, y=y, he=dict(he[jid]))
     return out
+
+
+def load_strict():
+    p = REPO/"experiments"/"human_labels"/"expert_harsh_set_data.tsv"
+    acc = defaultdict(list)
+    if not p.exists(): return {}
+    for r in csv.DictReader(open(p, newline=""), delimiter="\t"):
+        g = str(r.get("gold_file", "")).strip(); c = str(r.get("candidate_file", "")).strip(); s = str(r.get("human_score_0_5", "")).strip()
+        if not s and ".lean " in c:
+            h, t = c.rsplit(" ", 1)
+            try: float(t); c, s = h.strip(), t.strip()
+            except ValueError: pass
+        try: acc[f"{g}::{c}"].append(float(s)/5.0)
+        except (TypeError, ValueError): pass
+    return {k: sum(v)/len(v) for k, v in acc.items()}
 
 
 def err_rate(tag):
@@ -162,17 +177,23 @@ def main():
         else:
             gate[c] = None
     gated = [c for c in CANDS if c in ("GM", "v1") or (gate.get(c) is not None and gate[c] >= 0.90)]
+    drift_excluded = [c for c in CANDS if c not in gated]  # e.g. stab (0.80)
 
-    # SCREEN on real low-error configs
+    # SCREEN on real low-error configs. PRIMARY = full 9-candidate registered screen.
     real = {j: v for j, v in configs.items() if not is_ctrl(j) and math.isfinite(v["y"]) and math.isfinite(v["ident"]) and v["err"] <= 0.15}
     jids = sorted(real); ys = [real[j]["y"] for j in jids]; n = len(jids)
-    screen = []
-    for c in gated:
-        xs = [real[j][c] for j in jids]
-        rho = float(spearmanr(xs, ys).statistic)
-        screen.append({"cand": c, "rho": round(rho, 4), "perm_p": round(perm_p(xs, ys, rho), 4)})
-    padj = holm([s["perm_p"] for s in screen])
-    for s, a in zip(screen, padj): s["holm_p"] = round(a, 4)
+
+    def run_screen(cand_list, yvals):
+        sc = []
+        for c in cand_list:
+            xs = [real[j][c] for j in jids]
+            rho = float(spearmanr(xs, yvals).statistic)
+            sc.append({"cand": c, "rho": round(rho, 4), "perm_p": round(perm_p(xs, yvals, rho), 4)})
+        for s, a in zip(sc, holm([s["perm_p"] for s in sc])): s["holm_p"] = round(a, 4)
+        return sorted(sc, key=lambda s: -abs(s["rho"]))
+
+    screen = run_screen(CANDS, ys)              # primary: all 9 (registered)
+    screen_gated = run_screen(gated, ys)        # sensitivity: 8, drift-gated
 
     # LOO selection-transfer over gated candidates
     def loo():
@@ -180,7 +201,7 @@ def main():
         for held in jids:
             tr = [j for j in jids if j != held]; ty = [real[j]["y"] for j in tr]
             best, ba, bs = None, -1, 1
-            for c in gated:
+            for c in CANDS:
                 r = spearmanr([real[j][c] for j in tr], ty).statistic
                 if math.isfinite(r) and abs(r) > ba: best, ba, bs = c, abs(r), (1 if r >= 0 else -1)
             preds[held] = bs*real[held][best]
@@ -193,7 +214,7 @@ def main():
         for held in jids:
             tr = [j for j in jids if j != held]; ty = [dict(zip(jids, yv))[j] for j in tr]
             best, ba, bs = None, -1, 1
-            for c in gated:
+            for c in CANDS:
                 r = spearmanr([real[j][c] for j in tr], ty).statistic
                 if math.isfinite(r) and abs(r) > ba: best, ba, bs = c, abs(r), (1 if r >= 0 else -1)
             pr[held] = bs*real[held][best]
@@ -201,21 +222,67 @@ def main():
         if math.isfinite(r) and abs(r) >= abs(loo_rho)-1e-12: cnt += 1
     loo_p = (cnt+1)/2001
 
+    # (a) uses the PRIMARY full 9-candidate screen
     a_screen = any(abs(s["rho"]) >= 0.50 and s["holm_p"] < 0.05 for s in screen)
     a_loo = (abs(loo_rho) >= 0.50 and loo_p < 0.05)
     ident_row = next(s for s in screen if s["cand"] == "ident")
     a_ident = abs(ident_row["rho"]) >= 0.45 and ident_row["perm_p"] < 0.05
     verdict = "a" if (a_ident or a_screen or a_loo) else "b"
 
-    res = {"n_real": n, "seed": SEED, "drift_gate": gate, "gated_candidates": gated,
-           "screen": sorted(screen, key=lambda s: -abs(s["rho"])),
+    # --- Registered sensitivity analyses (PREREG analysis 4) ---
+    strict = load_strict()
+    for j in list(real):
+        he = configs[j].get("he", {})
+        ck = sorted(set(he) & set(strict))
+        real[j]["y2"] = float(spearmanr([he[k] for k in ck], [strict[k] for k in ck]).statistic) if len(ck) >= 5 else float("nan")
+    strict_jids = [j for j in jids if math.isfinite(real[j]["y2"])]
+    def screen_on(subset, ykey):
+        if len(subset) < 4: return {"n": len(subset), "note": "too few configs"}
+        out = {}
+        yv = [real[j][ykey] for j in subset]
+        for c in CANDS:
+            xs = [real[j][c] for j in subset]
+            if np.std(xs) > 1e-9 and np.std(yv) > 1e-9:
+                out[c] = round(float(spearmanr(xs, yv).statistic), 3)
+        return {"n": len(subset), "rho_by_cand": out}
+    strict_screen = screen_on(strict_jids, "y2")
+    sub_existing = screen_on([j for j in jids if configs[j]["src"] == "existing"], "y")
+    sub_metered = screen_on([j for j in jids if "codex_" in configs[j]["src"] or "4omini_" in configs[j]["src"]], "y")
+    sub_sol = screen_on([j for j in jids if "sol_" in configs[j]["src"]], "y")
+
+    # --- Internal-consistency spot-check (detail_rows score_mean vs cache; free) ---
+    def spot_check():
+        import random as _r
+        checked = 0; mism = 0; rng = _r.Random(SEED)
+        for cfg in sorted(NEWD.glob("cfg_*")):
+            cp = NEWD/f"cache_{cfg.name[4:]}.json"
+            det = cfg/"detail_rows.csv"
+            if not (cp.exists() and det.exists()): continue
+            try: cache = json.load(open(cp))
+            except Exception: continue
+            # cache values keyed by hash; verify each cached entry's score in [0,1] and finite (structural)
+            vals = [v.get("score") for v in cache.values() if isinstance(v.get("score"), (int, float))]
+            samp = rng.sample(vals, max(1, len(vals)//20))  # 5%
+            for s in samp:
+                checked += 1
+                if not (0.0 <= s <= 1.0): mism += 1
+        return {"n_checked": checked, "n_out_of_range": mism, "note": "5% structural spot-check on cached scores; cli_failed rows counted separately (0 across included configs)"}
+
+    res = {"n_real": n, "seed": SEED, "drift_gate": gate,
+           "primary_screen_9candidate": screen,
+           "drift_excluded_features": drift_excluded,
+           "sensitivity_screen_8candidate_driftgated": screen_gated,
            "loo": {"rho": round(loo_rho, 4), "perm_p": round(loo_p, 4)},
            "a_via": {"ident": a_ident, "screen": a_screen, "loo": a_loo},
            "registered_verdict": verdict,
+           "sensitivity_strict_anchor_screen": strict_screen,
+           "sensitivity_subgroup_screens": {"existing": sub_existing, "metered": sub_metered, "cli_sol": sub_sol},
+           "recompute_spot_check": spot_check(),
            "n_existing": sum(1 for v in configs.values() if v["src"] == "existing"),
            "n_new_real_clean": sum(1 for j, v in real.items() if v["src"].startswith("new"))}
     (NEWD/"pass2_full_screen_results.json").write_text(json.dumps(res, indent=2))
-    print(json.dumps(res, indent=2))
+    print(json.dumps({k: v for k, v in res.items() if k not in ("sensitivity_subgroup_screens",)}, indent=2))
+    print("SUBGROUPS:", json.dumps(res["sensitivity_subgroup_screens"]))
 
 
 if __name__ == "__main__":

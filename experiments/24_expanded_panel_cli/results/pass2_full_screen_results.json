@@ -10,17 +10,66 @@
     "varscore_1_minus": 0.9985,
     "ti_var_v3": 0.9699
   },
-  "gated_candidates": [
-    "ident",
-    "mono",
-    "weak",
-    "varcorr_1_minus",
-    "varscore_1_minus",
-    "ti_var_v3",
-    "GM",
-    "v1"
+  "primary_screen_9candidate": [
+    {
+      "cand": "varscore_1_minus",
+      "rho": -0.3911,
+      "perm_p": 0.0276,
+      "holm_p": 0.2484
+    },
+    {
+      "cand": "ti_var_v3",
+      "rho": -0.3622,
+      "perm_p": 0.0426,
+      "holm_p": 0.3408
+    },
+    {
+      "cand": "GM",
+      "rho": -0.3453,
+      "perm_p": 0.0548,
+      "holm_p": 0.3836
+    },
+    {
+      "cand": "v1",
+      "rho": -0.3116,
+      "perm_p": 0.0855,
+      "holm_p": 0.513
+    },
+    {
+      "cand": "weak",
+      "rho": -0.2895,
+      "perm_p": 0.1076,
+      "holm_p": 0.538
+    },
+    {
+      "cand": "varcorr_1_minus",
+      "rho": -0.1824,
+      "perm_p": 0.3121,
+      "holm_p": 1.0
+    },
+    {
+      "cand": "stab",
+      "rho": -0.1763,
+      "perm_p": 0.3347,
+      "holm_p": 1.0
+    },
+    {
+      "cand": "ident",
+      "rho": 0.1285,
+      "perm_p": 0.4805,
+      "holm_p": 1.0
+    },
+    {
+      "cand": "mono",
+      "rho": 0.0537,
+      "perm_p": 0.7688,
+      "holm_p": 1.0
+    }
   ],
-  "screen": [
+  "drift_excluded_features": [
+    "stab"
+  ],
+  "sensitivity_screen_8candidate_driftgated": [
     {
       "cand": "varscore_1_minus",
       "rho": -0.3911,
@@ -72,7 +121,7 @@
   ],
   "loo": {
     "rho": 0.2416,
-    "perm_p": 0.4678
+    "perm_p": 0.4908
   },
   "a_via": {
     "ident": false,
@@ -80,6 +129,68 @@
     "loo": false
   },
   "registered_verdict": "b",
+  "sensitivity_strict_anchor_screen": {
+    "n": 32,
+    "rho_by_cand": {
+      "ident": 0.112,
+      "mono": 0.076,
+      "weak": -0.256,
+      "stab": -0.188,
+      "varcorr_1_minus": -0.138,
+      "varscore_1_minus": -0.387,
+      "ti_var_v3": -0.323,
+      "GM": -0.306,
+      "v1": -0.274
+    }
+  },
+  "sensitivity_subgroup_screens": {
+    "existing": {
+      "n": 14,
+      "rho_by_cand": {
+        "ident": -0.618,
+        "mono": 0.092,
+        "weak": -0.02,
+        "stab": -0.129,
+        "varcorr_1_minus": -0.044,
+        "varscore_1_minus": -0.073,
+        "ti_var_v3": -0.2,
+        "GM": -0.16,
+        "v1": -0.2
+      }
+    },
+    "metered": {
+      "n": 12,
+      "rho_by_cand": {
+        "ident": 0.853,
+        "mono": 0.364,
+        "weak": -0.677,
+        "stab": -0.457,
+        "varcorr_1_minus": -0.014,
+        "varscore_1_minus": -0.797,
+        "ti_var_v3": -0.538,
+        "GM": -0.538,
+        "v1": -0.364
+      }
+    },
+    "cli_sol": {
+      "n": 6,
+      "rho_by_cand": {
+        "ident": 0.314,
+        "mono": 0.0,
+        "stab": -0.829,
+        "varcorr_1_minus": 0.0,
+        "varscore_1_minus": 0.257,
+        "ti_var_v3": -0.257,
+        "GM": -0.257,
+        "v1": -0.257
+      }
+    }
+  },
+  "recompute_spot_check": {
+    "n_checked": 294,
+    "n_out_of_range": 0,
+    "note": "5% structural spot-check on cached scores; cli_failed rows counted separately (0 across included configs)"
+  },
   "n_existing": 20,
   "n_new_real_clean": 18
 }
