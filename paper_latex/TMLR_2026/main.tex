@@ -46,14 +46,6 @@
 
 \definecolor{darkblue}{rgb}{0, 0, 0.5}
 \hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
-\setlength{\textfloatsep}{4pt plus 1pt minus 1pt}
-\setlength{\floatsep}{4pt plus 1pt minus 1pt}
-\setlength{\intextsep}{4pt plus 1pt minus 1pt}
-\captionsetup{font=footnotesize}
-\renewcommand{\arraystretch}{0.88}
-\setlength{\tabcolsep}{3pt}
-\AtBeginEnvironment{table}{\scriptsize}
-\AtBeginEnvironment{table*}{\scriptsize}
 
 % Listings
 \lstset{
@@ -80,7 +72,9 @@
   belowskip=0.4\baselineskip
 }
 
-\title{CertJudge: Evaluating Lean Formal-Code With Falsifiable Properties}
+% Stage-2 Mega-QA retitle: short, differentiated from the public workshop title,
+% centered on the measurement/audit contribution. PROPOSED — needs Brando + co-author sign-off.
+\title{When Can You Trust an LLM Judge? Property Certification and Protocol Drift in Lean~4 Theorem Scoring}
 % Author names are suppressed automatically by the TMLR style unless the
 % [accepted] or [preprint] option is used.
 \author{\name Anonymous Authors \email anonymous@example.com \\
@@ -91,7 +85,7 @@
 \maketitle
 
 \begin{abstract}
-  LLM judges are increasingly used as \emph{measurement instruments} for AI-generated code, tests, theorems, and formal specifications. In our setting, a judge scores a candidate Lean~4 artifact relative to a gold reference, but validating each new judge, prompt, model, or threshold with fresh human ratings does not scale: as evaluators and systems proliferate, human-only measurement becomes intractable. We ask whether evaluator validation can be amortized through behavioral checks that are automatic and falsifiable. We propose \textsc{CertJudge}, a property-certification protocol that treats judge reliability as a measurement target rather than assuming it from headline human agreement. \textsc{CertJudge} tests whether a judge behaves correctly under controlled perturbations measuring identity, bug monotonicity, specification monotonicity, and stability, and combines these diagnostics into a variance-aware trust index, \(\mathrm{TI}_{\mathrm{var}}\). On a human-labeled validation suite, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2) (Appendix~\ref{app:exp16-exp17}). On \textsc{VeriBench} (Section~\ref{sec:veribench-overview}), a property-checked judge ranks theorem-generation methods, illustrating how a small human calibration panel can support scalable evaluator selection when direct re-measurement is no longer feasible. These results are validation-set calibration evidence, not a claim of universal reliability or deployment-time generalization. We test that boundary directly: we froze \(\mathrm{TI}_{\mathrm{var}}\) and evaluated it against an independent five-reviewer annotation pool (343 labels over 78 pairs), and the run returned near-zero correlations. A post-hoc audit --- including a data-integrity hypothesis that verification refuted, confirming the per-item scores reproduce the published calibration statistics exactly --- traced the null to labeling-protocol drift: the pool was annotated under a revised protocol whose labels are nearly uncorrelated with the calibration labels (Spearman \(\approx 0.13\) on shared items), so the frozen test compared judges to a different measurement construct and judge-level transfer remains an open question pending a protocol-consistent rerun (Section~\ref{sec:heldout-stress}). What the pool itself verifies: an annotator re-labeling under the revised protocol matches the pool mean at Spearman \(0.90\), with an estimated pool reliability ceiling of \(0.87\). We disclose the full audit trail; two pre-registered screens (the first underpowered, the second powered on 32 judge configurations) then find no label-free property signal that transfers stably to the semantic construct --- no candidate reaches the registered success bar and the strongest candidate's sign reverses across judge populations --- yielding a pre-registered negative-transfer result.
+  How much should we trust a language-model judge that scores AI-generated Lean~4 theorems and specifications against gold references? We treat this as a measurement problem. \textsc{CertJudge} is a property-certification protocol that tests judges under controlled perturbations---identity, bug monotonicity, specification monotonicity, and stability---and combines the diagnostics into a variance-aware trust index, \(\mathrm{TI}_{\mathrm{var}}\). On a human-labeled calibration suite, \(\mathrm{TI}_{\mathrm{var}}\) tracks judge-level human alignment across \(n{=}8\) judge configurations, with validation-set Spearman correlations of \(0.833\) (averaged labels), \(0.905\) (pass~1), and \(0.738\) (pass~2); these are in-sample calibration results with wide bootstrap intervals (\([0.24,1.00]\), \([0.41,1.00]\), \([0.11,1.00]\); permutation \(p=0.017/0.005/0.045\)). We then report what happened when we tested the boundary of that evidence. A frozen held-out test on an independent five-reviewer pool (343 labels, 78 pairs) returned near-zero correlations; a two-stage audit refuted a data-integrity explanation and traced the null to labeling-protocol drift (cross-protocol label correlation \(\approx 0.13\)), so the frozen test had compared judges against a different measurement construct. Two pre-registered screens against the revised construct followed: the first (\(n{=}14\)) returned its registered underpowered outcome; the second (\(n{=}32\)) found no label-free property signal meeting its registered success bar (registered verdict: negative). We disclose the full audit and draw the methodological lesson: label-lineage verification and pre-registered transfer tests belong in evaluator-certification protocols alongside behavioral properties.
 
   %The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled calibration pairs constitute a universally fixed evaluator constant.
 
@@ -124,19 +118,19 @@ Humans remain the anchor for construct validity; the bottleneck is that re-measu
 We focus on a core \emph{AI measurement science} challenge: frontier systems now produce far more artifacts---and far more candidate evaluators---than humans can re-measure directly. LLM judges are useful only if their reliability as measurement instruments can be established scalably rather than assumed.
 
 Validating LLM judges against humans is the standard reliability check but does not scale: every new judge, prompt, or model needs fresh annotations.
-Property certification \textbf{amortizes} this cost---gold references collected once, used to calibrate a four-property trust metric, then deployed without re-annotating every new judge configuration.
-In our setting, humans rate a compact validation set once (\(n {=} 75\) aligned pairs in this proof-of-concept run), and the calibrated property suite extends that trust signal to new judges through automated property checks; the research question is whether the \emph{method} (property certification + a variance-aware index) tracks human agreement, not whether this single weighting is the final word for all domains.
+Property certification \textbf{aims to amortize} this cost---gold references collected once, used to calibrate a four-property trust metric, then deployed without re-annotating every new judge configuration; whether that amortization actually holds beyond the calibration setting is itself a central question this paper tests.
+In our setting, humans rate a compact validation set once (\(n {=} 75\) aligned pairs in this proof-of-concept run), and the calibrated property suite is designed to extend that trust signal to new judges through automated property checks; the research question is whether the \emph{method} (property certification + a variance-aware index) tracks human agreement, not whether this single weighting is the final word for all domains.
 The four properties are concrete: a judge should give maximal scores to identical artifacts, lower scores as semantic bugs accumulate, lower scores as theorem/test specifications are removed, and stable scores under prompt rewordings and semantics-preserving rewrites.
 On a panel of eight judge configurations, \(\mathrm{TI}_{\mathrm{var}}\) fits the pooled calibration corpus with validation-set Spearman coefficients of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2).
 Our frozen held-out stress test turned out to compare judges against labels from a revised annotation protocol that is nearly uncorrelated with the calibration labels --- an audit we disclose in Section~\ref{sec:heldout-stress} --- so judge-level transfer remains open and every claim in this paper is scoped to calibration evidence under the original labeling protocol.
 
 Our \textbf{contributions} are:
 \begin{enumerate}
-  \item \textbf{An amortized evaluator-validation protocol:} we formalize property certification as one-time human calibration on a fixed panel of Lean artifacts with perturbations. After calibration, any new judge configuration can be screened by computing four falsifiable properties, without repeating the full human-measurement budget.
+  \item \textbf{An amortized evaluator-validation protocol:} we formalize property certification as one-time human calibration on a fixed panel of Lean artifacts with perturbations. The design goal is that, after calibration, new judge configurations can be screened by computing four falsifiable properties without repeating the full human-measurement budget; whether the calibrated signal transfers beyond the calibration construct is precisely what contribution 4 tests.
 
-  \item \textbf{Proof-of-concept calibration on \(\bm{n{=}75}\):} \(\mathrm{TI}_{\mathrm{var}}\) tracks human agreement on judges; we report correlations (avg \(=0.833\), pass1 \(=0.905\), pass2 \(=0.738\) Spearman) as evidence that amortized oversight of evaluators is feasible, \emph{not} as universally fixed aggregation weights or constants.
+  \item \textbf{Proof-of-concept calibration on \(\bm{n{=}75}\):} \(\mathrm{TI}_{\mathrm{var}}\) tracks human agreement on judges; we report correlations (avg \(=0.833\), pass1 \(=0.905\), pass2 \(=0.738\) Spearman) as calibration-scoped evidence toward amortized oversight of evaluators, \emph{not} as universally fixed aggregation weights or constants. Judge-level correlations use \(n{=}8\) configurations; \(10\)k-resample bootstrap \(95\%\) CIs are \([0.24,1.00]\) (avg), \([0.41,1.00]\) (pass1), and \([0.11,1.00]\) (pass2), with permutation \(p=0.017/0.005/0.045\) respectively (Appendix~\ref{app:exp16-exp17}).
   \item \textbf{End-to-end use on \textsc{VeriBench}:} a property-checked judge ranks agent-generation methods consistently with benchmark expectations (e.g., DSPy ReAct \(0.615\) vs.\ baseline prompting \(0.470\) on normalized specs), illustrating how validated measurement instruments propagate to scalable evaluation workloads; we frame this as a downstream demonstration, not independent validation of judge correctness.
-  \item \textbf{An audited held-out protocol:} we froze \(\mathrm{TI}_{\mathrm{var}}\) and evaluated it on an independent five-reviewer pool (343 labels, 78 pairs); the run returned near-zero transfer correlations, and a two-stage audit established why: an initial data-integrity hypothesis was refuted (the per-item scores reproduce the published calibration statistics to machine precision), and the verified cause is labeling-protocol drift --- the pool's revised annotation protocol yields labels nearly uncorrelated with the calibration labels (Spearman \(\approx 0.13\)) --- so the first attempt cannot answer the transfer question (Section~\ref{sec:heldout-stress}). We disclose the audit, verify the pool target (annotator-vs-pool Spearman \(0.90\); pool reliability ceiling \(0.87\)), and run two pre-registered screens: the first underpowered, the second powered on \(32\) configurations, which finds no label-free property signal at the registered success bar (identity null, nine-candidate screen null under Holm correction, leave-one-out null) --- a pre-registered negative-transfer result.
+  \item \textbf{An audited held-out protocol:} we froze \(\mathrm{TI}_{\mathrm{var}}\) and evaluated it on an independent five-reviewer pool (343 labels, 78 pairs); the run returned near-zero transfer correlations, and a two-stage audit established why: an initial data-integrity hypothesis was refuted (the per-item scores reproduce the published calibration statistics to machine precision), and the verified cause is labeling-protocol drift --- the pool's revised annotation protocol yields labels nearly uncorrelated with the calibration labels (Spearman \(\approx 0.13\)) --- so the first attempt cannot answer the transfer question (Section~\ref{sec:heldout-stress}). We disclose the audit, verify the pool target (annotator-vs-pool Spearman \(0.90\); pool reliability ceiling \(0.87\)), and run two pre-registered screens: the first returning its registered underpowered outcome, the second over \(32\) configurations, which finds no label-free property signal at the registered success bar (identity null, nine-candidate screen null under Holm correction, leave-one-out null) --- a pre-registered negative-transfer result.
 \end{enumerate}
 
 \begin{figure}[t]
@@ -154,7 +148,7 @@ In prominent LLM-as-a-judge work, reliability is commonly validated by agreement
 MT-Bench reports GPT-4 judge agreement with human preference labels \citep{Zheng2023MTBench}.
 Judge-Bench evaluates whether LLMs replicate existing human annotations across 20 NLP datasets \citep{Kocmi2024HumanVsLLM}.
 These studies make human agreement the standard validation target.
-Our contribution keeps humans as the measurement anchor but amortizes re-measurement: one calibration panel selects falsifiable property checks that screen future judge configurations without new labels.
+Our contribution keeps humans as the measurement anchor but aims to amortize re-measurement: one calibration panel selects falsifiable property checks intended to screen future judge configurations without new labels.
 However, large-scale audits caution that reliability varies by task and setup, and stress the need for explicit validation before replacing human judgment \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
 Common biases include position and verbosity effects and sensitivity to prompt phrasing \citep{Zheng2023MTBench,Li2024TrustLLMJudgments}.
 
@@ -329,6 +323,8 @@ The same aligned panel is reused across judges, so differences in trend reflect 
     \toprule
     \textbf{Identity Variant} & \textbf{Mean Score} & \textbf{Mean Within-Item Std} \\
     \midrule
+    % PROVENANCE-TODO (Mega-QA stages 1+2): no machine-readable artifact found under experiments/
+    % for this table's values — locate/regenerate the canonical source and add a % source: path before submission.
     RENAME                    & 0.936               & 0.005                         \\
     REORDER                   & 0.849               & 0.029                         \\
     STYLE                     & 0.982               & 0.001                         \\
@@ -386,7 +382,7 @@ However, because the judge-level trend is estimated over a small panel, we treat
 For the Codex calibration panel (\(n=8\) judges), the arithmetic \(v1\) trend shows the same qualitative pattern under Pearson (avg \(r=0.774\), pass1 \(r=0.661\), pass2 \(r=0.837\)), while its Kendall \(\tau\) is noisier at this scale (avg \(\tau=0.571\), pass1 \(\tau=0.571\), pass2 \(\tau=0.643\)).
 % source: results_exp16_final_robust_r9_median/summary.json v1 trend stats (stage-3 QA fix: attributed to v1 explicitly; previous text implied TI_var)
 
-Thus \(\mathrm{TI}_{\mathrm{var}}\) behaves as a calibrated reliability signal: falsifiable properties correlate with the quantity we care about---agreement with human assessments of Lean theorem and specification quality---so new judge configurations can be compared by automated property checks after the calibration relationship is measured once.
+Thus \(\mathrm{TI}_{\mathrm{var}}\) behaves as a calibrated reliability signal: falsifiable properties correlate with the quantity we care about---agreement with human assessments of Lean theorem and specification quality---so, within the calibration construct, new judge configurations can be compared by automated property checks after the calibration relationship is measured once.
 
 \paragraph{Human-pass dispersion and cross-pass robustness.}
 Annotators scored each aligned pair twice under different rubric strictness. Agreement between passes is moderate (Spearman \(=0.249\), Pearson \(=0.375\), QWK \(=0.372\)), so judge--human numbers are calibration evidence rather than ceiling performance. Cross-pass fit/test Spearman stays above \(0.7\) in both directions (Appendix Table~\ref{tab:cross_pass_generalization}).
@@ -416,7 +412,7 @@ The equal-weight form is deliberately not tuned: an in-sample sweep over propert
 \end{table}
 
 \paragraph{Takeaway for scalable AI measurement.}
-Falsifiable diagnostics predict which judges track human assessments; P3 weak monotonicity is the strongest single property (Spearman \(0.747\)), followed by P2 (Spearman \(0.714\)). This supports amortized evaluator validation when human re-measurement is no longer tractable.
+Falsifiable diagnostics predict which judges track human assessments; P3 weak monotonicity is the strongest single property (Spearman \(0.747\)), followed by P2 (Spearman \(0.714\)). This supports amortized evaluator validation on the calibration construct when human re-measurement is no longer tractable.
 
 \subsection{Frozen held-out stress test on an independent annotation pool}\label{sec:heldout-stress}
 The calibration results above leave open whether the relationship transfers to new raters once every design choice is frozen.
@@ -450,22 +446,24 @@ Using only existing artifacts, we pre-registered a screen of nine label-free pro
 % prereg: experiments/23_reanchored_calibration/PREREG.md (commit 241f3de precedes results); results: experiments/23_reanchored_calibration/results/results.json
 No candidate met the registered success bar (\(\rho \ge 0.60\) with Holm-corrected permutation \(p<0.05\), or leave-one-out selection-transfer \(\ge 0.50\) with \(p<0.05\)), and the registered flat-null bar also failed, yielding the registered ``underpowered'' outcome.
 The one near-threshold signal is disclosed as suggestive only: identity compliance \emph{anti}-correlates with semantic alignment (\(\rho=-0.539\) pool anchor, \(-0.517\) strict anchor; raw \(p\approx 0.05\)--\(0.06\); Holm-corrected \(0.46\)--\(0.56\); leave-one-out transfer \(+0.539\), \(p=0.155\), with folds selecting negative-sign identity).
-This direction was coherent with the protocol-drift diagnosis --- surface-matching judges ace identity checks yet misalign with the semantic construct --- and became a registered hypothesis for an expanded, powered test rather than a claim.
+This direction was coherent with the protocol-drift diagnosis --- surface-matching judges ace identity checks yet misalign with the semantic construct --- and became a registered hypothesis for an expanded pre-registered test rather than a claim.
 The property suite does still separate degenerate judges: the aggregate indices rank five of six lexical/random controls below the real-config median.
 
-\paragraph{A second pre-registered test (n{=}32) closes the question: no stable transfer signal.}
+\paragraph{A second pre-registered test (n{=}32): registered negative --- no stable transfer signal.}
 We expanded the panel to \(32\) non-control configurations --- adding twelve metered \texttt{gpt-5.3-codex}/\texttt{gpt-4o-mini} prompt variants and six \texttt{GPT-5.6-Sol} configurations, scored on the identical item set --- under a pre-registration committed before the new scores existed.
 % prereg experiments/24_expanded_panel_cli/PREREG.md (c5a621c precedes results); analysis pass2_full_screen.py; results pass2_full_screen_results.json
-Every feature was drift-gated to reproduce the published trust-vector column at rank-Spearman \(\ge 0.90\) before entering the screen (six of seven pass; the stability feature failed reproduction at \(0.80\) and was excluded).
+Every feature was drift-gated to reproduce the published trust-vector column at rank-Spearman \(\ge 0.90\) (six of seven pass; the stability feature failed reproduction at \(0.80\)). We report the pre-registered nine-candidate primary screen unchanged and exclude stability only in the eight-candidate drift-gated sensitivity screen.
 All three registered routes to a positive outcome fail.
 The identity primary is null (\(\rho=+0.13\), \(p=0.48\)); its pooled value masks opposite-sign subgroups --- \(-0.62\) on the diverse original panel (the same pass-1 observations, not an independent replication) versus \(+0.85\) on the narrow, pseudo-replicated new panel --- so it is not a population-independent signal.
-The nine-candidate screen yields no candidate at the registered bar (\(|\rho|\ge 0.50\), Holm-corrected \(p<0.05\)): the strongest association is a variance-stability index at \(\rho=-0.39\) (Holm \(p=0.22\)), and the several weak-to-moderate negative indices (\(\rho\approx-0.35\) to \(-0.39\)) do not survive multiple-comparison correction.
-The leave-one-out selection-transfer test is null (\(\rho=+0.24\), \(p=0.47\)).
+The nine-candidate screen yields no candidate at the registered bar (\(|\rho|\ge 0.50\), Holm-corrected \(p<0.05\)): the strongest association is a variance-stability index at \(\rho=-0.3911\) (Holm \(p=0.2484\)), and the several weak-to-moderate negative indices (\(\rho\approx-0.35\) to \(-0.39\)) do not survive multiple-comparison correction.
+The leave-one-out selection-transfer test is null (\(\rho=+0.2416\), \(p=0.4908\)).
 The registered verdict is therefore negative: no label-free property signal provides stable transfer to the semantic-protocol construct at this power.
-We report the audit and this powered null as part of the certification protocol: calibration against a construct that later proves partly lexical does not certify judges on the semantic construct, so label-lineage verification and pre-registered powered testing belong in the protocol alongside the behavioral properties.
+We report the audit and this registered null as part of the certification protocol: calibration against a construct that later proves partly lexical does not certify judges on the semantic construct, so label-lineage verification and pre-registered transfer testing belong in the protocol alongside the behavioral properties.
 
 \subsection{Failure modes and downstream ranking}
 The main failure mode is alpha-renaming instability (Appendix Figures~\ref{fig:app-exp19-main-and-alpha} and~\ref{fig:app-exp25-13judge}); threshold trade-offs are in Appendix Table~\ref{tab:exp13_threshold_sweep}.
+% PROVENANCE-TODO (Mega-QA stages 1+2): the 0.470/0.615/0.588 values appear only in prose docs
+% (00_overall.../instruction_for_codex.md) — no result artifact found in cert-judge or ~/veribench; add % source: before submission.
 Table~\ref{tab:theorem_quality_table_split} provides a downstream sanity check: agent rankings follow benchmark expectations (baseline \(0.470\), DSPy ReAct \(0.615\), Trace++ \(0.588\)), using Claude~3.7 as both agent and judge.
 
 \begin{table}[t]
@@ -489,11 +487,11 @@ Table~\ref{tab:theorem_quality_table_split} provides a downstream sanity check: 
 \label{sec:limitations-finite}
 We treat \(\mathrm{TI}_{\mathrm{var}}\) as a graded trust signal, not a pass/fail gate; scores are specification-relative and do not replace kernel proof checking \citep{rice1953}.
 Section~\ref{sec:validation-human-alignment} reports validation-set calibration because the trust-index form was developed with the same \(n=75\) panel; the frozen stress test on the independent \(343\)-label corpus is confounded by a labeling-protocol revision --- its labels are nearly uncorrelated with the calibration labels (\(\rho \approx 0.13\)) --- so transfer remains untested, and all calibration evidence in this paper is relative to the original protocol's labels (Section~\ref{sec:heldout-stress}, protocol details in Appendix~\ref{app:limitations-extended}).
-Two pre-registered screens (14 then 32 configurations) find no label-free property signal that transfers stably to the semantic-protocol pool: at adequate power no candidate reaches the registered success bar, and the strongest candidate's sample sign depends on the judge population.
+Two pre-registered screens (14 then 32 configurations) find no label-free property signal that transfers stably to the semantic-protocol pool: no candidate reaches the registered success bar in the \(n{=}32\) panel, and the strongest candidate's sample sign depends on the judge population.
 
 We present an amortized protocol for validating LLM judges as measurement instruments via falsifiable properties: calibrate once with humans, then screen new evaluators automatically.
-On the original calibration panel, \(\mathrm{TI}_{\mathrm{var}}\) tracks judge-level human alignment; but our pre-registered powered test shows this calibration does not transfer to the revised semantic-protocol construct, so the certification signal is calibration-scoped rather than a population-independent law.
-The honest lesson is methodological: label-lineage verification and pre-registered powered testing are prerequisites for any transfer claim. Promising directions beyond this negative result include Lean-aware structural signals that go past surface behavior (e.g., kernel-derived \(\alpha\)-equivalence rather than lexical identity), constructs defined by multi-rater consensus from the outset, and replication on other proof assistants.
+On the original calibration panel, \(\mathrm{TI}_{\mathrm{var}}\) tracks judge-level human alignment; but the expanded pre-registered screen (\(n{=}32\)) finds no evidence that this calibration transfers to the revised semantic-protocol construct at its registered criterion, so the certification signal is calibration-scoped rather than a population-independent law.
+The honest lesson is methodological: label-lineage verification and pre-registered transfer testing are prerequisites for any transfer claim. Promising directions beyond this negative result include Lean-aware structural signals that go past surface behavior (e.g., kernel-derived \(\alpha\)-equivalence rather than lexical identity), constructs defined by multi-rater consensus from the outset, and replication on other proof assistants.
 
 \section*{Broader Impact Statement}
 This work evaluates LLM judges on formal code artifacts and uses human annotations for calibration. Annotators reviewed candidate Lean artifacts against gold references; no personally identifying information was collected. More reliable judge calibration can reduce manual review burden, but over-trusting imperfect proxy judges in safety-critical verification could misrank systems or hide specification errors---a risk our own audit makes concrete: a silent labeling-protocol revision left our held-out labels nearly uncorrelated with our calibration labels, and judges tracking one protocol did not track the other (Section~\ref{sec:heldout-stress}). We therefore frame certification as calibration evidence rather than a deployment guarantee, and we release the audit trail alongside the positive calibration signal so downstream users can weigh both.
@@ -683,7 +681,7 @@ Standard judge queries can be brittle in the absence of ground truth, particular
 \paragraph{Single-judge certification vs.\ peer-prediction consensus.}
 Information-elicitation approaches such as TVD-MI \citep{robertson2025stepbystep} certify trust by asking multiple judges whether their outputs share information about the same source---fundamentally a consensus-based protocol over a judge population.
 Property certification is complementary: identity and monotonicity properties evaluate a single judge in isolation, with no agent-population dependency.
-This makes property certification deployable in settings where consensus is unavailable (single-judge inference, novel domains, sparse model panels), and our calibration protocol amortizes the human-annotation cost that consensus mechanisms also incur.
+This makes property certification deployable in settings where consensus is unavailable (single-judge inference, novel domains, sparse model panels), and our calibration protocol is designed to amortize the human-annotation cost that consensus mechanisms also incur.
 
 \paragraph{Consensus aggregation vs.\ property certification.}
 \citet{denisovblanch2026consensus} stress-test five inference-time aggregation strategies---majority vote, highest-confidence selection, confidence- and prediction-weighted votes, and the Surprisingly Popular algorithm---across multiple benchmarks (HLE, BoolQ, Com2Sense, and Predict-the-Future) and open-source models spanning roughly 4B to 235B parameters; even at $25\times$ the cost of single-sample inference no aggregator consistently beats a single sample in verifier-absent domains, and several amplify shared misconceptions.
@@ -697,7 +695,7 @@ For oracle-free extensions, TVD-MI-style cross-judge information should be used 
 For each test example, in-context demonstrations are drawn from historical human ratings of the \emph{same source}, yielding 54--119\% character-level F1 gains over \textsc{XCOMET} on the WMT'23/'24 MQM tasks.
 Their work and ours share a common motivation---amortizing the expensive part of human evaluation rather than re-annotating from scratch---but amortize along orthogonal axes.
 Specialist amortizes \emph{within} a test set: it reuses many historical ratings (under a pseudo-SxS, single-rater-per-input regime) as inference-time demonstrations, so the judge must be re-specialized for each new benchmark and, as the authors show, to the individual rater.
-Property certification instead amortizes \emph{across judge configurations}: a one-time calibration panel relates falsifiable behavioral properties (P1--P4) to human agreement, after which any new $(\text{model},\text{prompt},n_\text{repeats},\text{aggregation})$ tuple is screened by fully automated perturbation checks, with no human-vs-gold labels required on the perturbed variants.
+Property certification instead aims to amortize \emph{across judge configurations}: a one-time calibration panel relates falsifiable behavioral properties (P1--P4) to human agreement, after which any new $(\text{model},\text{prompt},n_\text{repeats},\text{aggregation})$ tuple is screened by fully automated perturbation checks, with no human-vs-gold labels required on the perturbed variants.
 The two approaches are complementary: Specialist still consumes human ratings at scoring time and presumes a curated pool of same-source annotations, whereas our property-certification protocol targets the setting where new judges proliferate faster than any per-test-set rating pool can be maintained.
 Notably, their finding that a Specialist autorater specializes to a \emph{single} rater echoes our own concern with human-pass dispersion; both works suggest single-rater ground truth is an imperfect ceiling, motivating the multi-rater held-out protocol whose first frozen instantiation we report in Section~\ref{sec:heldout-stress}.
 
@@ -753,7 +751,7 @@ However, our framework has only been tested with judges that compare candidates 
 Beyond spec-first settings, the Unsolved Questions (UQ) paradigm evaluates models on difficult, real-world problems that have neither ground-truth answers nor formal specifications; instead, it relies on validator pipelines and community verification to track progress without oracles \citep{nie2025uqassessinglanguagemodels}.
 Taken together, these lines of work shift evaluation from “solve what is already specified” to “specify, calibrate, then solve”:
 vericoding provides end-to-end rigor under given specs, \textsc{VeriBench} adds specification synthesis with a calibrated semantic judge, and UQ extends evaluation to specless, answerless settings that require validator-assisted screening.
-Our contribution is a calibrated, semantics-sensitive judge that enables scalable oversight when the specification must be proposed rather than merely proved.
+Our contribution is a calibrated, semantics-sensitive judge intended to enable scalable oversight when the specification must be proposed rather than merely proved.
 Because specification generation often lacks a unique ground truth, we will extend our oracle-free property-calibration protocol with UQ-style validators, adding cycle-consistency tests (spec to code/docs) alongside our bug and ablation ladders, and enabling abstention when validators disagree to prioritize precision over coverage.
 
 \section{Formal verification context and tooling}
@@ -1009,6 +1007,7 @@ We note that, for the experiment shown in Figure \ref{fig:app-missing-specs}, a 
 This appendix reports full visual diagnostics for the final robust validation-set human-alignment analyses under three label views: pass1, pass2, and avg.
 We evaluate eight judge configurations spanning frontier-model prompts, weaker LLM baselines, edit-distance heuristics, and random controls.
 Across this panel, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on the calibration suite, with validation-set Spearman correlations of \(0.833\) under averaged labels, \(0.905\) under pass1 labels, and \(0.738\) under pass2 labels.
+Because the judge-level sample is small (\(n{=}8\) configurations), we report uncertainty for these three coefficients: \(10{,}000\)-resample bootstrap \(95\%\) confidence intervals are \([0.24,1.00]\) (avg), \([0.41,1.00]\) (pass1), and \([0.11,1.00]\) (pass2), with two-sided permutation \(p\)-values \(0.017\), \(0.005\), and \(0.045\) respectively (fixed seed \(42\)); the intervals are wide, as expected at this panel size, but all exclude zero.
 Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs; identity and stability are weaker standalone signals at this scale.
 
 \begin{figure}[t]

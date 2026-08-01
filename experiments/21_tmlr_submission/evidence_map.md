@@ -32,7 +32,7 @@ Root: `/Users/brandomiranda/cert-judge/experiments/` (`…/04_vb/` = `04_veriben
 
 ## Known issues (repo hygiene, flagged by stage-3 QA — not blocking submission)
 
-- `…/04_vb/results_exp19_low_variance_replot/bug_reversal_rates.csv` contains an unresolved git merge conflict (HEAD 0.7916 vs 0.8333 for BAD_STRINGY); the paper quotes 0.833 (matches one branch + the published workshop version). Resolve the conflict in the artifact to lock provenance.
+- `…/04_vb/results_exp19_low_variance_replot/bug_reversal_rates.csv` was rechecked on 2026-08-01: it is conflict-free and reports BAD_STRINGY reversal rate `0.8333333333333334` (20/24), matching the paper. The earlier unresolved-conflict warning is superseded.
 - Bib stubs remaining ("Ding, Z. and others" AAAI 2025, "Naik, A. and others" TSE 2024, "{Ospanov et al.}" 2023 no eprint) — appendix-only HCI/related cites; fill full author lists + arXiv/DOI when convenient.
 
 ## SUPERSEDING UPDATE (2026-07-21, CORRECTED same day by stage-1 QA) — label-protocol drift confounds exp43; score files are NOT corrupt

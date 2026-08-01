@@ -1,15 +1,15 @@
 # EXP46 Decision — Submit the Measurement-Lessons Paper (Registered Verdict b, Complete)
 
-**TLDR:** Submit CertJudge to TMLR as the **measurement-lessons paper**. The pre-registered pass-2 test is now **complete on n=32** and the registered verdict is **(b)**: all three disjunctive routes to (a) fail — identity primary (+0.13), nine-candidate screen (no candidate reaches |ρ|≥0.50 Holm-significant; strongest −0.39, Holm p=0.22), and leave-one-out transfer (+0.24, p=0.47). No label-free property signal transfers stably to the semantic construct. The paper is a rigorous, honest, pre-registered negative-transfer result — exactly what TMLR publishes (claim-evidence fit, no significance bar).
+**TLDR:** Submit CertJudge to TMLR as the **measurement-lessons paper**. The pre-registered pass-2 test is now **complete on n=32** and the registered verdict is **(b)**: all three disjunctive routes to (a) fail — identity primary (+0.1285, p=0.4805), nine-candidate screen (no candidate reaches |ρ|≥0.50 Holm-significant; strongest −0.3911, Holm p=0.2484), and leave-one-out transfer (+0.2416, p=0.4908). No label-free property signal meets the registered transfer criterion. The paper is a rigorous, honest, pre-registered negative-transfer result — exactly what TMLR publishes (claim-evidence fit, no significance bar).
 
 ## Recommendation
 
-**Submit (b).** The paper's contribution: (1) a falsifiable property-certification protocol; (2) a two-stage audit that caught our own calibration construct drifting lexical→semantic (dir 22); (3) a two-stage pre-registered test (dir 23 underpowered → dir 24 powered, n=32) that formally shows no property signal transfers stably to the semantic-protocol target. Calibration-scoped positive results stay; no transfer/generalization claim.
+**Submit (b).** The paper's contribution: (1) a falsifiable property-certification protocol; (2) a two-stage audit that caught our own calibration construct drifting lexical→semantic (dir 22); (3) a two-stage pre-registered test (dir 23 underpowered → dir 24 expanded to n=32) whose registered verdict is `(b)` because no property signal met the pre-registered transfer criterion. Calibration-scoped positive results stay; no transfer/generalization claim.
 
 ## Rationale
 
 1. **The registered verdict is now complete and negative.** Unlike the earlier partial state, all three pre-registered (a) routes (identity, screen, LOO) have been run on n=32 and none succeeds. There is no open registered analysis left to invite reviewer objection.
-2. **Honest framing throughout.** The pooled identity number is reported as masking opposite-sign subgroups; the weak negative variance-index correlations are reported descriptively as failing Holm correction and the |ρ|≥0.50 bar; the excluded `stab` feature (failed drift reproduction) is disclosed. No result is spun as a clean null or a positive discovery.
+2. **Honest framing throughout.** The pooled identity number is reported as masking opposite-sign subgroups; the weak negative variance-index correlations are reported descriptively as failing Holm correction and the |ρ|≥0.50 bar; the `stab` feature's failed drift reproduction and its exclusion from the eight-candidate sensitivity screen are disclosed. The pre-registered nine-candidate primary is still reported unchanged. No result is spun as a clean null or a positive discovery.
 3. **TMLR fit.** No significance bar; a pre-registered negative-transfer result with an audit trail and a validated feature pipeline (drift gate) is publishable and useful to the AI-evaluation measurement community.
 
 ## What to do
@@ -19,4 +19,4 @@
 
 ## Provenance
 
-Metered spend ~$31 (OpenAI only; **no Opus, no anthropic_bm_key_koyejolab**). Sol free. All numbers trace to `results/pass2_full_screen_results.json`; feature pipeline drift-gated against exp30 (6/7 features ≥0.90; stab excluded).
+Metered spend ~$31 (OpenAI only; **no Opus, no anthropic_bm_key_koyejolab**). Sol free. All numbers trace to `results/pass2_full_screen_results.json`; feature pipeline drift-gated against exp30 (6/7 features ≥0.90; `stab` excluded only from the eight-candidate drift-gated sensitivity screen).
