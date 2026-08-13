@@ -76,16 +76,28 @@ def main() -> None:
             W(f"| `{r['gold_file']}` | `{r['candidate_file']}` | `{r['reason']}` |")
         W("")
         reasons = Counter(r["reason"] for r in skipped)
-        W(f"> **Root cause:** {dict(reasons)}. The human annotator rated a 25th problem whose Lean")
-        W("> source file is not present in the artifact corpus, so no judge can score it. The labels")
-        W("> exist; the code under test does not.\n")
-        # confirm the gold file is genuinely absent
+        W(f"> **Root cause:** {dict(reasons)} -- but *not* because the artifact was never produced.")
+        W("> The label file records a **stale pre-renumbering filename**. The problem was renamed")
+        W("> `0_unsafeMultiply_safe` -> `1_unsafeMultiply_safe` in the dataset before the gold snapshot")
+        W("> that EXP16 resolves against was taken, so the lookup misses and 3 rated pairs are dropped.")
+        W("> The labels are valid and the artifacts exist; only the key is stale.\n")
+
+        # Show that the old name is absent while the renumbered name is present.
         gold_names = sorted({r["gold_file"] for r in skipped})
+        W("| filename | matches in repo | resolves to |")
+        W("| --- | ---: | --- |")
         for g in gold_names:
-            hits = list(REPO_ROOT.rglob(g))
-            W(f"- filesystem check for `{g}`: {len(hits)} match(es)"
-              + (f" -> `{hits[0].relative_to(REPO_ROOT)}`" if hits else " -> **absent from the repo**"))
+            stem = g[:-5]
+            for probe in (g, stem.replace("0_", "1_", 1) + ".lean"):
+                hits = [h for h in REPO_ROOT.rglob(probe) if h.is_file()]
+                W(f"| `{probe}` | {len(hits)} | "
+                  + (f"`{hits[0].relative_to(REPO_ROOT)}`" if hits else "**absent (stale name)**") + " |")
         W("")
+        W("> **Consequence:** renaming those 3 label rows to the current filename would restore the")
+        W("> panel to the full 75 pairs / 25 problems. Until that happens, every published number is")
+        W("> a 72-pair number. The same class of staleness affects four more problems")
+        W("> (`1_bisect_left`, `2_heappush`, `3_heappop`, `4_json_decoder`), which survive only because")
+        W("> the older gold snapshot still carries their pre-rename names.\n")
 
     # ---------------------------------------------------------------- 2. exp18
     W("## 2. The inter-pass reliability numbers (EXP18) also ran on `n = 72`\n")

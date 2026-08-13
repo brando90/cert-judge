@@ -21,11 +21,22 @@ Source: `experiments/04_veribench_validation/results_exp16_final_robust/summary.
 | `0_unsafeMultiply_safe.lean` | `0_unsafeMultiply_safe__agent1.lean` | `missing_gold` |
 | `0_unsafeMultiply_safe.lean` | `0_unsafeMultiply_safe__agent2.lean` | `missing_gold` |
 
-> **Root cause:** {'missing_gold': 3}. The human annotator rated a 25th problem whose Lean
-> source file is not present in the artifact corpus, so no judge can score it. The labels
-> exist; the code under test does not.
+> **Root cause:** {'missing_gold': 3} -- but *not* because the artifact was never produced.
+> The label file records a **stale pre-renumbering filename**. The problem was renamed
+> `0_unsafeMultiply_safe` -> `1_unsafeMultiply_safe` in the dataset before the gold snapshot
+> that EXP16 resolves against was taken, so the lookup misses and 3 rated pairs are dropped.
+> The labels are valid and the artifacts exist; only the key is stale.
 
-- filesystem check for `0_unsafeMultiply_safe.lean`: 0 match(es) -> **absent from the repo**
+| filename | matches in repo | resolves to |
+| --- | ---: | --- |
+| `0_unsafeMultiply_safe.lean` | 0 | **absent (stale name)** |
+| `1_unsafeMultiply_safe.lean` | 2 | `data/veribench_dataset/lean_src/veribench/security_6858/safe/1_unsafeMultiply_safe.lean` |
+
+> **Consequence:** renaming those 3 label rows to the current filename would restore the
+> panel to the full 75 pairs / 25 problems. Until that happens, every published number is
+> a 72-pair number. The same class of staleness affects four more problems
+> (`1_bisect_left`, `2_heappush`, `3_heappop`, `4_json_decoder`), which survive only because
+> the older gold snapshot still carries their pre-rename names.
 
 ## 2. The inter-pass reliability numbers (EXP18) also ran on `n = 72`
 

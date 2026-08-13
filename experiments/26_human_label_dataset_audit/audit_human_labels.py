@@ -17,8 +17,8 @@ Design notes
 
 Usage
 -----
-    python3 experiments/21_human_label_dataset_audit/audit_human_labels.py
-    python3 experiments/21_human_label_dataset_audit/audit_human_labels.py --out-dir /tmp/x
+    python3 experiments/26_human_label_dataset_audit/audit_human_labels.py
+    python3 experiments/26_human_label_dataset_audit/audit_human_labels.py --out-dir /tmp/x
 """
 
 from __future__ import annotations
