@@ -1,0 +1,10 @@
+% Status: DRAFT -- do not input directly without checking surrounding related-work flow.
+% Source: experiments/15_autometrics_related_work/paper_summary_and_contrast.md
+\paragraph{Adaptive metric induction vs.\ property certification.}
+\citet{ryan2025autometrics} introduce \textsc{AutoMetrics}, which uses fewer than 100 human feedback points to synthesize and select task-specific evaluation metrics.
+Their pipeline generates candidate LLM-judge criteria, retrieves existing metrics from a MetricBank, and fits a regression that weights the selected metrics to maximize correlation with human ratings.
+This shares our goal of amortizing scarce human supervision, and their sensitivity/stability tests echo our use of counterfactual perturbations as validity evidence.
+The axis of amortization is different.
+\textsc{AutoMetrics} learns a new metric for each open-ended application, so its core validation target is per-task human-label prediction.
+Our protocol certifies a judge configuration for Lean~4 theorem and specification scoring, using identity, bug-monotonicity, specification-monotonicity, and repeat stability as falsifiable behavioral checks.
+Thus \textsc{AutoMetrics} optimizes \emph{what metric to use} when user preferences are sparse, whereas property certification tests \emph{whether a chosen judge is reliable enough} before its scores support formal-verification claims.
