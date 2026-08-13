@@ -4,9 +4,22 @@ TLDR: full change log for the ICLR 2027 port per `docs/certjudge-revision-memo.m
 `docs/agent-prompt-iclr2027-port.md` (the prompt); every inserted/changed number is labeled
 DOCUMENTED (traced to a repo artifact), DERIVED (computed, command shown), or UNKNOWN (none inserted).
 
-Compiled: `tectonic --keep-logs --outdir _build main.tex` → 0 errors, 0 overfull boxes, 23 pages
-total; **countable main text ends on page 9** (Conclusion ends p9; uncounted Reproducibility/LLM-use
-statements begin p9–10; references pp10–12; appendix p13–23).
+Compiled: `tectonic --keep-logs --outdir _build main.tex` → 0 errors, 0 overfull boxes, 0 undefined
+refs/citations, **23 pages** total.
+
+**Page-budget verification (the check that matters, done the strict way).** ICLR counts main text
+only; references and the statements are uncounted. The gate is therefore *where the Conclusion's
+last sentence ends*, not where its heading sits — an earlier revision of this port passed the
+heading check while the Conclusion's final clause spilled onto p10, and light QA caught it. Verified
+by extracting text per physical page from the committed PDF: the Conclusion's closing phrase
+("…as the headline oversight quantity.") is the last countable text on **page 9**, and page 10
+opens with `REPRODUCIBILITY STATEMENT`. References pp10–12; appendix p13–23. To re-check after any
+edit:
+
+```
+python3 -c "from pypdf import PdfReader; r=PdfReader('main.pdf'); \
+print('headline oversight quantity' in (r.pages[8].extract_text() or ''))"
+```
 
 ## 0. Pre-flight verification (prompt ground rule 4)
 
@@ -94,7 +107,11 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
 
 ## 5. ICLR compliance (prompt step 4)
 
-- Main text ≤ 9 pages ✓ (Conclusion ends p9). References uncounted; appendix after references.
+- Main text ≤ 9 pages ✓ — verified per-page against the committed PDF, not by heading position
+  (see the page-budget note at the top of this file). References uncounted; appendix after
+  references. To hold this budget, the Conclusion was tightened and the \textsc{Alpha}
+  canonicalization detail (dispersion 0.250 → 0.070, median 64%) moved from §8 into Appendix D,
+  where it is now stated in full rather than in passing — no claim was dropped.
 - Double-blind: `\author{Anonymous authors}`; no acknowledgments; no grant numbers; no repo URLs in
   the paper; supplementary referred to as "anonymized archive". Grep results (source + bib):
   no {author names, lab, university, GitHub handles} outside standard third-person bib entries

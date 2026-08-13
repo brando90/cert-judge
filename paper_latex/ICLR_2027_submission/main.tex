@@ -126,7 +126,7 @@ Our \textbf{contributions} are:
 LLMs are increasingly used as automated evaluators, with reliability commonly validated by agreement with people: \textsc{G-Eval} reports Spearman correlation with human scores \citep{Liu2023GEval}, MT-Bench reports judge agreement with human preferences \citep{Zheng2023MTBench}, and Judge-Bench evaluates replication of human annotations across 20 NLP datasets \citep{Kocmi2024HumanVsLLM}.
 Large-scale audits caution that reliability varies by task and setup and stress explicit validation before replacing human judgment; known biases include position, verbosity, and prompt sensitivity \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments,Zheng2023MTBench}.
 We keep human agreement as the criterion but amortize it: one calibration panel relates falsifiable behavioral properties to human agreement, after which new judge configurations are screened without new labels.
-Closest to this paper, a non-archival workshop study certifies a Lean-aware theorem judge with falsifiable identity and monotonicity checks \citep{anonymous2025formaljudge}; we recast that protocol in construct/criterion/instrument terms, separate screen from surrogate semantics, and subject it to the audited data disclosures and pre-registered held-out tests reported here.
+Closest to this paper, a non-archival workshop study certifies a Lean-aware theorem judge with identity and monotonicity checks \citep{anonymous2025formaljudge}; this paper recasts that protocol in construct/criterion/instrument terms and adds screen-versus-surrogate semantics, audited data disclosures, and pre-registered held-out tests.
 
 \textbf{Improving and evaluating judge reliability.}
 Debate-style panels \citep{Chan2024ChatEval}, rubric-driven prompting \citep{Liu2023GEval}, and internal-consistency measurement \citep{Li2024TrustLLMJudgments} target reliability at inference time.
@@ -623,8 +623,7 @@ The rubric is part of the criterion's identity; with $\lvert H \rvert = 1$ the p
 \textbf{\textsc{Alpha}-renaming.}
 Among semantics-preserving rewrites, aggressive \textsc{Alpha}-renaming is systematically the hardest for our judges (mean score $0.399$ vs.\ $\ge 0.849$ for milder edits; Table~\ref{tab:codex_invariance_variants}).
 We interpret this as a mismatch between what the kernel guarantees and what LLM judges implicitly condition on: tokenized programs under \textsc{Alpha} sit far from both the gold reference and typical training text, so lexical cues shift scores even when equivalence is obvious to an expert.
-Excluding \textsc{Alpha} variants materially changes measured robustness (trend-$v1$ Spearman: strict $0.810 \rightarrow 0.690$, lenient $0.810 \rightarrow 0.714$, avg $0.881 \rightarrow 0.786$), and local bug-ladder reversals occur despite strong global trends (per-judge reversal rates in Appendix~\ref{app:failure}).
-A post-hoc canonicalization proxy reduces mean within-item dispersion under \textsc{Alpha} from $0.250$ to $0.070$ (median per-item reduction $64\%$); pre-scoring canonicalization requires rescoring and is future work.
+Excluding \textsc{Alpha} variants materially changes measured robustness (trend-$v1$ Spearman: strict $0.810 \rightarrow 0.690$, lenient $0.810 \rightarrow 0.714$, avg $0.881 \rightarrow 0.786$), and local bug-ladder reversals occur despite strong global trends (per-judge reversal rates and a canonicalization proxy in Appendix~\ref{app:failure}).
 Whether \textsc{Alpha}-renaming is human-invariant on these artifacts is exactly the margin measurement Route~B needs (Appendix~\ref{app:routeb}).
 
 \textbf{Limitations.}
@@ -634,9 +633,9 @@ The calibration panel is small, single-rater, and hand-curated, so the criterion
 Item-level extrapolation ($b' \to b$: 72 validated items vs.\ $157 \times 3$ scored candidates) is a stated assumption, not a measured one.
 
 \section{Conclusion}\label{sec:conclusion}
-We reframed judge validation as measurement: a construct ($\TW_m$), a human-grounded criterion ($\TI_m$) on a specified panel, and a label-free instrument ($\mathbf{P}$, $\PTI_p$) whose acceptance semantics are those of a screen backed by a bridge.
-On the calibration panel the bridge is strong and consistent across three model families; on a drifted criterion, a pre-registered screen found no qualifying label-free signal, and the audit of our own data shows how much of ``ground truth'' is protocol.
-The decisive next steps are mechanical: one rubric end-to-end, ${\approx}40$ judge configurations for a powered bridge, per-property screening bounds, margin measurement for Route~B, and decision-utility measurement --- human validations avoided at a fixed false-pass tolerance --- as the headline oversight quantity.
+We reframed judge validation as measurement: a construct ($\TW_m$), a criterion ($\TI_m$) on a specified panel, and a label-free instrument ($\mathbf{P}$, $\PTI_p$) whose acceptance semantics are a screen backed by a bridge.
+On the calibration panel that bridge is strong across three model families; on a drifted criterion a pre-registered screen found no qualifying signal, and auditing the labels showed how much of ``ground truth'' is protocol.
+The next steps are mechanical: one rubric end-to-end, ${\approx}40$ judge configurations for a powered bridge, per-property screening bounds, Route~B margin measurement, and decision utility as the headline oversight quantity.
 
 % ---------------------------------------------------------------
 % Statements (uncounted per ICLR 2027 CFP; keep after conclusion, before references)
@@ -764,6 +763,11 @@ Local bug-ladder reversal rates by judge, from the low-variance replot package: 
 \textbf{\textsc{Alpha} isolation.}
 Figure~\ref{fig:app-exp19-main-and-alpha} separates the main monotonicity trend from the \textsc{Alpha}-renaming failure mode rather than mixing them in one curve.
 Excluding \textsc{Alpha} variants changes trend-$v1$ Spearman: strict $0.810 \rightarrow 0.690$, lenient $0.810 \rightarrow 0.714$, avg $0.881 \rightarrow 0.786$.
+
+\textbf{Canonicalization proxy.}
+Re-normalizing \textsc{Alpha}-renamed variants \emph{after} scoring reduces mean within-item score dispersion from $0.250$ to $0.070$ (median per-item reduction $64\%$).
+This is a post-hoc proxy: true pre-scoring canonicalization requires rescoring every variant and is future work.
+It suggests the \textsc{Alpha} gap is substantially a surface-form effect rather than a semantic one, which is the hypothesis the Route~B margin measurement would test directly.
 
 \begin{figure*}[t]
   \centering
