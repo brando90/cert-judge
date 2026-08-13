@@ -126,6 +126,7 @@ Our \textbf{contributions} are:
 LLMs are increasingly used as automated evaluators, with reliability commonly validated by agreement with people: \textsc{G-Eval} reports Spearman correlation with human scores \citep{Liu2023GEval}, MT-Bench reports judge agreement with human preferences \citep{Zheng2023MTBench}, and Judge-Bench evaluates replication of human annotations across 20 NLP datasets \citep{Kocmi2024HumanVsLLM}.
 Large-scale audits caution that reliability varies by task and setup and stress explicit validation before replacing human judgment; known biases include position, verbosity, and prompt sensitivity \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments,Zheng2023MTBench}.
 We keep human agreement as the criterion but amortize it: one calibration panel relates falsifiable behavioral properties to human agreement, after which new judge configurations are screened without new labels.
+Closest to this paper, a non-archival workshop study certifies a Lean-aware theorem judge with falsifiable identity and monotonicity checks \citep{anonymous2025formaljudge}; we recast that protocol in construct/criterion/instrument terms, separate screen from surrogate semantics, and subject it to the audited data disclosures and pre-registered held-out tests reported here.
 
 \textbf{Improving and evaluating judge reliability.}
 Debate-style panels \citep{Chan2024ChatEval}, rubric-driven prompting \citep{Liu2023GEval}, and internal-consistency measurement \citep{Li2024TrustLLMJudgments} target reliability at inference time.
@@ -823,7 +824,7 @@ Excluding \textsc{Alpha} variants changes trend-$v1$ Spearman: strict $0.810 \ri
 
 \section{Validation-Set Bridge: Full Diagnostics}\label{app:exp16-exp17}
 
-This appendix reports full visual diagnostics for the validation-set bridge analyses under the three label views (strict, lenient, avg); several embedded figure legends predate the strict/lenient rename and show \texttt{pass1}/\texttt{pass2} (strict $=$ \texttt{pass1}, lenient $=$ \texttt{pass2}).
+This appendix reports full visual diagnostics for the validation-set bridge analyses under the three label views (strict, lenient, avg); several embedded figure legends predate the current notation and show \texttt{pass1}/\texttt{pass2} (strict $=$ \texttt{pass1}, lenient $=$ \texttt{pass2}) or the legacy aggregate names ``cert index'' / ``trust index (geometric)'' for the quantities now written $v1$/GM/$\PTIvar$.
 We evaluate eight judge configurations spanning frontier-model prompts, weaker LLM baselines, edit-distance heuristics, and random controls.
 $10{,}000$-resample bootstrap $95\%$ confidence intervals for the headline bridge coefficients are $[0.24,1.00]$ (avg), $[0.41,1.00]$ (strict), and $[0.11,1.00]$ (lenient), with two-sided permutation $p$-values $0.017$, $0.005$, and $0.045$ (fixed seed $42$); the intervals are wide, as expected at this panel size, but all exclude zero.
 

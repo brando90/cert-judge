@@ -36,7 +36,8 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
 | "reflexivity" | "identity" | (no occurrences remained) |
 
 - "Trust Index" does not appear in title, abstract, or any heading (memo ban; title-collision).
-  Lowercase "trust index" survives only inside the §3 notation table naming what `TI_m` denotes —
+  Lowercase "trust index" survives only as internal-math naming: the §3 notation table naming what
+  `TI_m` denotes, and the Fig. 1 caption's "label-free proxy trust index" gloss of `PTI` —
   memo: "`TI_m` survives as internal math."
 - No `CI`/`CC` abbreviations as names; "CI" appears only as "95% confidence interval (CI)" in
   standard statistics usage.
@@ -98,8 +99,9 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
   the paper; supplementary referred to as "anonymized archive". Grep results (source + bib):
   no {author names, lab, university, GitHub handles} outside standard third-person bib entries
   (citing published work by its authors is standard and allowed; the paper never claims ownership).
-  Workshop version + VeriBench cited third person (`anonymous2025formaljudge`,
-  `miranda2026veribench`).
+  Workshop version cited third person in §2 via `anonymous2025formaljudge` (added after light-QA
+  review flagged it missing — the first committed version of this port omitted it); VeriBench cited
+  third person via `miranda2026veribench`.
 - Required LLM-use statement added (`\section*{The Use of Large Language Models}`, uncounted);
   Reproducibility statement added; Ethics statement left as a commented stub (per prompt).
 - Title = memo shortlist option 1 (working title per prompt): *The Surrogate Gap: When Do
