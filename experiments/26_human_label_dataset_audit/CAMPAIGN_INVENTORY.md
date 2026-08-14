@@ -1,18 +1,20 @@
 # Campaign inventory — every human-label campaign in the repo
 
-> **This is document 2 of 2 in this folder.** Start with [`README.md`](README.md), which answers
-> "what are `n=75`, `pass1`, `pass2`" for the paper's calibration panel. This document zooms out to
-> **all** human-label campaigns across cert-judge and veribench.
+> Part of [`experiments/26_human_label_dataset_audit/`](README.md) — start at the README for the
+> folder map. The calibration-panel deep dive is
+> [`cert_judge_judgements_human_scores.md`](cert_judge_judgements_human_scores.md); the 5-rater
+> pool deep dive is [`vb_judgements_human_scores.md`](vb_judgements_human_scores.md). This
+> document zooms out to **all** human-label campaigns across cert-judge and veribench.
 >
 > It was written independently (concurrent session) and merged here so there is one folder, not two.
-> Its facts were cross-checked against `README.md`'s recomputation — they agree everywhere they
+> Its facts were cross-checked against `cert_judge_judgements_human_scores.md`'s recomputation — they agree everywhere they
 > overlap, **with one exception, corrected inline below**: the `835` usable-label figure in §2/§9 is
 > a row total across 7 files, and the two `*_set_data.tsv` aggregates are concatenations of the
 > participant files sitting next to them. The number of **independent** labels is **343**. See
-> `README.md` §7 and `results/PANEL_TRACE.md` §4 for the exact decomposition.
+> `cert_judge_judgements_human_scores.md` §7 and `results/PANEL_TRACE.md` §4 for the exact decomposition.
 >
 > Its §7 (stale filename aliases) is the *correct* root cause for the 3 dropped pairs discussed in
-> `README.md` §1 — that finding originated here.
+> `cert_judge_judgements_human_scores.md` §1 — that finding originated here.
 
 **TLDR:** There are **three real human-label campaigns** (not one), all on the same underlying task — *25 VeriBench v1 problems × 3 agents = 75 items*, rated 0–5 for theorem-statement coverage. The big one is the **revised-protocol pool** (`experiments/human_labels/`, 835 usable labels, 5 named raters + 2 aggregate sets); the second is the **old-protocol calibration lineage** (`04_veribench_validation/data/ethan_human_scores_*.tsv`, 150 labels) that produced the famous 0.7033 and correlates with the pool at only **ρ ≈ 0.13**; the third is **Ethan's April hand-labels** (`ethan_hand_labels/`, 78 rows). A fourth thing that *looks* like data — the 30-problem named study in `18_human_judgment_study/` (= veribench `41_`) — is **fully designed but 0% collected** (every `score` cell blank). Two long-standing gaps are resolved here: the **participant↔name mapping** is recovered from git, and the **"30 problems"** figure used by exp34/exp32 is really **25 problems + 5 stale filename aliases**.
 
@@ -170,5 +172,5 @@ Confirmed independently by exact score agreement against the un-anonymized copie
 
 > ✅ **Numbering collision resolved.** This document originally lived in a separate
 > `experiments/21_human_label_dataset_audit/`, which collided with `experiments/21_tmlr_submission/`.
-> It now lives here in `experiments/26_human_label_dataset_audit/` alongside `README.md` and the
+> It now lives here in `experiments/26_human_label_dataset_audit/` alongside the panel deep-dive (now `cert_judge_judgements_human_scores.md`) and the
 > runnable audit scripts — one folder, one number.
