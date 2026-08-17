@@ -8,14 +8,63 @@ criterion (`paper_latex/ICLR_2027_submission/main.tex`, TI_{2'} definition;
 TI_2'(aj) = ( clip_[0,1](Corr(judge_scores, human_scores)) * (1 - STD) )^0.5
 ```
 
-One judge configuration, one panel: item-level (human, judge) score scatter
-with a light 2D density wash (not a separate marginal-histogram panel) and a
-legend showing the formula with that judge's real numbers plugged in, e.g.
-`TI_2' = (0.48 x (1-0.05))^0.5 = 0.675`.
+One judge configuration, one figure, mapped onto the paper's own m-ladder
+(revision memo, "Figure elements map onto the m-ladder"):
+
+| Element | Shows | Rung |
+|---|---|---|
+| Top/right marginal histograms (discrete-aware, tie-snapped -- **not** a KDE) | calibration gap; range restriction | m0 |
+| Central panel: item positions (marker size = # tied items) | alignment, summarized by Spearman rho (+ Kendall tau-b under ties) | m1 |
+| Per-position vertical error bars (mean judge repeat-std) | judge self-consistency | m2 |
+| Info panel | decomposed `TI_2' = (rho * (1-sigma))^0.5` formula + bootstrap 95% CI on rho + calibration gap (Wasserstein) | — |
+
+**Revision history worth knowing**: the first version of this figure used a
+2D Gaussian KDE density wash instead of marginals, and drew a `y=x` reference
+line. Both were wrong for this data and got removed after review: a smooth
+2D density is the wrong estimator at n=72 over ~9 distinct human values (a
+tie-heavy lattice, not a continuum) -- it can make a perfectly-aligned judge
+and a shuffled one look visually similar, since shuffling leaves both
+marginals unchanged while sending rho to zero. And `y=x` implied a
+calibration target the metric doesn't claim: judge and human scores are on
+uncalibrated scales, and TI_2' is correlation-based (level-invariant by
+construction). See `cert_judge_notes/agent-prompt-bridge-plot.md`, "Revision
+notes on the item-level figure already built," for the full critique.
 
 No judge inference, no LLM calls, no spend: `run_ti2prime_demo.py` reuses
 per-item judge scores and the audited human labels that already exist on disk
 from the ICLR-2027 / workshop submission runs.
+
+**Two diagnostics from that review, answered:**
+1. *Which `std` is being computed?* Confirmed: the judge's repeat standard
+   deviation (self-consistency across its 3 repeat calls), pooled across
+   items -- never the across-item spread of the judge's mean scores. See
+   `uutils.stats_uu.validity_stability`'s module docstring for why that
+   distinction matters (an across-item measure would reward a judge that
+   never varies its score regardless of item quality).
+2. *Why does `random_r1` report `sigma = 0.00`?* By design, not a bug --
+   confirmed in `experiments/04_veribench_validation/exp16_multi_judge_human_sets.py:231-269`.
+   The "random" baseline is a SHA256 hash of the judge id + item content
+   (deterministic per item, reproducible across pipeline reruns), not a
+   stateful RNG draw, so its 3 "repeats" are the same value 3 times by
+   construction. It's random *across items* and stable *within* an item --
+   a standard stable-noise-floor-control pattern, not an attempt to model a
+   genuinely stochastic judge. Consequence: this control cannot exercise the
+   stability conjunct of TI_2' (same for `editdist_e1`).
+
+**Interpreting rho against the estimated ceiling, not against 1.0**
+(revision memo, same section): inter-pass Spearman reliability on the 72
+items is disputed in-repo -- `AUDIT.md` flags a MISMATCH between what
+`main.tex` currently cites (0.249) and a newer recomputation (0.280),
+unresolved as of this run. `run_ti2prime_demo.py` reports both. Via the
+Spearman-Brown prophecy formula for a 2-pass average
+(`reliability = 2r/(1+r)`), the attenuation ceiling on any judge-human
+correlation is `sqrt(reliability) ≈ 0.63` (paper-cited) or `≈ 0.66`
+(recomputed). A judge at rho=0.48 is therefore at ~76%/73% of the achievable
+maximum -- a materially different claim from "0.48 out of 1.0" -- with two
+caveats: Spearman-Brown assumes parallel forms (the two passes here are
+different rubric-strictness views, not pure replications), and with a single
+rater the ceiling conflates rubric sensitivity with rater noise. Both point
+the same way, so treat it as a lower bound on what's achievable.
 
 ## Where the code lives, and why
 
@@ -27,16 +76,16 @@ target (correlation); stability = is the proxy internally consistent
 
 | Layer | Location | What it is |
 |---|---|---|
-| Generic compute | `ultimate-utils/py_src/uutils/stats_uu/validity_stability.py` | `compute_validity_stability(proxy, target, repeat_scores_by_item)` -> `ValidityStabilityResult` |
+| Generic compute | `ultimate-utils/py_src/uutils/stats_uu/validity_stability.py` | `compute_validity_stability` (M^VS) -> `ValidityStabilityResult`; `compute_validity` (M^C, stability-free, for property-estimator reuse per the memo's "one operator, two ground truths"); `bootstrap_correlation_ci`, `compute_kendall_tau_b`, `compute_calibration_gap` |
 | Generic plot | `ultimate-utils/py_src/uutils/plot/validity_stability_scatter.py` | `plot_validity_stability_scatter(...)`, legend symbol defaults to `"VS"` |
 | cert-judge notation | `cert-judge/py_src/cert_judge/ti2prime_plot.py` | `compute_ti2prime` / `plot_ti2prime_scatter` — same functions, legend symbol fixed to `TI_2'`, judge/human axis labels |
 | This repo's data glue | `run_ti2prime_demo.py` (this dir) | Parses `detail_rows.csv` + `aligned_panel_n75.tsv`, joins on `item_key`, calls the above |
 
 `uutils` is Brando's general-purpose utilities package
 (`git@github.com:brando90/ultimate-utils.git`, published on PyPI as `uutils`).
-The new module is on branch `claude/validity-stability-score` there
-(branched off `origin/master`), **committed nowhere yet** — only in the
-working tree, same as the cert-judge side. Nothing has been pushed.
+PRs open in both repos: [brando90/cert-judge#38](https://github.com/brando90/cert-judge/pull/38)
+and [brando90/ultimate-utils#44](https://github.com/brando90/ultimate-utils/pull/44)
+(branch `claude/validity-stability-score`, off `origin/master`).
 
 `cert_judge/ti2prime_plot.py` is **not** re-exported from `cert_judge/__init__.py`
 (matching `uutils.stats_uu`'s own submodule convention) because it pulls in

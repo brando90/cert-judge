@@ -76,7 +76,17 @@ def test_plot_ti2prime_scatter_builds_headlessly():
     judge, human, repeats = _perfectly_aligned_stable_data()
     fig = plot_ti2prime_scatter(judge, human, repeats, judge_label="unit-test-judge")
     assert fig is not None
+    assert len(fig.axes) == 4  # central + top marginal + right marginal + info panel
     matplotlib.pyplot.close(fig)
+
+
+def test_plot_ti2prime_scatter_no_diagonal_by_default():
+    # Judge (LLM rubric) and human (1-5 rubric) are on uncalibrated scales, and
+    # TI_2' is correlation-based (level-invariant by construction), so a y=x
+    # line would imply a calibration target the criterion doesn't claim.
+    import inspect
+
+    assert inspect.signature(plot_ti2prime_scatter).parameters["show_diagonal"].default is False
 
 
 def test_plot_ti2prime_scatter_writes_files_with_dots_in_the_stem(tmp_path):

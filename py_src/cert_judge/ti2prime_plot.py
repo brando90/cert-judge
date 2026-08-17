@@ -67,17 +67,27 @@ def plot_ti2prime_scatter(
     judge_label: str = "",
     x_label: str = "Human score",
     y_label: str = "Judge score",
-    show_density: bool = True,
-    show_diagonal: bool = True,
+    show_diagonal: bool = False,
+    show_calibration_gap: bool = True,
+    n_boot: int = 2000,
     ax: Optional[plt.Axes] = None,
     legend_loc: str = "best",
     seed: int = 0,
     out: Optional[Union[str, Path]] = None,
 ) -> plt.Figure:
-    """TI_2' scatter -- cert-judge's Validity-Stability instance. See module docstring."""
+    """
+    TI_2' scatter -- cert-judge's Validity-Stability instance. See module docstring.
+
+    `show_diagonal` defaults False: judge (LLM rubric) and human (1-5 rubric)
+    scores are on uncalibrated scales, and TI_2' is correlation-based --
+    invariant to a level offset by construction -- so a y=x line would imply a
+    calibration target the criterion does not claim. See
+    uutils.plot.validity_stability_scatter's module docstring.
+    """
     return plot_validity_stability_scatter(
         judge_scores, human_scores, repeat_scores_by_item,
         std=std, corr_method=corr_method, symbol=_TI2PRIME_SYMBOL, label=judge_label,
-        x_label=x_label, y_label=y_label, show_density=show_density, show_diagonal=show_diagonal,
+        x_label=x_label, y_label=y_label, show_diagonal=show_diagonal,
+        show_calibration_gap=show_calibration_gap, n_boot=n_boot,
         ax=ax, legend_loc=legend_loc, seed=seed, out=out,
     )
