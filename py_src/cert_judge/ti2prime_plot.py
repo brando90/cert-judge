@@ -68,7 +68,7 @@ def plot_ti2prime_scatter(
     x_label: str = "Human score",
     y_label: str = "Judge score",
     show_diagonal: bool = False,
-    show_calibration_gap: bool = True,
+    show_calibration_gap: bool = False,
     n_boot: int = 2000,
     ax: Optional[plt.Axes] = None,
     legend_loc: str = "best",
