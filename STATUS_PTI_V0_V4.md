@@ -1,6 +1,6 @@
 # PTI-v0 v4 execution status
 
-**TLDR:** PR-A engineering and zero-spend evidence are complete locally; primary PTI and the outer bridge remain honestly `NOT_COMPUTABLE`, actual provider/API spend is `$0`, and paper work has not started.
+**TLDR:** PR-A engineering and zero-spend evidence are complete and published as draft PR #39; primary PTI and the outer bridge remain honestly `NOT_COMPUTABLE`, actual provider/API spend is `$0`, and paper work has not started.
 
 ## Provenance
 
@@ -12,6 +12,7 @@
 | ultimate-utils PR #44 head | `c8a6a9a70e32073d6cde2193958d570f08fd935e` |
 | Global rules revision used | `8190074918da0c2b39e6763b1d46ba04e8215ec2` |
 | PTI branch | `codex/pti-v0-final` |
+| Implementation commit | `dd4f7968c8d535fe37e1d395f269af68a00a8c36` |
 
 Dependency PR #44 and then PR #38 remain open review dependencies. This branch preserves and stacks on the existing Exp27 work rather than recreating it.
 
@@ -57,7 +58,7 @@ Dependency PR #44 and then PR #38 remain open review dependencies. This branch p
 
 ## Pull requests and manuscript
 
-- PR A: final QA complete; pending commit, push, and draft-PR creation.
+- PR A: [draft #39](https://github.com/brando90/cert-judge/pull/39), head `codex/pti-v0-final`, base `claude/ti2prime-validity-stability-scatter`; final QA is complete, and the draft must not merge before dependency review.
 - PR B: not created; it must stack on PR A only after committed bridge evidence exists.
 - Active manuscript: unchanged.
 - Build/page/anonymity status: not applicable to this blocked result phase; the preflight temporary build remains historical evidence only.
