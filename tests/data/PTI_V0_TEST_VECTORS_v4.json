@@ -1,0 +1,85 @@
+{
+  "metric_version": "PTI_v0",
+  "vectors_version": "v4 (R43: structural-invalid exclusion; behavioral constant ladder C=0)",
+  "absolute_tolerance": 1e-12,
+  "ladder_vectors": [
+    {
+      "name": "ideal_decreasing",
+      "scores": [[1.0], [0.8], [0.6], [0.4], [0.2]],
+      "expected_rho": -1.0,
+      "expected_quality": 1.0,
+      "expected_factor": 1.0,
+      "expected_constant": false
+    },
+    {
+      "name": "perfectly_reversed",
+      "scores": [[0.2], [0.4], [0.6], [0.8], [1.0]],
+      "expected_rho": 1.0,
+      "expected_quality": 0.0,
+      "expected_factor": 0.0,
+      "expected_constant": false
+    },
+    {
+      "name": "saturated_floor",
+      "scores": [[1.0], [0.25], [0.0], [0.0], [0.0]],
+      "expected_rho": -0.8944271909999159,
+      "expected_quality": 0.9472135954999579,
+      "expected_factor": 0.9472135954999579,
+      "expected_constant": false
+    },
+    {
+      "name": "constant_is_behavioral_failure",
+      "scores": [[0.4], [0.4], [0.4], [0.4], [0.4]],
+      "expected_rho": null,
+      "expected_quality": 0.0,
+      "expected_factor": 0.0,
+      "expected_constant": true
+    },
+    {
+      "name": "max_repeat_instability",
+      "scores": [[0.0, 1.0], [0.0, 1.0], [0.0, 1.0], [0.0, 1.0], [0.0, 1.0]],
+      "expected_rho": null,
+      "expected_quality": 0.0,
+      "expected_instability": 1.0,
+      "expected_factor": 0.0,
+      "expected_constant": true
+    },
+    {
+      "name": "median_is_local_to_level",
+      "scores": [[1.0, 0.9, 0.8], [0.7, 0.6, 0.5], [0.4, 0.3, 0.2]],
+      "expected_medians": [0.9, 0.6, 0.3],
+      "expected_rho": -1.0,
+      "expected_quality": 1.0,
+      "expected_instability": 0.16329931618554516,
+      "expected_factor": 0.9147134435518344,
+      "expected_constant": false
+    }
+  ],
+  "geometric_mean_vectors": [
+    {"name": "soft_and", "factors": [1.0, 1.0, 1.0, 0.5], "expected": 0.8408964152537145},
+    {"name": "zero_annihilation", "factors": [1.0, 0.8, 0.0, 0.9], "expected": 0.0},
+    {"name": "tiny_positive_not_floored", "factors": [1e-300, 1.0], "expected": 1e-150}
+  ],
+  "coverage_vectors": [
+    {
+      "name": "constant_is_included_and_annihilates",
+      "factors": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0],
+      "required_count": 7,
+      "min_coverage": 1.0,
+      "constant_ladder_count": 1,
+      "expected_status": "COMPUTED",
+      "expected_value": 0.0,
+      "expected_coverage": 1.0
+    },
+    {
+      "name": "missing_score_defers_under_strict_v4_coverage",
+      "factors": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+      "required_count": 7,
+      "min_coverage": 1.0,
+      "constant_ladder_count": 0,
+      "expected_status": "NOT_COMPUTABLE",
+      "expected_value": null,
+      "expected_coverage": 0.8571428571428571
+    }
+  ]
+}

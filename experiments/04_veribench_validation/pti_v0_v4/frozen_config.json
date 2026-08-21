@@ -1,0 +1,311 @@
+{
+  "alpha_policy": {
+    "headline_transform": "alpha-renaming only",
+    "optional_diagnostics": [
+      "RENAME",
+      "REORDER",
+      "STYLE"
+    ],
+    "paid_inference": "requires a separate exact quote and explicit approval"
+  },
+  "claim_scope": {
+    "assumptions": [
+      "validated alpha transformations preserve candidate semantics",
+      "validated cumulative bug and missing-spec levels worsen the intended artifact dimension",
+      "large violations are behaviorally disqualifying only within the frozen benchmark/rubric context"
+    ],
+    "high_pti": "screen evidence, not proof of trustworthiness",
+    "language": "pre-specified falsifiable behavioral diagnostics",
+    "route": "Route B"
+  },
+  "config_fingerprint": "e28eb03c09991b93779a8a41ecfc5ce471ebe3275d0ab8b1d0b9f1e25f5826ad",
+  "control_policy": {
+    "editdist_e1": {
+      "empty_empty_similarity": 1.0,
+      "formula": "1 - character Levenshtein distance / max character length",
+      "legacy_source": "experiments/04_veribench_validation/exp16_multi_judge_human_sets.py",
+      "repeat_policy": "repeat the deterministic score at every repeat_id"
+    },
+    "random_r1": {
+      "formula": "first 12 hex digits of sha256(judge_id || seed || reference[:200] || candidate[:200]) divided by 16^12-1",
+      "legacy_source": "experiments/04_veribench_validation/exp16_multi_judge_human_sets.py",
+      "repeat_policy": "repeat the deterministic score at every repeat_id",
+      "seed": 42
+    }
+  },
+  "criterion_policy": {
+    "deterministic_controls": "recomputed from source and compared at stored six-decimal precision",
+    "fallback_reason_prefixes": [
+      "openai_error:",
+      "anthropic_error:",
+      "parse_error on:",
+      "oauth_http_",
+      "oauth_error:",
+      "cli_failed:",
+      "extracted from malformed json",
+      "extracted from prose:",
+      "extracted bare number:"
+    ],
+    "legacy_reasoning_scope": "the legacy cache stores only first-repeat reasoning; non-fallback verification applies to that stored reasoning",
+    "llm_lineage": "exact legacy cache key and non-fallback entry required",
+    "score_coverage_threshold": 1.0
+  },
+  "frozen_date": "2026-08-21",
+  "implementation_provenance": {
+    "config_fingerprint_exclusions": [
+      "implementation_provenance.pipeline_sha256"
+    ],
+    "metric_path": "py_src/cert_judge/pti_v0.py",
+    "metric_sha256": "cd19959805700c0c152c85802ff3085114f7aac839822807e22ab4a5d358ea5d",
+    "pipeline_path": "experiments/04_veribench_validation/run_pti_v0.py",
+    "pipeline_sha256": "ea14854f240fb5922601bbd733d3c92882cc456e4857d58c9f4e5a0354c86c60",
+    "pipeline_version": "PTI_v0_pipeline_v1",
+    "refreeze_policy": "any byte change to the metric, transformer, score schema, or test vectors requires deterministic config and downstream artifact regeneration; pipeline semantics are versioned separately",
+    "score_schema_path": "experiments/04_veribench_validation/pti_v0_v4/score_schema.json",
+    "score_schema_sha256": "efc77955f363db1d91bb06ac0fc5179cc356f223bc1834387be28dc3998bf515",
+    "test_vectors_path": "tests/data/PTI_V0_TEST_VECTORS_v4.json",
+    "test_vectors_sha256": "b40014b46cf4a4c1bd99b1c0ff57801d5772743ed1dc56cb11ccc64f0e3af821",
+    "transformer_path": "py_src/cert_judge/probe_validation.py",
+    "transformer_sha256": "c0b0429831e378302ee02ec8c6d1042ad7fb617196fe90f59b27aa580caa3c55"
+  },
+  "judges": [
+    {
+      "decoding": {
+        "max_output_tokens": 256,
+        "response_contract": "JSON object with normalized score and one-sentence reasoning",
+        "temperature": 1.0,
+        "top_p": 1.0
+      },
+      "family": "gpt-5.3-codex",
+      "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+      "kind": "llm",
+      "model": "gpt-5.3-codex",
+      "pricing_usd_per_million_tokens": {
+        "cached_input": 0.175,
+        "input": 1.75,
+        "output": 14.0,
+        "source": "https://platform.openai.com/pricing"
+      },
+      "prompt": "P8_STRICT_B",
+      "prompt_sha256": "c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4",
+      "prompt_static_utf8_bytes": 335,
+      "role": "primary"
+    },
+    {
+      "decoding": {
+        "max_output_tokens": 256,
+        "response_contract": "JSON object with normalized score and one-sentence reasoning",
+        "temperature": 1.0,
+        "top_p": 1.0
+      },
+      "family": "gpt-5.3-codex",
+      "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+      "kind": "llm",
+      "model": "gpt-5.3-codex",
+      "pricing_usd_per_million_tokens": {
+        "cached_input": 0.175,
+        "input": 1.75,
+        "output": 14.0,
+        "source": "https://platform.openai.com/pricing"
+      },
+      "prompt": "P4_CHECKLIST",
+      "prompt_sha256": "02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f",
+      "prompt_static_utf8_bytes": 442,
+      "role": "primary"
+    },
+    {
+      "decoding": {
+        "max_output_tokens": 256,
+        "response_contract": "JSON object with normalized score and one-sentence reasoning",
+        "temperature": 1.0,
+        "top_p": 1.0
+      },
+      "family": "gpt-5.3-codex",
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "kind": "llm",
+      "model": "gpt-5.3-codex",
+      "pricing_usd_per_million_tokens": {
+        "cached_input": 0.175,
+        "input": 1.75,
+        "output": 14.0,
+        "source": "https://platform.openai.com/pricing"
+      },
+      "prompt": "P1_BASELINE",
+      "prompt_sha256": "05cd45952245fba4567d9175ed5f1d8f6bfd239ccd7c5f35e5ba55dc2c0fc4f9",
+      "prompt_static_utf8_bytes": 620,
+      "role": "primary"
+    },
+    {
+      "decoding": {
+        "max_output_tokens": 256,
+        "response_contract": "JSON object with normalized score and one-sentence reasoning",
+        "temperature": 1.0,
+        "top_p": 1.0
+      },
+      "family": "string_similarity_control",
+      "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+      "kind": "llm_control",
+      "model": "gpt-5.3-codex",
+      "pricing_usd_per_million_tokens": {
+        "cached_input": 0.175,
+        "input": 1.75,
+        "output": 14.0,
+        "source": "https://platform.openai.com/pricing"
+      },
+      "prompt": "BAD_STRINGY",
+      "prompt_sha256": "27fc9dca065a1c0fa25c1bd2c74d46017b7c6be7192e20250c9b07e3e34e6778",
+      "prompt_static_utf8_bytes": 438,
+      "role": "control"
+    },
+    {
+      "decoding": {
+        "max_output_tokens": 256,
+        "response_contract": "JSON object with normalized score and one-sentence reasoning",
+        "temperature": 1.0,
+        "top_p": 1.0
+      },
+      "family": "gpt-4o-mini",
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "kind": "llm",
+      "model": "gpt-4o-mini",
+      "pricing_usd_per_million_tokens": {
+        "cached_input": 0.075,
+        "input": 0.15,
+        "output": 0.6,
+        "source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+      },
+      "prompt": "P8_STRICT_B",
+      "prompt_sha256": "c8d106435343da5781c2266dc3fb7c157789991cd0094d569badf711a9a931c4",
+      "prompt_static_utf8_bytes": 335,
+      "role": "primary"
+    },
+    {
+      "decoding": {
+        "max_output_tokens": 256,
+        "response_contract": "JSON object with normalized score and one-sentence reasoning",
+        "temperature": 1.0,
+        "top_p": 1.0
+      },
+      "family": "gpt-4o-mini",
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "kind": "llm",
+      "model": "gpt-4o-mini",
+      "pricing_usd_per_million_tokens": {
+        "cached_input": 0.075,
+        "input": 0.15,
+        "output": 0.6,
+        "source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+      },
+      "prompt": "P4_CHECKLIST",
+      "prompt_sha256": "02094406a3502271bf5fdafd2035553c31061aa1927674d603eb935dfb10511f",
+      "prompt_static_utf8_bytes": 442,
+      "role": "primary"
+    },
+    {
+      "decoding": {
+        "deterministic": true
+      },
+      "family": "edit_distance_control",
+      "judge_id": "editdist_e1",
+      "kind": "deterministic_control",
+      "model": null,
+      "pricing_usd_per_million_tokens": null,
+      "prompt": null,
+      "prompt_sha256": null,
+      "prompt_static_utf8_bytes": 0,
+      "role": "control"
+    },
+    {
+      "decoding": {
+        "seed": 42
+      },
+      "family": "random_control",
+      "judge_id": "random_r1",
+      "kind": "seeded_control",
+      "model": null,
+      "pricing_usd_per_million_tokens": null,
+      "prompt": null,
+      "prompt_sha256": null,
+      "prompt_static_utf8_bytes": 0,
+      "role": "control"
+    }
+  ],
+  "metric_version": "PTI_v0",
+  "panel_policy": {
+    "duplicate_rule": "arithmetic mean within each human pass",
+    "policy": "keep72",
+    "primary_view": "mean(strict,lenient)",
+    "qwk": "omitted; half-score encoding was not frozen",
+    "reason": "exclude three stale unsafeMultiply rows whose historical gold is not the intended safe gold",
+    "secondary_views": [
+      "strict",
+      "lenient"
+    ]
+  },
+  "pool_policy": {
+    "artifact_index": "f=(item_id,agent_id,generation_id=0)",
+    "candidate_pattern": "<item_id>__agent<id>.lean",
+    "expected_agents": [
+      "agent0",
+      "agent1",
+      "agent2"
+    ],
+    "gold_resolution": "prefer legacy root; use newest root only when absent from legacy",
+    "identical_candidate_content": "retain distinct typed f rows, report hash groups, and use content-deduplicated sensitivity",
+    "missing_expected_artifacts": "record and exclude structurally; never impute"
+  },
+  "probe_policy": {
+    "all_transformed_levels_must_elaborate": true,
+    "candidate_and_gold_must_elaborate": true,
+    "constant_judge_score_ladder": "included with C=0",
+    "environment_binding": "platform/filesystem case behavior, lake manifest, and sorted available olean-module inventory",
+    "ladder_degradation_levels": 4,
+    "levels_include_original": true,
+    "prepare_local_lean_modules": [
+      "VeriBench",
+      "VeriBench.Common",
+      "VeriBench.Prelude"
+    ],
+    "reject_noop_or_duplicate": true
+  },
+  "prompt_provenance": {
+    "bad_prompt_source": "experiments/04_veribench_validation/exp16_multi_judge_human_sets.py",
+    "bad_prompt_source_sha256": "8cd04391ca9b293c956f0e402456b9b6088bfc77e78ee8d67966f78db1f9bb45",
+    "prompt_source": "experiments/02_reviewer_response_neurips_math_ai_2026/utils/sensitivity_sweep.py",
+    "prompt_source_sha256": "30abd16312fbf6df210dfe5f92f40188dcfe8e176a73cd031022fd82cad71b03",
+    "reference_preprocessing_source": "experiments/04_veribench_validation/exp16_multi_judge_human_sets.py",
+    "reference_preprocessing_symbol": "_extract_last_theorem_block"
+  },
+  "schema_version": "PTI_v0_protocol_v4",
+  "scope": "VERIBENCH observed generated-candidate pool",
+  "score_policy": {
+    "cache_schema_required": "PTI_v0_scores_v1",
+    "judge_repeats": 3,
+    "missing_scores": "NOT_COMPUTABLE and DEFER; never zero",
+    "output_token_upper_bound_per_call": 256,
+    "property_score_coverage_threshold": 1.0,
+    "reference_preprocessing": "last theorem/lemma block using the frozen Exp16 regex; fall back to the full gold when no block exists",
+    "repeat_aggregation": "median",
+    "score_range": [
+      0.0,
+      1.0
+    ],
+    "token_quote_rule": "one token per UTF-8 byte plus 128 request-overhead tokens"
+  },
+  "statistics": {
+    "bootstrap_iterations": 10000,
+    "bootstrap_method": "percentile",
+    "bootstrap_seed": 0,
+    "bridge_bootstrap_unit": "judge configuration",
+    "bridge_data_role": "validation analysis; no held-out generalization claim",
+    "bridge_primary": "Spearman",
+    "bridge_primary_population": "primary judges only",
+    "bridge_robustness": "Kendall tau-b",
+    "bridge_secondary_population": "all primary and control judges",
+    "property_bootstrap_unit": "base artifact f=(i,a,q)",
+    "screen_thresholds": "not frozen; no PASS-SCREEN claim permitted",
+    "sesoi_decision_power": "simulate the frozen rho>=SESOI and bootstrap-CI-low>0 rule",
+    "sesoi_rho": 0.5,
+    "undefined_bridge_replicates": "drop and report valid replicate count"
+  }
+}
