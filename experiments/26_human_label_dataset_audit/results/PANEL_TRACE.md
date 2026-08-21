@@ -30,7 +30,7 @@ Source: `experiments/04_veribench_validation/results_exp16_final_robust/summary.
 | filename | matches in repo | resolves to |
 | --- | ---: | --- |
 | `0_unsafeMultiply_safe.lean` | 0 | **absent (stale name)** |
-| `1_unsafeMultiply_safe.lean` | 2 | `data/veribench_dataset/lean_src/veribench/security_6858/safe/1_unsafeMultiply_safe.lean` |
+| `1_unsafeMultiply_safe.lean` | 2 | `data/veribench_dataset_newest/lean_src/veribench/security_set/security_6858/safe/1_unsafeMultiply_safe.lean` |
 
 > **Consequence:** renaming those 3 label rows to the current filename would restore the
 > panel to the full 75 pairs / 25 problems. Until that happens, every published number is
