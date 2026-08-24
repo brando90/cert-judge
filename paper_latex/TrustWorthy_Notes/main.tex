@@ -1,5 +1,5 @@
 % !TEX root = main.tex
-% TLDR: Working notes on AI-judge trustworthiness: notation table, TW definition, remarks.
+% TLDR: Working notes on AI-judge trustworthiness: notation, TW definition, practical instantiations.
 % Not a submission.
 \documentclass{article}
 \usepackage{iclr2027_conference,times}
@@ -114,10 +114,37 @@ If, for example, we set \(t_j = \text{strict}\) but the judge \(a_j\) has parame
 then the definition is unsatisfiable.
 
 \paragraph{Remark (preference vs.\ trustworthiness).}
-The literature often uses ``preference'' as a synonym for human judgment.
+The literature typically uses ``trustworthiness'' implicitly to mean matching humans
+(human judgments; sometimes loosely ``human preferences'').
+That is not RLHF preference (which of two answers to prefer).
 Preference can also denote the objective itself, so the two notions are close:
 preference is the more general term and can include trustworthiness.
 Once a frame of reference is fixed (objective or not---e.g.\ a persona), the distinction collapses;
 there is no residual gap between ``I do not trust it'' and ``I do not prefer it.''
+
+\section{Practical instantiations}
+
+\begin{definition}[Common practice (\(m_1\))]
+Most work treats an AI judge as trustworthy when its scores correlate with human scores on a panel:
+\[
+\TI_{m_1}(aj) \;=\; \mathrm{Corr}\bigl(\hat s_{aj},\, \hat s_T\bigr).
+\]
+This is a correlational match (dependence between the two score vectors), not a full distributional match (\(m_0\)) and not a pure first-moment match.
+\end{definition}
+
+\begin{definition}[Valid-and-stable (\(m_2\) / \(\TI_{2'}\))]
+A stricter practical criterion combines validity (correlation) with stability (low repeat variance) via a geometric mean:
+\[
+\TI_{2'}(aj) \;=\; \Bigl(\mathrm{Corr}\bigl(\hat s_{aj},\, \hat s_T\bigr) \cdot \bigl(1 - \mathrm{std}(\hat s_{aj})\bigr)\Bigr)^{1/2}.
+\]
+This is the working definition of trustworthiness\({}_{2'}\) used in these notes.
+\end{definition}
+
+\paragraph{Remark (ideal vs.\ practical).}
+The ideal target is full distributional match of scores once a persona is fixed (Definition~\ref{def:tw}).
+In practice this is expensive: many humans and many repeated scores would be required.
+We therefore approximate the ideal by matching a low-order moment (correlation of scores) and requiring the judge itself to be stable (low repeat standard deviation).
+These two quantities are combined by geometric mean to obtain \(\TI_{2'}\).
+The practical criterion only captures limited moments of the ideal match.
 
 \end{document}
