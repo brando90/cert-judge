@@ -1,5 +1,5 @@
 % !TEX root = main.tex
-% TLDR: Working notes on AI-judge trustworthiness: notation, TW/TI/PTI definitions, preference vs target.
+% TLDR: Working notes on AI-judge trustworthiness: notation table, TW definition, remarks.
 % Not a submission.
 \documentclass{article} % For LaTeX2e
 \usepackage{iclr2027_conference,times}
@@ -26,6 +26,10 @@
 \newcommand{\PTIvar}{\PTI_{\mathrm{var}}}
 \newcommand{\PTIbridge}{\PTI_{\{1,2,3\}}}
 \newcommand{\GM}{\mathrm{GM}}
+\newcommand{\pAJ}{p_{\mathrm{AJ}}}
+\newcommand{\pT}{p_{T}}
+\newcommand{\hpAJ}{\hat{p}_{\mathrm{AJ}}}
+\newcommand{\hpT}{\hat{p}_{T}}
 
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
@@ -67,9 +71,12 @@ B & set of benchmarks \\
 b \in B & a benchmark \\
 \midrule
 \multicolumn{2}{@{}l}{\textit{Judges}} \\[2pt]
-aj & judge configuration \((\mathrm{model},\, \mathrm{prompt},\, K_{aj},\, \mathrm{aggregation})\) \\
+AJ & set of AI-judge configurations \\
+aj \in AJ & judge configuration \((\mathrm{model},\, \mathrm{prompt},\, K_{aj},\, \mathrm{aggregation})\) \\
 \theta_j,\; \theta_{aj} & parameters of \(aj\) (prompt, weights, feedback, \ldots) \\
-t_j,\; H & target eg (if $t_j = h_j$ human judge \\
+TJ & set of target judges \\
+tj \in TJ & a target judge \\
+t_j,\; H,\; h_j & target / human judge (e.g.\ if \(t_j = h_j\)) \\
 \pi,\; \Pi & rater persona; set of personas \\
 t_j & target persona (alias of the persona on \(h_j\)) \\
 a_j & persona realized by configuration \(aj\) \\
@@ -81,10 +88,10 @@ K_h & number of human passes \\
 s_{aj}(x,y^*,\hat y) & score of \(aj\) on a triple; range \([0,1]\) \\
 \hat s_{aj} & finite-sample estimate of \(s_{aj}\) \\
 s_H^*,\; \hat S_H^* & target/human score and its finite-sample version \\
-P_\theta(s \mid \cdot, aj) & score distribution of the AI judge \\
-P_H(s \mid \cdot, h_j) & score distribution of the target/human judge \\
-\hat P,\; \hat P_\theta,\; \hat P_{\mathrm{AI}} & finite-sample AI-judge distribution \\
-\hat P^*,\; \hat P_H & finite-sample target/human distribution (star marks target \emph{and} sample) \\
+\pAJ(s \mid \cdot) & pdf/pmf of the AI-judge score \\
+\pT(s \mid \cdot) & pdf/pmf of the target-judge score \\
+\hpAJ & finite-sample estimate of \(\pAJ\) \\
+\hpT & finite-sample estimate of \(\pT\) \\
 \midrule
 \multicolumn{2}{@{}l}{\textit{Trust objects}} \\[2pt]
 \TW_m(aj) & trustworthiness of \(aj\) at matching level \(m\) (construct; a predicate) \\
@@ -100,63 +107,40 @@ P_k & score of behavioral property \(k\) \\
 \end{tabular}
 \end{table}
 
-\section{Definitions}
-\label{sec:defs}
+\paragraph{Notation note.}
+\(\hpT\) denotes the target-judge pdf/pmf; the hat indicates that the estimate is finite-sample.
+We write \(\hpT\) (or \(\hat{p}_{H}\) when the target is human) and \(\hpAJ\) for the AI-judge side.
+In short: we are comparing a \emph{finite-sample AI judge} against a \emph{finite-sample human} target.
 
-\begin{definition}[A universally trustworthy AI judge]
+\section{Behaviors and agents}
+\label{sec:tw}
+
+\begin{definition}[Universally trustworthy AI judge]
 \label{def:tw}
 Let \(B\) be a set of benchmarks and \(A\) a set of agents.
-An AI judge $aj \in AJ$ is universally trustworthy if, for every benchmark \(b \in B\) and every agent/solver \(a \in A\),
-$aj$ distributionally matches the corresponding \emph{target judge (tj \in TJ)} (e.g., a human, a persona, a strict rubric, a lenient rubric, etc.):
-\begin{equation}
-\forall b \in B, \forall a \in A, \quad
-\hat p_\theta(s \mid x,y^*,\hat{y}{=}a(x), aj)
-= \hat p^*_t(s \mid x,y^*,\hat{y}{=}a(x), t)
-\end{equation}
+An AI judge \(aj \in AJ\) is universally trustworthy if, for every benchmark \(b \in B\) and every agent/solver \(a \in A\),
+\(aj\) distributionally matches the corresponding \emph{target judge} (\(tj \in TJ\))
+(e.g., a human, a persona, a strict rubric, a lenient rubric, etc.):
+\[
+\forall b \in B,\; \forall a \in A,\quad
+\text{if } t_j = a_j
+\quad\Rightarrow\quad
+\hat{p}_{\mathrm{AJ}}\bigl(s \mid x,\, \hat{y}(c),\, y^*,\, \theta_j\bigr)
+\;=\;
+\hat{p}_{TJ}\bigl(s \mid x,\, \hat{y}(c),\, y^*,\, \theta_* + t_j\bigr),
+\]
+where equality is e.g.\ \(\mathrm{KL}=0\).
 \end{definition}
 
-\begin{definition}[Trust Index]
-\label{def:ti}
-The criterion (needs labels) is the panel correlation
-\begin{equation}
-\TIm{1}(aj) = \mathrm{Corr}_{i \in \text{panel}}\big(\hat s_{aj}(i),\, s^*_{h_j}(i)\big).
-\label{eq:ti}
-\end{equation}
-\end{definition}
+\paragraph{Remark.}
+The precondition \(t_j = a_j\) (persona / target match) is required.
+If, for example, we set \(t_j = \text{strict}\) but the judge \(a_j\) has parameters/configuration
+\( e.g., \theta_{a_j}\) (prompt, weights, etc.) that to a \emph{lenient} judge,
+then the definition is unsatisfiable.
 
-\begin{definition}[Proxy Trust Index]
-\label{def:pti}
-The label-free instrument is the geometric mean of a locked property subset
-\begin{equation}
-\PTI_p(aj) = \GM\big(P_k(aj) : k \in p\big).
-\label{eq:pti}
-\end{equation}
-\end{definition}
-
-\section{Preference is not the target}
-\label{sec:preference}
-
-This section names what Definition~\ref{def:tw} is \emph{not}.
-The object being matched is a judgment---a sensation, a score---under an agreed
-frame of reference, not a preference.
-
-\paragraph{Preference means want.}
-In these notes, \emph{preference} means a want or a goal, as in human preferences
-(what someone would choose). It does not mean the scoring target, the rubric, or
-the human judge \(h_j\).
-
-That is why the contrast ``I prefer \(X\), but \(Y\) is the trustworthy answer''
-is the wrong sentence. Preference and trustworthiness are not two answers to the
-same question. Preference is a goal. Trustworthiness is whether the judge's
-induced score distribution matches the agreed target (a person, a strict or
-lenient rubric, an objective measure of a behavior) once the persona
-precondition \(t_j = a_j\) is fixed.
-
-\paragraph{Subjectivity after a frame of reference.}
-The claim is that residual subjectivity does not survive an agreed frame of
-reference. Given \(h_j = (\text{person}, \pi)\)---or any other named target---the
-question is distributional match, not taste. Feelings and other judgments in that
-frame are still modeled with probability theory: they are \(P_H(s \mid \cdot, h_j)\)
-in Definition~\ref{def:tw}.
+\paragraph{Remark.}
+The literature often uses \emph{preference} as a synonym for human judgment.
+The same word is also used for the objective, so preference is the more general term: it includes trustworthiness.
+Once a frame of reference is chosen (an objective or not; e.g.\ a persona), there is no leftover contrast of the form ``this is trustworthy but I do not prefer it,'' or the reverse.
 
 \end{document}
