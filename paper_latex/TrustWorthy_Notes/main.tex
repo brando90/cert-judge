@@ -114,13 +114,10 @@ If, for example, we set \(t_j = \text{strict}\) but the judge \(a_j\) has parame
 then the definition is unsatisfiable.
 
 \paragraph{Remark (preference vs.\ trustworthiness).}
-The literature typically uses ``trustworthiness'' implicitly to mean matching humans
-(human judgments; sometimes loosely ``human preferences'').
-That is not RLHF preference (which of two answers to prefer).
-Preference can also denote the objective itself, so the two notions are close:
-preference is the more general term and can include trustworthiness.
-Once a frame of reference is fixed (objective or not---e.g.\ a persona), the distinction collapses;
-there is no residual gap between ``I do not trust it'' and ``I do not prefer it.''
+In the current literature, ``trustworthiness'' of an AI judge is almost always operationalized as matching human judgments (i.e., tracking human scores).
+``Preference'' is the more common term in RLHF settings (which answer is preferred).
+The two notions are close once a frame of reference is fixed, but they are not identical:
+one can trust a system whose outputs one does not personally prefer, and vice versa.
 
 \section{Practical instantiations}
 
@@ -129,8 +126,18 @@ Most work treats an AI judge as trustworthy when its scores correlate with human
 \[
 \TI_{m_1}(aj) \;=\; \mathrm{Corr}\bigl(\hat s_{aj},\, \hat s_T\bigr).
 \]
-This is a correlational match (dependence between the two score vectors), not a full distributional match (\(m_0\)) and not a pure first-moment match.
 \end{definition}
+
+\paragraph{Remark (what \(\mathrm{Corr}\) actually matches).}
+Correlation is a property of the \emph{joint} distribution of the paired scores \((\hat s_{aj}(i), \hat s_T(i))\).
+It is a dependence / association measure, not a pure marginal moment match and not a full distributional match (\(m_0\)).
+\begin{itemize}
+  \item Pearson is standardized covariance (a joint second-moment quantity after centering and scaling). It can be 1 even when the means differ (by affine rescaling).
+  \item Spearman and Kendall match ranks / pairwise orderings of items; they are still weaker than full distributional equality.
+\end{itemize}
+A high correlation therefore says that the judge ranks items similarly to the target; it does not say that the two score distributions are close, nor that their means match.
+
+The stability term \(\mathrm{std}(\hat s_{aj})\) (used in \(\TI_{2'}\)) is a pure marginal property of the judge alone and need not match the human at all.
 
 \begin{definition}[Valid-and-stable (\(m_2\) / \(\TI_{2'}\))]
 A stricter practical criterion combines validity (correlation) with stability (low repeat variance) via a geometric mean:
@@ -140,11 +147,23 @@ A stricter practical criterion combines validity (correlation) with stability (l
 This is the working definition of trustworthiness\({}_{2'}\) used in these notes.
 \end{definition}
 
+\paragraph{Remark (Sanmi's objection to the stability term).}
+The term \(1 - \mathrm{std}(\hat s_{aj})\) is a pure marginal property of the judge.
+It does not attempt to match the human's own variability.
+Consequently a judge that is artificially more stable (or less stable) than the humans can still score highly, provided the ranking agreement remains strong.
+This is a deliberate design choice (penalize unreliable judges) rather than a pure ``match the human'' criterion.
+Full distributional match of both location and scale would be more faithful but is currently impractical.
+Natural alternatives for later work include:
+\begin{itemize}
+  \item also matching \(\mathrm{std}(\hat s_{aj}) \approx \mathrm{std}(\hat s_T)\),
+  \item using a concordance measure (e.g.\ Lin's CCC) that penalizes both location and scale differences,
+  \item or reporting correlation and judge stability as two separate numbers instead of a single geometric mean.
+\end{itemize}
+
 \paragraph{Remark (ideal vs.\ practical).}
 The ideal target is full distributional match of scores once a persona is fixed (Definition~\ref{def:tw}).
 In practice this is expensive: many humans and many repeated scores would be required.
-We therefore approximate the ideal by matching a low-order moment (correlation of scores) and requiring the judge itself to be stable (low repeat standard deviation).
-These two quantities are combined by geometric mean to obtain \(\TI_{2'}\).
-The practical criterion only captures limited moments of the ideal match.
+We therefore approximate the ideal by an association of collapsed scores (correlation) plus a judge-side second moment (low repeat std), combined by geometric mean to obtain \(\TI_{2'}\).
+The practical criterion only captures limited aspects of the ideal match---and the std conjunct is not a match to humans at all.
 
 \end{document}
