@@ -1,47 +1,29 @@
 % !TEX root = main.tex
 % TLDR: Working notes on AI-judge trustworthiness: notation table, TW definition, remarks.
 % Not a submission.
-\documentclass{article} % For LaTeX2e
+\documentclass{article}
 \usepackage{iclr2027_conference,times}
-
-% Optional math commands from https://github.com/goodfeli/dlbook_notation.
 \input{math_commands.tex}
-
+\usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{amsthm}
 \usepackage{hyperref}
-\usepackage{url}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 
-% Memo §1: construct / criterion / instrument
-\newcommand{\TW}{\mathrm{TW}}                    % trustworthiness (construct)
-\newcommand{\TI}{\mathrm{TI}}                    % trust index (criterion)
-\newcommand{\PTI}{\mathrm{PTI}}                  % proxy trust index (instrument)
-\newcommand{\TIm}[1]{\TI_{m_{#1}}}
-\newcommand{\PTIvar}{\PTI_{\mathrm{var}}}
-\newcommand{\PTIbridge}{\PTI_{\{1,2,3\}}}
-\newcommand{\GM}{\mathrm{GM}}
-\newcommand{\pAJ}{p_{\mathrm{AJ}}}
-\newcommand{\pT}{p_{T}}
-\newcommand{\hpAJ}{\hat{p}_{\mathrm{AJ}}}
-\newcommand{\hpT}{\hat{p}_{T}}
-
-\newcommand{\fix}{\marginpar{FIX}}
-\newcommand{\new}{\marginpar{NEW}}
+\newcommand{\TW}{\mathrm{TW}}
+\newcommand{\TI}{\mathrm{TI}}
+\newcommand{\PTI}{\mathrm{PTI}}
 
 \title{Trust Index Notes}
+\author{Brando Miranda}
+\iclrfinalcopy
 
-\author{Brando Miranda, Sanmi Koyejo (if he wants to be added)}
-
-\iclrfinalcopy % Camera-ready headers; this folder is notes, not a double-blind submission.
 \begin{document}
-
-
 \maketitle
 
 \begin{abstract}
@@ -60,26 +42,25 @@ Working notes on the definition of AI-judge trustworthiness.
 \toprule
 \multicolumn{1}{@{}l}{Symbol} & Meaning \\
 \midrule
-\multicolumn{2}{@{}l}{\textit{Items and agents}} \\[2pt]
+\multicolumn{2}{@{}l}{\textit{Items, agents, and benchmarks}} \\[2pt]
 x & candidate artifact \\
 y^* & gold / reference artifact \\
 \hat y,\; \hat y(c) & agent output on input \(c\) \\
-A & set of agents \\
-a \in A & an agent/solver \\
-L_A & agent/solver list (the quantified population in \(\TW_m\)) \\
+A & set of agents / solvers \\
+a \in A & an agent / solver \\
 B & set of benchmarks \\
 b \in B & a benchmark \\
 \midrule
-\multicolumn{2}{@{}l}{\textit{Judges}} \\[2pt]
-AJ & set of AI-judge configurations \\
-aj \in AJ & judge configuration \((\mathrm{model},\, \mathrm{prompt},\, K_{aj},\, \mathrm{aggregation})\) \\
-\theta_j,\; \theta_{aj} & parameters of \(aj\) (prompt, weights, feedback, \ldots) \\
+\multicolumn{2}{@{}l}{\textit{Judges and targets}} \\[2pt]
+AJ & set of AI judge configurations \\
+aj \in AJ & AI judge configuration \((\mathrm{model},\, \mathrm{prompt},\, K_{aj},\, \mathrm{aggregation})\) \\
 TJ & set of target judges \\
 tj \in TJ & a target judge \\
-t_j,\; H,\; h_j & target / human judge (e.g.\ if \(t_j = h_j\)) \\
-\pi,\; \Pi & rater persona; set of personas \\
-t_j & target persona (alias of the persona on \(h_j\)) \\
+\theta_j,\; \theta_{aj} & parameters of \(aj\) (prompt, weights, feedback, \ldots) \\
+h_j,\; H & human / target judge \\
+t_j & target persona (or the target itself) \\
 a_j & persona realized by configuration \(aj\) \\
+\pi,\; \Pi & rater persona; set of personas \\
 K_{aj} & number of judge repeats \\
 K_a & number of agent generations \\
 K_h & number of human passes \\
@@ -87,33 +68,27 @@ K_h & number of human passes \\
 \multicolumn{2}{@{}l}{\textit{Scores and distributions}} \\[2pt]
 s_{aj}(x,y^*,\hat y) & score of \(aj\) on a triple; range \([0,1]\) \\
 \hat s_{aj} & finite-sample estimate of \(s_{aj}\) \\
-s_H^*,\; \hat S_H^* & target/human score and its finite-sample version \\
-\pAJ(s \mid \cdot) & pdf/pmf of the AI-judge score \\
-\pT(s \mid \cdot) & pdf/pmf of the target-judge score \\
-\hpAJ & finite-sample estimate of \(\pAJ\) \\
-\hpT & finite-sample estimate of \(\pT\) \\
+s_T^*,\; \hat s_T^* & target score and its finite-sample version \\
+p_{AJ}(s \mid \cdot) & score distribution (pdf/pmf) of the AI judge \\
+p_T(s \mid \cdot) & score distribution (pdf/pmf) of the target judge \\
+\hat p_{AJ},\; \hat p_T & finite-sample versions of the above \\
 \midrule
 \multicolumn{2}{@{}l}{\textit{Trust objects}} \\[2pt]
-\TW_m(aj) & trustworthiness of \(aj\) at matching level \(m\) (construct; a predicate) \\
-\TI_m(aj) & Trust Index of \(aj\) at matching level \(m\) (criterion; needs labels) \\
-\PTI_p(aj) & Proxy Trust Index of \(aj\) on property set \(p\) (instrument; label-free) \\
+\TW_m(aj) & trustworthiness of \(aj\) at matching level \(m\) (construct) \\
+\TI_m(aj) & Trust Index of \(aj\) at matching level \(m\) (criterion) \\
+\PTI_p(aj) & Proxy Trust Index of \(aj\) on property set \(p\) (instrument) \\
 m,\; m_0,m_1,m_2 & matching-criterion index and its ladder \\
-p \subseteq \{1,\dots,K\} & property subset used in \(\PTI_p\) \\
-P_k & score of behavioral property \(k\) \\
-\GM & geometric mean \\
-\approx_\Pi & persona precondition (\(aj\) conditioned toward \(h_j\); equivalently \(t_j = a_j\)) \\
+\approx_\Pi & persona precondition (\(t_j = a_j\)) \\
 \approx_m & match under criterion \(m\) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \paragraph{Notation note.}
-\(\hpT\) denotes the target-judge pdf/pmf; the hat indicates that the estimate is finite-sample.
-We write \(\hpT\) (or \(\hat{p}_{H}\) when the target is human) and \(\hpAJ\) for the AI-judge side.
-In short: we are comparing a \emph{finite-sample AI judge} against a \emph{finite-sample human} target.
+\(\hat p_T\) denotes the target-judge pdf/pmf; the hat indicates that the estimate is finite-sample.
+We write \(\hat p_T\) (or \(\hat p_H\) when the target is human) and \(\hat p_{AJ}\) for the AI-judge side.
 
 \section{Behaviors and agents}
-\label{sec:tw}
 
 \begin{definition}[Universally trustworthy AI judge]
 \label{def:tw}
@@ -125,22 +100,24 @@ An AI judge \(aj \in AJ\) is universally trustworthy if, for every benchmark \(b
 \forall b \in B,\; \forall a \in A,\quad
 \text{if } t_j = a_j
 \quad\Rightarrow\quad
-\hat{p}_{\mathrm{AJ}}\bigl(s \mid x,\, \hat{y}(c),\, y^*,\, \theta_j\bigr)
+\hat p_{AJ}\bigl(s \mid x,\, \hat{y}(c),\, y^*,\, \theta_j\bigr)
 \;=\;
-\hat{p}_{TJ}\bigl(s \mid x,\, \hat{y}(c),\, y^*,\, \theta_* + t_j\bigr),
+\hat p_T\bigl(s \mid x,\, \hat{y}(c),\, y^*,\, \theta_* + t_j\bigr),
 \]
-where equality is e.g.\ \(\mathrm{KL}=0\).
+where equality may be measured by KL divergence (or total variation).
 \end{definition}
 
 \paragraph{Remark.}
 The precondition \(t_j = a_j\) (persona / target match) is required.
 If, for example, we set \(t_j = \text{strict}\) but the judge \(a_j\) has parameters/configuration
-\( e.g., \theta_{a_j}\) (prompt, weights, etc.) that to a \emph{lenient} judge,
+\(\theta_{a_j}\) (prompt, weights, etc.) that map to a \emph{lenient} judge,
 then the definition is unsatisfiable.
 
-\paragraph{Remark.}
-The literature often uses \emph{preference} as a synonym for human judgment.
-The same word is also used for the objective, so preference is the more general term: it includes trustworthiness.
-Once a frame of reference is chosen (an objective or not; e.g.\ a persona), there is no leftover contrast of the form ``this is trustworthy but I do not prefer it,'' or the reverse.
+\paragraph{Remark (preference vs.\ trustworthiness).}
+The literature often uses ``preference'' as a synonym for human judgment.
+Preference can also denote the objective itself, so the two notions are close:
+preference is the more general term and can include trustworthiness.
+Once a frame of reference is fixed (objective or not---e.g.\ a persona), the distinction collapses;
+there is no residual gap between ``I do not trust it'' and ``I do not prefer it.''
 
 \end{document}
