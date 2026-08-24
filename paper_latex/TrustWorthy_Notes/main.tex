@@ -1,0 +1,162 @@
+% !TEX root = main.tex
+% TLDR: Working notes on AI-judge trustworthiness: notation, TW/TI/PTI definitions, preference vs target.
+% Not a submission.
+\documentclass{article} % For LaTeX2e
+\usepackage{iclr2027_conference,times}
+
+% Optional math commands from https://github.com/goodfeli/dlbook_notation.
+\input{math_commands.tex}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{url}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% Memo §1: construct / criterion / instrument
+\newcommand{\TW}{\mathrm{TW}}                    % trustworthiness (construct)
+\newcommand{\TI}{\mathrm{TI}}                    % trust index (criterion)
+\newcommand{\PTI}{\mathrm{PTI}}                  % proxy trust index (instrument)
+\newcommand{\TIm}[1]{\TI_{m_{#1}}}
+\newcommand{\PTIvar}{\PTI_{\mathrm{var}}}
+\newcommand{\PTIbridge}{\PTI_{\{1,2,3\}}}
+\newcommand{\GM}{\mathrm{GM}}
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\title{Trust Index Notes}
+
+\author{Brando Miranda, Sanmi Koyejo (if he wants to be added)}
+
+\iclrfinalcopy % Camera-ready headers; this folder is notes, not a double-blind submission.
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+Working notes on the definition of AI-judge trustworthiness.
+\end{abstract}
+
+\section{Notation}
+\label{sec:notation}
+
+\begin{table}[h]
+\caption{Notation.}
+\label{tab:notation}
+\centering
+\small
+\begin{tabular}{@{}>{$}l<{$} p{0.72\linewidth}@{}}
+\toprule
+\multicolumn{1}{@{}l}{Symbol} & Meaning \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Items and agents}} \\[2pt]
+x & candidate artifact \\
+y^* & gold / reference artifact \\
+\hat y,\; \hat y(c) & agent output on input \(c\) \\
+A & set of agents \\
+a \in A & an agent/solver \\
+L_A & agent/solver list (the quantified population in \(\TW_m\)) \\
+B & set of benchmarks \\
+b \in B & a benchmark \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Judges}} \\[2pt]
+aj & judge configuration \((\mathrm{model},\, \mathrm{prompt},\, K_{aj},\, \mathrm{aggregation})\) \\
+\theta_j,\; \theta_{aj} & parameters of \(aj\) (prompt, weights, feedback, \ldots) \\
+t_j,\; H & target eg (if $t_j = h_j$ human judge \\
+\pi,\; \Pi & rater persona; set of personas \\
+t_j & target persona (alias of the persona on \(h_j\)) \\
+a_j & persona realized by configuration \(aj\) \\
+K_{aj} & number of judge repeats \\
+K_a & number of agent generations \\
+K_h & number of human passes \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Scores and distributions}} \\[2pt]
+s_{aj}(x,y^*,\hat y) & score of \(aj\) on a triple; range \([0,1]\) \\
+\hat s_{aj} & finite-sample estimate of \(s_{aj}\) \\
+s_H^*,\; \hat S_H^* & target/human score and its finite-sample version \\
+P_\theta(s \mid \cdot, aj) & score distribution of the AI judge \\
+P_H(s \mid \cdot, h_j) & score distribution of the target/human judge \\
+\hat P,\; \hat P_\theta,\; \hat P_{\mathrm{AI}} & finite-sample AI-judge distribution \\
+\hat P^*,\; \hat P_H & finite-sample target/human distribution (star marks target \emph{and} sample) \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Trust objects}} \\[2pt]
+\TW_m(aj) & trustworthiness of \(aj\) at matching level \(m\) (construct; a predicate) \\
+\TI_m(aj) & Trust Index of \(aj\) at matching level \(m\) (criterion; needs labels) \\
+\PTI_p(aj) & Proxy Trust Index of \(aj\) on property set \(p\) (instrument; label-free) \\
+m,\; m_0,m_1,m_2 & matching-criterion index and its ladder \\
+p \subseteq \{1,\dots,K\} & property subset used in \(\PTI_p\) \\
+P_k & score of behavioral property \(k\) \\
+\GM & geometric mean \\
+\approx_\Pi & persona precondition (\(aj\) conditioned toward \(h_j\); equivalently \(t_j = a_j\)) \\
+\approx_m & match under criterion \(m\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Definitions}
+\label{sec:defs}
+
+\begin{definition}[A universally trustworthy AI judge]
+\label{def:tw}
+Let \(B\) be a set of benchmarks and \(A\) a set of agents.
+An AI judge $aj \in AJ$ is universally trustworthy if, for every benchmark \(b \in B\) and every agent/solver \(a \in A\),
+$aj$ distributionally matches the corresponding \emph{target judge (tj \in TJ)} (e.g., a human, a persona, a strict rubric, a lenient rubric, etc.):
+\begin{equation}
+\forall b \in B, \forall a \in A, \quad
+\hat p_\theta(s \mid x,y^*,\hat{y}{=}a(x), aj)
+= \hat p^*_t(s \mid x,y^*,\hat{y}{=}a(x), t)
+\end{equation}
+\end{definition}
+
+\begin{definition}[Trust Index]
+\label{def:ti}
+The criterion (needs labels) is the panel correlation
+\begin{equation}
+\TIm{1}(aj) = \mathrm{Corr}_{i \in \text{panel}}\big(\hat s_{aj}(i),\, s^*_{h_j}(i)\big).
+\label{eq:ti}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Proxy Trust Index]
+\label{def:pti}
+The label-free instrument is the geometric mean of a locked property subset
+\begin{equation}
+\PTI_p(aj) = \GM\big(P_k(aj) : k \in p\big).
+\label{eq:pti}
+\end{equation}
+\end{definition}
+
+\section{Preference is not the target}
+\label{sec:preference}
+
+This section names what Definition~\ref{def:tw} is \emph{not}.
+The object being matched is a judgment---a sensation, a score---under an agreed
+frame of reference, not a preference.
+
+\paragraph{Preference means want.}
+In these notes, \emph{preference} means a want or a goal, as in human preferences
+(what someone would choose). It does not mean the scoring target, the rubric, or
+the human judge \(h_j\).
+
+That is why the contrast ``I prefer \(X\), but \(Y\) is the trustworthy answer''
+is the wrong sentence. Preference and trustworthiness are not two answers to the
+same question. Preference is a goal. Trustworthiness is whether the judge's
+induced score distribution matches the agreed target (a person, a strict or
+lenient rubric, an objective measure of a behavior) once the persona
+precondition \(t_j = a_j\) is fixed.
+
+\paragraph{Subjectivity after a frame of reference.}
+The claim is that residual subjectivity does not survive an agreed frame of
+reference. Given \(h_j = (\text{person}, \pi)\)---or any other named target---the
+question is distributional match, not taste. Feelings and other judgments in that
+frame are still modeled with probability theory: they are \(P_H(s \mid \cdot, h_j)\)
+in Definition~\ref{def:tw}.
+
+\end{document}
