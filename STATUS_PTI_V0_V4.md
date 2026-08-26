@@ -1,74 +1,123 @@
-# PTI-v0 v4 execution status
+# PTI-v0 final execution and ICLR 2027 manuscript status
 
-**TLDR:** PR-A engineering and zero-spend evidence are complete and published as draft PR #39; primary PTI and the outer bridge remain honestly `NOT_COMPUTABLE`, actual provider/API spend is `$0`, and paper work has not started.
+**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. PR A is draft #39; the stacked paper PR is prepared on `codex/iclr2027-final`.
 
-## Provenance
+## Provenance and dependencies
 
-| Item | Revision |
+| Item | Revision / state |
 |---|---|
-| Local pre-change branch baseline | `cbd31f2ca0dbd4fe68ef7fbf632dfce4d160ab47` |
-| `origin/main` audited base | `c1021bfcd5ad9deee7dba97a8b9bac635b2962c2` |
-| Exp27 / cert-judge PR #38 head | `edf627426d6d0740dbd6a793e4ff985fc4e6e3fa` |
-| ultimate-utils PR #44 head | `c8a6a9a70e32073d6cde2193958d570f08fd935e` |
+| ultimate-utils dependency PR #44 | `c8a6a9a70e32073d6cde2193958d570f08fd935e`, open |
+| cert-judge Exp27 dependency PR #38 | `edf627426d6d0740dbd6a793e4ff985fc4e6e3fa`, open |
+| PR A experiment branch | `codex/pti-v0-final` at `540c43f5877c02c50334bc98e1c238a2ba30f558` |
+| Pre-result experiment commit | `395efdc00584cad32f6e9a525a8dbd9b201ff2a7` |
+| Mandatory pre-bridge results commit | `6f55c44299eadda78db5738c7913475d06ea671f` |
+| Pre-bridge property-table SHA-256 | `7a904f31a6dbd626a728e44fd7a00043c61b5e1630937986f111a0be4af15c0a` |
+| PR A final experiment commit | `540c43f5877c02c50334bc98e1c238a2ba30f558` |
+| Paper branch | `codex/iclr2027-final`, stacked directly on PR A |
 | Global rules revision used | `8190074918da0c2b39e6763b1d46ba04e8215ec2` |
-| PTI branch | `codex/pti-v0-final` |
-| Implementation commit | `dd4f7968c8d535fe37e1d395f269af68a00a8c36` |
 
-Dependency PR #44 and then PR #38 remain open review dependencies. This branch preserves and stacks on the existing Exp27 work rather than recreating it.
+The branch stack reuses Exp27/PR #38 and its ultimate-utils/PR #44 dependency; it does not duplicate or rewrite that work. Neither dependency, PR A, nor the paper PR is auto-merged.
 
-## Preflight blockers and resolutions
+## Preflight verdict and blocker resolution
 
-- The invalid historical probe generators were replaced with conservative builders that fail closed; the new row-level pinned-Lean audit produced valid subsets `P_eq=86`, `P_bm=49`, `P_ms=63`, and `P_eqalpha=67` over 470 candidates. It prepares three local modules, binds the Lake manifest/7,075-module olean inventory, classifies all base failures, and records four rejected bug-mutation timeouts.
-- The supplied inconsistent/absent conformance implementation was replaced with versioned `PTI_v0` code, coherent v4 vectors, randomized tie-heavy tests, and a formal score schema.
-- The typed pool is frozen at 470 observed artifacts from 157 items, with one explicit missing member of the nominal 471 grid.
-- Statistical choices, five-primary/three-control roles, 100% property coverage, bootstrap behavior, Route B claim language, and the SESOI DGP are frozen.
-- The unsupported unsafeMultiply rename was not applied; the evidence-backed panel remains 72.
-- Legacy cache ambiguity was not worked around: 94 prompt/content and 80 three-score matches are reported, two matching fallbacks are identified, and admissible cached calls remain zero.
-- Independent QA found eight historical HTTP-401 fallback rows for one primary criterion. They are now quarantined; that judge is `NOT_COMPUTABLE` at 64/72 instead of being reported with a contaminated value.
+The original zero-spend preflight verdict was `BLOCKED`. All executable blockers required for a sound run were then resolved before v5 scoring:
 
-## Alpha and spend
+- Replaced malformed historical transforms with fail-closed structural builders bound to Lean `v4.22.0`; valid sets are `P_eq=86`, `P_bm=49`, `P_ms=63`, and `P_eqalpha=67` over 470 typed candidates.
+- Excluded construction defects judge-free; retained a structurally valid constant-score ladder as behavioral `C=0` rather than dropping it.
+- Implemented and tested median repeat aggregation, tie-aware Spearman/Kendall, `(1-rho)/2`, `2*sd(ddof=0)`, the one-level ladder rule, zero-first log-domain geometric means, missingness/coverage behavior, and exact metric-version fields.
+- Kept the evidence-backed human criterion at 72 paired items; no label was edited to force 75 analyzed rows.
+- Froze five primaries, three controls, the bootstrap units/method/seeds, the `0.5` SESOI, role sensitivities, and the no-threshold/no-PASS-SCREEN claim before the bridge was revealed.
+- Rejected unavailable exact v4 model identifiers rather than silently substituting them; only the execution/model panel was versioned to v5.
+- Removed legacy malformed-probe figures and an unbound downstream table from the final manuscript rather than relabeling them as PTI-v0 evidence.
 
-- Alpha structural status: 67 conservative non-no-op transformations elaborate under pinned Lean 4.22.
-- Approval status: `NOT_REQUESTED` / not approved.
-- Exact conservative quotes: alpha transformed side 918 calls / `$7.6127427`; uncached original+alpha 1,836 calls / `$15.2020962`; full paid set 9,396 calls / `$85.0848855`.
-- Optional RENAME/REORDER/STYLE diagnostics: `NOT_QUOTABLE_UNVALIDATED_TRANSFORM`.
-- Actual provider/API calls and spend: **0 / `$0`**.
+## Alpha status and spend
 
-## Computed results
+- Structural alpha status: 67 conservative non-no-op transformations elaborate under the pinned Lean toolchain.
+- Paid provider-API alpha quote approval: `NOT_REQUESTED`; no paid API route was used.
+- Actual execution: alpha was included in the explicitly authorized subscription-CLI v5 scope.
+- Provider API calls/spend: **0 / `$0`**.
+- Subscription usage is real quota usage even though provider-API spend is zero.
+- Historical warning: the workshop-era alpha generator was malformed, so its `0.399` mean is excluded from the evidentiary chain.
 
-- The second independent maximum-effort review returned `PASS WITH MINOR FIXES`: no high/medium findings remained, and all first-pass repairs reproduced. Its documentation, fallback-prefix, filesystem-provenance, fingerprint-policy, export, and SESOI-interpretation nits were applied before final QA.
-- Panel: 72 included pairs, three provenance-failed unsafeMultiply rows excluded, zero post-policy checked-average mismatches.
-- Deterministic local controls: both have full structural-set coverage; `editdist_e1 PTI_v0=0`, `random_r1 PTI_v0=0`.
-- Human criterion: seven judge configurations computed on 72/72 paired rows; `gpt-5.3-codex|P8_STRICT_B` is `NOT_COMPUTABLE` at 64/72 after eight fallback rows are excluded.
-- Frozen SESOI simulation: completed at seed 0 with 10,000 draws per target and the complete decision rule. Positive-rule power at `rho=0.5` is 0.1492 with four valid primaries, a pre-bridge underpowered result; at this sample size the interval excludes zero only for a perfect rank order.
-- Primary `PTI_eq_bm_ms`: `NOT_COMPUTABLE`.
-- Primary four-property `PTI_v0`: `NOT_COMPUTABLE`.
-- Outer bridge: `NOT_COMPUTABLE`; `bridge_statistic_computed=false`.
-- Sensitivity analyses requiring primary PTI: not computed. Predeclared control and human-view outputs remain available without being promoted to a bridge.
+## Experiment execution and conformance
 
-## Final QA
+| Quantity | Result |
+|---|---:|
+| Accepted CLI tasks | 774 / 774 |
+| Tasks per LLM judge configuration | 129 / 129 |
+| Unique score cells | 4,728 / 4,728 |
+| Bound score records | 14,184 |
+| Nonlocal / local-control cells | 3,546 / 1,182 |
+| Invalid accepted / quarantined tasks | 0 / 0 |
+| Excluded failed attempts | 4, all retried successfully |
+| Human criterion rows | 72 per judge |
+| Property/criterion coverage | 100% |
+| Bootstrap replicates | 10,000 |
 
-- Independent adversarial QA: first pass `REQUEST CHANGES`; targeted second pass `PASS WITH MINOR FIXES`; every second-pass low-severity item was resolved before this deterministic run.
-- Tests: 64 PTI-v0 numerical/transformation/schema/pipeline tests plus eight preserved Exp27 compatibility tests, **72 passed** total.
-- Static checks: Ruff check and format-check passed for all seven new/modified PTI-v0 Python files; `git diff --check` passed.
-- Lean: the pinned Lean 4.22 project build passed, the full 470-row structural audit completed, and valid counts remained 86/49/63/67.
-- Packaging: editable install/import passed; `cert_judge.pti_v0` resolves to the module; the wheel contains `pti_v0.py`, `probe_validation.py`, and the existing package modules.
-- Reproducibility: 20 downstream artifacts regenerated byte-for-byte in a clean temporary tree; `properties_local_controls/properties.json` matched after normalizing its intentionally recorded absolute `score_path`. Config/probe fingerprints and all five bound source hashes recomputed exactly.
-- Data hygiene: all canonical JSON parsed, no stale audit locks remained, and staged secret scanning is repeated immediately before commit.
+The conformance suite passed **79 tests** across PTI core, randomized/adversarial vectors, the v5 CLI pipeline, structural probes, schema binding, and preserved Exp27 plotting behavior. Python byte-compilation and `git diff --check` passed. Ruff was unavailable in the active uv environment and is not reported as passing.
 
-## Pull requests and manuscript
+## Models actually run
 
-- PR A: [draft #39](https://github.com/brando90/cert-judge/pull/39), head `codex/pti-v0-final`, base `claude/ti2prime-validity-stability-scatter`; final QA is complete, and the draft must not merge before dependency review.
-- PR B: not created; it must stack on PR A only after committed bridge evidence exists.
-- Active manuscript: unchanged.
-- Build/page/anonymity status: not applicable to this blocked result phase; the preflight temporary build remains historical evidence only.
-- Outer figure: not generated.
-- W&B Report: N/A because the approved paid experiment did not run.
+- Exact v4 (`gpt-5.3-codex`, `gpt-4o-mini`): `NOT_RUN` because those IDs were rejected by the approved ChatGPT-backed CLI.
+- v5 Codex scoring: `gpt-5.6-terra`.
+- v5 Claude requested/scoring model: `claude-sonnet-5`.
+- Provenance limitation: every one of the 258 accepted Claude invocations also records auxiliary `claude-haiku-4-5` telemetry. The results therefore do not claim Sonnet-only execution or prove that the helper could not influence execution.
 
-## Remaining human decisions
+## Frozen property and criterion results
 
-1. Review/resolve ultimate-utils #44 and cert-judge #38 in that order.
-2. Decide whether to approve one exact frozen scoring scope after reviewing the quote artifacts.
-3. Decide whether to rerate or explicitly redefine the three unsafeMultiply rows; otherwise retain the 72-pair panel.
-4. Decide whether to quote/approve 24 criterion re-score calls for the quarantined primary judge or proceed transparently with four valid primary criteria.
-5. After a complete committed property table, authorize the gated bridge and subsequent stacked manuscript work.
+All properties are `COMPUTED` with coverage `1.0` for every judge. Four of five primary `PTI_v0` point estimates are exactly zero. Sonnet–P8 is `0.8114197682` with 95% artifact-cluster interval `[0.7820434991, 0.8390616239]`; Sonnet–P4 is `0` with the consequentially wide interval `[0, 0.8467228651]`. Independent reconstruction verified a directly observed exact-zero artifact factor behind every zero aggregate; missingness was never substituted as zero.
+
+Primary average-view `TI_m1` values are:
+
+| Judge | Spearman | 95% paired-item interval | Kendall tau-b |
+|---|---:|---:|---:|
+| Terra–P8 | 0.0105 | [-0.2294, 0.2475] | 0.0082 |
+| Terra–P4 | 0.2106 | [-0.0338, 0.4425] | 0.1772 |
+| Terra–P1 | 0.3377 | [0.0933, 0.5514] | 0.2861 |
+| Sonnet–P8 | 0.0886 | [-0.1463, 0.3291] | 0.0685 |
+| Sonnet–P4 | 0.2098 | [-0.0396, 0.4426] | 0.1656 |
+
+## Headline bridge and sensitivities
+
+| Analysis | Spearman | Kendall tau-b | 95% judge-bootstrap interval | Valid / 10,000 | n | Status |
+|---|---:|---:|---:|---:|---:|---|
+| Primaries, four-property `PTI_v0` | -0.3536 | -0.3162 | [-1.0000, 0.3953] | 6,647 | 5 | Below SESOI; inconclusive about zero |
+| Primaries, `PTI_eq,bm,ms` | -0.3536 | -0.3162 | [-1.0000, 0.3953] | 6,647 | 5 | Same tie pattern; labeled sensitivity |
+| Primaries + controls | -0.2474 | -0.2143 | [-0.8165, 0.2568] | 6,521 | 8 | Secondary; below SESOI/inconclusive |
+
+- Family leave-one-out: both `NOT_COMPUTABLE` (constant Terra PTI after removing Sonnet; only two judges after removing Terra).
+- Per-property exploratory Spearman: `P_eq=-0.3536`, `P_bm=-0.2236`, `P_ms=-0.2236`, `P_eqalpha=0.6000`; every interval includes zero.
+- At true Spearman `0.5`, the frozen SESOI simulation gives 27.10% complete positive-rule power, mean realized Spearman `0.4747`, 60.67% point-threshold rate, 25.83% false-pass rate, and 45.31% top-1 retention.
+- Scientific interpretation: no positive bridge, PASS-SCREEN, deployment threshold, causal effect, or human-validations-saved claim is supported.
+
+## Independent QA
+
+The fresh read-only numerical audit in `experiments/29_pti_v0_cli_bridge/RESULTS_QA.md` reconstructed every score binding, property, criterion, bootstrap, and CSV/JSON output. All numerical and structural checks passed. Its formal verdict is `FAIL` only under the literal exact-model-only provenance claim, with one major finding: Claude's auxiliary Haiku telemetry. The final report and manuscript retain the narrower evidence-backed model claim.
+
+The fresh paper audit in `experiments/29_pti_v0_cli_bridge/PAPER_QA.md` used ephemeral read-only `gpt-5.6-sol` at `xhigh` after the requested Fable 5 session was quota-capped before review. It independently reproduced all scientific numbers and returned `REQUEST CHANGES` for blinding, cost-claim scope, omitted PTI uncertainty, the 470/471 count, and three minor provenance facts. Every deterministic correction was applied; the workflow intentionally used one reviewer round rather than claiming an unperformed re-review.
+
+The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER_MAP.md`. It binds every new manuscript number to the committed authorities and records the deterministic commands. The sanitized inner-figure sidecar binds Kendall/interval/source hashes, and `paper_latex/ICLR_2027_submission/ANONYMIZED_SUPPLEMENT_ALLOWLIST.md` excludes identity-bearing VCS, W&B, status, authentication, and local-path artifacts from double-blind distribution.
+
+## Pull requests, W&B, and manuscript
+
+- PR A: draft [cert-judge #39](https://github.com/brando90/cert-judge/pull/39), head `codex/pti-v0-final`, base `claude/ti2prime-validity-stability-scatter`.
+- PR B: pending creation from `codex/iclr2027-final`, stacked on `codex/pti-v0-final`; this status will be updated with its URL after creation.
+- Permanent W&B Report: [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgwOTk0Ng==).
+- Active manuscript: `paper_latex/ICLR_2027_submission/main.tex`, revised in place.
+- Official ICLR 2027 style files: local `.sty`/`fancyhdr.sty`/`natbib.sty` hashes match the current official archive.
+- Build: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` passes with no undefined references/citations or overfull boxes.
+- PDF: 22 pages total; the conclusion ends on page 9, uncounted statements continue on page 10, references begin on page 10, and the appendix begins on page 13. The nine-page submission main-text limit is therefore satisfied.
+- Reviewed PDF SHA-256: `f465c51c877071c5ef2470bf9e9ad483b7420669e8e00611334d61ae21ba96fe`.
+- Visual QA: all 22 pages rendered and inspected; no clipping, overlap, misleading identity line, PTI/TI level MAE, or smoothed paired-density evidence.
+- Anonymity: anonymous author block; no public VCS identifier, repository link, local path, W&B link, TODO/TBD, or unresolved placeholder in the submitted PDF. Self-work is cited in the third person; the separate allowlist governs supplement packaging.
+- Mandatory AI-use statement, reproducibility statement, and an ethics statement are present before the references.
+
+## Remaining human decisions and submission actions
+
+1. Review and merge ultimate-utils #44, then cert-judge #38, then PR A #39, then stacked PR B; no agent merge is authorized.
+2. Perform the authors' final scientific read and explicitly accept the auxiliary-Haiku provenance limitation and the negative/inconclusive interpretation.
+3. Submit a genuine title/abstract and lock the complete author list in OpenReview by **September 18, 2026, 11:59 PM AoE**; upload the paper and anonymized supplement by **September 25, 2026 AoE**.
+4. Ensure all authors have current OpenReview profiles and designate/register at least one eligible reciprocal reviewer when ICLR sends the post-abstract registration request.
+5. Before upload, run the final PDF/anonymity/secret scan once more and verify that the uploaded PDF hash matches the reviewed artifact.
+
+**TLDR-end:** [cj: pti-v0] The experiment and manuscript implementation are complete; the honest result is below-SESOI/inconclusive and the sole major audit limitation is Claude auxiliary-model provenance. What remains is human review, ordered PR merges, and OpenReview submission—not another experiment run.
