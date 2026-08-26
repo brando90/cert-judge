@@ -1,6 +1,6 @@
 # PTI-v0 final execution and ICLR 2027 manuscript status
 
-**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. PR A is draft #39; the stacked paper PR is prepared on `codex/iclr2027-final`.
+**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. PR A is draft #39; the stacked paper PR is draft #40.
 
 ## Provenance and dependencies
 
@@ -13,7 +13,8 @@
 | Mandatory pre-bridge results commit | `6f55c44299eadda78db5738c7913475d06ea671f` |
 | Pre-bridge property-table SHA-256 | `7a904f31a6dbd626a728e44fd7a00043c61b5e1630937986f111a0be4af15c0a` |
 | PR A final experiment commit | `540c43f5877c02c50334bc98e1c238a2ba30f558` |
-| Paper branch | `codex/iclr2027-final`, stacked directly on PR A |
+| Paper integration commit | `ec04890da5ae272770400695c5b55aa5505d1ce7` |
+| Paper branch / PR B | `codex/iclr2027-final`, draft [#40](https://github.com/brando90/cert-judge/pull/40), stacked directly on PR A |
 | Global rules revision used | `8190074918da0c2b39e6763b1d46ba04e8215ec2` |
 
 The branch stack reuses Exp27/PR #38 and its ultimate-utils/PR #44 dependency; it does not duplicate or rewrite that work. Neither dependency, PR A, nor the paper PR is auto-merged.
@@ -101,7 +102,7 @@ The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER
 ## Pull requests, W&B, and manuscript
 
 - PR A: draft [cert-judge #39](https://github.com/brando90/cert-judge/pull/39), head `codex/pti-v0-final`, base `claude/ti2prime-validity-stability-scatter`.
-- PR B: pending creation from `codex/iclr2027-final`, stacked on `codex/pti-v0-final`; this status will be updated with its URL after creation.
+- PR B: draft [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), head `codex/iclr2027-final`, base `codex/pti-v0-final`.
 - Permanent W&B Report: [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgwOTk0Ng==).
 - Active manuscript: `paper_latex/ICLR_2027_submission/main.tex`, revised in place.
 - Official ICLR 2027 style files: local `.sty`/`fancyhdr.sty`/`natbib.sty` hashes match the current official archive.
@@ -114,7 +115,7 @@ The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER
 
 ## Remaining human decisions and submission actions
 
-1. Review and merge ultimate-utils #44, then cert-judge #38, then PR A #39, then stacked PR B; no agent merge is authorized.
+1. Review and merge ultimate-utils #44, then cert-judge #38, then PR A #39, then stacked PR B #40; no agent merge is authorized.
 2. Perform the authors' final scientific read and explicitly accept the auxiliary-Haiku provenance limitation and the negative/inconclusive interpretation.
 3. Submit a genuine title/abstract and lock the complete author list in OpenReview by **September 18, 2026, 11:59 PM AoE**; upload the paper and anonymized supplement by **September 25, 2026 AoE**.
 4. Ensure all authors have current OpenReview profiles and designate/register at least one eligible reciprocal reviewer when ICLR sends the post-abstract registration request.
