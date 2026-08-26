@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "b019143339dd7e25eeb79a65e3aafd26b613c36d3691c42025bc00fb96d4dab9",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "9e99c2b1c62907a354176d9792aa64fd79d884801265ddebf739c154ab978a89",
+  "completed_at": "2026-08-26T07:26:28.528122+00:00",
+  "effort": "low",
+  "elapsed_seconds": 29.912122750014532,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "03e72572c044afccd3eabfb731d66d4dcaf2ab90fd742b899205d6c3c2cc52be",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "8ffb47c7a93d6e73089459255b29b465a7df6df74aab8e48f62001f5f438a317",
+      "reasoning": "The generated file defines both implementations but omits the required equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "98980f3475f65894444be8120eb6cd8293f59d7a72cfc695bdf0130b767cca5d",
+      "reasoning": "The stated equivalence is preserved exactly, with both sides definitionally delegating to the same covariance function.",
+      "score": 1.0
+    },
+    {
+      "id": "a3ad2b5c9fdd2a5e65d8914d32218b0523a5a692eca7d739f6b9aabbfe0e2d30",
+      "reasoning": "The generated theorem has the same universal functional-versus-imperative covariance equivalence statement as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "80bb36a36112aae2bdf2fc5212fae7dec2e7811cbde392ca287e34c01c6f21f4",
+      "reasoning": "Although an equivalence theorem is present, the functional wrapper and imperative version return different errors on invalid methods, so the universal claim is false.",
+      "score": 0.3
+    },
+    {
+      "id": "e311143ee820b6e3c1b25f36d2a79c8755e2e82322d60b6fcb5f5203f4b4a62a",
+      "reasoning": "It changes the domain to Int and provides no imperative implementation or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "68de8bad5470a90c1df79b378cc4e53e3f142e921157ee09bd94496fc86306f3",
+      "reasoning": "It omits the required equivalence theorem and its functional bisect logic is materially incorrect.",
+      "score": 0.0
+    },
+    {
+      "id": "8c9b64b66db5174feabbb077a9c0f137587af5ef65731b65e5f33a0113b63553",
+      "reasoning": "The implementations are plausible but the required insort equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "9bb1f755c77672015162e7ac7ee9033afbe458cf20af4f27e84d2b02e691c2c0",
+      "reasoning": "The generated file provides implementations and tests but no heappush equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "350a544f193a7fc168cab31c3fa49182b1b54badb56d8c019d6feff322ec2329",
+      "reasoning": "It states the same universal heappush imperative-functional equivalence as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "59ea405ffa0e380018445c53233932995ee1b74866cdb3feb7a4a141b2a713d7",
+      "reasoning": "It states the required heappop equivalence, though the substantially different siftup implementations leave some implementation-level confidence gap.",
+      "score": 0.85
+    },
+    {
+      "id": "73710460752c96c22f7f660a6b549a7682fad18288ce6a70f8eee5b343378c4f",
+      "reasoning": "The queue implementations exist but the required get equivalence theorem is missing.",
+      "score": 0.0
+    },
+    {
+      "id": "26e4c6728cbe0ced40f0b2df2a3ee00d6c4761741934140b42c8e1af21764795",
+      "reasoning": "The generated file proves only an auxiliary unfinished-count property and omits the reference correctness theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "4cf1ba1ebd6d043ab79b8f0e8db032ed387fcbbb45354cd1ab7586f5f2e414d2",
+      "reasoning": "The generated theorem matches the reference update equivalence statement, including agreement for every queried key.",
+      "score": 1.0
+    },
+    {
+      "id": "6779ae444e53ced5d39c9cf5cce69fe508406e35a3889506561aa36881a6381a",
+      "reasoning": "It changes the function and input types and supplies neither the named imperative implementation nor the required equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "23a49d97f84287a5b2c39e9397999fe3269db4f10a91ae822b33c44b0be886db",
+      "reasoning": "The functional and imperative ChainMap lookups are defined, but the required get equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "55bae043f7c30f01e5f918ac0fa9689b915ffb7c126c12a40ee757ac0aa7f108",
+      "reasoning": "A related correctness theorem is supplied, but it changes the reference's abstract Pre/Post contract and remains unproved.",
+      "score": 0.4
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "4f6a5ac7e3dcd3c28ff3d5fd0b32f65a03b9b05ce096eb63830a83f7975f5c94",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "92932a044fc129fdf005743acd625bcb932e8ef372e0d7c79227df934df4cd97",
+  "completed_at": "2026-08-26T07:20:44.387405+00:00",
+  "effort": "low",
+  "elapsed_seconds": 27.28908074996434,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "8b48a64a3a2f4f3c1d3ed18f2c42460b8d8ed5f8058d21092726e5d1c741d889",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "bccca4ec000a374867d291fe53442896ffce04bf095e09e75ee87da040c0a0d0",
+      "reasoning": "It states exactly the required universal equivalence between the imperative and functional join implementations.",
+      "score": 1.0
+    },
+    {
+      "id": "fab0c4b821f6dcb4ac0269953a3900927dd23de787f276e14be5fdfd484d5d97",
+      "reasoning": "No equivalence theorem or other proof connects the two Base32 implementations.",
+      "score": 0.0
+    },
+    {
+      "id": "bf6bb0cb5b6af2c4cd915e044a9a344804ad706a9d36fb15d418c449b462eee0",
+      "reasoning": "The generated file supplies neither the required equivalence theorem nor a proof of its proposed postcondition.",
+      "score": 0.0
+    },
+    {
+      "id": "a904439901ad4d732d69f513c90209ed895f8b697926312d933ac0c9edb6eb41",
+      "reasoning": "It contains only tests and no theorem establishing loads_imp equals loads_func for all strings.",
+      "score": 0.0
+    },
+    {
+      "id": "b3026ae406d196d79231325a40b5c03b2f0c222957ae332bdc882db1929d8e56",
+      "reasoning": "Although it defines equivalence as a postcondition, it proves no universal correctness or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "8bef33df5faab0d3c96499b912f98057bb4a818151508ee89ed67b536715dc24",
+      "reasoning": "It states exactly the requested unquote equivalence for every QuoteInput.",
+      "score": 1.0
+    },
+    {
+      "id": "98ddf4951325417a13dad5ddedaef4e145b616d68fdee7db7a9dc91903b87a7a",
+      "reasoning": "No theorem establishes that compare_digest_imp agrees with compare_digest_func on all TokenInput pairs.",
+      "score": 0.0
+    },
+    {
+      "id": "712104b3c8523f6a049080419ca679c49f9affe547e5b027643da8d8c091717f",
+      "reasoning": "The proved length and reflexivity facts do not establish the required implementation equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "727c9d8189a4c7c80b9628c7d05f49f2eac9bca31bccb03c767b162e8c0060db",
+      "reasoning": "It defines the desired order property but gives no theorem proving it for arbitrary graphs.",
+      "score": 0.0
+    },
+    {
+      "id": "95b8cd67668ed758467939a010936474129bcb955c31ea075501df476fc8128b",
+      "reasoning": "The generated theorem is identical to the reference theorem and preserves its conditional topological-order guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "e214ee613eb3e8a867520629a548240190745e0a51fe4980ee85e6e88afb6bbd",
+      "reasoning": "No theorem relates benchmark_median_low to median_lowImp for arbitrary input data.",
+      "score": 0.0
+    },
+    {
+      "id": "c27d8045d5d067fd73dc3bd0e04bb19de9bb8f38fd4581ea742b3238a75fbc6f",
+      "reasoning": "It states exactly the required median-high equivalence for every input list.",
+      "score": 1.0
+    },
+    {
+      "id": "22d2c28cf14e4a3c15ce8e95635be468e2d4bf3300923f7f11b596dfdbc4a248",
+      "reasoning": "No theorem establishes the required equivalence, and the functional bisect definition also differs materially from the imperative algorithm.",
+      "score": 0.0
+    },
+    {
+      "id": "20093d8632dba18b606e38283ba3d1667e948d3873185382a08e723c8d12fa4c",
+      "reasoning": "It states the same universally quantified bisect equivalence as the reference theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "0c421047ea8b49fd6d5ff29cff49d69a3590a9b2b9113587bd9a4866351ab2dd",
+      "reasoning": "It replaces the Array-based requested correctness theorem with unrelated List-based lemmas and proves no matching Post_prop result.",
+      "score": 0.0
+    },
+    {
+      "id": "7af86dd8fe286d8cfd0a756852325a38cbaca1a465ced22c98a15291d2336b71",
+      "reasoning": "It provides unrelated List-based heap lemmas but omits the requested Array-based correctness theorem and its combined guarantees.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

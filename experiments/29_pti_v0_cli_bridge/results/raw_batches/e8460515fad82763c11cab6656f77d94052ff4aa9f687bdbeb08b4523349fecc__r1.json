@@ -1,0 +1,117 @@
+{
+  "attempt": 2,
+  "backend": "codex",
+  "batch_id": "e8460515fad82763c11cab6656f77d94052ff4aa9f687bdbeb08b4523349fecc",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "e0cb36789fe65549545bad935f8a79d1f4e16f425723469a220ea132747cb276",
+  "completed_at": "2026-08-26T07:09:05.935207+00:00",
+  "effort": "low",
+  "elapsed_seconds": 32.09483616694342,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "c20934df345bc001fae468f1b0056b14d205c3af97169b8bde7c75d730944b7d",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "66479a5e5294934364e36f88b4b4aff07098c47abee043dc14b9d210bcb18b8f",
+      "reasoning": "The generated theorem verifies a different safe-copy specification and does not preserve the reference Pre-to-Post correctness statement.",
+      "score": 0.1
+    },
+    {
+      "id": "5411e619fa1948557fb1fa8c498c3c5e2fd50072307f1fe10b678747142a27ed",
+      "reasoning": "It states exactly the required array-to-list mean equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "a2511f901fe10b9249f3b2a779a583bb957d93d4de0e609c11b83a40721ac94b",
+      "reasoning": "It establishes correctness of a new optional-wrapper program but omits the required equivalence between the two original first-character implementations.",
+      "score": 0.2
+    },
+    {
+      "id": "23249ad6607d7270444a1b7cad99e37bad9f68b9a1eebbfd53ad7b6d1bc87a5d",
+      "reasoning": "No theorem relating median_imp to median_func is provided.",
+      "score": 0.0
+    },
+    {
+      "id": "92e3e545a2b5f1fe8114ae0ce5cbc3d03a6db0e4c074fcc0068b1561ed8772a4",
+      "reasoning": "The generated code contains no variance equivalence theorem or proof obligation.",
+      "score": 0.0
+    },
+    {
+      "id": "1ccb47ec3cae692fe8e771a6618dfa27914a391b7120d0e90e0f0bc74ec5b577",
+      "reasoning": "It states exactly the required variance imperative-to-functional equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "7747ef1825270d5e0abb6bdc08ec21a37d7cbdca3e84a05393a8869a0982431d",
+      "reasoning": "The direct uppercase program is proved correct, but the required equivalence between the original functional and imperative implementations is absent.",
+      "score": 0.5
+    },
+    {
+      "id": "214c7a5119fa4d2c3e4e14dc50268f95aaa7c1ca17c68106883723f4477c3fb4",
+      "reasoning": "No correlation equivalence theorem is supplied.",
+      "score": 0.0
+    },
+    {
+      "id": "0fcd3ac6dc728bae9860e53f12873773413491e506fe789292b214d8adece875",
+      "reasoning": "The equivalence theorem between correlation_imp and correlation_func is missing.",
+      "score": 0.0
+    },
+    {
+      "id": "0152c7546e12122a0abbf598fffeaafed847a551cfa12312d9183f8ef753e7b4",
+      "reasoning": "It preserves the reference correctness theorem statement, including its precondition and both postcondition components.",
+      "score": 1.0
+    },
+    {
+      "id": "ba679852c67dce0ba6138d8442956174bfee2fc67aed40db1d57af3ef62bf622",
+      "reasoning": "Although the implementations are reproduced, no generated theorem establishes any requested property or equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "0b1ddc3f72fc56b37f281b1897d5ab784d29342e981c8954daeba9f3bbd8a1a9",
+      "reasoning": "It states exactly the reference LRU state-transition equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "a8574d528314d00d49a0fa9d51463ff12ae4444880606bd3d2b1972c91e71111",
+      "reasoning": "The implementations are copied but no theorem establishes their equivalence or another core guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "03689bfabb03c8e61d9b404975652b98136252bda46700a6582090b0deaa8de5",
+      "reasoning": "The required mergeKw_imp-to-mergeKw_func equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "21286eec6d97f678a987a8298fa4069f5f6daf413f00302fbe6968f6025d917c",
+      "reasoning": "It proves a specification for a different Int-based Fibonacci program but not equivalence of the required Nat implementations.",
+      "score": 0.2
+    },
+    {
+      "id": "46a07a5d9b0c195c60a3ff819d0f54cedfadb7d22b4b90446d1520fe68d52e85",
+      "reasoning": "It proves iterative Fibonacci equals a recursive specification for Nat, substantially matching the intended equivalence but not the original named implementation pair.",
+      "score": 0.6
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

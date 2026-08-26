@@ -6,6 +6,40 @@ model v4 protocol in `experiments/04_veribench_validation/pti_v0_v4/`.
 The PTI metric and audited probes are reused rather than forked. Only the model
 panel and the preregistered batching execution protocol are versioned to v5.
 
+## Current status
+
+The full run is complete: 774/774 CLI tasks, 4,728/4,728 score cells, and
+14,184 score records. Property and 72-row criterion outputs have 100% coverage
+and passed independent numerical reconstruction. The mandatory pre-bridge
+commit is the current gate; the outer bridge has not yet been computed.
+
+Claude's retained CLI telemetry records `claude-sonnet-5` as the requested and
+scoring model plus a small auxiliary `claude-haiku-4-5` helper on all Claude
+calls. See `RESULTS_QA.md`; downstream claims must not say "Sonnet-only."
+
+## Layout
+
+- `PROTOCOL.md`: pre-result scientific/execution freeze.
+- `frozen_config.json`: machine-readable metric, judge, role, and bootstrap
+  authority.
+- `run_pti_v0_cli.py`: resumable, fail-closed subscription-CLI runner.
+- `results/`: authoritative frozen manifests, raw transcripts, scores,
+  properties, and human criterion.
+- `expt_v5/cc.md`: paste-into-agent execution prompt for this version.
+- `REPORT.md`: human-readable run report.
+- `RESULTS_QA.md`: independent pre-bridge results audit.
+- `writing.tex`: paper-bound draft, updated only from committed outputs.
+
+| Deliverable | Status |
+|---|---|
+| Frozen manifests and runner | Complete |
+| Full CLI workload | Complete |
+| Properties and criterion | Complete and independently reconstructed |
+| Pre-bridge results commit | In progress |
+| Outer bridge and SESOI | Blocked until pre-bridge commit |
+| W&B Report and local summary | Pending bridge |
+| ICLR manuscript update | Pending committed bridge |
+
 ## Pre-result freeze
 
 ```bash

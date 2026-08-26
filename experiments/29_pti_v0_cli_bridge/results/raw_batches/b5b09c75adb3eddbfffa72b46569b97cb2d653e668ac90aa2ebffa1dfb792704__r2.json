@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "b5b09c75adb3eddbfffa72b46569b97cb2d653e668ac90aa2ebffa1dfb792704",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "918a1b299238052e7ffe7748736a3895e70ce6f8fcecea30cb8a867e1241e20b",
+  "completed_at": "2026-08-26T06:31:36.070916+00:00",
+  "effort": "low",
+  "elapsed_seconds": 38.58804120903369,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "902e0282a6b3b8ffc96342727a315265571cab50d9c7c17f06c057f8f7353b13",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "19c66a33692559ada1e97d13e42ef29e9b48f998307bf2ba69f18bce4bcbdad7",
+      "reasoning": "The generated Array implementation is not well-typed for distinct element and key types and does not establish the required partition theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "872fb9e87bb748ae0670fdaac6072c03380f336a9ee2e5cae68412efa06ab273",
+      "reasoning": "The List implementation changes the target data structure and contains incompatible unkeyed comparisons for general T and K.",
+      "score": 0.0
+    },
+    {
+      "id": "c941b5aa98fa1fbd29aa0e2bec6ff56855923e524fe1a71f6c07742b8d2eba25",
+      "reasoning": "The generated List version is not type-correct in its no-key branches for independently quantified α and β and omits the reference theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "ebfb3cdbe7c83fe76f057e80d2537f4e5a17d8d9a001438b87451e4600543e1b",
+      "reasoning": "It implements the intended bounded byte-array copy and a substantially stronger explicit postcondition, though it is not the same stated abstract theorem.",
+      "score": 0.7
+    },
+    {
+      "id": "0e1e0906443067367f08d14e0840ec25198e1711015152af85aa0173b2ecc596",
+      "reasoning": "The generated code is semantically identical to the reference implementation and theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "aa19e46c9cf95d26b8ad2a7b187cacf64d2b3b1c6b26e77cf7dcb026d6b675d6",
+      "reasoning": "It changes the result type to Unit and relies on mutation of an immutable destination value, so it does not implement the required returned copied array semantics.",
+      "score": 0.1
+    },
+    {
+      "id": "12911010a62037d26fed87cc6aeeef49156281a2ec1ec88b918c9cd71891c612",
+      "reasoning": "It supplies the same functional and imperative mean definitions and the requested equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "52458a38e42c96e120463378535a7021b2253100fea587794a52ae72d90f89de",
+      "reasoning": "The generated theorem and all supporting definitions are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "03ecaee051d3232e66a39e7853e1dab08aff0caf83d359d016b6312a66124e42",
+      "reasoning": "The generated implementation and median equivalence theorem are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "0e00ca2a8d88ef347b33b9882bfec1c52304c891bf8bfd34185050c2fdb9f6c1",
+      "reasoning": "The generated variance implementation is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "0dc2c0219405f0af33ac7a78832678da1ccef98c99ef5e164e37eeafe61a0012",
+      "reasoning": "It provides the same two-pass functional and imperative variance semantics together with the requested equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "761a0babd2774d40887b90127472c3b2318966d391ca8ebef0944af35d72f1ff",
+      "reasoning": "It implements uppercase conversion correctly but replaces the requested functional-versus-imperative equivalence theorem with a single-program specification.",
+      "score": 0.5
+    },
+    {
+      "id": "10a730f16cbf166a75d7ed50323645fac186fedaeef4cd2544d415c27e021ca7",
+      "reasoning": "It correctly implements string uppercasing but does not provide the requested equivalence between the two named implementations.",
+      "score": 0.5
+    },
+    {
+      "id": "3681a39afcb7618ba64391fd769046c3dbfa3235fffc6692fa13edebd4a57393",
+      "reasoning": "The uppercasing function is correct, but the theorem is not the requested equivalence theorem and its proof script likely leaves no goal for the trailing sorry.",
+      "score": 0.3
+    },
+    {
+      "id": "24a45db77e889de0c2921a67cceee969f8c1687529ec4843a32a853c2fd6bb50",
+      "reasoning": "Its functional correlation uses subtraction and an inverted empty-list mean condition, making it materially inconsistent with the imperative implementation.",
+      "score": 0.1
+    },
+    {
+      "id": "032ebb674e6768c86b7a4e58684c725dfa87539966b844ffd31a1a282b6eb5fc",
+      "reasoning": "It supplies the intended functional and imperative correlation definitions and the requested equivalence theorem.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

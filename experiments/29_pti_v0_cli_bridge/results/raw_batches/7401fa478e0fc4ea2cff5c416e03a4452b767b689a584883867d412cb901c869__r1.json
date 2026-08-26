@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "7401fa478e0fc4ea2cff5c416e03a4452b767b689a584883867d412cb901c869",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "32a0c4c7e403e87a78066f8f38a9ba3eb39c481ead6973294a4162ed735d1a50",
+  "completed_at": "2026-08-26T07:51:56.196007+00:00",
+  "effort": "low",
+  "elapsed_seconds": 63.72312266699737,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "9016150a517e135fe16b37c73545d9fd7ab82522d31c5bdd056aac558f953c77",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f2aa7961e4d1f511c20c12a684f48682c8c2a6901266d1b2acb08327f4c7a231",
+      "reasoning": "Final equivalence theorem statement matches reference exactly, but sum_func/mean_func have inverted/buggy logic (subtraction instead of addition, inverted condition).",
+      "score": 0.6
+    },
+    {
+      "id": "d1a3879f6a21298b9900675bf86df85624c323cb5586d0ae5edd5b938394abcd",
+      "reasoning": "Generated file is identical to the full reference implementation including the equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "e7c42b5ea16f7dd2ea99618d1221f9ddddbdb4fa4708a213427f9660d7b5fceb",
+      "reasoning": "Final equivalence theorem matches, but sum_func and center_func contain sign bugs (subtraction/addition swapped) that break the intended semantics.",
+      "score": 0.5
+    },
+    {
+      "id": "d82e7fbf34361e5287b1ba72479ab555725608e0d1c358fed7267d8b64af2bba",
+      "reasoning": "Final equivalence theorem matches reference exactly, but the correctness theorem section is left entirely blank/omitted.",
+      "score": 0.6
+    },
+    {
+      "id": "db363744abb002dca604ebb931a37ed62df080e615c8a8f8306f08655fe3847b",
+      "reasoning": "The required dedent_equiv_thm equivalence theorem is completely missing from the generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "a3bd4feb3aa7d88e06285c90efe2f49122f782a6265e92c1d042a7aae5b12a70",
+      "reasoning": "The insort_equiv_thm equivalence theorem required by the reference is entirely absent from the generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "a017ad6ac270ffc1f13b60e4a2528b4c94bd635524c72719165b3943faf94475",
+      "reasoning": "Generated file matches the full reference implementation exactly, including the insort_equiv_thm.",
+      "score": 1.0
+    },
+    {
+      "id": "e3644dfa3fa58683436cf7b78bf8225e00401b89eb8a7c20206c8641172a405f",
+      "reasoning": "Generated file closely matches the reference structure and includes the identical equivalence theorem statement with sorry.",
+      "score": 0.9
+    },
+    {
+      "id": "8f48a0af1530a84442dd79d38e28a92f7685f242d64e554a32fc752ed313b1cf",
+      "reasoning": "The required quote_equiv_thm equivalence theorem is missing entirely from the generated file, along with Pre/Post sections.",
+      "score": 0.1
+    },
+    {
+      "id": "8a0e20a57248ab064e982a87a62e207ab422326dda806403e9d3e461c0c83662",
+      "reasoning": "The generated file includes Pre/Post/property theorems but omits the required quote_equiv_thm equivalence theorem entirely.",
+      "score": 0.15
+    },
+    {
+      "id": "60b90a01ce355c1815604554595394ca8de533955f8bf1a55cfdf3df017070f2",
+      "reasoning": "The generated file omits Pre/Post/property theorems and the required join_equiv_thm equivalence theorem entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "4ea34ff427d3b1898439dbcabbc9bf36ff9b13900c2287a8fc0ba39b7aa94d9e",
+      "reasoning": "Generated file is identical to the full reference implementation, including the join_equiv_thm.",
+      "score": 1.0
+    },
+    {
+      "id": "41ef73cdb33981190d597ee47e00b41170139802091d7ced225e3e37949ff689",
+      "reasoning": "The required encode_equiv_thm equivalence theorem and Pre/Post sections are entirely missing from the generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "590a9a234c52027eefad7e023e37e6f145f8223e850aa60a918fa6e0ffb671c6",
+      "reasoning": "Generated file matches the full reference implementation exactly, including the identical (incomplete) ending.",
+      "score": 1.0
+    },
+    {
+      "id": "2112fcc75630a547d1aa5ed88a612ea84f26d9d25ab2110ade08a1c4cf3651df",
+      "reasoning": "The generated file omits Pre/Post sections and the required loads_equiv_thm equivalence theorem entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "0e24d9e78f990eff94dc561a7bd5e4c9e64f464c277d00612ec6dec59aac09fb",
+      "reasoning": "Generated file is identical to the full reference implementation, including the loads_equiv_thm.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.031474,
+        "inputTokens": 31409,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 44569,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0584778,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 4956,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 44569,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 44569,
+          "input_tokens": 2,
+          "output_tokens": 4956,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 4956,
+      "output_tokens_details": {
+        "thinking_tokens": 3324
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

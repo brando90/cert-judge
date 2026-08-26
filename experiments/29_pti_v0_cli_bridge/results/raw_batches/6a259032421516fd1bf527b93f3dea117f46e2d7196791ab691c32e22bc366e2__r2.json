@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "6a259032421516fd1bf527b93f3dea117f46e2d7196791ab691c32e22bc366e2",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "9e0b53a39dfad324ee35a8b27f99a4fea66844121adf251f2a5c80fb705e3247",
+  "completed_at": "2026-08-26T06:42:58.311358+00:00",
+  "effort": "low",
+  "elapsed_seconds": 35.18213862500852,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "20f362b51e98ef21a1d7b6d6c2421afa3cdb2b56d27fe0a2e67099713571174f",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "d8e98f160525db6e79363e7beabbbffb8415d5f478a572616381ad033feb635c",
+      "reasoning": "The functional bisection uses an incorrect midpoint and insufficient fuel, so it generally disagrees with the imperative implementation.",
+      "score": 0.1
+    },
+    {
+      "id": "8f65eedcc2d6a00adb79714489dc5fd2fc2f313aefbf10a688e2b9e87f142ac5",
+      "reasoning": "Both implementations use corresponding bisection logic with sufficient fuel and identical insertion handling.",
+      "score": 1.0
+    },
+    {
+      "id": "dec208f968e4eb1db14e54637aa928a92df8931a4babf6990ce0d2784636588d",
+      "reasoning": "The imperative character loop implements the same empty, safe, and quote-replacement cases as the functional definition.",
+      "score": 1.0
+    },
+    {
+      "id": "9f8a3f3150603b742c5a2423f66a793484a766df750b8ec3bbf3a590aef95e05",
+      "reasoning": "The imperative join maps an equivalent quote routine and inserts spaces exactly as String.intercalate does.",
+      "score": 1.0
+    },
+    {
+      "id": "bbf9a1b1bf4df0dcfb9fc508eba6a441c40d55594f1fe2392e70049bf2937b3c",
+      "reasoning": "The imperative join and its quote helper match the functional map-and-intercalate behavior for all lists.",
+      "score": 1.0
+    },
+    {
+      "id": "c6417ea8e1f6881237133ee582c221806889045ce05aff94fec3234165652770",
+      "reasoning": "The functional chunk packing and padding correspond to the imperative 40-bit Base32 extraction.",
+      "score": 1.0
+    },
+    {
+      "id": "96f67970d3a543cf827f3fcd37b8e0fcda106d7d6647baca58a11414d988052c",
+      "reasoning": "The functional encoder has incorrect padding, accumulation, and bit-shift calculations, so it disagrees on nonempty data.",
+      "score": 0.1
+    },
+    {
+      "id": "8454ab99cd358325e0d0566f46620784f5a6844c7e170f7dde88edae9d0090f1",
+      "reasoning": "The functional integer parser rejects every nonempty string while the imperative parser accepts numeric strings, causing substantial disagreement.",
+      "score": 0.3
+    },
+    {
+      "id": "730d6b8027fdb6c66d22fb1b9c09cc4ad9dd4e66b0b2fdcf2028f99dc01193f9",
+      "reasoning": "The functional integer parser rejects every nonempty string while the imperative parser accepts numeric strings, causing substantial disagreement.",
+      "score": 0.3
+    },
+    {
+      "id": "436ff8534d47cf190766dfba10b5ca1d96bb828284feddf846b6021a079260d8",
+      "reasoning": "The recursive unquote logic and indexed imperative loop handle valid, malformed, and incomplete percent sequences equivalently.",
+      "score": 1.0
+    },
+    {
+      "id": "145068771056a344362e597a731472a77d9a4496f44922530e4f19cd1603327f",
+      "reasoning": "The imperative comparison normalizes strings and bytes, unlike constructor-sensitive functional equality, so mixed variants can disagree.",
+      "score": 0.7
+    },
+    {
+      "id": "3bfeacf23282f4f0c828f3e331f92e0f63b784c8346b5ad4704a99e8f5ab89e0",
+      "reasoning": "The imperative comparison normalizes strings and bytes, unlike constructor-sensitive functional equality, so mixed variants can disagree.",
+      "score": 0.7
+    },
+    {
+      "id": "56a64db55c7df5de68590cb85576ecd4c4bb158997134312db2186f8f3419301",
+      "reasoning": "The Kahn-style implementation constructs all graph nodes and returns a valid predecessor-before-dependent ordering whenever it succeeds.",
+      "score": 1.0
+    },
+    {
+      "id": "5aeb95ef84e934825901a6c0e01cb36051730bbfad976b7ff010381f55d1cfc4",
+      "reasoning": "The Kahn-style implementation constructs all graph nodes and returns a valid predecessor-before-dependent ordering whenever it succeeds.",
+      "score": 1.0
+    },
+    {
+      "id": "2b1a0c044a4409c57ce2db3e8102fa70202cc3060b32e7e1d3451dd23b835c8b",
+      "reasoning": "The generated functional and imperative median-low definitions are identical.",
+      "score": 1.0
+    },
+    {
+      "id": "06e9724fcc465388efb5864632c9b1bd059f0b45f7bd22b9487b0bcda33e3740",
+      "reasoning": "The generated functional and imperative median-high definitions are identical.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

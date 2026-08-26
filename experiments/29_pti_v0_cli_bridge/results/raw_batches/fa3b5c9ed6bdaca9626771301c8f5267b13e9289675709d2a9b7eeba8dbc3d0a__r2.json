@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "fa3b5c9ed6bdaca9626771301c8f5267b13e9289675709d2a9b7eeba8dbc3d0a",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "8dce56ba29cb2d3719d584629afc64c9acae3ce28401cdfc638cd254031393a9",
+  "completed_at": "2026-08-26T07:33:08.445902+00:00",
+  "effort": "low",
+  "elapsed_seconds": 25.529253749991767,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "12b9d3d4ee67888601afd4f24a444d8eefc62e8bbd7960e818b603f444eafd4b",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "c17e9f84df3a0db59bcca4031bc5f043fd623067b873889958f8bd35efd9ca45",
+      "reasoning": "The generated theorem exactly states the reference imperative-functional heappop equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "b1d1ed824c3db27892a008c09b48b1608799552cc572b4da93cf92a7eefd4e24",
+      "reasoning": "The generated correctness theorem is identical to the reference theorem, including assumptions and proof.",
+      "score": 1.0
+    },
+    {
+      "id": "864b1a8553108e4a62ffcca5509b518581bcd0a95401aa3afbcf9cd412e249f3",
+      "reasoning": "No theorem establishes equivalence between bfs and bfsImp, so the reference guarantee is missing.",
+      "score": 0.0
+    },
+    {
+      "id": "d109338ef0e70d80a24113794f22558dedc18ea4ad0c58849ce90a623470b777",
+      "reasoning": "The submission has neither the Nat-based functional-imperative equivalence theorem nor an imperative implementation.",
+      "score": 0.0
+    },
+    {
+      "id": "800e2382268b85dad7bea43a8fd5e68dceb9456b5e6e463c3526938da07b7dad",
+      "reasoning": "The generated theorem exactly states the reference DFS functional-imperative equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "714cf319c841d3238d2ad7735348237760575d76f939a84ccef8dde6837db51c",
+      "reasoning": "The generated theorem exactly states the reference Dijkstra functional-imperative equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "c699c8bbfa47bb13fa33a45785c8136eec262b46d5b8af6c66c25523afdba59e",
+      "reasoning": "The generated code and unique_correct theorem exactly match the reference implementation and guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "08d2bffd1104e1026a72f593d3dbb3f536ac4e9b25692c7da6cad7950b4629f8",
+      "reasoning": "No equivalence theorem relating max_element to max_elementImp is provided.",
+      "score": 0.0
+    },
+    {
+      "id": "6fa65cb64bf0ee132a2cb7d0e6e69f99653ca3d27c48c68fae9f54bce3b055a0",
+      "reasoning": "It proves equality to a duplicate functional specification rather than equivalence with incr_listImp.",
+      "score": 0.0
+    },
+    {
+      "id": "44b460a71ac90916509885b663bf181284df0d835c3c7ec108d4a3ffb6ada63b",
+      "reasoning": "No theorem relates pairsSumToZero to pairsSumToZeroImp.",
+      "score": 0.0
+    },
+    {
+      "id": "7c0f249ab329b105e79c44a613223e44a14e2c412ca6ab051ba78e79d06ced1e",
+      "reasoning": "The median correctness theorem is only against a copied specification and provides no medianImp equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "737b74e818090e04b4783686e5bc8c308b957f6e8461283efccd4fe7b7ba1ce4",
+      "reasoning": "The submission changes the input type to Float and provides no equivalence theorem with medianImp.",
+      "score": 0.0
+    },
+    {
+      "id": "4757bdff6c054894446f80b05192b49e9f7d9341791cdde64343cfcfb29a32ce",
+      "reasoning": "It proves only agreement with a duplicate median specification, not equivalence to medianImp.",
+      "score": 0.0
+    },
+    {
+      "id": "0cda1aa281406f2f95e22da5898b9472ab35e71599a7f8efe7bbf85502109344",
+      "reasoning": "The provided identity and self-referential specification theorems do not establish decodeShift equals decodeShiftImp.",
+      "score": 0.0
+    },
+    {
+      "id": "2e91b05c16c81cf915582898e8805a0429581c53a9b841120b9c8cea74a87057",
+      "reasoning": "The theorem concerns encode/decode round-tripping and does not state the required decodeShift-decodeShiftImp equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "007bea7ffc4f2b3784b95fa30622c0f9e0021856882b3b28a802b6019513121b",
+      "reasoning": "No equivalence theorem with primeLengthImp is supplied, and the implemented primality guard is incorrect.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "fc85b90392025bad5b5f28394c43991f029e142dfc11323c69fade583c643f06",
+  "case_count": 1,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "c6336d7cc95ceb9e5a8afc4c14771401d0fa75bc2adea332c5143157a7a2261b",
+  "completed_at": "2026-08-26T08:21:23.046844+00:00",
+  "effort": "low",
+  "elapsed_seconds": 5.208001499995589,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "0a7f61252cafd0b2b51163ea19e7035c47becac6da28013ca3d70412edad6209",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "9c19ffe41cf53fde47b74e4c77745964539658eddb42881cf08713ad54696d06",
+      "reasoning": "The generated theorems are self-referential correctness/identity properties for a differently-implemented encode/decode shift, not an equivalence between two independent implementations as in the reference.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.002029,
+        "inputTokens": 1959,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 7186,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0036912,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 225,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 7186,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 7186,
+          "input_tokens": 2,
+          "output_tokens": 225,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 225,
+      "output_tokens_details": {
+        "thinking_tokens": 58
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

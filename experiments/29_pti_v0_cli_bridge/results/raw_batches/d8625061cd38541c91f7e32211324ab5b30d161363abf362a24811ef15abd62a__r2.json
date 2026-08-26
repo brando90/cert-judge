@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "d8625061cd38541c91f7e32211324ab5b30d161363abf362a24811ef15abd62a",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "775b22d511de3c732315bad7886ec8606e4f2bec143218dbbc927f57a6a4f6ae",
+  "completed_at": "2026-08-26T06:46:32.452679+00:00",
+  "effort": "low",
+  "elapsed_seconds": 31.68829966604244,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "7fb69db0836e5a47c3845ebf3299637eec219a2de5ee21c230f3900260a36e69",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "dd4967b8bc9a1902e7120836e73c0198518b61f3915a0b93a16cd1368275d9f0",
+      "reasoning": "The required equivalence theorem is absent from the generated code.",
+      "score": 0.0
+    },
+    {
+      "id": "fa87801aecd52940f0c7a24c1abb3d228923ee687998c2ff94f5e3d01deba3c6",
+      "reasoning": "The equivalence theorem is absent and the functional Base32 chunk arithmetic is inconsistent with the imperative encoder.",
+      "score": 0.0
+    },
+    {
+      "id": "eb982d7b1dbaa9f6ad52770da358e5a39ac860d02c1fff97380f87f6bce1b9cf",
+      "reasoning": "The stated theorem is present but false because the functional encoder uses incorrect padding, subtraction, and bit shifts.",
+      "score": 0.0
+    },
+    {
+      "id": "c71d87031659facd8686abaa4872435f6996377b2a12049f86525707f78ace65",
+      "reasoning": "The required equivalence theorem is absent and the functional integer parser rejects every nonempty input.",
+      "score": 0.0
+    },
+    {
+      "id": "be875377a0cf1990f3bda499da9fa4b41fac6d2a4a0186b05dded201aace2bc0",
+      "reasoning": "The equivalence theorem is absent, and constructor-distinct equal byte content yields different functional and imperative results.",
+      "score": 0.0
+    },
+    {
+      "id": "77fb2639d78e4ecadb9e3f386a788e7cbe1aca6eaec9a8b9f94d3787d8dccdad",
+      "reasoning": "The imperative and functional unquote implementations perform the same byte scanning and malformed-percent handling.",
+      "score": 1.0
+    },
+    {
+      "id": "c0d031bef024347a87d74c93337b51211631d8875b105f4fc8c3549e745eb0eb",
+      "reasoning": "The equivalence theorem is absent and equality of normalized bytes does not preserve TokenInput constructor equality.",
+      "score": 0.0
+    },
+    {
+      "id": "806ea558a9fb85d8cc90f52ec1ec3816df51cc283a1ec525e68d4500264a6c0f",
+      "reasoning": "The claimed equivalence is false because a string and bytes with identical UTF-8 content compare differently in the functional specification.",
+      "score": 0.0
+    },
+    {
+      "id": "f270ced0fc96a9e84f2455af5cefc2d86bdbaa57b839823d9bfe52d3ac3c149b",
+      "reasoning": "The generated implementation and ordering property match the supplied reference implementation exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "fbb81c4e852bf1bc41b69d48d8d56070c6720ca0e357c4d68f2650e0359eb2b0",
+      "reasoning": "The required sort equivalence theorem is absent from the generated code.",
+      "score": 0.0
+    },
+    {
+      "id": "c5862480b274362ce4e44b9cae96990fb2d5fac7f0ce9d3469f2f84a02aad759",
+      "reasoning": "Both sides of the stated median-low equivalence reduce to the same implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "88fb1bbf69ed2f1fe3232e37f2b727f3de962562d0ad0100f34ba704e2c5da7d",
+      "reasoning": "Both sides of the stated median-high equivalence reduce to the same implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "8e7b2090f166221127cc541d18c16343c14a20d5d6ca47daa6998a8721e34f1e",
+      "reasoning": "The required equivalence theorem is absent and the functional bisect midpoint and state updates are incorrect.",
+      "score": 0.0
+    },
+    {
+      "id": "0fb7ebb115ab0279ebafbaf8f182a7c193e09862ed30ae0a1bd1099ed548720b",
+      "reasoning": "The claimed equivalence is false because the functional bisect uses subtraction for its midpoint and incorrect recursive updates.",
+      "score": 0.0
+    },
+    {
+      "id": "227124a90fa2ec11b37ed6f0166bdc288b6e9afd1498ce3de89dbf7f8ef5ce5e",
+      "reasoning": "The generated code defines a different list-based API and omits the requested HeapPush correctness theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "d67dc73b28f074134ff6aec37301479a44649a8a8edc32189c359c0e4fcf82f1",
+      "reasoning": "The generated code uses a different list-based API and does not provide the requested Array-based correctness theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "e2b8230374637822228101ac37f0969d426128c618db31517c09ad21d46bf4f9",
+  "case_count": 8,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "5b2425d4e4401e523b1ba9b4874ed2f8c19ca6fd9e16651f4c6e268a7a5de938",
+  "completed_at": "2026-08-26T07:02:24.820739+00:00",
+  "effort": "low",
+  "elapsed_seconds": 17.41681595798582,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "357bcbecdac9ca6c0568cb496714e2e149994a5221c3c1d898911d4df9fb27f8",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "bdc10b0f5bd91b64cd9d08bf2cf1f1e4bc40c5fe50f32359d4621dedfed6f0c4",
+      "reasoning": "The generated theorem exactly states the requested BFS equivalence with the corresponding implementations present.",
+      "score": 1.0
+    },
+    {
+      "id": "b73d57178ba2a3941a74cfbb73024249e6bcec0facb721478f710a1f3ef4d8b9",
+      "reasoning": "The generated code exactly reproduces the reference DFS equivalence theorem and its context.",
+      "score": 1.0
+    },
+    {
+      "id": "c5081c92b3b9bfca594902132b9ba89a0eba4d5690360dcbecb9d60c21f624b1",
+      "reasoning": "The generated code contains the exact requested Dijkstra equivalence theorem with matching definitions.",
+      "score": 1.0
+    },
+    {
+      "id": "cfd8b2aad9e2669628bbc4c11b45a9b7a003ec552d708008f8116eaea9cfe5d7",
+      "reasoning": "The generated theorem and all relevant definitions exactly match the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "56241e019d1d1450281ef43e166b86034b0455a4bdb668b01d40cf9d6fc79bc0",
+      "reasoning": "The generated code defines only the functional routine and omits the requested equivalence theorem and imperative implementation.",
+      "score": 0.0
+    },
+    {
+      "id": "4b94a4a3c23cbe35f13f7d8a6f7d54d2a376ca1c68ba0ef92de409feb3922429",
+      "reasoning": "The generated code uses different names and supplies no decodeShift-to-decodeShiftImp equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "7abc8d7c0247bc70bb193fbd5d62dc640391a1c3bc772031939039d66648962b",
+      "reasoning": "The generated code omits decodeShiftImp and the requested equivalence theorem, and is in a different namespace.",
+      "score": 0.0
+    },
+    {
+      "id": "9c534e1119fb091ead57cea678d7a0d669324253d83c49bfdd6c97df797f0493",
+      "reasoning": "The generated code omits the required primeLength equivalence theorem and defines a distinct, incorrect routine.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "fb144db43cd044c732920779e828e9ed5c44fa771dfb4c96a855a50b10ec47cc",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "d47f8d4a20389686a0da2762494c7d7b4c64a0c62015b010a0258456a9dfe8b9",
+  "completed_at": "2026-08-26T09:32:40.293354+00:00",
+  "effort": "low",
+  "elapsed_seconds": 27.038430041982792,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "85212d7dd679111bcc157ac35e747c0fb904cf25147d5c893ed772feae62e502",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "eb9fe432e5500eee972a41bb7060a934f040c583fdcf8d6780883468440b36b5",
+      "reasoning": "The generated file does not state an equivalence theorem for insort_left_imp and insort_left_functional.",
+      "score": 0.0
+    },
+    {
+      "id": "ca95f096cdee24f5544e818c71d67f9496791f82ccb4280cf5ee8e0b7f6fe966",
+      "reasoning": "It states exactly the requested heappush imperative-functional equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "b53ec650eebd17dd8cec55a3a299a4a847cf9689f35fc31f943d5c308f719321",
+      "reasoning": "The generated file contains no heappop equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "cae9612f083830cf6d1a432061b22962c159b6caa455a34ac32152e566a65b4e",
+      "reasoning": "It states the same case-by-case get equivalence property as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "72e9a3db32936020c295d6bbe53cbeaa5ec85749690d78ff86c5497822b6cfbb",
+      "reasoning": "Although Post is defined, the requested correctness_thm is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "f1c9e13a30bd0192f6820ce9d50a566fdac230945432f80af607ec87b448bb9c",
+      "reasoning": "It states exactly the requested pointwise equivalence after update.",
+      "score": 1.0
+    },
+    {
+      "id": "c8afed03cb360488896e30feed823d9fd348c28882736d1b26c1bc65102b9aa3",
+      "reasoning": "The generated file does not provide the requested ChainMap get equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "51f679a0dc0b8ddafcd8da753b387f22512f742363391a19b21227178d4a0bc5",
+      "reasoning": "It states exactly the requested BFS functional-imperative equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "7b4be89fa7ec3173407fa5106c8cda12079aaba6cb85ae6cd24a9b4675ae1b5b",
+      "reasoning": "No countingSort equivalence theorem is stated, and the generated implementation uses a different input type.",
+      "score": 0.0
+    },
+    {
+      "id": "28cd286e65ec28b0f376abbd8ceb899e5f68b70818b086c936e311073102fd09",
+      "reasoning": "It states exactly the requested DFS functional-imperative equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "2ed5f57a15342742a597b8e21d0314aad620ecf65002cfba90b6dde25f319711",
+      "reasoning": "It states exactly the requested Dijkstra functional-imperative equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "b5a65c824e3c7effba48cdfb9021e3175c2c97490591463feabce8dee82240ea",
+      "reasoning": "The generated theorem is identical to the reference isPrime correctness theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "6b60eb805c0181c5a16907bf3ee48b8dae9fab8db3e96a816cad33c80b86587f",
+      "reasoning": "The requested equivalence theorem involving isPrimeImp is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "190ef6b8674398c40f0a99213a07537ba42075a8db352aa5001cf80a05c6d24e",
+      "reasoning": "The generated theorem concerns a different integer GCD function and does not state the requested equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "1f6cda987e41dbb849b953ef3ad980dedc8d8c7f665c4b7e5aeba2c66757c314",
+      "reasoning": "It proves equality to a duplicate specification but does not state equivalence with string_sequenceImp.",
+      "score": 0.0
+    },
+    {
+      "id": "2d27f231ca63664f2ced116bd1bf7640300f28ab607057c4ad070782cc6a3445",
+      "reasoning": "It proves a functional specification only and does not state equivalence with countDistinctCharactersImp.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

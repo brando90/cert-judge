@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "c8473742725c115c34e4b6485c4f86453a1555152a2ed9049ad302b4452388a5",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "801fc5a2e82bd3cde5a353d0f2de5bb7fd47e0939181d7dc03d0e0667cfb8c86",
+  "completed_at": "2026-08-26T07:40:57.093252+00:00",
+  "effort": "low",
+  "elapsed_seconds": 38.874157749989536,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "02d5411ced11f80e51c69df7bb01f10c85d08e654fd691f288b16bc06f455e20",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "c6bf8bb407793a17fdf8d97ab3a95ef9a581dbaaa50b1bee95a473cfe66ead71",
+      "reasoning": "Implements bisect_right/insort_right and states analogous partition specs, but only for a general Ord type without the coercion/key structure and with sorry proofs, so semantics are related but not equivalent.",
+      "score": 0.5
+    },
+    {
+      "id": "ff74624a3973f1db273b1b038b7e18218c599404e0562267ca7de9bbc617c8f3",
+      "reasoning": "Reasonable List-based bisect_right/insort_right analogue with matching spec structure, but proofs are sorry and custom Option type diverges from reference's Array/Coe setup.",
+      "score": 0.5
+    },
+    {
+      "id": "a4cb9e2714ed5ea503c34361756110646c484c5f470ae692078eef38e766ea89",
+      "reasoning": "Provides bisectRight/insortRight with reasonably matching partition specs including key-function variant, but proofs are sorry and the α/γ coercion structure of the reference is not modeled.",
+      "score": 0.55
+    },
+    {
+      "id": "87ee120c0e75dca9f17a5c67ec0635cc81a01644b0c7583413405a2f484f3d12",
+      "reasoning": "Implements safeCopy with pre/post conditions matching the intended safe-copy semantics and correctness theorem stub, reasonably aligned though reference itself is minimal (Pre/Post trivial).",
+      "score": 0.6
+    },
+    {
+      "id": "13b320158abe75b76ef69ce72cd4a2bf93ef89c1596624ec148e4e004892c2d3",
+      "reasoning": "Generated theorem is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "90b33e422c7742c4d202dcbc493f38499e15898b2ac1b753cb66541666d02035",
+      "reasoning": "Implements safeCopy returning Unit with mutation-based pre/post spec that captures the same intended safety property, though structurally different from reference (Except ByteArray) and reference itself is trivial.",
+      "score": 0.6
+    },
+    {
+      "id": "0f1c9c23ecd9d98dea792584fd84ac2ea8408f94104337b4546a1ba7e2f9ab7d",
+      "reasoning": "Provides mean_func/mean_imp analogues with Pre/Post and spec_prop but the target equivalence theorem itself is commented out/missing, unlike reference which states it (with sorry).",
+      "score": 0.6
+    },
+    {
+      "id": "5b09fd9f1bfc5cffb59a79c2c17df79f2ec8c5f32b71f5b17709afc8be5e3a15",
+      "reasoning": "Implements a first-char extraction with pre/post/correctness structure analogous to reference's myFirstChar equivalence intent, but uses different representation (Option-based prog) rather than proving equivalence between two implementations.",
+      "score": 0.5
+    },
+    {
+      "id": "3e7b086144e8ac5e917d2bb4a1f479966a48e886c15d09b7c043e8b6e497a4a0",
+      "reasoning": "Full median_func/median_imp implementation with matching equivalence theorem statement identical in form to reference, only differing in proved lemmas being added (extra) with the target theorem still sorry.",
+      "score": 0.9
+    },
+    {
+      "id": "1ebaa7ede0e54fcd2796bb2069b025c7271f27cb17f1aedbce3da14c93a9feb8",
+      "reasoning": "variance_equiv_thm signature matches reference, but mean_func is buggy (uses subtraction instead of sum, wrong condition) making the functional implementation semantically broken.",
+      "score": 0.3
+    },
+    {
+      "id": "2099d8d40164d03d3a7c1e64945b91801b732c32655234c017bac0edd7497eec",
+      "reasoning": "Correct variance_func/variance_imp implementations with matching equivalence theorem statement identical to reference, differing only in extra correctness scaffolding.",
+      "score": 0.9
+    },
+    {
+      "id": "a941871ad17bb9e2a893dbea7aacd1c34422ce30f0bbbf95b7217c3d5af3b565",
+      "reasoning": "Implements uppercase via manual char mapping with pre/post/theorem structure, but does not state an equivalence theorem between two implementations as reference requires, instead just tests.",
+      "score": 0.4
+    },
+    {
+      "id": "43c4b53320674925c8cba7f2e379d4bda5af1a273ab88672af1759f63fd8c434",
+      "reasoning": "Generated theorem is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "f55a38438b2ea9ffa7ff4139a07ed5204f961a0865b8605ca3e08236347d2ab5",
+      "reasoning": "Implements toUpper wrapper with pre/prog/correctness structure but no equivalence theorem between separate func/imp implementations as the reference intends.",
+      "score": 0.35
+    },
+    {
+      "id": "0f68ee2470aab2cc34b2ccf31707723bf21c36b5bc955bed83a436f24bd1f06f",
+      "reasoning": "Implements correlation_func/correlation_imp with matching structure but sum_func is buggy (uses subtraction instead of addition), and lacks the equivalence theorem itself which is entirely missing/commented out compared to reference.",
+      "score": 0.4
+    },
+    {
+      "id": "0b561384a927acb0c793a65df993badeffbf24ed19be6a1f7e4079f60ec03823",
+      "reasoning": "Generated theorem is identical to the reference implementation.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.025452,
+        "inputTokens": 25387,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 36645,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.16572399999999998,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1914,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 36645,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 36645,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 36645,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 36645,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 2,
+          "output_tokens": 1914,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1914,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "0cf3d429cedfccd129403ef78bb431e5cfc9775ef7f998fdcdd786e32a61e585",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "d036ebd558d5ce8ac636395be9e7ffb610f9b38a7bce1aced29dcec13489d720",
+  "completed_at": "2026-08-26T08:08:28.565811+00:00",
+  "effort": "low",
+  "elapsed_seconds": 38.262052957958076,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "91dec49b6683566cf6dad8dc6672c65da248c639b6068422581ee25ecfb734c0",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "fe15707437f06f2ecb87858df1603e67b2954aa6a08b31dce7a3663d55a87efb",
+      "reasoning": "Same overall structure and equivalence theorem statement, but functional bisect_left uses wrong midpoint formula ((lo-hi)/2 instead of (lo+hi)/2) and recursion decreases wrong bound, diverging semantically from imperative version despite matching goal shape.",
+      "score": 0.75
+    },
+    {
+      "id": "83943c4cf42b25cae8ba1a61bc9d717d492c2dae4e23f1e7cee70d1d6b87c0af",
+      "reasoning": "meanRat is broken (returns 0 when n≠0), and covariance uses (xi+xbar) instead of (xi-xbar), producing incorrect semantics though the equivalence theorem statement itself matches structurally.",
+      "score": 0.2
+    },
+    {
+      "id": "f1e4e61d6e9f4f0d935237b677dd9def13b60710b7718fbe719e0ca697532eee",
+      "reasoning": "Faithful reimplementation with correct covariance formula, matching equivalence theorem and extensive matching test suite.",
+      "score": 0.9
+    },
+    {
+      "id": "a181d9cee99c4d8cf586ed16a09a2cd93c6a3937be6369fb0b36aef775dbcaa1",
+      "reasoning": "Closely mirrors reference structure with custom Rat type and matching equivalence theorem, minor risk in custom rational arithmetic correctness but overall well-aligned implementation and tests.",
+      "score": 0.85
+    },
+    {
+      "id": "a8befe273e545d8cedf82dee6781fe323df208052e6a11c4be3427f607c650df",
+      "reasoning": "Matches reference equivalence theorem and implementation closely, only lacking Pre/property/Post/correctness sections but core matches semantically.",
+      "score": 0.85
+    },
+    {
+      "id": "8a80ffebc159d420299b2649b796418ee9ab0866a00022caa6a7319c8504c6e2",
+      "reasoning": "Essentially identical to reference including full Pre/Post/property/correctness/equivalence theorem structure.",
+      "score": 1.0
+    },
+    {
+      "id": "ee99a398f60568d95cd50c059e88aa2654d1ab9f3f6ca8b1e64fe2be3b001d09",
+      "reasoning": "Matches equivalence theorem and core implementation, but functional siftdown uses parentpos ≤ heap.size (should be <) which is a subtle bounds bug versus imperative version.",
+      "score": 0.75
+    },
+    {
+      "id": "8ab8cd4b9da8db43799a14ebe861bc3ce2b099a6c89bdc231ea203fe3361cccb",
+      "reasoning": "Full match with reference including corrected bounds check and complete Pre/Post/property/correctness/equivalence sections.",
+      "score": 1.0
+    },
+    {
+      "id": "585173482ca3dc4ca9b492dfd825fc93343e390a136d4d6861724b883a75d647",
+      "reasoning": "Implements matching heappop_imp/functional with equivalence theorem matching reference, but Pre/property/correctness/theorem statements are left blank (missing content) reducing completeness.",
+      "score": 0.7
+    },
+    {
+      "id": "7b49d04fb0940f3fa127615c9a96b5b6c4683b1d270400e047de214157e331ce",
+      "reasoning": "Equivalence theorem statement matches reference closely in structure and semantics comparing imperative vs functional queue get operations.",
+      "score": 0.85
+    },
+    {
+      "id": "2784e3bd09d3f81000761cce82c1f95c30e36601e53776168f37b2fe5f9e3fb2",
+      "reasoning": "Correctness theorem statement and proof structure closely match reference with equivalent Pre_Put/Post definitions.",
+      "score": 0.85
+    },
+    {
+      "id": "435c6aca1692c941da938bdd87ac73df021db4acd0c192303cda8b81deeb8e3f",
+      "reasoning": "Equivalence theorem statement matches reference closely comparing imperative HashMap counter update against functional list-based update.",
+      "score": 0.9
+    },
+    {
+      "id": "43a0b53a36c8839777eecfda45346d9f3b9ce3afb6486e6fcb8b0098da8952c8",
+      "reasoning": "Completely unrelated content (odd sum parity) bearing no relation to the reference myOddSumParity equivalence theorem's actual domain/context.",
+      "score": 0.05
+    },
+    {
+      "id": "074e86c9b4acd89c726140d1a60d5f72417691840ee5a16f5464ee173af5bf22",
+      "reasoning": "Equivalence theorem statement matches reference structure comparing imperative HashMap-based ChainMap get to functional list-based get.",
+      "score": 0.85
+    },
+    {
+      "id": "de10354ee34370500ff94ce7b592b6206fe28bfc9034736f3c94ecaa548bc25d",
+      "reasoning": "Uses different overall structure (Pre/Post correctness_thm trivial pattern) but relies on nonexistent Lean.realPathNormalized API and differs substantially from reference's minimal correctness_thm shape.",
+      "score": 0.3
+    },
+    {
+      "id": "7d5a26a9171f2e4c12ba5bc414779de9ffb8e1b661afc09d5ded75bebc5f643a",
+      "reasoning": "Substantially different structure using subtype-based results and three separate sorry theorems rather than matching reference's simple Pre/Post/correctness_thm pattern.",
+      "score": 0.3
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.041010000000000005,
+        "inputTokens": 40945,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 50561,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.2222368,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1890,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 50561,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 50561,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 50561,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 50561,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 1890,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1890,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

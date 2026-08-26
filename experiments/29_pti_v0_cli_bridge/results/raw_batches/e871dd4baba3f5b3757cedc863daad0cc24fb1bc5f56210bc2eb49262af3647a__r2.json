@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "e871dd4baba3f5b3757cedc863daad0cc24fb1bc5f56210bc2eb49262af3647a",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "eeb2f54920402cae27abe8901bb6a61d41f3e2d115d5db8901559bcb4ae7af98",
+  "completed_at": "2026-08-26T07:19:17.405058+00:00",
+  "effort": "low",
+  "elapsed_seconds": 32.50885487499181,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "f0a117b133e110812be69dd8e5e8b2dee17ba1948148b38e8ddbc43ab1e8a77a",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f153da7a4973abcc7aaf883f67a2c7ecbf3dc28b5c4ec0b8b756e1d2de242bcf",
+      "reasoning": "The generated theorem states the same imperative-functional equality with the same parameters and defaulted upper bound.",
+      "score": 1.0
+    },
+    {
+      "id": "f5619374f8da1c634493202b64b77947249ec8c2f6b52d77512d17a3c533a18a",
+      "reasoning": "The generated theorem exactly preserves the reference universal equivalence between quote_imp and quote_func.",
+      "score": 1.0
+    },
+    {
+      "id": "d7428a9e5a1ea7732cf815c4b3b9aad350475f209f33215951f9ce7e1e9eed25",
+      "reasoning": "No equivalence theorem or other proof establishes the reference join_imp equals join_func guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "a5485be157a3dc42f2aeec5eaa0c22181acf44a3c9c4713c4b45330aecf77aea",
+      "reasoning": "The file defines limited properties but omits the required universal join equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "ab93dcc1726f78f60c2c03e4f05c2874c020c5539c035a8be27098b856f97044",
+      "reasoning": "The implementations and tests are present, but no theorem proves the required Base32 equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "7f988651a220e2f1eaba01a357a6c3913d3aa295de8ff8aa5eb88ae6a9893446",
+      "reasoning": "Only an unproved output-length property is introduced, with no imperative-functional equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "8074f966497c87ee7862e6d38327921fb00c1f903f31f7ca8d69e7d68c866fe7",
+      "reasoning": "No theorem establishes that loads_imp and loads_func agree for every input string.",
+      "score": 0.0
+    },
+    {
+      "id": "79b710b1af437e0fd8ab60928a9219fdf4ebb61d399ee0f55e6db105d57ce37b",
+      "reasoning": "The generated loads_equiv_thm has exactly the same universal equality guarantee as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "5d2c2b9118e0ba9e8a9a61369f3870245f7e0bcc5243e0eb17cd2bb30e794835",
+      "reasoning": "The generated development omits the required unquote_imp equals unquote_func theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "5f2c9d489368d4beccc958b30335cfcde92d7416b1737405794e8c64f715c284",
+      "reasoning": "No theorem proves equivalence of compare_digest_imp and compare_digest_func.",
+      "score": 0.0
+    },
+    {
+      "id": "3015f9265f43d7552678f622bec326501c80e09ecc5e7a45c267a26f50279465",
+      "reasoning": "The generated compare_equiv_thm exactly states the reference comparison-equivalence guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "530b766ee4dfd7083fbfe4e0395bca5e839bf4eb07fda14760601ce8dfb8ba73",
+      "reasoning": "Although order_prop matches the target proposition, no theorem proves it for arbitrary graphs.",
+      "score": 0.0
+    },
+    {
+      "id": "335f09c27cc5520ab6c029897abb48823f47985824165b83d8e484b3b21daae2",
+      "reasoning": "The required topological-order correctness theorem is absent, leaving only an unproved property definition.",
+      "score": 0.0
+    },
+    {
+      "id": "54eb928a3b23a1b23494d011461ebf8e449f412e41fb26648f67192d8018892b",
+      "reasoning": "The generated file has matching definitions and tests but omits the median_low equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "b3789b277d24aeda5d0087143122bbaa106190f861b00a616d1311de8d11b975",
+      "reasoning": "The generated median_high_equivalence_thm exactly preserves the reference equality for all input lists.",
+      "score": 1.0
+    },
+    {
+      "id": "083412cdce49418afc703e1c4512b17ec2137659bc974e67ea0701d006b17d25",
+      "reasoning": "No theorem establishes the required bisect_left imperative-functional equivalence.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

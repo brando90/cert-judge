@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "63f7d0df58949816b57f33046c06c057c3e520434484dab010f3054f83b07b9b",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "ae3ad6b1be908cee39b9d5c1f62d5c590e6c1eda7d3bd123999dc0f66797e8ab",
+  "completed_at": "2026-08-26T06:58:30.498617+00:00",
+  "effort": "low",
+  "elapsed_seconds": 29.961215166025795,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "bc5c417c0d6caf82a569bb73b1cd91e388d84cd10c820caac4073338fac9a8bc",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ba9d12813cc5ea380194891906f62fee10a20281509eddc0df1601939377c71a",
+      "reasoning": "The required heappush equivalence theorem is entirely absent.",
+      "score": 0.0
+    },
+    {
+      "id": "d5e8523e3ee120f4cb1a209d2a71c4ae89f9f0f3e68112f219f1427db95f7fae",
+      "reasoning": "It states the requested equivalence theorem and the two heap-pop implementations largely follow corresponding sift logic, despite boundary-condition concerns.",
+      "score": 0.85
+    },
+    {
+      "id": "b6984bdb2ce7c10613d17aad8fce159544ada690ae449ced1da3d1285ce91929",
+      "reasoning": "The requested correctness theorem is absent from the generated code.",
+      "score": 0.0
+    },
+    {
+      "id": "bd2e4f9f632e8bdb99336fa01311fa4cbbaa2c7811d179d7119fbe5b98d7f929",
+      "reasoning": "It includes the requested ChainMap lookup equivalence statement with matching functional and HashMap traversal semantics.",
+      "score": 0.9
+    },
+    {
+      "id": "669fd096cd04dac5fa8882dde0c9128152ca69229b800152874afe4d76e21f77",
+      "reasoning": "The equivalence theorem is present, but the functional BFS handles out-of-range starts or targets differently from the imperative version.",
+      "score": 0.55
+    },
+    {
+      "id": "8586055b4301e89a227c2c839aabd7caf6d0992612cf8f275683174e8e0e749a",
+      "reasoning": "Neither countingSortImp nor the requested equivalence theorem is provided.",
+      "score": 0.0
+    },
+    {
+      "id": "6b3f20a4708b85b584b511b0993e20f5ce471b19696b7b5ba6341f938c8a1af4",
+      "reasoning": "The imperative DFS is defined, but the requested DFS equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "4e4db5aa8cd7bffab5a7d473a017fe079c36d384acfa555bda5b2a20a1aafdc7",
+      "reasoning": "Although the equivalence theorem is present, invalid-index behavior and the functional algorithm's limited fuel can diverge from the imperative implementation.",
+      "score": 0.35
+    },
+    {
+      "id": "87d9beae14973656830d222388743514827c560a323023a37b0aa6d68a008c8e",
+      "reasoning": "It provides only a primality implementation and correctness claim, with no isPrimeImp or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "af19b46c3b794a17d12273c3a66a257f2d9e1daa939b46cdbac7467f32ebd107",
+      "reasoning": "It lacks both the imperative primality implementation and the requested equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "600ba43447e28fafc68fed9adb7faa284507195fe76f1d86c0cbd4b5c7fc31fa",
+      "reasoning": "The generated theorem and implementation are exactly identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "54c5615d9fe98dc61f3cb4276793f5fb2f2da20765ff111e21d35cc8a1bd375d",
+      "reasoning": "The generated theorem and implementation are exactly identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "1999461cc8e8d57154490dc1e20829f7e9f80f0927fbad5f4988ff559349e3d9",
+      "reasoning": "It omits isPrimeImp and the requested isPrime equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "04797c6fe69267c2ab78233747e34589d8f986ad2613a4e4bdf621cc5fc00623",
+      "reasoning": "It defines a differently named primality function and omits the imperative counterpart and equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "ac9ac01977cf0a8135cf7dfba3ffe80d000c8c69c573994566503d5556d8bddd",
+      "reasoning": "It contains no isPrimeImp definition or requested equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "765529935d1d7cdb50ca3d9d0270d7aa0d3f1846fa6844efef60d7f7b6615874",
+      "reasoning": "It changes the input type and omits uniqueImp and the requested equivalence theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

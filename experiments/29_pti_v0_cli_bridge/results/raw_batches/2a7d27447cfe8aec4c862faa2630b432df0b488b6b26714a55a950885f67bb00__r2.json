@@ -1,0 +1,77 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "2a7d27447cfe8aec4c862faa2630b432df0b488b6b26714a55a950885f67bb00",
+  "case_count": 8,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "a22720ea3f9bebab447c59b840df16071d7966a2832ee2023660e75da6810b38",
+  "completed_at": "2026-08-26T07:34:52.674254+00:00",
+  "effort": "low",
+  "elapsed_seconds": 17.024287624983117,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "c89de40d616ba6afdfb8b01a6d37bc9a9af3eb8f13d219ca3760d5f7d0e65e35",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "a9cce38d6fa0e63b96ad90dc3bd7f65f578395c7d2d682ccbc660ae5ed36625a",
+      "reasoning": "It proves functional BFS soundness and optimality but omits the core bfs-to-bfsImp equivalence guarantee.",
+      "score": 0.2
+    },
+    {
+      "id": "9db155f7cda1fa837b3d5f0bef28e4c1f42f900746023dcc9b1760b69dd6d451",
+      "reasoning": "The generated theorem exactly states the required equivalence between dfs and dfsImp for all inputs.",
+      "score": 1.0
+    },
+    {
+      "id": "c028d6abb0d8e4f44ecd081f553b8140fe06be6d424322d407470e79f75bc07c",
+      "reasoning": "The generated theorem exactly states the required equivalence between dijkstra and dijkstraImp for all inputs.",
+      "score": 1.0
+    },
+    {
+      "id": "8b9770cee567e88eced98539b7731bd33af15f408faa383720923d1ae704e80c",
+      "reasoning": "The generated theorem and all definitions are identical to the reference correctness guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "a4ea0694a4b65cadce35d584d582126ca149095f1560ad7e353ef3d3e9d3127f",
+      "reasoning": "The generated theorem and all definitions are identical to the reference specification-equivalence guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "7adbff527ac73befc98a9d7b9545e8f22e4844263f720a3dd2b5d7850bae3026",
+      "reasoning": "The generated theorem and all definitions are identical to the reference identity and specification guarantees.",
+      "score": 1.0
+    },
+    {
+      "id": "9b1cbcde4ae635f8948713b34984a5b633a2907d8d239ae305265ceb422c08f1",
+      "reasoning": "It proves a round-trip property for different functions but omits the required decodeShift-to-decodeShiftImp equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "4c1f3333ee5753b2f5f57041c5995c0c57e35910d68c4f31cfe9cc63f622228d",
+      "reasoning": "It establishes only functional prime-length correctness and omits the required primeLength-to-primeLengthImp equivalence guarantee.",
+      "score": 0.2
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

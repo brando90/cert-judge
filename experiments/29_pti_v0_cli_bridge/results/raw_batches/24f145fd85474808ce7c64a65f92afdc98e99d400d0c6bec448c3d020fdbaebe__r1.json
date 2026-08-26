@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "24f145fd85474808ce7c64a65f92afdc98e99d400d0c6bec448c3d020fdbaebe",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "4d85e38a514e068d2d13a5ce0fdee1d34dbc1e7b4a0387a0385176000379546c",
+  "completed_at": "2026-08-26T07:56:53.683779+00:00",
+  "effort": "low",
+  "elapsed_seconds": 43.432690540968906,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "0ff465ea3e7dd3e807ca2ddeb6e6c484760f545d4a416238a8a2b3f47b4a8f40",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f4078a1fbe2d919151d4dac9499ea673e5cd011f8b7d75fef83a5be227ea7ac2",
+      "reasoning": "Missing the equivalence theorem statement entirely.",
+      "score": 0.15
+    },
+    {
+      "id": "cdd9f963dd105d73038cdaab85b1be573f7e1c4353fa541627bb0e80d481e713",
+      "reasoning": "Matches reference exactly including the sorry'd equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "fbadc1fb1cc93a56c2821f42dd00b7a4e87d76e90b7b656049e7f19f6dc966c9",
+      "reasoning": "Equivalence theorem join_equiv_thm is entirely missing from generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "c7a300261a73efc32791792799ed1f334b8f21622bcae72ccf7e6fd1516f9fd4",
+      "reasoning": "Includes join_equiv_thm sorry matching reference structure closely.",
+      "score": 1.0
+    },
+    {
+      "id": "a6f06bd996a0e02674d28c9fb98a786096d263340f6726c7add179a3626d3a31",
+      "reasoning": "encode_equiv_thm is missing entirely from the generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "e477b1b426bc5d1710289b0ab031d889a54f76a5baeba026f48dac53ef14e9b7",
+      "reasoning": "Includes encode_equiv_thm sorry matching reference.",
+      "score": 1.0
+    },
+    {
+      "id": "aea3228a0d2438547a6df6c7ae26bbd51ff3eaab3f70b41952f3c5ffffcecfe3",
+      "reasoning": "loads_equiv_thm missing entirely from the generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "929b83f420482cea45e3167d24a71dea91816c7ca0839cb614630ad365b37c52",
+      "reasoning": "loads_equiv_thm missing entirely; file ends without stating it.",
+      "score": 0.1
+    },
+    {
+      "id": "8336457138a07bed6cb839384ec104766f9b199d6b1a36662c2056746772e3a4",
+      "reasoning": "Includes unquote_equiv_thm sorry matching reference.",
+      "score": 1.0
+    },
+    {
+      "id": "381ccf1893510ddb1aa27f312291e3e687d5bc9eecac2b491e22891fa3bfeea6",
+      "reasoning": "compare_equiv_thm missing entirely from the generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "4f56b6f54e2af7a24378ee2dbdc46f7601f2c2c950c41bf14b30d7b9f1dc59ad",
+      "reasoning": "compare_equiv_thm missing entirely; file ends after Post/Correctness section.",
+      "score": 0.1
+    },
+    {
+      "id": "9f668a7815850ccc28a8a33a091c29853e626aa3efcb36d7b7fea8e52449d34a",
+      "reasoning": "sort_equiv_thm and order_thm proof both missing entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "a791b1f806a7d8abb07c13eca24355b199434d2e0f708a1272917818503a3169",
+      "reasoning": "Contains order_thm sorry but lacks the final sort_equiv_thm wrapper theorem from reference.",
+      "score": 0.5
+    },
+    {
+      "id": "1c42f095e0e56645b392d6006d8f5607e80a3bebe0af3e99ee7f89094d72ec4a",
+      "reasoning": "median_low_equivalence_thm is missing entirely from the generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "3da9f4ec5bbb8c9b7c6b7d5c4997e2e452772feddf063671de46c662b93691fa",
+      "reasoning": "Includes median_high_equivalence_thm sorry matching reference exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "04ec0a9001022ebc96e1a05971b8b0b143f59cc06b775f69d69793a62386277d",
+      "reasoning": "bisect_equiv_thm missing entirely from the generated file.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.028808,
+        "inputTokens": 28738,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 40966,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.032267199999999996,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2407,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 40966,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 40966,
+          "input_tokens": 2,
+          "output_tokens": 2407,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2407,
+      "output_tokens_details": {
+        "thinking_tokens": 969
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

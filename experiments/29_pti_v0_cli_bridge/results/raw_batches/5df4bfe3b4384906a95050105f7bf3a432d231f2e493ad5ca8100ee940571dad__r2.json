@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "5df4bfe3b4384906a95050105f7bf3a432d231f2e493ad5ca8100ee940571dad",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "1cc2501f048c39b0fceff548a8dcbccbc874e4f43535393d550b52162f35c406",
+  "completed_at": "2026-08-26T06:43:39.614888+00:00",
+  "effort": "low",
+  "elapsed_seconds": 38.89818679203745,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "0de16b0e8abd03646860d103cd48cf80b5da820497042541050305d753339638",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ebb3655cfa2ae9ebc7b194658d6239c82a9690768923076c1b9f41c4d8f1bd76",
+      "reasoning": "The functional bisect uses an incorrect midpoint and bound updates, so it is not equivalent to the imperative implementation.",
+      "score": 0.1
+    },
+    {
+      "id": "b2af106860b67ce8f5f679ea582ccf6aed2f0463668c80f5e385b34491c19da3",
+      "reasoning": "Both implementations use matching right-bisect logic and insertion behavior.",
+      "score": 0.98
+    },
+    {
+      "id": "e35357027f31628db554e939726379ad9f1493d36b41338bb9fa0d8617e25009",
+      "reasoning": "The imperative character loop implements the same quoting and apostrophe replacement behavior as the functional version.",
+      "score": 0.98
+    },
+    {
+      "id": "d199f7b191246820c474e48194126e36aad4cab0b40e791b23bb0bcb62d9f6ec",
+      "reasoning": "The manual quoting and space-joining loop matches mapping the same quote function followed by intercalation.",
+      "score": 0.99
+    },
+    {
+      "id": "bf33352e42f7b5cbbd04ccccbe8abce9d936f96279cdfa6ec7b30f10d7528305",
+      "reasoning": "The imperative join performs the same per-item quoting and separator placement as the functional join.",
+      "score": 0.99
+    },
+    {
+      "id": "d8669d6f38c8c4fc259908afcdde5801670e8349f9be61349c5ec977e1cc699e",
+      "reasoning": "The functional encoder subtracts bytes while packing chunks whereas the imperative encoder packs them normally, causing incorrect outputs.",
+      "score": 0.1
+    },
+    {
+      "id": "bf303e28f8390495e84cf0bd68c6bf2cb3e6994e45219df5d965a5ccec8535cf",
+      "reasoning": "The functional chunk packing and imperative bitwise packing implement the same Base32 encoding and padding rules.",
+      "score": 0.99
+    },
+    {
+      "id": "92511bd205ad9c45f38728f352fefdbfde49d0165c5b1343cf70e8b498f45a29",
+      "reasoning": "The imperative parser accepts keyword prefixes such as \"truex\", unlike the whole-string functional matcher.",
+      "score": 0.7
+    },
+    {
+      "id": "8c307e776253d6561622b00b47e5756e36768fcb05f22930933ab3f69e5c5098",
+      "reasoning": "The imperative parser accepts keyword prefixes such as \"truex\", unlike the whole-string functional matcher.",
+      "score": 0.7
+    },
+    {
+      "id": "51a186d5540a082ee50e5965bc1499cf18da06a0687bef53c47c1f406b9e7888",
+      "reasoning": "Both unquote implementations process valid percent escapes and preserve malformed sequences in the same way.",
+      "score": 0.99
+    },
+    {
+      "id": "17b066befbab8744aa382b58c9df8774ba80087d77608d04d082ad2ed0ce12d2",
+      "reasoning": "The imperative comparison equates strings and byte inputs with identical UTF-8 bytes, while the functional comparison distinguishes constructors.",
+      "score": 0.65
+    },
+    {
+      "id": "3e699a8e667bb16badf6dd1f4dbaca09f7b9edc7a1af951624f08e4854f0e0e1",
+      "reasoning": "The imperative comparison equates strings and byte inputs with identical UTF-8 bytes, while the functional comparison distinguishes constructors.",
+      "score": 0.65
+    },
+    {
+      "id": "5a79d99fe75a097b22fd01a80d47bb91c2dfa77a3071c2fbdd6b3817ef541692",
+      "reasoning": "The Kahn-style implementation correctly returns a topological ordering for acyclic graphs and an error for cycles.",
+      "score": 0.98
+    },
+    {
+      "id": "a043d1e030f4e7304b47b22ac0e47f67c9ab3f33b89313b5510a685ef7d38c1e",
+      "reasoning": "The Kahn-style implementation correctly returns a topological ordering for acyclic graphs and an error for cycles.",
+      "score": 0.98
+    },
+    {
+      "id": "2e9ab732ac063dbf3d49a3734bfb7bfad4a3b4ecbf105dfe4a78732046e1d1df",
+      "reasoning": "The benchmark and imperative median-low definitions are identical.",
+      "score": 0.99
+    },
+    {
+      "id": "087858e285a199dd21cdc19ed45a3259b7d331d06132a8d742464749432e1d4a",
+      "reasoning": "The benchmark and imperative median-high definitions are identical.",
+      "score": 0.99
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

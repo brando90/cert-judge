@@ -1,0 +1,72 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "ea718a67f698b6cfa1e404ea485190512113162822aaa869837be2e310fb7a80",
+  "case_count": 7,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "5a0d4dedb3a10da2d8bab7ea6392e76aa33f56229cf7871fdecc5349b5d82c38",
+  "completed_at": "2026-08-26T07:35:29.867383+00:00",
+  "effort": "low",
+  "elapsed_seconds": 16.926621874968987,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "ae9b0a5730a73ef55321018e827d48602be46f45c7ba897a4af8245c7f5907f3",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "dd6deded82459f8e41d92ff6bd678fff6705f34e067f397d21925d34b1579365",
+      "reasoning": "The generated theorem states exactly the same DFS functional–imperative equivalence as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "d068064e474ba37420eab9ee641bdac9275f5c3e0fd99902f08ba8b408b65b35",
+      "reasoning": "The generated theorem and surrounding Dijkstra definitions are identical to the reference, including the equivalence guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "eb5e315571030e27e393e569f33d6003564edbd57c56ed6e677d1a754fe0362d",
+      "reasoning": "The generated code defines only the functional maximum routine and omits any imperative implementation or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "d0ebd4582e8c9635783da60934b3e03c43733273ed245fcf07876dc0a327ddf4",
+      "reasoning": "It proves a functional specification relation but omits the required equivalence with pairsSumToZeroImp.",
+      "score": 0.2
+    },
+    {
+      "id": "995fbebe03be8105b11e2a56ea48d8b1a77318985a9403775ca35804e5f64f71",
+      "reasoning": "The generated results concern differently named encode/decode functions and omit the required decodeShift–decodeShiftImp equivalence.",
+      "score": 0.1
+    },
+    {
+      "id": "e542fb0dab49b71110ce75f112ccedde3c22629d0770fe40eea11b83526416e2",
+      "reasoning": "The generated theorem and all relevant definitions exactly match the reference correctness guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "9d31883d7c24e068ef6fd3d5ec06022ed9ea20283ac6f39c296425ae6191a71f",
+      "reasoning": "The generated theorem omits the required primeLength–primeLengthImp equivalence and instead states a separate, unsupported specification claim.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "9d4bcf754dfaaa9ec34a834c25f38142a6d5b123fe1f38689e5aa84cf2f09055",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "9b4d4aa5091431ca2632b6efd0d67485df8ab8425622427a63b07a40d946416a",
+  "completed_at": "2026-08-26T08:49:21.415150+00:00",
+  "effort": "low",
+  "elapsed_seconds": 46.62804691703059,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "65aab86a608e0ce2a3e41cd6988302b67c033b711382fd6fd1b3cedf3b9a62d9",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ea50062caac2d6c53151ba1ef0f906138b6a8bfa6d6daeb256689ba63a2619ba",
+      "reasoning": "Generated theorem statement is identical to the reference equivalence theorem, with matching definitions and a sorry proof as in reference.",
+      "score": 1.0
+    },
+    {
+      "id": "ae1b747b7210fb5bfc7dc2ff00e5dc1a538aee56c595e4f4e21a1b39c3bfefe0",
+      "reasoning": "The generated file never states the bisect_equiv_thm equivalence theorem at all, and the functional implementation has an outright bug (mid computed via lo-hi and using mid-1 for recursion), so the core guarantee is missing entirely.",
+      "score": 0.05
+    },
+    {
+      "id": "be9d57eab441afe9585c7f071b199255584a22179fd5e4ab9ef0273d8449fb48",
+      "reasoning": "Includes the exact bisect_equiv_thm matching the reference plus additional partition/correctness properties, with only sorry proofs left as in the reference.",
+      "score": 0.95
+    },
+    {
+      "id": "8eecb7adf639aff875e5ea550a429736b7e1e5676c182d51f62886b2a57ea45e",
+      "reasoning": "Contains the exact covariance_equivalence_thm matching the reference statement with equivalent implementations.",
+      "score": 1.0
+    },
+    {
+      "id": "431a3a716cd0c2b7df9bdbeb4d6d77e6830ff3fa56b860b2ac2c6f4401a66992",
+      "reasoning": "The generated file omits the final covariance_equivalence_thm entirely (it stops after correctness_thm and imperative implementation/tests), missing the core equivalence guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "39aac778c8fa54bf14bdfa3c53236a3b9258ad52f761b3e471f445a1bfa9110d",
+      "reasoning": "Includes the exact benchmark_quantiles_equivalence_thm matching the reference along with extensive supporting properties.",
+      "score": 0.95
+    },
+    {
+      "id": "8b121714c7382a0df97fecb0e6e155c5e67e2d26b31e1693bedb1a2e85b7e1b0",
+      "reasoning": "No perfectSquareOrAddFiveImp or equivalence theorem is present at all; only a single implementation and a correctness lemma, missing the imperative/functional equivalence guarantee entirely.",
+      "score": 0.05
+    },
+    {
+      "id": "bf3ce94aa336154e76809ed958a24cecd6390b8186ab146814a92e897331c512",
+      "reasoning": "No imperative implementation or quadAbsDiffPlusThreeImp/equivalence theorem exists in the generated code, only a single spec and correctness lemma.",
+      "score": 0.05
+    },
+    {
+      "id": "6956f7a210d16e43a5c9d95f1ae949dd1698680c4561298905eda0168e924185",
+      "reasoning": "Defines both functional and imperative insort implementations matching the reference's structure but never states the insort_equiv_thm theorem itself.",
+      "score": 0.1
+    },
+    {
+      "id": "8043992cf6648d578e4a029a060983c8217bf7a050bef2c8e591b1b62195d4ee",
+      "reasoning": "Contains the exact insort_equiv_thm matching the reference plus additional pre/post/correctness theorems, all as sorry.",
+      "score": 0.95
+    },
+    {
+      "id": "63428aa1d21fbd2cd22579f923bd40a947a93b41bc69b06f4445679e94d903df",
+      "reasoning": "Implements functional and imperative heappush matching the reference's structure but never states the heappush_equiv_thm theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "0267e387b12e9567ff891a10b5b588d707c1afc715f61f7af9391961a781ed45",
+      "reasoning": "Contains the exact heappush_equiv_thm matching the reference along with invariant/size/multiset properties.",
+      "score": 0.95
+    },
+    {
+      "id": "8eb4598d4bc2deb14ea5f2c9eb375723539b7d0acc9e62ba5c1e0733ca0e8ebc",
+      "reasoning": "The generated code defines an entirely different JSON decoder API without loads/loadsImp functions or any equivalence theorem matching the reference, and is truncated/incomplete.",
+      "score": 0.0
+    },
+    {
+      "id": "5e666d5276a459197465e133c77a907525b581d5565fd1d99aefd25937604757",
+      "reasoning": "No loads/loadsImp or equivalence theorem is present; the generated content is an unrelated JSON decoder with only a vacuous placeholder theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "d2253a82baf2e2f62a0e925f191fdc28a2be27a0003ee6ee859410a193d81976",
+      "reasoning": "Lacks loads/loadsImp definitions and the required equivalence theorem, instead presenting unrelated sorry-laden lemmas about a differently structured JSON decoder.",
+      "score": 0.0
+    },
+    {
+      "id": "9b11ab7f170157df07fb96c102b4b099d525f8e6d589426fdc2d99b16919151c",
+      "reasoning": "Does not define the Pre/Post/correctness_thm structure matching the reference; instead provides unrelated per-operation pre/post lemmas all left as sorry, missing the core correctness guarantee entirely.",
+      "score": 0.05
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.044288,
+        "inputTokens": 44228,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 60483,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0428906,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3079,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 60483,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60483,
+          "input_tokens": 2,
+          "output_tokens": 3079,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3079,
+      "output_tokens_details": {
+        "thinking_tokens": 1214
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

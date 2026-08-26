@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "b019143339dd7e25eeb79a65e3aafd26b613c36d3691c42025bc00fb96d4dab9",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "46f93ca9bde6412bad1d77d462a9606aa58ecb7682089f84a1c916b4ea0bf3f2",
+  "completed_at": "2026-08-26T07:26:44.733610+00:00",
+  "effort": "low",
+  "elapsed_seconds": 30.739429584005848,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "03e72572c044afccd3eabfb731d66d4dcaf2ab90fd742b899205d6c3c2cc52be",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "8ffb47c7a93d6e73089459255b29b465a7df6df74aab8e48f62001f5f438a317",
+      "reasoning": "The generated file defines implementations and auxiliary properties but omits the required imperative-functional equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "98980f3475f65894444be8120eb6cd8293f59d7a72cfc695bdf0130b767cca5d",
+      "reasoning": "It states exactly the required covariance equivalence over the same two functions and arguments.",
+      "score": 1.0
+    },
+    {
+      "id": "a3ad2b5c9fdd2a5e65d8914d32218b0523a5a692eca7d739f6b9aabbfe0e2d30",
+      "reasoning": "The generated theorem has the same universal covariance equivalence statement as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "80bb36a36112aae2bdf2fc5212fae7dec2e7811cbde392ca287e34c01c6f21f4",
+      "reasoning": "Although the equivalence theorem is stated, the two implementations return different errors for invalid methods, so the claimed universal equivalence is false.",
+      "score": 0.0
+    },
+    {
+      "id": "e311143ee820b6e3c1b25f36d2a79c8755e2e82322d60b6fcb5f5203f4b4a62a",
+      "reasoning": "The submission changes the input type and names and provides no equivalence theorem between the referenced Nat implementations.",
+      "score": 0.0
+    },
+    {
+      "id": "68de8bad5470a90c1df79b378cc4e53e3f142e921157ee09bd94496fc86306f3",
+      "reasoning": "It omits the required equivalence theorem and its functional bisect implementation is materially incorrect.",
+      "score": 0.0
+    },
+    {
+      "id": "8c9b64b66db5174feabbb077a9c0f137587af5ef65731b65e5f33a0113b63553",
+      "reasoning": "The implementations are present but the required insort imperative-functional equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "9bb1f755c77672015162e7ac7ee9033afbe458cf20af4f27e84d2b02e691c2c0",
+      "reasoning": "The generated code contains no theorem asserting heappush_imp equals heappush_functional.",
+      "score": 0.0
+    },
+    {
+      "id": "350a544f193a7fc168cab31c3fa49182b1b54badb56d8c019d6feff322ec2329",
+      "reasoning": "It states exactly the requested universal heappush equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "59ea405ffa0e380018445c53233932995ee1b74866cdb3feb7a4a141b2a713d7",
+      "reasoning": "It states the same universal heappop imperative-functional equivalence as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "73710460752c96c22f7f660a6b549a7682fad18288ce6a70f8eee5b343378c4f",
+      "reasoning": "The queue implementations exist but no get equivalence theorem relating their successful values, residual queues, and errors is supplied.",
+      "score": 0.0
+    },
+    {
+      "id": "26e4c6728cbe0ced40f0b2df2a3ee00d6c4761741934140b42c8e1af21764795",
+      "reasoning": "The required correctness_thm proving Post from Pre_Put is missing, with only a narrower unfinished-counter lemma provided.",
+      "score": 0.0
+    },
+    {
+      "id": "4cf1ba1ebd6d043ab79b8f0e8db032ed387fcbbb45354cd1ab7586f5f2e414d2",
+      "reasoning": "It states exactly the reference update equivalence, including conversion of the HashMap to the functional association list and pointwise lookup equality.",
+      "score": 1.0
+    },
+    {
+      "id": "6779ae444e53ced5d39c9cf5cce69fe508406e35a3889506561aa36881a6381a",
+      "reasoning": "The generated submission uses a different Int function and supplies no equivalence theorem for myOddSumParity and myOddSumParityImp.",
+      "score": 0.0
+    },
+    {
+      "id": "23a49d97f84287a5b2c39e9397999fe3269db4f10a91ae822b33c44b0be886db",
+      "reasoning": "It defines ChainMap operations and partial properties but omits the required get_imp/get_func equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "55bae043f7c30f01e5f918ac0fa9689b915ffb7c126c12a40ee757ac0aa7f108",
+      "reasoning": "A related conditional correctness theorem is supplied, but it does not match the reference Pre/Post theorem and relies on a simplified path model.",
+      "score": 0.2
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

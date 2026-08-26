@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "a5cb7e9379d136e637107a513293cb7e1e63013b14f40cbc4e1fb49474e03939",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "11c3b1af4298253c283eba1ca1deb541241067ff918ab00bd6ea6899e920e1d2",
+  "completed_at": "2026-08-26T09:08:35.767310+00:00",
+  "effort": "low",
+  "elapsed_seconds": 31.345405582978856,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "de617b79770f20f328a03322ea6536f050ac304bf27e8bb3672a4103f655fe5f",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "a41d8d5ec588c6312925e9a8342b8e3f34588e5dfdd2edce610c9a3c4d4e5722",
+      "reasoning": "It specifies related bisect and insertion properties but omits the reference theorem’s precise post-insertion partition and precondition structure.",
+      "score": 0.4
+    },
+    {
+      "id": "5d3bd07636fcb27d0f063cbf0eb48a3b653319cdf646c2d4f3238a20167d9865",
+      "reasoning": "The bisect specification is related, but the insertion theorem merely unfolds construction and does not establish the required post-insertion partition.",
+      "score": 0.35
+    },
+    {
+      "id": "082d71b26181a66c84366058d39ba62b7a70a7a991f2f0d1de28d0fe95817d41",
+      "reasoning": "It captures the central left/right partition for bisecting and insertion without keys, but misses the reference’s exact array, precondition, and unified key-aware postcondition.",
+      "score": 0.55
+    },
+    {
+      "id": "82733ae633e8fd93ece9be310c891775baa619967781ab3e2352b5e12d16a194",
+      "reasoning": "It gives a substantive correctness contract for safe copying, including overflow failure and copied/preserved bytes.",
+      "score": 0.8
+    },
+    {
+      "id": "3bb363dcf8c4aa6ed625e6de5e6403b98616ac21918cb4946817b03c62a3acd6",
+      "reasoning": "It closely specifies successful and overflow outcomes including copied and preserved bytes.",
+      "score": 0.9
+    },
+    {
+      "id": "5db4344de1d1a0b08cb5c571d07a29e7aaac8c01fd53ebce68e2eb67517c090e",
+      "reasoning": "Its Unit-returning contract only asserts success or error and omits the essential copy-content property.",
+      "score": 0.25
+    },
+    {
+      "id": "1035da9a2978f72a051070d5263081c291f8acfceac9abf99b9d56aac4ffc5be",
+      "reasoning": "It states exactly the same array/list mean equivalence as the reference theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "09b24939de1e1d7b0908108aba652917a260083960e06c7134e13d4d63db9b7b",
+      "reasoning": "It verifies a first-character program under the same nonempty condition but does not state equivalence between the reference functional and imperative implementations.",
+      "score": 0.55
+    },
+    {
+      "id": "1c7e80b263f756d6e2f1cba72e231385b28649702b85a97a53086677894f9666",
+      "reasoning": "It states exactly the same array/list median equivalence as the reference theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "0207e19e32b463c5fddf4483dd7736d11b16fff9e16837de5a4997264853ad49",
+      "reasoning": "It contains no theorem asserting the required variance implementation equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "0b9b539d4821cec424c37089b2d1813513c7d2383fecee0fccd891a614f4d896",
+      "reasoning": "It states exactly the same array/list variance equivalence as the reference theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "8098db2dba408f63b3c97d0347864cee6de09c924948631d4f3bc67bf24bc9e9",
+      "reasoning": "It proves a detailed uppercase output specification but not the requested equivalence of the two implementations.",
+      "score": 0.6
+    },
+    {
+      "id": "788af4456fc8c4a53309be5a1745c271d8429a5c8e750ac2ac014cf5d974f01d",
+      "reasoning": "It proves the program equals String.toUpper, which is related but does not directly establish functional-imperative equivalence.",
+      "score": 0.55
+    },
+    {
+      "id": "13ddb75a01c482838fcf350cba7869954dc5689898d3a473c852fb6ebd0508ce",
+      "reasoning": "It proves the program is String.toUpper but does not state the reference equivalence between two implementations.",
+      "score": 0.55
+    },
+    {
+      "id": "003d1382f14f9cd96eecb33ff85af80c6ae0c4fe5ad69cdae2e2aa4fbfc1fdc6",
+      "reasoning": "It contains no theorem establishing the required correlation implementation equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "13fa20b87da9b82891a98317b746c0b1e59ebd78d21a2af8857b29f5d43dfdd6",
+      "reasoning": "It states exactly the same array/list correlation equivalence as the reference theorem.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

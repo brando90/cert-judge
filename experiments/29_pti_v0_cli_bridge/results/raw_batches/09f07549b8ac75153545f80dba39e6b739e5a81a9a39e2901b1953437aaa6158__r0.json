@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "09f07549b8ac75153545f80dba39e6b739e5a81a9a39e2901b1953437aaa6158",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "9ce48f9d3fdc3e77fb922877dcc0c60787ac4c743367a76681c4bd2080fd0c53",
+  "completed_at": "2026-08-26T07:41:41.791219+00:00",
+  "effort": "low",
+  "elapsed_seconds": 41.97474241699092,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "ae5d4d0a8101357e6551ea3ec81504411c5429af5664d7ca90d27e63bc4f697e",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "bf36665cad45e60a181616ea7df9380ae5c074eae142da665fdc6bdd8762fd97",
+      "reasoning": "Reference is a trivial placeholder theorem, while generated builds a substantial safeCopy spec with an unproven sorry, making direct comparison weak but topically related.",
+      "score": 0.5
+    },
+    {
+      "id": "2308830054cba2e97c6f826f6fa9fc198d1b31d975c895e6aba460a5b0d7cb13",
+      "reasoning": "mean_func has inverted conditional logic and sum_func uses subtraction instead of addition, making the implementation incorrect despite matching structure.",
+      "score": 0.1
+    },
+    {
+      "id": "6671f6e6e871e08aff89cbc59fb3aacc03178608c2e4d3bd9a3566a0b1b4c1e6",
+      "reasoning": "Generated theorem is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "4514f27b3876319850f9c4114aff1119eb1c01c9fff85864587e017362caddf3",
+      "reasoning": "Median implementation and spec closely mirror the intended semantics with sorry proofs but lacks a correctness_thm tying pre/post together.",
+      "score": 0.65
+    },
+    {
+      "id": "3adac21bcfb39cebc1df4bbd0f35d50b8e2e89df159b3cfe9e2ea794bc662c61",
+      "reasoning": "sum_func incorrectly uses subtraction, corrupting mean_func used for variance calculation despite otherwise correct structure.",
+      "score": 0.3
+    },
+    {
+      "id": "2ac2b8192f282b4b19ed82f0d8aca678cb90eddd38f0ab0a97484f5128703238",
+      "reasoning": "Both sum_func subtraction bug and inverted mean_func conditional corrupt the variance computation semantics.",
+      "score": 0.2
+    },
+    {
+      "id": "45eebaad9c61fbf1d73ca3ef162a7a4864eb0b30e40a4f21f0a1e7c66a16f7b3",
+      "reasoning": "Straightforward and correct uppercase implementation matching the equivalence intent, with a completed (non-sorry) correctness proof.",
+      "score": 0.9
+    },
+    {
+      "id": "30a50b8bd2307418b5d1fe9951e90f0e2fc0ed26306a40cca8b73e6df7bc12da",
+      "reasoning": "sum_func subtraction bug and inverted mean_func conditional corrupt center_func and thus correlation semantics.",
+      "score": 0.2
+    },
+    {
+      "id": "1dd621a90c034d247811ffe984065413cbc4798bf5aa3ac9fee4fface17fa918",
+      "reasoning": "sum_func and mean_func are correctly implemented, and the correlation logic closely matches the intended semantics with sorry-based equivalence proof.",
+      "score": 0.8
+    },
+    {
+      "id": "33d059af1cda0e25ee3f6a88af479950f2f9b4faa5ebb39c8247af1a2e58711f",
+      "reasoning": "Fraction implementation and property theorems are largely correct with completed (non-sorry) canonical and addition proofs matching the reference intent.",
+      "score": 0.85
+    },
+    {
+      "id": "0259a5cb63006d4de9af641ad2b22f0b8228815cfe7389cb28cd6de2a563e721",
+      "reasoning": "Generated theorem is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "07258e3799bdcae14546862e40f7765ec4765b712b67eefa5746366e68bba348",
+      "reasoning": "Generated theorem is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "ced8d5cd768dd2ee96a50b72038d7f424ef8853885fecf65b79db9689f68e82d",
+      "reasoning": "Generated theorem is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "1038767626549550112431cff145f90342b68775101be5dc5d05a44359cf6ef6",
+      "reasoning": "Matches reference implementation and includes equivalence theorems for fillSlots and mergeKw closely mirroring the target semantics.",
+      "score": 0.85
+    },
+    {
+      "id": "b9a1a45957417a8335865511a5f781204f164d950734a125697f95422493d684",
+      "reasoning": "Generated proof is incomplete with sorries and a different, awkward structure that only weakly relates to the intended equivalence theorem.",
+      "score": 0.3
+    },
+    {
+      "id": "b6092250558456bf324d51cc0b1815151b89bc159206bb4b4c306a9393884198",
+      "reasoning": "Output is wrapped in a markdown code fence (invalid Lean file) and all key theorems are unproven sorries, indicating a low-quality, likely non-compiling attempt.",
+      "score": 0.15
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.027295,
+        "inputTokens": 27225,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 34614,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1667088,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2716,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 34614,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 34614,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 34614,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 34614,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 2716,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2716,
+      "output_tokens_details": {
+        "thinking_tokens": 1073
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

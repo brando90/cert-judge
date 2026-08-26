@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "529c0e5b2459af705e9c0b2efefba4b975a0ba62a297a26f57d6f14cbeed28e9",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "78014d4dca6faa1aca551b8aa64fc4d17b1666c5561386593f9df6f680ec3e64",
+  "completed_at": "2026-08-26T08:40:02.009088+00:00",
+  "effort": "low",
+  "elapsed_seconds": 51.85192383296089,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "3053f6e395755610f4fbae5d57c233d992c1d88f62aa0870f06200fa5a460347",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "a883ee6d50523917b45b7264004baf38147a022f9f8e5859ed50f93da9b01fe7",
+      "reasoning": "Definitions and equivalence theorem statement match the reference exactly, goal left as sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "9173f8081189d452502f4ebfb2bf93564ce1fdf727a2b949ba51966eab896186",
+      "reasoning": "Full file matches reference including Pre/Post/property theorems and equivalence theorem with sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "e9c3fdfee957196e4afff2bf677e42a3f160641ff6734b3efc3ef866ac80599c",
+      "reasoning": "Matches reference structure; target equivalence theorem preserved as sorry with same statement.",
+      "score": 1.0
+    },
+    {
+      "id": "b67cf653198b7bf9f209be2d83ece199bb8fb1ef28db4b29e27c2c8fd55fdf7d",
+      "reasoning": "Equivalence theorem statement preserved correctly, but isSafeChar logic bug (&& instead of ||) subtly changes intended safe-character semantics.",
+      "score": 0.75
+    },
+    {
+      "id": "cfcef394e4d675ecffd108c8ec3ba5ab0c15cf759540bd15e61115ff9fae828b",
+      "reasoning": "Matches reference closely with full property/correctness theorems, but isSafeChar logic is broken (negated condition), a meaningful semantic bug though equivalence theorem statement is intact.",
+      "score": 0.75
+    },
+    {
+      "id": "d4a459fb4887d5ebaf22a16b13b62275e51e06118e516d291c723850747fcca4",
+      "reasoning": "Full match to reference implementation and equivalence theorem statement, left as sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "aa5eb022a194e60f6c8228aa842a2794462ae10a48a89560c049607c3b39a05b",
+      "reasoning": "The required encode_equiv_thm theorem is entirely missing from the generated file.",
+      "score": 0.0
+    },
+    {
+      "id": "8a783f5cf659fa700a39f29c0b401656b269c3162818afb93983f314818428e8",
+      "reasoning": "Target loads_equiv_thm preserved, but parseInt_func? condition is inverted/buggy compared to reference logic, a meaningful correctness gap.",
+      "score": 0.7
+    },
+    {
+      "id": "997467bbf49d4239b0f8e5214195c937fc0fa7dca69baba0771e40c7884397d8",
+      "reasoning": "Matches reference exactly including all property/correctness sections and the target equivalence theorem as sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "5267d817cc2d8c0ca052e530c3619ef34a49ba67afa751487a03b44fae584e52",
+      "reasoning": "Matches reference closely including quote/unquote implementations and both equivalence theorems left as sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "446101e57406d95b2098b911e45ae3852b361be7bed9dd147f09e7c7c269f0c1",
+      "reasoning": "Implementation and target compare_equiv_thm theorem match the reference correctly with sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "442b4ac5874b7cba93eec9a9dc2b722c5e9016374d376d60852c3291e9fd3170",
+      "reasoning": "Target equivalence theorem preserved, but hexDigit and the imp loop bound (≤ len causing out-of-bounds) are buggy, meaningfully diverging from intended semantics.",
+      "score": 0.55
+    },
+    {
+      "id": "3f1d44b1109823cc82fcac5e1a290b63a6d052a78533e5c03b8dc7e489af3917",
+      "reasoning": "The required sort_equiv_thm (and even order_thm proof) is entirely missing from the generated file.",
+      "score": 0.0
+    },
+    {
+      "id": "6883c9ab2fa3989a7fccc04d3d2b5128febdfae4bc573bf3315b70b922ba03be",
+      "reasoning": "The required sort_equiv_thm theorem is missing entirely, only order_thm sorry and Post remain without the final equivalence statement.",
+      "score": 0.0
+    },
+    {
+      "id": "49fe9a7591824a688627420dbf70facde3ec6b8be264e436db58a6936648f11c",
+      "reasoning": "The required median_low_equivalence_thm theorem is completely absent from the generated file.",
+      "score": 0.0
+    },
+    {
+      "id": "bf11b05a8b271efa684118ca2bd9bf563fd3adb3838a0299fb7a306a9d600639",
+      "reasoning": "The required median_high_equivalence_thm theorem is completely absent from the generated file.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.031494999999999995,
+        "inputTokens": 31420,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 38935,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1926928,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3586,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 38935,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 38935,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 38935,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 38935,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 3586,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3586,
+      "output_tokens_details": {
+        "thinking_tokens": 1947
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

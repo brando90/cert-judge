@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "b57415490df1fbb21b45c0c71e9117676a08e0428efeb440920b37d461fa66e9",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "18f1cb09255a6cca9010b89c0327312a595af7b1fd7f9e8ac8d538a8897a8953",
+  "completed_at": "2026-08-26T09:20:05.488840+00:00",
+  "effort": "low",
+  "elapsed_seconds": 26.599328415992204,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "2fe667f3829f73e8617d302f744b988b46a785fc93027f6c493cd42e2991ed56",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e885d44a57baa7924fbe4b8f7ba6a36501f2cef8e5b8cea4ee3a5addbc65934d",
+      "reasoning": "It states exactly the required equivalence between the imperative and functional quote implementations.",
+      "score": 1.0
+    },
+    {
+      "id": "f45ada24675b91073f67d308a53220bcf890af8b02495ee44e54292f4fe7b10b",
+      "reasoning": "The generated code contains no join_equiv_thm or equivalent universal correctness theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "f4c91c3b7dab8654b76bf14ba97ae8b1c058b8c0329732df9ea3e2adcb1208a6",
+      "reasoning": "It states exactly the required equivalence between join_imp and join_func for every list.",
+      "score": 1.0
+    },
+    {
+      "id": "c64975f4fb1597a1076d3695e20b89c0a7e29059c162317a98df4f443dfd980f",
+      "reasoning": "The generated code omits encode_equiv_thm and provides only a few concrete tests.",
+      "score": 0.0
+    },
+    {
+      "id": "8a0bdf335977efa2e1087950e7b89b3d06bd675db066df154abeb5e694967e3b",
+      "reasoning": "It preserves the reference encode_equiv_thm statement exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "b0092ed0a1dbceff9409034c77717576720981d09552dfaa811de0fb7cc48749",
+      "reasoning": "The generated code contains no loads_equiv_thm or universal equivalence claim.",
+      "score": 0.0
+    },
+    {
+      "id": "8a2124984c24de077e752dd6e18b2c0cca74fedbc096090a44dc45335af98b25",
+      "reasoning": "It states exactly the requested universal equivalence of loads_imp and loads_func.",
+      "score": 1.0
+    },
+    {
+      "id": "915d20a92603ebd72c0f29f21f0cbf62ebb2d76b2348591979d7c3a4a96cbff1",
+      "reasoning": "The generated code never states an unquote equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "711245f77c7986e80cf73ca9687e4010d2e194d6a1cd39864fc17ddad50e3dff",
+      "reasoning": "The generated code omits compare_equiv_thm and does not provide a universal equivalence property.",
+      "score": 0.0
+    },
+    {
+      "id": "50154a4e0f12259dedddb4c2bb9bb6d67fa22fb8f05325ef08f399994690e3e1",
+      "reasoning": "It states exactly the required comparison equivalence for all TokenInput pairs.",
+      "score": 1.0
+    },
+    {
+      "id": "76fca37f712b5b76292854dc81bdd3d7ae190363d321d53cf504e209f09098c5",
+      "reasoning": "Although order_prop is defined, no theorem establishes it for all graphs.",
+      "score": 0.0
+    },
+    {
+      "id": "9355eac41481881de298cc9389eea61b2191a14b126057034a74d1c63ad4de6e",
+      "reasoning": "The generated theorem is identical to the reference conditional topological-order correctness guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "ac6e15636dbae2c16aee977de3a83967917d680f2a0dec20c1c02004c23f0e04",
+      "reasoning": "The generated theorem exactly matches the reference median-low equivalence statement.",
+      "score": 1.0
+    },
+    {
+      "id": "ad63fad4fd6535c950570c77e96e449c2eb8aff3226a7718a460fc589e7b6a24",
+      "reasoning": "The generated theorem exactly matches the reference median-high equivalence statement.",
+      "score": 1.0
+    },
+    {
+      "id": "030667e7fa6a329009c76ff93228e73ec6469f57ecc6cb54993bc8c7c277c250",
+      "reasoning": "The generated code contains no bisect_equiv_thm or equivalent universal claim.",
+      "score": 0.0
+    },
+    {
+      "id": "1f225dcdee3dcff5e384631a600bdbd8d6e2472d6f013885386aaa59578f32c0",
+      "reasoning": "It states exactly the reference bisect equivalence, including its parameters and default high bound.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

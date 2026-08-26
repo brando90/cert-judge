@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "9cbe970fab48f2dd6e0d5d5ed11f3580626426a52783c9181f704b4f1f556d26",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "213f283b79372ae3eb4eaa51a6bb9979271ec357f3a7f786f153504cbf402574",
+  "completed_at": "2026-08-26T09:25:11.252939+00:00",
+  "effort": "low",
+  "elapsed_seconds": 28.074508833000436,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "14fb0e8a420054530ca68e90f1233e3624e36a33bb35043b5f75c539b3032397",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f4bbd19ff0cd83d40ef9fc3aacda2f52eb143d9d303ede93773ba7c17d68b0aa",
+      "reasoning": "No equivalence theorem relating the imperative and functional comparisons is provided.",
+      "score": 0.0
+    },
+    {
+      "id": "adf9573f93abe72a90fb80bb3faa2311252f4fcb86fe85a9ef0b2d22bbc8e8f7",
+      "reasoning": "No theorem establishes the required equivalence between the two bisect implementations.",
+      "score": 0.0
+    },
+    {
+      "id": "b0b1a01ad555a910b3aac547f9660140f84a2442578ccd0e21edc610050b4fe1",
+      "reasoning": "The generated equivalence theorem exactly states the reference implementation's equality.",
+      "score": 1.0
+    },
+    {
+      "id": "54109911d4dff6ae6616f682b6680f19e58cfe47e4a73188c6004e992888f9a2",
+      "reasoning": "No covariance equivalence theorem is included, despite both definitions being aliases of covariance.",
+      "score": 0.0
+    },
+    {
+      "id": "5ed373666715614075658a44bf96f0577cdd7aa0ec7a3a6082ddce727ea6f78d",
+      "reasoning": "The generated theorem exactly states the required functional-versus-imperative covariance equality.",
+      "score": 1.0
+    },
+    {
+      "id": "5db447f0ef7dcb3abb4300c811e8902c167490b4d9c746b5d4d1b4820df63fc7",
+      "reasoning": "The required benchmark_quantiles equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "d12c544f782ad75a5d2cb2eaad78d0a2c25c89f4c3f1a7e72008f555e0ca59ec",
+      "reasoning": "It proves a local functional postcondition but provides neither referenced function names nor their equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "87d84542c186fd2b0cfd1833211966ebde8b4052a3519c9029ba59ddfa44fc82",
+      "reasoning": "No equivalence theorem is supplied and the implementation uses different names and integer inputs.",
+      "score": 0.0
+    },
+    {
+      "id": "362c260ad1418ed6446c29a263b74a49abe8b40ec0e09c7f6324ba5d399c30f3",
+      "reasoning": "No theorem establishes equivalence between the imperative and functional insort implementations.",
+      "score": 0.0
+    },
+    {
+      "id": "2418bb1c39aa41fdf0dce135aba0c8bad08211f441caa9654fc88b432d072684",
+      "reasoning": "Although it states the reference-shaped theorem, the functional bisect uses (lo - hi) / 2, making the claimed equivalence generally false.",
+      "score": 0.0
+    },
+    {
+      "id": "4c400b49aa33206c372c725e5119dcbc3eeaa289cabd52508846ec474724b656",
+      "reasoning": "No heappush equivalence theorem is present.",
+      "score": 0.0
+    },
+    {
+      "id": "07577588bad5034b5cb91c8eb94b46428ee147a936b43023e6fa2c611b479b56",
+      "reasoning": "The generated theorem exactly states the required heappush implementation equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "d34c849e309d399027aef44c4ac38b63e0b0daca75f9986f55bcc4248ef261a0",
+      "reasoning": "The code contains no loads or loadsImp equivalence theorem and is incomplete at the end.",
+      "score": 0.0
+    },
+    {
+      "id": "6438dd7c5911ca3364a68d91e3434b40d95cfcb8e06bc0ae0e2c60be705d4848",
+      "reasoning": "It proves only a vacuous decode specification and does not state the required loads equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "98c07de8cf90434ec63b5aa8f95a193fc5b094210dcb05476d9323be268bad06",
+      "reasoning": "The provided parser properties do not establish an equality between loads and loadsImp.",
+      "score": 0.0
+    },
+    {
+      "id": "1eeaf6b2bd2ba263de01fd9e2340f5592e56c214b027691b54b2feacd243ab90",
+      "reasoning": "It defines an unrelated SafeCounter contract and omits the referenced SafeUnsafeCounter correctness theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "193b38d17fb929b2e0aaf8c3a59af4e3cab63aaca1f108ef7e2fa8ae22be8268",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "77299068efc69dbce1dbd8c35d9868b98ff53351cf38e8f0506378d621045328",
+  "completed_at": "2026-08-26T06:32:51.992177+00:00",
+  "effort": "low",
+  "elapsed_seconds": 43.23160254099639,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "611b054a005a457adeb5474b2fbbde5c693f6d094153cc53f516674d21ee99a1",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "691cba9fe53489be57990c2f4883b92d366e52d4083296943e4a18dcf3a1cbdf",
+      "reasoning": "The generated safe-copy development does not implement the referenced SafeUnsafeCopy correctness theorem or its stated pre/postconditions.",
+      "score": 0.1
+    },
+    {
+      "id": "395c74188ce2ec580c37c365c9dc9563e7caf244da20d6d9406d3016641a4dff",
+      "reasoning": "Although both mean implementations are present, the required mean equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "811dff41c6efb7f2ca1084c837c2d30f978db724a63fe2b37fa68d764b785b71",
+      "reasoning": "The submission implements a related first-character program but omits the requested equivalence theorem and uses different types and names.",
+      "score": 0.2
+    },
+    {
+      "id": "3a5ab04916c33bb30f7e305a60afb3f2332f8c3fb53109fcb9b093f40a2e4f72",
+      "reasoning": "The requested median equivalence theorem is present with matching intended implementations, though its proof remains admitted.",
+      "score": 0.6
+    },
+    {
+      "id": "3f9e677cf6be038530904c4fea6862a3044da852d71aeb67d44f85c881116680",
+      "reasoning": "The functional variance implementation has reversed and incorrect sum and empty-check logic, and no equivalence theorem is supplied.",
+      "score": 0.0
+    },
+    {
+      "id": "1200f2b9b2fd1e6755c4333007848eab905d47ab24607b3b887737a26ea710b4",
+      "reasoning": "The variance implementations are plausible but the required variance equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "13f20f90db037e1d3925e18f9053ca275e46eb5b5c390dc5d6083aa8d363fb68",
+      "reasoning": "The generated development is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "2903aab909bd67f9a9bed4207558f3cdfefd527e78cf4ceb7397ee1f64cfdbd4",
+      "reasoning": "The generated development is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "1002331d3c8a0a7bd01ac5f77fd95a7b41c14178149abb9e599f150161a62d73",
+      "reasoning": "The correlation implementations are supplied but the requested correlation equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "29576e54e61745dc075780a2b8c9fc5f2b05932dbfda164d5e7973ae70903d2d",
+      "reasoning": "The generated correctness theorem matches the reference statement and proof structure.",
+      "score": 1.0
+    },
+    {
+      "id": "b4e25a57e74ff303dc4454ed416773f7c30c2d542cefa5151479b4df02d8f379",
+      "reasoning": "The generated development is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "09032634364c51656cfee3a7401b1ca55ac6e439a4652dc82706fb2906ae1396",
+      "reasoning": "The stated LRU equivalence is false because the model evicts at size greater than or equal to maxsize while the imperative code evicts only above maxsize.",
+      "score": 0.1
+    },
+    {
+      "id": "fe97d623714c0384b682bd38ec8b0cedbff78447b2a1af5dec2f1a4987e83a8c",
+      "reasoning": "The generated development is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "0b50cac07f9184d30ba6f253ba13b44523cdef0422075bac30a219fb61f87f85",
+      "reasoning": "The requested mergeKw equivalence theorem is present and the two implementations have matching intended merge semantics, though the proof is admitted.",
+      "score": 0.6
+    },
+    {
+      "id": "5360c5ac6434d4f28ae01918b2daaad0421d8183537cd87b80b771c96c723416",
+      "reasoning": "This is an unrelated Int-based Fibonacci specification and does not provide the requested Nat functional-versus-imperative equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "4bdfe39c3d7a23f5c382300fbfd4e066edaea55e59d5390ee27e3f4d09ab4bac",
+      "reasoning": "It provides a related Fibonacci implementation but not the requested myFibonacci versus myFibonacciImp equivalence theorem.",
+      "score": 0.3
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

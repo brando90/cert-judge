@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "6ab55a99aa30a0f76d70c2299b72253165d64e607090f65a61f0277ee7bdc088",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "cf65cba5f8bd3bcaef7f81f2356eea5fc585c21e8ed0cc2b282e5f8525045c52",
+  "completed_at": "2026-08-26T09:02:14.233479+00:00",
+  "effort": "low",
+  "elapsed_seconds": 45.718322333006654,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "4dd1a5967a28732cd9652de67c5558a6e3b41a3513f1b0e1544d19bbc24d8da9",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "fd1d19e112744db96bb11a5fa7c8ffa9b48cc3ce429f91f0cdab59f577fea72e",
+      "reasoning": "Generated theorem matches reference equivalence statement exactly (both sorry) plus additional supporting definitions.",
+      "score": 1.0
+    },
+    {
+      "id": "f9a375f9593180597301b532ff3b2612d4c4741ac0871f5ea4e4eae4d8a20b38",
+      "reasoning": "Generated equivalence theorem is byte-identical in statement to reference, with full supporting implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "d02bf5169a8c29d7b3f9a07668371f00ce0689a2fab1776fdfd1dc4afe90a0af",
+      "reasoning": "Correctness theorem matches reference exactly and is proved (not sorry), preserving the put unfinished-count guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "780966c0e2a626ecaa991ef3f4a4734af7d2c6aad62550bae1925708a7ae9045",
+      "reasoning": "The generated file omits the required bfs_equivalence_thm entirely, dropping the core functional/imperative equivalence guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "962c27a94560e46bbfd9789d538dce7b538684901a39a234c573fcd38140ccc1",
+      "reasoning": "Generated theorem is an exact copy of the reference, including the sorry'd correctness theorem and full test suite.",
+      "score": 1.0
+    },
+    {
+      "id": "42ba997eb979ed536076df683d1b7fc4def5bda36368d1788e68cea0efb28b6c",
+      "reasoning": "The generated file lacks the required dfs_equivalence_thm comparing dfs to dfsImp, so the core equivalence guarantee is missing.",
+      "score": 0.0
+    },
+    {
+      "id": "6b33a1bc468a7851c51c73267d738f811aef2a977a85dc1739ba1d8fde5a63e3",
+      "reasoning": "The generated file lacks the required dijkstra_equivalence_thm relating dijkstra to dijkstraImp, dropping the core guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "da37c8a509b3f41ac73aa88d236732532f279ff4c026089cf4f41a81e0d267e1",
+      "reasoning": "Instead of proving equivalence to an imperative implementation, the generated theorem trivially equates two syntactically identical functional definitions.",
+      "score": 0.15
+    },
+    {
+      "id": "9e1a9b34e6a6f2a5f4e42fc539806e3868b9c541fecb4cd0e5ce7b4077c18dc1",
+      "reasoning": "No imperative implementation or equivalence theorem is given; only a near-trivial spec match against an almost identical function, left as sorry.",
+      "score": 0.15
+    },
+    {
+      "id": "2336889cd35e05ee5e12d051f62014a2eaab89544e5ab393f729d7992876caf8",
+      "reasoning": "Generated content is byte-identical to the reference including the sorry'd correctness theorem and tests.",
+      "score": 1.0
+    },
+    {
+      "id": "01e6096f6b87482bc0eb0c7be7329073d56a08e7cbab68df39244f8d1296c802",
+      "reasoning": "The required max_element_equivalence_thm comparing to an imperative implementation is missing; only a separate correctness theorem with different signature is present.",
+      "score": 0.1
+    },
+    {
+      "id": "92fe7df6c1531b7885e963ed75905ad9796ec3066660634c150fa78968e35b76",
+      "reasoning": "No imperative belowZeroImp or explicit equivalence theorem exists; instead a distinct running-sum based spec is proven equal (sorry), a meaningful but incomplete substitute.",
+      "score": 0.35
+    },
+    {
+      "id": "2926fd47fb856394c078856dbeef72f2df40a8d156a5cb063fa5ea5c7c335884",
+      "reasoning": "The 'spec' is a byte-for-byte duplicate of the implementation, making the correctness theorem trivial and missing the imperative equivalence entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "4773eb53526fe09bd0b389951cef568883aea65896d2352bcd29565322d9666c",
+      "reasoning": "Uses a genuinely distinct NeverBelowZero specification instead of an imperative implementation comparison, so it captures similar intent but not the required equivalence theorem.",
+      "score": 0.35
+    },
+    {
+      "id": "27db41400e0bd8d2453bc556b159248cff546a8b49f5d82531d4368ce3eb1088",
+      "reasoning": "incr_list_spec is identical code to incr_list, making the correctness theorem trivial and omitting the required imperative equivalence.",
+      "score": 0.1
+    },
+    {
+      "id": "1a3bf6f6ce810f3be1a15e6d1bab17f71e1f19c65d3412b19a8de790cfedc364",
+      "reasoning": "The generated file contains only the implementation and #eval statements with no theorem at all, entirely missing the required equivalence guarantee.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.024152999999999997,
+        "inputTokens": 24078,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 35039,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0363218,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2931,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 35039,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 35039,
+          "input_tokens": 2,
+          "output_tokens": 2931,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2931,
+      "output_tokens_details": {
+        "thinking_tokens": 1175
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

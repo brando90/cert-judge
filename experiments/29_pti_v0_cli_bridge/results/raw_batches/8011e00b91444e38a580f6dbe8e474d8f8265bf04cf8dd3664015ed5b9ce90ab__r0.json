@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "8011e00b91444e38a580f6dbe8e474d8f8265bf04cf8dd3664015ed5b9ce90ab",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "a99355befc8460894894dcf1376844bfee8c5797f09d3935da5976f9908f576e",
+  "completed_at": "2026-08-26T08:11:37.820217+00:00",
+  "effort": "low",
+  "elapsed_seconds": 47.174600124999415,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "780d47484f3cf5c9eba6ebd16b42048bf67c91d52ca5516739dfe1626641273f",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "eaa0ea8643f6e06dd1c39e257b936a2cd0164902c0d5b5f9e3a2ffd73b60663d",
+      "reasoning": "Both benchmark_covariance and covarianceImp are defined as the same covariance function, so the equivalence is trivial rather than a genuine independent implementation comparison.",
+      "score": 0.45
+    },
+    {
+      "id": "fd4062301025bed12556a41e7861795216965d7e9f84bdccc78b88a5ae6159b0",
+      "reasoning": "Includes distinct functional and imperative (loop-based) implementations, Pre-condition, several properties with real proofs, matching the reference's intent closely though shift-invariance and equivalence are left sorry.",
+      "score": 0.75
+    },
+    {
+      "id": "fd08a6b231b383d32e8dd84fe28c3f9600c03001b94c6a2116ce99ed95908276",
+      "reasoning": "Comprehensive matching structure with functional and imperative quantiles implementations, Pre/Post, properties, and equivalence theorem stub matching the reference's intent.",
+      "score": 0.8
+    },
+    {
+      "id": "d7cb02540e2420a0c30e8fba05114f47803329b9cc23366c242b9d8c283b52c0",
+      "reasoning": "Implements both insort_left_functional/_imp matching reference definitions and includes a basic test suite, but omits Pre-condition, property theorems, and the equivalence theorem entirely.",
+      "score": 0.5
+    },
+    {
+      "id": "d9d48a358ee5e4c4308c07b52ee1bbc89581b90b4918b99469b9196b3c66e98f",
+      "reasoning": "The bisect_left_functional implementation is broken (incorrect mid formula 'lo - hi' and fuel calculation), making it semantically incorrect relative to the imperative version despite matching file structure.",
+      "score": 0.15
+    },
+    {
+      "id": "a836a67700a3de7e34a85366ec19770c76eac6eeeff41694b210f1042aae9118",
+      "reasoning": "Provides matching functional/imperative heappush implementations with Pre/Post, properties, and an equivalence theorem stub aligned with the reference goal.",
+      "score": 0.75
+    },
+    {
+      "id": "7a925e6984cab09c4f666b1c0e4fea92f5be66bfccd40653f56927fc76b74c74",
+      "reasoning": "The generated theorem file is essentially identical to the reference implementation including the equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "b619baf5266bdcbd18a7c3e26a8fa9199233a628b39333fa4c4f9ceeb48e9c09",
+      "reasoning": "Implements functional/imperative queues with matching structure and tests, but the equivalence theorem (the key required output) is missing entirely, leaving only a Post definition.",
+      "score": 0.3
+    },
+    {
+      "id": "5cb862758b376f79c412c5b6486f6f4fd989ae3d691c0c8d7690c23a0d151ffd",
+      "reasoning": "Generated file matches the reference's correctness_thm almost verbatim, including the full proof.",
+      "score": 0.9
+    },
+    {
+      "id": "8950babdf93b546261f7fb5ab8ea0dd052c579841c03f775abb45987a0495722",
+      "reasoning": "Implements functional/imperative counters matching the reference's structure but omits the required update_equiv_thm equivalence theorem entirely.",
+      "score": 0.3
+    },
+    {
+      "id": "2f0905c3d23211998edba1de5bd0b8f79e3878932540015eb2cf7f283ea88b7a",
+      "reasoning": "Closely mirrors the reference including the get_equiv_thm equivalence theorem with matching signature (left as sorry).",
+      "score": 0.85
+    },
+    {
+      "id": "03e881144dd4eaa8bbaff3154db2d0cf17e32e79feee51f0f70988b383da8441",
+      "reasoning": "Includes matching bfs/bfsImp implementations, Pre/Post, and properties, but omits the final bfs_equivalence_thm theorem required by the reference.",
+      "score": 0.45
+    },
+    {
+      "id": "a491428ccb8a2d7c8f96a0706149ae97ba66075217b74545790283825c985ebd",
+      "reasoning": "Only provides a single bubbleSort implementation with no bubbleSortImp or equivalence theorem as required by the reference.",
+      "score": 0.15
+    },
+    {
+      "id": "981fd4db8287d39331c100c457490d0f0c5c514df31fdf70fbeae8d42cb37f41",
+      "reasoning": "Only provides a single bubble_sort implementation without an imperative counterpart or equivalence theorem.",
+      "score": 0.15
+    },
+    {
+      "id": "43ae0be381af4596f07c0c60c27383301c3e4dbcc22b1510cb0beec2b31504b0",
+      "reasoning": "Provides only one bubbleSort implementation with correctness sub-theorems but no bubbleSortImp or equivalence theorem.",
+      "score": 0.15
+    },
+    {
+      "id": "2509d5a44ad310861ea634e2f1e61d8f183630d430edfb0ea91f4f34d18f157b",
+      "reasoning": "Provides only a single countingSort implementation without an imperative countingSortImp or the required equivalence theorem.",
+      "score": 0.15
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.042373,
+        "inputTokens": 42288,
+        "maxOutputTokens": 32000,
+        "outputTokens": 17,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 51925,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.23952279999999998,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3073,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 51925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 51925,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 51925,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 51925,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 3073,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3073,
+      "output_tokens_details": {
+        "thinking_tokens": 1267
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

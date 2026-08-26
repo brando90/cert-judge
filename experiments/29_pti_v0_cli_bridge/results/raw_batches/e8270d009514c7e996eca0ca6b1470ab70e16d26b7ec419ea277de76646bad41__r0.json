@@ -1,0 +1,113 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "e8270d009514c7e996eca0ca6b1470ab70e16d26b7ec419ea277de76646bad41",
+  "case_count": 5,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "ce9d8f51cd494d5ffd941a939d806968f4909dc284b73c8e7bf8b4bc73effe3a",
+  "completed_at": "2026-08-26T09:06:55.042269+00:00",
+  "effort": "low",
+  "elapsed_seconds": 16.055875499965623,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "7f7c93db48045d3bd52d3000737849c6b733c8701f498d255b8f0bca1595825d",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f80970a37de934a076b1c26447fb52d8488ea2ff272eef842c2b0f0e6ead2921",
+      "reasoning": "Generated theorem preserves the same dfs/dfsImp equivalence structure with matching implementations, only sorry-status differs.",
+      "score": 0.9
+    },
+    {
+      "id": "eb309a7be44a1e5a0a15d563307cbd36fdd2d9ce7e4b047d0c2f1a0ea10ff9de",
+      "reasoning": "Generated theorem preserves the same dijkstra/dijkstraImp equivalence structure with matching implementations and pre/post conditions.",
+      "score": 0.9
+    },
+    {
+      "id": "9712e5adfb24ecc6c10a9e55f39ad420e0136c3ec1d5bc656d3e502e6d47a305",
+      "reasoning": "Generated code is an unrelated HumanEval encode/decode_shift file lacking any decodeShift/decodeShiftImp equivalence theorem from the reference.",
+      "score": 0.05
+    },
+    {
+      "id": "fb9cdc78238e45699ce03fd5bec9bc8fd812c04d609699ebd3b35858ab668c8e",
+      "reasoning": "Generated theorem is a round-trip correctness statement, not the required decodeShift = decodeShiftImp equivalence; no imperative implementation exists.",
+      "score": 0.15
+    },
+    {
+      "id": "f7ecc0de48cf45d0bb7ffd32392061d59b2a369e350dda70b89a6c1cf7336b00",
+      "reasoning": "Generated code is an unrelated HumanEval prime_length file with no primeLength/primeLengthImp equivalence theorem matching the reference.",
+      "score": 0.05
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.007415000000000001,
+        "inputTokens": 7355,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 8630,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0454728,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 986,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 8630,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 8630,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 8630,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 986,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 986,
+      "output_tokens_details": {
+        "thinking_tokens": 368
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

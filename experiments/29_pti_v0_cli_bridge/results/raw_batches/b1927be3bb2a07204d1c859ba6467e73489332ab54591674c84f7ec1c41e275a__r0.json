@@ -1,0 +1,72 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "b1927be3bb2a07204d1c859ba6467e73489332ab54591674c84f7ec1c41e275a",
+  "case_count": 7,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "55c9eaaf57205bc08009d7e7686bf721c3b47223fbe87e11732d253869228e63",
+  "completed_at": "2026-08-26T09:37:18.738964+00:00",
+  "effort": "low",
+  "elapsed_seconds": 15.104073916038033,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "f88b2d55860031bb0af50742e4afeec2ca2a4b2bddcade59b63eb3368daa8ef2",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ed3a28d4cf79fa10541d7632cde6974bbfff6c8aa3d17d350fd0d05a7316bfce",
+      "reasoning": "It proves abstract DFS soundness and completeness properties but provides no theorem relating `dfs` to `dfsImp`.",
+      "score": 0.25
+    },
+    {
+      "id": "fc8d0e2b7778e16c71654dbc731794685e3dd285a174b1e83cff9b5f6f40b7b1",
+      "reasoning": "It states functional soundness and optimality but never establishes equality with `dijkstraImp`.",
+      "score": 0.25
+    },
+    {
+      "id": "e1d5b279c96e30cd7577cc27160b24d8a5f8264e47d36e3fa9c6d5df166d7700",
+      "reasoning": "No correctness or equivalence theorem is generated, only definitions and tests.",
+      "score": 0.0
+    },
+    {
+      "id": "fc404899afbacb1e3c074dc5810a5c427ebdc64a9c773de7040802dff0060420",
+      "reasoning": "The theorem establishes agreement with a declarative pair-sum specification, but not with the referenced imperative implementation.",
+      "score": 0.45
+    },
+    {
+      "id": "9086217748224824c6b9bf968c49ec3f7a5bba39a2c3ec41c2da008f93e0b323",
+      "reasoning": "It gives conditional inverse properties for functional encode/decode but contains no equivalence claim involving `decodeShiftImp`.",
+      "score": 0.2
+    },
+    {
+      "id": "b343c5dd13cafe2bbafedbe47123a26c5a3ba177fdb28d5baf36795ea19d5162",
+      "reasoning": "The generated theorem concerns decoding the local encoder under a precondition, not equality of `decodeShift` and `decodeShiftImp`.",
+      "score": 0.2
+    },
+    {
+      "id": "deb97c2eb525d600cb19fb297c1ef6b1f5fc9ddfe13db15e18b956ac733ae995",
+      "reasoning": "The generated theorem exactly matches the reference correctness theorem and its specification.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

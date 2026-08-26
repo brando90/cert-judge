@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "5d11616f03ab10c826cba5e1e5f566ff67be1d829a8a9872ec3f27ad69d132ed",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "acc3e6e506e3b1e247340d58355f930e226a7764b7dca52d235d26d9f9faeb98",
+  "completed_at": "2026-08-26T08:00:08.882866+00:00",
+  "effort": "low",
+  "elapsed_seconds": 40.77259754098486,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "ba0abb9932c2699fca1575e76f2d3b5b9ecab917074ac5ebbcbb64b32bf9523a",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "feacabeb9f6c47cb605fdf587d209da1eb0901aa1f735c49fab863cd6f7a5c57",
+      "reasoning": "Generated theorem statement matches reference exactly, both left as sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "e9bf197ccc271723306f4cd2cecf3e08c7235b6a17ebcadc22c0113f0a88bf63",
+      "reasoning": "Generated implementation matches the reference implementation content exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "db817b91893a99c748b1e42d102ee755255c0cae3a6214b1a75b345a13ff94be",
+      "reasoning": "Generated file omits the actual loads_equiv_thm equivalence theorem, only defining a Post proposition instead.",
+      "score": 0.3
+    },
+    {
+      "id": "c7d4cede4670f0fc9744e720d506b359cc27cfdb878f00e0ff0f87197920f00b",
+      "reasoning": "Generated theorem unquote_equiv_thm matches the reference statement exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "ab2903678859539bd91cac154cc1e2c49a8afa993c50672865e8bfd0e45564a5",
+      "reasoning": "Generated implementation matches the reference implementation content exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "a0b54063c40fb2f66861fce63fe00ed8998b8ef6b6cd7ab6bc5c6dfd57bdd955",
+      "reasoning": "Generated theorem compare_equiv_thm matches the reference statement exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "ffe12c62a669a7e9ee3edce5cc949a30c0a0ba6c611dbba4ceb3ed4d26013c66",
+      "reasoning": "Generated file is essentially identical to the reference, including the equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "70c7e2c25ed0ae72aaee163aac41910dbc64b07355cbdd37ca4618945535611e",
+      "reasoning": "Generated file never states the median_low_equivalence_thm required by the reference.",
+      "score": 0.15
+    },
+    {
+      "id": "f1e12954c21c2a013dfcd96742dd05fc199b9c9b4842e19e24a3d69966b79b51",
+      "reasoning": "Generated theorem median_high_equivalence_thm matches the reference statement (variable renaming only).",
+      "score": 1.0
+    },
+    {
+      "id": "4767be16a7e783b4ebe1a24bff0483898debda5a959b8285f685d3b703b5912b",
+      "reasoning": "Generated file lacks any bisect_equiv_thm equivalence theorem as required by the reference.",
+      "score": 0.15
+    },
+    {
+      "id": "51fe40a1604a9986721ad4b823f468f6191686e7fbeb46d3693f0e6a7b4adeef",
+      "reasoning": "Generated file's Equivalence Theorem section is empty, omitting bisect_equiv_thm entirely.",
+      "score": 0.15
+    },
+    {
+      "id": "530e76d9f76e067c598ad05be88a37d3ecfc9680458c5d8bf471570bf5a85bc4",
+      "reasoning": "Generated content is an unrelated Lean file with different namespace, implementation, and theorem structure than the HeapPush reference.",
+      "score": 0.05
+    },
+    {
+      "id": "1ae1ab604ac65a1702c904849c57099538f436c017707268718ebec6c0f98197",
+      "reasoning": "Generated theorem covariance_equivalence_thm matches the reference statement exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "36fd597946933861789d3f59b2a09c31e50e4e30c0fceec1eefaae86c6b5a8f0",
+      "reasoning": "Generated includes the required covariance_equivalence_thm but the variance helper's boundary condition differs slightly from a strict equivalent.",
+      "score": 0.85
+    },
+    {
+      "id": "209db798ada57eb9404d4762fdf0ecc8f04cab65e1012e2ce7fd4b897410c82a",
+      "reasoning": "Generated file is essentially identical to the reference including the equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "7ebd72ccf105d9dc40f94e00d14ce2a04d59b371dc60a126a6e3f39a4e038210",
+      "reasoning": "Generated content is unrelated to the reference, lacking myMinListImperative and the required equivalence theorem.",
+      "score": 0.05
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.046547,
+        "inputTokens": 46487,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 62492,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0410024,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2850,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 62492,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 62492,
+          "input_tokens": 2,
+          "output_tokens": 2850,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2850,
+      "output_tokens_details": {
+        "thinking_tokens": 1320
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

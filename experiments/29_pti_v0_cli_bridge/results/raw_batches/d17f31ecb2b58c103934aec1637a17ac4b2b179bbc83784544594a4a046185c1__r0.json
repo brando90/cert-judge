@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "d17f31ecb2b58c103934aec1637a17ac4b2b179bbc83784544594a4a046185c1",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "17e3679d729cb1484bdbd519e9253dc4e619edc315f5d1286cb669056fdc771c",
+  "completed_at": "2026-08-26T07:50:13.345149+00:00",
+  "effort": "low",
+  "elapsed_seconds": 35.00870441598818,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "ad69cd4c737ceaa83eab757ae65cdf0bfaad1e3f5c3891d7978cfb5a6535dd16",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "d8a29bd410d8c015e88a8e088efcb1922d0e68d323ba12e6a69cdb6f7fe2e27c",
+      "reasoning": "Generated theorem omits the actual mean_equiv_thm equivalence statement entirely, only defining Pre/Post/spec_prop.",
+      "score": 0.15
+    },
+    {
+      "id": "b65f67161204a5d9b2836b3aa0b8000ffcb12e1cff3de54e0cb17f829e003cb6",
+      "reasoning": "Includes variance_equiv_thm with matching signature and sorry proof, consistent with reference.",
+      "score": 0.9
+    },
+    {
+      "id": "e71fd2f76fd3d7cad5a13fa93e6643c48d687b4a0bebc71c9452d049d7280102",
+      "reasoning": "Includes correlation_equiv_thm matching reference signature with sorry, plus additional supporting lemmas.",
+      "score": 0.9
+    },
+    {
+      "id": "d4a0abc3c8dc451f18001e29a54413fe0d0b54b68206900c3f4420a00b7b5bfb",
+      "reasoning": "Generated file lacks the lru_equiv_thm equivalence theorem entirely, ending after Post/Correctness section.",
+      "score": 0.15
+    },
+    {
+      "id": "e7921ae5adc0f570b95932cf12dbf387e67cda29cb864978a95f361fdf3e2424",
+      "reasoning": "Includes indent_equiv_thm matching reference signature with sorry proof.",
+      "score": 0.9
+    },
+    {
+      "id": "bf40c4df7448a6b800e0c0ec90acf7fc21e9f4deeaadc8a3896eeff4ff136428",
+      "reasoning": "Generated file omits the dedent_equiv_thm equivalence theorem, ending after Post/Correctness section.",
+      "score": 0.15
+    },
+    {
+      "id": "96b9e1ee7fd5efd29ab3dc7e712655f6d2b18959d031922a7af4da9643f1cd10",
+      "reasoning": "Generated file lacks the insort_equiv_thm equivalence theorem entirely, ending after tests.",
+      "score": 0.15
+    },
+    {
+      "id": "924b35381e20760fd8819ed3a3204487bd39d52c416c0590ecce891662589805",
+      "reasoning": "Includes insort_equiv_thm matching reference signature exactly with sorry, plus full supporting structure.",
+      "score": 0.95
+    },
+    {
+      "id": "ba7bd0a81c87247bcd46e2931066808f6af1809f6e15ffb41f89ad04006932f4",
+      "reasoning": "Includes escape_equiv_thm matching reference signature with sorry proof.",
+      "score": 0.9
+    },
+    {
+      "id": "78e343174ff75ee15ae603242603ef1ba439ca1ae642d347729bc5da16a9f50a",
+      "reasoning": "Generated file omits the quote_equiv_thm equivalence theorem entirely, ending after tests.",
+      "score": 0.15
+    },
+    {
+      "id": "48a161097023023ee12ff52c946b48d5c139bd65d1170cd6b24333001b2f56b9",
+      "reasoning": "Includes quote_equiv_thm matching reference signature with sorry proof.",
+      "score": 0.9
+    },
+    {
+      "id": "5518c998c04c2128235c17df94137c7b21ee30ecbcf2d45fe75eb4f6c3c233ac",
+      "reasoning": "Generated file omits the join_equiv_thm equivalence theorem entirely, ending after tests.",
+      "score": 0.15
+    },
+    {
+      "id": "3586c1327531cc5201c9530fc30e30ede332b4f9cda04cc36e87c4fd1a5b6d29",
+      "reasoning": "Includes join_equiv_thm matching reference signature with sorry proof.",
+      "score": 0.9
+    },
+    {
+      "id": "2ada3a6f2f1482dddbdecbcda36962a51507c481e7b13e173e4e55982fb42152",
+      "reasoning": "Generated file omits the encode_equiv_thm equivalence theorem entirely, ending after tests.",
+      "score": 0.15
+    },
+    {
+      "id": "2f6061ae2d23553d5b7c22bedae9418f7b7712f82090c638379a9b1d430db13b",
+      "reasoning": "Generated file omits the encode_equiv_thm equivalence theorem, ending after Post/Correctness section.",
+      "score": 0.15
+    },
+    {
+      "id": "20200059d8e0d72ec925bc9f79dfeeb164311c119870ff9bcc9d20c4565d671e",
+      "reasoning": "Generated file omits the loads_equiv_thm equivalence theorem entirely, ending after tests.",
+      "score": 0.15
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.028382,
+        "inputTokens": 28302,
+        "maxOutputTokens": 32000,
+        "outputTokens": 16,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 35274,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1664688,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2428,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 35274,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 35274,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 35274,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 35274,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 2428,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2428,
+      "output_tokens_details": {
+        "thinking_tokens": 831
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

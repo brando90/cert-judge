@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "7a8d430d481dfc68c1f7b4501bd624f19d0aaa9afa9b6804b7ab6084121b7d1a",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "05eed54df1df31b705261f96136855ae6e927f02413c97d0381bd049375c9a64",
+  "completed_at": "2026-08-26T07:33:23.292355+00:00",
+  "effort": "low",
+  "elapsed_seconds": 27.132706041971687,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "057c35c259cd5e69663a33bf83d27259f7205e5dcf7f4954ed263a4958ee64b7",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e140422e54a85928ef5a83767395f867e8a0828b462ed0d7615fe373a54210da",
+      "reasoning": "The generated theorem exactly matches and proves the reference FIFO put postcondition.",
+      "score": 1.0
+    },
+    {
+      "id": "8ed523acf5ab79bbbb8571a3040700cded121fc3d34f84619675bbc82972abc3",
+      "reasoning": "The generated artifact includes the same BFS functional-imperative equivalence theorem with identical scope.",
+      "score": 1.0
+    },
+    {
+      "id": "e6789af20fc8e1a64250649311b01ace4dbd83f071504da9a6bba5cdc05ffe38",
+      "reasoning": "It provides only a sorting-correctness claim and no countingSort/countingSortImp equivalence theorem, while the implementation is also materially suspect.",
+      "score": 0.0
+    },
+    {
+      "id": "88c58074e698f60ebdf693f453b83a0b8be01900cd47d2bee0d8244b1ed46fc8",
+      "reasoning": "The generated artifact includes the same DFS functional-imperative equivalence theorem with identical scope.",
+      "score": 1.0
+    },
+    {
+      "id": "7535509fdf4639af0e496c4ebf9bca372db300eedca4a532527790e325992c32",
+      "reasoning": "The generated artifact includes the same Dijkstra functional-imperative equivalence theorem with identical scope.",
+      "score": 1.0
+    },
+    {
+      "id": "3cf1fda218ccac5aed77b797c11d704a4d3a4da5129f11e1377bf74c846f628f",
+      "reasoning": "It defines a maximum implementation but supplies no theorem relating it to max_elementImp.",
+      "score": 0.0
+    },
+    {
+      "id": "a974b33555bb0cff27b0017c253fcf0116d4b573540c1dae2701f597e1c7bac0",
+      "reasoning": "The generated theorem and implementation are identical to the reference artifact.",
+      "score": 1.0
+    },
+    {
+      "id": "4d2a4c6717c9718518671c9dd95b6ac7bbdf01b6715b26cbc3f9be91efd8446c",
+      "reasoning": "It provides no pairsSumToZeroImp implementation or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "10c02e77c606343d3545461330543b2c9ef42e7a4e1bc090c38757173f110544",
+      "reasoning": "It omits the required decodeShift/decodeShiftImp equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "43a522f6a82d09359fa1231e6b8f0ada2b88a4d0cdea46347107d398fc1490eb",
+      "reasoning": "It lacks the required imperative implementation and equivalence theorem, and its stated correctness claim is unrelated to the reference guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "15c87f4265eff9d4c6c64b4a897a2f225f359846a431a7ab44598c9523d69eaf",
+      "reasoning": "It omits primeLengthImp and the equivalence theorem, and the prime-length implementation is incorrect.",
+      "score": 0.0
+    },
+    {
+      "id": "973042c9aac5e7dd2e7ceb39f56b773282f9ff2f5aa2cd1e3e604c0c6a9283bd",
+      "reasoning": "It proves a direct sum-and-product specification rather than the required equivalence with sumProductImp.",
+      "score": 0.2
+    },
+    {
+      "id": "82847f0d3048460e56abb895dfface1f4394d1cbe55a07e1a412a6a864fd3ad0",
+      "reasoning": "It provides direct functional correctness for a renamed implementation but no equivalence with sumProductImp.",
+      "score": 0.2
+    },
+    {
+      "id": "a552adf2eca3d3b64b58fa7354dd164477be438db068a746eb06677ba4080202",
+      "reasoning": "It establishes a direct sum/product postcondition but omits the required sumProductImp equivalence guarantee.",
+      "score": 0.2
+    },
+    {
+      "id": "7c960fde411f6f62bcac1c871bd6fc6bf45e0e36b4be0515090c0e4733248e3a",
+      "reasoning": "It gives direct sorting correctness but no insertionSortImp implementation or equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "ffe7d6111d60c1e1e70b1c202e5d0486f48f9b8fdf7990b15de72eaf030d1f97",
+      "reasoning": "It omits the required imperative-equivalence theorem and the alternate insertion implementation is materially unreliable.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

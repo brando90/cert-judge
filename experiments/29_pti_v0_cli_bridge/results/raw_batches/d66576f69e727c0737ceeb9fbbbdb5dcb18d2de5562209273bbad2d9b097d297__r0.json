@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "d66576f69e727c0737ceeb9fbbbdb5dcb18d2de5562209273bbad2d9b097d297",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "8fe2c7e5352a014ba422969e9175bb90d37b7b96358b1b812581d84104415974",
+  "completed_at": "2026-08-26T09:03:35.374997+00:00",
+  "effort": "low",
+  "elapsed_seconds": 36.341259000007994,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "e766d180554537ba0cb1592594d2f0934b523820e5104d0c23b7e70b4602e174",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "fb6e5a2a0b37ed5ee806781970268715da313465fb821014c9209e0c21d143a6",
+      "reasoning": "Generated theorem is essentially identical to the reference proof of the same Post property.",
+      "score": 1.0
+    },
+    {
+      "id": "b1ca5c99830eb361e6fb60054febf5d3f77fb83f63056e124d50a50787814cb1",
+      "reasoning": "Full pipeline with matching bfs/bfsImp/equivalence theorem structure, though equivalence proof is sorry like the reference.",
+      "score": 0.9
+    },
+    {
+      "id": "c1d305241bcf6943072961184b491781c52ea9e6c4ff443436e9274fafaa1905",
+      "reasoning": "Missing the imperative implementation and equivalence theorem entirely that the reference requires; only has a sorted+permutation correctness sorry.",
+      "score": 0.1
+    },
+    {
+      "id": "5ca83df8e26922fb19af8fe0de8881b3026d28e6d7914d51012fd4817fd02675",
+      "reasoning": "Has dfs, dfsImp, and Post_prop/correctness but the equivalence theorem dfs=dfsImp is missing entirely.",
+      "score": 0.6
+    },
+    {
+      "id": "9c1cdcab85e8f213ae449726c8bf3d364d6efd2cb0ea285bfae48df9437357fe",
+      "reasoning": "Complete matching pipeline including the equivalence theorem with sorry, mirroring the reference structure.",
+      "score": 0.95
+    },
+    {
+      "id": "3ab32f6080662f6eb50c3a7d7a0c91e2ee03bc35b15b50a14d523fd8918bba6f",
+      "reasoning": "No imperative implementation or equivalence theorem present at all, only a basic correctness sorry.",
+      "score": 0.1
+    },
+    {
+      "id": "92c5fefc805b8961f3517beec8cfff21132666545e3382d0d36305951eb6ab7c",
+      "reasoning": "Byte-identical to the reference-style file with proven correctness theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "5286d0cdb370baac4030b1686515814632136be9b562c413a205707149070b25",
+      "reasoning": "Has an equivalence-style correctness theorem (pairsSumToZeroCorrect) matching intent, though missing imperative variant/equivalence naming from reference.",
+      "score": 0.85
+    },
+    {
+      "id": "3a57bdb672613738b29c8f1184b7498c4fff09741a8e10f1106999de50d6a570",
+      "reasoning": "Provides decode/encode identity theorems and a spec correctness sorry but lacks the explicit decodeShiftImp equivalence theorem structure.",
+      "score": 0.5
+    },
+    {
+      "id": "1f9e45f408feda6bbacefc5077e96893e40ee874842a9d1d5deef2950c5a3c1c",
+      "reasoning": "Provides pre/post and a correctness sorry but no imperative implementation or explicit equivalence theorem matching reference.",
+      "score": 0.4
+    },
+    {
+      "id": "16a0cb2c5d8035836730f51865c042e6612bf1fd5bca7c8954d79d215b4d48b3",
+      "reasoning": "Has a correctness sorry relating prime_length to is_prime but lacks any imperative implementation/equivalence theorem.",
+      "score": 0.35
+    },
+    {
+      "id": "aa3a7bf8f6a88d7c40eb5aaea804dfc0adb693917e25869aefa30e1ca2caeb26",
+      "reasoning": "Has a correctness sorry relating sumProduct to recursive sum/product but no imperative implementation or equivalence theorem.",
+      "score": 0.4
+    },
+    {
+      "id": "edde2b7d9d74d5a7e6c3f90af3d8c364b78d8426853a1c99fd8610a187b9c7ef",
+      "reasoning": "Has a sorry correctness theorem against a spec but lacks imperative implementation/equivalence theorem matching reference.",
+      "score": 0.4
+    },
+    {
+      "id": "dfa66cb00897173ada2cb8cb5963d4d245dc8f63f1aec2db02caafaa9f71b90a",
+      "reasoning": "Contains multiple sorry-based correctness attempts against a spec but no imperative implementation or explicit equivalence theorem.",
+      "score": 0.4
+    },
+    {
+      "id": "298d6b11c4f49e3177ba9e9b1f79fc6ea73c91bf6b119382d4c7b8f1c26009c8",
+      "reasoning": "Has sorted+permutation postcondition with sorry but no imperative implementation or equivalence theorem as required by reference.",
+      "score": 0.3
+    },
+    {
+      "id": "aa7a4ea944ecb6653be7ce54333b307de64af5c04962aadd99499c545c4e58d1",
+      "reasoning": "Has sorted+permutation postcondition with sorry but lacks imperative implementation and equivalence theorem.",
+      "score": 0.3
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.021584000000000002,
+        "inputTokens": 21524,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 26593,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1243648,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1690,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26593,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 26593,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 26593,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 26593,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 1690,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1690,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

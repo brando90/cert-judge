@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "bdd2d6519f3c78db44508ea4a9c999dab6bb4a8596fc1edebab450ec7455aba8",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "5957cad50805057163dbb491af6b30e1692e40e0303ea0aa6073aa4d394fd290",
+  "completed_at": "2026-08-26T08:53:12.363286+00:00",
+  "effort": "low",
+  "elapsed_seconds": 40.54994187498232,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "39a59a827ac35906e5fcc494aad38a01b7805ab113f062aa09c63acb8f6e2261",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e4d873ed61bdf4302123d98191d7a6856c8428ba409cce6aeaac66dbb84ae8ed",
+      "reasoning": "Generated theorem includes bisect_equiv_thm matching reference exactly plus additional correctness/property theorems, all as sorry but structurally faithful.",
+      "score": 0.9
+    },
+    {
+      "id": "c715bfaa16e0e57bf197f10734054322b61c5a508d690c567873dfad945d4cd0",
+      "reasoning": "The generated file never states covariance_equivalence_thm (or any equivalence theorem) comparing benchmark_covariance to covarianceImp, missing the core guarantee entirely.",
+      "score": 0.05
+    },
+    {
+      "id": "ba75676c2719194ac5498c8aadb8a368e34998a592273e6647f4921446af2e6b",
+      "reasoning": "Includes covariance_equivalence_thm matching the reference signature exactly along with supporting Pre/Post/property theorems.",
+      "score": 0.9
+    },
+    {
+      "id": "6f0e0fccf5fafbd99ee2aad67679b8451962b611d25781dc594e4fa8a088afcd",
+      "reasoning": "Contains benchmark_quantiles_equivalence_thm matching the reference exactly, with full supporting pre/post/property structure.",
+      "score": 0.9
+    },
+    {
+      "id": "f8d5243d39def83ac396a26185afa01935bf70ee933cfb467ce59f56275c4bf9",
+      "reasoning": "The generated theorem is about an unrelated quadruple_abs_diff_plus_three function and never states quadAbsDiffPlusThree_equivalence_thm at all.",
+      "score": 0.0
+    },
+    {
+      "id": "871a7c6fa76586e953138e00654b472705672684ab0292a66f9489d3711f5aa5",
+      "reasoning": "The generated file implements insort_left but never states insort_equiv_thm, omitting the core equivalence guarantee entirely.",
+      "score": 0.05
+    },
+    {
+      "id": "ba7be174015962cb3e9ec9594fbc8f5b3656293a7d290cd952d3926febf3d206",
+      "reasoning": "Contains insort_equiv_thm matching the reference exactly, plus supporting Pre/Post/property theorems.",
+      "score": 0.9
+    },
+    {
+      "id": "cba43e4102a35a2d2815e93b548926530ce6ca59535f14f27c9bcdf5f9c6a36f",
+      "reasoning": "The generated file implements heappush but never states heappush_equiv_thm, missing the required equivalence guarantee.",
+      "score": 0.05
+    },
+    {
+      "id": "366b1ccc89cdb1404794a9f0f188b5cfef8b37a8c539b76593fe7560fe2a38dd",
+      "reasoning": "Contains heappush_equiv_thm matching the reference exactly, plus supporting property/correctness theorems.",
+      "score": 0.9
+    },
+    {
+      "id": "51b74b6bad42e23c804c33c8554eab835460f53ff81824ad542c538e6c67d443",
+      "reasoning": "Contains heappop_equiv_thm matching the reference exactly, plus supporting Pre/Post/property theorems.",
+      "score": 0.9
+    },
+    {
+      "id": "09bb18202f879b85a9c510a1b490195f766efef2c6ed1acae595f554c2df0897",
+      "reasoning": "Contains get_equiv_thm with signature and statement identical to the reference.",
+      "score": 0.95
+    },
+    {
+      "id": "2647eddb8579c8383bf7620203d9160912882504118386d74955cb2649de0cd3",
+      "reasoning": "The reference's correctness_thm (a concrete proved theorem about fifoPut/canPut) is entirely absent from the generated file, which only leaves a differently-scoped Post definition with no corresponding theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "357a73f5f5421b0ad94ff919f73a450b445255dc669c3e626f37bc898fe2b6e0",
+      "reasoning": "The generated file never states update_equiv_thm; the correctness/equivalence section is entirely empty.",
+      "score": 0.05
+    },
+    {
+      "id": "37859cfdbbc5dac540db0d64ccbaf7e08114b556ce0b03c90e77903f45cbbec5",
+      "reasoning": "The generated theorem is an exact byte-for-byte copy of the reference implementation and theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "3a3ed6a3949aa8dc9f6fbfa73ff233d5880055478d321fe5f7fb373d5c3f4fe6",
+      "reasoning": "Contains get_equiv_thm with statement identical to the reference, plus supporting structure.",
+      "score": 0.95
+    },
+    {
+      "id": "e2affd875dec3522d31952716e8e1fa005bb51249d7f8ce27dd16fa45dfc9863",
+      "reasoning": "Generated theorem safePathTraversalCorrect captures a similar Pre→Post correctness guarantee but under a different name/signature and with a nontrivial Post rather than the reference's trivial Post, indicating a meaningful but not total gap.",
+      "score": 0.6
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.040803,
+        "inputTokens": 40743,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 55729,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.037919800000000004,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2677,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 55729,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 55729,
+          "input_tokens": 2,
+          "output_tokens": 2677,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2677,
+      "output_tokens_details": {
+        "thinking_tokens": 925
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

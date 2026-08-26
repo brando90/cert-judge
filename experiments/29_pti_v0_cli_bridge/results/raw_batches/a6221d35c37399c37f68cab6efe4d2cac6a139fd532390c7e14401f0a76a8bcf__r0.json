@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "a6221d35c37399c37f68cab6efe4d2cac6a139fd532390c7e14401f0a76a8bcf",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "f3ab7ee0b6c8917fdcdd0ff8f5ea121a5abd3438cbc33aca88a3eb4245eec81e",
+  "completed_at": "2026-08-26T08:50:07.903152+00:00",
+  "effort": "low",
+  "elapsed_seconds": 46.48449916602112,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "89c8d1625dbc7177bed4ba473c5616fa61d8ed62180b106977aa1f3959ad02f5",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "b8bf8d9dff079edc9d047b1086c2e25e1a022cb3c53420843d4214d6196e7d0f",
+      "reasoning": "Generated code redefines the functional/imperative bisect implementations and tests but never states or proves the required equivalence theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "d07b5478dc4c47742f5f37774ad4c6e0a98bba0b9723d3c95576d39f81d95134",
+      "reasoning": "Includes Pre/Post/partition definitions but the correctness and equivalence theorems are entirely stripped/missing, no proof of the core equivalence claim.",
+      "score": 0.15
+    },
+    {
+      "id": "9295b0109719425c58936d7fa5e590fa8f45782b1c2127d2ff827cbb109c1f7f",
+      "reasoning": "benchmark_covariance and covarianceImp are trivially defined as the same function alias with no equivalence theorem stated or proved.",
+      "score": 0.1
+    },
+    {
+      "id": "470e6678f93023ebcd9faf0447271f035c3a19445e1b55d089b46ec765e4f8df",
+      "reasoning": "Provides genuine proofs for symmetry and self-variance properties and a correctness theorem, but the core equivalence theorem and shift-invariance remain sorry.",
+      "score": 0.55
+    },
+    {
+      "id": "3dbc6ea4fe53e2b1000ef4c547270a4ed61172c520f22c18f7d53bfe50d33264",
+      "reasoning": "Substantial implementation with a proven length property and correctness theorem structure, but permutation/shift invariance and the final equivalence theorem are left as sorry.",
+      "score": 0.5
+    },
+    {
+      "id": "8c6969867f297381a06b020042feb3f0d8abe2264658623a023a225ae08aa358",
+      "reasoning": "Generated theorem is an exact match of the reference implementation with full proof and tests.",
+      "score": 1.0
+    },
+    {
+      "id": "e0e6bc083307d8b54e7c99f732d37b4a6e033b42ae4ff1275c2d3909a737055e",
+      "reasoning": "Generated code is for an unrelated function (quadruple_abs_diff) with no imperative variant or equivalence theorem matching the reference's intent.",
+      "score": 0.0
+    },
+    {
+      "id": "78b4321e8d15f882e43e0db145aec853fc766c5702b7f9388048f26f778e9854",
+      "reasoning": "Reproduces the functional/imperative implementations and tests verbatim but never states the required equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "85f65e3e244cb051a2787bbc61d489f808bd71c953e56888fdb1a6ecba35c1eb",
+      "reasoning": "Adds Pre/Post scaffolding for sortedness but strips out the actual property proofs and the core equivalence theorem entirely.",
+      "score": 0.15
+    },
+    {
+      "id": "92e679001a85f19e7b8732e2e84fd0593ba99c99f803390ea49a20783d8a4b72",
+      "reasoning": "Reproduces functional/imperative heappush implementations and tests but omits the required equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "140131a60773e8486349ae7361987499d916d3a6d8052f035cfc18b8c44055b6",
+      "reasoning": "Adds Pre/Post/property scaffolding but leaves invariant theorem as sorry and never states the required equivalence theorem.",
+      "score": 0.15
+    },
+    {
+      "id": "aef6e37ec459b3e889eaa9ff57828c289ffd4cdb2f53db63831ea91d966e3c71",
+      "reasoning": "Implements a plausible SafeCounter with increment/decrement specs, but nearly all correctness proofs are sorry and it doesn't align with reference's Pre/Post/trivial structure.",
+      "score": 0.35
+    },
+    {
+      "id": "f63d5e781d2b07a32121b59aebfdb5163f3481d1c939b32f71a2ce923312c38c",
+      "reasoning": "More elaborate SafeCounter simulation with concurrency-like tests, but all specs and the final check_correct are left as sorry.",
+      "score": 0.35
+    },
+    {
+      "id": "2227b68affa8187dfb7f14f39147dacbe2d21006e4f17697302d753dfb6326f8",
+      "reasoning": "Full heappop functional/imperative implementation and tests, but Pre/Post, property theorems, and the required equivalence theorem are all stripped out or missing.",
+      "score": 0.15
+    },
+    {
+      "id": "6f32c6eda7621ea88023bb751dfc6a27f809f9e3d948cc62a87d950ffb7a9913",
+      "reasoning": "Provides a reasonable safe format string implementation with spec and tests, but the correctness proof is left as sorry and there's no explicit Pre/Post/trivial correctness theorem matching reference.",
+      "score": 0.4
+    },
+    {
+      "id": "4b49172caa6d67b052f86c83f37a7d25b5bd04a6d8d0eb0deee9e5b64bee6aaa",
+      "reasoning": "Implements safe_format_string with a more detailed but unproven spec (sorry), diverging from the reference's trivial Pre/Post structure.",
+      "score": 0.35
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.035239,
+        "inputTokens": 35179,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 43115,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.2049428,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3139,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 43115,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 43115,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 43115,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 43115,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 3139,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3139,
+      "output_tokens_details": {
+        "thinking_tokens": 1345
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

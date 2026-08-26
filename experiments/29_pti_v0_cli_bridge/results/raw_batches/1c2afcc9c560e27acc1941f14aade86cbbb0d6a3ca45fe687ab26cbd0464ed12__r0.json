@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "1c2afcc9c560e27acc1941f14aade86cbbb0d6a3ca45fe687ab26cbd0464ed12",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "ec478a692de64ce16c4ccd25378a26cba02e3503b8c9af025c958ae75c7f0a66",
+  "completed_at": "2026-08-26T08:44:23.849075+00:00",
+  "effort": "low",
+  "elapsed_seconds": 40.845311417011544,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "8d21954544e61902230ffa70596393034106e4a3f938434626bb234bfae32578",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e00d4e9cf85367d936b8c004269d9b869f25789ebbfea2eca1df7516e0882712",
+      "reasoning": "Equivalence theorem statement matches reference exactly with sorry, minor scope reduction elsewhere is not core.",
+      "score": 0.85
+    },
+    {
+      "id": "c7f899793b3c3fb33d64b701059d337ce7a1e89d2df464ebee94cd9f786e5cfd",
+      "reasoning": "The generated file omits the loads_equiv_thm equivalence theorem entirely.",
+      "score": 0.05
+    },
+    {
+      "id": "a72313b83a484611015686eb6edf14349d85691107d1ee9d06f9beba7ec9a4cd",
+      "reasoning": "loads_equiv_thm present with sorry matching reference statement, though underlying parseInt_func? has a logic bug unrelated to the theorem statement.",
+      "score": 0.75
+    },
+    {
+      "id": "98919af85100a3a66f496de77aa860efc62a6c183d820f1c529f3e4f0e8dece2",
+      "reasoning": "The unquote_equiv_thm equivalence theorem is entirely missing from the generated file.",
+      "score": 0.05
+    },
+    {
+      "id": "93efba6cede9ac4ce73914ae9fa6f7a5cb50315c1785e41152aeb6c0c45a9f9b",
+      "reasoning": "The compare_equiv_thm equivalence theorem is entirely missing from the generated file.",
+      "score": 0.05
+    },
+    {
+      "id": "908dbabf996116811ade7633488eca061fdbc6c49f3a49a4f4be4e019045d26a",
+      "reasoning": "compare_equiv_thm present with sorry matching reference exactly, plus additional property theorems.",
+      "score": 0.85
+    },
+    {
+      "id": "f82619e4b78ce7cd6d4d82e5abece5ea30c774ab4df5b5f5e6e3f0868965ec18",
+      "reasoning": "Generated theorem is byte-for-byte identical to reference implementation including the equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "f9a3cd039dacd1932423e300d9dc9b7898f75317b913db0ab782eb664ec0416b",
+      "reasoning": "median_low_equivalence_thm present with sorry matching reference statement structure.",
+      "score": 0.85
+    },
+    {
+      "id": "ee0fc803e85e643eb45dfea7003fee171e8fd96895d08a40d2b4b7edd873a428",
+      "reasoning": "Generated theorem is identical to reference implementation including the equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "20232e705d6f54be0c5fbd4634bf248205c106b2f8c9aad124fde278af634ecc",
+      "reasoning": "The bisect_equiv_thm equivalence theorem is entirely missing from the generated file.",
+      "score": 0.05
+    },
+    {
+      "id": "1c9978db264f6f04317bab354b851efd5e8524ba10058370ca33b5aca6cac53b",
+      "reasoning": "The Equivalence Theorem section is left completely empty, missing bisect_equiv_thm entirely.",
+      "score": 0.05
+    },
+    {
+      "id": "67803339f88ed39ce143db8fd325ffb902b66cf58e02c5200e2d342afda6fd05",
+      "reasoning": "Generated content is an unrelated, malformed (markdown-wrapped) file with a different namespace and no correctness_thm matching the reference statement.",
+      "score": 0.0
+    },
+    {
+      "id": "0029a7576c72c5c6ba38bbb3f2280fd909f5a6f8b9b9020779c2d91949f5c2c3",
+      "reasoning": "Generated theorem is identical to reference implementation including the covariance equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "02b154e4cec3497148ca204178da88e6c8e8a5f5f912f32d38f2201a148d3457",
+      "reasoning": "The covariance_equivalence_thm equivalence theorem is entirely missing from the generated file.",
+      "score": 0.05
+    },
+    {
+      "id": "06ea9be455b1daa823a418551674b03e22dc27d947c554ade628a05dc6ed538f",
+      "reasoning": "benchmark_quantiles_equivalence_thm present with sorry matching reference statement, with extensive supporting properties.",
+      "score": 0.85
+    },
+    {
+      "id": "1ce1de78d1beb6578e6fd91cc01370dc769de80f7e180269e37e47a4fa5d7ef7",
+      "reasoning": "Generated content lacks any imperative implementation or myMinList_equivalence_thm, entirely unrelated to the reference equivalence statement.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.041524000000000005,
+        "inputTokens": 41459,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 50805,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.2309528,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2664,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 50805,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 50805,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 50805,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 50805,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 2664,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2664,
+      "output_tokens_details": {
+        "thinking_tokens": 1062
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

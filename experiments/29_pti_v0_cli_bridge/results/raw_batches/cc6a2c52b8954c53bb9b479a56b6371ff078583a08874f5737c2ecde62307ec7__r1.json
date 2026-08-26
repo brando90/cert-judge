@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "cc6a2c52b8954c53bb9b479a56b6371ff078583a08874f5737c2ecde62307ec7",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "7b1a0bdb57f130376c42d5fd6e7b63c3a26ca576c786c8fdd24755262491f43c",
+  "completed_at": "2026-08-26T08:25:59.764017+00:00",
+  "effort": "low",
+  "elapsed_seconds": 35.27763916697586,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "120813c8bf319337e478776ee0055bbfb52204c69e422ac5af5db95bf2693e6c",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "2543317eafdf07125f2fe14991229e082d01aead8808c015fd800047c14b2046",
+      "reasoning": "Correctness theorem is left as sorry, so the core safety proof is unproven despite tests passing.",
+      "score": 0.1
+    },
+    {
+      "id": "20f366b157e8a4f9c66ceb3111fbdd8791df45952389217af39009c879529f4f",
+      "reasoning": "mean_func is bugged (n != 0.0 then 0.0 else ... inverts the guard, causing NaN for nonempty and 0 for empty), and the equivalence theorem is sorry.",
+      "score": 0.0
+    },
+    {
+      "id": "c26ed31c55b304a8d64f0b07655220a836a40e89d750e295522202050bad53ed",
+      "reasoning": "Core correctness theorem is sorry, only tests demonstrate expected behavior informally.",
+      "score": 0.15
+    },
+    {
+      "id": "385ed9f07945da667eafa6802669f52bbe04a2147f30d26ba684038a9643cfd3",
+      "reasoning": "spec_thm is actually proven (not sorry) unlike reference, but the required equivalence/correctness theorem is entirely missing (blank section), a meaningful gap.",
+      "score": 0.35
+    },
+    {
+      "id": "47ce8cc2a142230a6c9d343202f4f3716eb0ac469f7e709f35c1ac7054087465",
+      "reasoning": "No correctness/equivalence theorem present at all beyond native_decide tests, core proof obligations missing.",
+      "score": 0.1
+    },
+    {
+      "id": "3d6a56f2ffde8f5e7dbca79e2dfc005dd7a193e4da26677075fabaf59d63f8c0",
+      "reasoning": "Correctness theorem section is empty (no theorem provided), only a spec_prop definition without proof.",
+      "score": 0.1
+    },
+    {
+      "id": "9edcd674a616100e86b192e0444ff5aeaff37fa19bc7c95509063b8b590d2022",
+      "reasoning": "Provides an actual proven correctness theorem (not sorry) for uppercase but is a much simpler, self-contained model rather than matching the two-implementation equivalence structure of reference.",
+      "score": 0.6
+    },
+    {
+      "id": "359fd44de36893bf8a771817a8a0ba368f312fe07f4d9a0a36af9a47436cf630",
+      "reasoning": "Generated theorem is an exact duplicate of the reference implementation, preserving all guarantees.",
+      "score": 1.0
+    },
+    {
+      "id": "2a48053b0fd5d1953627da742ee6a35d54189a6f7700ff8cbfe8ef167132fa85",
+      "reasoning": "mean_func has an inverted condition bug causing wrong results, and correctness/equivalence theorems are sorry.",
+      "score": 0.15
+    },
+    {
+      "id": "08df19002356667d508ba9c7390cbf10ea0333b0034d4b41bf840ae61ae7f459",
+      "reasoning": "Generated theorem is an exact duplicate of the reference implementation with all proofs intact.",
+      "score": 1.0
+    },
+    {
+      "id": "704579a81f9ee9ebd9dc76eea4368c6449f0c0414cc294f460b8f722158fd956",
+      "reasoning": "Generated theorem is an exact duplicate of the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "07b229d88999a72069b01e674628e63a5903fc76c5970471200a49b8cce269b0",
+      "reasoning": "Generated theorem is an exact duplicate of the reference implementation, same sorries in same places.",
+      "score": 1.0
+    },
+    {
+      "id": "7574d8a9b182a6e3f1b0adba452b38c1c44bb1f58e87e4580eece0bfda3ea45c",
+      "reasoning": "Generated theorem is an exact duplicate of the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "03b2b2edd291533766bdaf519d6161210f0bec293674168276841ee4668590c3",
+      "reasoning": "Required mergeKw_equiv_thm equivalence theorem is entirely missing, replaced by an unrelated unproven positional_prop definition with no correctness theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "fecbca52f63e158b8bc9142f9f270ee6d734e0cbb7147971e4916df3fd7e3e8f",
+      "reasoning": "Uses a different structure without the required imperative implementation or equivalence theorem, main correctness proof left as sorry, and no myFibonacciImp equivalence proven.",
+      "score": 0.1
+    },
+    {
+      "id": "4fe8164e63ca4aeca24b90f32da784c0fb9f3770e94321ea0629dd4f4bbb142d",
+      "reasoning": "Both correctness and equivalence theorems are sorry, and the code is wrapped in markdown fences deviating from expected format; no real equivalence guarantee established.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.030589,
+        "inputTokens": 30519,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 44508,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.025685600000000003,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1678,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 44508,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 44508,
+          "input_tokens": 2,
+          "output_tokens": 1678,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1678,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

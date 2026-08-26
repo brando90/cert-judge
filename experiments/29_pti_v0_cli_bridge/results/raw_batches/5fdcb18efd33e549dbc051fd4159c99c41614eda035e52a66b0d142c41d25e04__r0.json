@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "5fdcb18efd33e549dbc051fd4159c99c41614eda035e52a66b0d142c41d25e04",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "46f47782c73273f4193788d9edbbb2bcb719835f07d27b393b67e179f2eb3b2b",
+  "completed_at": "2026-08-26T09:53:59.952953+00:00",
+  "effort": "low",
+  "elapsed_seconds": 27.75823095900705,
+  "judge_id": "gpt-5.6-terra|BAD_STRINGY",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "4bd142781db4e2057770ab5ea8b42b11c18de025c5e927250be27c76f198873f",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "c85cce2a3d7665708c81c3b6fd776a97ee9720bb9b4b0d9dcab8c7aaa0aa7b5d",
+      "reasoning": "The generated text contains the related Bisect namespace and both referenced function names but omits the theorem declaration.",
+      "score": 0.3
+    },
+    {
+      "id": "b1d4895300e8432dc200b187c2a78285207a57c0fd047817c6cbf25f8426a90d",
+      "reasoning": "The generated text shares the Bisect implementation vocabulary but does not include the reference equivalence theorem.",
+      "score": 0.22
+    },
+    {
+      "id": "76ef52191c82a16e4ec2f80263ac0067f1a7a18d34a6d0f51d2fb75ca3f3b016",
+      "reasoning": "The generated text is lexically identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "683d70ab7c74bdcaa486c2e2f9b6468d8fdfd07bd4febaf79e4070d618153b47",
+      "reasoning": "The exact reference theorem and namespace closing appear at the end of the generated text.",
+      "score": 0.98
+    },
+    {
+      "id": "6aa5611f6e865dc951b987c0f81aa0b1cdd6012ab0892675a2062582e931ec44",
+      "reasoning": "The generated text uses the same quantiles identifiers and namespace but omits the reference equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "d38cc3364e415432601c1e01dec758d8dc1ccab4d315dc5d4b9b542e1ad39e70",
+      "reasoning": "Only the general perfect-square topic and namespace overlap, while the theorem and identifier formatting differ.",
+      "score": 0.06
+    },
+    {
+      "id": "c47ea05662da1241de665c54f7b23f518e1047a2a09f31ac86381af243764c7f",
+      "reasoning": "The generated text has related arithmetic wording but different identifiers, types, and no matching namespace or theorem.",
+      "score": 0.04
+    },
+    {
+      "id": "4d382c407f21406028beb29d46fcf9eacd52d650ac5faffb18a65cc3edb1c5c6",
+      "reasoning": "The generated Insort code contains the referenced function names and parameter vocabulary but omits the equivalence theorem.",
+      "score": 0.3
+    },
+    {
+      "id": "786d1d55bfce8607e1ffff00d8ac5d0574a0602252c9779bc1f3bc8753698192",
+      "reasoning": "The generated text strongly overlaps in Insort implementation vocabulary but does not include the target theorem.",
+      "score": 0.25
+    },
+    {
+      "id": "8f95600bf64a34d300377576db265f8129c7d1c007dd08ab3fb55b113cb31645",
+      "reasoning": "The generated HeapPush text includes the same heappush function names and namespace but omits the theorem declaration.",
+      "score": 0.3
+    },
+    {
+      "id": "1897e5bdcb7b7feca6b04a6de60fdb91ecbb48b4ec9a508181750ef94b3b85f5",
+      "reasoning": "The generated HeapPush code shares the key function names and structure but lacks the reference equivalence theorem.",
+      "score": 0.25
+    },
+    {
+      "id": "f371b02d7ff099ce08f377494715172bf70f34dd8dc4784d15c80fa54fdeb3f1",
+      "reasoning": "The generated SafeCounter text is in a different namespace and contains no matching correctness theorem or Pre/Post identifiers.",
+      "score": 0.03
+    },
+    {
+      "id": "c18626daf9db4c85c8176bf1cd51d4848bf8f572379199588918c1149ebf5631",
+      "reasoning": "The generated SafeCounter text has only generic correctness-related wording and lacks the reference theorem and namespace.",
+      "score": 0.03
+    },
+    {
+      "id": "0dd13717c6e63020b09ff41b8056393c5f70f344384818f66e00ae39ea1d9b6e",
+      "reasoning": "The exact reference heappop equivalence theorem and namespace closing appear in the generated text.",
+      "score": 0.98
+    },
+    {
+      "id": "9cc1719f772d0a55f6b4037bbc8c9c8d84693905486a4a9f07847958788a7712",
+      "reasoning": "The generated safe-format implementation has no matching correctness_thm, Pre/Post identifiers, or reference namespace.",
+      "score": 0.02
+    },
+    {
+      "id": "3179a9ff7ae7dee38bc1ecfd81da1a93f0c878fb1c46480163eeb43ef6cd779a",
+      "reasoning": "The generated safe-format text is topically related but uses different naming and omits the reference theorem and namespace.",
+      "score": 0.02
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "1d73f7c869fc1faa28dce61bf94defac14716090c26f5ad3a8b46010bc68f660",
+  "case_count": 8,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "7ddb817b873b92c9def2e0f0140ff2d627575e09f7cced24e41a303fe7372d79",
+  "completed_at": "2026-08-26T09:36:47.001215+00:00",
+  "effort": "low",
+  "elapsed_seconds": 21.397559791977983,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "88d9127a7468fa1c4a072d7af87bea32b63d3755709216f4e069379f75b02237",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "d2d1bf4cac8e2c897e41d4e692096673827edbf0301efe77fa64d42eca0be75d",
+      "reasoning": "The generated theorem has exactly the same BFS-to-imperative-BFS equivalence statement as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "b3f15776bf2579f6f8433aecb075152e23836b25c9fd7ef3858b42b6da1e96c4",
+      "reasoning": "The generated theorem exactly matches the reference DFS equivalence statement.",
+      "score": 1.0
+    },
+    {
+      "id": "d9fa6f06a339f6980f626e653612d99d56023a0b779f686df9c465cb17a5128a",
+      "reasoning": "The generated Dijkstra equivalence theorem is identical in meaning to the reference theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "b3a402cb1c57070454fe5cb74b0744f78b5f1c5f1f111d58da314b89db2dc34e",
+      "reasoning": "It proves a functional maximum postcondition but provides no imperative implementation or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "c6dcbe76ee49aabaddd58a502b2f3def985ea994e18e9c7d5df60e927c1e9919",
+      "reasoning": "The submission contains a specification but no theorem relating the functional and imperative implementations.",
+      "score": 0.0
+    },
+    {
+      "id": "441b718cc2607612897d9d6393578105d677cfdb3868a12f52cdf8f467ee0a5a",
+      "reasoning": "It states an encode/decode identity property but omits the required decodeShift-to-decodeShiftImp equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "86e12c177716445241d5aa45982eeb4b294b7ba50549ab91fd3b12584a87a510",
+      "reasoning": "It offers a limited encode/decode correctness claim but no imperative implementation or required equivalence theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "49b9d36434e56515ecec1330ead314b2a89e8c87a2955ce173155e1578164670",
+      "reasoning": "It states a functional prime-length postcondition but omits the required equivalence with primeLengthImp.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

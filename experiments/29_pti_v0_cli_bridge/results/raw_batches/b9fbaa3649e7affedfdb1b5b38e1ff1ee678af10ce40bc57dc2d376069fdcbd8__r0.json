@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "b9fbaa3649e7affedfdb1b5b38e1ff1ee678af10ce40bc57dc2d376069fdcbd8",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "64a7d38142a65d83c6c9596362b818b8e52865f3fc047c8b6623a068bf880593",
+  "completed_at": "2026-08-26T07:30:33.324260+00:00",
+  "effort": "low",
+  "elapsed_seconds": 32.81878654100001,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "f81bc56e0956dcf7db96a8c095d443a0ce15ef77a074e39ce5a482d24c9b8a7d",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "da60ec2fc35496c50611b988b1ef56175b740073ea37ea7cf06eba84fd77e47e",
+      "reasoning": "The generated theorem has exactly the reference equivalence statement, including the defaulted high bound.",
+      "score": 1.0
+    },
+    {
+      "id": "8a1e7ef0d3225ef226e4614d29b614a008cfc18a7a8ef982f604fe26b428b657",
+      "reasoning": "No heappush equivalence theorem is provided, so the reference's core functional-imperative equality is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "a0ed431caa2fc41dc58fc96b5a1554d5c6d2f5fad73fc975f32085ac95de1cf5",
+      "reasoning": "The generated theorem exactly states the required equality between imperative and functional heappop.",
+      "score": 1.0
+    },
+    {
+      "id": "c7aef8dec6773ed651e78934b1fb8d804b38c03b232468492c0d9446db154274",
+      "reasoning": "The generated get equivalence theorem preserves the reference's success-value/state and error correspondence exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "8b1de222bcd95570c5a3ed22b3ea6530fe304c8ce396257edef277df01db9c92",
+      "reasoning": "The generated correctness theorem and its pre/postconditions match the reference theorem's guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "fdd6fde1cca73e38df0b0848c0e12d14ec03603f23f48bdae0b1a1f81e5259be",
+      "reasoning": "The generated update equivalence theorem exactly preserves the reference's pointwise lookup equivalence after conversion and update.",
+      "score": 1.0
+    },
+    {
+      "id": "e2dd919152a8b1d98b7727a2d826b859757018d80ce1be67b8cb8a7e2e37939e",
+      "reasoning": "No ChainMap imperative-functional get equivalence theorem is present.",
+      "score": 0.0
+    },
+    {
+      "id": "436290ae591882345f234cfe348ed126006905ca53d05bf1ded72cac08e99d77",
+      "reasoning": "The generated theorem has the same BFS functional-versus-imperative equivalence statement as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "613f39fb1aa20d06881becaf8568b565198bcfec40eda768f027aa2d46040b51",
+      "reasoning": "The counting-sort equivalence theorem is missing, and the provided correctness theorem concerns a different Int implementation.",
+      "score": 0.0
+    },
+    {
+      "id": "13845def55e42330d2b95ff350bec0568ef7c41e38c3a65698023a3b83a9e23f",
+      "reasoning": "The generated theorem exactly states the reference DFS equivalence property.",
+      "score": 1.0
+    },
+    {
+      "id": "19165053ad82e52015fcdd704566338f37aa99a4b80fad978b5e9a4977b0572e",
+      "reasoning": "The generated theorem exactly states the required Dijkstra functional-imperative equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "98a983769444366e3de78f52615bb5a13be8c075c8646e300541f94553be17b4",
+      "reasoning": "The generated implementation and primality correctness theorem are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "6004f213403d65f25ca28c138ea17a21b032f91ed8aa8589a29129355b1dd872",
+      "reasoning": "The generated implementation and equality-to-spec correctness theorem are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "06bf0a5df15cbbf10025cc3f7c054b538b9c0c8c0e049fd8abd6ab749aaf8526",
+      "reasoning": "The generated theorem concerns a differently named Int GCD specification and omits the required Nat gcd equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "09aba7814d0d5397ac2d56d77a8d26b0c768aeb965966575ab13414a98b10942",
+      "reasoning": "It proves only equality with an identical functional specification and provides no imperative equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "4cf4123614a94328c703c1494544611dc9e516ab85be616dc7684bf4ab3389ab",
+      "reasoning": "It proves a functional specification property but omits the required functional-imperative equivalence theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

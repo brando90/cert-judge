@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "3b0e104b9aaab8fb308cbf9805d3669760b5a5f24e02a63d44045299349653c0",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "428ae4a0580a382464e9aba9f5b1ce07ece3b093e8d538bc2646721abd1bfee8",
+  "completed_at": "2026-08-26T06:53:43.996493+00:00",
+  "effort": "low",
+  "elapsed_seconds": 31.675766250002198,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "c39e5e59caf41ba659a9f7b4fea47dbfc789d3c75a03507c203dd9d2cc06ec2c",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e8400e7b26aa1bbb643da43b24293a4aea56a0e09d2a2ad0f03ddce41ca54647",
+      "reasoning": "The functional bisect uses subtraction for its midpoint and incorrect bound updates, so it is not equivalent to the imperative implementation.",
+      "score": 0.1
+    },
+    {
+      "id": "9af11c6cb607c6e5bdf985fe811ecde6695786c68c7258ff11c6fc4266ddf3e7",
+      "reasoning": "Both sides of the stated equivalence are definitionally the same covariance function.",
+      "score": 1.0
+    },
+    {
+      "id": "6ee08c5e31230641290f672297a1074b82698c88fe328f593343d5e71c73b715",
+      "reasoning": "The functional and imperative implementations compute the same sample-covariance algorithm with matching edge cases.",
+      "score": 1.0
+    },
+    {
+      "id": "a7d807f7660e6140caab3667df748698c684ed99eece69cdbbd5045e16ab599b",
+      "reasoning": "The generated implementation and equivalence theorem match the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "e8e5e1dc57faa1ecd68cfbf41ad7aaa65f1dfaa3c1b8247eb5e262750e34d265",
+      "reasoning": "It omits the required Nat equivalence theorem and instead defines unrelated Int functions.",
+      "score": 0.0
+    },
+    {
+      "id": "92ccd915f4bb3ef28cede9fe6e7b4ea3890eb33660e71f0b8ff1246ced23d879",
+      "reasoning": "The component implementations are largely aligned, but the required equivalence theorem is absent.",
+      "score": 0.2
+    },
+    {
+      "id": "93951eeaaeb0fb9e67eb0a65b5af1d0dd50735a85ef6adae3cd1b8926ad4e895",
+      "reasoning": "Its functional bisect has erroneous subtraction-based midpoint and updates, making the claimed equivalence false.",
+      "score": 0.1
+    },
+    {
+      "id": "80003b053ef1e70137704fbc6cb4c32cfa01df822e1030ad519ee0eff6bc7bdd",
+      "reasoning": "The heap-push implementations are related but the required equivalence theorem is missing.",
+      "score": 0.2
+    },
+    {
+      "id": "3909dc468e2b23f2b88c702e46b0801f1bdfe28c0797bbf4efb42963a9dd225b",
+      "reasoning": "The heap-push code is substantially related, but it omits the requested equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "4b7359277c9caff08349726385c7b0953fbe7f7f677605fc3718a5bd6e4a2ef1",
+      "reasoning": "The heap-pop implementations are related but no required equivalence theorem is supplied.",
+      "score": 0.2
+    },
+    {
+      "id": "371c1aa8b3b6ac0447a7c973526f59ee57066e886fd3791ec492abee1f2a8c7d",
+      "reasoning": "It provides related queue operations but omits the specified get equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "34b882f49a8bf00f5e8b871650635ab357cd799dcaebc7d1e0343d59fb56466f",
+      "reasoning": "The generated correctness theorem has the same statement and proof behavior as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "3d3a157d22457382982894aea37ae52197af7eac2a67c9b0d7de45dcee8ef006",
+      "reasoning": "It includes related counter implementations but omits the requested update equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "58acfa4ddd220a3ad685a80981a32121a713e15052e689ab31a484ec7c1b7a3a",
+      "reasoning": "The generated theorem and all supporting definitions are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "03593cdf07cdf2a9a98972d5b1c1fb53ad0821e89a9cd5996d47cce0baa26fec",
+      "reasoning": "It provides related ChainMap operations but omits the specified lookup equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "35d749116dd6fbab1dc1ae19d4f449edfafba4efb3bed38ff0fec1bcb910925c",
+      "reasoning": "The generated theorem and specification are materially different from the referenced trivial correctness theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

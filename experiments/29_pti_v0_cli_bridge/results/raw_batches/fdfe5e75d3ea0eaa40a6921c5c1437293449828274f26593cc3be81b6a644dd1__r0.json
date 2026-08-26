@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "fdfe5e75d3ea0eaa40a6921c5c1437293449828274f26593cc3be81b6a644dd1",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "c2ef433b2ca4f0741d602f3cd715269796a6afde83afb5cb447bdcec1c1c2834",
+  "completed_at": "2026-08-26T07:54:25.381326+00:00",
+  "effort": "low",
+  "elapsed_seconds": 44.23909108299995,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "9f473635a32553583ebdf11c6763580ada4004faebc32500385cca31f7631ad3",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "eb0e86e30dc5c510defe1b4091d3a1d6d69dde2ccc6cf5cd4880e61f1df99459",
+      "reasoning": "Matches reference's overall insort/bisect structure and theorem signature but bisect_right_functional has broken mid/recursion logic diverging from imperative version.",
+      "score": 0.35
+    },
+    {
+      "id": "c81cef5e2e4b07995ceab83c0434244b2680071a4e659695ba9ca85a99b17831",
+      "reasoning": "Closely mirrors reference file structure (Pre/Post/property/correctness/equivalence) but has a bug in fuel default expression that could break termination/equivalence.",
+      "score": 0.6
+    },
+    {
+      "id": "c5aabc7f81df0ffd7c0942922b01ffe0f19155714960024882d182bc5de2cd1f",
+      "reasoning": "Full matching structure with property/correctness theorems proved, but isSafeChar has an operator precedence bug altering semantics from reference intent.",
+      "score": 0.6
+    },
+    {
+      "id": "99c6e0c60b2d59aec66091cf4a1e253f5a2f8ea06df1ca4dc6dba351b051ab75",
+      "reasoning": "Only implements quote/join functions and equivalence theorem stub, omitting the Pre/Post/property/correctness sections present in the reference-style benchmark.",
+      "score": 0.35
+    },
+    {
+      "id": "ba9655f66bfe609a3e91ea4dcac633452aa6e1871b278a150e31569e0fda0916",
+      "reasoning": "Matches full reference structure with proofs, but isSafeChar has a logic bug (wrong boolean operators) that changes semantics.",
+      "score": 0.55
+    },
+    {
+      "id": "6bf28af8042c6fb5c23db28d5e8a76ae0f333fe6b33c5b836fbd12948a1a26bc",
+      "reasoning": "Implements encode functions and tests matching reference behavior fairly well but omits Pre/Post/property/correctness theorem sections.",
+      "score": 0.4
+    },
+    {
+      "id": "c2605e35cd70529468cd45c5fe69c8e164a9b1482190df3568169c042d4610b3",
+      "reasoning": "Full structural match to reference but encodeChunk_func contains a significant bug (subtraction instead of addition in bit packing) breaking correctness.",
+      "score": 0.35
+    },
+    {
+      "id": "5419a3b8e3f555aa88c91d3eba7d4c9977a24dcd28c49434e1cc52e26165cec0",
+      "reasoning": "Implements the decoder logic and tests matching reference behavior but omits Pre/Post/property/correctness sections.",
+      "score": 0.4
+    },
+    {
+      "id": "65eb524cdb7e35303f6d2f77d238a03e14bfb4909a2078c83e239ea438ea664e",
+      "reasoning": "Closely follows reference file structure including Pre/Post/property/correctness/equivalence sections with matching logic.",
+      "score": 0.6
+    },
+    {
+      "id": "79926580b21b9b9a97ec25da37bf0574d13c567d93e27a67a31f9511cb00c41e",
+      "reasoning": "Full matching structure with quote/unquote equivalence theorems, but decodeHexNibble has an operator bug (|| instead of &&) altering semantics.",
+      "score": 0.5
+    },
+    {
+      "id": "18bee99c9e9d21231a5f920916c0a6c0d08c894f59e82bb573b84506f667459d",
+      "reasoning": "Implements core token/compare logic and equivalence stub but omits Pre/Post/property/correctness sections from the reference structure.",
+      "score": 0.35
+    },
+    {
+      "id": "167022088e2f73edde219bd9904d5dccd401d467c27fb535d8dc97cffac6bda3",
+      "reasoning": "Matches full reference structure with proofs but hexDigit function has bugs (wrong comparison and arithmetic) breaking correctness of token_hex.",
+      "score": 0.45
+    },
+    {
+      "id": "3ab8ac06f4bb1d143bd4bb06b775c447bc35c21b516b286699152c8885af4921",
+      "reasoning": "Generated content is essentially identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "420a3f61fe2fe93a7f092d1d8e9915f55d5b05af6389566966ce6ea669515cbf",
+      "reasoning": "Matches reference structure and logic essentially exactly, including the final equivalence theorem statement.",
+      "score": 0.9
+    },
+    {
+      "id": "0fb1f3bcb2569af49e6a5fdbee27f5117b690ee4f1b514a8793dbc52326be6db",
+      "reasoning": "Generated content is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "120def552ca759a74ec7ad428706b337204422aa4ed9029df81ac639b12677ac",
+      "reasoning": "Generated content is identical to the reference implementation.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.032703,
+        "inputTokens": 32633,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 40215,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1898728,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2792,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 40215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 40215,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 40215,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 40215,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 2792,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2792,
+      "output_tokens_details": {
+        "thinking_tokens": 1101
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

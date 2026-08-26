@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "06e53d9b877c0f7a491e512a3f6d9e96e35256a48db93bfcccaaa60bfb666864",
+  "case_count": 5,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "64f4979244f9d13180dd878eb4997541be8c487bc9ece9ce4702ec7b56181cbe",
+  "completed_at": "2026-08-26T07:03:38.097060+00:00",
+  "effort": "low",
+  "elapsed_seconds": 19.63934254203923,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "7fd896ddd7764c7fd1aeb338c41da2a31a822ec17e988e8d498f4d9e41e33a78",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ef06cbd09879e619efb353b86522e15ca209911f9dab54b3d382ab359aa754c1",
+      "reasoning": "The generated file defines both implementations but omits the required dfs equivalence theorem, and they also differ on invalid inputs.",
+      "score": 0.0
+    },
+    {
+      "id": "f168419fa1cc07fcf77aa0fa3aba224e709ca053d2d9c5a06e746275182a5590",
+      "reasoning": "The generated file omits the required dijkstra equivalence theorem, while the implementations also disagree for invalid start or target indices.",
+      "score": 0.0
+    },
+    {
+      "id": "85e94b7b37fa97b7be1fe3f804ee1fd38ea66b65b852c1b0dcd5286bea2a45e6",
+      "reasoning": "The generated theorem and all supporting definitions are textually equivalent to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "ebfebdb1379548f8d9357dacacbc2c9821a62e21a9a000f77a0a548f3e22b4b4",
+      "reasoning": "The generated file omits decodeShiftImp and the required equivalence theorem, so it cannot establish the reference claim.",
+      "score": 0.0
+    },
+    {
+      "id": "f7cf05dec5f7d1becff71e6ff05a09b7581a9d64ee93b0725d4bd4630ecf2a29",
+      "reasoning": "The generated theorem and all supporting definitions are textually equivalent to the reference implementation.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

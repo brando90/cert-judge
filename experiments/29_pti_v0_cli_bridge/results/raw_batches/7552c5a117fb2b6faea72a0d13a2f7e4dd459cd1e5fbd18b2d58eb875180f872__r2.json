@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "7552c5a117fb2b6faea72a0d13a2f7e4dd459cd1e5fbd18b2d58eb875180f872",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "717d89ae55bf1cc3d46e5bcc256beb597b4c04933d553f4065fd924b7a4f98c0",
+  "completed_at": "2026-08-26T06:56:39.266172+00:00",
+  "effort": "low",
+  "elapsed_seconds": 29.349844667012803,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "7f1f7658fdb05b5af042fd420a8f93abe5d5797a79a036d1e7508746afa4d572",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e5bed996cbd0e4fc6444c8f7b613c6f2f75cd1c44e777cc7041d510fa2053cd6",
+      "reasoning": "The functional and imperative benchmark definitions are both exactly `covariance x y`, so the theorem has equivalent semantics.",
+      "score": 1.0
+    },
+    {
+      "id": "cda4677e5e0a84aa41561fa8a0963b00ec4ee4dc2cb1e92baaaaeaed12500a83",
+      "reasoning": "Both implementations compute the same covariance including their matching length and minimum-size guards.",
+      "score": 1.0
+    },
+    {
+      "id": "fabf17d0393c4a1d3df7b13681e82b21b574d36a31fe90fe564688fa102598ae",
+      "reasoning": "The implementations agree on ordinary valid inputs but differ on invalid-input error behavior and can differ at exclusive-method boundary indices.",
+      "score": 0.5
+    },
+    {
+      "id": "da54a439ed65f38f05cd7965112c72eed0a2aba35f9cbb4b012c8e7591d31d31",
+      "reasoning": "The generated code contains the implementations but omits the requested equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "c229683e9129e0b5cc3d1fe7e6f6b33810980e16f9601b18f0011eda90d0fc14",
+      "reasoning": "The generated theorem and all referenced definitions match the reference implementation exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "78ceb5c38879bfaad52b1949f6989a30d0e94cdc2a5708d4441f006d03a58876",
+      "reasoning": "The requested heappush equivalence theorem is present with the same statement and definitions as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "a739b934f612f9024b824a8870af45908b51389fae4986976f09c143875e5931",
+      "reasoning": "The generated file omits the requested heappop equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "a05c884c70aa2965f2f2cc762b23d167d26d5f13dce6856250d762a3a46cef2b",
+      "reasoning": "The generated file omits the requested queue get equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "50c7aa6ff4ab063ca9d202abd7783575972d115d40f24357d291a226c6ad9b36",
+      "reasoning": "The generated correctness theorem exactly matches the reference theorem and proof.",
+      "score": 1.0
+    },
+    {
+      "id": "8b573b49c510ddec496e8f4ac39e6a762c10cbad1fd2b7953e9fb6acd076c558",
+      "reasoning": "The generated update equivalence theorem has the same statement and implementation context as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "69d6ae06699aa6d9bfa92038c208e2fd9651f9512e7ec1e767d718885b7cc924",
+      "reasoning": "The generated code omits the requested ChainMap get equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "5037ca895a83b7c8b981c44313473878abb1c992231e69d0fe4aa91af8fe90bd",
+      "reasoning": "The generated BFS equivalence theorem matches the reference statement with the corresponding implementations present.",
+      "score": 1.0
+    },
+    {
+      "id": "c4762da6e40ecca763bcb2c0f8c565d239ab2274d0c6b27d0c9240ad8298c649",
+      "reasoning": "The generated file lacks both the requested Nat-based equivalence theorem and the imperative implementation.",
+      "score": 0.0
+    },
+    {
+      "id": "66c4b186841289d9e0ecca11680e6039ff1e3edacfce485ee4f74e12e3fcd878",
+      "reasoning": "The generated file defines a differently named Int sorting function and omits the required equivalence theorem and imperative implementation.",
+      "score": 0.0
+    },
+    {
+      "id": "0e0345e708f9accee0fab9f4aa6da8e11c0b17d1ce48853c7af7f5d6846f9331",
+      "reasoning": "The generated file has an Int-only bubble sort but omits the required equivalence theorem and imperative implementation.",
+      "score": 0.0
+    },
+    {
+      "id": "03aab522d90897e20ca71e5ccaf12db06d6e97221557c7ed3f37bb9667d3ce7b",
+      "reasoning": "The generated code uses a different Int counting-sort function and omits the requested Nat equivalence theorem and imperative implementation.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "f4e36c210b86c81031cf2654c3ae77f524d4ec6151aa72cbc509c803dda897f6",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "482da88e2f6704231b666d0ecd24ee017acb35cac5375a3d573d6caf5d92ce57",
+  "completed_at": "2026-08-26T08:38:03.197258+00:00",
+  "effort": "low",
+  "elapsed_seconds": 33.62032145797275,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "a19faf717247a272d2fde4b51a46c44384231c5e854ff202ca03ea6e40ac9b13",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e42a4bf0e8c062d25bdf3ed16388fa2b49873d8d32756df4113a65cb24dd957d",
+      "reasoning": "Generated theorem statement matches reference exactly, both left as sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "6d77624f5babb8dd35346648fd5d1032b29f3461c88dca533bb323437b698783",
+      "reasoning": "Generated file lacks the insort_equiv_thm statement entirely, only providing implementation and tests.",
+      "score": 0.0
+    },
+    {
+      "id": "73c33ebcec18227faedcecb6fb6d7b214066eb68e3e217dfefaddf685f5fe073",
+      "reasoning": "Generated theorem statement is identical to the reference equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "9658802a12c0d9155faff1cfda2dd44c8d7b8f9ff03117c681c79236e45d1318",
+      "reasoning": "The quote_equiv_thm is entirely missing from the generated file; only unrelated property theorems remain.",
+      "score": 0.0
+    },
+    {
+      "id": "af2b126ec552b780fa3587632bd7d1be08be52886324317f3cc2cbe0db5ee1ba",
+      "reasoning": "join_equiv_thm is completely absent from the generated theorem file.",
+      "score": 0.0
+    },
+    {
+      "id": "6d0cf3d313f4b36f027adadc287c6f3de763eb16c9ddb245be187579d5f278c0",
+      "reasoning": "Generated file contains join_equiv_thm identical to the reference statement.",
+      "score": 1.0
+    },
+    {
+      "id": "a1389d28b6e5f8abf4de4adf7d0e1b4782b8058cdcec92c7239c3ba77bccf906",
+      "reasoning": "encode_equiv_thm is missing entirely from the generated file.",
+      "score": 0.0
+    },
+    {
+      "id": "95fe538ab6d5ec104dc324045a6ee82b641a9fdc8d2202131d3982e07d03f23f",
+      "reasoning": "Generated file includes encode_equiv_thm matching the reference statement exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "600fba0f0a3017530e93f3919b69bf654a0a1e6c83df3c89260b270d988f45bd",
+      "reasoning": "loads_equiv_thm is entirely absent from the generated theorem file.",
+      "score": 0.0
+    },
+    {
+      "id": "69b6e9ef58db5676626ac4d8b8e9d861e533a18a9eec56acbab72b311057bfd8",
+      "reasoning": "Generated file contains loads_equiv_thm identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "12a0acce81cdea97b5615e2c670a256af83a8db70c6bc5c0abfd7a69fc5ea262",
+      "reasoning": "Generated unquote_equiv_thm exactly matches the reference statement.",
+      "score": 1.0
+    },
+    {
+      "id": "285f75a3f8c0f14af0d738fea4f4b6ebee2e47fc59a30bbb9c1734ef8fc80ebc",
+      "reasoning": "compare_equiv_thm is missing entirely from the generated file.",
+      "score": 0.0
+    },
+    {
+      "id": "3d90b9b3e82c4bda1affb329fd5ff3b0d3884e0774604e3bebcde9423ba29ed3",
+      "reasoning": "Generated file is essentially identical to the reference, including compare_equiv_thm.",
+      "score": 1.0
+    },
+    {
+      "id": "0128dec28ba5d3e081ae5cc3a63f2ffe07b352ac32e20398147d56b09cb9abc8",
+      "reasoning": "sort_equiv_thm is not present in the generated file, only an order_prop definition remains.",
+      "score": 0.0
+    },
+    {
+      "id": "3849cd5572db74746e967923e28f398ec3c34ec38cf5f0856fbc4ad82c52a2fa",
+      "reasoning": "sort_equiv_thm is missing from the generated file despite other scaffolding being present.",
+      "score": 0.0
+    },
+    {
+      "id": "26af9348b950c0c85111c71a4e172ff67208880d1a77626906bd250883911979",
+      "reasoning": "Generated median_low_equivalence_thm matches the reference statement modulo an argument renaming.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.032056,
+        "inputTokens": 31991,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 45241,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.031142200000000002,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2209,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 45241,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 45241,
+          "input_tokens": 2,
+          "output_tokens": 2209,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2209,
+      "output_tokens_details": {
+        "thinking_tokens": 725
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "2218938b2eea6b389378f2659606331d96826ba98e85d383254a7bdee28fae94",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "6f3825f7c509dba7ff509295fb6513f33822e3b49704a9cc0e6e1a40e7c78506",
+  "completed_at": "2026-08-26T07:58:15.970301+00:00",
+  "effort": "low",
+  "elapsed_seconds": 33.37346025003353,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "eb7c8858d30eb637ce36f4b9fa23fd08638b0bb9d9188b03c4e68535b80d3182",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e4a17e20fd66bdb659c1deecbee1a19e0d57a07ba2939588112980052417bdd3",
+      "reasoning": "Generated theorem matches reference quote_equiv_thm exactly with sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "fd61520c334f487666f51f426eccba0cf4349f9f7b4ac3dfa55dec813bb4897a",
+      "reasoning": "Generated theorem matches reference join_equiv_thm structurally.",
+      "score": 1.0
+    },
+    {
+      "id": "e334879024641860e8c6e617b45f8663d17ac1c4af8e694f473e45fea62e2a74",
+      "reasoning": "Generated join_equiv_thm matches reference (variable renamed but semantically identical).",
+      "score": 1.0
+    },
+    {
+      "id": "e10d0438f930220f5d3256b63a234ddba20c17797f67da551e648354a8fc83d2",
+      "reasoning": "Generated file lacks the encode_equiv_thm theorem entirely, ending after unit tests.",
+      "score": 0.1
+    },
+    {
+      "id": "e8c84f85a3815dfa78d8858d0783db23866f2985634f5bcfb99d3ce82ee205d1",
+      "reasoning": "Generated encode_equiv_thm matches reference exactly with sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "c310fd6188909a82b858b08ec8fa6080ad70afe52901b351aa5a9108ba8673d7",
+      "reasoning": "Generated file lacks the loads_equiv_thm theorem, ending after unit tests.",
+      "score": 0.1
+    },
+    {
+      "id": "ae6c8c7ce38d3543424475c72c3a421d80adaca56471283cbba3963f0f18a275",
+      "reasoning": "Generated loads_equiv_thm matches reference exactly with sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "a73f7b31f6693a372ab9ff2acc46d5fd8bc999eec9d0b59ba257e84ac8305346",
+      "reasoning": "Generated file lacks the unquote_equiv_thm theorem, ending prematurely.",
+      "score": 0.1
+    },
+    {
+      "id": "75c838dc613978460d38ed534e0e4073c88864018346627a08dcd39488455bd2",
+      "reasoning": "Generated file lacks the compare_equiv_thm theorem, ending after unit tests.",
+      "score": 0.1
+    },
+    {
+      "id": "747da8790d520d737d231b5573c50b4fb0234081d7482007cefa0c0960f0099f",
+      "reasoning": "Generated file lacks the compare_equiv_thm theorem, ending after Correctness Theorem header with nothing.",
+      "score": 0.1
+    },
+    {
+      "id": "b3024b95ccabb4d80ed40f8211ccded5fa75bd8245dcff5b221b3b454cf70336",
+      "reasoning": "Generated defines order_prop but never states the final sort_equiv_thm matching the reference.",
+      "score": 0.2
+    },
+    {
+      "id": "ab5340bee3c661064c7719b5277814a3967e9a9fab1f3dccd8b50b720684d145",
+      "reasoning": "Generated has order_thm/correctness_thm but omits the final sort_equiv_thm theorem present in reference.",
+      "score": 0.2
+    },
+    {
+      "id": "1da2a19fb50a84e0e02d6db6c7125d727b82359d0950559fb3314d69675be5ef",
+      "reasoning": "Generated median_low_equivalence_thm matches reference exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "82f1e237aba76f7254903cbdb0a88699eb459a4802e1509ee5190090cf512648",
+      "reasoning": "Generated median_high_equivalence_thm matches reference exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "420c3985cae6adbd60290ddc8eb656d88efa4021c3e2d05762c7138c488f270e",
+      "reasoning": "Generated file lacks the bisect_equiv_thm theorem, ending after unit tests.",
+      "score": 0.1
+    },
+    {
+      "id": "105abfdcfdd4abcb4b72e70a5bd8577e8005f3e6d8a72fbbf4f3ccb62c82c9d5",
+      "reasoning": "Generated bisect_equiv_thm matches reference exactly with sorry.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.028322,
+        "inputTokens": 28232,
+        "maxOutputTokens": 32000,
+        "outputTokens": 18,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 40290,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.030461999999999996,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2240,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 40290,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 40290,
+          "input_tokens": 2,
+          "output_tokens": 2240,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2240,
+      "output_tokens_details": {
+        "thinking_tokens": 747
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

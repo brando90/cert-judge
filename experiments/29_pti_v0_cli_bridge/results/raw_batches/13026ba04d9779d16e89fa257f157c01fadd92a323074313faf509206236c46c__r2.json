@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "13026ba04d9779d16e89fa257f157c01fadd92a323074313faf509206236c46c",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "ccfcb72d6e8b65db545fe4ca5ec62e61a77993c451079adb82161a2a49692743",
+  "completed_at": "2026-08-26T07:43:37.985559+00:00",
+  "effort": "low",
+  "elapsed_seconds": 44.2479932080023,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "6066051fa6ff72eccec5e0ca4cb2deaafa9e55da5f5269338c948db5e2c9acbb",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "fb0d08d13c7bc53e17323ee010c2e510ac00ec8bb4f50a272093aa7ab8305536",
+      "reasoning": "Generated provides a reasonable safe-copy formalization with spec and sorry proof, but reference is a trivial placeholder theorem so exact correspondence can't be verified.",
+      "score": 0.6
+    },
+    {
+      "id": "24d2f750380ab1052d12d087712c46e301feb553166a06aa9cf7d94168a9b7e6",
+      "reasoning": "Generated includes matching mean_equiv_thm with sorry plus full pipeline consistent with reference structure.",
+      "score": 0.85
+    },
+    {
+      "id": "7ccd6be3884d13bec28888771c7a6656a711eff90abd43dde4f6e9c2b44db0c5",
+      "reasoning": "Generated uses a different naming/structure (Str inductive, prog/pre/post) unrelated to myFirstChar/myFirstCharImp equivalence theorem.",
+      "score": 0.25
+    },
+    {
+      "id": "4842fdd60afba06d51696867735ea14094f250b48cf0fa9568aec0ab3c923b1c",
+      "reasoning": "Generated proves spec_thm but omits the correctness_thm and equivalence theorem present in the reference.",
+      "score": 0.4
+    },
+    {
+      "id": "513e64e3ed5d19fdd0f56d0464d9dc0349752e70aa647c59d9d86566136e306b",
+      "reasoning": "Generated file is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "2b93d0a0b134ab3e23464286b8506da748ee128d3507954f983d23fef1f3a08b",
+      "reasoning": "Generated omits the correctness_thm and variance_equiv_thm equivalence theorem entirely, leaving only Pre/Post/spec_prop scaffolding.",
+      "score": 0.35
+    },
+    {
+      "id": "90882965e50bb7608a0e1f9a93b2c3008ec289f00e8b7cc6c57faa145bf3b227",
+      "reasoning": "Generated is a simple toUpper wrapper with a proven trivial theorem, only loosely related to the myUppercase/myUppercaseImp equivalence goal.",
+      "score": 0.4
+    },
+    {
+      "id": "7e204a3de606e1583496d25fcfd1f0511409a523ae8742aaf7d0e3b803e56778",
+      "reasoning": "Generated has implementation and tests but entirely lacks Pre/Post/correctness/equivalence theorem sections from the reference.",
+      "score": 0.3
+    },
+    {
+      "id": "26a0830e0e893b301eb29c491ee79b79d6740028cfd2e97adb39e51c9165b423",
+      "reasoning": "Generated includes spec_thm and symmetry_thm with sorry but omits the final correctness_thm and correlation_equiv_thm equivalence theorem.",
+      "score": 0.45
+    },
+    {
+      "id": "43cbc58bce9a6198620dfe3b20a0858b42c419c9632f0cfb35729de0de0a31d8",
+      "reasoning": "Generated matches the reference's correctness_thm exactly, with canonical_thm and addition_thm proved rather than left as sorry.",
+      "score": 0.9
+    },
+    {
+      "id": "0b5d7633737ed6dccffa6b57a84dfc46c00fc4ab7c0e021426e41cff8119df44",
+      "reasoning": "Generated includes matching lru_equiv_thm with sorry and a proved correctness_thm consistent with the reference structure.",
+      "score": 0.85
+    },
+    {
+      "id": "275b95adca53624bec2916d877bdf8a1dd9226a1b4622bef4d127c3576b0dabb",
+      "reasoning": "Generated includes the matching mergeKw_equiv_thm with sorry along with consistent Pre/Post/correctness scaffolding.",
+      "score": 0.8
+    },
+    {
+      "id": "0a6d5fbe565a8378460ecee44af2c675458d1460bfd704245f3dc306fdab4dc5",
+      "reasoning": "Generated proves an analogous fibonacci equivalence with sorry but uses different naming/structure than the reference's myFibonacci/myFibonacciImp.",
+      "score": 0.5
+    },
+    {
+      "id": "defabad5fe125562439209ab8e49c92cae37f77deed062bb129e27c3a9613959",
+      "reasoning": "Generated omits idempotent_prop, Pre/Post, correctness_thm, and the indent_equiv_thm equivalence theorem present in the reference.",
+      "score": 0.3
+    },
+    {
+      "id": "08fb21ed28e3a2520b017f0f28f9ae5f50bd4b6e38aeee42fc87cae398123284",
+      "reasoning": "Generated file is identical to the reference implementation including all theorem statements.",
+      "score": 1.0
+    },
+    {
+      "id": "34491dbdfc56cad7a591c766279341517e1c4535ec208fb0c5c936af49833a2c",
+      "reasoning": "Generated file is identical to the reference implementation.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.027568,
+        "inputTokens": 27503,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 40339,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0375618,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2949,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 40339,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 40339,
+          "input_tokens": 2,
+          "output_tokens": 2949,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2949,
+      "output_tokens_details": {
+        "thinking_tokens": 1228
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "09f07549b8ac75153545f80dba39e6b739e5a81a9a39e2901b1953437aaa6158",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "dfef3baed3949dff79bb7a7632eca3c26f00cbaf0f8c231b5d049d3ccc806891",
+  "completed_at": "2026-08-26T07:42:23.830067+00:00",
+  "effort": "low",
+  "elapsed_seconds": 42.035652999999,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "ae5d4d0a8101357e6551ea3ec81504411c5429af5664d7ca90d27e63bc4f697e",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "bf36665cad45e60a181616ea7df9380ae5c074eae142da665fdc6bdd8762fd97",
+      "reasoning": "Reasonable analogous safe-copy spec/proof with sorry, structurally sound but unverified.",
+      "score": 0.45
+    },
+    {
+      "id": "2308830054cba2e97c6f826f6fa9fc198d1b31d975c895e6aba460a5b0d7cb13",
+      "reasoning": "sum_func and mean_func have inverted/buggy logic (subtraction fold, flipped condition), undermining correctness despite matching equivalence theorem signature.",
+      "score": 0.2
+    },
+    {
+      "id": "6671f6e6e871e08aff89cbc59fb3aacc03178608c2e4d3bd9a3566a0b1b4c1e6",
+      "reasoning": "Generated theorem is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "4514f27b3876319850f9c4114aff1119eb1c01c9fff85864587e017362caddf3",
+      "reasoning": "Missing correctness_thm and equivalence theorem entirely; file truncated with blank sections.",
+      "score": 0.3
+    },
+    {
+      "id": "3adac21bcfb39cebc1df4bbd0f35d50b8e2e89df159b3cfe9e2ea794bc662c61",
+      "reasoning": "Buggy sum_func (subtraction fold) and completely missing Pre/Post/correctness/equivalence theorems present in reference.",
+      "score": 0.15
+    },
+    {
+      "id": "2ac2b8192f282b4b19ed82f0d8aca678cb90eddd38f0ab0a97484f5128703238",
+      "reasoning": "Structurally complete with matching equivalence theorem but mean_func has an inverted/buggy condition.",
+      "score": 0.35
+    },
+    {
+      "id": "45eebaad9c61fbf1d73ca3ef162a7a4864eb0b30e40a4f21f0a1e7c66a16f7b3",
+      "reasoning": "Different but semantically reasonable uppercase implementation with an actual (non-sorry) correctness proof, though it lacks the imperative/functional equivalence theorem structure of the reference.",
+      "score": 0.5
+    },
+    {
+      "id": "30a50b8bd2307418b5d1fe9951e90f0e2fc0ed26306a40cca8b73e6df7bc12da",
+      "reasoning": "Multiple buggy fold definitions (subtraction instead of addition) and missing Pre/Post/correctness theorems entirely.",
+      "score": 0.15
+    },
+    {
+      "id": "1dd621a90c034d247811ffe984065413cbc4798bf5aa3ac9fee4fface17fa918",
+      "reasoning": "Closely matches reference structure with correct sum/mean logic and matching spec/symmetry/correctness/equivalence theorems, all with sorry.",
+      "score": 0.6
+    },
+    {
+      "id": "33d059af1cda0e25ee3f6a88af479950f2f9b4faa5ebb39c8247af1a2e58711f",
+      "reasoning": "Matches reference's correctness_thm structure closely with actual completed proofs rather than sorry.",
+      "score": 0.75
+    },
+    {
+      "id": "0259a5cb63006d4de9af641ad2b22f0b8228815cfe7389cb28cd6de2a563e721",
+      "reasoning": "Generated theorem is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "07258e3799bdcae14546862e40f7765ec4765b712b67eefa5746366e68bba348",
+      "reasoning": "Generated theorem is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "ced8d5cd768dd2ee96a50b72038d7f424ef8853885fecf65b79db9689f68e82d",
+      "reasoning": "Generated theorem is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "1038767626549550112431cff145f90342b68775101be5dc5d05a44359cf6ef6",
+      "reasoning": "Matches reference structure and includes the target mergeKw_equiv_thm and related theorems nearly identically.",
+      "score": 0.9
+    },
+    {
+      "id": "b9a1a45957417a8335865511a5f781204f164d950734a125697f95422493d684",
+      "reasoning": "Uses Int with panic-based errors and does not include the reference's myFibonacci_equivalence_thm; largely divergent structure with incomplete proof.",
+      "score": 0.1
+    },
+    {
+      "id": "b6092250558456bf324d51cc0b1815151b89bc159206bb4b4c306a9393884198",
+      "reasoning": "Wrapped in markdown code fences (invalid as a Lean file) and lacks the reference's myFibonacci_equivalence_thm.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.02729,
+        "inputTokens": 27225,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 40058,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.035305600000000006,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2729,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 40058,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 40058,
+          "input_tokens": 2,
+          "output_tokens": 2729,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2729,
+      "output_tokens_details": {
+        "thinking_tokens": 1132
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

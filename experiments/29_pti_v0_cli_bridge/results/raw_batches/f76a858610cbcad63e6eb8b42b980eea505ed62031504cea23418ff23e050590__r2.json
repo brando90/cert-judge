@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "f76a858610cbcad63e6eb8b42b980eea505ed62031504cea23418ff23e050590",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "2b3d9ac91753f1a8c63fd39a7297f254791b66f9a71e6b868907b450d84edc45",
+  "completed_at": "2026-08-26T08:14:24.974054+00:00",
+  "effort": "low",
+  "elapsed_seconds": 37.90356416598661,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "e3546263f01eb68310767b0d187bb8aa148b52ab230335cbb55bbe78b63485b2",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e829ba70ab77545f776eb47e51b9648422baba545faeedaaea82fe8fcfe557f6",
+      "reasoning": "Generated preserves the same equivalence theorem statement and signature as reference, embedded in a fuller pipeline.",
+      "score": 0.85
+    },
+    {
+      "id": "ae71e8a73bcc5a16b43c3764e0dc327f56c4c670586139972224d5f165faa64a",
+      "reasoning": "The equivalence theorem (heappush_equiv_thm) required by the reference is entirely absent from the generated file.",
+      "score": 0.05
+    },
+    {
+      "id": "81a79f1d604a412e605035df2ee0c9534fdce93d979d8c16266e165741604924",
+      "reasoning": "The equivalence theorem (heappop_equiv_thm) is missing entirely from the generated file.",
+      "score": 0.05
+    },
+    {
+      "id": "e4e4c8d5e666bec85adf7089f0b9be0d4e451d43cf8c5d9fbdd24a006dca3469",
+      "reasoning": "get_equiv_thm statement matches the reference exactly, embedded in a complete pipeline.",
+      "score": 0.95
+    },
+    {
+      "id": "6a4905fdda3b4720025d64204ee8f3b2942283c8458ca8e9215dd17928bca71f",
+      "reasoning": "correctness_thm matches the reference theorem exactly with the same proof.",
+      "score": 0.95
+    },
+    {
+      "id": "fa3b3125902900601b7142ab7a8f5a94567441b72b17efde9e65b54cc2fb54a8",
+      "reasoning": "update_equiv_thm statement matches the reference exactly.",
+      "score": 0.95
+    },
+    {
+      "id": "8fce3530247a0e3b1f751e2a5d3c799dcddc9355cf3a7ec593c88a6f35f9a48d",
+      "reasoning": "Generated file is essentially identical to the reference including get_equiv_thm.",
+      "score": 1.0
+    },
+    {
+      "id": "548f8b6aab396b8e9956a7c0f66478fe7d29583019c716d6266143c3251fd103",
+      "reasoning": "bfs_equivalence_thm matches the reference statement with a full matching pipeline (bfs vs bfsImp).",
+      "score": 0.9
+    },
+    {
+      "id": "b77abc164d35ecc129c6823baad9a43844aaa1d46f1db0315cd2abe54301ee05",
+      "reasoning": "Generated lacks any imperative implementation or equivalence theorem entirely, unlike the reference's countingSort_equivalence_thm.",
+      "score": 0.05
+    },
+    {
+      "id": "2e1a9a3acb2d25c7f089ac6c5fb8ee18c741707d098ce2a85a3212f232a8c893",
+      "reasoning": "dfs_equivalence_thm matches the reference with matching dfs/dfsImp implementations.",
+      "score": 0.9
+    },
+    {
+      "id": "33d290116233935f22973356c7b44e0c23cf12227d49e141dca3a09a7d8ab2b5",
+      "reasoning": "The required dijkstra_equivalence_thm is missing from the generated file despite having matching implementations.",
+      "score": 0.1
+    },
+    {
+      "id": "84370e4d52d276850df0d8e43830739a24f4f52835761d4a34c45464f42f6e71",
+      "reasoning": "Generated file is identical to the reference including isPrime_correct theorem statement.",
+      "score": 1.0
+    },
+    {
+      "id": "7c7b32cb1250e07e2fafa8ccb334e19f61eb60b39a9d6cf0cc12948d1705c5c1",
+      "reasoning": "Generated file is identical to the reference including isPrime_correct theorem statement.",
+      "score": 1.0
+    },
+    {
+      "id": "6bf0835311f5ea647c43f457e578097ddd5790fbb3a8e2da5a162d149ecb1ce9",
+      "reasoning": "Generated is a completely different gcd formulation lacking gcd/gcdImp and the myGcd_equivalence theorem from the reference.",
+      "score": 0.05
+    },
+    {
+      "id": "51cab84dd93911bd8d1d65af720c852422bab50c068786a422724d4507bae159",
+      "reasoning": "Generated file is identical to the reference including the string_sequence_correct theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "0651ecabecbc2c8f6d887ae6b14d0540ebb5165360ae8d4de70866cc26a66ecf",
+      "reasoning": "Generated lacks an imperative implementation and the required countDistinctCharacters_equivalence_thm entirely.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.031410999999999994,
+        "inputTokens": 31351,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 44376,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.034709199999999996,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2583,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 44376,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 44376,
+          "input_tokens": 2,
+          "output_tokens": 2583,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2583,
+      "output_tokens_details": {
+        "thinking_tokens": 1013
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

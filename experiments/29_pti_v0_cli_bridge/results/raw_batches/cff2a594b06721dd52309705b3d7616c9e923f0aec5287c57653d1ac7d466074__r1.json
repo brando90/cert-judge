@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "cff2a594b06721dd52309705b3d7616c9e923f0aec5287c57653d1ac7d466074",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "3cb8f38563f9d4a02e05b82f7f9578ab65b855d123d93bdf3d645f38e56e71f9",
+  "completed_at": "2026-08-26T07:47:36.286951+00:00",
+  "effort": "low",
+  "elapsed_seconds": 40.523682624974754,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "c015290312f0cd0185271fa5e1c72b6a7a4f6b1e840d9c9b245b8c54069ea6dc",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "6a0f6246ce451414b5d3522abfb9dc14cf531c8a6aa84800df7b19e850c5d79a",
+      "reasoning": "Matches reference closely including sorry'd equivalence theorem.",
+      "score": 0.9
+    },
+    {
+      "id": "ea6cafa9229d3ce7b07eeb182edd9c52b89c4f9a0b1a734ebe6a865689a6e790",
+      "reasoning": "Matches reference well, spec_thm actually proved, equivalence theorem present with sorry (minor variable rename).",
+      "score": 0.85
+    },
+    {
+      "id": "9258bd4edbad269f44c4777a9be6b114964d1421cbff8e90a5bd8480399a4a54",
+      "reasoning": "Missing correctness_thm and equivalence theorem entirely, only spec_thm sorry present.",
+      "score": 0.4
+    },
+    {
+      "id": "9b0e506c74d91cbf67aa82eb252f85f20cb33b7d3b925bd56eb8b13a03b9569d",
+      "reasoning": "Missing symmetry theorem details, correctness_thm, and equivalence theorem entirely.",
+      "score": 0.3
+    },
+    {
+      "id": "d2f4f900a309ce8e499df2f84f00a9b29dc5d98d9ce147f40e2529271834304b",
+      "reasoning": "Matches reference structure closely with actual proofs for canonical_thm and addition_thm.",
+      "score": 0.9
+    },
+    {
+      "id": "87a2f8fe3db80ebbb31978b9ad83a36ca75cd5d1a133b94d79176efcbdce3e07",
+      "reasoning": "Missing eviction theorem, correctness_thm, and equivalence theorem entirely.",
+      "score": 0.3
+    },
+    {
+      "id": "8aa3d1ca54de718ebac2e1d29c6e5f082541c81fe41d63ca2c87e5feca5eff7f",
+      "reasoning": "Identical to reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "a28853c4008fd84cdba8c4bc810db1e59b83fce3fa86883c3766c8d87c3181bc",
+      "reasoning": "Missing correctness_thm and equivalence theorem entirely, incomplete relative to reference.",
+      "score": 0.3
+    },
+    {
+      "id": "7d9ad80bc4046b2a68819c71e2f326c03d0904cc2107a114c7ba931d5b3ccbe6",
+      "reasoning": "Identical to reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "6089a7d80887d3575313b66e7b969510d1733411fa6b46caa850c3f4a42f86e7",
+      "reasoning": "Only implementation present; missing Pre/Post, property theorems, correctness theorem, and equivalence theorem entirely.",
+      "score": 0.15
+    },
+    {
+      "id": "6d27e9175ab8e73a99e775715a9c31794b22ea714f2fcb2192a1897a04f5a579",
+      "reasoning": "Identical to reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "5a3eb9c7117a5f472025865748a86ec4ae2e13c208f301dee92b338cd118b0dd",
+      "reasoning": "Identical to reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "2e34dfab95683f62da80ef7b64bb6c791f82e23a55eaa20610c376caed0ca84c",
+      "reasoning": "Only implementation and tests present, missing all Pre/Post/property/correctness/equivalence theorems, and isSafeChar logic is altered/buggy relative to reference.",
+      "score": 0.2
+    },
+    {
+      "id": "1812fd564428a5ece0b66c8b07777c50701fdc77e41e5be9bfcf6d99a188d80e",
+      "reasoning": "Matches reference well with actual proofs for several property theorems, but missing correctness_thm and equivalence theorem entirely.",
+      "score": 0.6
+    },
+    {
+      "id": "3e3ed3f375c50cc9914a6b8ed720a7585db9c102b7e6998a8079ede3ebb4c539",
+      "reasoning": "Only implementation and tests present, missing all Pre/Post/property/correctness/equivalence theorems, with altered isSafeChar logic.",
+      "score": 0.2
+    },
+    {
+      "id": "05d56706cb09900d7f71116898e45f646a4b05b630aa8a0a15a72e5f3fd1ae7e",
+      "reasoning": "Matches reference well with actual proofs for empty_thm and safe_thm and includes equivalence theorem with sorry, but missing correctness_thm.",
+      "score": 0.75
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.034866,
+        "inputTokens": 34781,
+        "maxOutputTokens": 32000,
+        "outputTokens": 17,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 49491,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.034412200000000004,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2451,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 49491,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 49491,
+          "input_tokens": 2,
+          "output_tokens": 2451,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2451,
+      "output_tokens_details": {
+        "thinking_tokens": 878
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

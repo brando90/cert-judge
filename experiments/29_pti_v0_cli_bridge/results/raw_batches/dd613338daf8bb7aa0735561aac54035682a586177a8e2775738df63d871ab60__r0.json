@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "dd613338daf8bb7aa0735561aac54035682a586177a8e2775738df63d871ab60",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "97f85e56eedb982578a815097237ba6f68b8b4dac8fcc2c2eb7d1d69807afe3d",
+  "completed_at": "2026-08-26T08:55:27.033478+00:00",
+  "effort": "low",
+  "elapsed_seconds": 43.17348720802693,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "d3731be11572170909cf59b6d8cb4796106b72f23110536b503aa0321f9c1df6",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e8453845a41e0e5f170e6a35cf03179822d1836c4c890217f640d690cff28f33",
+      "reasoning": "Same stub equivalence theorem but underlying covariance formula is buggy (uses + instead of -), corrupting the core computation being verified.",
+      "score": 0.3
+    },
+    {
+      "id": "e8ddd32e4bce3e2d4f1d5c8e6b90823d40a439c4972ee8f986a5356cf9783804",
+      "reasoning": "Faithful full reconstruction of the VeriBench file with correct covariance implementation and matching equivalence theorem stub.",
+      "score": 0.9
+    },
+    {
+      "id": "aa31295d1f6b340dd5a875fbf4d6b4e32b0a89b2e87f647a05228ad7f78ef55a",
+      "reasoning": "Comprehensive reconstruction matching reference's structure and equivalence theorem, with correct implementation and proven properties.",
+      "score": 0.85
+    },
+    {
+      "id": "d0e83fcbbe892d6c4247615ddc494e2b73713b5cefebaa7bfe05c3a24b303b69",
+      "reasoning": "Matches reference's insort implementations and equivalence theorem faithfully, only lacking property/postcondition scaffolding not required by the minimal reference.",
+      "score": 0.85
+    },
+    {
+      "id": "cae96c5949dc214615087430d82d07904941965a28a89ffd6b8558f667a0f724",
+      "reasoning": "The final insort_equiv_thm equivalence theorem, the core guarantee being scored, is missing entirely from the file.",
+      "score": 0.2
+    },
+    {
+      "id": "7f5eee5fcb7cdc99caf7113f0705f400dd3c20d272c98f624c8da771fb2bce4a",
+      "reasoning": "The heappush_equiv_thm equivalence theorem required by the reference is entirely absent from the generated file.",
+      "score": 0.2
+    },
+    {
+      "id": "89d2f4a6d8f5c4cf1ee6866303e36f0ff72ff510c790732beefc715c462ab93d",
+      "reasoning": "The heappop_equiv_thm equivalence theorem from the reference is missing from the generated file entirely.",
+      "score": 0.2
+    },
+    {
+      "id": "934659c6f7f5453d0dbcab2de57aaaaeac276fda3f38bf33f02c69b8dec4b101",
+      "reasoning": "Generated theorem is essentially identical to the reference implementation including the equivalence theorem stub.",
+      "score": 1.0
+    },
+    {
+      "id": "70ee7fcfc023b1c9ff79b2d24c63512e5eb2f0e7358d851471def72ab13d7774",
+      "reasoning": "The reference's correctness_thm (the core guarantee being scored) is entirely missing, left as a blank section.",
+      "score": 0.2
+    },
+    {
+      "id": "574f7650081cd2b5f0382c073065cfdffcc29d9d661c6675b724bab7088a16e4",
+      "reasoning": "Generated file is identical to the reference implementation including the update_equiv_thm stub.",
+      "score": 1.0
+    },
+    {
+      "id": "6edc76fe614835ed9b8a7424c379d35b70003df7b116b277248da3f95d9a44a5",
+      "reasoning": "Generated content is unrelated to the reference's myOddSumParity/myOddSumParityImp equivalence structure, defining a completely different single-function spec.",
+      "score": 0.0
+    },
+    {
+      "id": "7dbc014cc1acf1558a1253f2b1c2b200d4616061bfb9833a68d574f353ba3b5e",
+      "reasoning": "Generated file is identical to the reference implementation including the get_equiv_thm stub.",
+      "score": 1.0
+    },
+    {
+      "id": "10031e6a3dba6e5440b789b1ab9324ab452b3642f2662915d9da8879f02d795d",
+      "reasoning": "Faithful reconstruction with matching bfs/bfsImp implementations and equivalence theorem stub as in reference.",
+      "score": 0.85
+    },
+    {
+      "id": "06a22f4b2d5ce3c66e8069bb5fc38a5eae3a159ab5eacd3f3f2223566488c98e",
+      "reasoning": "No binarySearchImp or equivalence theorem is present at all, missing the core dual-implementation guarantee required by the reference.",
+      "score": 0.1
+    },
+    {
+      "id": "f110abd9fa2a3dac27a769b38cd9c1bdd90ce26da3c157210e21a42ebfbf5456",
+      "reasoning": "No binarySearchImp or equivalence theorem exists, so the reference's core equivalence guarantee is entirely absent.",
+      "score": 0.1
+    },
+    {
+      "id": "c5407683a2db01c7754a185ab341467cb8133669932792aa16ecf13658832b87",
+      "reasoning": "Lacks a binarySearchImp and the required equivalence theorem, missing the reference's central dual-implementation guarantee.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.042441,
+        "inputTokens": 42381,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 52352,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.2391008,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2860,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 52352,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 52352,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 52352,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 52352,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 2860,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2860,
+      "output_tokens_details": {
+        "thinking_tokens": 1177
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

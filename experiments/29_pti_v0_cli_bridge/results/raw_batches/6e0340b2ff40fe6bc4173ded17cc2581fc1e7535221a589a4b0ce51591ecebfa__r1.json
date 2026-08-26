@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "6e0340b2ff40fe6bc4173ded17cc2581fc1e7535221a589a4b0ce51591ecebfa",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "cb7c256cd0e170f711e1c986fc0baf791403de6993d3d0c100d841496d4d4cea",
+  "completed_at": "2026-08-26T06:47:05.470566+00:00",
+  "effort": "low",
+  "elapsed_seconds": 33.01497175003169,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "25133d41cfcf06ec01289ec8d66e14c43990c8bbb9bd19b1dd70c8d1d36fda7e",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f51480cb8f11a20cf9b2b5b83252f65667bd4ee419cbe7873e41d013ff33435e",
+      "reasoning": "The generated equivalence theorem exactly matches the reference theorem and its surrounding implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "fb4256711cdb0bfebc4bd10875e72e2a608aea4f7b2132c9903ecee28a4e4ab2",
+      "reasoning": "The generated code is semantically identical to the supplied reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "c6898b31730d0588ef9b50312ef1e15ce2dfb0eb577e14992ed17d98848e0aec",
+      "reasoning": "The claimed equivalence is invalid because the functional integer parser rejects every nonempty input due to its reversed empty-string condition.",
+      "score": 0.2
+    },
+    {
+      "id": "a77162a27896fbcdf775f8f70cc99ec7ddc13813a8e878d5113bcdb80e152b2a",
+      "reasoning": "The generated implementation and both equivalence theorem statements match the reference exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "d34c375d29fbedeb646e316bbc93530f449c8efed76d333480aa12292b498eec",
+      "reasoning": "The requested compare_equiv_thm is absent from the generated submission.",
+      "score": 0.0
+    },
+    {
+      "id": "c0e2b79e2bea791a462ceb26019693e8647e69828843709f3e9936757ca6c971",
+      "reasoning": "The requested compare_equiv_thm is absent from the generated submission.",
+      "score": 0.0
+    },
+    {
+      "id": "fd1eeb8b6eb03256bb4de8389c4eacada3dbff4d67b73e8f59b23c46284c9638",
+      "reasoning": "The requested sort_equiv_thm is absent from the generated submission.",
+      "score": 0.0
+    },
+    {
+      "id": "f9f735452fb1b9860c03688f46208d2734286c562217e3510e22f943c5ae9e41",
+      "reasoning": "The generated median_low equivalence theorem exactly matches the reference and both sides are definitionally identical.",
+      "score": 1.0
+    },
+    {
+      "id": "89c568575d80e11bfbd53ac91b10546c6a1a7b66cb4f180b01d98d068c82b24a",
+      "reasoning": "The requested median_high_equivalence_thm is absent from the generated submission.",
+      "score": 0.0
+    },
+    {
+      "id": "932935ae808d6f7d5b5978ebc53f821b452b7e79553c31ef242e44387787c5af",
+      "reasoning": "The requested bisect_equiv_thm is absent from the generated submission.",
+      "score": 0.0
+    },
+    {
+      "id": "1246995a05dd1cf032af6ee0def2dfad37c78638f3b085eff8fd7dd8138df1c8",
+      "reasoning": "The requested bisect_equiv_thm is absent from the generated submission.",
+      "score": 0.0
+    },
+    {
+      "id": "f679421b2b9190d7268fc7b5a99d4669b16379635c91df80fa9a2ef0b970eb40",
+      "reasoning": "The generated code is a different list-based heap development and does not provide the requested HeapPush correctness theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "1fdb75ff144d2b0c72d80a28c0ca2e3eda29937dff88d82523c8b4709a13e685",
+      "reasoning": "The generated covariance equivalence theorem exactly matches the reference statement and both compared functions are definitionally identical.",
+      "score": 1.0
+    },
+    {
+      "id": "1f2ffedf85662ae28b7db4cbd7060031d4b716cee28dcd14f59a034d6d4242ca",
+      "reasoning": "The generated implementation and covariance equivalence theorem match the reference exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "219220019dfe1cfbb9c86d2b577b3ac2eadc99df3c903499b16a270604b4f196",
+      "reasoning": "The requested benchmark_quantiles_equivalence_thm is absent from the generated submission.",
+      "score": 0.0
+    },
+    {
+      "id": "799aa3b7a69b223dcd8ec81ceb8c68a023657c3453d4fbf414d12b5f59353d07",
+      "reasoning": "The requested myMinList_equivalence_thm is absent from the generated submission.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}
