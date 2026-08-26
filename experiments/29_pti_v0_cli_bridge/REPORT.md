@@ -1,6 +1,6 @@
 # PTI-v0 v5 experiment report
 
-**TLDR-start:** [cj: pti-v0] The complete CLI-only v5 workload finished: 774/774 accepted tasks, 4,728/4,728 score cells, 14,184 records, full property/criterion coverage, and `$0` provider-API spend. Four of five primary four-property PTIs are exactly zero under the preregistered zero-first geometric mean; Sonnet + P8 scores `0.8114`. The outer bridge is intentionally withheld until these property outputs are committed.
+**TLDR-start:** [cj: pti-v0] The complete CLI-only v5 workload finished: 774/774 accepted tasks, 4,728/4,728 score cells, 14,184 records, full property/criterion coverage, and `$0` provider-API spend. The held-out primaries-only bridge is Spearman `-0.3536` (95% CI `[-1.0000, 0.3953]`, `n=5`), below the `0.5` SESOI and inconclusive about zero.
 
 ## Run identity
 
@@ -74,7 +74,27 @@ every zero aggregate.
 | Edit distance | 0.1987 | [-0.0793, 0.4562] | 0.1484 |
 | Random | -0.0008 | [-0.2351, 0.2254] | -0.0031 |
 
-## Independent QA and pre-bridge state
+## Held-out outer bridge
+
+The audited property table was committed byte-identically in
+`6f55c44299eadda78db5738c7913475d06ea671f` before any bridge statistic was
+computed.
+
+| Analysis | Spearman | Kendall tau-b | 95% bootstrap CI | Valid / 10,000 | n |
+|---|---:|---:|---:|---:|---:|
+| Primary PTI_v0 | -0.3536 | -0.3162 | [-1.0000, 0.3953] | 6,647 | 5 |
+| Primary three-property | -0.3536 | -0.3162 | [-1.0000, 0.3953] | 6,647 | 5 |
+| Pooled controls | -0.2474 | -0.2143 | [-0.8165, 0.2568] | 6,521 | 8 |
+
+Both family leave-one-out analyses are `NOT_COMPUTABLE`. At the frozen true
+Spearman SESOI of `0.5`, the five-judge simulation has only `27.1%` power for
+the complete positive decision rule. The observed result is below-SESOI and
+inconclusive about zero; it does not support a positive bridge.
+
+Permanent W&B Report:
+[Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgwOTk0Ng==).
+
+## Independent QA
 
 The read-only audit in `RESULTS_QA.md` independently reconstructed all score,
 property, criterion, bootstrap, and CSV/JSON outputs. Its numerical and
@@ -82,9 +102,4 @@ structural checks passed. It returned a formal `FAIL` only because literal
 exact-model-only provenance cannot be certified for Claude's auxiliary Haiku
 telemetry. This report adopts the narrower evidence-backed model claim.
 
-At this report stage the outer bridge is `NOT COMPUTED BY DESIGN`: the protocol
-forbids it until the complete property table is committed byte-identically.
-The next canonical action is the pre-bridge results commit, followed by a bridge
-command bound to that full commit SHA.
-
-**TLDR-end:** [cj: pti-v0] The v5 run is complete and numerically audited; property/criterion artifacts are ready for the mandatory pre-bridge commit, with the Claude auxiliary-model limitation explicitly preserved.
+**TLDR-end:** [cj: pti-v0] The v5 run, properties, human criterion, bridge, and SESOI simulation are complete. The scientific result is below-SESOI/inconclusive, with the Claude auxiliary-model limitation explicitly preserved.

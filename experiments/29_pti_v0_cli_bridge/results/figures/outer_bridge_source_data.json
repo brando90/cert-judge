@@ -1,0 +1,179 @@
+{
+  "analyses": {
+    "pooled_with_controls": {
+      "bootstrap": {
+        "ci_high": 0.25677629550654774,
+        "ci_low": -0.816496580927726,
+        "method": "paired cluster percentile bootstrap",
+        "requested_replicates": 10000,
+        "seed": 1,
+        "undefined_replicates": 3479,
+        "valid_replicates": 6521
+      },
+      "decision": "SUPPORTED_OR_INCONCLUSIVE_BUT_BELOW_SESOI",
+      "judge_count": 8,
+      "judge_ids": [
+        "gpt-5.6-terra|P8_STRICT_B",
+        "gpt-5.6-terra|P4_CHECKLIST",
+        "gpt-5.6-terra|P1_BASELINE",
+        "claude-sonnet-5|P8_STRICT_B",
+        "claude-sonnet-5|P4_CHECKLIST",
+        "gpt-5.6-terra|BAD_STRINGY",
+        "editdist_e1",
+        "random_r1"
+      ],
+      "kendall_tau_b": -0.21428571428571427,
+      "point_estimate_meets_sesoi": false,
+      "sesoi_rho": 0.5,
+      "spearman": -0.24743582965269675,
+      "status": "COMPUTED",
+      "supported_ci_excludes_zero": false
+    },
+    "primaries": {
+      "bootstrap": {
+        "ci_high": 0.3952847075210474,
+        "ci_low": -1.0,
+        "method": "paired cluster percentile bootstrap",
+        "requested_replicates": 10000,
+        "seed": 0,
+        "undefined_replicates": 3353,
+        "valid_replicates": 6647
+      },
+      "decision": "SUPPORTED_OR_INCONCLUSIVE_BUT_BELOW_SESOI",
+      "judge_count": 5,
+      "judge_ids": [
+        "gpt-5.6-terra|P8_STRICT_B",
+        "gpt-5.6-terra|P4_CHECKLIST",
+        "gpt-5.6-terra|P1_BASELINE",
+        "claude-sonnet-5|P8_STRICT_B",
+        "claude-sonnet-5|P4_CHECKLIST"
+      ],
+      "kendall_tau_b": -0.31622776601683794,
+      "point_estimate_meets_sesoi": false,
+      "sesoi_rho": 0.5,
+      "spearman": -0.35355339059327373,
+      "status": "COMPUTED",
+      "supported_ci_excludes_zero": false
+    }
+  },
+  "criterion_sha256": "fbe062313af61a0ed28929325743e97422a37b5d946ab229a909e8cea660f72d",
+  "figure_contract": {
+    "identity_line": false,
+    "level_mae": null,
+    "pooled_population": "primaries and controls; secondary",
+    "primary_population": "primaries",
+    "uncertainty": "95% artifact-cluster PTI and paired-cluster TI_m1 intervals",
+    "unit": "judge configuration"
+  },
+  "generator": "experiments/29_pti_v0_cli_bridge/generate_bridge_figure.py",
+  "metric_version": "PTI_v0",
+  "prebridge_commit": "6f55c44299eadda78db5738c7913475d06ea671f",
+  "properties_sha256": "1e6477321796add18dccaf56dff6429b5591522f762a699dc8e3e85273ebb1d3",
+  "schema_version": "PTI_v0_outer_bridge_figure_v1",
+  "source_rows": [
+    {
+      "family": "gpt-5.6-terra",
+      "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+      "kendall_tau_b_item_level": 0.008213413838324952,
+      "property_coverage_min": 1.0,
+      "pti_ci_high": 0.0,
+      "pti_ci_low": 0.0,
+      "pti_v0": 0.0,
+      "role": "primary",
+      "ti_m1": 0.010519575303207103,
+      "ti_m1_ci_high": 0.24747257168221848,
+      "ti_m1_ci_low": -0.2293980953004759
+    },
+    {
+      "family": "gpt-5.6-terra",
+      "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+      "kendall_tau_b_item_level": 0.17718007821118836,
+      "property_coverage_min": 1.0,
+      "pti_ci_high": 0.0,
+      "pti_ci_low": 0.0,
+      "pti_v0": 0.0,
+      "role": "primary",
+      "ti_m1": 0.2106319321988684,
+      "ti_m1_ci_high": 0.4425274483836761,
+      "ti_m1_ci_low": -0.03382143743098659
+    },
+    {
+      "family": "gpt-5.6-terra",
+      "judge_id": "gpt-5.6-terra|P1_BASELINE",
+      "kendall_tau_b_item_level": 0.28605328877372627,
+      "property_coverage_min": 1.0,
+      "pti_ci_high": 0.0,
+      "pti_ci_low": 0.0,
+      "pti_v0": 0.0,
+      "role": "primary",
+      "ti_m1": 0.3377238957604207,
+      "ti_m1_ci_high": 0.5513814147091949,
+      "ti_m1_ci_low": 0.09332274124972133
+    },
+    {
+      "family": "claude-sonnet-5",
+      "judge_id": "claude-sonnet-5|P8_STRICT_B",
+      "kendall_tau_b_item_level": 0.06845704749546043,
+      "property_coverage_min": 1.0,
+      "pti_ci_high": 0.8390616239067696,
+      "pti_ci_low": 0.7820434990537277,
+      "pti_v0": 0.8114197681551298,
+      "role": "primary",
+      "ti_m1": 0.08857327072705001,
+      "ti_m1_ci_high": 0.32906343025993573,
+      "ti_m1_ci_low": -0.14630437383252926
+    },
+    {
+      "family": "claude-sonnet-5",
+      "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+      "kendall_tau_b_item_level": 0.16558271662200136,
+      "property_coverage_min": 1.0,
+      "pti_ci_high": 0.8467228650559244,
+      "pti_ci_low": 0.0,
+      "pti_v0": 0.0,
+      "role": "primary",
+      "ti_m1": 0.20976504286718894,
+      "ti_m1_ci_high": 0.4426329155787824,
+      "ti_m1_ci_low": -0.0396118160017742
+    },
+    {
+      "family": "string_similarity_control",
+      "judge_id": "gpt-5.6-terra|BAD_STRINGY",
+      "kendall_tau_b_item_level": 0.33371681716113644,
+      "property_coverage_min": 1.0,
+      "pti_ci_high": 0.0,
+      "pti_ci_low": 0.0,
+      "pti_v0": 0.0,
+      "role": "control",
+      "ti_m1": 0.42547989725775015,
+      "ti_m1_ci_high": 0.6102060750319571,
+      "ti_m1_ci_low": 0.20608533555410166
+    },
+    {
+      "family": "edit_distance_control",
+      "judge_id": "editdist_e1",
+      "kendall_tau_b_item_level": 0.1483612543914942,
+      "property_coverage_min": 1.0,
+      "pti_ci_high": 0.0,
+      "pti_ci_low": 0.0,
+      "pti_v0": 0.0,
+      "role": "control",
+      "ti_m1": 0.1986746699690646,
+      "ti_m1_ci_high": 0.4561754047481547,
+      "ti_m1_ci_low": -0.07926695338883977
+    },
+    {
+      "family": "random_control",
+      "judge_id": "random_r1",
+      "kendall_tau_b_item_level": -0.003118705047268647,
+      "property_coverage_min": 1.0,
+      "pti_ci_high": 0.0,
+      "pti_ci_low": 0.0,
+      "pti_v0": 0.0,
+      "role": "control",
+      "ti_m1": -0.0008176599049625538,
+      "ti_m1_ci_high": 0.2253736539278342,
+      "ti_m1_ci_low": -0.23511249673191267
+    }
+  ]
+}
