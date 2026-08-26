@@ -1,6 +1,6 @@
 # PTI-v0 final execution and ICLR 2027 manuscript status
 
-**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. PR A is draft #39; the stacked paper PR is draft #40.
+**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. Draft #40 is the canonical direct-to-`main` integration PR; draft #39 is superseded.
 
 ## Provenance and dependencies
 
@@ -8,16 +8,24 @@
 |---|---|
 | ultimate-utils dependency PR #44 | `c8a6a9a70e32073d6cde2193958d570f08fd935e`, open |
 | cert-judge Exp27 dependency PR #38 | `edf627426d6d0740dbd6a793e4ff985fc4e6e3fa`, open |
-| PR A experiment branch | `codex/pti-v0-final` at `540c43f5877c02c50334bc98e1c238a2ba30f558` |
+| Historical PR A experiment branch | `codex/pti-v0-final` at `540c43f5877c02c50334bc98e1c238a2ba30f558`; superseded by direct PR #40 |
 | Pre-result experiment commit | `395efdc00584cad32f6e9a525a8dbd9b201ff2a7` |
 | Mandatory pre-bridge results commit | `6f55c44299eadda78db5738c7913475d06ea671f` |
 | Pre-bridge property-table SHA-256 | `7a904f31a6dbd626a728e44fd7a00043c61b5e1630937986f111a0be4af15c0a` |
 | PR A final experiment commit | `540c43f5877c02c50334bc98e1c238a2ba30f558` |
 | Paper integration commit | `ec04890da5ae272770400695c5b55aa5505d1ce7` |
-| Paper branch / PR B | `codex/iclr2027-final`, draft [#40](https://github.com/brando90/cert-judge/pull/40), stacked directly on PR A |
+| Consolidated experiment commit | `fb045ab3b76eb347b56c0626db817280e26cfbb6` |
+| Latest-main synchronization commit | `232c2a5cea170d1ae29b44cadecf64a30876999e` over `origin/main` `b488de9fc11e87952e05e9e4ecfff38dafbe0c17` |
+| Canonical integration branch / PR | `codex/iclr2027-final`, draft [#40](https://github.com/brando90/cert-judge/pull/40), base `main` |
 | Global rules revision used | `8190074918da0c2b39e6763b1d46ba04e8215ec2` |
 
-The branch stack reuses Exp27/PR #38 and its ultimate-utils/PR #44 dependency; it does not duplicate or rewrite that work. Neither dependency, PR A, nor the paper PR is auto-merged.
+The canonical direct-to-`main` branch contains the reviewed Exp27 commits plus the complete PTI-v0 experiment and paper update. Its external ultimate-utils/PR #44 dependency remains explicit. Nothing is auto-merged.
+
+All task-specific planning, preflight, blocker, independent-review, execution,
+raw-output, derived-result, QA, and decision artifacts now live together under
+`experiments/29_pti_v0_cli_bridge/`. The original planning archive is retained
+byte-for-byte as `ref/files (22).zip` with SHA-256
+`7362ab1d1dcc9161fefca3aff87c33276b71941a647f2bd2b7f8e176509d6859`.
 
 ## Preflight verdict and blocker resolution
 
@@ -101,8 +109,8 @@ The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER
 
 ## Pull requests, W&B, and manuscript
 
-- PR A: draft [cert-judge #39](https://github.com/brando90/cert-judge/pull/39), head `codex/pti-v0-final`, base `claude/ti2prime-validity-stability-scatter`.
-- PR B: draft [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), head `codex/iclr2027-final`, base `codex/pti-v0-final`.
+- Superseded intermediate PR: draft [cert-judge #39](https://github.com/brando90/cert-judge/pull/39), retained only for historical review context.
+- Canonical integration PR: draft [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), head `codex/iclr2027-final`, base `main`.
 - Permanent W&B Report: [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgwOTk0Ng==).
 - Active manuscript: `paper_latex/ICLR_2027_submission/main.tex`, revised in place.
 - Official ICLR 2027 style files: local `.sty`/`fancyhdr.sty`/`natbib.sty` hashes match the current official archive.
@@ -115,7 +123,7 @@ The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER
 
 ## Remaining human decisions and submission actions
 
-1. Review and merge ultimate-utils #44, then cert-judge #38, then PR A #39, then stacked PR B #40; no agent merge is authorized.
+1. Review and merge ultimate-utils #44, then review and merge canonical cert-judge PR #40 to `main`; its diff contains the previously separate Exp27/PR #38 work. No agent merge is authorized.
 2. Perform the authors' final scientific read and explicitly accept the auxiliary-Haiku provenance limitation and the negative/inconclusive interpretation.
 3. Submit a genuine title/abstract and lock the complete author list in OpenReview by **September 18, 2026, 11:59 PM AoE**; upload the paper and anonymized supplement by **September 25, 2026 AoE**.
 4. Ensure all authors have current OpenReview profiles and designate/register at least one eligible reciprocal reviewer when ICLR sends the post-abstract registration request.
