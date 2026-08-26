@@ -1,5 +1,12 @@
 # Experiment 29 — PTI-v0 CLI bridge
 
+This directory is the single self-contained home for the experiment. It now
+contains the original planning/preflight handoff, the frozen protocol and
+runner, all accepted raw outputs, derived results, independent QA, manuscript
+number bindings, and the final decision report. The planning material was
+initially staged under an Experiment 28 directory; it was moved here after the
+run so the already-frozen Experiment 29 output paths and hashes did not change.
+
 This is the executable, subscription-CLI-only successor to the blocked exact-
 model v4 protocol in `experiments/04_veribench_validation/pti_v0_v4/`.
 
@@ -19,8 +26,32 @@ Claude's retained CLI telemetry records `claude-sonnet-5` as the requested and
 scoring model plus a small auxiliary `claude-haiku-4-5` helper on all Claude
 calls. See `RESULTS_QA.md`; downstream claims must not say "Sonnet-only."
 
+## Decision reading order
+
+1. `results.md` — one-minute result and decision summary.
+2. `results/figures/outer_bridge_primaries.png` — the primary bridge visually.
+3. `REPORT.md` — complete human-readable scientific report.
+4. `results/properties/property_table.csv` and
+   `results/criterion/criterion.csv` — compact judge-level inputs.
+5. `results/bridge/bridge_pti_v0.json` and
+   `results/sesoi/sesoi_simulation.json` — exact bridge/bootstrap/power output.
+6. `RESULTS_QA.md` and `PAPER_QA.md` — independent numerical and manuscript QA.
+7. `results/scores.json` and `results/raw_batches/` — normalized records and
+   retained CLI evidence for a full audit.
+
 ## Layout
 
+- `00-CODEX-SOL-MAX-PREFLIGHT.md` through
+  `05-ICLR2027-FINALIZATION-CHECKLIST.md`: original plan and execution gates.
+- `README_FOR_BRANDO.md`, `FABLE_HANDOFF_AUDIT.md`, and `ref/`: original handoff
+  and its reference material. The original `ref/files (22).zip` archive is
+  retained byte-for-byte (SHA-256
+  `7362ab1d1dcc9161fefca3aff87c33276b71941a647f2bd2b7f8e176509d6859`).
+- `PREFLIGHT_PTI_V0_V4.md`, `BLOCKED.md`, `FABLE_PTI_V0_REVIEW.md`, and
+  `FABLE_PTI_V0_REREVIEW.md`: the zero-spend preflight, blocker record, and
+  independent v4 implementation reviews.
+- `STATUS_PTI_V0_V4.md`: final execution, manuscript, provenance, and handoff
+  status.
 - `PROTOCOL.md`: pre-result scientific/execution freeze.
 - `frozen_config.json`: machine-readable metric, judge, role, and bootstrap
   authority.
@@ -40,7 +71,7 @@ calls. See `RESULTS_QA.md`; downstream claims must not say "Sonnet-only."
 | Pre-bridge results commit | Complete: `6f55c44299eadda78db5738c7913475d06ea671f` |
 | Outer bridge and SESOI | Complete; below-SESOI/inconclusive |
 | W&B Report and local summary | Complete |
-| ICLR manuscript update | In progress on stacked PR B |
+| ICLR manuscript update | Complete on draft PR #40 |
 
 ## Pre-result freeze
 

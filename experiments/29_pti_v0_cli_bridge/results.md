@@ -20,4 +20,19 @@ Key facts:
 - Independent numerical QA passed and retained that provenance issue as one
   major limitation.
 
+Decision implications:
+
+- **Supported now:** an honest measurement/audit paper reporting a failed
+  positive bridge, exact-zero failure modes, wide judge-level uncertainty, and
+  an underpowered five-judge outer validation.
+- **Not supported now:** claiming PTI-v0 is positively validated, setting a
+  deployment/PASS-SCREEN threshold, claiming causal effects, or claiming saved
+  human-validation effort.
+- **If a positive validation result is required:** run a separately frozen
+  follow-up with a substantially larger independent judge panel and repair or
+  redesign the zero-saturating property probes before revealing its bridge.
+- **Exact-v4 replication:** remains optional future work if the registered
+  model identifiers become executable; it is not needed to inspect or reproduce
+  this v5 result.
+
 **TLDR-end:** [cj: pti-v0] The run itself is complete and audited; its scientific outcome is below-SESOI and inconclusive, so it cannot justify a positive bridge, a deployment threshold, or a human-validations-saved claim.

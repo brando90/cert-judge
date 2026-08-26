@@ -1,7 +1,7 @@
 # CertJudge — master execution prompt v3 (paste this into Claude Code)
 
-ref: /Users/brandomiranda/cert-judge/experiments/28_new_notation_and _experiments/files (22).zip (all the info from the ai bot to finish this task, you likely need to unzip it)
-ref: /Users/brandomiranda/cert-judge/experiments/28_new_notation_and _experiments/prompt.mc 
+ref: /Users/brandomiranda/cert-judge/experiments/29_pti_v0_cli_bridge/ref/files (22).zip (all the info from the ai bot to finish this task, you likely need to unzip it)
+ref: /Users/brandomiranda/cert-judge/experiments/29_pti_v0_cli_bridge/ref/prompt.mc
 
 You are Claude Code working in `github.com/brando90/cert-judge`, executing the ICLR 2027
 revision of *Certifying the Judge* end-to-end: commit the ratified specification, implement

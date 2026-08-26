@@ -4,9 +4,9 @@
 
 Date: 2026-08-20 (America/Los_Angeles)
 
-Scope: read-only, zero-spend preflight governed by `experiments/28_new_notation_and _experiments/00-CODEX-SOL-MAX-PREFLIGHT.md` and the higher-priority rulings in `03-SPEC-OVERRIDES-R41-R49.md`.
+Scope: read-only, zero-spend preflight governed by `experiments/29_pti_v0_cli_bridge/00-CODEX-SOL-MAX-PREFLIGHT.md` and the higher-priority rulings in `03-SPEC-OVERRIDES-R41-R49.md`.
 
-References below to `PTI_V0_CANONICAL_SPEC.md`, `PTI_V0_TEST_VECTORS_v2.json`, `RECONCILIATION-R36-R40.md`, and `test_pti_v0_reference_final.py` refer to the inner archive nested under `experiments/28_new_notation_and _experiments/ref/files (22).zip`; the archive was inspected in a temporary directory and not modified.
+References below to `PTI_V0_CANONICAL_SPEC.md`, `PTI_V0_TEST_VECTORS_v2.json`, `RECONCILIATION-R36-R40.md`, and `test_pti_v0_reference_final.py` refer to the inner archive nested under `experiments/29_pti_v0_cli_bridge/ref/files (22).zip`; the archive was inspected in a temporary directory and not modified.
 
 ## 1. Verdict
 

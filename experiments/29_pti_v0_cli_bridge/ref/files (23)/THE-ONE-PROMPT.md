@@ -7,7 +7,7 @@ path is intentionally serial, so parallel subagents buy cost and race risk, not 
 ## Where everything lives
 
 All inputs are in the staging directory
-`experiments/28_new_notation_and _experiments/` — **the directory name contains a space and
+`experiments/29_pti_v0_cli_bridge/` — **the directory name contains a space and
 the payload zip name contains parentheses: quote every path in every command.** If
 `certjudge-FINAL.zip` (or `files (22).zip`) is present and not yet extracted, unzip it in
 place first, then inventory the contents.

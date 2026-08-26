@@ -57,7 +57,7 @@ synthetic generator ∥ Task A. When in doubt, serialize.
 
 ## Repository specifics
 
-- Staging directory `experiments/28_new_notation_and _experiments/` (note the SPACE — quote
+- Staging directory `experiments/29_pti_v0_cli_bridge/` (note the SPACE — quote
   all paths) holds the handoff payload; it is staging only: never an experiment to run, never
   committed (targeted `git add` only), never renamed or deleted by an agent.
 - `experiments/27_ti_plot_like_scatter_plots` is the existing item-level TI scatter work: the
