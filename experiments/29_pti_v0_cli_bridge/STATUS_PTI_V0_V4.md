@@ -1,6 +1,6 @@
 # PTI-v0 final execution and ICLR 2027 manuscript status
 
-**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. Draft #40 is the canonical direct-to-`main` integration PR; draft #39 is superseded.
+**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. Draft #40 is the canonical direct-to-`main` integration PR; superseded PR #39 is closed.
 
 ## Provenance and dependencies
 
@@ -109,7 +109,7 @@ The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER
 
 ## Pull requests, W&B, and manuscript
 
-- Superseded intermediate PR: draft [cert-judge #39](https://github.com/brando90/cert-judge/pull/39), retained only for historical review context.
+- Superseded intermediate PR: closed [cert-judge #39](https://github.com/brando90/cert-judge/pull/39), retained only for historical review context.
 - Canonical integration PR: draft [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), head `codex/iclr2027-final`, base `main`.
 - Permanent W&B Report: [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgwOTk0Ng==).
 - Active manuscript: `paper_latex/ICLR_2027_submission/main.tex`, revised in place.
