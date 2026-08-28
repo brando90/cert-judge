@@ -4,7 +4,7 @@ Latest authoritative local report:
 [results_summary_2026-08-26__03-40-50.md](expt_v5/results/results_summary_2026-08-26__03-40-50.md)
 
 Permanent W&B Report:
-[Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgwOTk0Ng==)
+[Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgyMzE2MA==)
 
 Key facts:
 
@@ -17,6 +17,9 @@ Key facts:
   scoring `claude-sonnet-5`.
 - Claude telemetry records an auxiliary `claude-haiku-4-5` helper on all Claude
   calls; Sonnet-only execution is not claimed.
+- Codex CLI telemetry exposes no served-model field; the `gpt-5.6-terra`
+  identity rests on the hash-bound explicit `-m` argument and the CLI's
+  rejection of unsupported model IDs.
 - Independent numerical QA passed and retained that provenance issue as one
   major limitation.
 

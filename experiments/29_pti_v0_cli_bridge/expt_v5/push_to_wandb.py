@@ -113,7 +113,7 @@ def main() -> int:
             save_code=False,
             config={
                 "experiment": 29,
-                "protocol_version": "PTI_v0_cli_v5",
+                "protocol_version": "PTI_v0_cli_protocol_v5",
                 "metric_version": "PTI_v0",
                 "judge_id": judge_id,
                 "role": property_row["role"],
@@ -124,7 +124,8 @@ def main() -> int:
                 "model_provenance_note": (
                     "Claude runs requested/scored with claude-sonnet-5 and disclose "
                     "auxiliary claude-haiku-4-5 telemetry; Codex runs disclose "
-                    "gpt-5.6-terra. Exact v4 models were NOT_RUN."
+                    "gpt-5.6-terra as the explicit CLI argument because Codex JSONL "
+                    "has no served-model field. Exact v4 models were NOT_RUN."
                 ),
             },
         ) as run:
@@ -148,7 +149,7 @@ def main() -> int:
         save_code=False,
         config={
             "experiment": 29,
-            "protocol_version": "PTI_v0_cli_v5",
+            "protocol_version": "PTI_v0_cli_protocol_v5",
             "metric_version": "PTI_v0",
             "config_fingerprint": (
                 "735bd5951d4e6f8e9bf5f0d5e374028e1e46d92077b64584a7f89ff30981be9e"
@@ -253,7 +254,8 @@ def main() -> int:
         title="Experiment 29 — PTI-v0 v5 outer bridge",
         description=(
             "Complete subscription-CLI PTI-v0 v5 run: 774 tasks, 4,728 cells, "
-            "five primary judges, three controls, and a preregistered held-out bridge."
+            "five primary judges, three controls, and a pre-specified judge-level "
+            "validation bridge without a held-out generalization claim."
         ),
         blocks=[
             wr.TableOfContents(),
@@ -283,6 +285,8 @@ def main() -> int:
                     "| Exact v4 models | NOT RUN |\n"
                     "| Actual scoring models | `gpt-5.6-terra`; requested/scoring "
                     "`claude-sonnet-5` |\n"
+                    "| Codex model telemetry | `gpt-5.6-terra` requested by explicit "
+                    "CLI argument; no served-model field |\n"
                     "| Claude auxiliary telemetry | `claude-haiku-4-5` on all 258 "
                     "Claude calls |\n"
                     f"| Pre-bridge commit | `{bridge['prebridge_commit']}` |"
@@ -290,7 +294,7 @@ def main() -> int:
             ),
             wr.H2(text="Property and human-criterion table"),
             wr.MarkdownBlock(text=_markdown_property_table(rows)),
-            wr.H2(text="Held-out judge-level bridge"),
+            wr.H2(text="Pre-specified judge-level validation bridge"),
             wr.MarkdownBlock(
                 text=(
                     f"Primary Spearman: **{primary['spearman']:.6f}**; Kendall tau-b: "
@@ -364,8 +368,8 @@ def main() -> int:
                     "- Every Claude transcript records a small auxiliary Haiku helper "
                     "alongside Sonnet. The scoring output is attributed to Sonnet, but "
                     "Sonnet-only execution is not claimed.\n"
-                    "- Independent QA reproduced all numbers and returned one major "
-                    "provenance finding for that auxiliary-model telemetry.\n"
+                    "- Three-stage Mega-QA independently reproduced all frozen numbers; "
+                    "the current report includes its provenance corrections.\n"
                     "- The PTI axis and TI_m1 axis are not a shared calibrated level "
                     "scale; no identity line or level MAE is used."
                 )

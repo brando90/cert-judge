@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+DODGE_STEP = 0.026
 EXPERIMENT_ROOT = Path(__file__).resolve().parent
 DEFAULT_PROPERTIES = EXPERIMENT_ROOT / "results" / "properties" / "properties.json"
 DEFAULT_CRITERION = EXPERIMENT_ROOT / "results" / "criterion" / "criterion.json"
@@ -116,15 +117,44 @@ def _draw(
     output_stem: Path,
 ) -> None:
     selected = rows if pooled else [row for row in rows if row["role"] == "primary"]
+    # Judges whose PTI values are byte-identical (e.g. several exact zeros) would
+    # otherwise be drawn on top of each other and their vertical intervals would
+    # be unattributable.  Their markers and vertical intervals are offset
+    # horizontally by multiples of DODGE_STEP; the plotted PTI interval, the
+    # annotation coordinates, and the source data keep the exact abscissa.
+    groups: dict[float, list[int]] = {}
+    for index, row in enumerate(selected):
+        groups.setdefault(round(float(row["pti_v0"]), 9), []).append(index)
+    offsets: dict[int, float] = {}
+    for members in groups.values():
+        for position, index in enumerate(members):
+            offsets[index] = (
+                (position - (len(members) - 1) / 2.0) * DODGE_STEP
+                if len(members) > 1
+                else 0.0
+            )
+    left_margin = min(offsets.values()) if offsets else 0.0
     fig, ax = plt.subplots(figsize=(7.1, 5.0), constrained_layout=True)
-    for row in selected:
+    for index, row in enumerate(selected):
         color, marker, face = _style(row)
         x = float(row["pti_v0"])
         y = float(row["ti_m1"])
+        x_draw = x + offsets[index]
+        if float(row["pti_ci_high"]) > float(row["pti_ci_low"]):
+            ax.errorbar(
+                x,
+                y,
+                xerr=[[x - float(row["pti_ci_low"])], [float(row["pti_ci_high"]) - x]],
+                fmt="none",
+                ecolor=color,
+                elinewidth=1.1,
+                capsize=2.5,
+                alpha=0.92,
+                zorder=2,
+            )
         ax.errorbar(
-            x,
+            x_draw,
             y,
-            xerr=[[x - float(row["pti_ci_low"])], [float(row["pti_ci_high"]) - x]],
             yerr=[
                 [y - float(row["ti_m1_ci_low"])],
                 [float(row["ti_m1_ci_high"]) - y],
@@ -142,20 +172,45 @@ def _draw(
             zorder=3,
         )
         dx, dy, alignment = _annotation_offset(row["judge_id"], pooled)
+        group = groups[round(x, 9)]
+        arrow = None
+        if len(group) > 1:
+            # Labels of a dodged cluster are stacked to the right of the whole
+            # cluster and tied to their marker by a thin leader line.
+            cluster_right = max(offsets[member] for member in group)
+            dx = (cluster_right - offsets[index]) + 0.03
+            alignment = "left"
+            arrow = {"arrowstyle": "-", "color": "#9A9A9A", "linewidth": 0.6, "shrinkA": 0, "shrinkB": 4}
         ax.annotate(
             _short_label(row["judge_id"]),
-            (x, y),
-            xytext=(x + dx, y + dy),
+            (x_draw, y),
+            xytext=(x_draw + dx, y + dy),
             textcoords="data",
             ha=alignment,
             va="center",
             fontsize=8.3,
             color="#222222",
+            arrowprops=arrow,
+            zorder=4,
         )
 
     ax.axhline(0.0, color="#B8B8B8", linewidth=0.8, linestyle=":", zorder=0)
-    ax.set_xlim(0.0, 1.0)
+    ax.axvline(0.0, color="#B8B8B8", linewidth=0.8, linestyle=":", zorder=0)
+    ax.set_xlim(min(-0.02, left_margin - 0.03), 1.0)
+    ax.set_xticks([0.0, 0.2, 0.4, 0.6, 0.8, 1.0])
     ax.set_ylim(-1.0, 1.0)
+    if any(value != 0.0 for value in offsets.values()):
+        ax.text(
+            0.01,
+            0.015,
+            "Judges with identical PTI values are offset horizontally by multiples of "
+            f"{DODGE_STEP} for legibility;\ntheir exact abscissa is the dotted vertical line.",
+            transform=ax.transAxes,
+            fontsize=7.2,
+            color="#444444",
+            va="bottom",
+            ha="left",
+        )
     ax.set_xlabel(r"Judge-level $\mathrm{PTI}_{\mathrm{v0}}$  [0, 1]")
     ax.set_ylabel(r"Human criterion $\mathrm{TI}_{m_1}$ (Spearman)  [-1, 1]")
     population = "Primaries + controls (secondary)" if pooled else "Primary judges"

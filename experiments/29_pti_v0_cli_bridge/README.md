@@ -18,9 +18,9 @@ panel and the preregistered batching execution protocol are versioned to v5.
 The full run is complete: 774/774 CLI tasks, 4,728/4,728 score cells, and
 14,184 score records. Property and 72-row criterion outputs have 100% coverage
 and passed independent numerical reconstruction. After the mandatory
-pre-bridge commit, the held-out primaries-only association was Spearman
-`-0.3536` (95% CI `[-1.0000, 0.3953]`, `n=5`): below the `0.5` SESOI and
-inconclusive about zero.
+pre-bridge commit, the pre-specified primaries-only validation association was
+Spearman `-0.3536` (95% CI `[-1.0000, 0.3953]`, `n=5`): below the `0.5` SESOI
+and inconclusive about zero.
 
 Claude's retained CLI telemetry records `claude-sonnet-5` as the requested and
 scoring model plus a small auxiliary `claude-haiku-4-5` helper on all Claude
@@ -36,7 +36,10 @@ calls. See `RESULTS_QA.md`; downstream claims must not say "Sonnet-only."
 5. `results/bridge/bridge_pti_v0.json` and
    `results/sesoi/sesoi_simulation.json` — exact bridge/bootstrap/power output.
 6. `RESULTS_QA.md` and `PAPER_QA.md` — independent numerical and manuscript QA.
-7. `results/scores.json` and `results/raw_batches/` — normalized records and
+7. `MEGA_QA_REPORT.md` — final three-stage adversarial QA and release verdict;
+   the exact stage records are `MEGA_QA_FABLE.md`, `MEGA_QA_CODEX.md`, and
+   `MEGA_QA_FINAL_CODEX.md`.
+8. `results/scores.json` and `results/raw_batches/` — normalized records and
    retained CLI evidence for a full audit.
 
 ## Layout
@@ -61,6 +64,10 @@ calls. See `RESULTS_QA.md`; downstream claims must not say "Sonnet-only."
 - `expt_v5/cc.md`: paste-into-agent execution prompt for this version.
 - `REPORT.md`: human-readable run report.
 - `RESULTS_QA.md`: independent pre-bridge results audit.
+- `06-MEGA-QA-PROMPT.md`, `MEGA_QA_FABLE.md`, `MEGA_QA_CODEX.md`,
+  `MEGA_QA_FINAL_CODEX.md`, and `MEGA_QA_REPORT.md`: the exact final QA prompt,
+  three fresh-context stage records, and consolidated release verdict.
+- `PR_BODY.md`: canonical direct-to-`main` PR description and validation plan.
 - `writing.tex`: paper-bound draft, updated only from committed outputs.
 
 | Deliverable | Status |

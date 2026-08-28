@@ -11,13 +11,13 @@ the inaccessible exact-model v4 run.
 
 ## Authoritative inputs
 
-- `../../PROTOCOL.md`
-- `../../frozen_config.json`
-- `../../batch_score_schema.json`
-- `../../run_pti_v0_cli.py`
-- `../../results/score_requests.json`
-- `../../results/batch_manifest.json`
-- `../../results/criterion_manifest.json`
+- `../PROTOCOL.md`
+- `../frozen_config.json`
+- `../batch_score_schema.json`
+- `../run_pti_v0_cli.py`
+- `../results/score_requests.json`
+- `../results/batch_manifest.json`
+- `../results/criterion_manifest.json`
 - experiment 04's frozen structural manifest and canonical PTI-v0 runner
 
 ## Execution

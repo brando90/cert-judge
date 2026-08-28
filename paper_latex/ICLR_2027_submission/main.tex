@@ -91,12 +91,9 @@ When a language-model judge scores AI-generated Lean~4 theorems against gold ref
 
 \section{Introduction}\label{sec:intro}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.78\linewidth]{figures/pull_fig.png}
-  \caption{\textbf{Conceptual workflow (legacy schematic; not $\PTIvzero$ evidence).} A human-labeled calibration panel is paired with behavioral probes (P1--P4) to test whether a label-free proxy could reduce relabeling after a successful bridge. This paper's frozen bridge does not establish savings. The embedded text uses the legacy name $\mathrm{TI}_{\mathrm{var}}$ for $\PTIvar$; see Section~\ref{sec:defs}.}
-  \label{fig:overview}
-\end{figure}
+% The legacy raster overview (figures/pull_fig.png) is intentionally not included:
+% its embedded text asserts a "certified judge" and "substantial cost savings"
+% and carries the project name, none of which this frozen result supports.
 
 Agentic AI systems increasingly generate both code and the trust artifacts meant to evaluate that code: tests, specifications, and formal theorems.
 In Lean~4, these artifacts are code-adjacent formal objects: runnable programs paired with theorem or specification statements and, sometimes, proofs.
@@ -118,7 +115,7 @@ Our \textbf{contributions} are:
 \begin{enumerate}
   \item We distinguish scoped judge trustworthiness $\TW_m$ (construct), its human-grounded criterion $\TI_m$ measured on a specified panel, and the automated behavioral instrument $\mathbf{P}(aj)$, making explicit which claims need human labels and which do not (Section~\ref{sec:defs}).
   \item We introduce a reusable suite of falsifiable behavioral probes for LLM judges of formal-code artifacts, with scripted perturbation ladders and pre-specified estimators (Section~\ref{sec:probes}).
-  \item We freeze and execute $\PTIvzero$ on five primary judge--prompt configurations and three controls. The held-out primaries-only bridge is Spearman $-0.354$ (95\% interval $[-1.000,0.395]$, $n{=}5$), below the $0.5$ SESOI and inconclusive about zero; no positive surrogate or deployment claim is supported (Section~\ref{sec:bridge}).
+  \item We freeze and execute $\PTIvzero$ on five primary judge--prompt configurations and three controls. The pre-specified primaries-only validation bridge is Spearman $-0.354$ (95\% interval $[-1.000,0.395]$, $n{=}5$), below the $0.5$ SESOI and inconclusive about zero; no positive surrogate or deployment claim is supported (Section~\ref{sec:bridge}).
   \item We disclose the complete score/probe audit, low-power simulation, model-execution limitations, criterion drift ($\rho\approx0.13$ between labeling campaigns), and the separate pre-registered 32-configuration negative, deriving the protocol requirements they impose (Section~\ref{sec:drift}).
 \end{enumerate}
 
@@ -207,7 +204,7 @@ We claim no ``sound rejection by construction'' at the ratified target: under $\
 \textbf{Amortization and its four generalization axes.}
 The criterion is only measurable on the annotated subset $b' \subseteq b$; the proxy runs on the observed typed pool:
 $\PTI(b, L_A, aj, P) \approx \TI_{2'}(b', L_A, aj, H)$.
-This exposes four axes that any amortization claim must name: held-out \emph{judges} (the primary claim), new \emph{agents}, new \emph{benchmarks}, and within-benchmark \emph{item-level extrapolation} $b' \to b$ --- here the bridge is evaluated on 72 items while the proxy is evaluated on 470 observed typed candidates over 157 items (a nominal $157 \times 3$ grid with one missing candidate).
+This exposes four axes that any amortization claim must name: held-out \emph{judges} (the primary target, but not a generalization claim of the current validation analysis), new \emph{agents}, new \emph{benchmarks}, and within-benchmark \emph{item-level extrapolation} $b' \to b$ --- here the bridge is evaluated on 72 items while the proxy is evaluated on 470 observed typed candidates over 157 items (a nominal $157 \times 3$ grid with one missing candidate).
 Conditional on a future successfully established bridge, the cost decomposition is
 \begin{equation}
 C_{\mathrm{amortized}} = \underbrace{\lvert\Pi\rvert\, n\, c_{\mathrm{human}}}_{\text{persona conditioning}}
@@ -282,7 +279,7 @@ A learned calibration map $f_{\mathrm{cal}}: \mathbf{P} \mapsto \TIm{1}$ is defe
 \section{Experiments: Frozen PTI-v0 and Historical Context}\label{sec:experiments}
 
 \subsection{Data and human-annotation protocol (audited)}\label{sec:data}
-All experiments use \textsc{VeriBench} \citep{miranda2026veribench}, which comprises 857 theorems over five subsets: \textbf{HumanEval} (387 theorems from 56 programming puzzles \citealp{chen2021evaluating}), \textbf{Easy} (278 from 41 introductory tasks), \textbf{CS} (68 from 10 classical algorithm problems), \textbf{Security} (112 from 28 vulnerability labs), and \textbf{RealCode} (12 from 5 Python standard-library programs).
+All experiments use \textsc{VeriBench} \citep{miranda2026veribench}, which comprises 857 theorems over five subsets: \textbf{HumanEval} (387 theorems from 56 programming puzzles; \citealp{chen2021evaluating}), \textbf{Easy} (278 from 41 introductory tasks), \textbf{CS} (68 from 10 classical algorithm problems), \textbf{Security} (112 from 28 vulnerability labs), and \textbf{RealCode} (12 from 5 Python standard-library programs).
 
 \textbf{Calibration panel.}
 Judge validation uses an aligned panel of \textbf{75 rated candidate--gold pairs} = 25 problems $\times$ 3 agent generations (generations by Codex-, Claude-, and Llama-family agents); \textbf{72 pairs (24 problems) enter all analyses}, because one problem's gold artifact is indexed under a pre-renumbering filename and is skipped by the gold lookup.
@@ -551,10 +548,10 @@ Converting scores to yes/no decisions at threshold $t \in \{0.60,\dots,0.85\}$ l
 As a downstream portability check --- outside the eight-judge bridge panel --- a property-checked judge ranks \textsc{VeriBench} theorem-generation agents in the expected order (baseline prompting $0.470$; DSPy ReAct $0.615$; Trace++ $0.588$; Appendix~\ref{app:downstream}); this is a sanity check, not independent proof of judge correctness.
 \fi
 
-\subsection{Frozen PTI-v0 properties and held-out outer bridge}\label{sec:bridge}
+\subsection{Frozen PTI-v0 properties and pre-specified outer bridge}\label{sec:bridge}
 
 \textbf{Execution and audit.}
-The exact v4 model IDs were unavailable through the approved ChatGPT-backed command-line client, so that panel is \texttt{NOT\_RUN}; we versioned only the execution/model panel as v5 without changing Eq.~\ref{eq:pti-v0}, the probes, criterion, or analysis policy. The complete run used locally authenticated subscription CLIs with requested/scoring models \texttt{gpt-5.6-terra} and \texttt{claude-sonnet-5}: 774/774 CLI tasks, 4,728/4,728 unique score cells, and 14,184 bound score records (three per cell), with zero provider-API spend. Claude telemetry also reports a small auxiliary \texttt{claude-haiku-4-5} helper on all 258 Claude invocations; we therefore do not claim Sonnet-only execution or prove that the helper could not affect execution. Unrelated cases shared a deterministic batch context, but artifact-disjoint packing prevented related levels or alpha partners of the same typed artifact from appearing together. A fresh read-only audit independently reconstructed every score binding, property, criterion statistic, and bootstrap output; all numerical checks passed, with the auxiliary-model provenance recorded as a major limitation.
+The exact v4 model IDs were unavailable through the approved ChatGPT-backed command-line client, so that panel is \texttt{NOT\_RUN}; we versioned only the execution/model panel as v5 without changing Eq.~\ref{eq:pti-v0}, the probes, criterion, or analysis policy. The complete run used locally authenticated subscription CLIs with requested/scoring models \texttt{gpt-5.6-terra} and \texttt{claude-sonnet-5}: 774/774 CLI tasks, 4,728/4,728 unique score cells, and 14,184 bound score records (three per cell), with zero provider-API spend. Claude telemetry also reports a small auxiliary \texttt{claude-haiku-4-5} helper on all 258 Claude invocations; we therefore do not claim Sonnet-only execution or prove that the helper could not affect execution. Codex telemetry exposes no served-model field, so the \texttt{gpt-5.6-terra} identity rests on the hash-bound explicit model argument and the client's rejection of unsupported identifiers rather than on observed telemetry. Unrelated cases shared a deterministic batch context, but artifact-disjoint packing prevented related levels or alpha partners of the same typed artifact from appearing together. A fresh read-only audit independently reconstructed every score binding, property, criterion statistic, and bootstrap output; all numerical checks passed, with the auxiliary-model provenance recorded as a major limitation.
 
 \textbf{Coverage and properties.}
 The frozen structural sets contain 86 equality, 49 bug-ladder, 63 missing-specification-ladder, and 67 alpha probes. Every judge has 100\% required score coverage and all four properties are \texttt{COMPUTED}. Table~\ref{tab:pti-v0-properties} gives the exact-zero headline point estimates with adjacent uncertainty. Four of five primary configurations have point estimate $\PTIvzero=0$; independent reconstruction verified at least one directly observed zero artifact factor behind every zero aggregate, rather than missingness or failed parsing. Sonnet--P8 has $\PTIvzero=0.811$ (95\% artifact-cluster bootstrap interval $[0.782,0.839]$).
@@ -585,7 +582,7 @@ The frozen structural sets contain 86 equality, 49 bug-ladder, 63 missing-specif
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.92\linewidth]{figures/outer_bridge_primaries.pdf}
-  \caption{\textbf{Outer bridge, one point per primary judge configuration.} Horizontal and vertical bars are 95\% artifact-cluster $\PTIvzero$ and paired-item $\TIm{1}$ intervals. The bridge statistic resamples judges, not items: Spearman $-0.354$, 95\% bootstrap interval $[-1.000,0.395]$, $n=5$ (6,647/10,000 valid replicates). The axes are not a shared calibrated level scale, so there is no identity line or level-error statistic.}
+  \caption{\textbf{Outer bridge, one point per primary judge configuration.} Horizontal and vertical bars are 95\% artifact-cluster $\PTIvzero$ and paired-item $\TIm{1}$ intervals. The four primaries tied at exactly $\PTIvzero=0$ are offset horizontally by $\pm0.013$ and $\pm0.039$ for legibility; their exact abscissa is the dotted vertical line at $0$. The bridge statistic resamples judges, not items: Spearman $-0.354$, 95\% bootstrap interval $[-1.000,0.395]$, $n=5$ (6,647/10,000 valid replicates). The axes are not a shared calibrated level scale, so there is no identity line or level-error statistic.}
   \label{fig:pti-v0-outer-bridge}
 \end{figure}
 
@@ -601,7 +598,8 @@ Calibration-era $\PTIvar$ associations (including the earlier $0.833/0.905/0.738
 \section{Criterion Drift and the Pre-Registered Held-Out Outcome}\label{sec:drift}
 
 \textbf{Separate the frozen result from historical calibration.}
-The $\PTIvzero$ judge panel in Section~\ref{sec:bridge} was frozen and its property table committed before the bridge was revealed, so it is the paper's new held-out-across-judges result on the 72-row criterion. By contrast, the calibration-era $\PTIvar$ analyses reused human labels while choosing aggregate forms, repeat aggregation, thresholds, and prompt panels; those are historical validation findings, not out-of-sample $\PTIvzero$ evidence.
+The $\PTIvzero$ judge panel in Section~\ref{sec:bridge} was frozen and its property table committed before the bridge was revealed, so it is the paper's new pre-specified judge-level validation analysis on the 72-row criterion.
+It is not an out-of-sample or held-out generalization result; by contrast, the calibration-era $\PTIvar$ analyses reused human labels while choosing aggregate forms, repeat aggregation, thresholds, and prompt panels, so those are historical validation findings rather than $\PTIvzero$ evidence.
 
 \textbf{The held-out pool measures a different criterion.}
 Beyond the calibration panel, an independent pool was collected as the intended held-out test: five raters, 343 scored labels over 78 distinct candidate--gold pairs, many pairs with 4--5 independent ratings.
@@ -650,7 +648,7 @@ This work reuses research-team annotations of machine-generated Lean artifacts a
 \section*{Reproducibility Statement}
 The supplementary material is assembled from an explicit anonymized allowlist and contains the tidy calibration panel (75 rated / 72 analyzed pairs with strict, lenient, and averaged views), structural manifests for 470 observed typed candidates, the frozen $\PTIvzero$ config and score-request bindings, all 14,184 normalized score records and identity-scanned CLI transcripts, per-ladder diagnostics, property/criterion/bridge/SESOI JSON and CSV authorities, figure source data, and the pre-registration documents for the separate held-out screens. The canonical commands use metric version \texttt{PTI\_v0}, 10,000 replicates, seed 0, and a content-bound pre-bridge property authority identified inside the anonymized bundle. Appendix~\ref{app:audit} reconciles the human counts; every new manuscript number is mapped to a machine-readable artifact in the supplementary result-status table.
 
-\section*{The Use of Large Language Models}
+\section*{AI Use Statement}
 Large language models were used in two capacities.
 (i)~As research subjects: all judges under study are LLMs, as described throughout.
 (ii)~As assistants: LLM-based coding tools helped implement and test experiment and analysis code, execute the prescribed workflow, audit the repository, cross-check quantitative outputs, summarize and interpret results, and draft and edit manuscript text and \LaTeX.
@@ -994,11 +992,11 @@ Early Claude 3.x Sonnet scatterplots were small-file protocol iterations used to
     Claude 3 Sonnet (narrow slice) & Small & No & Prompt diagnostics \\
     \bottomrule
   \end{tabular}
-  \caption{\textbf{Cross-model validation status.} Headline bridge claims use full eight-configuration panels on the analyzed rows; exploratory Sonnet figures are withheld from headline statistics.}
+  \caption{\textbf{Cross-model validation status (legacy).} Legacy headline bridge claims used full eight-configuration panels on the analyzed rows; exploratory Sonnet figures are withheld from headline statistics.}
   \label{tab:app-cross-model-status}
 \end{table}
 
-\section{Threshold Calibration}\label{app:threshold}
+\section{Threshold Calibration (Legacy---Not PTI-v0)}\label{app:threshold}
 
 A threshold $t$ converts a continuous judge score into a yes/no decision; flip rate measures how often repeated judge calls on the same item disagree after thresholding.
 Across $t \in \{0.60, 0.65, 0.70, 0.75, 0.80, 0.85\}$, ranking behavior is unchanged ($\rho_{\text{bug}}=-0.790$ throughout), while stricter thresholds modestly reduce flip rate at some coverage cost; $t=0.85$ gives the lowest observed flip rate with pass rate near $0.5$.

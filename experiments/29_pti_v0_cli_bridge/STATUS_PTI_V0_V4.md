@@ -58,17 +58,18 @@ The original zero-spend preflight verdict was `BLOCKED`. All executable blockers
 | Bound score records | 14,184 |
 | Nonlocal / local-control cells | 3,546 / 1,182 |
 | Invalid accepted / quarantined tasks | 0 / 0 |
-| Excluded failed attempts | 4, all retried successfully |
+| Exhausted-batch failure records | 4 (12 attempts), each batch later completed |
+| In-run retried attempts inside accepted tasks | 34 (errors not retained); at least 820 CLI invocations in total |
 | Human criterion rows | 72 per judge |
 | Property/criterion coverage | 100% |
 | Bootstrap replicates | 10,000 |
 
-The conformance suite passed **79 tests** across PTI core, randomized/adversarial vectors, the v5 CLI pipeline, structural probes, schema binding, and preserved Exp27 plotting behavior. Python byte-compilation and `git diff --check` passed. Ruff was unavailable in the active uv environment and is not reported as passing.
+The conformance suite passed **79 tests** across PTI core, randomized/adversarial vectors, the v5 CLI pipeline, structural probes, schema binding, and preserved Exp27 plotting behavior; the eight Exp27 plotting tests require `uutils` (ultimate-utils PR #44 plus `dill`, `networkx`, `lark`) on the path and are skipped otherwise (71 passed, 1 skipped in the bare cert-judge environment). Python byte-compilation passed; `git diff --check` is clean except for immutable raw CLI transcripts, an Exp27 prompt file, and Markdown hard line breaks. Ruff was unavailable in the active uv environment and is not reported as passing.
 
 ## Models actually run
 
 - Exact v4 (`gpt-5.3-codex`, `gpt-4o-mini`): `NOT_RUN` because those IDs were rejected by the approved ChatGPT-backed CLI.
-- v5 Codex scoring: `gpt-5.6-terra`.
+- v5 Codex scoring: `gpt-5.6-terra` (Codex JSONL exposes no served-model field; the identity rests on the hash-bound explicit `-m` argument and the CLI's rejection of unsupported IDs, not on observed telemetry).
 - v5 Claude requested/scoring model: `claude-sonnet-5`.
 - Provenance limitation: every one of the 258 accepted Claude invocations also records auxiliary `claude-haiku-4-5` telemetry. The results therefore do not claim Sonnet-only execution or prove that the helper could not influence execution.
 
@@ -111,13 +112,13 @@ The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER
 
 - Superseded intermediate PR: closed [cert-judge #39](https://github.com/brando90/cert-judge/pull/39), retained only for historical review context.
 - Canonical integration PR: draft [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), head `codex/iclr2027-final`, base `main`.
-- Permanent W&B Report: [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgwOTk0Ng==).
+- Permanent W&B Report: [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgyMzE2MA==).
 - Active manuscript: `paper_latex/ICLR_2027_submission/main.tex`, revised in place.
 - Official ICLR 2027 style files: local `.sty`/`fancyhdr.sty`/`natbib.sty` hashes match the current official archive.
-- Build: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` passes with no undefined references/citations or overfull boxes.
-- PDF: 22 pages total; the conclusion ends on page 9, uncounted statements continue on page 10, references begin on page 10, and the appendix begins on page 13. The nine-page submission main-text limit is therefore satisfied.
-- Reviewed PDF SHA-256: `f465c51c877071c5ef2470bf9e9ad483b7420669e8e00611334d61ae21ba96fe`.
-- Visual QA: all 22 pages rendered and inspected; no clipping, overlap, misleading identity line, PTI/TI level MAE, or smoothed paired-density evidence.
+- Build: `SOURCE_DATE_EPOCH=1787763818 FORCE_SOURCE_DATE=1 TZ=UTC latexmk -g -pdf -interaction=nonstopmode -halt-on-error main.tex` passes with no undefined references/citations or overfull boxes and reproduces the PDF byte-for-byte across clean forced rebuilds.
+- PDF: 22 pages total; the conclusion ends on page 9, the uncounted ethics/reproducibility/AI-use statements follow on page 9, references run from page 9 to page 12, and the appendix begins on page 13. The nine-page submission main-text limit is therefore satisfied.
+- Reviewed PDF SHA-256: `4fc679f36cd4d33f7e2ccc3788b9c98d4c19cc6723456cbe2c73f660dbf53718` (reproduced twice with the fixed source epoch above; the preceding Mega-QA stage build was `38118fb4a644896fd301a97ae5fa5f78c8b775ce4739347729bdb5d4dcf281ae`).
+- Visual QA: all 22 pages of the reviewed build were rendered and inspected; after the final Mega-QA rebuild the main-text pages, the statements/references pages, the retitled legacy appendix section, and both regenerated outer-bridge figures were re-rendered and inspected. No clipping, overlap, occluded judge, misleading identity line, PTI/TI level MAE, or smoothed paired-density evidence remains; the legacy raster overview (which embedded "certified judge" and "substantial cost savings" text) was removed from the submission.
 - Anonymity: anonymous author block; no public VCS identifier, repository link, local path, W&B link, TODO/TBD, or unresolved placeholder in the submitted PDF. Self-work is cited in the third person; the separate allowlist governs supplement packaging.
 - Mandatory AI-use statement, reproducibility statement, and an ethics statement are present before the references.
 

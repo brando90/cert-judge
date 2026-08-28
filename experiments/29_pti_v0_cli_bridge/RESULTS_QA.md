@@ -66,7 +66,7 @@ interpretation but cannot establish non-influence. A representative accepted
 artifact is
 `results/raw_batches/a0f9cc99d0f563c202941aab6ad1d905399be37cafd0682273591863e0885e03__r0.json`.
 
-Codex accepted 516 invocations with requested/observed `gpt-5.6-terra`.
+Codex accepted 516 invocations requested as `gpt-5.6-terra`; the Codex JSONL exposes no served-model field, so Terra is requested-by-argument rather than observed telemetry.
 
 ## Gate decision
 

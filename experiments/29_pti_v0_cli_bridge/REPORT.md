@@ -1,18 +1,21 @@
 # PTI-v0 v5 experiment report
 
-**TLDR-start:** [cj: pti-v0] The complete CLI-only v5 workload finished: 774/774 accepted tasks, 4,728/4,728 score cells, 14,184 records, full property/criterion coverage, and `$0` provider-API spend. The held-out primaries-only bridge is Spearman `-0.3536` (95% CI `[-1.0000, 0.3953]`, `n=5`), below the `0.5` SESOI and inconclusive about zero.
+**TLDR-start:** [cj: pti-v0] The complete CLI-only v5 workload finished: 774/774 accepted tasks, 4,728/4,728 score cells, 14,184 records, full property/criterion coverage, and `$0` provider-API spend. The pre-specified primaries-only validation bridge is Spearman `-0.3536` (95% CI `[-1.0000, 0.3953]`, `n=5`), below the `0.5` SESOI and inconclusive about zero.
 
 ## Run identity
 
 - Metric version: `PTI_v0`
-- Execution protocol: `PTI_v0_cli_v5`
+- Execution protocol: `PTI_v0_cli_protocol_v5`
 - Frozen-config fingerprint:
   `735bd5951d4e6f8e9bf5f0d5e374028e1e46d92077b64584a7f89ff30981be9e`
 - Pre-result commit: `395efdc00584cad32f6e9a525a8dbd9b201ff2a7`
 - Exact v4 model run: `NOT_RUN`
 - Actual v5 workload: `gpt-5.6-terra` and requested/scoring
   `claude-sonnet-5`; Claude telemetry also records the CLI-internal auxiliary
-  `claude-haiku-4-5` helper on all 258 Claude calls.
+  `claude-haiku-4-5` helper on all 258 Claude calls. Codex JSONL exposes no
+  served-model field, so the Terra identity rests on the hash-bound explicit
+  `-m gpt-5.6-terra` argument and the CLI's rejection of unsupported model IDs
+  rather than on observed telemetry.
 - Authentication: locally authenticated ChatGPT and `claude.ai` subscriptions.
 - Provider API spend: `$0`.
 
@@ -32,7 +35,9 @@ artifact.
 | Local-control cells | 1,182 |
 | Invalid accepted raw tasks | 0 |
 | Quarantined tasks | 0 |
-| Excluded failed attempts | 4, each successfully retried |
+| Exhausted-batch failure records | 4 (12 attempts), each batch later completed |
+| In-run retried attempts inside accepted tasks | 34 (24 tasks accepted at attempt 2, 5 at attempt 3); their errors are not retained |
+| Total CLI invocations for 774 accepted tasks | at least 820 |
 | Human panel rows | 72 |
 | Property bootstrap replicates | 10,000 |
 | Criterion bootstrap replicates | 10,000 |
@@ -74,7 +79,7 @@ every zero aggregate.
 | Edit distance | 0.1987 | [-0.0793, 0.4562] | 0.1484 |
 | Random | -0.0008 | [-0.2351, 0.2254] | -0.0031 |
 
-## Held-out outer bridge
+## Pre-specified outer bridge
 
 The audited property table was committed byte-identically in
 `6f55c44299eadda78db5738c7913475d06ea671f` before any bridge statistic was
@@ -92,7 +97,7 @@ the complete positive decision rule. The observed result is below-SESOI and
 inconclusive about zero; it does not support a positive bridge.
 
 Permanent W&B Report:
-[Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgwOTk0Ng==).
+[Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgyMzE2MA==).
 
 ## Independent QA
 
