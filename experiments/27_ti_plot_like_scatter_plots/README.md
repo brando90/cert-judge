@@ -20,11 +20,10 @@ One judge configuration, one figure, mapped onto the paper's own m-ladder
 
 **Revision history worth knowing**: the first version of this figure used a
 2D Gaussian KDE density wash instead of marginals, and drew a `y=x` reference
-line. Both were wrong for this data and got removed after review: a smooth
-2D density is the wrong estimator at n=72 over ~9 distinct human values (a
-tie-heavy lattice, not a continuum) -- it can make a perfectly-aligned judge
-and a shuffled one look visually similar, since shuffling leaves both
-marginals unchanged while sending rho to zero. And `y=x` implied a
+line. Both were wrong for this data and got removed after review: although a
+joint KDE can encode dependence, smoothing n=72 observations over ~9 distinct
+human values turns a tie-heavy lattice into an apparent continuum and obscures
+the exact tied counts that the figure needs to show. And `y=x` implied a
 calibration target the metric doesn't claim: judge and human scores are on
 uncalibrated scales, and TI_2' is correlation-based (level-invariant by
 construction). See `cert_judge_notes/agent-prompt-bridge-plot.md`, "Revision
@@ -50,6 +49,12 @@ from the ICLR-2027 / workshop submission runs.
    a standard stable-noise-floor-control pattern, not an attempt to model a
    genuinely stochastic judge. Consequence: this control cannot exercise the
    stability conjunct of TI_2' (same for `editdist_e1`).
+
+For raw repeat scores bounded to `[0,1]`, the pooled raw standard deviation is
+at most `0.5`; consequently this particular stability factor lies in
+`[0.5,1]`. It is a monotone repeat-noise penalty, not a second zero-annihilator.
+The correlation factor can still set TI_2' to zero. An explicitly supplied
+normalized instability may span `[0,1]`, but its provenance must be reported.
 
 **Interpreting rho against the estimated ceiling, not against 1.0**
 (revision memo, same section): inter-pass Spearman reliability on the 72
@@ -96,6 +101,12 @@ stay light. Import it explicitly:
 from cert_judge.ti2prime_plot import compute_ti2prime, plot_ti2prime_scatter
 ```
 
+Install the declared plotting extra before using that optional module:
+
+```bash
+uv sync --extra ti2prime
+```
+
 ## Usage
 
 ```python
@@ -105,11 +116,17 @@ from cert_judge.ti2prime_plot import compute_ti2prime, plot_ti2prime_scatter
 # repeat_scores_by_item: item -> that item's raw repeat judge scores (for the
 # stability term -- see the module docstring for why this must be repeats,
 # not the spread of scores across items)
-result = compute_ti2prime(judge_scores, human_scores, repeat_scores_by_item)
+result = compute_ti2prime(
+    judge_scores,
+    human_scores,
+    repeat_scores_by_item,
+    item_ids=item_keys,  # ordered exactly like judge_scores/human_scores
+)
 print(result.vs_score, result.validity, result.stability)
 
 plot_ti2prime_scatter(
     judge_scores, human_scores, repeat_scores_by_item,
+    item_ids=item_keys,
     judge_label="gpt-5.3-codex|P4_CHECKLIST",
     out="results/my_figure",  # writes .png (300dpi) and .pdf
 )
@@ -146,8 +163,9 @@ for all three, confirming the item-level join reproduces the audited pipeline.
 
 ## Tests
 
-`cert-judge/tests/test_ti2prime_plot.py` (`pytest tests/test_ti2prime_plot.py`).
-`uutils`'s own inline tests: `python3 py_src/uutils/stats_uu/validity_stability.py`
-and `python3 py_src/uutils/plot/validity_stability_scatter.py` (that package's
-existing convention is runnable `_test()` functions under `if __name__ ==
-'__main__'`, not a separate `tests/` tree).
+`cert-judge/tests/test_ti2prime_plot.py` (`uv sync --extra ti2prime`, then
+`pytest tests/test_ti2prime_plot.py`).
+`uutils` also has a discoverable fail-closed suite at
+`tests/test_validity_stability.py`, plus runnable inline smoke tests in
+`py_src/uutils/stats_uu/validity_stability.py` and
+`py_src/uutils/plot/validity_stability_scatter.py`.

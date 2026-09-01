@@ -1,8 +1,9 @@
 # Experiment 29 final Mega-QA report
 
-**TLDR:** Experiment 29 and its ICLR 2027 manuscript passed the required sequential Mega-QA after 13 proven stage fixes and one final W&B-publication synchronization. The final state has zero unresolved critical or major issues, 79 passing tests, byte-reproducible frozen evidence, and a visually audited 22-page manuscript. The result itself is negative/below-SESOI and inconclusive—not a deployment or generalization pass.
+**TLDR:** Experiment 29 and its ICLR 2027 manuscript passed the required sequential Mega-QA after 13 proven stage fixes and one final W&B-publication synchronization. A 2026-08-31 integration audit then qualified accepted-task provenance wording and added fail-closed provenance and repeat-alignment tests without changing any frozen scientific value. The current state has zero unresolved critical or major issues, 81 passing tests, byte-reproducible frozen evidence, and a visually audited 22-page manuscript. The result itself is negative/below-SESOI and inconclusive—not a deployment or generalization pass.
 
 - Date completed: 2026-08-28 (America/Los_Angeles)
+- Integration audit completed: 2026-08-31 (America/Los_Angeles)
 - Experiment home: `experiments/29_pti_v0_cli_bridge/`
 - Canonical branch: `codex/iclr2027-final`
 - Canonical pull request: [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), draft and direct to `main`
@@ -29,10 +30,10 @@ The planned final Claude stage was not silently skipped. It ran until the servic
 - Actual v5 disclosure: Codex was requested with `-m gpt-5.6-terra`, but its JSONL has no served-model field; Claude requested/scored `claude-sonnet-5`, with auxiliary `claude-haiku-4-5` telemetry on all 258 accepted Claude invocations.
 - Primary validation bridge: Spearman `-0.3535533906`, Kendall tau-b `-0.3162277660`, 95% judge-bootstrap interval `[-1.0, 0.3952847075]`, 6,647/10,000 valid replicates, `n=5`.
 - Power at the frozen `0.5` SESOI: 27.1% for the complete positive decision rule.
-- Test suite: 79 passed with the documented `uutils` dependency path.
+- Test suite: 81 passed with the documented `uutils` dependency path (the original Mega-QA stage had 79 before the added provenance and repeat-identity regression tests).
 - Manuscript: 22 letter-size pages; conclusion/statements/references begin or end on page 9 as documented, appendix begins on page 13, and all pages passed visual inspection.
-- Deterministic manuscript PDF SHA-256: `4fc679f36cd4d33f7e2ccc3788b9c98d4c19cc6723456cbe2c73f660dbf53718`.
-- W&B publication: republished after QA with the readable tied-point figure, exact protocol label, requested-not-observed Terra disclosure, and no held-out-generalization claim.
+- Deterministic manuscript PDF SHA-256: `a35e582f936635dbdf6d21b1a17aba27ad5d5d9494d5459b7c477da8ba23644` after the accepted-task wording correction; the reviewed pre-integration build was `4fc679f36cd4d33f7e2ccc3788b9c98d4c19cc6723456cbe2c73f660dbf53718`.
+- W&B publication at the 2026-08-28 Mega-QA close: republished with the readable tied-point figure, exact protocol label, requested-not-observed Terra disclosure, and no held-out-generalization claim. The later accepted-task wording synchronization is separately authorization-gated below.
 
 ## Frozen-authority hashes
 
@@ -45,6 +46,10 @@ The planned final Claude stage was not silently skipped. It ran until the servic
 | Original planning archive | `7362ab1d1dcc9161fefca3aff87c33276b71941a647f2bd2b7f8e176509d6859` |
 
 No frozen configuration, raw accepted transcript, normalized score, property, criterion, bridge, SESOI, or figure-source value changed during Mega-QA.
+
+## Post-handoff integration audit
+
+The 2026-08-31 audit independently reconstructed all execution counts, score bindings, coverage values, bridge statistics, bootstrap interval, SESOI power, and frozen hashes. It found no critical or major numerical defect. It tightened claims from all Claude calls to all 258 accepted Claude tasks because retry and failed-attempt evidence proves more attempt-level invocations, and it changed the future runner to leave `usage.observed_model` null when Codex emits no served-model header. A dependency audit also made repeat-score coverage and item identity fail closed. Frozen raw artifacts remain untouched. The two new regression tests raise the current five-module total from 79 to 81. The wording-only manuscript rebuild is deterministic and passed a fresh all-page visual inspection. The corresponding W&B script is corrected locally, but republishing the external report is pending explicit credentialed-upload authorization.
 
 ## Fix summary
 

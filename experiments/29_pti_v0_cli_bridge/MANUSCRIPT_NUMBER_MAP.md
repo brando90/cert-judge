@@ -28,7 +28,7 @@ The property-table authority was content-frozen before the bridge; its committed
 | Metric and execution versions | `PTI_v0`; exact schema/protocol field `PTI_v0_cli_protocol_v5` (human-facing shorthand: v5) | `frozen_config.json:.metric_version,.schema_version`; `results/scores.json:.metric_version,.protocol_version` | Bound |
 | Exact v4 panel | `NOT_RUN` | `frozen_config.json:.v4_status`; `results/v4_model_rejection_evidence.md` | Bound; never pooled with v5 |
 | Actual scoring panel | `gpt-5.6-terra`; requested/scoring `claude-sonnet-5` | `results/batch_manifest.json:.batches[].model`; `results/raw_batches/*.json:.requested_model,.usage.requested_model` | Bound; Codex JSONL exposes no served-model field, so Terra is requested-by-argument, not observed telemetry |
-| Claude auxiliary telemetry | `claude-haiku-4-5` on all 258 Claude invocations | Claude `results/raw_batches/*.json:.usage.canonical_models`; 258 = 43 batches × 3 repeats × 2 prompts | Bound; Sonnet-only execution is not claimed |
+| Claude auxiliary telemetry | `claude-haiku-4-5` on all 258 accepted Claude CLI tasks | Claude `results/raw_batches/*.json:.usage.canonical_models`; 258 = 43 batches × 3 repeats × 2 prompts | Bound; Sonnet-only execution is not claimed |
 | Subscription authentication and spend | ChatGPT + first-party `claude.ai` Max; `$0` provider-API spend | `results/cli_auth_status.json`; `results/scores.json:.provider_api_spend_usd` | Bound |
 | Accepted CLI tasks | `774/774` | `results/batch_manifest.json:.cli_invocation_count` and `258 × 3` | Complete |
 | Unique score cells | `4,728/4,728` | `results/scores.json:.expected_unique_cells,.complete_unique_cells` | Complete |
@@ -126,7 +126,7 @@ SOURCE_DATE_EPOCH=1787763818 FORCE_SOURCE_DATE=1 TZ=UTC \
 
 Primary outer-figure source asset SHA-256 is `dd91088665e36525649d005f81983a9ed3c94a3b5a8999ed925d82a8d7b4a745` (regenerated during the final Mega-QA pass with a disclosed horizontal offset for judges tied at identical PTI values; the plotted values and `outer_bridge_source_data.{csv,json}` are byte-unchanged); the paper copy is required to match it byte-for-byte.
 
-The reproducible manuscript PDF SHA-256 is `4fc679f36cd4d33f7e2ccc3788b9c98d4c19cc6723456cbe2c73f660dbf53718`; two forced builds with the command above produced identical bytes.
+The reproducible manuscript PDF SHA-256 is `a35e582f936635dbdf6d21b1a17aba27ad5d5d9494d5459b7c477da8ba23644e`; two forced builds with the command above produced identical bytes after the 2026-08-31 provenance-wording correction.
 
 For double-blind distribution, this map and the supplement use repository-relative paths and content hashes. Internal status files, W&B links, local absolute paths, Git history, and public VCS identifiers are excluded by `paper_latex/ICLR_2027_submission/ANONYMIZED_SUPPLEMENT_ALLOWLIST.md`.
 

@@ -12,7 +12,7 @@
 - Exact v4 model run: `NOT_RUN`
 - Actual v5 workload: `gpt-5.6-terra` and requested/scoring
   `claude-sonnet-5`; Claude telemetry also records the CLI-internal auxiliary
-  `claude-haiku-4-5` helper on all 258 Claude calls. Codex JSONL exposes no
+  `claude-haiku-4-5` helper on all 258 accepted Claude CLI tasks. Codex JSONL exposes no
   served-model field, so the Terra identity rests on the hash-bound explicit
   `-m gpt-5.6-terra` argument and the CLI's rejection of unsupported model IDs
   rather than on observed telemetry.

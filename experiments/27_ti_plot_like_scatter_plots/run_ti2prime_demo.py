@@ -152,7 +152,12 @@ def main() -> int:
         human_scores = [human_labels[k][LABEL_VIEW] for k in item_keys]
         repeat_scores_by_item = {k: items[k][1] for k in item_keys}
 
-        result = compute_ti2prime(judge_scores, human_scores, repeat_scores_by_item)
+        result = compute_ti2prime(
+            judge_scores,
+            human_scores,
+            repeat_scores_by_item,
+            item_ids=item_keys,
+        )
 
         safe_name = judge_id.replace("|", "_").replace("/", "_")
         out_path = OUT_DIR / f"ti2prime_scatter_{safe_name}"
@@ -160,6 +165,7 @@ def main() -> int:
             judge_scores,
             human_scores,
             repeat_scores_by_item,
+            item_ids=item_keys,
             judge_label=judge_id,
             x_label=f"Human score (avg of 2 rubric passes, {LABEL_VIEW} label view, /5 -> [0,1])",
             y_label="Judge score (repeat-mean, [0,1])",

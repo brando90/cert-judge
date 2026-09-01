@@ -23,8 +23,9 @@ Spearman `-0.3536` (95% CI `[-1.0000, 0.3953]`, `n=5`): below the `0.5` SESOI
 and inconclusive about zero.
 
 Claude's retained CLI telemetry records `claude-sonnet-5` as the requested and
-scoring model plus a small auxiliary `claude-haiku-4-5` helper on all Claude
-calls. See `RESULTS_QA.md`; downstream claims must not say "Sonnet-only."
+scoring model plus a small auxiliary `claude-haiku-4-5` helper on all 258
+accepted Claude CLI tasks. See `RESULTS_QA.md`; downstream claims must not say
+"Sonnet-only."
 
 ## Decision reading order
 

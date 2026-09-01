@@ -1,12 +1,12 @@
 # PTI-v0 final execution and ICLR 2027 manuscript status
 
-**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. Draft #40 is the canonical direct-to-`main` integration PR; superseded PR #39 is closed.
+**TLDR-start:** [cj: pti-v0] The exact v4 panel is honestly `NOT_RUN`, but the frozen metric/probe/analysis protocol was completed as subscription-CLI execution v5: 774/774 tasks, 4,728/4,728 cells, 14,184 records, full coverage, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`): below the `0.5` SESOI and inconclusive about zero. Dependency PR #44 is merged and repaired; draft #40 remains the canonical direct-to-`main` integration PR while the public PyPI and corrected W&B uploads await explicit authorization.
 
 ## Provenance and dependencies
 
 | Item | Revision / state |
 |---|---|
-| ultimate-utils dependency PR #44 | `c8a6a9a70e32073d6cde2193958d570f08fd935e`, open |
+| ultimate-utils dependency PR #44 | merged at repaired head `f814f6854bc4641392af0bb05cb6d0707ec77b27`; `master` version commit `2684a5759a6ffbceb7317d2f37cfba1f753749f3`; public 0.10.9 upload pending explicit authorization |
 | cert-judge Exp27 dependency PR #38 | `edf627426d6d0740dbd6a793e4ff985fc4e6e3fa`, open |
 | Historical PR A experiment branch | `codex/pti-v0-final` at `540c43f5877c02c50334bc98e1c238a2ba30f558`; superseded by direct PR #40 |
 | Pre-result experiment commit | `395efdc00584cad32f6e9a525a8dbd9b201ff2a7` |
@@ -19,7 +19,9 @@
 | Canonical integration branch / PR | `codex/iclr2027-final`, draft [#40](https://github.com/brando90/cert-judge/pull/40), base `main` |
 | Global rules revision used | `8190074918da0c2b39e6763b1d46ba04e8215ec2` |
 
-The canonical direct-to-`main` branch contains the reviewed Exp27 commits plus the complete PTI-v0 experiment and paper update. Its external ultimate-utils/PR #44 dependency remains explicit. Nothing is auto-merged.
+The canonical direct-to-`main` branch contains the reviewed Exp27 commits plus the complete PTI-v0 experiment and paper update. The external utility dependency has been independently audited, repaired, merged to `ultimate-utils/master`, versioned as 0.10.9, and declared as the optional `ti2prime` extra. Public PyPI publication and the post-audit W&B wording synchronization require explicit credentialed-upload authorization, so cert-judge #40 remains unmerged until those two external actions complete.
+
+The cert-judge lockfile is intentionally not refreshed into this pre-publication state: `uv lock --check` correctly reports the `ultimate-utils>=0.10.9,<0.11` extra as unsatisfiable while public PyPI still exposes only 0.10.8. After the authorized 0.10.9 upload, regenerate and verify `uv.lock` before committing or merging #40.
 
 All task-specific planning, preflight, blocker, independent-review, execution,
 raw-output, derived-result, QA, and decision artifacts now live together under
@@ -64,12 +66,13 @@ The original zero-spend preflight verdict was `BLOCKED`. All executable blockers
 | Property/criterion coverage | 100% |
 | Bootstrap replicates | 10,000 |
 
-The conformance suite passed **79 tests** across PTI core, randomized/adversarial vectors, the v5 CLI pipeline, structural probes, schema binding, and preserved Exp27 plotting behavior; the eight Exp27 plotting tests require `uutils` (ultimate-utils PR #44 plus `dill`, `networkx`, `lark`) on the path and are skipped otherwise (71 passed, 1 skipped in the bare cert-judge environment). Python byte-compilation passed; `git diff --check` is clean except for immutable raw CLI transcripts, an Exp27 prompt file, and Markdown hard line breaks. Ruff was unavailable in the active uv environment and is not reported as passing.
+The current conformance suite passed **81 tests** across PTI core, randomized/adversarial vectors, the v5 CLI pipeline, structural probes, schema binding, and preserved Exp27 plotting behavior. This is the original 79-test Mega-QA suite plus regression tests ensuring a requested Codex model is not relabeled as observed when the CLI emits no served-model header and named repeat mappings cannot be aligned by insertion order. The Exp27 plotting tests require the declared `ti2prime` extra (ultimate-utils 0.10.9 plus its plotting dependencies) and are skipped when that optional dependency is absent. Python byte-compilation passed; `git diff --check` is clean except for immutable raw CLI transcripts, an Exp27 prompt file, and Markdown hard line breaks. Ruff was unavailable in the active uv environment and is not reported as passing.
 
 ## Models actually run
 
 - Exact v4 (`gpt-5.3-codex`, `gpt-4o-mini`): `NOT_RUN` because those IDs were rejected by the approved ChatGPT-backed CLI.
 - v5 Codex scoring: `gpt-5.6-terra` (Codex JSONL exposes no served-model field; the identity rests on the hash-bound explicit `-m` argument and the CLI's rejection of unsupported IDs, not on observed telemetry).
+- Post-run runner correction: future Codex records now leave `usage.observed_model` null when the CLI exposes no model header instead of copying the requested model into an observed field. Frozen raw artifacts and numerical authorities are unchanged; the exact execution source remains preserved at the pre-result commit above.
 - v5 Claude requested/scoring model: `claude-sonnet-5`.
 - Provenance limitation: every one of the 258 accepted Claude invocations also records auxiliary `claude-haiku-4-5` telemetry. The results therefore do not claim Sonnet-only execution or prove that the helper could not influence execution.
 
@@ -117,17 +120,19 @@ The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER
 - Official ICLR 2027 style files: local `.sty`/`fancyhdr.sty`/`natbib.sty` hashes match the current official archive.
 - Build: `SOURCE_DATE_EPOCH=1787763818 FORCE_SOURCE_DATE=1 TZ=UTC latexmk -g -pdf -interaction=nonstopmode -halt-on-error main.tex` passes with no undefined references/citations or overfull boxes and reproduces the PDF byte-for-byte across clean forced rebuilds.
 - PDF: 22 pages total; the conclusion ends on page 9, the uncounted ethics/reproducibility/AI-use statements follow on page 9, references run from page 9 to page 12, and the appendix begins on page 13. The nine-page submission main-text limit is therefore satisfied.
-- Reviewed PDF SHA-256: `4fc679f36cd4d33f7e2ccc3788b9c98d4c19cc6723456cbe2c73f660dbf53718` (reproduced twice with the fixed source epoch above; the preceding Mega-QA stage build was `38118fb4a644896fd301a97ae5fa5f78c8b775ce4739347729bdb5d4dcf281ae`).
+- Reviewed PDF SHA-256: `a35e582f936635dbdf6d21b1a17aba27ad5d5d9494d5459b7c477da8ba23644` (reproduced twice with the fixed source epoch after the 2026-08-31 accepted-task wording correction; the preceding reviewed integration build was `4fc679f36cd4d33f7e2ccc3788b9c98d4c19cc6723456cbe2c73f660dbf53718`).
 - Visual QA: all 22 pages of the reviewed build were rendered and inspected; after the final Mega-QA rebuild the main-text pages, the statements/references pages, the retitled legacy appendix section, and both regenerated outer-bridge figures were re-rendered and inspected. No clipping, overlap, occluded judge, misleading identity line, PTI/TI level MAE, or smoothed paired-density evidence remains; the legacy raster overview (which embedded "certified judge" and "substantial cost savings" text) was removed from the submission.
 - Anonymity: anonymous author block; no public VCS identifier, repository link, local path, W&B link, TODO/TBD, or unresolved placeholder in the submitted PDF. Self-work is cited in the third person; the separate allowlist governs supplement packaging.
 - Mandatory AI-use statement, reproducibility statement, and an ethics statement are present before the references.
 
 ## Remaining human decisions and submission actions
 
-1. Review and merge ultimate-utils #44, then review and merge canonical cert-judge PR #40 to `main`; its diff contains the previously separate Exp27/PR #38 work. No agent merge is authorized.
-2. Perform the authors' final scientific read and explicitly accept the auxiliary-Haiku provenance limitation and the negative/inconclusive interpretation.
-3. Submit a genuine title/abstract and lock the complete author list in OpenReview by **September 18, 2026, 11:59 PM AoE**; upload the paper and anonymized supplement by **September 25, 2026 AoE**.
-4. Ensure all authors have current OpenReview profiles and designate/register at least one eligible reciprocal reviewer when ICLR sends the post-abstract registration request.
-5. Before upload, run the final PDF/anonymity/secret scan once more and verify that the uploaded PDF hash matches the reviewed artifact.
+1. Explicitly authorize the public `ultimate-utils==0.10.9` PyPI upload, then refresh `uv.lock` and verify the declared `ti2prime` extra from the released artifact.
+2. Explicitly authorize republishing the corrected accepted-task wording to the existing W&B report.
+3. Merge canonical cert-judge PR #40 to `main` without squashing, close contained PR #38, and remove the merged topic branches; the user has authorized the main integration once the external release gates pass.
+4. Perform the authors' final scientific read and explicitly accept the auxiliary-Haiku provenance limitation and the negative/inconclusive interpretation.
+5. Submit a genuine title/abstract and lock the complete author list in OpenReview by **September 18, 2026, 11:59 PM AoE**; upload the paper and anonymized supplement by **September 25, 2026 AoE**.
+6. Ensure all authors have current OpenReview profiles and designate/register at least one eligible reciprocal reviewer when ICLR sends the post-abstract registration request.
+7. Before upload, run the final PDF/anonymity/secret scan once more and verify that the uploaded PDF hash matches the reviewed artifact.
 
-**TLDR-end:** [cj: pti-v0] The experiment and manuscript implementation are complete; the honest result is below-SESOI/inconclusive and the sole major audit limitation is Claude auxiliary-model provenance. What remains is human review, ordered PR merges, and OpenReview submission—not another experiment run.
+**TLDR-end:** [cj: pti-v0] The experiment, manuscript, and repaired dependency code are complete; the honest result is below-SESOI/inconclusive and the sole major scientific limitation is Claude auxiliary-model provenance. What remains before main integration is explicit authorization for the public PyPI and corrected W&B uploads, followed by the already-authorized non-squash merge—not another experiment run.

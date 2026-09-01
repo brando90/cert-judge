@@ -1,9 +1,9 @@
 """Tests for cert_judge.ti2prime_plot -- the TI_2' wrapper over uutils' Validity-Stability score.
 
-Requires uutils importable (py_src/uutils on the path), matching this
-module's own runtime dependency -- skipped otherwise rather than failing the
-whole suite, since cert_judge's core scoring package stays importable without
-uutils (see py_src/cert_judge/__init__.py).
+Requires the declared `ti2prime` extra (`uv sync --extra ti2prime`). It is
+skipped when that optional extra is absent so cert_judge's core scoring
+package stays importable without plotting dependencies (see
+py_src/cert_judge/__init__.py).
 """
 
 from __future__ import annotations
@@ -64,6 +64,21 @@ def test_ti2prime_requires_a_stability_term():
     human = [0.2, 0.4, 0.3, 0.8, 0.5]
     with pytest.raises(ValueError, match="stability"):
         compute_ti2prime(judge, human)  # no `std=` and no `repeat_scores_by_item=`
+
+
+def test_ti2prime_aligns_named_repeats_by_explicit_item_ids():
+    judge = [0.1, 0.3, 0.5, 0.7, 0.9]
+    human = list(judge)
+    item_ids = [f"item-{i}" for i in range(len(judge))]
+    repeats = {
+        "item-4": [0.5, 0.9],
+        "item-3": [0.55, 0.85],
+        "item-2": [0.4, 0.6],
+        "item-1": [0.25, 0.35],
+        "item-0": [0.1, 0.1],
+    }
+    result = compute_ti2prime(judge, human, repeats, item_ids=item_ids)
+    assert result.n_items == len(judge)
 
 
 def test_ti2prime_legend_uses_paper_notation():

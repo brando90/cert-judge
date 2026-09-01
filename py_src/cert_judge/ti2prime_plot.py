@@ -9,8 +9,9 @@ to judge-vs-human per-item alignment.
 configuration `aj`; `STD` is the judge-side repeat-instability conjunct --
 variance under resampling the judge (repeats / prompt paraphrase), NOT the
 spread of the judge's scores across items (see
-uutils.stats_uu.validity_stability's module docstring for why). Source of
-truth:
+uutils.stats_uu.validity_stability's module docstring for why). With raw repeat
+scores in [0,1], STD is at most 0.5, so this factor is a monotone noise penalty
+rather than a second zero-annihilator. Sources of truth:
 experiments/27_ti_plot_like_scatter_plots/cert_judge_notes/certjudge-revision-memo.md
 Sec 1 ("Stability appears once on each side, measuring different things") and
 paper_latex/ICLR_2027_submission/main.tex (TI_{2'} definition).
@@ -48,12 +49,18 @@ def compute_ti2prime(
     human_scores: Sequence[float],
     repeat_scores_by_item: Optional[Mapping[object, Sequence[float]]] = None,
     *,
+    item_ids: Optional[Sequence[object]] = None,
     std: Optional[float] = None,
     corr_method: str = "spearman",
 ) -> TI2PrimeResult:
     """TI_2'(aj) -- cert-judge's Validity-Stability instance. See module docstring."""
     return compute_validity_stability(
-        judge_scores, human_scores, repeat_scores_by_item, std=std, corr_method=corr_method,
+        judge_scores,
+        human_scores,
+        repeat_scores_by_item,
+        item_ids=item_ids,
+        std=std,
+        corr_method=corr_method,
     )
 
 
@@ -62,6 +69,7 @@ def plot_ti2prime_scatter(
     human_scores: Sequence[float],
     repeat_scores_by_item: Optional[Mapping[object, Sequence[float]]] = None,
     *,
+    item_ids: Optional[Sequence[object]] = None,
     std: Optional[float] = None,
     corr_method: str = "spearman",
     judge_label: str = "",
@@ -86,7 +94,8 @@ def plot_ti2prime_scatter(
     """
     return plot_validity_stability_scatter(
         judge_scores, human_scores, repeat_scores_by_item,
-        std=std, corr_method=corr_method, symbol=_TI2PRIME_SYMBOL, label=judge_label,
+        item_ids=item_ids, std=std, corr_method=corr_method,
+        symbol=_TI2PRIME_SYMBOL, label=judge_label,
         x_label=x_label, y_label=y_label, show_diagonal=show_diagonal,
         show_calibration_gap=show_calibration_gap, n_boot=n_boot,
         ax=ax, legend_loc=legend_loc, seed=seed, out=out,

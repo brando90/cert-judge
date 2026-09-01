@@ -75,4 +75,4 @@ does not authorize an exact-model-only claim. The property table must be
 committed byte-identically before the bridge command is run, and all bridge,
 W&B, figure, and manuscript outputs must carry this provenance disclosure.
 
-**TLDR-end:** [cj: pti-v0] Numerical and structural artifacts reconcile exactly; the sole major QA finding is transparent auxiliary Haiku telemetry in every Claude CLI run, which is retained and disclosed rather than rewritten.
+**TLDR-end:** [cj: pti-v0] Numerical and structural artifacts reconcile exactly; the sole major QA finding is transparent auxiliary Haiku telemetry in every accepted Claude CLI task, which is retained and disclosed rather than rewritten.

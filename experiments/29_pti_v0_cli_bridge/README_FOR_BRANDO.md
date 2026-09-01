@@ -1,5 +1,10 @@
 # CertJudge PTI-v0 handoff v4 — what to run
 
+> Historical execution guide. Current integration status is recorded in
+> `STATUS_PTI_V0_V4.md`: ultimate-utils PR #44 has been repaired and merged,
+> while cert-judge PR #40 contains both Experiment 27 and Experiment 29 and is
+> awaiting the explicit public-release authorizations documented there.
+
 **Date:** 20 August 2026  
 **Target repository:** `brando90/cert-judge`
 
@@ -14,8 +19,8 @@ Use **Claude Fable 5 as the independent reviewer**, not as the sole executor of 
 ## Current repository facts that change the plan
 
 1. The ICLR draft already exists at `paper_latex/ICLR_2027_submission/main.tex`. Revise it in place; do not port TMLR again.
-2. `experiments/27_ti_plot_like_scatter_plots` exists on open cert-judge PR **#38**, not on `main`.
-3. PR #38 depends on open `brando90/ultimate-utils` PR **#44**.
+2. `experiments/27_ti_plot_like_scatter_plots` is preserved in cert-judge PR **#40**; its earlier PR **#38** is fully contained there.
+3. The repaired `brando90/ultimate-utils` PR **#44** is merged to `master`; release 0.10.9 is versioned but its public PyPI upload awaits explicit authorization.
 4. The existing `AGENTS.md` still describes the historical P1–P7/JTI project and must not override the new PTI-v0 specification.
 
 ## Execution order

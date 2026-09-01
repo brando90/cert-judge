@@ -1,19 +1,19 @@
 # CHANGES — ICLR 2027 port (`TMLR_2026_resubmission/main.tex` → `ICLR_2027_submission/main.tex`)
 
-TLDR: full change log for the ICLR 2027 port per `docs/certjudge-revision-memo.md` (the memo) and
+**TLDR:** Full change log for the ICLR 2027 port per `docs/certjudge-revision-memo.md` (the memo) and
 `docs/agent-prompt-iclr2027-port.md` (the prompt); every inserted/changed number is labeled
 DOCUMENTED (traced to a repo artifact), DERIVED (computed, command shown), or UNKNOWN (none inserted).
 
-Compiled: `tectonic --keep-logs --outdir _build main.tex` → 0 errors, 0 overfull boxes, 0 undefined
-refs/citations, **23 pages** total.
+Compiled deterministically with `SOURCE_DATE_EPOCH=1787763818 FORCE_SOURCE_DATE=1 TZ=UTC latexmk -g -pdf -interaction=nonstopmode -halt-on-error main.tex` → 0 errors, 0 overfull boxes, 0 undefined refs/citations, **22 pages** total.
 
 **Page-budget verification (the check that matters, done the strict way).** ICLR counts main text
 only; references and the statements are uncounted. The gate is therefore *where the Conclusion's
 last sentence ends*, not where its heading sits — an earlier revision of this port passed the
 heading check while the Conclusion's final clause spilled onto p10, and light QA caught it. Verified
 by extracting text per physical page from the committed PDF: the Conclusion's closing phrase
-("…as the headline oversight quantity.") is the last countable text on **page 9**, and page 10
-opens with `REPRODUCIBILITY STATEMENT`. References pp10–12; appendix p13–23. To re-check after any
+("…as the headline oversight quantity.") is the last countable text on **page 9**. The uncounted
+Ethics, Reproducibility, and LLM-use statements and the references also begin on page 9; references
+run through page 12, and the appendix occupies pages 13–22. To re-check after any
 edit:
 
 ```
@@ -120,7 +120,7 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
   review flagged it missing — the first committed version of this port omitted it); VeriBench cited
   third person via `miranda2026veribench`.
 - Required LLM-use statement added (`\section*{The Use of Large Language Models}`, uncounted);
-  Reproducibility statement added; Ethics statement left as a commented stub (per prompt).
+  Reproducibility and Ethics statements are also active before the references.
 - Title = memo shortlist option 1 (working title per prompt): *The Surrogate Gap: When Do
   Label-Free Behavioral Tests Track Human Agreement for LLM Judges?*
 - Auto line numbers active (submission mode; `\iclrfinalcopy` commented).
@@ -175,7 +175,8 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
 - Histogram counts (strict {1:1,2:7,3:18,4:44,5:5}; lenient {1.5:3,2:6,3:10,4:33,5:23}) — Counter
   over the tidy panel (matches the draft's embedded tikz coordinates exactly).
 - GM(1,1,1,0.5)=0.5^0.25≈0.841.
-- 471 candidate files = 157 problems × 3 — `ls data/generated_agents/*.lean | wc -l` + name parse.
+- 470 observed typed candidates across 157 items; the nominal grid is 471 = 157 × 3, with one
+  documented missing candidate — `results_pti_v0_v4/probe_validity_manifest.json:.artifact_count`.
 
 **UNKNOWN → removed rather than guessed:**
 - Draft's JS divergence 0.081 bits and KL 0.415 bits (inter-pass): not reproducible from the raw
@@ -185,20 +186,20 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
   exp18 script with its exact smoothing and re-insert.
 - Decision-utility number: intentionally not claimed (framework defined; measurement registered).
 
-## 7. Figures needing regeneration (embedded old labels — NOT silently regenerated)
+## 7. Legacy figure status after Experiment 29 finalization
 
 | Figure (used in paper) | Embedded legacy text | Generating script |
 |---|---|---|
-| `figures/pull_fig.png` (Fig. 1) | "TI_var" | original overview graphic (source asset; no script in repo — flagged) |
+| `figures/pull_fig.png` (former Fig. 1; removed from the submission during Experiment 29 Mega-QA) | "TI_var", certification, and savings language | original overview graphic (source asset; no script in repo) |
 | `figures/exp16_final_robust/fig_cert_vs_human_scatter_{pass1,pass2,avg}.png` | "cert index", "pass1/pass2" | `experiments/04_veribench_validation/exp16_multi_judge_human_sets.py` (`_make_plots`) |
 | `figures/exp16_final_robust/fig_human_corr_by_judge_and_labelset.png` | "pass1/pass2" | same as above |
 | `figures/exp17_final_robust/fig_property_vs_human_bars_{pass1,pass2,avg}.png` | "pass1/pass2" | exp17 property-vs-human script (results package `results_exp17_*`) |
 | `figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png` | "trust index (geometric)" | `experiments/04_veribench_validation/exp25_plot_baseline_vs_geometric*.py` |
 | `figures/fig_main_monotonicity_lowvar_exp19.png` + exp19 failure plots | judge-id labels only (OK); axis wording fine | `exp19_replot_low_variance.py` |
 
-Captions in the ICLR draft explicitly note the legacy labels where a figure with old text is shown
-(Fig. 1 caption; Appendix E preamble), so the submitted draft is internally consistent even before
-regeneration.
+Captions in the ICLR draft explicitly note the legacy labels for the remaining historical appendix
+figures. Experiment 29 regenerated the outer-bridge figures from audited source data and removed the
+legacy raster overview rather than presenting its unsupported certification and savings language.
 
 ## 8. Anonymization checklist results
 

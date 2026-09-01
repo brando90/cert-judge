@@ -288,7 +288,7 @@ def main() -> int:
                     "| Codex model telemetry | `gpt-5.6-terra` requested by explicit "
                     "CLI argument; no served-model field |\n"
                     "| Claude auxiliary telemetry | `claude-haiku-4-5` on all 258 "
-                    "Claude calls |\n"
+                    "accepted Claude CLI tasks |\n"
                     f"| Pre-bridge commit | `{bridge['prebridge_commit']}` |"
                 )
             ),
@@ -365,7 +365,7 @@ def main() -> int:
                     "ChatGPT-backed CLI; these are versioned v5 results.\n"
                     "- Unrelated cases share a deterministic batch context, though no "
                     "batch contains two cells for the same typed artifact.\n"
-                    "- Every Claude transcript records a small auxiliary Haiku helper "
+                    "- Every accepted Claude transcript records a small auxiliary Haiku helper "
                     "alongside Sonnet. The scoring output is attributed to Sonnet, but "
                     "Sonnet-only execution is not claimed.\n"
                     "- Three-stage Mega-QA independently reproduced all frozen numbers; "

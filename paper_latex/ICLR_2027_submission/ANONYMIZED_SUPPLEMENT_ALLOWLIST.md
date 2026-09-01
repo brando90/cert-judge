@@ -25,7 +25,7 @@ Include the frozen analysis and figure-generation code needed to interpret these
 
 ## Allowed only after deterministic sanitization
 
-- `results/bridge/bridge_pti_v0.json`, `results/bridge/bridge_eq_bm_ms.json`, and `results/figures/outer_bridge_source_data.json`: replace the identity-bearing `prebridge_commit` value with the bundle-local identifier `ANONYMIZED_PREBRIDGE_AUTHORITY`; retain the property-table SHA-256.
+- `results/bridge/bridge_pti_v0.json`, `results/bridge/bridge_eq_bm_ms.json`, and `results/figures/outer_bridge_source_data.json`: replace the identity-bearing `prebridge_commit` value with the bundle-local identifier `ANONYMIZED_PREBRIDGE_AUTHORITY`; retain `properties_sha256`, which binds `properties.json` (the property-table CSV hash is recorded separately in the number map).
 - `experiments/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json`: replace local home/repository prefixes inside captured compiler diagnostics with `${ANON_HOME}` and `${ANON_REPO}`; retain all structural statuses, hashes, and counts.
 - Accepted CLI transcripts: include only identity-scanned copies; remove local paths, authentication/account fields, session UUIDs, and provider dashboard links without changing prompts, normalized outputs, model telemetry, or score bindings.
 

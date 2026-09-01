@@ -1012,9 +1012,7 @@ def _run_codex(
                 f"observed={effort_match.group(1)}"
             )
         usage["requested_model"] = batch["model"]
-        usage["observed_model"] = (
-            model_match.group(1) if model_match else batch["model"]
-        )
+        usage["observed_model"] = model_match.group(1) if model_match else None
         usage["observed_effort"] = effort_match.group(1) if effort_match else None
         usage["event_types"] = dict(sorted(event_types.items()))
         usage["item_types"] = dict(sorted(item_types.items()))

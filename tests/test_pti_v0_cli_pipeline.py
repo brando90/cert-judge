@@ -226,3 +226,30 @@ def test_raw_resume_validation_binds_execution_and_transcripts(tmp_path: Path) -
     payload["effort"] = "high"
     with pytest.raises(ValueError, match="effort mismatch"):
         module._validate_raw_result(payload, batch, 0, path)
+
+
+def test_codex_usage_does_not_relabel_requested_model_as_observed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    module = _module()
+
+    def fake_run(argv: list[str], **_: object):
+        output_path = Path(argv[argv.index("-o") + 1])
+        output_path.write_text('{"scores": []}\n', encoding="utf-8")
+        return module.subprocess.CompletedProcess(
+            argv,
+            0,
+            stdout='{"type": "thread.started"}\n',
+            stderr="",
+        )
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    _, usage, _, _ = module._run_codex(
+        {"model": "gpt-5.6-terra", "effort": "low"},
+        "prompt",
+        timeout=1,
+    )
+
+    assert usage["requested_model"] == "gpt-5.6-terra"
+    assert usage["observed_model"] is None
+    assert usage["model_provenance"].startswith("explicit -m argument")

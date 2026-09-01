@@ -15,8 +15,8 @@ Key facts:
 - The frozen positive-decision power at a true Spearman `0.5` is only `27.1%`.
 - Exact v4 is `NOT_RUN`; these are v5 results from `gpt-5.6-terra` and requested/
   scoring `claude-sonnet-5`.
-- Claude telemetry records an auxiliary `claude-haiku-4-5` helper on all Claude
-  calls; Sonnet-only execution is not claimed.
+- Claude telemetry records an auxiliary `claude-haiku-4-5` helper on all 258
+  accepted Claude CLI tasks; Sonnet-only execution is not claimed.
 - Codex CLI telemetry exposes no served-model field; the `gpt-5.6-terra`
   identity rests on the hash-bound explicit `-m` argument and the CLI's
   rejection of unsupported model IDs.
