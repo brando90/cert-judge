@@ -1,10 +1,22 @@
+# Experiment 29 PTI-v0 results
+
 **TLDR-start:** [cj: pti-v0] Experiment 29 v5 is complete: 774/774 CLI tasks, 4,728/4,728 cells, and `$0` provider-API spend. The primary outer bridge is Spearman `-0.3536` with 95% CI `[-1.0000, 0.3953]` (`n=5`), below the preregistered `0.5` SESOI and inconclusive about zero. This does not support a positive PTI-v0 bridge.
+
+**Status:** COMPLETE — integrated on `main`
+**Last updated:** 2026-09-10 14:44 PDT
 
 Latest authoritative local report:
 [results_summary_2026-08-26__03-40-50.md](expt_v5/results/results_summary_2026-08-26__03-40-50.md)
 
 Permanent W&B Report:
 [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgyMzE2MA==)
+
+Release state:
+
+- cert-judge pull requests #38 and #40 are merged into `main`.
+- [ultimate-utils 0.10.9](https://pypi.org/project/ultimate-utils/0.10.9/) is public, and the tracked dependency lock resolves that exact release.
+- The canonical W&B report was updated in place with the accepted-task provenance wording on 2026-09-10.
+- One preliminary full-mode closeout invocation resumed/logged the nine existing runs, created artifact version `v2`, and created a private unlinked noncanonical report (`VmlldzoxNzkxMDU2OA==`). The duplicate awaits explicit deletion authorization; the canonical report and frozen local result authorities are unchanged.
 
 Key facts:
 

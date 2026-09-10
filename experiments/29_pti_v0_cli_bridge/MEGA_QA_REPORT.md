@@ -1,12 +1,13 @@
 # Experiment 29 final Mega-QA report
 
-**TLDR:** Experiment 29 and its ICLR 2027 manuscript passed the required sequential Mega-QA after 13 proven stage fixes and one final W&B-publication synchronization. A 2026-08-31 integration audit then qualified accepted-task provenance wording and added fail-closed provenance and repeat-alignment tests without changing any frozen scientific value. The current state has zero unresolved critical or major issues, 81 passing tests, byte-reproducible frozen evidence, and a visually audited 22-page manuscript. The result itself is negative/below-SESOI and inconclusive—not a deployment or generalization pass.
+**TLDR:** Experiment 29 and its ICLR 2027 manuscript passed the original sequential Mega-QA after 13 proven stage fixes and one publication synchronization. A 2026-08-31 integration audit qualified accepted-task provenance wording and added fail-closed provenance and repeat-alignment tests without changing any frozen scientific value. The 2026-09-10 closeout published ultimate-utils 0.10.9, updated the canonical W&B report in place, resolved the dependency lock, and recorded the already-merged `main` state. The result itself remains negative/below-SESOI and inconclusive—not a deployment or generalization pass.
 
 - Date completed: 2026-08-28 (America/Los_Angeles)
 - Integration audit completed: 2026-08-31 (America/Los_Angeles)
+- Release closeout: 2026-09-10 (America/Los_Angeles)
 - Experiment home: `experiments/29_pti_v0_cli_bridge/`
-- Canonical branch: `codex/iclr2027-final`
-- Canonical pull request: [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), draft and direct to `main`
+- Canonical branch: `main`
+- Canonical pull request: [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), merged directly into `main` at `03946b83d85af2530971322ec6dfcdba80e0bacd`
 - Permanent results report: [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgyMzE2MA==)
 
 ## Sequential review chain
@@ -30,10 +31,11 @@ The planned final Claude stage was not silently skipped. It ran until the servic
 - Actual v5 disclosure: Codex was requested with `-m gpt-5.6-terra`, but its JSONL has no served-model field; Claude requested/scored `claude-sonnet-5`, with auxiliary `claude-haiku-4-5` telemetry on all 258 accepted Claude invocations.
 - Primary validation bridge: Spearman `-0.3535533906`, Kendall tau-b `-0.3162277660`, 95% judge-bootstrap interval `[-1.0, 0.3952847075]`, 6,647/10,000 valid replicates, `n=5`.
 - Power at the frozen `0.5` SESOI: 27.1% for the complete positive decision rule.
-- Test suite: 81 passed with the documented `uutils` dependency path (the original Mega-QA stage had 79 before the added provenance and repeat-identity regression tests).
+- Test suite: 83 passed with the documented `uutils` dependency path (81 scientific/pipeline tests plus two release-closeout publisher tripwires).
 - Manuscript: 22 letter-size pages; conclusion/statements/references begin or end on page 9 as documented, appendix begins on page 13, and all pages passed visual inspection.
 - Deterministic manuscript PDF SHA-256: `a35e582f936635dbdf6d21b1a17aba27ad5d5d9494d5459b7c477da8ba23644` after the accepted-task wording correction; the reviewed pre-integration build was `4fc679f36cd4d33f7e2ccc3788b9c98d4c19cc6723456cbe2c73f660dbf53718`.
-- W&B publication at the 2026-08-28 Mega-QA close: republished with the readable tied-point figure, exact protocol label, requested-not-observed Terra disclosure, and no held-out-generalization claim. The later accepted-task wording synchronization is separately authorization-gated below.
+- W&B publication: the canonical report was updated in place on 2026-09-10 with the accepted-task provenance wording, readable tied-point figure, exact protocol label, requested-not-observed Terra disclosure, and no held-out-generalization claim. The publisher now validates the report target before other mutations, defaults to report-only operation, and requires an explicit full-publication flag for run/artifact logging.
+- W&B closeout audit: before those safeguards were added, one preliminary full-mode invocation resumed/logged the eight judge runs and summary run, created artifact version `v2`, and created private unlinked duplicate report `VmlldzoxNzkxMDU2OA==`. The duplicate remains pending explicit deletion authorization; it is noncanonical and did not alter any frozen local scientific authority.
 
 ## Frozen-authority hashes
 
@@ -49,7 +51,7 @@ No frozen configuration, raw accepted transcript, normalized score, property, cr
 
 ## Post-handoff integration audit
 
-The 2026-08-31 audit independently reconstructed all execution counts, score bindings, coverage values, bridge statistics, bootstrap interval, SESOI power, and frozen hashes. It found no critical or major numerical defect. It tightened claims from all Claude calls to all 258 accepted Claude tasks because retry and failed-attempt evidence proves more attempt-level invocations, and it changed the future runner to leave `usage.observed_model` null when Codex emits no served-model header. A dependency audit also made repeat-score coverage and item identity fail closed. Frozen raw artifacts remain untouched. The two new regression tests raise the current five-module total from 79 to 81. The wording-only manuscript rebuild is deterministic and passed a fresh all-page visual inspection. The corresponding W&B script is corrected locally, but republishing the external report is pending explicit credentialed-upload authorization.
+The 2026-08-31 audit independently reconstructed all execution counts, score bindings, coverage values, bridge statistics, bootstrap interval, SESOI power, and frozen hashes. It found no critical or major numerical defect. It tightened claims from all Claude calls to all 258 accepted Claude tasks because retry and failed-attempt evidence proves more attempt-level invocations, and it changed the future runner to leave `usage.observed_model` null when Codex emits no served-model header. A dependency audit also made repeat-score coverage and item identity fail closed. Frozen raw artifacts remain untouched. The two integration-audit regression tests raised the five-module total from 79 to 81. The wording-only manuscript rebuild is deterministic and passed a fresh all-page visual inspection. On 2026-09-10, the corrected W&B script updated the canonical report in place through its report-only path; two additional tripwire tests now prove that report-only mode performs no run/artifact writes and that a mismatched report target fails before any full-mode mutation.
 
 ## Fix summary
 

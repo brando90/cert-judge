@@ -78,8 +78,8 @@ accepted Claude CLI tasks. See `RESULTS_QA.md`; downstream claims must not say
 | Properties and criterion | Complete and independently reconstructed |
 | Pre-bridge results commit | Complete: `6f55c44299eadda78db5738c7913475d06ea671f` |
 | Outer bridge and SESOI | Complete; below-SESOI/inconclusive |
-| W&B Report and local summary | Complete |
-| ICLR manuscript update | Complete on draft PR #40 |
+| W&B Report and local summary | Complete; canonical report updated in place on 2026-09-10 |
+| ICLR manuscript update | Complete on `main` through merged PR #40 |
 
 ## Pre-result freeze
 

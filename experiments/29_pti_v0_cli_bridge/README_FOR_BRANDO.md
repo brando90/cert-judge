@@ -2,8 +2,8 @@
 
 > Historical execution guide. Current integration status is recorded in
 > `STATUS_PTI_V0_V4.md`: ultimate-utils PR #44 has been repaired and merged,
-> while cert-judge PR #40 contains both Experiment 27 and Experiment 29 and is
-> awaiting the explicit public-release authorizations documented there.
+> ultimate-utils 0.10.9 is public, and cert-judge PR #40 has merged both
+> Experiment 27 and Experiment 29 into `main`.
 
 **Date:** 20 August 2026  
 **Target repository:** `brando90/cert-judge`
@@ -19,9 +19,9 @@ Use **Claude Fable 5 as the independent reviewer**, not as the sole executor of 
 ## Current repository facts that change the plan
 
 1. The ICLR draft already exists at `paper_latex/ICLR_2027_submission/main.tex`. Revise it in place; do not port TMLR again.
-2. `experiments/27_ti_plot_like_scatter_plots` is preserved in cert-judge PR **#40**; its earlier PR **#38** is fully contained there.
-3. The repaired `brando90/ultimate-utils` PR **#44** is merged to `master`; release 0.10.9 is versioned but its public PyPI upload awaits explicit authorization.
-4. The existing `AGENTS.md` still describes the historical P1–P7/JTI project and must not override the new PTI-v0 specification.
+2. `experiments/27_ti_plot_like_scatter_plots` is preserved on `main`; cert-judge PRs **#38** and **#40** are merged.
+3. The repaired `brando90/ultimate-utils` PR **#44** is merged to `master`, and [release 0.10.9](https://pypi.org/project/ultimate-utils/0.10.9/) is public.
+4. The repository `AGENTS.md` distinguishes PTI-v0 from the historical P1–P7/JTI pipeline; the frozen PTI-v0 specification remains authoritative.
 
 ## Execution order
 
