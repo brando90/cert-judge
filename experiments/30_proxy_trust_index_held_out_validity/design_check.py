@@ -4,19 +4,15 @@
 This CLI has no inference client and cannot load credentials.  It reads numbers
 you already have and answers three questions, in the order that matters:
 
-1.  **Ceiling.**  Given how much your raters agree with each other, what is the
-    largest judge-human correlation anyone could observe?  If your acceptance
-    threshold sits above that ceiling, no judge can reach it and the fix is
-    more raters, not a better judge.
+1.  **Reliability sensitivity.** Compute a conditional classical-error Pearson
+    calculation from explicitly supplied assumptions. It is not a universal
+    ceiling for rank correlations or derived judge-level criteria.
 
-2.  **Resolving power.**  Given your panel size and items per unit, can the
-    design tell a strong proxy from a useless one?  A correlation over a small
-    panel whose criterion is noisily estimated is compatible with almost any
-    true value, in either direction.
+2.  **Design warnings.** Report sample size, ties, and approximate marginal
+    error. These are heuristics, not empirical power or a guarantee of validity.
 
-3.  **Criterion validity.**  Only if 1 and 2 permit it: does ``PTI_p`` actually
-    predict ``TI_m``, across all four correlation definitions, under splits
-    that hold out whole agent or judge families.
+3.  **Association diagnostics.** Distinguish raw proxy association from fitted
+    family-held-out predictions. Overlapping calibration fits are dependent.
 
 Run the design check on the submission's own published parameters::
 
@@ -115,7 +111,7 @@ def _fmt(value: float | None, places: int = 3) -> str:
 
 def print_ceiling(report: CeilingReport) -> None:
     print(RULE)
-    print("1. CEILING  what the labels allow, before any judge is run")
+    print("1. RELIABILITY SENSITIVITY  conditional classical-error Pearson calculation")
     print(RULE)
     print(f"  raters in pool                 {report.n_raters}")
     print(f"  single-rater reliability       {_fmt(report.single_rater_reliability)}")
@@ -125,9 +121,9 @@ def print_ceiling(report: CeilingReport) -> None:
     if report.target_threshold is not None:
         print(f"  acceptance threshold           {_fmt(report.target_threshold, 2)}")
         if report.threshold_reachable:
-            print("  verdict                        REACHABLE with this rater pool")
+            print("  conditional threshold          reachable under supplied assumptions")
         else:
-            print("  verdict                        ABOVE THE CEILING, unreachable")
+            print("  conditional threshold          exceeds assumed Pearson ceiling")
             if report.raters_needed_for_threshold:
                 print(
                     "  raters needed                  "
@@ -159,11 +155,11 @@ def print_power(
         print(f"  units for a 0.50-wide interval {needed}")
     if n_units < MIN_TRUSTWORTHY_PANEL:
         print(
-            f"  verdict                        UNDERPOWERED "
+            f"  heuristic warning              UNDERPOWERED "
             f"(floor is {MIN_TRUSTWORTHY_PANEL} units)"
         )
     else:
-        print("  verdict                        panel size adequate")
+        print("  size heuristic                 passed; not a power guarantee")
 
 
 def print_validation(report: ValidationReport) -> None:
@@ -210,23 +206,23 @@ def run_demo() -> dict[str, Any]:
     print("PTI -> TI design check")
     print(f"metric version: {VALIDATION_VERSION}")
     print(
-        "inputs: published parameters of the CertJudge submission "
-        "(no simulated data)"
+        "inputs: historical parameters plus synthetic assumptions "
+        "(not a measured ceiling or empirical power result)"
     )
     print()
 
     current = ceiling_report(
-        single_rater_reliability=PAPER["inter_pass_spearman"],
+        single_rater_reliability=0.25,
         n_raters=1,
         target_threshold=0.70,
     )
-    print("CURRENT LABELS  one annotator, two rubric passes")
+    print("ILLUSTRATION: assumed reliability 0.25, not cross-rubric Spearman")
     print_ceiling(current)
 
     print()
-    print("NEW POOL  five independent reviewers")
+    print("ILLUSTRATION: five parallel independent raters at the SAME assumed reliability")
     planned = ceiling_report(
-        single_rater_reliability=PAPER["inter_pass_spearman"],
+        single_rater_reliability=0.25,
         n_raters=PAPER["new_pool_raters"],
         target_threshold=0.70,
     )
@@ -238,7 +234,7 @@ def run_demo() -> dict[str, Any]:
         f"{PAPER['best_judge_human_avg']:.3f} (avg) / "
         f"{PAPER['best_judge_human_pass1']:.3f} (pass1)"
     )
-    print("  those judges already sit at the single-pass ceiling")
+    print("  rubric-pass correlation does not establish a ceiling for these judges")
 
     print_power(PAPER["n_judges"], PAPER["n_items"])
 
@@ -247,13 +243,13 @@ def run_demo() -> dict[str, Any]:
     print(f"  criterion spread               {_fmt(power.criterion_spread)}")
     print(f"  standard error per unit        {_fmt(power.criterion_se)}")
     print(f"  spread / error                 {_fmt(power.resolving_ratio, 2)}")
-    print("  (spread and error are the same size: the ranking is mostly noise)")
+    print("  (synthetic criterion values; marginal errors omit paired covariance)")
 
     print()
     print(RULE)
-    print("WHAT TO CHANGE")
+    print("ILLUSTRATIVE DESIGN SENSITIVITIES")
     print(RULE)
-    print(f"  raters    1 -> {planned.raters_needed_for_threshold}+ lifts the ceiling past 0.70")
+    print(f"  assumed raters  1 -> {planned.raters_needed_for_threshold}+ in the hypothetical Pearson calculation")
     print(
         f"  units     {PAPER['n_judges']} -> {min_units_for_ci_width(0.70, 0.5)}"
         " narrows the interval to 0.50 wide"
@@ -262,11 +258,11 @@ def run_demo() -> dict[str, Any]:
     print()
 
     return {
-        "mode": "demo",
+        "mode": "synthetic_design_sensitivity",
         "metric_version": VALIDATION_VERSION,
         "paper_parameters": PAPER,
-        "ceiling_current": _render(current),
-        "ceiling_new_pool": _render(planned),
+        "assumed_single_rater_sensitivity": _render(current),
+        "assumed_five_rater_sensitivity": _render(planned),
         "power": _render(power),
     }
 
@@ -344,14 +340,14 @@ def run_panel(payload: dict[str, Any], *, resamples: int) -> dict[str, Any]:
                 f"held-out rho {test_value:>7}   {test_status}"
             )
         print(
-            "  train is a pipeline sanity check only; a negative value there "
-            "means a bug"
+            "  these are raw training associations; a negative value "
+            "may be a negative result, not a software defect"
         )
         if weak_folds:
             print(
                 f"  {weak_folds} of {len(results)} held-out folds are too small to "
-                "read on their own;\n  the pooled estimate below is the one to "
-                "quote."
+                "read on their own;\n  pooling is descriptive; it does not create "
+                "independent families."
             )
 
         pooled = pooled_leave_one_group_out(
@@ -382,8 +378,8 @@ def run_panel(payload: dict[str, Any], *, resamples: int) -> dict[str, Any]:
             f"{_fmt(pooled.pairwise_rank_accuracy)}"
         )
         print(
-            "  every prediction comes from a calibration that never saw that "
-            "unit's group"
+            "  calibration may learn negative slopes; pair-bootstrap intervals omit "
+            "dependence between fitted folds"
         )
         split_payload = {
             name: {portion: _render(rep) for portion, rep in portions.items()}

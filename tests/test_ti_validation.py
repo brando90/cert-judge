@@ -511,7 +511,7 @@ class TestValidatePti:
         assert report.status == NOT_COMPUTABLE
         assert report.correlations == {}
 
-    def test_disattenuation_applied_when_a_ceiling_is_supplied(self):
+    def test_item_label_ceiling_does_not_correct_between_judge_correlations(self):
         units = [f"j{i}" for i in range(14)]
         pti = {u: i for i, u in enumerate(units)}
         ti = {u: i * 0.5 for i, u in enumerate(units)}
@@ -521,9 +521,9 @@ class TestValidatePti:
         report = validate_pti(
             pti, ti, n_items_per_unit=600, ceiling=ceiling, resamples=200
         )
-        raw = report.correlations["spearman"].value
-        corrected = report.disattenuated["spearman"]
-        assert corrected > raw
+        assert report.correlations["spearman"].value == pytest.approx(1.0)
+        assert report.disattenuated == {}
+        assert report.ceiling == ceiling
 
     def test_across_splits_reports_train_and_test_separately(self):
         units = list(GROUPS)

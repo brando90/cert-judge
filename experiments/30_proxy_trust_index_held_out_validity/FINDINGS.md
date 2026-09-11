@@ -1,5 +1,7 @@
 # Findings: PTI-v0 against human agreement on the experiment 29 panel
 
+**TLDR:** The frozen proxy has seven tied zero scores in this previously observed panel; flooring improves resolution but does not establish validity among the five primary judges. Corrections below distinguish observed rankings from generalization claims; the combined agreement-and-stability follow-up is in [results.md](results.md).
+
 Run of the harness in this folder against the committed v5 outputs of
 [`29_proxy_validation`](../29_proxy_validation/).
 Reads committed artifacts only; no inference, no new labels.
@@ -14,10 +16,10 @@ python $D/design_check.py --input $D/panels/panel_exp29_all.json
 
 ## Bottom line
 
-No criterion-validity claim can be made from this panel, in either direction.
-The blocker is not the judges and not the label noise. It is that the headline
-proxy has almost no variance across the panel, and the panel is too small for a
-correlation to mean anything even if it did.
+The panel does not establish validity on new judge or generator families.
+It has limited proxy ranking resolution and only two primary judge-model
+families. Its observed correlations remain descriptive evidence about this
+particular panel; they are not a general impossibility or validity result.
 
 ## 1. The headline index is degenerate: 7 of 8 judges score exactly zero
 
@@ -38,16 +40,17 @@ is not evidence about the proxy. The harness reports this as a degenerate
 predictor and marks the run `UNDERPOWERED` regardless of the coefficient.
 
 The mechanism is the exact-zero rule compounding twice: once inside a property
-when any ladder rung contributes an exact zero, and again across properties
+when any artifact-level property factor is exactly zero, and again across properties
 because the index is a geometric mean. `claude-sonnet-5|P4_CHECKLIST` shows the
 cost most clearly. Three of its four properties are strong (0.67, 0.81, 0.90)
 and it ends at 0.000 because `P_eq` hit exact zero, which ties it with
-`random_r1`. Those are not equally trustworthy judges.
+`random_r1`. The zero aggregate hides differences in their other property scores; it does not by itself establish their relative human-grounded trustworthiness.
 
-`P_bm` is zero for seven of eight judges, so bug monotonicity is where the
-collapse originates.
+`P_bm` is zero for six of eight judges; both Sonnet configurations are positive.
+Equality independently collapses the checklist configuration, so bug
+monotonicity is not the sole source of aggregate zeros.
 
-## 2. The same run's epsilon-floored variant is not degenerate, and ranks the controls correctly
+## 2. The epsilon-floored variant separates previously tied scores
 
 `epsilon_1e3_sensitivity` is already computed in `properties.json`. Flooring
 zeros at 1e-3 instead of collapsing them gives eight distinct values:
@@ -65,9 +68,9 @@ zeros at 1e-3 instead of collapsing them gives eight distinct values:
 
 The epsilon variant puts the random and edit-distance controls at the bottom,
 which is the behaviour a screening instrument should have. The headline index
-ties them with real judges at zero. This is a live argument for changing how
-exact zeros are handled before the instrument is used to screen anything, and
-it is a decision about the frozen spec, not something to settle here.
+ties them with real judges at zero. This motivates a sensitivity analysis of zero handling; it does not validate
+changing the frozen specification. The exploratory alternatives are evaluated
+in the follow-up without overwriting the original index.
 
 ## 3. Either way the panel is too small to support a claim
 
@@ -86,14 +89,15 @@ epsilon row at eight units carries a 95% interval 1.36 wide.
 The only non-negative Spearman in the table is the epsilon variant over all
 eight units. Drop the three controls and it inverts to −0.600.
 
-That happens because the controls are correctly placed at the bottom of both
-axes, which manufactures positive association without the instrument having
-discriminated among the five real judges at all. A validity correlation that
+The controls do not all sit at the bottom of both axes: the string-similarity
+control has the highest human agreement. Their inclusion changes the panel
+composition and reverses the sign; this does not establish validity among the
+five primary configurations. A validity correlation that
 survives only while deliberately-broken baselines are in the panel is not
 evidence that the instrument can rank real judges, and any reported coefficient
 should say whether controls were included.
 
-## 5. Human agreement is near zero for every judge here
+## 5. Human agreement varies and the string-similarity control ranks highest
 
 The criterion values run from −0.001 to 0.425, and only two intervals exclude
 zero: `gpt-5.6-terra|P1_BASELINE` at 0.338 (0.093 to 0.551) and
@@ -101,16 +105,19 @@ zero: `gpt-5.6-terra|P1_BASELINE` at 0.338 (0.093 to 0.551) and
 
 `BAD_STRINGY` is the intentionally bad control, and it has the highest human
 agreement on the panel. The submission already notes this; here it is starker,
-because it now also outranks every real judge. It remains the strongest
-argument for property certification over plain judge-human agreement, since
-agreement alone would select the broken judge.
+because it now also outranks every real judge. This exposes disagreement between the intended control classification and
+the human criterion. It does not independently validate the property index;
+control design and criterion interpretation require further investigation.
 
 ## What this changes
 
-1. Decide the exact-zero policy before anything else. The headline index cannot
-   be validated in its current form because it has no variance to validate.
-2. Grow the judge panel. Twelve units is the floor this harness enforces and
-   twenty gives a usable interval; both are reachable with configurations of
-   models already in the panel and cost no human labels.
-3. Report whether controls are in or out with every coefficient.
-4. Only then spend the five-rater pool on the locked held-out test.
+- [p 10/10] The requested target includes repeat stability, so evaluate that target from the saved repeated scores before attributing all disagreement to the proxy.
+- [p 9/10] Ties limit resolution on this panel, so compare declared zero-handling alternatives without selecting and validating on the same observed data.
+- [p 8/10] Generalization depends on independent families, so estimate the sampling design rather than treating 12 or 20 related configurations as universally sufficient.
+- [p 8/10] Controls change the association, so report primary-only results alongside all-configurations diagnostics.
+
+Here p denotes predicted priority. The follow-up runs these diagnostics in
+`expt_v2/`; any new human-label pool requires a separately locked evaluation
+plan. The earlier percentile intervals condition on configuration pairs and
+are not uncertainty over new families. A small sample and heavy ties do not
+make every coefficient meaningless; they constrain what it can establish.

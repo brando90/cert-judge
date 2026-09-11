@@ -1,116 +1,95 @@
-# 30 — PTI → TI_m criterion validity
+# Proxy validation
 
-Does the label-free proxy predict the human-grounded criterion well enough to
-replace fresh human validation for each new judge?
+**TLDR:** This experiment tests whether the Proxy Trust Index (PTI), a behavioral score without human labels, tracks a human-grounded Trust Index (TI). The follow-up computes agreement plus repeat stability; current data contain five primary judge configurations from only two model families, so they cannot establish transfer to arbitrary agents.
 
-That is a criterion-validity question about three objects the project keeps
-distinct (`CLAUDE.md`):
+## Goal and scope
 
-| object | role | cost |
-| --- | --- | --- |
-| `TW_m` | the scoped trustworthiness construct | not directly measurable |
-| `TI_m` | human-grounded criterion | expensive, needs labels |
-| `PTI_p` | label-free behavioral proxy | cheap, no labels |
+The goal is a cheap measure that agrees with the expensive human-grounded
+criterion on unseen outputs and agents. A judge configuration is the unit in
+these current analyses; a generator agent is a different unit and requires
+verified generator provenance and an appropriate held-out split.
 
-The claim worth publishing is that `PTI_p` ranks units the same way `TI_m`
-does, on units the calibration has never seen. Everything here exists to test
-that claim honestly, including refusing to report it when the design cannot
-support it.
+Keep the underlying trustworthiness construct, its human-grounded criterion,
+and the proxy distinct. A high score on behavioral properties does not prove
+agreement with humans. Likewise, stability alone can reward a deterministic
+but inaccurate control.
 
-## The criterion
+## Versions and structure
 
-Following `paper_latex/TrustWorthy_Notes/main.tex`:
-
+```text
+README.md                 scope and entry points
+FINDINGS.md               corrected historical agreement-only analysis
+results.md                current findings and execution status
+CKPT_proxy_followups.md    resumable progress
+build_panel_from_exp29.py  historical agreement-only panel extraction
+design_check.py           earlier diagnostic harness and synthetic illustration
+panels/                   preserved historical panels
+expt_v2/
+  PROTOCOL.md              exploratory follow-up definitions
+  run_diagnostics.py       joint target, zero handling, uncertainty, family checks
+  render_report.py         figures and readable tables
+  results/                JSON, CSV, figures, and timestamped reports
 ```
-TI_m1(aj)  = Corr(judge scores, target scores)
-TI_2'(aj)  = sqrt( Corr * (1 - std) )
-```
 
-Two implementation points that are easy to get wrong and are pinned by tests:
+## Method
 
-- **`std` is repeat noise, not score spread.** It is the mean over items of the
-  per-item standard deviation across repeated judge calls. Using the pooled
-  standard deviation of a judge's scores instead would penalise a judge for
-  telling good artifacts from bad ones, inverting the metric.
-- **A negative correlation clamps `TI_2'` to zero** rather than producing an
-  undefined square root. The signed correlation is kept alongside, so the clamp
-  never hides the direction.
+1. Join frozen scores to 72 labeled candidates from 24 problems, retaining all three repeats and keeping the two rubric passes separate.
+2. Report Pearson, Spearman, Kendall tau-b and intraclass correlation (ICC); use explicit absolute-agreement and consistency forms rather than treating all correlations as interchangeable.
+3. Combine nonnegative human agreement with one minus mean within-candidate sample standard deviation, on normalized scores; retain signed correlations and the separate factors.
+4. Compare the frozen proxy with declared zero-handling sensitivities, and keep primary judges separate from controls.
+5. Jointly resample problems to preserve shared observations across judges; report what these conditional intervals omit.
+6. Diagnose held-out judge-family calibration against a training-mean baseline and simulate how independence affects sample-size requirements.
 
-Sanmi's objection to the stability term is recorded in the notes: `1 - std` is
-a judge-only quantity that never checks whether the judge's spread matches the
-target's. `compute_ti_m` therefore also reports `scale_ratio` and Lin's
-concordance coefficient, which do penalise location and scale mismatch.
+The combined criterion's sample standard deviation is different from the frozen
+proxy's twice-population-standard-deviation convention; both are reported as
+explicit alternatives. The original proxy definition and files remain frozen.
 
-## Run it
+## Interpretation limits
 
-Design check on the submission's published parameters, no input needed:
+The two rubric passes were not independent raters, and their Spearman agreement
+is not measured reliability for the revised annotation pool. The square root
+of reliability is a conditional classical-error Pearson calculation, not a
+universal ceiling for rank correlations or for correlations across derived
+judge-level criteria. The harness no longer automatically applies item-label
+reliability to those outer correlations. Choose an ICC form to match the
+measurement design ([Koo and Li](https://pmc.ncbi.nlm.nih.gov/articles/PMC4913118/)).
+
+The earlier panel-size floor and tie flags are diagnostic heuristics, not
+empirical power calculations. Pooled out-of-family calibration can reverse a
+proxy's direction and can extrapolate far outside the observed target range;
+it tests that fitted prediction procedure. Its folds are dependent, and a
+bootstrap of completed prediction pairs does not account for overlapping fits
+([Bengio and Grandvalet](https://www.jmlr.org/papers/v5/grandvalet04a.html)).
+
+The follow-up therefore reports raw scores, positive-direction calibration,
+unrestricted calibration and the training-mean baseline separately, without
+claiming an independent-family uncertainty interval from two families. No
+whole-family train/validation/test split is available. Generation-slot labels
+also do not establish generator-model families.
+
+## Run
+
+Use the repository's Python environment; these commands perform no model inference:
 
 ```bash
-python experiments/30_proxy_trust_index_held_out_validity/design_check.py --demo
+PYTHONPATH=py_src .venv/bin/python experiments/30_proxy_trust_index_held_out_validity/expt_v2/run_diagnostics.py
+.venv/bin/python experiments/30_proxy_trust_index_held_out_validity/expt_v2/render_report.py
+PYTHONPATH=py_src .venv/bin/python -m pytest tests/test_ti_validation.py tests/test_proxy_followups.py
 ```
 
-Full validation on a panel of your own:
+The older `design_check.py --demo` is explicitly a synthetic sensitivity
+illustration. The panel builder remains agreement-only for historical
+reproduction; use the follow-up for the combined target.
 
-```bash
-python experiments/30_proxy_trust_index_held_out_validity/design_check.py \
-    --input panel.json --output report.json
-```
+## Dependencies and status
 
-`panel_template.json` shows the input shape. Its numbers are placeholders, not
-results. Neither mode performs inference or loads credentials.
+Inputs are the committed experiment-29 scores, requests, criterion manifest,
+property outputs, and frozen structural-probe manifest. The follow-up uses
+NumPy, SciPy and Matplotlib, performs no inference, and loads no credentials.
 
-## What the report tells you, in order
-
-**1. Ceiling.** A judge cannot correlate with labels better than the labels
-correlate with themselves. Reliability is estimated by ICC(2,k) from a crossed
-items × raters matrix, or extrapolated by Spearman-Brown from summary
-agreement; the attainable correlation is its square root. If the acceptance
-threshold sits above that ceiling, the fix is more raters, and the report says
-how many. Worth knowing before attributing a low number to the judge.
-
-**2. Resolving power.** Two things have to hold before a panel correlation
-means anything: enough units, and a criterion spread larger than the error on
-each unit's own estimate. When spread and error are comparable, the ranking
-being predicted is mostly noise, and the correlation against it is
-uninformative however it lands, including when it lands high.
-
-**3. Criterion validity.** Pearson, Spearman, Kendall tau-b and Lin's CCC, each
-with a percentile bootstrap interval, plus pairwise ranking accuracy, top-k
-overlap and mean rank displacement, since rankings are the deliverable. The
-four correlations share a sample and are a robustness check, not four
-independent confirmations. Tau-b is the conservative one and usually reads
-lowest.
-
-Any report whose design fails check 2 comes back `UNDERPOWERED` even when the
-point estimate is high. That is deliberate.
-
-## Splits
-
-`leave_one_group_out` holds out one whole agent or judge family at a time. This
-is the split that matches the claim: the held-out family is unseen at fit time,
-so a proxy that only works in-panel fails here. Splits that hold out items or
-rubric passes while keeping every family on both sides do not test that claim,
-however they are labelled — in particular, training on one rubric pass and
-testing on the other is a rubric-robustness check, since it is the same raters
-scoring the same items.
-
-With few families each fold is tiny, so per-fold correlations are unusable.
-`pooled_leave_one_group_out` fixes the arithmetic without weakening the
-protocol: it fits a calibration on the other families, predicts the held-out
-one, pools every out-of-group prediction and correlates once over the whole
-panel. Quote that number.
-
-`grouped_three_way_split` partitions whole families into train, validation and
-test. Choose the index form and every other free parameter on validation. Open
-test once.
-
-## Tests
-
-```bash
-pytest tests/test_ti_validation.py
-```
-
-The intraclass correlations are checked against the six published values of the
-Shrout & Fleiss (1979) worked example, and the ceiling logic against the
-inter-pass agreement reported in Appendix G.2 of the submission, so drift shows
-up as disagreement with a number someone else can look up.
+| Phase | Status |
+|---|---|
+| Historical agreement-only analysis | Complete, interpretation corrected |
+| Combined criterion and aggregation diagnostics | Complete; see results.md for review status |
+| Conditional uncertainty and family/design diagnostics | Complete; see results.md |
+| New-family train/validation/test evaluation | Not run; current family coverage insufficient |

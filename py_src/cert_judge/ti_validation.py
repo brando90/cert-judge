@@ -40,6 +40,7 @@ from __future__ import annotations
 
 import math
 import random
+from statistics import NormalDist
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from numbers import Real
@@ -50,14 +51,13 @@ from cert_judge.pti_v0 import (
     spearman_rho,
 )
 
-VALIDATION_VERSION = "TI_VALIDATION_v1"
+VALIDATION_VERSION = "TI_VALIDATION_v2"
 
 COMPUTED = "COMPUTED"
 NOT_COMPUTABLE = "NOT_COMPUTABLE"
 UNDERPOWERED = "UNDERPOWERED"
 
-#: Panels smaller than this cannot support a meaningful correlation claim.
-#: At n = 8 a true correlation of 1.0 and one of 0.3 are not distinguishable.
+#: Diagnostic heuristic, not a power calculation or an acceptance threshold.
 MIN_TRUSTWORTHY_PANEL = 12
 
 #: Default bootstrap resamples.  10_000 matches the paper's rerun settings.
@@ -459,7 +459,18 @@ def compute_ti_m(
     judge, target = _paired(judge_scores, target_scores, name=f"compute_ti_m[{unit}]")
     n_items = len(judge)
 
+    if instability is not None and judge_repeats_by_item is not None:
+        raise ValueError("supply repeats or precomputed instability, not both")
+    if instability is not None and (not math.isfinite(float(instability)) or not 0 <= float(instability) <= 1):
+        raise ValueError("precomputed instability must be normalized to [0,1]")
     if instability is None and judge_repeats_by_item is not None:
+        if len(judge_repeats_by_item) != n_items:
+            raise ValueError("repeat rows must align one-to-one with scored items")
+        if any(len(row) < 2 for row in judge_repeats_by_item):
+            raise ValueError("every scored item needs at least two repeats")
+        if any(not 0.0 <= value <= 1.0 for row in judge_repeats_by_item
+               for value in _floats(row, name="judge_repeats")):
+            raise ValueError("repeat scores must be normalized to [0,1]")
         instability = mean_within_item_std(judge_repeats_by_item)
 
     correlation = ti_m1(judge, target, method=method) if n_items >= 2 else None
@@ -575,16 +586,16 @@ def ceiling_report(
     target_threshold: Real | None = 0.70,
     max_raters: int = 200,
 ) -> CeilingReport:
-    """Derive the attainable-correlation ceiling from rater agreement.
+    """Classical-error Pearson ceiling sensitivity under supplied assumptions.
 
     Pass a fully crossed ``ratings`` matrix to estimate reliability by ICC, or
     supply ``single_rater_reliability`` and ``n_raters`` directly when only
     summary agreement is available.
 
-    ``target_threshold`` is the acceptance bar a project wants to clear.  If it
-    sits above ``ceiling_averaged`` then no judge can reach it with these
-    labels, and the honest fix is more raters rather than a better judge;
-    ``raters_needed_for_threshold`` says how many.
+    This calculation assumes a matching measurement, independent additive
+    errors and parallel raters. It is not a ceiling for rank correlation or
+    for correlations between derived judge-level criteria. Cross-rubric
+    agreement cannot establish reliability for a new annotation protocol.
     """
     averaged: float | None
     if ratings is not None:
@@ -643,13 +654,14 @@ def correlation_se(n_items: int) -> float | None:
 
 
 def fisher_ci(rho: Real, n: int, *, alpha: float = 0.05) -> tuple[float, float] | None:
-    """Fisher z interval for a correlation observed over ``n`` units."""
+    """Approximate Pearson interval for independent bivariate-normal pairs."""
+    if not 0.0 < alpha < 1.0:
+        raise ValueError("alpha must be strictly between zero and one")
     r = float(rho)
     if n <= 3 or abs(r) >= 1.0:
         return None
     z = 0.5 * math.log((1.0 + r) / (1.0 - r))
-    # 0.975 normal quantile; hard-coded to keep this module dependency-free.
-    half = 1.959963985 / math.sqrt(n - 3)
+    half = NormalDist().inv_cdf(1.0 - alpha / 2) / math.sqrt(n - 3)
 
     def _inverse(value: float) -> float:
         return math.tanh(value)
@@ -669,13 +681,13 @@ def min_units_for_ci_width(
     return None
 
 
-#: A proxy this tied cannot rank a panel, whatever its correlation reads.
+#: Legacy diagnostic threshold for limited ranking resolution, not zero information.
 MAX_PREDICTOR_TIE_FRACTION = 0.5
 
 
 @dataclass(frozen=True)
 class PowerReport:
-    """Whether the design can distinguish a good proxy from a useless one."""
+    """Heuristic design warnings; these do not replace a power calculation."""
 
     n_units: int
     criterion_spread: float | None
@@ -765,23 +777,23 @@ def resolving_power(
             underpowered = True
             tied = round(tie_fraction * len(proxy))
             notes.append(
-                f"proxy is degenerate: {tied} of {len(proxy)} units share one "
-                f"value and only {distinct} distinct values occur; the "
-                "correlation is decided by the few untied units and is not "
-                "evidence about the proxy"
+                f"proxy is flagged degenerate by the legacy tie heuristic: "
+                f"{tied} of {len(proxy)} units share one value and only "
+                f"{distinct} distinct values occur; report limited ranking "
+                "resolution without inferring absence of screening information"
             )
 
     if n_units < min_panel:
         underpowered = True
         notes.append(
             f"panel of {n_units} units is below the {min_panel}-unit floor; "
-            "a correlation here cannot separate a strong proxy from a weak one"
+            "this heuristic flag is not a formal power calculation"
         )
     if ratio is not None and ratio < 3.0:
         underpowered = True
         notes.append(
             f"criterion spread is only {ratio:.2f}x its own standard error; "
-            "the ranking being predicted is largely noise"
+            "paired criterion covariance is needed to assess ranking uncertainty"
         )
     if ci_width is not None and ci_width > 0.6:
         underpowered = True
@@ -840,24 +852,26 @@ def pairwise_rank_accuracy(
 def top_k_overlap(
     predicted: Sequence[Real], actual: Sequence[Real], k: int
 ) -> float | None:
-    """Overlap between the proxy's top ``k`` units and the criterion's top ``k``.
+    """Expected top-k overlap with independent uniform boundary tie breaking.
 
-    Ties at the boundary are resolved by taking every unit whose rank qualifies,
-    so the returned value is the intersection size divided by ``k`` and can
-    exceed nothing but 1.0.
+    Each side selects exactly k units; a constant predictor receives chance
+    overlap rather than credit for selecting the entire panel.
     """
     pred, act = _paired(predicted, actual, name="top_k_overlap")
     n = len(pred)
     if k <= 0 or k > n:
         return None
 
-    def _top(values: Sequence[float]) -> set[int]:
+    def _top(values: Sequence[float]) -> list[float]:
         order = sorted(range(n), key=lambda i: values[i], reverse=True)
         cutoff = values[order[k - 1]]
-        return {i for i in range(n) if values[i] >= cutoff}
+        above = sum(value > cutoff for value in values)
+        tied = sum(value == cutoff for value in values)
+        probability = (k - above) / tied
+        return [1.0 if v > cutoff else probability if v == cutoff else 0.0
+                for v in values]
 
-    chosen = _top(pred) & _top(act)
-    return min(1.0, len(chosen) / k)
+    return math.fsum(p * a for p, a in zip(_top(pred), _top(act), strict=True)) / k
 
 
 def mean_rank_displacement(
@@ -1195,11 +1209,10 @@ def validate_pti(
         min_panel=min_panel,
     )
 
-    reliability = ceiling.averaged_reliability if ceiling is not None else None
-    disattenuated = {
-        name: disattenuate(estimate.value, reliability)
-        for name, estimate in correlations.items()
-    }
+    # Item-label reliability is not the reliability of judge-level criteria.
+    # Keep the supplied diagnostic, but never silently correct these outer
+    # correlations (especially rank/CCC statistics) using that different scale.
+    disattenuated: dict[str, float | None] = {}
 
     return ValidationReport(
         split_name=split_name,
