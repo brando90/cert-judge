@@ -669,6 +669,10 @@ def min_units_for_ci_width(
     return None
 
 
+#: A proxy this tied cannot rank a panel, whatever its correlation reads.
+MAX_PREDICTOR_TIE_FRACTION = 0.5
+
+
 @dataclass(frozen=True)
 class PowerReport:
     """Whether the design can distinguish a good proxy from a useless one."""
@@ -679,7 +683,29 @@ class PowerReport:
     resolving_ratio: float | None
     ci_width_at_point: float | None
     underpowered: bool
+    predictor_distinct_values: int | None = None
+    predictor_tie_fraction: float | None = None
+    predictor_degenerate: bool = False
     notes: tuple[str, ...] = field(default_factory=tuple)
+
+
+def predictor_tie_fraction(values: Sequence[Real]) -> float | None:
+    """Share of units sitting on the single most common proxy value.
+
+    A multiplicative index collapses to exactly zero whenever any one property
+    is zero, so a panel can easily arrive with most of its proxy values tied at
+    the floor.  Rank correlations still return a number in that situation, but
+    it is decided entirely by the handful of untied units, and it is not
+    evidence about the proxy.  This makes the condition visible instead of
+    letting it read as a weak correlation.
+    """
+    xs = _floats(values, name="predictor_tie_fraction")
+    if not xs:
+        return None
+    counts: dict[float, int] = {}
+    for value in xs:
+        counts[value] = counts.get(value, 0) + 1
+    return max(counts.values()) / len(xs)
 
 
 def resolving_power(
@@ -688,7 +714,9 @@ def resolving_power(
     n_items_per_unit: int | None = None,
     criterion_se: Real | None = None,
     observed_rho: Real | None = None,
+    predictor_values: Sequence[Real] | None = None,
     min_panel: int = MIN_TRUSTWORTHY_PANEL,
+    max_tie_fraction: float = MAX_PREDICTOR_TIE_FRACTION,
 ) -> PowerReport:
     """Compare between-unit signal against within-unit estimation noise.
 
@@ -699,6 +727,10 @@ def resolving_power(
     proxy that ranks every unit perfectly will still produce scattered,
     frequently negative correlations.  Values above roughly 3 are needed before
     a panel ranking carries real information.
+
+    Passing ``predictor_values`` adds the matching check on the other axis: a
+    proxy whose values are mostly tied cannot order the panel at all, so the
+    design fails before the criterion is even consulted.
     """
     values = _floats(criterion_values, name="resolving_power")
     n_units = len(values)
@@ -720,6 +752,25 @@ def resolving_power(
 
     notes: list[str] = []
     underpowered = False
+
+    distinct: int | None = None
+    tie_fraction: float | None = None
+    degenerate = False
+    if predictor_values is not None:
+        proxy = _floats(predictor_values, name="resolving_power.predictor")
+        distinct = len(set(proxy))
+        tie_fraction = predictor_tie_fraction(proxy)
+        if tie_fraction is not None and tie_fraction > max_tie_fraction:
+            degenerate = True
+            underpowered = True
+            tied = round(tie_fraction * len(proxy))
+            notes.append(
+                f"proxy is degenerate: {tied} of {len(proxy)} units share one "
+                f"value and only {distinct} distinct values occur; the "
+                "correlation is decided by the few untied units and is not "
+                "evidence about the proxy"
+            )
+
     if n_units < min_panel:
         underpowered = True
         notes.append(
@@ -745,6 +796,9 @@ def resolving_power(
         resolving_ratio=ratio,
         ci_width_at_point=ci_width,
         underpowered=underpowered,
+        predictor_distinct_values=distinct,
+        predictor_tie_fraction=tie_fraction,
+        predictor_degenerate=degenerate,
         notes=tuple(notes),
     )
 
@@ -1013,7 +1067,10 @@ def pooled_leave_one_group_out(
             n_folds=len(groups),
             skipped_units=tuple(skipped),
             power=resolving_power(
-                actual, n_items_per_unit=n_items_per_unit, min_panel=min_panel
+                actual,
+                n_items_per_unit=n_items_per_unit,
+                predictor_values=predicted,
+                min_panel=min_panel,
             ),
             status=NOT_COMPUTABLE,
         )
@@ -1028,6 +1085,7 @@ def pooled_leave_one_group_out(
         actual,
         n_items_per_unit=n_items_per_unit,
         observed_rho=spearman_point,
+        predictor_values=predicted,
         min_panel=min_panel,
     )
     return PooledHoldoutReport(
@@ -1115,7 +1173,10 @@ def validate_pti(
             top_k_overlap=None,
             mean_rank_displacement=None,
             power=resolving_power(
-                criterion, n_items_per_unit=n_items_per_unit, min_panel=min_panel
+                criterion,
+                n_items_per_unit=n_items_per_unit,
+                predictor_values=proxy,
+                min_panel=min_panel,
             ),
             ceiling=ceiling,
             disattenuated={},
@@ -1130,6 +1191,7 @@ def validate_pti(
         criterion,
         n_items_per_unit=n_items_per_unit,
         observed_rho=spearman_point,
+        predictor_values=proxy,
         min_panel=min_panel,
     )
 
@@ -1201,6 +1263,7 @@ __all__ = [
     "COMPUTED",
     "CORRELATION_FUNCTIONS",
     "DEFAULT_BOOTSTRAP",
+    "MAX_PREDICTOR_TIE_FRACTION",
     "MIN_TRUSTWORTHY_PANEL",
     "NOT_COMPUTABLE",
     "UNDERPOWERED",
@@ -1231,6 +1294,7 @@ __all__ = [
     "pairwise_rank_accuracy",
     "pearson_r",
     "pooled_leave_one_group_out",
+    "predictor_tie_fraction",
     "resolving_power",
     "spearman_brown",
     "ti_2prime",
