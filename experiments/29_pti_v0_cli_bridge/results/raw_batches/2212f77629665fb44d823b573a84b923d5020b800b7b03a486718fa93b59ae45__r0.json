@@ -1,0 +1,93 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "2212f77629665fb44d823b573a84b923d5020b800b7b03a486718fa93b59ae45",
+  "case_count": 1,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "2f5bb21fc9cb553cb499a0d2fafe9d1d844a02454f622cf990183a63a4749db7",
+  "completed_at": "2026-08-26T09:07:16.006682+00:00",
+  "effort": "low",
+  "elapsed_seconds": 5.092897583032027,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "7866bda357a1ab83acb2a6c9f6de837ba29c0f790f52eed6920563802322cd92",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ad6a33c7abb08ea73b285e27c64f2434dd754bdf94ab45d44f7ac170b86cc6c7",
+      "reasoning": "The generated content is an entirely unrelated file (encode/decode shift definitions and different theorems) that does not correspond to the reference's decodeShift_equivalence_thm statement at all.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.002086,
+        "inputTokens": 2006,
+        "maxOutputTokens": 32000,
+        "outputTokens": 16,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 1813,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0101348,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 179,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1813,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 1813,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 1813,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 1813,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 179,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 179,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

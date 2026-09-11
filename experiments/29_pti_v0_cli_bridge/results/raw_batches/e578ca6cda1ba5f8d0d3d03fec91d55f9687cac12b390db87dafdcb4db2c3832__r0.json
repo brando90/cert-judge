@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "e578ca6cda1ba5f8d0d3d03fec91d55f9687cac12b390db87dafdcb4db2c3832",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "d2ec2b58a0d38bcab756dd9c70eb3ae2b41221b20b849e7a21790f14ea907878",
+  "completed_at": "2026-08-26T06:52:36.515767+00:00",
+  "effort": "low",
+  "elapsed_seconds": 40.05388983397279,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "4df6b2ffe0e0684601207934a60b493821d8a1984e8ae1b2b648925428231e2c",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ed779efb00bdb4fbaf1e7d04ac8e9b4f0f115d493900f880bb52686884fe11f6",
+      "reasoning": "The functional and imperative bisect-left implementations use the same comparisons and updates, with sufficient fuel for the search.",
+      "score": 1.0
+    },
+    {
+      "id": "e80d8abff90b5a261a26d23bc4c2b517c1b23ea40238698dba91a8fb2f8a63ec",
+      "reasoning": "The two bisect-left implementations have matching search semantics and the functional fuel is sufficient.",
+      "score": 1.0
+    },
+    {
+      "id": "999258dbdcb296a467e4858b2e391c241ca0f2f5edbf28f165b6c87789c74c0d",
+      "reasoning": "Both benchmark_covariance and covarianceImp are definitionally the same covariance function.",
+      "score": 1.0
+    },
+    {
+      "id": "6a82d57db76329b347e92dec845582fbb6fbd0b7fb91e6c11bc8221aae88876d",
+      "reasoning": "The imperative implementation computes the same guarded sample-covariance calculation as the functional implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "8af032f757fb86ae815cd7a2e9e678e1c67c163811150a3dccb3cbe24da0193b",
+      "reasoning": "Valid-input quantile calculations align, but invalid inputs produce different error constructors and messages between implementations.",
+      "score": 0.7
+    },
+    {
+      "id": "dc52932337f1d5c8d373cedfe864796843785f6569146d7d15d8f84c56e448ae",
+      "reasoning": "The generated code is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "b7c404633e141528255533bccf9d155ae087708ac7b8796a6bf9fe810f8b3bc1",
+      "reasoning": "The generated code has a different function name and Int signature and omits both required implementations and equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "7ff025c28ecd4297ed76eb12fd4490804cc62d3ed2a5ea010e807f531b78dca7",
+      "reasoning": "The functional and imperative insertion paths use matching bisect-left behavior and identical guarded insertion logic.",
+      "score": 1.0
+    },
+    {
+      "id": "93343cc89c90e79f1ef3970fb815e05a4c73531f5b7915155ca117e3a11c458e",
+      "reasoning": "The generated implementations and equivalence statement match the intended insort-left semantics.",
+      "score": 1.0
+    },
+    {
+      "id": "6cf6c732366f59f973be1f8cbf4156d4c1ba7dfb26eace24e21bfea8536db89a",
+      "reasoning": "For the valid pushed final position, both siftdown variants perform the same upward heap restoration.",
+      "score": 1.0
+    },
+    {
+      "id": "259230158b65f58ff54b25f2c6bbe1d93a085e7973ff1d0335668bd94fb1539b",
+      "reasoning": "The functional and imperative heappush routines implement the same sift-down behavior after appending the item.",
+      "score": 1.0
+    },
+    {
+      "id": "385ad87b04c0d0e28274804d34dd5845cd07b6b78033d409d2fa35b16771b821",
+      "reasoning": "Both heappop variants remove the root and use semantically corresponding sift-up and final sift-down restoration.",
+      "score": 1.0
+    },
+    {
+      "id": "364adf43079e7c8e6ef21967bd9b8dfa5c373cd3c9e53aaa0885ca037bd12a65",
+      "reasoning": "The generated code proves unrelated formatting facts and does not provide the referenced Pre, Post, namespace, or correctness theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "2baf14fd759a32a477108ba0f1b556fca72cb025cb10a1cd7f0c14aa5dc5b2c0",
+      "reasoning": "The List and Array get implementations have matching FIFO, empty, and invalid-timeout behavior.",
+      "score": 1.0
+    },
+    {
+      "id": "12cd427bb9478791ddb5c0b13a061d82ac8e71da1f11f904529880489176d8cd",
+      "reasoning": "The generated implementation is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "0d0ad11f9d4b0be2a0cd4e414026e036207c9ae446ab64c0ab5b093ec7bdb28b",
+      "reasoning": "The HashMap update and association-list update preserve the same per-key counts when initialized from the map entries.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "8f4d3fc773a9cb7f134b0cb77c3ae91fa946804b5fcfc905cb190d9818da1bbb",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "9d78d75e28f5b386572c03f122ff32c1f55921594d0a8116295f6e05c20baa01",
+  "completed_at": "2026-08-26T06:50:49.137796+00:00",
+  "effort": "low",
+  "elapsed_seconds": 35.9478920410038,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "979581dda3c7e19c12aa147eaf989de8a12641a58c26ddfda7bb6f1cf472cdfc",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f85265ff087dd99d9f9500593f30d1466613ba3727efc7ac507e3cd3e8a09064",
+      "reasoning": "The claimed equivalence is false because a string and its identical UTF-8 byte list compare differently in the functional implementation but equally in the imperative one.",
+      "score": 0.0
+    },
+    {
+      "id": "c7288b3a65c9df389ffb94af4b76960d4da2a5999d867622cf63540d55b5305b",
+      "reasoning": "The generated file contains no requested equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "bf069d293ac0a4a67067b30844ed1db6ea99782a0dc6c5b1adf8da7168c56767",
+      "reasoning": "It states the requested bisect equivalence theorem with matching implementations and signature.",
+      "score": 1.0
+    },
+    {
+      "id": "6f9b8b70db6683fddafa291d54a47f739807e520774014066671b5b83ccb9266",
+      "reasoning": "Both sides are definitionally the same covariance computation, so the stated equivalence is semantically exact.",
+      "score": 1.0
+    },
+    {
+      "id": "467c3ac7efdee3f08a381b5486122a515f3ec55eeb40254d69ae08cb5b45b33e",
+      "reasoning": "The imperative loops implement the same guarded covariance calculation as the functional definition.",
+      "score": 1.0
+    },
+    {
+      "id": "459b674612d2dabdd1143f794c40dab68dcedbd4caa05a81b8360addccb9d3ea",
+      "reasoning": "The generated file defines an imperative implementation but omits the requested equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "88f5f2f2185e7d9b17f669bce1126307519c05794cbcf71eb560b74eb43fdfb8",
+      "reasoning": "It uses different function names and provides neither the imperative counterpart nor the requested equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "8b992421573633e352f3972fb529075e1651cd8a523a2e7cf9c74e42d1995bc2",
+      "reasoning": "It changes the domain from naturals to integers and omits the requested equivalence theorem and imperative function.",
+      "score": 0.0
+    },
+    {
+      "id": "3c447abbd401ac25a93e3192517fc2a7a03085d3677c40d7a947c77072f96ec9",
+      "reasoning": "Although related implementations are present, the requested insort equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "32d315cbc043c3c27962aa9c02985dbc57432bee8ed376f16465a4d3c720fcd0",
+      "reasoning": "The generated development omits the requested insort equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "32b83dbc5518ba2dbc5fe53d116a02cc05a667119f628ac1381f6943b12f3334",
+      "reasoning": "It provides no requested heappush equivalence theorem, and its functional siftdown boundary behavior also differs from the imperative loop.",
+      "score": 0.0
+    },
+    {
+      "id": "2230cc3bf4c0e6a91f1fd2f429f32bcc4a9dc78b254461133783861c88d3086e",
+      "reasoning": "It states the requested equivalence, and both siftdown implementations perform the same bubbling transformation.",
+      "score": 1.0
+    },
+    {
+      "id": "b8c0355b62b4e7a03c30a9fd1f7a4ca6826de8e2fc1e7be53a9fda6298709dd7",
+      "reasoning": "The generated text is incomplete and does not define the referenced loads functions or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "abe7da6e7d17707e5179bc66d3f72114596884687431fee35b6e2923d4d02ff0",
+      "reasoning": "It defines a differently named decoder in another namespace and omits the requested loads equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "abe40394778e59177bde57297df4aec848c29a6223636c8347a498adca42bd4f",
+      "reasoning": "It defines a standalone alternative decoder but no referenced loads functions or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "ad79e1f7e22b2a9d17a1de7a13be164099785b564cad2c322707e2af0c5f1ba5",
+      "reasoning": "The generated SafeCounter development is unrelated to the requested SafeUnsafeCounter correctness theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "6d23b0bb48a014ea39b73f69364fb0d60576d45926e2f56f7fa82f9f9b2deb8b",
+  "case_count": 5,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "c1da93dcd15f3bd8237e7f20015523b2890cbdf6997865870f541f1690538663",
+  "completed_at": "2026-08-26T10:03:38.149938+00:00",
+  "effort": "low",
+  "elapsed_seconds": 13.097417082986794,
+  "judge_id": "gpt-5.6-terra|BAD_STRINGY",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "77f55877f3cf0ed2c8c7b5cc0271bd0f068881afa1e0b9a44ba3b8d48d6b86bd",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f6f4c73cd49badbb9986ff47d80e485173b982a98ceea7eccdd996ff4dd072d5",
+      "reasoning": "The generated text contains the reference equivalence theorem verbatim, including its structure and closing namespace.",
+      "score": 0.99
+    },
+    {
+      "id": "f35d76b87b1f0d18e212f7bf87b423f41370449812598045c08ab222f72c9811",
+      "reasoning": "It shares Dijkstra-related definitions and namespace text but omits the equivalence theorem entirely.",
+      "score": 0.18
+    },
+    {
+      "id": "54694c153cc1a8d4ef1e66f583faf92f765b97704acc25d351c31d6b394a0cb3",
+      "reasoning": "The generated text uses snake_case decode functions and contains no matching equivalence theorem or namespace closure.",
+      "score": 0.04
+    },
+    {
+      "id": "a8dc984e723c9f6bfe6c61c2823ac94149c8d8bf21499bd5a10788c72ce83511",
+      "reasoning": "It shares the decodeShift identifier and String parameter style but lacks decodeShiftImp and the equivalence-theorem form.",
+      "score": 0.14
+    },
+    {
+      "id": "f705bdbd4fe398c838f065d50d1b37819e835122085b2bdd9e043abd16c097eb",
+      "reasoning": "The generated text uses snake_case prime_length and has no matching equivalence theorem or PrimeLength namespace ending.",
+      "score": 0.04
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

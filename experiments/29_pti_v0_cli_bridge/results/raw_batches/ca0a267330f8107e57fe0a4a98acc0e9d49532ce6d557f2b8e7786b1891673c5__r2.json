@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "ca0a267330f8107e57fe0a4a98acc0e9d49532ce6d557f2b8e7786b1891673c5",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "f012666ab8bc4903c590793cb6dfbceb6e2732c7ab6713afccc50d133f21abb5",
+  "completed_at": "2026-08-26T08:47:12.693538+00:00",
+  "effort": "low",
+  "elapsed_seconds": 44.88676695799222,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "214ae8725d16f24490418b11039a9cbf8b428b3874f3e41ffca815b345f3350b",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "dff624dbb0f14b0f12c995d219a102955877524241cbcb35f24d2c15c43614e5",
+      "reasoning": "Generated theorem is byte-identical to reference, preserving the same sorry'd equivalence goal with full implementation context.",
+      "score": 1.0
+    },
+    {
+      "id": "acb0c8f07c6441e35e490a778b75c592e36f7269be3294b2aa40e7f4706ae3e9",
+      "reasoning": "Generated theorem matches reference exactly, preserving the unquote equivalence goal with full implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "dec17b2cb3efce0782a85e7e258733a2e7d7712afc95acc82822e1f85561d70f",
+      "reasoning": "The generated file omits the compare_digest_imp/compare_digest_func equivalence theorem entirely, providing no goal matching the reference.",
+      "score": 0.0
+    },
+    {
+      "id": "e1f25645582963510a4c2a97a75b931ac5324b4da19d5f225ce0480e13cc5199",
+      "reasoning": "Generated theorem matches reference exactly with full supporting implementation, properties, and the equivalence sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "35c9448ab6392b678b5c24a9cbd927befb931ec0ca8d4704de064def1bf14904",
+      "reasoning": "The functional bisect implementation computes mid as (lo - hi)/2 instead of (lo + hi)/2, a semantic bug that trivializes/breaks the intended equivalence compared to the reference.",
+      "score": 0.3
+    },
+    {
+      "id": "ae2a04497518b9886dc20a484c46167335b5fa9de23bd4cfe3eef91b92f4d53c",
+      "reasoning": "Generated file is identical to the reference implementation including all partition properties and the equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "43eab2bcdf00da85b500eeb364487b12e2e47bc2f0f55a2c8ae6175fd18f1afc",
+      "reasoning": "The covariance formula uses (xi + xbar) instead of (xi - xbar) and meanRat has an inverted condition, both correctness bugs, and all property theorems, Pre/Post, and correctness structure from the reference are stripped out.",
+      "score": 0.15
+    },
+    {
+      "id": "1e092690276c33bcc4cbb493a48f60757c1e1aac71e80b35cd4bd650489bc33b",
+      "reasoning": "Generated file is byte-identical to the reference, preserving all properties, correctness, and equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "1f0d46cb5bd4a4929c0e123f6b14f3f0c69e606c9d294cd80fd132eed368b8c0",
+      "reasoning": "Generated file is identical to the reference implementation, preserving all properties and the equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "6de2f95bf84188b987423110f85c79a7d17ba755712cbfd6f0225b3c8ef0db91",
+      "reasoning": "Generated file is identical to the reference, preserving the min-list correctness theorem and postcondition.",
+      "score": 1.0
+    },
+    {
+      "id": "3e5e2cf9d1ee6a265564408b07d3030010bf036b59b4741e5c0e262c1e3b2268",
+      "reasoning": "The generated theorem lacks an imperative implementation and the required equivalence theorem entirely, instead proving an unrelated correctness lemma for a single implementation.",
+      "score": 0.05
+    },
+    {
+      "id": "4cf98619c2d4e6e3a968e87b89f54184860c6cc6f9490be2c1ad157c9a6da89e",
+      "reasoning": "No imperative implementation or equivalence theorem is present at all; the file only defines a spec function with mismatched naming, missing the reference's core equivalence guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "231df3ca4989ec26d7f161afcef04954fdc048b431ce2d84b3491aece342b3f0",
+      "reasoning": "The generated content is unrelated boilerplate about heap invariants/heappop that does not correspond to the reference's stated correctness_thm composition of invariant/size/multiset theorems.",
+      "score": 0.1
+    },
+    {
+      "id": "109ca89e6f5ce1a966d761ed49aa792a2bb8196584513f3b28c692d1c5f8fc2c",
+      "reasoning": "Generated theorem is byte-identical to the reference, preserving the full insort equivalence goal and helper definitions.",
+      "score": 1.0
+    },
+    {
+      "id": "74b6b6934e061ff33c05c5c07e7cde0994ad5e65b1f3c5944cbf723813b0b2ac",
+      "reasoning": "The generated file omits the insort_equiv_thm equivalence theorem entirely, ending with an empty correctness section and no goal matching the reference.",
+      "score": 0.0
+    },
+    {
+      "id": "5ef11345983684761a595ccd845e57f2a9ac3fa61eb4d216f71ef4b7881cf581",
+      "reasoning": "The generated file has no imperative implementation and no replaceSpaces_equivalence_thm, instead proving an unrelated, incomplete spec with sorry.",
+      "score": 0.05
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.048928,
+        "inputTokens": 48863,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 65188,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.043311600000000006,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3027,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 65188,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 65188,
+          "input_tokens": 2,
+          "output_tokens": 3027,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3027,
+      "output_tokens_details": {
+        "thinking_tokens": 1229
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

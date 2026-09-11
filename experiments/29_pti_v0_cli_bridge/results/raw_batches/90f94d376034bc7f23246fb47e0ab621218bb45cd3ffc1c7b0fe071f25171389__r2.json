@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "90f94d376034bc7f23246fb47e0ab621218bb45cd3ffc1c7b0fe071f25171389",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "a41a69f57e075cae8391c3886ca30fd74237b4aa3290b354e08aff8f5c94c072",
+  "completed_at": "2026-08-26T08:58:44.027917+00:00",
+  "effort": "low",
+  "elapsed_seconds": 45.70207520801341,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "a6aa4cc6d18496260e6124b9259c0f31e17cc589ba017ad9a2e0124c1bb2bca4",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f7b3fe051b1c7484d4130d524d137d029c35b806909a7c0a5955c2d5f4408dff",
+      "reasoning": "Implements matching insort_left_imp/functional with correct bisect logic, structurally equivalent to reference though lacks pre/post theorems (not required by reference).",
+      "score": 0.8
+    },
+    {
+      "id": "e5c307ca4e1e5f84b0996c2d909f74301be7e0916223409d32bb6f7b7c34d153",
+      "reasoning": "bisect_left_functional has broken logic (wrong subtraction, wrong recursion direction, off-by-one fuel), explicitly noted as a 'logic difference', making the equivalence theorem false/trivial.",
+      "score": 0.05
+    },
+    {
+      "id": "d1bb145fbbc3b782a3d2d4c8c2cb49a30b123f0a0d08311dc2ee6eeaa4370374",
+      "reasoning": "The requested equivalence theorem (heappush_imp = heappush_functional) is entirely missing from the generated file despite implementations being present.",
+      "score": 0.1
+    },
+    {
+      "id": "9f4ab99fed9b730756d7356f9150107f4f23d34f63536fa5a14df2d59447ec02",
+      "reasoning": "Generated file includes the exact matching heappop_equiv_thm plus additional correctness/invariant theorems, closely matching reference structure.",
+      "score": 0.9
+    },
+    {
+      "id": "cda495a259c2910eb6dc2398474a801e7f9682a4293d495804997c1f93bd8413",
+      "reasoning": "Generated get_equiv_thm matches the reference statement verbatim with supporting FIFO queue implementation.",
+      "score": 0.95
+    },
+    {
+      "id": "8fb7e14383c838e1a9aaab1455af7ffdd2949d3109d4633dbffc45138b8f80c8",
+      "reasoning": "Generated correctness_thm matches the reference statement and proof exactly.",
+      "score": 0.95
+    },
+    {
+      "id": "8bd6afd3d725a2b0040074880e176534d6ca4077e51035cf82cb6026a5bd3f6a",
+      "reasoning": "Generated update_equiv_thm matches reference statement verbatim with full counter implementation.",
+      "score": 0.95
+    },
+    {
+      "id": "c495639548ce5230ca45c671153cf59e09167bdebe579de129c6311de755d843",
+      "reasoning": "Generated get_equiv_thm matches reference statement verbatim with full ChainMap implementation.",
+      "score": 0.95
+    },
+    {
+      "id": "457387f6c1e0b35c9e12aeba3233b3bf30ee93c032762700486bc63cd5f6c4e6",
+      "reasoning": "Generated bfs_equivalence_thm matches reference statement verbatim with functional and imperative BFS.",
+      "score": 0.95
+    },
+    {
+      "id": "2e05dd9d88b0546e0fc9f8ff9a8a6a83e8c06f38eca81e6e929cd3a19ed0ce4a",
+      "reasoning": "Generated file lacks countingSortImp and the requested equivalence theorem entirely, replacing it with an unrelated sortedness/permutation correctness statement.",
+      "score": 0.05
+    },
+    {
+      "id": "173b63c8871eba06f06ee98522e3a6221873f18a102f3757ea1db76a0451b60b",
+      "reasoning": "Generated dfs_equivalence_thm matches reference statement verbatim with functional and imperative DFS.",
+      "score": 0.95
+    },
+    {
+      "id": "08ab27b3648e05fae19fd2d245b9c9cfc89cad5af6e776e8097483350f5f85f4",
+      "reasoning": "Generated dijkstra_equivalence_thm matches reference statement verbatim with functional and imperative Dijkstra.",
+      "score": 0.95
+    },
+    {
+      "id": "1f16c7b50ca7a62ce9468e1af0de0ca1e3e2a3c27adf77e336660dbda0e4dcf3",
+      "reasoning": "Generated file is identical to the reference implementation and its isPrime_correct theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "18908ad29f0780be7615dd0737511535f8f9b0504bba8bc18cd319ef31b45e7e",
+      "reasoning": "Reference requires an equivalence theorem between isPrime and isPrimeImp, but generated file has no isPrimeImp or equivalence theorem, only an unrelated spec-based correctness claim.",
+      "score": 0.1
+    },
+    {
+      "id": "62ca78f061cd07e0f39112d912e046e9122ed555b33c5bcbb4937508cc6fe44a",
+      "reasoning": "Reference requires gcd = gcdImp equivalence over Nat, but generated file uses an unrelated Int-based greatest_common_divisor with no gcd/gcdImp or equivalence theorem at all.",
+      "score": 0.05
+    },
+    {
+      "id": "e42b9b2fb8cc2095269ddea0de1ad04f4d29a3c9245b848985e9b67ee930e444",
+      "reasoning": "Reference requires gcd = gcdImp equivalence theorem, but generated file only has a single Nat gcd implementation with an unrelated sorry-laden correctness proof and no imperative/equivalence structure.",
+      "score": 0.15
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.031059,
+        "inputTokens": 30999,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 43947,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0418334,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3304,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 43947,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 43947,
+          "input_tokens": 2,
+          "output_tokens": 3304,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3304,
+      "output_tokens_details": {
+        "thinking_tokens": 1501
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "c8473742725c115c34e4b6485c4f86453a1555152a2ed9049ad302b4452388a5",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "819517cbaf9fafcc0f645ddb7d0f39b794f2256e92c516a083e713a896cf7889",
+  "completed_at": "2026-08-26T07:40:59.813406+00:00",
+  "effort": "low",
+  "elapsed_seconds": 41.594641000032425,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "02d5411ced11f80e51c69df7bb01f10c85d08e654fd691f288b16bc06f455e20",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "c6bf8bb407793a17fdf8d97ab3a95ef9a581dbaaa50b1bee95a473cfe66ead71",
+      "reasoning": "Array-based bisect_right/insort_right with analogous but differently structured partition specs, all proofs sorry.",
+      "score": 0.5
+    },
+    {
+      "id": "ff74624a3973f1db273b1b038b7e18218c599404e0562267ca7de9bbc617c8f3",
+      "reasoning": "List-based reimplementation with custom Option type, captures similar bisect/insort partition semantics but differs structurally from reference.",
+      "score": 0.5
+    },
+    {
+      "id": "a4cb9e2714ed5ea503c34361756110646c484c5f470ae692078eef38e766ea89",
+      "reasoning": "List-based bisect_right/insort_right specs with similar partition semantics, structurally distinct from reference Array version.",
+      "score": 0.5
+    },
+    {
+      "id": "87ee120c0e75dca9f17a5c67ec0635cc81a01644b0c7583413405a2f484f3d12",
+      "reasoning": "safeCopy implementation with reasonable pre/post conditions, moderately matches expected safe-copy semantics but reference is a trivial one-liner.",
+      "score": 0.55
+    },
+    {
+      "id": "13b320158abe75b76ef69ce72cd4a2bf93ef89c1596624ec148e4e004892c2d3",
+      "reasoning": "Generated theorem is byte-for-byte identical to reference safeCopy implementation and spec.",
+      "score": 1.0
+    },
+    {
+      "id": "90b33e422c7742c4d202dcbc493f38499e15898b2ac1b753cb66541666d02035",
+      "reasoning": "safeCopy variant returning Unit with straightforward pre/post conditions capturing overflow semantics, structurally simpler than reference.",
+      "score": 0.6
+    },
+    {
+      "id": "0f1c9c23ecd9d98dea792584fd84ac2ea8408f94104337b4546a1ba7e2f9ab7d",
+      "reasoning": "Mean equivalence with correct functional/imperative implementations and reasonable spec, matches reference intent well.",
+      "score": 0.7
+    },
+    {
+      "id": "5b09fd9f1bfc5cffb59a79c2c17df79f2ec8c5f32b71f5b17709afc8be5e3a15",
+      "reasoning": "First-char extraction with pre/post conditions capturing similar equivalence intent but wrapped in custom Str type diverging from reference String signature.",
+      "score": 0.5
+    },
+    {
+      "id": "3e7b086144e8ac5e917d2bb4a1f479966a48e886c15d09b7c043e8b6e497a4a0",
+      "reasoning": "Median equivalence with correct-looking functional/imperative implementations and matching spec shape, though equivalence proof left as sorry as in reference.",
+      "score": 0.6
+    },
+    {
+      "id": "1ebaa7ede0e54fcd2796bb2069b025c7271f27cb17f1aedbce3da14c93a9feb8",
+      "reasoning": "Variance implementation contains logic bugs (subtraction-based sum, inverted mean condition) making it semantically incorrect despite matching theorem shape.",
+      "score": 0.2
+    },
+    {
+      "id": "2099d8d40164d03d3a7c1e64945b91801b732c32655234c017bac0edd7497eec",
+      "reasoning": "Correct variance implementation with matching equivalence theorem structure and reasonable pre/post/spec conditions.",
+      "score": 0.75
+    },
+    {
+      "id": "a941871ad17bb9e2a893dbea7aacd1c34422ce30f0bbbf95b7217c3d5af3b565",
+      "reasoning": "Uppercase conversion via custom map with reasonable but partial post-condition, moderately matches reference equivalence intent.",
+      "score": 0.55
+    },
+    {
+      "id": "43c4b53320674925c8cba7f2e379d4bda5af1a273ab88672af1759f63fd8c434",
+      "reasoning": "Generated theorem is essentially identical in content and structure to the reference uppercase implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "f55a38438b2ea9ffa7ff4139a07ed5204f961a0865b8605ca3e08236347d2ab5",
+      "reasoning": "Simple uppercase implementation via s.toUpper with basic correctness theorem and tests, reasonably matches reference intent.",
+      "score": 0.6
+    },
+    {
+      "id": "0f68ee2470aab2cc34b2ccf31707723bf21c36b5bc955bed83a436f24bd1f06f",
+      "reasoning": "Correlation implementation contains a bug (sum_func uses subtraction instead of addition), making functional mean/correlation incorrect despite correct imperative version.",
+      "score": 0.2
+    },
+    {
+      "id": "0b561384a927acb0c793a65df993badeffbf24ed19be6a1f7e4079f60ec03823",
+      "reasoning": "Correlation equivalence theorem and implementations closely mirror the reference, differing only trivially if at all.",
+      "score": 0.9
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.025492,
+        "inputTokens": 25387,
+        "maxOutputTokens": 32000,
+        "outputTokens": 21,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 36645,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.16935399999999998,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2277,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 36645,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 36645,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 36645,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 36645,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 2,
+          "output_tokens": 2277,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2277,
+      "output_tokens_details": {
+        "thinking_tokens": 558
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

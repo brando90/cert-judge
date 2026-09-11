@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "8839527744775f68980f94d0ba8a3c921a8350c9d9425a124ddf37eb73ba3b05",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "c2b64bd99abede3c61a50758b61718e03ddeba4e0a7eec003cd113469e345af0",
+  "completed_at": "2026-08-26T06:55:08.600673+00:00",
+  "effort": "low",
+  "elapsed_seconds": 28.333302999963053,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "76b81584db5adf1826d5b64c80bff0976d4134b57a0360c5729f55a937352ed2",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e9518472bfaecaec9e79fc69ff7797cfe1b3f381548dd78d1d211c65a7a27e24",
+      "reasoning": "The generated file does not contain the requested bisect equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "d3f6411b425a67d32f6326995abf2c1ab9330edeea24147b7280ce3a95cf391d",
+      "reasoning": "The generated theorem and its supporting definitions exactly match the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "99651a155d8b0c4590324d0eaf46f6697499d62610643996719c782888ddf6fa",
+      "reasoning": "The requested covariance equivalence theorem is present with the same statement and the implementations compute the same covariance.",
+      "score": 1.0
+    },
+    {
+      "id": "c58745ccf5a68db2bc25182b059a3059ef99cd28d3dd219502defb574162e90b",
+      "reasoning": "The equivalence theorem is present, but the imperative implementation has different error behavior from the benchmark wrapper on invalid methods and inputs.",
+      "score": 0.5
+    },
+    {
+      "id": "9a3b76f209d3bbc76dc1a5c823ddca4945e14b2c9b7762b92077467dfc95d5ae",
+      "reasoning": "The generated file omits the requested insort equivalence theorem and its functional bisect helper is materially incorrect.",
+      "score": 0.0
+    },
+    {
+      "id": "9f8945b4d241de140daec96a9d2c461a4853cabd501205f8087af6a4b0e1d8fb",
+      "reasoning": "The generated file does not contain the requested insort equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "c1fb140157d5b43a0b14a0e8d5b6747f20f55fe5f34b18df0f7f41a7d05a1b3a",
+      "reasoning": "The generated file does not contain the requested heappush equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "4caf9f6886035968c7d39aeed2a6302599acc354e351dc9cfce93f285391dfdb",
+      "reasoning": "The requested heappush equivalence theorem is present and the imperative and functional paths are semantically aligned.",
+      "score": 1.0
+    },
+    {
+      "id": "644427e50b3e84c3fbdc2559f8ccd0b704dd05ca323939525fd0ffd3e393e0a7",
+      "reasoning": "The generated theorem and all relevant implementations exactly match the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "79c2f2580122751df0809140e24e1cbafacfe24ebab5fb50ae6f47ab0d986281",
+      "reasoning": "The requested queue get equivalence theorem and its supporting definitions exactly match the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "36fc965ef5b68a845e5b3c4c7523f7bb14a49818f83e26789b63697a08524f95",
+      "reasoning": "The generated file omits the requested correctness theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "5c1cbc5486292e0455197354bed06642321007d2f2c986d05a6485acf8dd87a5",
+      "reasoning": "The requested counter update equivalence theorem is present with the same statement and intended implementations.",
+      "score": 1.0
+    },
+    {
+      "id": "6c93311f113020f301be1fe8102105d351e3740c37f03c41b1923c049cda60a3",
+      "reasoning": "The generated code defines a different Int-based odd parity function and omits the requested theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "173d556bb9ee606ed22a026d145e585302d3d99807916bf76bef7f72b6efb507",
+      "reasoning": "The requested ChainMap lookup equivalence theorem is present with the same statement and supporting implementations.",
+      "score": 1.0
+    },
+    {
+      "id": "8f3a2cfdd547552e2e0807acc94aa509b8ab72c2ad94660cffbabd8520bca491",
+      "reasoning": "The generated file omits the requested correctness_thm statement.",
+      "score": 0.0
+    },
+    {
+      "id": "52afc91098390bc3502270f1b257ba35bf0853e723a87b5b79db8d8c15dee39d",
+      "reasoning": "The generated code uses a different API and omits the requested correctness_thm.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

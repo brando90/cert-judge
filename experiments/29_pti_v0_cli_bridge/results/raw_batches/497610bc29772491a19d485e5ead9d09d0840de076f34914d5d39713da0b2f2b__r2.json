@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "497610bc29772491a19d485e5ead9d09d0840de076f34914d5d39713da0b2f2b",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "55dbf44d2f091822d6edb5948b94a0b2caa4f83bea46c09c27f32759c6150fdb",
+  "completed_at": "2026-08-26T07:22:18.002350+00:00",
+  "effort": "low",
+  "elapsed_seconds": 32.92925624997588,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "897c08f890ca6d096b4f513fb06ac40dbe473c1731885437a366bf00f1e81303",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "c4dc184ab36cccb7e5833c7b6f74e25c62c3b93cc3110684b02ad5b7476df4c8",
+      "reasoning": "The generated file defines implementations and a postcondition but omits the required loads equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "e478d1f14433d390beece8f5e013c2fb67c0c04ebfe57e1352eeed62d476e5af",
+      "reasoning": "It states exactly the required universal equivalence between imperative and functional unquoting.",
+      "score": 1.0
+    },
+    {
+      "id": "9ff264e5ef6edc7dc6e8c2e354c6f1f679bc48f28c54f3904832c5bb43a338cd",
+      "reasoning": "The generated file contains no theorem establishing compare_digest_imp equals compare_digest_func.",
+      "score": 0.0
+    },
+    {
+      "id": "890f7167c8023d26ab23930cdb2f6c801170736f1cc48f6baa260553abca3aa8",
+      "reasoning": "The generated theorem and surrounding definitions are identical to the reference equivalence target.",
+      "score": 1.0
+    },
+    {
+      "id": "e653e0c7b2bd89fd6289802bae524d118ee7218b4f94cb2377167b973f215d68",
+      "reasoning": "Although both median implementations are definitionally identical, no median_high equivalence theorem is generated.",
+      "score": 0.0
+    },
+    {
+      "id": "5426755363957b9d6d4edf0a4b493b19db5725b50be3ffaab26057cf6b3408fa",
+      "reasoning": "The bisect implementations are present but the required bisect_equiv_thm is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "52fa3f7f39d3230b71dc9b7b72b708321475e748adf7ff9257b0d3f5ffd1fc4d",
+      "reasoning": "It proves at most one partition subproperty and omits the required imperative-functional equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "1209c9c4c51a729bac564eaadd358a1ce0129c51cfaf10b1fda7f5d8854a5bea",
+      "reasoning": "It states exactly the requested covariance equivalence for all input lists.",
+      "score": 1.0
+    },
+    {
+      "id": "0721f78ec6a24122b5783a9a703a98e8f3ed80801847a2fb273cbc93f759528c",
+      "reasoning": "It states exactly the requested covariance equivalence for all input lists.",
+      "score": 1.0
+    },
+    {
+      "id": "0786d8dafcef451c460ccd902e9876ea49e010b01917f5dcfadd3bef0edadac6",
+      "reasoning": "It states exactly the requested universal equivalence between the functional and imperative quantiles implementations.",
+      "score": 1.0
+    },
+    {
+      "id": "de7b424c2d8c46943672ab0cfad708fb6848a44c3a806d263000baf9bde2456f",
+      "reasoning": "The generated theorem concerns only a functional minimum specification and omits both referenced implementation names and their equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "535efa262610279cdc021a7a5e9818a160ae4c935402dd2aa106a59923937c81",
+      "reasoning": "The generated theorem establishes a functional minimum specification but provides no functional-imperative equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "2d3249acab67afa82c9308114eb4e9a0d043046bfff035812589e75816f208e8",
+      "reasoning": "It proves correctness of a differently named functional routine but omits the required equivalence with perfectSquareOrAddFiveImp.",
+      "score": 0.0
+    },
+    {
+      "id": "29d502101afd0aa3ea50c3254fa6991607f5935de0cf49be392730bfd93f4563",
+      "reasoning": "The generated result changes the domain from Nat to Int and contains no requested equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "ea8f9d26d2193bdfdbe71158e77a934207b8253c443b6f8e3d7572bf2c4de70a",
+      "reasoning": "It replaces the Array Int correctness target with unrelated generic List heap lemmas and does not establish the reference postcondition.",
+      "score": 0.0
+    },
+    {
+      "id": "980c24ca0228cc704609730e5a40dd2e2cb1905631c72a7a59c4cda069abd0c3",
+      "reasoning": "The generated code provides a different List-based heappop specification rather than the required Array Int correctness theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

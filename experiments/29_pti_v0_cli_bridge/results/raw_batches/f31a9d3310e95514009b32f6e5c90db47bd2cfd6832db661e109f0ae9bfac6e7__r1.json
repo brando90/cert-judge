@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "f31a9d3310e95514009b32f6e5c90db47bd2cfd6832db661e109f0ae9bfac6e7",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "46a5a451679729be5364e29d9538d846f51c416639fdd43f6e8b37216e9fbfdf",
+  "completed_at": "2026-08-26T07:07:27.812450+00:00",
+  "effort": "low",
+  "elapsed_seconds": 29.284185750002507,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "6bf8742c61d4edcf3ef522193b91db12aa2d7bf3a32357182271d3c6680bdfbb",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f36c8b7c8a309cccb51b2e483b71692ee5f9089ea7f2ae6a1393cafc5d0a30cc",
+      "reasoning": "The generated results target separate list/array specifications and omit the reference theorem's post-insertion partition under its precondition, with problematic generic coercions.",
+      "score": 0.15
+    },
+    {
+      "id": "28f278c753ba81f542bbb30cf48560ee51b9f91b2554389cb0045bab8e2d2b5d",
+      "reasoning": "It changes Arrays to Lists and does not establish the required post-insertion partition, while the generic no-key branches are not properly typed.",
+      "score": 0.1
+    },
+    {
+      "id": "4d0486934011ed69e5373e51acae2fafa909364a073608b6f38a73369367d22a",
+      "reasoning": "It supplies related bisect and insertion specifications but changes the data structure and lacks the reference theorem's combined after-insert partition guarantee.",
+      "score": 0.3
+    },
+    {
+      "id": "2d9a71083b0591deb443376deaf9561a4cf9009c433a89f9f98e1bb37b700629",
+      "reasoning": "The generated theorem uses newly invented True preconditions and postconditions rather than the unspecified reference Pre/Post contract.",
+      "score": 0.2
+    },
+    {
+      "id": "14dd2f37cc1a9718748c38b676c1586fc4b8382ae400f9da1ac14923fb0333aa",
+      "reasoning": "Although it states a substantive safe-copy specification, it replaces the reference's opaque Pre/Post contract rather than preserving it.",
+      "score": 0.2
+    },
+    {
+      "id": "fa7085774e1557a04cea4955e735e13633a2b00872d228a471582b0cb67ac715",
+      "reasoning": "The result returns Unit and its postcondition only records success or error, omitting any guarantee that destination bytes were copied.",
+      "score": 0.05
+    },
+    {
+      "id": "4dd8a49040ca0469297548da0f38c8049683a11833a7ef3f7589c36cc7477abe",
+      "reasoning": "The generated file defines implementations and an unproved local specification but omits the required mean equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "3ba4579a95bb963bf2ef708b2472d6f11bb2ff489e694ec31f78b20f665ebefd",
+      "reasoning": "The generated theorem and all relevant definitions are identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "1790f2254baf25e635cdbc9fb022983163a932310cc0f02e0ce2721e157a30a8",
+      "reasoning": "It retains the requested median equivalence theorem with matching functional and imperative definitions.",
+      "score": 1.0
+    },
+    {
+      "id": "2d8b147dd6ec71314648c0e8954e6444e67a4fda92b4011935df0bae2e7aeca9",
+      "reasoning": "The functional variance implementation is materially incorrect and no variance equivalence theorem is provided.",
+      "score": 0.0
+    },
+    {
+      "id": "19ad84f0000191aed8ef6e3d4204996b0643a08add53c6249b22936494b6e5ec",
+      "reasoning": "The generated theorem and supporting implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "019b099dd6858ee0d3f8ad49ce785fece4d75201e96ab1daa26485a406860ac5",
+      "reasoning": "It specifies a direct uppercase mapping but does not preserve the reference equivalence theorem between its two named implementations.",
+      "score": 0.5
+    },
+    {
+      "id": "3302faba4fe3e3115e4daccbf1b9467e1ca3ea6b9a2cfbc90826ed8af7293f2f",
+      "reasoning": "The generated theorem and program are identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "ba2c7fdebe18c4d5cc78bff82ddab63d586f8d578350eb95103fddff72c70833",
+      "reasoning": "It proves direct equality with String.toUpper, closely capturing the intended behavior but not the reference's two-implementation equivalence statement.",
+      "score": 0.7
+    },
+    {
+      "id": "09ea296f866ab195d56d7c788dd26dd8c912adb47e499bbdf16f1e9af19042cc",
+      "reasoning": "The generated content is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "085930f4319b467afb4349f6d8821d289d5dfa831daa0057511c39e0e6f6da2c",
+      "reasoning": "It includes the requested correlation equivalence theorem with the same target and corresponding implementations.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

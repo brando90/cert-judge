@@ -1,0 +1,128 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "35bcb32f35318212d816a57f352e67ca637bc3dc0fa801a16c80d24e28d7c4cc",
+  "case_count": 8,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "2ea663bcd6b88bbe687544fdfc86c2157d1dee4597926816a093debbfe17af58",
+  "completed_at": "2026-08-26T09:06:18.714434+00:00",
+  "effort": "low",
+  "elapsed_seconds": 26.096280833007768,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "af6584799fc15cc760e7410f849727ff0d44b7c35bee8d99a8410e8ca66f54a8",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "c8fac13ea65f44ad170e5a25111b57bd5a96f0d8b5ba615282c0dbbfd3f3a9cb",
+      "reasoning": "Generated theorem includes the exact bfs_equivalence_thm with bfsImp defined analogously and consistent structure, matching the reference's guarantee, though proof is sorry and completeness of correctness proofs also sorry.",
+      "score": 0.85
+    },
+    {
+      "id": "decee598b83c76ba9a75ae86ec616da7f74bf4460d868989abb62e18c17a1775",
+      "reasoning": "Generated theorem defines dfsImp but never states the dfs_equivalence_thm that the reference requires, so the core equivalence guarantee is missing.",
+      "score": 0.15
+    },
+    {
+      "id": "dfe049f7dce654987ae1f216733fcf10609b5f227678b6ac2ad3aca060f5b17c",
+      "reasoning": "Generated theorem defines dijkstraImp but omits the dijkstra_equivalence_thm entirely, along with the correctness_thm, so the key equivalence guarantee is absent.",
+      "score": 0.15
+    },
+    {
+      "id": "f56cc7d5b899f3088b754b9d6e13858d862cdc89b0aa129da2e1f7ba5cd40a7d",
+      "reasoning": "Generated theorem has no max_elementImp definition or max_element_equivalence_thm at all, entirely missing the required equivalence guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "c558d1c71bc21f31a874b1920636ca84ecbf73bf6e39db324a6fc293a788b138",
+      "reasoning": "Generated theorem lacks any pairsSumToZeroImp implementation or the pairsSumToZero_equivalence_thm, so the reference's core guarantee is entirely absent.",
+      "score": 0.0
+    },
+    {
+      "id": "5b83df63b86d1bd3bd554d2664c998ea1eee4707bfdbe52c267252973dcc30d9",
+      "reasoning": "Generated theorem file is byte-for-byte identical to the reference implementation, preserving all stated theorems and guarantees.",
+      "score": 1.0
+    },
+    {
+      "id": "a2d2452505071f4e5db699d4e2457460e22dbed8efc771c3aa0f01b074ffbeba",
+      "reasoning": "Generated theorem has no decodeShiftImp definition or decodeShift_equivalence_thm, only an unrelated decodeShift_correct theorem, missing the required equivalence guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "37d3f676ada25c7a628507d0315293842e6e7d3793f41b2e041ecfb439fb6ef1",
+      "reasoning": "Generated theorem has no primeLengthImp definition or primeLength_equivalence_thm, offering only a prime_length_correct theorem instead, missing the core equivalence guarantee.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.010864,
+        "inputTokens": 10789,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 18403,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0222546,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1857,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 18403,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 18403,
+          "input_tokens": 2,
+          "output_tokens": 1857,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1857,
+      "output_tokens_details": {
+        "thinking_tokens": 832
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

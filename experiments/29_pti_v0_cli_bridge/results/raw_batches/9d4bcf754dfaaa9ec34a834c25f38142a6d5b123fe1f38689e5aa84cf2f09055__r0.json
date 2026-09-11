@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "9d4bcf754dfaaa9ec34a834c25f38142a6d5b123fe1f38689e5aa84cf2f09055",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "912121ee1504a2dedf2e23861b769df469b6415cce34b67467621ed399e27295",
+  "completed_at": "2026-08-26T08:48:34.782943+00:00",
+  "effort": "low",
+  "elapsed_seconds": 41.4320336660021,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "65aab86a608e0ce2a3e41cd6988302b67c033b711382fd6fd1b3cedf3b9a62d9",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ea50062caac2d6c53151ba1ef0f906138b6a8bfa6d6daeb256689ba63a2619ba",
+      "reasoning": "Generated theorem statement is identical to reference (compare_digest_imp = compare_digest_func), still sorry, with supporting implementation/tests.",
+      "score": 0.85
+    },
+    {
+      "id": "ae1b747b7210fb5bfc7dc2ff00e5dc1a538aee56c595e4f4e21a1b39c3bfefe0",
+      "reasoning": "Theorem statement matches reference but underlying bisect_left_functional has an apparent logic bug (mid-1 recursion), weakening equivalence to a buggy implementation.",
+      "score": 0.6
+    },
+    {
+      "id": "be9d57eab441afe9585c7f071b199255584a22179fd5e4ab9ef0273d8449fb48",
+      "reasoning": "Full pipeline with Pre/Post/partition properties and the exact equivalence theorem statement (sorry), closely matching reference structure and intent.",
+      "score": 0.9
+    },
+    {
+      "id": "8eecb7adf639aff875e5ea550a429736b7e1e5676c182d51f62886b2a57ea45e",
+      "reasoning": "Reproduces the exact covariance_equivalence_thm statement with sorry, backed by matching functional/imperative implementations and tests.",
+      "score": 0.85
+    },
+    {
+      "id": "431a3a716cd0c2b7df9bdbeb4d6d77e6830ff3fa56b860b2ac2c6f4401a66992",
+      "reasoning": "Includes exact equivalence theorem plus proven symmetry/self-variance theorems, only shift-invariance and final equivalence left as sorry.",
+      "score": 0.85
+    },
+    {
+      "id": "39aac778c8fa54bf14bdfa3c53236a3b9258ad52f761b3e471f445a1bfa9110d",
+      "reasoning": "Full pipeline reproducing the exact equivalence theorem (renamed variable only) with matching functional/imperative implementations and extensive tests.",
+      "score": 0.85
+    },
+    {
+      "id": "8b121714c7382a0df97fecb0e6e155c5e67e2d26b31e1693bedb1a2e85b7e1b0",
+      "reasoning": "The generated file omits the required perfectSquareOrAddFive_equivalence_thm entirely, only providing a different correctness theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "bf3ce94aa336154e76809ed958a24cecd6390b8186ab146814a92e897331c512",
+      "reasoning": "The quadAbsDiffPlusThree_equivalence_thm is missing entirely; only an unrelated correctness theorem is proven.",
+      "score": 0.1
+    },
+    {
+      "id": "6956f7a210d16e43a5c9d95f1ae949dd1698680c4561298905eda0168e924185",
+      "reasoning": "The insort_equiv_thm required by the reference is absent from the generated theorem file entirely.",
+      "score": 0.05
+    },
+    {
+      "id": "8043992cf6648d578e4a029a060983c8217bf7a050bef2c8e591b1b62195d4ee",
+      "reasoning": "Full pipeline including the exact insort_equiv_thm statement (sorry) plus Pre/Post and sortedness properties matching the reference intent.",
+      "score": 0.85
+    },
+    {
+      "id": "63428aa1d21fbd2cd22579f923bd40a947a93b41bc69b06f4445679e94d903df",
+      "reasoning": "The required heappush_equiv_thm is missing entirely from the generated theorem.",
+      "score": 0.05
+    },
+    {
+      "id": "0267e387b12e9567ff891a10b5b588d707c1afc715f61f7af9391961a781ed45",
+      "reasoning": "Includes the exact heappush_equiv_thm statement (sorry) plus Pre/Post/invariant properties matching reference structure.",
+      "score": 0.85
+    },
+    {
+      "id": "8eb4598d4bc2deb14ea5f2c9eb375723539b7d0acc9e62ba5c1e0733ca0e8ebc",
+      "reasoning": "Uses unrelated loads/loadsImp-free API, contains invalid Lean syntax (e.g. 'end' as identifier), and never states the required equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "5e666d5276a459197465e133c77a907525b581d5565fd1d99aefd25937604757",
+      "reasoning": "Wrapped in markdown fences (invalid file), lacks loads/loadsImp functions, and never proves the required equivalence_thm.",
+      "score": 0.0
+    },
+    {
+      "id": "d2253a82baf2e2f62a0e925f191fdc28a2be27a0003ee6ee859410a193d81976",
+      "reasoning": "Contains invalid Lean syntax ('end' used as bound variable), no loads/loadsImp, and omits the required equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "9b11ab7f170157df07fb96c102b4b099d525f8e6d589426fdc2d99b16919151c",
+      "reasoning": "Entirely unrelated SafeCounter implementation with no relation to the reference's Pre/Post trivial correctness theorem domain.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.044298000000000004,
+        "inputTokens": 44228,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 55039,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.2489788,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2773,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 55039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 55039,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 55039,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 55039,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 2773,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2773,
+      "output_tokens_details": {
+        "thinking_tokens": 986
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

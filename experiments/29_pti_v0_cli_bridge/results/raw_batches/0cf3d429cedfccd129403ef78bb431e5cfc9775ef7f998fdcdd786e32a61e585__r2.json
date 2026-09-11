@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "0cf3d429cedfccd129403ef78bb431e5cfc9775ef7f998fdcdd786e32a61e585",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "e89862a64de1949be3ecff3a243a1ac6653380f802b0c88720d683460d022597",
+  "completed_at": "2026-08-26T08:09:23.254808+00:00",
+  "effort": "low",
+  "elapsed_seconds": 47.74165041698143,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "91dec49b6683566cf6dad8dc6672c65da248c639b6068422581ee25ecfb734c0",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "fe15707437f06f2ecb87858df1603e67b2954aa6a08b31dce7a3663d55a87efb",
+      "reasoning": "The generated bisect_left_functional uses wrong mid computation and recursion direction (mid-1 instead of mid+1), diverging substantially from the reference semantics despite matching theorem signature.",
+      "score": 0.15
+    },
+    {
+      "id": "83943c4cf42b25cae8ba1a61bc9d717d492c2dae4e23f1e7cee70d1d6b87c0af",
+      "reasoning": "The equivalence theorem statement matches the reference, but the underlying covariance/mean definitions contain sign and conditional bugs that undermine the semantic content.",
+      "score": 0.5
+    },
+    {
+      "id": "f1e4e61d6e9f4f0d935237b677dd9def13b60710b7718fbe719e0ca697532eee",
+      "reasoning": "Faithfully reproduces the covariance/variance definitions and equivalence theorem matching the reference structure.",
+      "score": 0.85
+    },
+    {
+      "id": "a181d9cee99c4d8cf586ed16a09a2cd93c6a3937be6369fb0b36aef775dbcaa1",
+      "reasoning": "Reproduces the quantiles implementation and equivalence theorem consistent with the reference.",
+      "score": 0.85
+    },
+    {
+      "id": "a8befe273e545d8cedf82dee6781fe323df208052e6a11c4be3427f607c650df",
+      "reasoning": "Implements insort_left with matching bisect_left helper and equivalence theorem consistent with reference.",
+      "score": 0.85
+    },
+    {
+      "id": "8a80ffebc159d420299b2649b796418ee9ab0866a00022caa6a7319c8504c6e2",
+      "reasoning": "Full pipeline with correct bisect_left logic and matching equivalence theorem statement.",
+      "score": 0.85
+    },
+    {
+      "id": "ee99a398f60568d95cd50c059e88aa2654d1ab9f3f6ca8b1e64fe2be3b001d09",
+      "reasoning": "Matches the equivalence theorem signature but contains an off-by-one bound bug (parentpos ≤ heap.size vs <) that could break equivalence semantics.",
+      "score": 0.55
+    },
+    {
+      "id": "8ab8cd4b9da8db43799a14ebe861bc3ce2b099a6c89bdc231ea203fe3361cccb",
+      "reasoning": "Correct siftdown bound checks and matching heappush equivalence theorem structure.",
+      "score": 0.85
+    },
+    {
+      "id": "585173482ca3dc4ca9b492dfd825fc93343e390a136d4d6861724b883a75d647",
+      "reasoning": "Reaches the equivalence theorem statement matching reference but omits substantial correctness/property theorem bodies (left blank).",
+      "score": 0.55
+    },
+    {
+      "id": "7b49d04fb0940f3fa127615c9a96b5b6c4683b1d270400e047de214157e331ce",
+      "reasoning": "Implements get_equiv_thm exactly matching reference structure for imperative vs functional queue.",
+      "score": 0.85
+    },
+    {
+      "id": "2784e3bd09d3f81000761cce82c1f95c30e36601e53776168f37b2fe5f9e3fb2",
+      "reasoning": "The correctness_thm and its proof exactly match the reference including proof script.",
+      "score": 1.0
+    },
+    {
+      "id": "435c6aca1692c941da938bdd87ac73df021db4acd0c192303cda8b81deeb8e3f",
+      "reasoning": "update_equiv_thm matches reference statement with consistent functional/imperative counter implementations.",
+      "score": 0.85
+    },
+    {
+      "id": "43a0b53a36c8839777eecfda45346d9f3b9ce3afb6486e6fcb8b0098da8952c8",
+      "reasoning": "The generated file completely lacks the myOddSumParity_equivalence_thm and any Imp counterpart required by the reference, being unrelated content.",
+      "score": 0.0
+    },
+    {
+      "id": "074e86c9b4acd89c726140d1a60d5f72417691840ee5a16f5464ee173af5bf22",
+      "reasoning": "get_equiv_thm statement matches reference exactly with consistent functional/imperative ChainMap implementations.",
+      "score": 0.85
+    },
+    {
+      "id": "de10354ee34370500ff94ce7b592b6206fe28bfc9034736f3c94ecaa548bc25d",
+      "reasoning": "Provides a correctness theorem for safe path traversal but structured very differently from the trivial reference proof, with substituted definitions.",
+      "score": 0.4
+    },
+    {
+      "id": "7d5a26a9171f2e4c12ba5bc414779de9ffb8e1b661afc09d5ded75bebc5f643a",
+      "reasoning": "Provides multiple related but structurally different theorems instead of the single trivial correctness_thm in the reference.",
+      "score": 0.4
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.041010000000000005,
+        "inputTokens": 40945,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 56005,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.039365,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2816,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 56005,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 56005,
+          "input_tokens": 2,
+          "output_tokens": 2816,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2816,
+      "output_tokens_details": {
+        "thinking_tokens": 1145
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

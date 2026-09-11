@@ -1,7 +1,8 @@
 # OPEN QUESTIONS — human decisions needed for the ICLR 2027 submission
 
-TLDR: seven decisions the agent could not (or must not) make alone; nothing here blocks reading the
-draft, but #1–#4 should be settled before the Sep 18 abstract deadline.
+**TLDR:** The remaining author decisions concern the panel scope, title, decision utility, residual
+legacy appendix figures, and the submission bundle. Experiment 29 resolved the prior PTI recompute,
+Ethics-statement, and headline-figure questions.
 
 1. **72-vs-75, Option B (memo §6.1 recommends it; requires approval because it changes headline
    numbers).** Rename the 3 stale `0_unsafeMultiply_safe` label rows to `1_unsafeMultiply_safe` and
@@ -14,26 +15,23 @@ draft, but #1–#4 should be settled before the Sep 18 abstract deadline.
    Behavioral Stress Tests Predict Human Agreement? …*, also 9/10) names the formal-code domain in
    the title, which #1 does not. One-line change.
 
-3. **`PTI_{1,2,3}` headline recompute.** The memo (§2.4) wants the primary bridge to be
-   `PTI_{1,2,3}` vs `TI_{m1}` with P4 standalone. Cached per-judge artifacts store only the
-   aggregated quality term (`C_f`) — not the four properties separately — so this needs a rerun of
-   the property pipeline over cached detail rows (no new judge calls if detail rows suffice, else
-   API-priced). The draft defines `PTI_{1,2,3}` as the going-forward object, reports the documented
-   `PTI_var` numbers, and explains why that does not put stability on both sides at m1. **Decide:
-   ship as-is, or schedule the recompute before submission.**
+3. **Resolved by Experiment 29 — three-property sensitivity.** The frozen v5 run computes all four
+   properties separately and reports both four-property `PTI_v0` and the labeled
+   `PTI_{eq,bm,ms}` sensitivity. Their primary judge-level rank statistics coincide because they
+   retain the same tie pattern; neither result supports a positive bridge.
 
 4. **Decision-utility measurement** (screen's headline number: % human validations avoided at
    false-pass tolerance α). Framework + metrics are in §5; no value is claimed. Needs ~40 judge
    configurations (API-priced) per the memo. **Decide: pre-register + run before ICLR, or keep as
    registered-next-analysis (current draft).**
 
-5. **Ethics statement.** Commented stub in `main.tex` (annotators were consenting research-team
-   members; no sensitive data). ICLR treats it as optional. **Decide: uncomment or leave out.**
+5. **Resolved — Ethics statement.** The Ethics statement is active before the references and states
+   that annotators were consenting research-team members and no sensitive data was used.
 
-6. **Figure regeneration** (CHANGES §7 list): embedded "TI_var"/"cert index"/"pass1/pass2" labels in
-   7 PNGs. Regenerating is mechanical (matplotlib scripts listed) but touches cached results
-   packages; captions currently bridge the naming. **Decide: regenerate before submission or ship
-   with caption notes.**
+6. **Residual legacy appendix figures.** Experiment 29 removed the old raster overview and regenerated
+   the new outer-bridge figures from audited source data. Some historical appendix PNGs still embed
+   `TI_var`/`cert index`/`pass1`/`pass2`; their captions disclose the legacy names. **Decide: regenerate
+   the remaining historical appendix figures before submission or keep the explicit caption notes.**
 
 7. **Supplementary anonymized archive.** The Reproducibility statement promises: tidy panel TSV,
    audit scripts, probe/prompt definitions, cached bridge statistics, pre-registration docs.

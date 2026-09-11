@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "d174c2ef0c20a5f05e3aa0dcc76d5d28c67b277d35fb04a5914f4b1db67e765a",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "c9ceac1acfe1dd0900dff949b112c3b474975b259ff886467a8628a7b171240d",
+  "completed_at": "2026-08-26T07:24:22.514591+00:00",
+  "effort": "low",
+  "elapsed_seconds": 32.015788207994774,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "dc26985d5d8489313ffb368a5b4b6ac9a034f9887ca68b8f64b599ffda79fc2b",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f2f959af94bc68112eb910bb0fd45344760aa0375082ed4bad21623f041f186d",
+      "reasoning": "The generated theorem has exactly the required equivalence statement for the two comparison implementations.",
+      "score": 1.0
+    },
+    {
+      "id": "969ecd2b3b4437fb255c7541a652738db0012e18429bc44655cc303c37726f96",
+      "reasoning": "No bisect equivalence theorem is provided, so the reference guarantee is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "6faf0cf4d5b59ac61e21e1413279ad62089d1ebca7efc2ea36b8970569e8ae55",
+      "reasoning": "The generated code provides no theorem equating the imperative and functional bisect implementations.",
+      "score": 0.0
+    },
+    {
+      "id": "53f7e36eb4ba18d8d385a2ae2123e54bec6c8170db77f14d064641d9926f3d12",
+      "reasoning": "The generated theorem states exactly the required covariance equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "4aaf732ff1c4f76eb67d5c72b6ee9fdf3c755bc2c454ae9dbadd81f5408bbad4",
+      "reasoning": "Although both implementations exist, the required covariance equivalence theorem is missing.",
+      "score": 0.0
+    },
+    {
+      "id": "32c54e9e2c0d09a6c6356f8fc4af6d26cfd88a5f19fe49a164731b334d15b76a",
+      "reasoning": "The generated code never states the required functional-versus-imperative quantiles equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "72db7621d6e17b5fa52b38f86fd6aacdba539ce7e81c95b574af80c05bc4bd92",
+      "reasoning": "It defines only a differently named functional operation and correctness property, with no imperative equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "74d578c6a0037cbe3100d05416f5bb251809633f80825bb65991ba1febdbd33e",
+      "reasoning": "The submission changes the input type and provides no imperative implementation or equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "3eeed8431d163226fc577d29a38e45925cf3bdf967b1b8d0f60d388a22371368",
+      "reasoning": "No insort equivalence theorem is present in the generated code.",
+      "score": 0.0
+    },
+    {
+      "id": "66ff7eb5de3a8409b6d06f58ec908e298082d216be4f1469e042580e26b24b8f",
+      "reasoning": "The generated theorem has exactly the required insort equivalence statement.",
+      "score": 1.0
+    },
+    {
+      "id": "2273f3f4f23c324c158021a30441286b212e8382adb670ab7cc117fc3bdf29cf",
+      "reasoning": "The generated code contains no theorem equating heappush_imp and heappush_functional.",
+      "score": 0.0
+    },
+    {
+      "id": "25a5290d1d63776de1a920a15beb3b0aa09e15f9d11a786c5b59283041ec8abd",
+      "reasoning": "The generated theorem has exactly the required heappush equivalence statement.",
+      "score": 1.0
+    },
+    {
+      "id": "4f7d75994e58962bc7a18e48502a5458810ccee71c9fce3bc327ac960af450f5",
+      "reasoning": "The generated submission neither defines loads and loadsImp nor supplies their required equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "c86b44ea2e78f7c10f6b4db88c79667a62f1067e7dc3f554e4da924a2ccd9ff0",
+      "reasoning": "This defines a different JSON API and contains no loads-versus-loadsImp equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "0b1cc7ed575184c53fd98a13e801cb80108fe708c425786d978a596c54604c67",
+      "reasoning": "The submission provides a different decoder API but no required loads equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "6f04eb330ca6a7bd21717cc18a73186c43297d36e28d78e663aa329eb1af07aa",
+      "reasoning": "The generated SafeCounter contracts do not define or prove the reference correctness_thm over Pre and Post.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "487a0e48d193dad5dd1a35111cd32c3f6616db851f1c38834ec3944fab4bb6e9",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "e8b98a99d98789f50eca4f57daf374359117cef1fd2240bceeee8441977e84ba",
+  "completed_at": "2026-08-26T09:23:22.540037+00:00",
+  "effort": "low",
+  "elapsed_seconds": 28.9894786659861,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "9e36deff6c085b1a06109c8b324c08762be8b6241ddf5d9db3b4fdcc1d1ae2b0",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f8a1050bc708ba585acb47563626b12f83c7eda56c40c4e233305cb909e562eb",
+      "reasoning": "The generated theorem exactly states the required equivalence between `loads_imp` and `loads_func` for every string.",
+      "score": 1.0
+    },
+    {
+      "id": "e473bbf927c24dab3239f6323556901326af79aef7902c8c820770872f92f070",
+      "reasoning": "The generated theorem exactly matches the required universal equivalence of `unquote_imp` and `unquote_func`.",
+      "score": 1.0
+    },
+    {
+      "id": "dbbd1fe3c5681a7be6c95619c7c11fd6cfb9f309f6c9871ccf25b64a70658ef2",
+      "reasoning": "No equivalence or correctness theorem relating `compare_digest_imp` to `compare_digest_func` is provided.",
+      "score": 0.0
+    },
+    {
+      "id": "8c8123f8ae461d588109a25a486b2c4c997abcac51fcf60a40558981b309d419",
+      "reasoning": "The generated file omits the required `compare_equiv_thm` entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "759fc9521ded9af6ee7432d251d2072bf1a1965f55f2f5ce3b2336926c4f5749",
+      "reasoning": "No theorem establishes equivalence between the imperative and functional bisect implementations.",
+      "score": 0.0
+    },
+    {
+      "id": "90c761a99b03f5b4706191eb980e4d51c218007ee7b3ce5388c80630a9fea1d7",
+      "reasoning": "The generated `bisect_equiv_thm` has the same quantified statement and equality as the reference theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "1a081750c722896676f77aaa8456ea5a59046af202507eaf9129256780f1b106",
+      "reasoning": "The generated covariance equivalence theorem is identical to the reference statement.",
+      "score": 1.0
+    },
+    {
+      "id": "3ddd69d6e7a0ed4add92fd0518d74cceccf29802ff4a5a765c4625f78cbcb11c",
+      "reasoning": "The generated theorem exactly asserts the required equality between `benchmark_covariance` and `covarianceImp` for all inputs.",
+      "score": 1.0
+    },
+    {
+      "id": "1f56bd32714f5b6a51f0e47d7f53b4b2637ab57129e5e839d1a6939822bcb14b",
+      "reasoning": "The generated theorem exactly states the required functional-imperative quantiles equivalence.",
+      "score": 1.0
+    },
+    {
+      "id": "7383bd1a58c2837afa7014c79fe42b97b57c2df831c5ef07fdaa4135043c162f",
+      "reasoning": "The generated theorem and its precondition/postcondition are identical to the reference correctness guarantee.",
+      "score": 1.0
+    },
+    {
+      "id": "5610aa56fc0797760bad0a1bad4d275b98ed88947472714b8a2f6172d8d52d35",
+      "reasoning": "It proves a differently named functional specification theorem but provides no equivalence theorem for the reference functions.",
+      "score": 0.0
+    },
+    {
+      "id": "4c48bac1b1cad9d9b368b2b59af2e36c85700affad78abc690dba95e6c17abe3",
+      "reasoning": "It uses different names and integer inputs and contains no theorem relating the reference functional and imperative implementations.",
+      "score": 0.0
+    },
+    {
+      "id": "2aaddabe94d4797bd382059be6a760d6c732349e3d605cec83af1ffcc791c240",
+      "reasoning": "It gives a loosely analogous heap-pop specification theorem but changes the data model and does not establish the reference `HeapPop` correctness theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "16cb6a8a12ccac30adcdb9ef9c6fe9e82f51191b6328dad107b3ee0b4b5c7eba",
+      "reasoning": "No `insort_equiv_thm` is present, and the functional bisect helper is materially inconsistent with the imperative one.",
+      "score": 0.0
+    },
+    {
+      "id": "19a5f92f72c8d7a23b6eac2c14dcf25059449abc4d40a1849384cdef7d5c2996",
+      "reasoning": "The required equivalence theorem is absent despite defining related implementations and auxiliary properties.",
+      "score": 0.0
+    },
+    {
+      "id": "267713172a937bf68141113421fc0abcadee153c0970abd6cac3b5b7200ca160",
+      "reasoning": "The generated theorem concerns a local replacement specification and does not relate `replaceSpaces` to `replaceSpacesImp`.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

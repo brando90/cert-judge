@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/brando90/cert-judge/schemas/PTI_v0_scores_v1.json",
+  "title": "PTI-v0 provider-independent score payload",
+  "description": "A partial or complete long-form score payload accepted by run_pti_v0.py compute-properties. Completeness is checked against the bound request manifest; missing values are never converted to zero.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "metric_version",
+    "request_manifest_fingerprint",
+    "records"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "PTI_v0_scores_v1"
+    },
+    "metric_version": {
+      "const": "PTI_v0"
+    },
+    "request_manifest_fingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "score_cell_id",
+          "repeat_id",
+          "normalized_score"
+        ],
+        "properties": {
+          "score_cell_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "repeat_id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "normalized_score": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true,
+  "x-runtime-constraints": {
+    "score_cell_id": "must occur in the frozen score request manifest",
+    "repeat_id": "must be less than that cell's frozen repeat_count and unique within score_cell_id",
+    "normalized_score": "must also be finite; JSON NaN and infinities are rejected",
+    "coverage": "incomplete cells remain missing and cause property NOT_COMPUTABLE when frozen coverage is not met"
+  },
+  "examples": [
+    {
+      "schema_version": "PTI_v0_scores_v1",
+      "metric_version": "PTI_v0",
+      "request_manifest_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+      "records": [
+        {
+          "score_cell_id": "0000000000000000000000000000000000000000000000000000000000000000",
+          "repeat_id": 0,
+          "normalized_score": 0.75
+        }
+      ]
+    }
+  ]
+}

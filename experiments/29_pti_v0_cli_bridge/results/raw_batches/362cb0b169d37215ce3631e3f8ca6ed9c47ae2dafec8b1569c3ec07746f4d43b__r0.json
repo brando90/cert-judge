@@ -1,0 +1,128 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "362cb0b169d37215ce3631e3f8ca6ed9c47ae2dafec8b1569c3ec07746f4d43b",
+  "case_count": 8,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "92dc49881b3d7893fe2b2529625344371f764a5e3e0a299f1bc4c5a4b074359c",
+  "completed_at": "2026-08-26T08:20:02.001441+00:00",
+  "effort": "low",
+  "elapsed_seconds": 18.731614290969446,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "936fbd60096840c794dd0be8da45bd3b98fbc7770efc7a04a544dd3b8b25f18f",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e61b783c555f67a12ace2bbb1ee28d97a3028806e113d0c83e092c7a0ff612f1",
+      "reasoning": "Generated theorem statement matches reference: bfs g start target = bfsImp g start target, with consistent supporting definitions.",
+      "score": 0.9
+    },
+    {
+      "id": "a24f0e302936e83a8b85d3f3dd6029a50bad1eef710523757959557901c7e1b8",
+      "reasoning": "Generated theorem matches reference equivalence statement dfs = dfsImp with consistent supporting code.",
+      "score": 0.9
+    },
+    {
+      "id": "d9adb580b8200794025a871c85df999a4145d7189602236f7675dd281009f91a",
+      "reasoning": "Generated theorem matches reference equivalence statement dijkstra = dijkstraImp with consistent supporting implementation.",
+      "score": 0.9
+    },
+    {
+      "id": "cc7e40f56afa8623a5eee3ae6c1c1690a329e0555a2cf8ef26c27feabbbe71e4",
+      "reasoning": "Generated file lacks any imperative implementation or equivalence theorem matching the reference's max_element/max_elementImp equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "d94d3da586e8382eb6b420822ba8fec7fa05131af1007c50fa2c47b536a52fc0",
+      "reasoning": "Generated file has no imperative implementation or equivalence theorem corresponding to the reference's pairsSumToZero/pairsSumToZeroImp statement.",
+      "score": 0.0
+    },
+    {
+      "id": "6e35e65fac678384837c3ab3a7ce043e7d96327197ef0b32c94c50f41383a75a",
+      "reasoning": "Generated file has different naming (decode_shift, no decodeShiftImp) and different theorem statements (identity/spec theorems), not matching the reference's decodeShift = decodeShiftImp equivalence.",
+      "score": 0.1
+    },
+    {
+      "id": "793afc0b091dac1ea397339235a6e24ff11846d503e252342506aa5fca6a267e",
+      "reasoning": "Generated file defines decodeShift but has no decodeShiftImp or equivalence theorem matching the reference; instead has an unrelated correctness theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "2dd302f51ad712aed30a7a4e2ecdb2cedd2fffc2831eac35c9336e0a28e87f1f",
+      "reasoning": "Generated file lacks primeLengthImp and the equivalence theorem entirely, using different naming and a different correctness theorem instead.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.010014,
+        "inputTokens": 9944,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 11817,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0575108,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 915,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 11817,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 11817,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 11817,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 915,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 915,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

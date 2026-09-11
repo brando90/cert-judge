@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "945462244ca6aab241bde8053f54c81edbd734d9da0efe1c0fe49ae3c121773c",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "c13f4c9b2aedbe0030db54644ce4fd53bc19472db8cd69052f9ee40a6e8a4b05",
+  "completed_at": "2026-08-26T09:14:59.144926+00:00",
+  "effort": "low",
+  "elapsed_seconds": 28.334474291012157,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "b09dfe2bdc3d4cd4eef64d45cd3aaa883c2d270588afcbb5c92e75aa69aba606",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "cfbb321562249acf8bac5aaaae4567da7cbf9ebc885e496559aaa5fde27adbd5",
+      "reasoning": "The generated file contains no mean equivalence theorem, so it does not capture the reference guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "dc4f34a0e8cd912e7fc073fe0b171cec0bd6c181ae95c33c2a4c9d373dacb949",
+      "reasoning": "It states the requested equivalence theorem, but the functional variance implementation materially differs from the imperative one, making the claim unsound.",
+      "score": 0.15
+    },
+    {
+      "id": "c58ede02617dce57438e2f2124b8db37466b293132bcd8d4207e959f3331aac0",
+      "reasoning": "The generated file contains no correlation equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "c305663c4b2254a25b72ae9b15c7e24c89b264bc3e9b5368ce03c9b1783f0520",
+      "reasoning": "Although it states the reference-shaped theorem, the model insertion evicts at size greater than or equal to maxsize while the imperative code evicts only above maxsize.",
+      "score": 0.1
+    },
+    {
+      "id": "ee6283ec4916e6119e6dfabf6ef7f13f71a4b9ea17c04327a2a4ed5168eddd33",
+      "reasoning": "It states exactly the required imperative-functional equivalence for the supplied implementations.",
+      "score": 0.9
+    },
+    {
+      "id": "9e838356cad17cc2832126b2d10c482e2494b0d98f084345c258d9b68f81ba68",
+      "reasoning": "The generated file contains no dedent equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "6743a79e693095400adebd17ceb9ac60ca505227687818faa886de87ebe39872",
+      "reasoning": "The generated file contains no insort equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "7905acde12db04ac591adc28bd606370f800ac8b6fdc13407dec7960128a0fb9",
+      "reasoning": "The generated file contains no insort equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "65a39058c44a92347e0431f9318a30effa5928168d3a94638aa457db4b394d75",
+      "reasoning": "It states exactly the required equivalence, and both implementations perform the same character-wise encoding.",
+      "score": 0.95
+    },
+    {
+      "id": "67227da81635e763548032ca1908141e980a94aaa35726a975f198c2b5d80e4c",
+      "reasoning": "The generated file contains no quote equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "1e70d58c253cb9c2a1981d221f48905a0a686ce3119404493dc6542243940daa",
+      "reasoning": "The generated file contains no quote equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "147a2a7b93bd72caa4c3afb5fdbcbf4f51540ea8a4e9fabc2a7d5b53879e82c0",
+      "reasoning": "The generated file contains no join equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "3ce0e3c1ad814bb0cdb6795380df762547841be14c405860090a228915998d87",
+      "reasoning": "It states the requested join equivalence and the two implementations use corresponding quoting and joining logic.",
+      "score": 0.9
+    },
+    {
+      "id": "3ffc2c9fa462dceb191245f92e69884ef0ab543aad0e52a31be869dc2ad50553",
+      "reasoning": "The generated output contains no theorem at all, including no Base32 equivalence claim.",
+      "score": 0.0
+    },
+    {
+      "id": "0c633dedb9faaa053091e81e1beec9b98ca26c2028a0e59a881b3c1b97fcec67",
+      "reasoning": "The generated file contains no Base32 encode equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "0c361997aa608f9b73847753e291d07996ced898bea4018e1a78fa5bdb0c02fd",
+      "reasoning": "The generated file contains no JSON loads equivalence theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

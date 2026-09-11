@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "31894116aa4b1986389a15cff24243cdab5f829db36acb61040d3ed95fa5ad57",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "8817a7cd361c01495556d15765d7cbe255d2c443ec8a77fc8c99417dcf4f1a23",
+  "completed_at": "2026-08-26T06:44:50.970365+00:00",
+  "effort": "low",
+  "elapsed_seconds": 38.689994290994946,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "af6766de61a3269f9b4c856c9db6be38eabc5a6bf8c7d9d74d8477ff658180f8",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "b94ec05bdf12124d5dc2caf9cd280c34f3f73b97bd7489923f14fafefa5a4e08",
+      "reasoning": "The functional bisect uses subtraction for its midpoint, so it generally disagrees with the imperative implementation.",
+      "score": 0.1
+    },
+    {
+      "id": "ec4d4da0bb57d12322699fb3a42406d0e01f35cd903aa132928f307adb4b7e43",
+      "reasoning": "Both branches handle empty and safe strings identically and the character loop implements the same quote replacement.",
+      "score": 1.0
+    },
+    {
+      "id": "d755b53134be90c9f48e7c10f7872ac67ad3c9f066a2150bb291de6a36f724fe",
+      "reasoning": "The implementations appear semantically aligned, but the requested equivalence theorem is missing.",
+      "score": 0.6
+    },
+    {
+      "id": "c56fc7e06b26ebd06fda5e5b5c8662a9bab2c3b26a5f02fc7ea735b61457b296",
+      "reasoning": "Despite the shared malformed safe-character predicate, both join paths use it consistently and are equivalent.",
+      "score": 0.99
+    },
+    {
+      "id": "e01d305673bce5dfba6d80f16e87adce50b192a03bcd90424aef530615535494",
+      "reasoning": "The functional encoder pads incorrectly and subtracts bytes while the imperative encoder performs normal Base32 packing.",
+      "score": 0.05
+    },
+    {
+      "id": "cc396af82f8be34af9b720ce5cbaff98ea556c961b4a440a01ef73e3c2af5f0e",
+      "reasoning": "The two encoders are implemented consistently, but the requested equivalence theorem is absent.",
+      "score": 0.65
+    },
+    {
+      "id": "99ec21313024530f3f3b718a1f1e7e86723584abb6fde6771e41a7220c84f316",
+      "reasoning": "The imperative parser accepts keyword prefixes such as truex whereas the functional parser rejects them.",
+      "score": 0.55
+    },
+    {
+      "id": "9901aa2953335db561c8c5a3b3aff004c19410888da5c7b3d73bdadeeef4b4ec",
+      "reasoning": "The imperative parser accepts keyword prefixes such as truex whereas the functional parser rejects them.",
+      "score": 0.55
+    },
+    {
+      "id": "562cacb6d2549addf2b7503810154531417a7800ab9480ab903a7ee7d15d5686",
+      "reasoning": "Both unquoters use equivalent percent-decoding and malformed-sequence preservation behavior.",
+      "score": 0.99
+    },
+    {
+      "id": "77990d57a1941bdb0caeb0c3727004f531f96906d575e5aa2599586acec71466",
+      "reasoning": "The functional comparator returns inequality while the imperative comparator returns equality.",
+      "score": 0.1
+    },
+    {
+      "id": "4a7adfa01480b7ec497c7da597aba26da4bdc5eaa015e16ad3e21c8ab907aff3",
+      "reasoning": "The bytewise implementation equates matching string and byte inputs while structural TokenInput equality does not.",
+      "score": 0.6
+    },
+    {
+      "id": "e94ca8343b61238c4c7686ba80a83d17394a51ea5b3e56c37bbb22a599b0085e",
+      "reasoning": "The Kahn-style implementation is plausibly aligned with the ordering predicate, but the required theorem is missing.",
+      "score": 0.65
+    },
+    {
+      "id": "a5ad0eb84c99a539cd0b070345bb9473aa395a9f37ef7291f07c4a6033d58bbc",
+      "reasoning": "The supplied theorem exactly states the required ordering property and the implementation matches its intended algorithm.",
+      "score": 0.98
+    },
+    {
+      "id": "681aef5d72101561b6552ae0ac4758f6b13604b38252788dc425e66a4691d822",
+      "reasoning": "The benchmark and imperative median definitions are identical, but the requested equivalence theorem is missing.",
+      "score": 0.65
+    },
+    {
+      "id": "0d566d2a38749376019a2c11148a69ca7486c9525a54b4edb63c88b1b18c4e1b",
+      "reasoning": "The benchmark and imperative median-high definitions are identical and the requested theorem is present.",
+      "score": 1.0
+    },
+    {
+      "id": "225b5cae8c445007019a3585e717222a07849ffb1b6114006134bcec88f37d5f",
+      "reasoning": "The functional bisect has an invalid subtraction midpoint and updates the lower bound in the wrong direction.",
+      "score": 0.05
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "6aa8b86965a1a324488c5a02a3ecbff667041d93ae16205ad5e26a4ffa0eeea5",
+  "case_count": 7,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "01a72fb6dd3c97b5bd525c1414e6bfd4b0c316990bd004180167b583abeca96c",
+  "completed_at": "2026-08-26T07:03:36.029560+00:00",
+  "effort": "low",
+  "elapsed_seconds": 17.723552082956303,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "7aeea2ea36250b023f8fd2c7810d42b66845360cf8e1cdf45b3a33be0d535b55",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "eec1decf435ff149777c8acf89435429241852084dcb2a3416393785387c8920",
+      "reasoning": "The generated code contains the exact requested equivalence theorem with matching definitions and namespace.",
+      "score": 1.0
+    },
+    {
+      "id": "eefe17a39bd3574255177a1d0cb74057829610ae47bf1f17716dada469e5269e",
+      "reasoning": "The generated code contains the exact requested Dijkstra equivalence theorem with matching names and statement.",
+      "score": 1.0
+    },
+    {
+      "id": "efc610a8c2aa3526056a43effc393cb725ddb77f4d54262f4939f100b233d652",
+      "reasoning": "It defines only the functional maximum routine and correctness property, omitting max_elementImp and the requested equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "921feb4d6bcfbe41277002b6a2942ffe28ce6deed3f4dfc21dfe22e4353d7c5e",
+      "reasoning": "The generated theorem and all relevant definitions exactly match the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "8498e6efcc7195661c086e935586f95568d40729a77ef17609fe732e65ecc34b",
+      "reasoning": "It provides differently named snake_case functions and no imperative implementation or requested equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "d2c069191d661f16114a8d4635306b60dc6eca0d280375b4db7159938da9d0b2",
+      "reasoning": "It lacks decodeShiftImp and the requested equivalence theorem, and is in a different namespace.",
+      "score": 0.0
+    },
+    {
+      "id": "e6597e69198ad897da304d6c74d585ecae83c2545cfdc9d19955d39242657758",
+      "reasoning": "It provides a standalone prime_length correctness theorem but omits primeLengthImp and the requested equivalence theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

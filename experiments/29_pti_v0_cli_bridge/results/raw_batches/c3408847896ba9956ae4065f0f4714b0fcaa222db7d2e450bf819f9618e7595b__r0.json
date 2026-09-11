@@ -1,0 +1,112 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "c3408847896ba9956ae4065f0f4714b0fcaa222db7d2e450bf819f9618e7595b",
+  "case_count": 15,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "e87ec25a3105bac7430b75bc0a1ec47401e3cfe73df4d1398ced2cabb550c4e1",
+  "completed_at": "2026-08-26T07:34:03.688066+00:00",
+  "effort": "low",
+  "elapsed_seconds": 25.445098707976285,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "974649b3a10998dcdd5d71363bff1f427ee6a52082138fbbd629842527b6b89e",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "950b7b62559a0d8d0e236559b178fa49d2b0b545a3b13d544a85c27ce95b5157",
+      "reasoning": "The generated file states the exact BFS functional–imperative equivalence theorem with matching types and terms.",
+      "score": 1.0
+    },
+    {
+      "id": "9d09aa2a0afdb33e17c5e2d141864ec0ed4b4b7b6070d7cdb1818d5a1bbeb4b6",
+      "reasoning": "Although it defines both implementations and functional correctness properties, it entirely omits the required DFS equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "8d0bf237e3a43b60c70ab67ce966f112f4c8d3fa569bec6399e00420dc291ee7",
+      "reasoning": "It provides functional soundness and optimality claims but no theorem connecting dijkstra to dijkstraImp.",
+      "score": 0.2
+    },
+    {
+      "id": "524ff9795cc9cfafc4194fdb2a6f22df790d08182575600cd97665db95b73180",
+      "reasoning": "The generated theorem only proves a maximum-value postcondition and omits max_elementImp and the required equivalence guarantee.",
+      "score": 0.2
+    },
+    {
+      "id": "98d632015a9380c0ce096ef4982e41269068724a9780f5d6cf8085be95073f39",
+      "reasoning": "It proves equivalence to a declarative pair-sum specification but defines no imperative implementation or requested functional–imperative equivalence.",
+      "score": 0.3
+    },
+    {
+      "id": "4f45eaa54e25ea776e0440cb1c23c1967a2ee929e92b16c8ebfa4b084140a98a",
+      "reasoning": "The snake-case encode/decode identity claims do not define decodeShiftImp or establish the requested decodeShift equivalence.",
+      "score": 0.1
+    },
+    {
+      "id": "8197359c06d12639206ad352cc499fec3959092c129fd8ee00d1a7be5390fe0a",
+      "reasoning": "It proves a conditional encode/decode identity rather than equivalence between decodeShift and an imperative implementation.",
+      "score": 0.1
+    },
+    {
+      "id": "2454a0ad3aff7979191ac7c2d4c92962a3d9c271df961d52ab00b55ed8bd7b5d",
+      "reasoning": "The theorem establishes the functional prime-length specification but omits primeLengthImp and any equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "ef4dd133fb182907157e8c43750a32dcc453a162eeddce52a74e8f5575afdff4",
+      "reasoning": "It gives a sorting-and-permutation correctness claim for an Int implementation, not equivalence of the required Nat functions.",
+      "score": 0.2
+    },
+    {
+      "id": "53205618ec2392b559c788757778622a931951ecb51b4698dc7ea6893b80db9b",
+      "reasoning": "The generated merge-sort correctness claims are meaningful but do not relate mergeSort to mergeSortImp and use List Int rather than List Nat.",
+      "score": 0.2
+    },
+    {
+      "id": "9d85d3973dc751d244ad801ad0d212214f2467f532d1dc4959437458c7acad0b",
+      "reasoning": "It proves only sortedness and permutation properties for an Int merge sort, with no imperative implementation equivalence.",
+      "score": 0.2
+    },
+    {
+      "id": "8795e612d7f97375edb9f15341cee75b09d75c6861f36f0dff390876ed799711",
+      "reasoning": "It supplies functional sorting and permutation theorems but omits mergeSortImp and the required equivalence over List Nat.",
+      "score": 0.2
+    },
+    {
+      "id": "1d132f44a00a6ae0d17b294fdad52361070b3b58f29c2cb0a6d44625319631f7",
+      "reasoning": "The theorem establishes functional selection-sort correctness for Int lists but provides no selectionSortImp equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "fcec11ac09f3855bea93d377099b03c10b21c4be2933100fcf8611c322cf367f",
+      "reasoning": "It proves a sorted-permutation postcondition for an Int selection sort rather than the requested functional–imperative equivalence.",
+      "score": 0.2
+    },
+    {
+      "id": "48d355d42beced60a6aca1520a360785703066e54010331b370694ee8d83f092",
+      "reasoning": "It proves functional sortedness and element preservation for List Int but omits selectionSortImp and equivalence on List Nat.",
+      "score": 0.2
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

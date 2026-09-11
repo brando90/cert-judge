@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "3a8a67681e6ff7fd24af65137a3554f318bb9c0ca18020661abc346cb692f3ee",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "4b2122b2189d49483dacde65c2192c50e46965330d69416ede7009d67aac3ec2",
+  "completed_at": "2026-08-26T09:33:44.565218+00:00",
+  "effort": "low",
+  "elapsed_seconds": 28.37097679200815,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "e81deb92f55c4327cb4ea5b386f523f3edde09af6f8800f490a6bbf007ce66b9",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ed6c3de6e420776f728b74f4e0712885618e2de2122c44da17a8fb3632bac5ca",
+      "reasoning": "The generated file omits the required equivalence theorem between imperative and functional heappush.",
+      "score": 0.0
+    },
+    {
+      "id": "f6dfd6919b76ec19e995c4ced38be5b8bd6adff48f2af483e041fcc6bb119094",
+      "reasoning": "It states exactly the reference equivalence theorem for heappop.",
+      "score": 1.0
+    },
+    {
+      "id": "8a0956acb3bf23c0c6c8131095d52bafe858c72fea664494bc08d5cc019d2c18",
+      "reasoning": "The generated correctness theorem is identical to the reference theorem and its supporting definitions.",
+      "score": 1.0
+    },
+    {
+      "id": "5ce73b4f1c69c21820236735dadb107e1236f3deba08a4a4035507f4e38d5b16",
+      "reasoning": "It states exactly the reference BFS functional-imperative equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "ae20d190f8dbe85e814fec2b65c346ce433257604844b2802e5e1ac4845f424d",
+      "reasoning": "The generated theorem concerns sorting correctness rather than the required functional-imperative equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "392d3d436356a07c39e70c2462f3f721bab49bd8f039a8e25383304c59e6ec72",
+      "reasoning": "The generated file contains no DFS equivalence theorem relating dfs and dfsImp.",
+      "score": 0.0
+    },
+    {
+      "id": "6da9e666e91e0c040fa09d7e1680ef4ea09ab529d1848f5acff57b6e8659ee71",
+      "reasoning": "It states exactly the reference Dijkstra functional-imperative equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "cf8bfcacea670194a7a3627523000afdb33dc88b18fe0e8e6ef824b323e2f7c5",
+      "reasoning": "The generated theorem and implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "eafecdde61aabd6b05e69936142b848c7a54e9e58ea87fbe36342efcbf9a9c22",
+      "reasoning": "The generated theorem and implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "a3c14bcd634169ccb3b8a31366dd0c24b982b2245fabc0cd17941827f3d516b9",
+      "reasoning": "The generated theorem and implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "0b0098efe76f67568cc508fb2310009e0f81044a8de887b5a19bb2f73dfdeaa8",
+      "reasoning": "The generated file omits both max_elementImp and the required equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "de5f76102eb7ae1578c916cb5ddc8ae756d22836bc4fab7380b95042ea7bd886",
+      "reasoning": "It proves a specification relation for belowZero but omits the required equivalence with belowZeroImp.",
+      "score": 0.0
+    },
+    {
+      "id": "30132e61278eb2576c7486efcc5248bdf8dd4d4037967cd0c5ee11690b42d4a3",
+      "reasoning": "It omits belowZeroImp and the required functional-imperative equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "295314b004b321920a173742e3f33f1fc4d28bb891ca328469cd66a21477ccd8",
+      "reasoning": "The generated theorem is not the required equivalence with belowZeroImp, which is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "0729222775c7cce60709c48ef8a63cf5a053408161933f640e6ccaf3e6277416",
+      "reasoning": "It proves agreement with a duplicate functional specification but omits incr_listImp and the required equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "0e328aec741d8e01b04054d6858a87786dc92c03d8e16356ef4eb6f84cce1eba",
+      "reasoning": "The generated file provides no theorem relating pairsSumToZero to pairsSumToZeroImp.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

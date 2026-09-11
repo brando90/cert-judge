@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "d8799507c082e7cd78b9b01f3be66ad53dde0162791845dff8c2d6b1292d7371",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "99120db93fb51866b37bbf74a953de9091bae692af98d210eca0489d7b6fed1a",
+  "completed_at": "2026-08-26T07:44:31.454947+00:00",
+  "effort": "low",
+  "elapsed_seconds": 53.46551116701448,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "13be0be4c1e0d93b58fe4e4fe26353a012f0b4d864ae4d9e2884a3d374957810",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "2c997ff76ff5260e25bdd87aa0446afbdc5927b0fd22a7816e1c3659edb9e35d",
+      "reasoning": "Generated theorem is byte-identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "88368e99ee4dce585d08bb9c433a8bbf7a9f89ced438f960fab53739ff2189be",
+      "reasoning": "Generated theorem is byte-identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "849baf23f45a221e89406ff31818c210f9a485c8c7df1759beaf4e7e56107d21",
+      "reasoning": "Implements variance but sum_func/mean_func contain logic bugs (subtraction fold, inverted condition) and omits Pre/spec_prop/Post/correctness_thm sections present in the intended structure.",
+      "score": 0.35
+    },
+    {
+      "id": "3127e3e4bae100fb6bfbc31d3449225fe8db366f058dbba6cf05dce10b83c2d1",
+      "reasoning": "Matches the expected full file structure with Pre/spec/Post/correctness/equivalence sections, though mean_func still has an inverted condition bug and proofs are sorry.",
+      "score": 0.75
+    },
+    {
+      "id": "a2296c9c2e9968464d75a8f7ccb84b2b7fa969b66c24d5e1c5cb0e191d69bad1",
+      "reasoning": "Implements correlation but sum_func/mean_func are buggy and entirely omits Pre/spec/Post/correctness sections expected of the full spec.",
+      "score": 0.3
+    },
+    {
+      "id": "8a94041277fcb953a9afd12f1ec7caa2be3d13a20a4b3ac8d74fe2e8463cbe82",
+      "reasoning": "Full structure with correct mean_func, Pre/spec_prop/symmetry/Post sections present, matching the intended file shape closely though proofs are sorry and correctness_thm is missing.",
+      "score": 0.8
+    },
+    {
+      "id": "6c29642ebeaf9fb92d365d442faefdb1411911e9c59ad7f67ef07582dc48e16e",
+      "reasoning": "Provides a fully complete and largely proved implementation matching the fractions-core spec structure with canonical/addition theorems actually discharged.",
+      "score": 0.85
+    },
+    {
+      "id": "28661b535571319a0d94c6be4982da7463e5c32afe3b400769bdeb6d05124d16",
+      "reasoning": "Very close structural and semantic match to the reference LRU cache implementation, including matching equivalence theorem statement.",
+      "score": 0.9
+    },
+    {
+      "id": "3b54b29302061437e314b5d42e3108ea6d9cb92e15c8e49e8a92efbeb7273d91",
+      "reasoning": "Implements the core functionality and property theorem but omits the correctness theorem and other later sections expected in the full spec.",
+      "score": 0.55
+    },
+    {
+      "id": "32489394f2151a774fe22f90849a65d0756d15b2fbbc064cbf1cdb863c45332e",
+      "reasoning": "Implements indent functionality with proved default_thm but leaves idempotent_prop unproved and omits correctness_thm/equivalence sections.",
+      "score": 0.55
+    },
+    {
+      "id": "07645dcb4eb0b7d3eacbd181694b743972115b1d29ae19eeba6b4a8e479dae80",
+      "reasoning": "Complete implementation with margin_thm actually proved and matching structure through the equivalence theorem, closely mirroring the reference.",
+      "score": 0.85
+    },
+    {
+      "id": "2f5706600c6d1f88fac5cc80a7d84495284e4646c0da65dfd3c2f5b3831c734c",
+      "reasoning": "Implements an analogous sum-of-naturals program with pre/post conditions and tests but uses a different harness/style than the reference and lacks an explicit equivalence proof to a second implementation.",
+      "score": 0.45
+    },
+    {
+      "id": "9c3f43eb73ff69b5a0a474913247d635ae1a5da82a1a3b70611955e1ab4c8795",
+      "reasoning": "Implements a similar sum_nat function with pre/post but omits tests matching the harness style and any equivalence theorem, weaker alignment than sibling attempts.",
+      "score": 0.4
+    },
+    {
+      "id": "fac4db44f3c96e455a79ad639d88a3768c75e13507083b45409fc324e50794d8",
+      "reasoning": "Implements an analogous sum-of-naturals program with pre/post/tests similar in spirit to the reference but without an equivalence theorem to a second implementation.",
+      "score": 0.45
+    },
+    {
+      "id": "becce467b3e96ac22cebcd1f56c4087c406e21646b96b1765e39e64ccb1c045b",
+      "reasoning": "Implements bisect_left/insort_left with List (not Array) and includes plausible spec/correctness theorems (all sorry), reasonably aligned with reference intent but different data structure and scope.",
+      "score": 0.45
+    },
+    {
+      "id": "14b60cc5f3c0690805b45ac690cf7cd44ce5d8ac18acf184043abb105ada7a44",
+      "reasoning": "Similar bisect_left/insort_left content to the reference intent but wrapped in markdown code fences that would break compilation, undermining its validity as a Lean file.",
+      "score": 0.25
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.030526,
+        "inputTokens": 30446,
+        "maxOutputTokens": 32000,
+        "outputTokens": 16,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 43455,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.04077499999999999,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3208,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 43455,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 43455,
+          "input_tokens": 2,
+          "output_tokens": 3208,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3208,
+      "output_tokens_details": {
+        "thinking_tokens": 1380
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "535528a531bec2fb0ad66758f1c81476b0197ef772685d942f4828e119ebce09",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "efe7a654c9a97cc4b6c287a919208e6185e05c3075b4a65afe0e8fe8206c32b7",
+  "completed_at": "2026-08-26T08:24:35.495515+00:00",
+  "effort": "low",
+  "elapsed_seconds": 52.076594083046075,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "12975376a78c164f2d36bd1dd69d8b286923f84dedde870d0cc3f42a0eb5caa4",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ef9585f6d2bd0a0f87a8ce5c5890493ffcb87c1af097995dab5aee9ffe5bb155",
+      "reasoning": "Provides bisect_right/insort_right with matching spec and sorry proofs, structurally close to reference but type-assertion hacks are suspicious.",
+      "score": 0.55
+    },
+    {
+      "id": "f59b5bd155b082e0835870ef8070950e6d9b2769bdfcddafa6234233b2410c44",
+      "reasoning": "List-based bisect_right/insort_right with clean specs mirroring reference partition property, proofs left as sorry.",
+      "score": 0.6
+    },
+    {
+      "id": "781aa2d33c1dafc5199c5f95aa96d6495df6e1b90734cac1a5b7f9710878ee7b",
+      "reasoning": "Similar List-based bisect/insort implementation with matching partition specs, proofs are sorry.",
+      "score": 0.6
+    },
+    {
+      "id": "417addd8751035d5044359cc9a9d1fdfc947e5de33ff52cc208ef7e0095ffb07",
+      "reasoning": "Reference is a trivial placeholder; generated gives a reasonable safeCopy spec/proof skeleton (sorry) with decent test coverage.",
+      "score": 0.55
+    },
+    {
+      "id": "1f470a69d9f11a29ddae9bc52cb90c8657b3a8b7a0f52dd7668c655dac9adcfe",
+      "reasoning": "Similar safeCopy spec and sorry proof against a trivial reference, reasonably detailed postcondition.",
+      "score": 0.55
+    },
+    {
+      "id": "9f7b4ad5068546eb0d621aafc65904c6be382a04563dea455b9a14b822de03bb",
+      "reasoning": "safeCopy discards the result of the immutable copySlice, so tests asserting in-place mutation of an immutable ByteArray are incorrect/misleading.",
+      "score": 0.25
+    },
+    {
+      "id": "1eb59c757087aad1dc7d2225946e756e1348f30a6b73ebe89d2807322ea3cab6",
+      "reasoning": "mean_func has inverted conditional logic (returns 0 when n≠0), trivializing the mean computation and breaking the intended equivalence property.",
+      "score": 0.15
+    },
+    {
+      "id": "2c8487737dc693708c7ce4ac2560e06c8f3a6aaa95e10ed47a48f7a76b126b00",
+      "reasoning": "Defines a first-char extraction with pre/post and sorry-proved correctness theorem, reasonably matching intent though not stated as an equivalence with a second implementation.",
+      "score": 0.55
+    },
+    {
+      "id": "21d43dcb1f38aab69e58b11f4d8d80448df66cbe84ea4e671b1df295efbc69e8",
+      "reasoning": "File is truncated before stating any correctness or equivalence theorem, missing the core guarantee entirely.",
+      "score": 0.2
+    },
+    {
+      "id": "43a612ac617ca2ba915c19f90c4ee94eb3e04f8125b74267a5827bf92b098b29",
+      "reasoning": "sum_func uses subtraction and mean_func has inverted logic, and no equivalence theorem is stated at all, trivializing/omitting the core guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "3af776d6ce0a8fa0916068694300c1546053f3d8e33d08e7b056f3eb5a4d83a3",
+      "reasoning": "Correct addition-based variance_func/variance_imp with matching spec, correctness theorem proved from spec_thm, and variance_equiv_thm stated matching reference (sorry).",
+      "score": 0.75
+    },
+    {
+      "id": "7437fcde4bb762b1693dcfe70ae92cbe1384c0d0763e3a0626368bcb35a9cfe0",
+      "reasoning": "Only defines a single uppercase implementation with a correctness proof but no equivalence theorem between two implementations as the reference requires.",
+      "score": 0.3
+    },
+    {
+      "id": "7e31238e6333f8763153d7dcff8e401220eec2b0c7cdbb03626eec63caf14d57",
+      "reasoning": "Generated theorem is essentially identical in content/proof to the reference-equivalent implementation, fully proved without sorry.",
+      "score": 1.0
+    },
+    {
+      "id": "bf0b2e7c61c008a2bade00a2fec3bae9844b06115b98c435b0ac77f461e7e6d8",
+      "reasoning": "Only a single toUpper implementation with a partially-proved correctness statement, missing the equivalence-between-two-implementations guarantee.",
+      "score": 0.3
+    },
+    {
+      "id": "2a45b59e9383621f1578ff051301d10f30c4ef13018c83b9823e879b3cdc560e",
+      "reasoning": "Provides correlation_func/correlation_imp implementations and tests but never states any correctness or equivalence theorem.",
+      "score": 0.15
+    },
+    {
+      "id": "07f9e53c0dc77eaa4607cef520c74696f9638180723ade9c4e7c2dd925ce5c7d",
+      "reasoning": "Defines spec_prop/spec_thm and Post but the file is truncated before any correctness_thm or the required equivalence theorem is stated.",
+      "score": 0.2
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.023082,
+        "inputTokens": 23017,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 28422,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1502408,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3546,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28422,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 28422,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 28422,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 28422,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 3546,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3546,
+      "output_tokens_details": {
+        "thinking_tokens": 1756
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

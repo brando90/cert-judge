@@ -11,7 +11,13 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Project Purpose
 
-`cert-judge` is a certification framework for LLM-based judges used in formal verification (Lean 4 theorem scoring). It measures judge reliability through seven properties (P1–P7) and combines them into a **Judge Trust Index (JTI)**. The judge scores how well AI-generated Lean 4 theorems align with a reference implementation.
+`cert-judge` studies LLM-based judges for Lean 4 theorem/specification scoring. Keep these scientific objects distinct:
+
+- `TW_m`: the scoped trustworthiness construct;
+- `TI_m`: an expensive human-grounded criterion;
+- `PTI_p`, currently `PTI_v0`: a label-free behavioral proxy/screening instrument.
+
+The older P1–P7/JTI and TIvar pipelines remain historical compatibility code. Their outputs are not PTI-v0 and must not be relabeled as such.
 
 ## Environment Setup
 
@@ -30,65 +36,37 @@ Some dependencies (`vllm`, `sglang`, `unsloth`, `flash-attn`) are Linux-only and
 
 ## Running Evaluations
 
-The main entry point is `experiments/00_overall_cert_judge_metric_with_properties/`:
+The frozen PTI-v0 numerical specification is `docs/spec/PTI_V0.md`. Its zero-spend entry point is:
 
 ```bash
-# Run via shell wrapper (recommended — sets all paths/env vars)
-cd experiments/00_overall_cert_judge_metric_with_properties
-bash main_overall_judge_score.sh
-
-# Or directly with python fire CLI
-python main_overall_judge_score.py \
-    --mode online \
-    --eval_mode hsj_real \
-    --claude_dotenv_path /path/to/.env \
-    --judge_prompt_temp_path /path/to/prompt.txt \
-    --max_score 30 \
-    --paths_p1 /path/to/dir1 /path/to/dir2 \
-    --path_p2 /path/to/bug_ladder \
-    --path_p3 /path/to/missing_spec_ladder \
-    --num_llm_judge_calls_per_file_pair 7
+python experiments/04_veribench_validation/run_pti_v0.py --help
 ```
 
-P5, P6, P7 can be toggled via CLI flags. WandB is used for experiment tracking.
+That CLI has no inference client and cannot load credentials. Paid judge inference requires a separate exact call/cost quote and explicit approval. Historical JTI evaluations remain under `experiments/00_overall_cert_judge_metric_with_properties/`.
 
 ## Architecture
 
 ### Core Package: `py_src/cert_judge/`
 
-**`hsj_scoring.py`** — Primary scoring logic:
-- `compute_p1_identity()`, `compute_p2_or_p3_ordering_auc()`, `compute_p4_stability()`, `compute_p5_tvd_mi()` — individual property scores in [0,1]
-- `compute_jti()` — weighted mean of P1–P7 into a single trust index
-- `IsotonicCalibrator` — monotone regression calibrator (PAV algorithm) for aligning judge/MI scores
-- `compute_hsj_scores()` — fusion formula: `Q = (1-α)*S_unsup + α*JTI*S_sup` blending unsupervised MI signal with judge scores
+**`pti_v0.py`** — canonical, versioned PTI-v0 numerics: tie-aware ladder correlations, repeat instability, exact-zero log geometric means, coverage-aware properties, and three-/four-property aggregation.
+
+**`probe_validation.py`** — conservative alpha-renaming and cumulative bug/missing-spec probe construction with fail-closed Lean elaboration.
+
+**`hsj_scoring.py`** — legacy JTI/HSJ compatibility logic, including `compute_p1_identity()`, `compute_p2_or_p3_ordering_auc()`, `compute_p4_stability()`, `compute_jti()`, and calibration/fusion helpers.
 
 **`tvd_mi_tools.py`** — TVD-MI information robustness metric:
 - `tvd_mi_from_critic()` — Youden's J (TPR+TNR-1) from categorical labels
 - `per_item_auc_macro()`, `tamper_suite_report()` — P5 sub-metrics
 
-**`cert_judge_2/p5_metric.py`** — Extended P5 implementation with `P5Inputs` and `P5Report` dataclasses.
+The PTI-v0 properties are exact equality (`P_eq`), bug monotonicity (`P_bm`), missing-specification monotonicity (`P_ms`), and alpha-renaming invariance (`P_eqalpha`). Structurally valid constant judge-score ladders remain included with `C=0`; structurally invalid probes are excluded independently of judge outputs; missing score coverage yields `NOT_COMPUTABLE/DEFER`.
 
-### Main Evaluation Script: `experiments/00_overall_cert_judge_metric_with_properties/main_overall_judge_score.py`
+### PTI-v0 Data Layout
 
-Orchestrates the full pipeline (654 lines):
-1. Loads LLM credentials from `.env` file and prompt template
-2. Scores file pairs via the LLM judge for each property ladder
-3. Calls property functions from `hsj_scoring.py`
-4. Logs all results to WandB
+- Base candidates: `data/generated_agents/`, frozen as typed `f=(item,agent,generation)` rows in `experiments/04_veribench_validation/pti_v0_v4/base_pool_manifest.json`.
+- Golds: resolved by the frozen precedence policy across the legacy and newest VeriBench roots.
+- Probe validity, requests, cache inventory, quotes, and results: new artifacts under `experiments/04_veribench_validation/results_pti_v0_v4/`; legacy result directories are never overwritten.
 
-### Property Definitions
-
-Each property tests a different aspect of judge reliability:
-- **P1**: Reflexivity — identical files must score maximum
-- **P2**: Bug monotonicity — scores decrease as bugs are introduced (AUC on bug ladder)
-- **P3**: Spec completeness — scores decrease as specs are removed (AUC on spec ladder)
-- **P4**: Stability — low variance across repeated evaluations of same pair
-- **P5**: TVD-MI — discriminates same-source vs different-source file pairs
-- **P6/P7**: Human/prover correlation (defined in `experiments/scoring_judges.md`, not yet fully implemented)
-
-Full algorithmic specification for all properties is in `experiments/scoring_judges.md`.
-
-### Test Data Layout
+Historical P1–P5 fixtures retained for compatibility:
 
 - P1 identity: directories of `.lean` files (scored against themselves)
 - P2 bug ladder: `data/file_equiv_08_19_2025/my_add_file_eq_with_bugs/` — numbered files with increasing bugs
@@ -97,8 +75,6 @@ Full algorithmic specification for all properties is in `experiments/scoring_jud
 
 ## LaTeX Paper Sources
 
-See `paper_latex/README.md` for build instructions. Two submissions:
-- `paper_latex/ICML_2026/` — main file `main.tex`
-- `paper_latex/NeurIPS_2025/mathai_neurips2025_template/` — main file `neurips_2025.tex`
+The active manuscript is `paper_latex/ICLR_2027_submission/main.tex`. Older ICML/NeurIPS trees are historical. Populate PTI-v0 claims only from committed machine-readable PTI-v0 outputs.
 
 Build with: `latexmk -pdf <main_file.tex>`

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "2218938b2eea6b389378f2659606331d96826ba98e85d383254a7bdee28fae94",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "1d683a61f58a6eaa25e6966d1acc2f860db05ead2ceeb7a679a41da10a70b7d2",
+  "completed_at": "2026-08-26T07:58:18.583336+00:00",
+  "effort": "low",
+  "elapsed_seconds": 52.03531462501269,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "eb7c8858d30eb637ce36f4b9fa23fd08638b0bb9d9188b03c4e68535b80d3182",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e4a17e20fd66bdb659c1deecbee1a19e0d57a07ba2939588112980052417bdd3",
+      "reasoning": "Matches reference structure with correct quote_imp/quote_func definitions and same equivalence theorem left as sorry.",
+      "score": 0.85
+    },
+    {
+      "id": "fd61520c334f487666f51f426eccba0cf4349f9f7b4ac3dfa55dec813bb4897a",
+      "reasoning": "join_imp/join_func correctly mirror reference logic; equivalence theorem preserved as sorry.",
+      "score": 0.85
+    },
+    {
+      "id": "e334879024641860e8c6e617b45f8663d17ac1c4af8e694f473e45fea62e2a74",
+      "reasoning": "Faithful join implementation plus proven safe/empty property theorems, equivalence theorem left as sorry matching reference.",
+      "score": 0.88
+    },
+    {
+      "id": "e10d0438f930220f5d3256b63a234ddba20c17797f67da551e648354a8fc83d2",
+      "reasoning": "Base32 imp/func correctly correspond (shift computed correctly), equivalence left as sorry matching reference.",
+      "score": 0.8
+    },
+    {
+      "id": "e8c84f85a3815dfa78d8858d0783db23866f2985634f5bcfb99d3ce82ee205d1",
+      "reasoning": "encodeChunk_func uses an incorrect bit-shift direction (35+5*i) making functional spec inconsistent with the imperative implementation it's claimed equivalent to.",
+      "score": 0.45
+    },
+    {
+      "id": "c310fd6188909a82b858b08ec8fa6080ad70afe52901b351aa5a9108ba8673d7",
+      "reasoning": "parseInt_func? has a broken guard ('if s != \"\" then none else ...') that effectively disables parsing, undermining the claimed equivalence.",
+      "score": 0.4
+    },
+    {
+      "id": "ae6c8c7ce38d3543424475c72c3a421d80adaca56471283cbba3963f0f18a275",
+      "reasoning": "Same broken parseInt_func? guard as related case, though extra property/post-condition scaffolding partially compensates.",
+      "score": 0.42
+    },
+    {
+      "id": "a73f7b31f6693a372ab9ff2acc46d5fd8bc999eec9d0b59ba257e84ac8305346",
+      "reasoning": "quote/unquote imp and func implementations are consistent and well-structured, matching reference intent with equivalence theorem area left incomplete.",
+      "score": 0.7
+    },
+    {
+      "id": "75c838dc613978460d38ed534e0e4073c88864018346627a08dcd39488455bd2",
+      "reasoning": "hexDigit implementation looks logically inverted/buggy compared to a correct ASCII mapping, undermining token_hex correctness though comparison logic itself is fine.",
+      "score": 0.4
+    },
+    {
+      "id": "747da8790d520d737d231b5573c50b4fb0234081d7482007cefa0c0960f0099f",
+      "reasoning": "Correct hexDigit and compare_digest implementations with proven length and reflexivity properties, matching reference structure closely.",
+      "score": 0.85
+    },
+    {
+      "id": "b3024b95ccabb4d80ed40f8211ccded5fa75bd8245dcff5b221b3b454cf70336",
+      "reasoning": "Faithfully reproduces Kahn's algorithm imperative implementation and isTopoSort spec with the exact equivalence theorem statement from reference.",
+      "score": 0.85
+    },
+    {
+      "id": "ab5340bee3c661064c7719b5277814a3967e9a9fab1f3dccd8b50b720684d145",
+      "reasoning": "Matches reference graph topo-sort structure and equivalence theorem, order_thm left as sorry consistent with reference.",
+      "score": 0.85
+    },
+    {
+      "id": "1da2a19fb50a84e0e02d6db6c7125d727b82359d0950559fb3314d69675be5ef",
+      "reasoning": "median_low and median_lowImp are identical correct implementations, matching reference's equivalence theorem with sorry.",
+      "score": 0.85
+    },
+    {
+      "id": "82f1e237aba76f7254903cbdb0a88699eb459a4802e1509ee5190090cf512648",
+      "reasoning": "median_high and median_highImp are identical correct implementations, matching reference's equivalence theorem with sorry.",
+      "score": 0.85
+    },
+    {
+      "id": "420c3985cae6adbd60290ddc8eb656d88efa4021c3e2d05762c7138c488f270e",
+      "reasoning": "bisect_left_functional and bisect_left_imp correctly correspond in logic (mid+1/mid split), matching reference equivalence theorem.",
+      "score": 0.8
+    },
+    {
+      "id": "105abfdcfdd4abcb4b72e70a5bd8577e8005f3e6d8a72fbbf4f3ccb62c82c9d5",
+      "reasoning": "bisect_left_functional contains bugs (mid computed via lo-hi and recursion decrementing mid-1) that make it semantically diverge from the correct imperative implementation.",
+      "score": 0.4
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.028302,
+        "inputTokens": 28232,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 40290,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.041552,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3349,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 40290,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 40290,
+          "input_tokens": 2,
+          "output_tokens": 3349,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3349,
+      "output_tokens_details": {
+        "thinking_tokens": 1608
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

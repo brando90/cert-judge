@@ -1,0 +1,93 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "899f46badd423a699dc47c301dac6870961f587c42524a091a273d8f5aaf8c6d",
+  "case_count": 1,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "ce5f51c028201d60dea341908c5c82c06c45bea6a29d95b7fda8ce2c9a09a994",
+  "completed_at": "2026-08-26T08:21:12.759851+00:00",
+  "effort": "low",
+  "elapsed_seconds": 3.7645326670026407,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "d197f55abdf979c9eb6319ca71d386db3dde4e9d4bacc1f19812e2d9f5053072",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "96810eb0256d95df4d45be7bf37a80cae10a6634028b989e759d081a59294f71",
+      "reasoning": "The generated content is an unrelated HumanEval/50 encode/decode shift implementation, not the decodeShift_equivalence_thm equivalence theorem from the reference.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.001796,
+        "inputTokens": 1711,
+        "maxOutputTokens": 32000,
+        "outputTokens": 17,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 6866,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0030372000000000003,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 166,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6866,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 6866,
+          "input_tokens": 2,
+          "output_tokens": 166,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 166,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

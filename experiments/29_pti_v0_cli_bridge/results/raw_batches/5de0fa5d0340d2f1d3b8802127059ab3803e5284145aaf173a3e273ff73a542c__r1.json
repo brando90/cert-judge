@@ -1,0 +1,128 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "5de0fa5d0340d2f1d3b8802127059ab3803e5284145aaf173a3e273ff73a542c",
+  "case_count": 8,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "cbfe60e82d9af92a95e5aec653f5a5876ffda9b22802136b4e800d172cc67cce",
+  "completed_at": "2026-08-26T08:19:43.267460+00:00",
+  "effort": "low",
+  "elapsed_seconds": 25.156013957981486,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "d39d3c007c1c172bd847036ff98ee361fc8de38036323becaec349c4750e38a5",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "d1e7fd723bb99fe48a63b640232dad7a4070128454143caf41b2c9fcc85d68ff",
+      "reasoning": "Generated file matches reference exactly including the bfs/bfsImp equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "9c089f7baf5d3cd0a2f722f1f71dc7eff84d99384ff6778be864958be171b002",
+      "reasoning": "Generated file matches reference exactly including the dfs/dfsImp equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "c1b1449a4aca275e9519aa1bedb3edca668d876a448986f0a18d03c82fe9b09d",
+      "reasoning": "Generated file is identical to the reference implementation and equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "b74eae6e76dfef1a96a9ac5960f793ed078e5d9d0386effc06926096bd1b07d7",
+      "reasoning": "Generated file is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "c54706d8ff6f08065eb6150382a567d68dcde020fc50f863ce0bb263fce02eda",
+      "reasoning": "Generated file is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "69f7e25e51f922e454c6b02d3b91040435ce4f97ad0e6a6c749e54716e27220f",
+      "reasoning": "Generated theorem is about encode/decode round-trip identities and a spec, but lacks the required decodeShift_equivalence_thm relating decodeShift to a decodeShiftImp.",
+      "score": 0.2
+    },
+    {
+      "id": "71e9c07ee2d9e717181ed32e8f874befa81840ac491fb328a47d584cc85ab436",
+      "reasoning": "Generated theorem proves a correctness property using pre/post but does not define decodeShiftImp or state the required equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "237cf402179f04e9e933c55fa48530c929963071636297a8e780dc0af418b1a8",
+      "reasoning": "Generated file is identical to the reference implementation.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.013481000000000002,
+        "inputTokens": 13416,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 21434,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0173508,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1306,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 21434,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 21434,
+          "input_tokens": 2,
+          "output_tokens": 1306,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1306,
+      "output_tokens_details": {
+        "thinking_tokens": 535
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

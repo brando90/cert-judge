@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "cc6a2c52b8954c53bb9b479a56b6371ff078583a08874f5737c2ecde62307ec7",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "ee7793629fc5dfe7017d600e368b1124a70d4704bd8de67f832aee1f965e664f",
+  "completed_at": "2026-08-26T08:26:42.096800+00:00",
+  "effort": "low",
+  "elapsed_seconds": 47.16891304199817,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "120813c8bf319337e478776ee0055bbfb52204c69e422ac5af5db95bf2693e6c",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "2543317eafdf07125f2fe14991229e082d01aead8808c015fd800047c14b2046",
+      "reasoning": "Generated gives detailed spec capturing bounds/copy correctness but leaves the actual theorem as sorry, so no proved guarantee beyond tests.",
+      "score": 0.5
+    },
+    {
+      "id": "20f366b157e8a4f9c66ceb3111fbdd8791df45952389217af39009c879529f4f",
+      "reasoning": "mean_func has inverted zero-check logic that trivializes the mean computation for nonempty lists, undermining the reference's equivalence intent.",
+      "score": 0.15
+    },
+    {
+      "id": "c26ed31c55b304a8d64f0b07655220a836a40e89d750e295522202050bad53ed",
+      "reasoning": "Restructures into Pre/prog/post form capturing first-char extraction but the correctness theorem is left as sorry.",
+      "score": 0.5
+    },
+    {
+      "id": "385ed9f07945da667eafa6802669f52bbe04a2147f30d26ba684038a9643cfd3",
+      "reasoning": "spec_thm is actually proved (not sorry) but the equivalence theorem and correctness theorem sections are entirely missing/empty.",
+      "score": 0.4
+    },
+    {
+      "id": "47ce8cc2a142230a6c9d343202f4f3716eb0ac469f7e709f35c1ac7054087465",
+      "reasoning": "Implementation and tests match well but no Pre/Post/correctness/equivalence structure or proof is present at all.",
+      "score": 0.3
+    },
+    {
+      "id": "3d6a56f2ffde8f5e7dbca79e2dfc005dd7a193e4da26677075fabaf59d63f8c0",
+      "reasoning": "Defines Pre/spec_prop but leaves them unproven and omits any correctness or equivalence theorem body.",
+      "score": 0.3
+    },
+    {
+      "id": "9edcd674a616100e86b192e0444ff5aeaff37fa19bc7c95509063b8b590d2022",
+      "reasoning": "Provides a genuinely proved correctness theorem for uppercase conversion, though simplified relative to the equivalence structure of the reference.",
+      "score": 0.7
+    },
+    {
+      "id": "359fd44de36893bf8a771817a8a0ba368f312fe07f4d9a0a36af9a47436cf630",
+      "reasoning": "Generated theorem is an exact match of the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "2a48053b0fd5d1953627da742ee6a35d54189a6f7700ff8cbfe8ef167132fa85",
+      "reasoning": "Contains proof skeleton with sorries but the underlying mean_func/sum_func have introduced logic bugs (subtraction fold, inverted zero check) breaking the intended correlation computation.",
+      "score": 0.2
+    },
+    {
+      "id": "08df19002356667d508ba9c7390cbf10ea0333b0034d4b41bf840ae61ae7f459",
+      "reasoning": "Generated theorem is an exact match of the reference implementation including full proofs.",
+      "score": 1.0
+    },
+    {
+      "id": "704579a81f9ee9ebd9dc76eea4368c6449f0c0414cc294f460b8f722158fd956",
+      "reasoning": "Generated theorem is an exact match of the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "07b229d88999a72069b01e674628e63a5903fc76c5970471200a49b8cce269b0",
+      "reasoning": "Generated theorem is an exact match of the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "7574d8a9b182a6e3f1b0adba452b38c1c44bb1f58e87e4580eece0bfda3ea45c",
+      "reasoning": "Generated theorem is an exact match of the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "03b2b2edd291533766bdaf519d6161210f0bec293674168276841ee4668590c3",
+      "reasoning": "Defines Pre and positional_prop but never proves them and omits the correctness/equivalence theorem entirely.",
+      "score": 0.3
+    },
+    {
+      "id": "fecbca52f63e158b8bc9142f9f270ee6d734e0cbb7147971e4916df3fd7e3e8f",
+      "reasoning": "Fibonacci implementation uses panic! for negative inputs and the correctness proof is incomplete (sorry) with an incorrectly structured negSucc case.",
+      "score": 0.2
+    },
+    {
+      "id": "4fe8164e63ca4aeca24b90f32da784c0fb9f3770e94321ea0629dd4f4bbb142d",
+      "reasoning": "Wrapped in markdown code fences (likely breaking compilation) and all correctness/equivalence proofs are left as sorry.",
+      "score": 0.15
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.030579000000000002,
+        "inputTokens": 30519,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 44508,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0368356,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2793,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 44508,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 44508,
+          "input_tokens": 2,
+          "output_tokens": 2793,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2793,
+      "output_tokens_details": {
+        "thinking_tokens": 1163
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

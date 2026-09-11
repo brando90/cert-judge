@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "fae49b32f4d55540d80c0288cdcb6cf0ac52513636317c23807042b95fac4695",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "2ff5d11da38e11187804932b2eee4167c394b3f5d3c03fcf6c902c316b18af81",
+  "completed_at": "2026-08-26T08:54:43.857013+00:00",
+  "effort": "low",
+  "elapsed_seconds": 63.11442262498895,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "cf40403771ae6338e6f28bcf963932ce705206ab867ed65b730e3203fbaab1ab",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f8234b1f860bfc9a14dec5ac756f9e0ce3f9ce3ccf021e8718218e0c36028b47",
+      "reasoning": "The functional bisect implementation contains a bug (mid computed as (lo-hi)/2 and wrong recursion direction), making the stated equivalence theorem likely false despite matching the reference's theorem shape.",
+      "score": 0.3
+    },
+    {
+      "id": "d67f35c1233f81250826170a64311cf74ff348546731a44e1e09f75140466713",
+      "reasoning": "The generated theorem is a faithful equivalence statement between benchmark_covariance and covarianceImp matching the reference exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "d52a34143e12de322baeabf87396e0fb9032c5a6a829af52e239c4dea4a742c6",
+      "reasoning": "Includes the exact equivalence theorem plus consistent supporting Pre/Post/property scaffolding matching the reference's intent.",
+      "score": 0.95
+    },
+    {
+      "id": "8d9dabbbfc4f652e194bf82d2d7fe7b36416fbebc1eff0dd4fef28730a1b7f7e",
+      "reasoning": "Contains the required equivalence theorem between benchmark_quantiles and benchmark_quantilesImp with consistent supporting definitions, only minor stylistic differences.",
+      "score": 0.85
+    },
+    {
+      "id": "96a6dea6b7e904c8a7aa3900bcc4ea8dfa7bcec7af42e49cefee7bf1c194d624",
+      "reasoning": "Implementation correctly computes mid as (lo+hi)/2 with correct recursion, closely matching intended bisect/insort semantics, though the final equivalence theorem itself is missing from the shown snippet.",
+      "score": 0.85
+    },
+    {
+      "id": "c55cee741c90e4a8ca09039729faf8270804afa46a8b42bb5755ae4374daaeb4",
+      "reasoning": "Contains the full equivalence theorem statement matching the reference, but the underlying bisect_left_functional has a bug (mid = (lo-hi)/2) that likely makes the equivalence false.",
+      "score": 0.35
+    },
+    {
+      "id": "deafd0802be9ac11254b105e9f697e4a6483218a37032103ee77ff5a74e84f7d",
+      "reasoning": "Generated content is an exact match of the reference implementation (which itself contains no stated equivalence theorem), so it preserves whatever guarantees the reference provides.",
+      "score": 1.0
+    },
+    {
+      "id": "5d7f6646e51af0bcc4b592816bbae441f1e2ba0cea7cbff9eb7ea6c6cbbfb6bc",
+      "reasoning": "Includes the exact heappush_equiv_thm plus matching Pre/Post/invariant/correctness scaffolding consistent with the reference.",
+      "score": 0.9
+    },
+    {
+      "id": "54c607d74036650b9ec424fa918951f8d0087b7193e5fff883e37b8f636c36c9",
+      "reasoning": "Generated content is essentially an identical copy of the reference implementation (which itself lacks a stated equivalence theorem).",
+      "score": 1.0
+    },
+    {
+      "id": "3e2722b0b658e28a40dc3bdacfba272039ebbf4ceb82b816f532288a5c4cc039",
+      "reasoning": "The required get_equiv_thm between imperative and functional queue implementations is entirely missing from the generated theorem file.",
+      "score": 0.1
+    },
+    {
+      "id": "4fbfd7174a097767775dd84214ab82146f10d08792e0b7a06db313e75cf0926e",
+      "reasoning": "The reference provides an actual completed correctness proof, but the generated file omits the correctness_thm entirely, leaving the core guarantee unproven and absent.",
+      "score": 0.1
+    },
+    {
+      "id": "3cc5d9cfbe4cbdaeadba927649697bb604608137725f92a26d09dcfc1eebef83",
+      "reasoning": "The required update_equiv_thm comparing imperative and functional counters is missing entirely from the generated theorem file.",
+      "score": 0.1
+    },
+    {
+      "id": "3bd4d1114131db341b4fab91d33fc08c22e093372aebdb8746570b836ff87f67",
+      "reasoning": "The generated file defines an entirely different problem (oddSumParity) with no myOddSumParity/myOddSumParityImp definitions or equivalence theorem at all.",
+      "score": 0.0
+    },
+    {
+      "id": "7d64b5da4040c1cc3516b59a431c2d707f86fb7d06755d0bf9d9523974045d90",
+      "reasoning": "The required get_equiv_thm between imperative and functional ChainMap implementations is entirely absent from the generated file.",
+      "score": 0.1
+    },
+    {
+      "id": "b8242b2b9b7b44e0f30db51c40d482ea2a0e8857ad387adabf1b8b39e91ae934",
+      "reasoning": "Provides a plausible Pre/Post/correctness structure for path traversal safety with a sorry proof, capturing the general intent though relying on questionable/likely nonexistent Lean.realPathNormalized API.",
+      "score": 0.5
+    },
+    {
+      "id": "9b9d675fac9c32481c2b8ef7884adf653433d77136609811ba0eb4d49828c44c",
+      "reasoning": "Offers a more elaborate structured spec with multiple correctness theorems (all sorry) capturing path traversal safety intent, reasonably aligned with the reference's Pre/Post/correctness pattern.",
+      "score": 0.55
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.043841000000000005,
+        "inputTokens": 43776,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 59677,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0589494,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 4701,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 59677,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 59677,
+          "input_tokens": 2,
+          "output_tokens": 4701,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 4701,
+      "output_tokens_details": {
+        "thinking_tokens": 2823
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

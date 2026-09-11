@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "a593bdf25ed0b25aedc5e9a7ea50b08e94e0f58d971e57407ffb758d2fb012f0",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "7ebb75d0b88fc654385df5b09c8b9b31698291f33258685bddfbaf1534697e70",
+  "completed_at": "2026-08-26T08:18:40.220806+00:00",
+  "effort": "low",
+  "elapsed_seconds": 35.8593491250067,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "a8de722424bc7362d4ff7fa82e0662deaccee605c0d38eb6dac2d9d3c689ba1b",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "d764f047a77831715f67052c0dcbdbe7ea41ede40dac91e7f7277625d602546c",
+      "reasoning": "Generated correctness_thm is textually identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "a7a5f75e49e42bb1d75bf2476d46ce140756468ad7b7d306ab41a4b31aa252d7",
+      "reasoning": "bfs_equivalence_thm statement matches reference exactly (both sorry).",
+      "score": 1.0
+    },
+    {
+      "id": "f74e5e285959232770a9cd0f2619320dbf0267f51fcedb46c0a2658e34e4bd52",
+      "reasoning": "No countingSortImp or equivalence theorem is present at all in the generated code.",
+      "score": 0.1
+    },
+    {
+      "id": "5e989378edeaeb0d16a44408f0d2c52e4724cbed3ec21eb71fa0bd72e3a02114",
+      "reasoning": "dfs_equivalence_thm statement matches reference exactly (both sorry).",
+      "score": 1.0
+    },
+    {
+      "id": "9f7f1dae2140f103ca683613aa562c875b3601fbd7747a40ffb1807f0a34a9c2",
+      "reasoning": "dijkstra_equivalence_thm statement matches reference exactly (both sorry).",
+      "score": 1.0
+    },
+    {
+      "id": "70c48bd060232429492a31e6cb6067d05e308eba7696db1a16d4911a58eca689",
+      "reasoning": "No max_elementImp or equivalence theorem present in the generated code.",
+      "score": 0.1
+    },
+    {
+      "id": "cd122107dc084e59eb16ff6f0431d9c93722b17fb14afcc6110eedd47a32efd6",
+      "reasoning": "Generated has a correctness proof against a spec function but no incr_listImp or equivalence theorem matching the reference.",
+      "score": 0.2
+    },
+    {
+      "id": "9a72707efc890d0dcde6fb763b553b2af7dfb490e214de610db43c90c0487362",
+      "reasoning": "No pairsSumToZeroImp or equivalence theorem present; only a spec definition and unit tests.",
+      "score": 0.1
+    },
+    {
+      "id": "43eb3d22b8fda7853531d701368d2552f175567f18b6171cb1afa595a9280ff9",
+      "reasoning": "Generated has a different identity theorem instead of the required decodeShift/decodeShiftImp equivalence theorem.",
+      "score": 0.15
+    },
+    {
+      "id": "6e754c32086bd1b1b2c2c006f641b5989e407e96259a0a98c6a2ef9bee9a1cec",
+      "reasoning": "Generated file is a verbatim match of the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "0c81ea4cd09c2f98625402fcdecd3d5d9d96d871c133059b7fbc4ba818a03e5b",
+      "reasoning": "No primeLengthImp or equivalence theorem present in the generated code.",
+      "score": 0.1
+    },
+    {
+      "id": "0fd5fc66ba79c0ee84b5d59d4c7d81a3fcc9b37772fe11ffd1b120335a787556",
+      "reasoning": "Generated proves sumProduct equals a sum/product pair but has no sumProductImp or equivalence theorem.",
+      "score": 0.15
+    },
+    {
+      "id": "e46f7190213a7daea747ef17f11b22e1dd9425a4a34cf40e6f275e7b7cda46de",
+      "reasoning": "Generated proves sum_product against a spec but has no Imp variant or equivalence theorem matching reference.",
+      "score": 0.15
+    },
+    {
+      "id": "54feea5a818ff095e677d2fd89584dc02e85660cf8e0eaac308a1c9e4ea6615c",
+      "reasoning": "Generated attempts a proof against a spec but lacks sumProductImp and the required equivalence theorem.",
+      "score": 0.15
+    },
+    {
+      "id": "2d484d55502aea442cf302db6e773c240f7467a41335568b4ab63986039da2c1",
+      "reasoning": "Generated has a sorted/permutation correctness theorem but no insertionSortImp or equivalence theorem.",
+      "score": 0.15
+    },
+    {
+      "id": "89667fba8669b09001e1628d6dbdc4d3eca08302586f496bfe451fdb3009e00a",
+      "reasoning": "Generated has a sorted/permutation correctness theorem but no insertionSortImp or equivalence theorem.",
+      "score": 0.15
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.020879,
+        "inputTokens": 20819,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 31015,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.029767000000000002,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2356,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 31015,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 31015,
+          "input_tokens": 2,
+          "output_tokens": 2356,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2356,
+      "output_tokens_details": {
+        "thinking_tokens": 818
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

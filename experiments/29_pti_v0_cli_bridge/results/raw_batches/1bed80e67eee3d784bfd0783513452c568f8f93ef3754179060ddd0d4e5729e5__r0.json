@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "1bed80e67eee3d784bfd0783513452c568f8f93ef3754179060ddd0d4e5729e5",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "f5a945de9cda1077c57c56d64ac7912ca32c0a1f29b8d0124c51333405bcad39",
+  "completed_at": "2026-08-26T09:02:20.893129+00:00",
+  "effort": "low",
+  "elapsed_seconds": 44.04922895797063,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "8cfb457ab46cb1e06224d206d4e44dc23e4cec1d0fab94a5064d00cd3bb0f482",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "feb9b60d845952961b9fc284e7b026b5154d68795a585261e65e2c41233c5595",
+      "reasoning": "The generated file omits the heappop_equiv_thm entirely, dropping the core equivalence guarantee.",
+      "score": 0.05
+    },
+    {
+      "id": "dce60bdd03c9aaafdaf636be4a7ae0d80301b1bc7c4bf7364818b7f0158aa7d5",
+      "reasoning": "Generated theorem is textually identical to the reference implementation including the proved correctness theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "82595afec374397da8edf7e22c2a8b7a64a16573ba3ecc6e309b91a6ba3eb914",
+      "reasoning": "Generated file includes the same bfs_equivalence_thm (with sorry) plus additional soundness/optimality theorems matching the reference structure.",
+      "score": 0.9
+    },
+    {
+      "id": "985ffddc4a45969bbdb0a27dccf5a96e9ddf6cfaa0061d114dee0a9cfb03578d",
+      "reasoning": "Generated file has no countingSortImp and no countingSort_equivalence_thm, missing the core equivalence guarantee entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "47bdbd4985b035cd74ca27b264c40d498a03656abfc9ce0919ee32acc68da548",
+      "reasoning": "Generated file preserves the dfs_equivalence_thm (sorry) along with matching pre/post/soundness/completeness structure.",
+      "score": 0.9
+    },
+    {
+      "id": "8edc952c35085e475b34f22da2302f617034ce1a873f9c3f63dc74f4498098b6",
+      "reasoning": "Generated file preserves the dijkstra_equivalence_thm (sorry) along with matching soundness/optimality/correctness structure.",
+      "score": 0.9
+    },
+    {
+      "id": "a6503d4460535043f3eb896f7d4cd474cacd0340c2db214535f295e90679549e",
+      "reasoning": "Generated file lacks a uniqueImp implementation and unique_equivalence_thm, missing the core equivalence guarantee though it does prove a related spec.",
+      "score": 0.15
+    },
+    {
+      "id": "2c9c7ab9afc916843f15ccb8f7266bda6cc70cc14988bb276815ea2ebce2835f",
+      "reasoning": "Generated theorem is textually identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "70e08c540a2d0f3b6a4d11b283af56e64d4b0e820baf8ad6f4e22266b82d506d",
+      "reasoning": "Generated file proves incr_list matches a spec (actually proved, not sorry) but lacks an incr_listImp/equivalence_thm structure matching the reference's imperative-equivalence framing.",
+      "score": 0.55
+    },
+    {
+      "id": "4f30f9f279c75a7a426e89eb3459ded288bbfcffc4bc2ae4497a2a9f1a8eac25",
+      "reasoning": "Generated file defines pairsSumToZeroSpec but never states or proves any correctness/equivalence theorem, missing the reference's core equivalence guarantee.",
+      "score": 0.2
+    },
+    {
+      "id": "9cab31ca7e32229154c4f50c978bf33a9f04a18d145d35868cfed4caa954cd74",
+      "reasoning": "Generated file has medianSpec and sorry'd correctness/test theorems but no medianImp or equivalence theorem as required by the reference.",
+      "score": 0.2
+    },
+    {
+      "id": "8c0d59531c16db124a1719ebb11e4d30320d085d8f23f03dcea71e33b5975f2e",
+      "reasoning": "Generated file lacks a medianImp and equivalence theorem, only providing a spec and sorry'd correctness proof.",
+      "score": 0.2
+    },
+    {
+      "id": "afb77236d832668439207f642ef67b123d2e98958cbf7394bd81b57cd82c6513",
+      "reasoning": "Generated file lacks medianImp and equivalence theorem, only offering a spec and sorry'd correctness proof plus IO tests.",
+      "score": 0.2
+    },
+    {
+      "id": "09f09fb37c0b7eb41eda543f23743fee90641ff73f8f6cfd92361039ac77b49f",
+      "reasoning": "Generated file has no decodeShiftImp or decodeShift_equivalence_thm, substituting a different round-trip identity theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "1110cba4a5acf1666a8a7fd4188b1756a6515069e5bede1c330750d8b24fef8e",
+      "reasoning": "Generated file lacks decodeShiftImp and the equivalence theorem, instead proving a round-trip correctness property.",
+      "score": 0.2
+    },
+    {
+      "id": "03859397ac545c33b7f340aad00f209d2a87e3e17be4a72dc7f21816b8b41b48",
+      "reasoning": "Generated file lacks primeLengthImp and primeLength_equivalence_thm, only providing a spec-based correctness theorem with sorry.",
+      "score": 0.2
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.024656,
+        "inputTokens": 24586,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 30224,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1528488,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3086,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 30224,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 30224,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 30224,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 30224,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 3086,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3086,
+      "output_tokens_details": {
+        "thinking_tokens": 1337
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

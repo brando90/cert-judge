@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "d50f64f07264cbb9e321a7ee4914a32756b0efeecf2815ad844ea08c9bf3c09d",
+  "case_count": 5,
+  "cli_stderr_sha256": "27732dad8d406b64265574c7aa0dd713f46a522221c59a886766d3407025dca3",
+  "cli_stdout_sha256": "36990ee968eac1a3496415c4912096dbad3da4a5b025183dbc8823bf8fd81826",
+  "completed_at": "2026-08-26T07:36:00.454583+00:00",
+  "effort": "low",
+  "elapsed_seconds": 15.395753583987243,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "ff3244e3503283e4bf0e6df64c0250496ac99531a8d57f4816b22be7aac325ba",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ede6c6cbb0f3165f45d814f08d8556662713083fbd47d08c62561caab71122a6",
+      "reasoning": "The generated file defines DFS properties but contains no theorem relating dfs to dfsImp, so it misses the reference's core equivalence guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "fb842f41e93910162c991fead8d3686acc6287632c1812622bb235a226dda2bd",
+      "reasoning": "The generated file provides soundness and optimality statements but never proves dijkstra equals dijkstraImp, omitting the reference equivalence guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "9b4d6d5137d31a3aef9c06ea53e767cb1a626617318b48b71a479016a07c52d6",
+      "reasoning": "It proves only conditional inverse-style facts for differently named pure functions and supplies no imperative implementation or equivalence theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "ffcd16372d8e958ed082f6ccc17b115813b1a32a92821bd53fe31b3bf72d358e",
+      "reasoning": "The conditional encode/decode correctness statement is related behaviorally but no decodeShiftImp is defined or equated with decodeShift.",
+      "score": 0.2
+    },
+    {
+      "id": "e09570ced97a6ba5c4fd04fc63f5c4dfabe59b6055849b287f3c2ee8d85a73a6",
+      "reasoning": "There is no primeLengthImp equivalence theorem, and the prime_length branch condition makes the claimed correctness behavior fundamentally incorrect.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

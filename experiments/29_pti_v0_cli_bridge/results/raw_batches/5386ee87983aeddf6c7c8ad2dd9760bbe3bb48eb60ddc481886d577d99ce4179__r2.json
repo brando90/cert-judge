@@ -1,0 +1,113 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "5386ee87983aeddf6c7c8ad2dd9760bbe3bb48eb60ddc481886d577d99ce4179",
+  "case_count": 5,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "147541a47b758e7e0d6aaaac81d1b68860d8d67b01b2f3e9fb76d5bd1834b271",
+  "completed_at": "2026-08-26T08:21:09.113810+00:00",
+  "effort": "low",
+  "elapsed_seconds": 16.41216195799643,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "398501c9303e66c88e62e62de7beb222d3007e00863c167cebb492865d1e61b7",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e4adba943aa4fa24306c324527b8244d217b05a69ea83607ea786dba90cf87bb",
+      "reasoning": "Generated file has matching dfs and dfsImp implementations but never states the dfs_equivalence_thm equating them.",
+      "score": 0.3
+    },
+    {
+      "id": "f9b78b20b819269ddefc9335d61986ae889031635ebd6ff01e7732f28db4370d",
+      "reasoning": "Generated file includes dijkstra, dijkstraImp, and an explicit dijkstra_equivalence_thm matching the reference structure.",
+      "score": 0.9
+    },
+    {
+      "id": "82d52556ca243b6c3eeb33b9fb6e55c924d10b7d54db357504008cc098ce041c",
+      "reasoning": "Generated file is a completely different HumanEval problem with no decodeShift/decodeShiftImp equivalence theorem at all.",
+      "score": 0.05
+    },
+    {
+      "id": "c1239c7a90b7285873946766394296c61a8eaf8af6b3ced54e5d5a269592f4c5",
+      "reasoning": "Generated file defines decodeShift but has no decodeShiftImp or equivalence theorem matching the reference.",
+      "score": 0.1
+    },
+    {
+      "id": "fb0cbb99607f16dcb207437b8bdbbc719c19d40d55cd6e645e863512fe67562e",
+      "reasoning": "Generated file defines prime_length but lacks any primeLengthImp or equivalence theorem as required by the reference.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.0071140000000000005,
+        "inputTokens": 7039,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 13624,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.013308799999999999,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1058,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 13624,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 13624,
+          "input_tokens": 2,
+          "output_tokens": 1058,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1058,
+      "output_tokens_details": {
+        "thinking_tokens": 503
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

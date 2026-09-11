@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "6d23b0bb48a014ea39b73f69364fb0d60576d45926e2f56f7fa82f9f9b2deb8b",
+  "case_count": 5,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "9fd749bb43232d0ec1dc6e9ba2ce48b39b6819160f8a7f1fdc1267d8511d72cc",
+  "completed_at": "2026-08-26T10:03:36.794581+00:00",
+  "effort": "low",
+  "elapsed_seconds": 12.006151459005196,
+  "judge_id": "gpt-5.6-terra|BAD_STRINGY",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "77f55877f3cf0ed2c8c7b5cc0271bd0f068881afa1e0b9a44ba3b8d48d6b86bd",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f6f4c73cd49badbb9986ff47d80e485173b982a98ceea7eccdd996ff4dd072d5",
+      "reasoning": "The generated text contains the reference theorem and ending namespace verbatim.",
+      "score": 1.0
+    },
+    {
+      "id": "f35d76b87b1f0d18e212f7bf87b423f41370449812598045c08ab222f72c9811",
+      "reasoning": "It shares Dijkstra identifiers and implementation names but omits the equivalence theorem entirely.",
+      "score": 0.18
+    },
+    {
+      "id": "54694c153cc1a8d4ef1e66f583faf92f765b97704acc25d351c31d6b394a0cb3",
+      "reasoning": "It has related snake_case decode functions but lacks the reference theorem, camelCase names, and namespace ending.",
+      "score": 0.08
+    },
+    {
+      "id": "a8dc984e723c9f6bfe6c61c2823ac94149c8d8bf21499bd5a10788c72ce83511",
+      "reasoning": "It shares the decodeShift identifier and String signature but has a different theorem, namespace, and no imperative counterpart.",
+      "score": 0.23
+    },
+    {
+      "id": "f705bdbd4fe398c838f065d50d1b37819e835122085b2bdd9e043abd16c097eb",
+      "reasoning": "It concerns a similarly named snake_case function but lacks the reference theorem and namespace structure.",
+      "score": 0.09
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

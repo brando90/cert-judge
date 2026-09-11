@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "bcbda89fe109a68e93068f22f8c5296d8dbcbf57f1d98f03bf1124532c6c1d4c",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "8c4679445871833d56aad146f7e21aa194be733c9c1ab17c18d2a81d072c2666",
+  "completed_at": "2026-08-26T07:11:28.455433+00:00",
+  "effort": "low",
+  "elapsed_seconds": 28.291726541006938,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "879cd2190130a7d5089887af50ff2e956f4f67ab1b21c9b660f3360433cb1eb5",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "c0acc2c3ab84a5fa94b53e6b9d662d0806e2902032fa2b3a443e604be208be11",
+      "reasoning": "The generated theorem has the identical universal mean-equivalence statement as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "99d1af123a861e49a6ae6291d427f1759f84443dd5bd219255c4739cd97ea792",
+      "reasoning": "The generated theorem exactly preserves the reference median equivalence over Array Rat and toList.",
+      "score": 1.0
+    },
+    {
+      "id": "e62afcc5e978596de5eb36d18586c3daac221e49629303d2e6ca3cbd0484b73b",
+      "reasoning": "The generated code contains no variance equivalence theorem, so it provides none of the reference guarantee.",
+      "score": 0.0
+    },
+    {
+      "id": "67e243f27a816d54157e60738fc95f3dc8580d7a9d8d49e147f21b30211e9ca4",
+      "reasoning": "The generated variance_equiv_thm has exactly the same statement as the reference theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "a770f38979f6c41ff49ee60c638948a453bc83fd4de98305b2a8ca3d810d29e8",
+      "reasoning": "No correlation equivalence theorem is generated, leaving the reference guarantee entirely absent.",
+      "score": 0.0
+    },
+    {
+      "id": "79462b3d55c9c962222727ebb794efc481e5aa83776d665371d773dc73d65c4d",
+      "reasoning": "The generated correlation_equiv_thm exactly matches the reference statement.",
+      "score": 1.0
+    },
+    {
+      "id": "61088061ed9e1bfc0b8c8afebc01a43ba121a6baad9fb119ea693c879db5b24f",
+      "reasoning": "The generated correctness theorem has the same assumptions and Post conclusion as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "30277052ccec23c7632e5395240e8ecea34f377f1e7bb6127767b6443a8efdee",
+      "reasoning": "The generated lru_equiv_thm preserves the reference state-model equivalence statement exactly.",
+      "score": 1.0
+    },
+    {
+      "id": "869e14369ddd3b5485d34d9d1ef89b0322415deb8cc075229f8c74d7d121829a",
+      "reasoning": "Both reference equivalence theorems are present with identical statements in the generated code.",
+      "score": 1.0
+    },
+    {
+      "id": "3c884ecc31d28212b908ee160ad20a2ec32fced80081edd979896f505d9e19ff",
+      "reasoning": "The generated code omits indent_equiv_thm altogether, so the core equivalence guarantee is missing.",
+      "score": 0.0
+    },
+    {
+      "id": "4f13a5337d21de86249761a6fb9a1431c0a534b6fc28e07903ece52fc52c220d",
+      "reasoning": "The generated dedent_equiv_thm is identical to the reference equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "0019350ad378b6635a1c0410f09cd2a7b380e43f05071c2bbf10200148cc21f1",
+      "reasoning": "The requested Array-based keyed partition-after-insertion theorem is absent and replaced by unrelated List theorems.",
+      "score": 0.0
+    },
+    {
+      "id": "1b17b63e192387f5a98026c0e025f89501effcbd7be0efde557c4d2a444479d4",
+      "reasoning": "The generated code provides no insort_equiv_thm, so it does not establish the reference equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "25e6a708f6bcd0d0c1eb8fdd8750afb39f32320df8c47ab26b6085626dde80b8",
+      "reasoning": "The generated insort_equiv_thm exactly matches the reference statement.",
+      "score": 1.0
+    },
+    {
+      "id": "7466ba43b161be84bc43eb386ecea98f8ceb6696820b730d76fa5b891612c218",
+      "reasoning": "The generated implementation is identical to the reference implementation and preserves its behavior.",
+      "score": 1.0
+    },
+    {
+      "id": "32d1cf041f2033efbbcd7462b1e57359a84df7c92e3aaa28583b4c2a4a477d01",
+      "reasoning": "The generated escape_equiv_thm exactly preserves the reference imperative-functional equivalence claim.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

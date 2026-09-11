@@ -1,0 +1,163 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "747feca9d98fd448640c115d36c817d54f5525c951a0b59315f73c9db2bdb2c3",
+  "case_count": 15,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "1187105ac16b46fb989b9b745a081deaf6be4bb9511fa7ddb5ef37a14f46641b",
+  "completed_at": "2026-08-26T09:05:01.143936+00:00",
+  "effort": "low",
+  "elapsed_seconds": 40.006489374965895,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "a9b0a1b5939fa71e3cfefed9ce8d9c9c2e9d74972b88837259735ea7665c5437",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "b9f1a1a175ff5ae4d28ebcde1d7c93ccaf1336e4c46a0a2c5d5097426be88600",
+      "reasoning": "Includes bfsImp and correctness theorems but never states the actual bfs_equivalence_thm (bfs = bfsImp), so the core guarantee is missing.",
+      "score": 0.3
+    },
+    {
+      "id": "620de832daf3c57fe22074b594ee80ba3d5f5c15e42a906de101a3414f9190b6",
+      "reasoning": "Generated theorem is essentially identical to the reference, including the dfs_equivalence_thm equating dfs and dfsImp (still sorry but structurally equivalent).",
+      "score": 0.9
+    },
+    {
+      "id": "acc32a2d7345c26f876dd9053c2a4c21f565860f6e07a3fdaed607dd285c5fd9",
+      "reasoning": "Generated file matches the reference almost verbatim, including dijkstra_equivalence_thm equating dijkstra and dijkstraImp.",
+      "score": 0.9
+    },
+    {
+      "id": "557a76d19e396fd0126a35781235528438a52b52c30867f5ebbdf2af804e032a",
+      "reasoning": "No imperative implementation or equivalence theorem is present; only pre/post conditions for the functional version are given, missing the core equivalence guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "613cdcb283558bc0fdc0932fb5826baa77e12ad00c65956513a06dbf64254289",
+      "reasoning": "Provides a spec-equivalence theorem instead of the required equivalence with an imperative implementation (pairsSumToZeroImp), so the core guarantee is missing.",
+      "score": 0.15
+    },
+    {
+      "id": "44a294ad40823dc3283d7fa70826dd78fcdf113871c4b67b2731559f83102f12",
+      "reasoning": "No decodeShiftImp or equivalence theorem is defined; instead unrelated identity/spec-correctness theorems are proposed.",
+      "score": 0.1
+    },
+    {
+      "id": "2c1d263b97533941e22c69d4342810dee99c596655c93c4d6f7fd31755382b9e",
+      "reasoning": "Lacks an imperative implementation and equivalence theorem; only a decodeShift_correct postcondition theorem is present, and decodeShift/encodeShift are defined identically (likely a bug), missing the reference's core guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "1b16cf19d00e769c7d58fc25bf6bba5758ea0b4169be27c8710bc4ec6ccd3d99",
+      "reasoning": "No primeLengthImp or equivalence theorem exists; only a functional correctness theorem versus a spec is stated.",
+      "score": 0.1
+    },
+    {
+      "id": "e3b44d055712c99083e082b0eb9c3e547ca86750785cf0d4f1ccd434c8a2da70",
+      "reasoning": "No insertionSortImp or equivalence theorem is provided; only sortedness/permutation postconditions are stated.",
+      "score": 0.1
+    },
+    {
+      "id": "2aceae96200a14c12a25485ad1691ed99aa893ceba556f0915a5d4fb8193d447",
+      "reasoning": "Missing mergeSortImp and the required equivalence theorem; only sortedness and permutation properties are proven.",
+      "score": 0.1
+    },
+    {
+      "id": "9518904c04ea92c850d7d95e755f914a02e5ea01c813b80384ed7e55cb694b9a",
+      "reasoning": "No mergeSortImp or equivalence theorem present; only isSorted/isPermutation correctness claims given.",
+      "score": 0.1
+    },
+    {
+      "id": "85323b14110030b6ef3c59e1600341b51c550b2462f90281ab5d592a875de970",
+      "reasoning": "No imperative implementation or equivalence theorem included; only sortedness and permutation correctness are stated.",
+      "score": 0.1
+    },
+    {
+      "id": "1eae59fa5c41e3ca4d96a258924d04c0e7d594e6529adb31ddfdfc493598eeb9",
+      "reasoning": "Missing selectionSortImp and the equivalence theorem; only sorted/permutation postcondition theorem is present.",
+      "score": 0.1
+    },
+    {
+      "id": "0c9229f4efbcb4aa75f2b133b4f6dea953ff52a881fe37583892b716e029921c",
+      "reasoning": "No selectionSortImp or equivalence theorem defined; only a sortedness/permutation correctness theorem is given.",
+      "score": 0.1
+    },
+    {
+      "id": "02e1670cf766737e0a67d88663ce43d69e56f744c3551e7169244a398085bc4a",
+      "reasoning": "Lacks an imperative implementation and the required equivalence theorem; only sortedness/permutation lemmas are stated.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.023768,
+        "inputTokens": 23708,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 34479,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0360998,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2920,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 34479,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 34479,
+          "input_tokens": 2,
+          "output_tokens": 2920,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2920,
+      "output_tokens_details": {
+        "thinking_tokens": 1259
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

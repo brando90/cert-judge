@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "edc3fa1fee0bf84ca8aea20b44481a225f1cb27de9216abe6d5c8d97a51dc810",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "a099d6d4bf653371a2811b21c308c667d1406923011f474a3c6bc9cf614ebba9",
+  "completed_at": "2026-08-26T06:48:32.197066+00:00",
+  "effort": "low",
+  "elapsed_seconds": 41.39541333302623,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "03fd9b63333740b032f052a54a8ed0049e77fb905612d99359d1a4d8719e80a3",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "d22749cb34526d52e68154eef5013f3947a67511b044823acdd6fc39b377188b",
+      "reasoning": "The implementations disagree on strings such as \"truex\" because the imperative keyword matcher accepts a prefix without requiring end-of-input.",
+      "score": 0.6
+    },
+    {
+      "id": "f727ea4bd0c66600414800f178c9eee0556c94e278e6f53be853b1301d80fb82",
+      "reasoning": "Both unquote implementations process valid and malformed percent sequences with the same bytewise behavior.",
+      "score": 1.0
+    },
+    {
+      "id": "f427b35f149fd358794dd77eaa9d79d75ed3676149cd94d26882a2bca65b545c",
+      "reasoning": "The compared functions disagree for a string and its identical UTF-8 byte representation, and the required equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "c7414af0608216b4e3b7c99aecb4752f58a5c7b936225f2cd91101af6c60ac66",
+      "reasoning": "The compared functions disagree for a string and its identical UTF-8 byte representation, and the required equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "a99f5e3bdd90044c2a317c4d409d7fe4675da51030ce7d3232b776e59486a83a",
+      "reasoning": "The functional bisect uses subtraction rather than addition to compute its midpoint, so it generally diverges from the imperative search.",
+      "score": 0.0
+    },
+    {
+      "id": "6ef6029aa8877f268d7cfcec12e11853898d0b1afca9334a596dc7b40c641e43",
+      "reasoning": "The functional and imperative bisect implementations use the same midpoint and update rules, with sufficient decreasing fuel for the search interval.",
+      "score": 1.0
+    },
+    {
+      "id": "49a1f08611293f44480291621a0638c999db7467ae2fcf6602a46be6917584d8",
+      "reasoning": "Both benchmark_covariance and covarianceImp are definitionally the same covariance function.",
+      "score": 1.0
+    },
+    {
+      "id": "218824ca4c81cf69d05ad7849d02d4269edae8a6d34342cdb0f27d406b2dc2b1",
+      "reasoning": "The imperative implementation reproduces the functional covariance calculation, including unequal-length and short-input cases.",
+      "score": 1.0
+    },
+    {
+      "id": "349160efee84c7345d69faf8d79bd090d8b609961b3ef0ea30f913c634e42f10",
+      "reasoning": "The valid-input quantile calculations align, but invalid inputs return different error constructors and messages between the implementations.",
+      "score": 0.6
+    },
+    {
+      "id": "79426d245b84a5ded230f2dec8d89240717ce64fe4ad99078f4c44dc5891a467",
+      "reasoning": "The generated implementation is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "51c70a858775919a8f5ccacf14ab2c339a0c82a2b8ab3290786a4a375b2f676d",
+      "reasoning": "It defines differently named functions and provides neither the specified equivalence theorem nor an imperative implementation.",
+      "score": 0.0
+    },
+    {
+      "id": "27727c23a359762ab040850f2a7f1f961ae14740f82e455a04c9c2bd621e0335",
+      "reasoning": "It changes the interface from Nat functions to differently named Int functions and omits the required imperative equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "0d636d9805df83349b38edb52894782eff2bd32d7c6de02e4989ac1e5983028a",
+      "reasoning": "The generated list-based heap code does not implement the referenced Array-based Pre/Post correctness theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "38b4c30015c6859bfd19f947952b4cef4243ee667adea8447e7b1497890147d1",
+      "reasoning": "Its functional bisect uses an invalid subtractive midpoint and decreases lo after a less-than comparison, so insertion results commonly differ.",
+      "score": 0.1
+    },
+    {
+      "id": "010de2e790f38b84350f9f62681ab4e069bd68786f6ce09d601785647fe6f4f8",
+      "reasoning": "Its functional bisect uses an invalid subtractive midpoint and decreases lo after a less-than comparison, so insertion results commonly differ.",
+      "score": 0.1
+    },
+    {
+      "id": "7e300cdf09d7c0bb6f2ec13af2f2a3f76925267b7c8c76ab80810bc558d106d7",
+      "reasoning": "It defines only replaceSpaces and an unfinished specification proof, with no replaceSpacesImp or required equivalence theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

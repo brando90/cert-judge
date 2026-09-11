@@ -21,7 +21,7 @@ dependencies = [
     "fire",
     "Levenshtein",
     "seaborn",
-    "wandb",
+    "wandb[workspaces]",
     "twine",
     "nvidia-htop; sys_platform != 'darwin'",
     "protobuf",
@@ -62,11 +62,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["py_src/veribench"]
+packages = ["py_src/cert_judge"]
 
 [project.optional-dependencies]
 build = [
     "psutil>=7.0.0",
+]
+ti2prime = [
+    "ultimate-utils>=0.10.9,<0.11",
 ]
 compile = [
     "flash-attn>=2.7.4.post1; sys_platform != 'darwin'",

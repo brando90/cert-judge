@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "088ac20f0d67a240fcf8118b690ba4a55a8aad8b1159091795c3b89f039c2198",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "915accf28b52cb511750e39e8be4f77b67cb612c36e778703086319deec32500",
+  "completed_at": "2026-08-26T08:06:27.060537+00:00",
+  "effort": "low",
+  "elapsed_seconds": 45.18425233301241,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "ad488ddced3f7030eeac7aeda91d427cf6f7ad8eb20803412bcb2effe0062e8c",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ea59ebefd98461ca23af9c43190285ab9dd704e379850a4545f5741eadf9dfac",
+      "reasoning": "Generated code is byte-identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "c63fe2b1d4d6ec4e954f90ca0a4ba75d142fe053cc5115742632589321f0fda8",
+      "reasoning": "Full implementation matches the correct bisect_left semantics and states the same equivalence theorem as the reference.",
+      "score": 0.9
+    },
+    {
+      "id": "7ba465804264b0bc525400011f0efc07127bf66cba16e286885b7645e0c38d78",
+      "reasoning": "Covariance formula uses (xi + xbar) instead of (xi - xbar), an incorrect implementation despite matching the equivalence theorem statement.",
+      "score": 0.2
+    },
+    {
+      "id": "ac0c372ad2f7c473818eb6dab8630638a5b4eccadea4e1954b9891f3230910fe",
+      "reasoning": "Implements covariance correctly with proper (xi - xbar) formula and includes the target equivalence theorem matching the reference.",
+      "score": 0.9
+    },
+    {
+      "id": "93021c2b5158a007daba7ff550eff2701031e20ef7bf3a9b668884601d3ca078",
+      "reasoning": "Implements quantiles algorithm faithfully and includes the required equivalence theorem, consistent with reference intent.",
+      "score": 0.85
+    },
+    {
+      "id": "e73fff0e49e92025c20afb8bbaf0becb8c9bac79a053c2198cdf14adf91d9da9",
+      "reasoning": "Generated code is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "93c505001319a895deeba5f0adf7ecba1cf951fc77be5457f39c0a2e8255cd35",
+      "reasoning": "Implements the analogous quadruple_abs_diff_plus_three function correctly, matching the semantic pattern of the reference's abs-diff-plus-const equivalence.",
+      "score": 0.85
+    },
+    {
+      "id": "5da1221157b9c997cb44cb1b07d4a4f367036abd106257a99cda382d5d4d37ca",
+      "reasoning": "Matches the reference implementation of insort exactly including bisect helpers.",
+      "score": 1.0
+    },
+    {
+      "id": "3f0d487418d699703ec399eb6bb9e1f4abb5275d246ac981ceea02acf58108aa",
+      "reasoning": "File is essentially identical to the full reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "d057f3bfe33406b70e49f1a9242e6d3a27a63ac051e40f3a39cba48266005963",
+      "reasoning": "Matches reference heappush logic closely but has an off-by-one bound check (≤ instead of <) introducing a subtle discrepancy.",
+      "score": 0.7
+    },
+    {
+      "id": "793b2c07b656e7374ba48852d16a534c8f38daf0b33ff808007e7b0d9ac16a71",
+      "reasoning": "Core heappush/siftdown implementation matches reference, though several property/correctness proof sections are left empty rather than stated as sorry.",
+      "score": 0.75
+    },
+    {
+      "id": "343d8654bfcebb2bdc6869a534d99db8159487ea8a54699371feacff7b3ceab6",
+      "reasoning": "Nearly identical to the reference heappop implementation including siftup/siftdown and equivalence theorem.",
+      "score": 0.95
+    },
+    {
+      "id": "22bf039c5c43ef79f52aaf09c641b822e0e2c3e1ae7ab7f6151cda64a8df3b49",
+      "reasoning": "Generated content is unrelated to the SafeUnsafeFormatString Pre/Post correctness theorem context in the reference.",
+      "score": 0.1
+    },
+    {
+      "id": "2e0cdfae531617a68047b50c7fa8cc8077b8e5f8e4a9aafcd098b81cb77228cc",
+      "reasoning": "Implements matching queue structures but omits the actual get_equiv_thm equivalence theorem present in the reference.",
+      "score": 0.3
+    },
+    {
+      "id": "10bbadd354b3de99115c2766812f07dc3d88924b648e8d35721cbb9a46d25928",
+      "reasoning": "Matches the full reference implementation including the correctness theorem verbatim.",
+      "score": 1.0
+    },
+    {
+      "id": "02a2eb3f3dcc8cf3aec953ed866c8f5f11d0478b68b0f23b66604934ba26801d",
+      "reasoning": "Implements matching Counter structures correctly but omits the required update_equiv_thm equivalence theorem from the reference.",
+      "score": 0.3
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.040792,
+        "inputTokens": 40722,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 55135,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.039671,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2864,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 55135,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 55135,
+          "input_tokens": 2,
+          "output_tokens": 2864,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2864,
+      "output_tokens_details": {
+        "thinking_tokens": 1255
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

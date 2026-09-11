@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "7c0fa0c2efd1c5bc465b3c95a943890befbbd78685dfa905b7988fa6d9e772a2",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "94cfc23c737dcffd88317ed14069528e2ed5e0e488c0fe81f621ff060a39ac10",
+  "completed_at": "2026-08-26T07:21:15.296063+00:00",
+  "effort": "low",
+  "elapsed_seconds": 26.493540750001557,
+  "judge_id": "gpt-5.6-terra|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "ae9bc7d4c2724b9c7246fb21861099e2e7a0ac91fa889ce12ddf2eccbe8eb07f",
+  "repeat_id": 1,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "d67b392690b6a91e307f9bcd74ea0bcd3b4fa3819ee1ae8ab454dace062d655e",
+      "reasoning": "The generated file states the same Base32 imperative-functional equivalence theorem with the identical quantification and conclusion.",
+      "score": 1.0
+    },
+    {
+      "id": "baff7ca03474c1e1bb2076b126da37646cf3026b4f972218a8309725d181490e",
+      "reasoning": "The generated file contains implementations and tests but omits the required loads equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "baec848ae2b10486ee43d484b3267060e8e31681cc284f1e489fd097c6d2a405",
+      "reasoning": "Although Post is defined as equivalence, no theorem establishes loads_imp s = loads_func s.",
+      "score": 0.0
+    },
+    {
+      "id": "c0a9ecc8ead3820e23fd4f2f60970b2111d09bbdc8af0a1ebad5cbc4a7a3641a",
+      "reasoning": "The generated theorem exactly states the required unquote imperative-functional equivalence for every input.",
+      "score": 1.0
+    },
+    {
+      "id": "9bfb3591c125fe78d82b345ff46cdfdd77ffed48758236753fa045fce13b6e9b",
+      "reasoning": "The comparison implementations and examples are present, but the required compare_digest equivalence theorem is absent.",
+      "score": 0.0
+    },
+    {
+      "id": "755293028392a7b3e2bbd4c734c066af709da23bbf716995586d7441d3c5298f",
+      "reasoning": "The generated theorem has the same universal comparison-equivalence statement as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "9ffb281438509b7c465b9e364e4ada4f1c6492aa65f0efe07f738e82c72a5c01",
+      "reasoning": "The generated file defines the corresponding property but supplies no sort_equiv_thm or correctness proof.",
+      "score": 0.0
+    },
+    {
+      "id": "fb4dddaa8ebeff12e385cba3121a073b810584a64e1d8cd5ddcbb093da194191",
+      "reasoning": "The generated theorem exactly equates benchmark_median_low and median_lowImp for all input lists.",
+      "score": 1.0
+    },
+    {
+      "id": "c69a377397de949c591fea19d3b842807209ecf4c52251b2bd076e15cb64cee7",
+      "reasoning": "The generated content reproduces the reference including the identical median-high equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "3d4f061b5a5cb1eee6d487e42fd83bd3a7a4e7aa827a087c6dc9e8f0053362b8",
+      "reasoning": "The bisect implementations are present but the required bisect_equiv_thm is omitted.",
+      "score": 0.0
+    },
+    {
+      "id": "28d70f81913224363afcb3499528a4feaa0839b4cf5426b05f5a99e4b544c13c",
+      "reasoning": "The generated theorem exactly matches the reference bisect imperative-functional equivalence statement.",
+      "score": 1.0
+    },
+    {
+      "id": "936bb04fdd5e4c5a5760d5331b4efc2bc1d99d8e364506a6835d982f6130fc11",
+      "reasoning": "The generated list-based VeriBench theorem is not the requested HeapPush array-based correctness theorem or its Post_prop guarantees.",
+      "score": 0.0
+    },
+    {
+      "id": "0c3c55ae8d1a5432432e2a5aa02039cba5cf2e95e2558ffce0952de822244b13",
+      "reasoning": "Both covariance functions are definitionally aligned, but the required covariance_equivalence_thm is missing.",
+      "score": 0.0
+    },
+    {
+      "id": "06e41bfedb34e7b4a7a9311fa83cdc8485ebd3336b6f4cbb0f6e4322679e4ba2",
+      "reasoning": "The imperative covariance implementation and tests are provided, but no covariance equivalence theorem is stated.",
+      "score": 0.0
+    },
+    {
+      "id": "018b01674e01c08950ab354c373eb1d4e0cfc2cbfa3e4ff214e2bd77b0dd262c",
+      "reasoning": "The generated file states the exact required benchmark_quantiles equivalence theorem for all arguments.",
+      "score": 1.0
+    },
+    {
+      "id": "80cb84940afb60306677868079ce16338137409640daf4520013d6288bf1d93b",
+      "reasoning": "The generated file has no imperative minimum implementation and omits the required equivalence theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

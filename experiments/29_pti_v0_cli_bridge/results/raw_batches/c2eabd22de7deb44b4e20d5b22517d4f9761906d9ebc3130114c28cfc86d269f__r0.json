@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "c2eabd22de7deb44b4e20d5b22517d4f9761906d9ebc3130114c28cfc86d269f",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "79f33a96cfe810161d548628c03dd204c29ab91763095810bf48995c16ff146d",
+  "completed_at": "2026-08-26T08:43:38.529046+00:00",
+  "effort": "low",
+  "elapsed_seconds": 43.12729258398758,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "7d9a5138937fda5452adfee720f4992f4aed8786ea6e90b6499a68a7df780228",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e403ceeb45bf359716f4fa552f28aa747665e6fd1c81629bb9e883303d0fa66e",
+      "reasoning": "Generated file omits the core equivalence theorem (join_imp = join_func) entirely, only leaving blank sections.",
+      "score": 0.15
+    },
+    {
+      "id": "ffe99fe8c062c759e57b1dfd9328329970cadf378548c54d6a72909df00766c3",
+      "reasoning": "No equivalence theorem is present at all; file ends after unit tests.",
+      "score": 0.1
+    },
+    {
+      "id": "ce3ba2cc641718e36c628666942cb3bc24fb68a14b1572406517347709b1bf9f",
+      "reasoning": "Only a length property is proven; the core encode equivalence theorem is missing entirely.",
+      "score": 0.15
+    },
+    {
+      "id": "aef344368bd79c6b2cecad6cf15a5496065346eccf35bdce22f8b34bb567bfe4",
+      "reasoning": "File has no theorem statement at all corresponding to the reference's loads_equiv_thm.",
+      "score": 0.0
+    },
+    {
+      "id": "a557f306abfb4b76146776108c12913edab9cbbb10db41b264f313e3e94ed4a7",
+      "reasoning": "Final loads_equiv_thm matches the reference statement with sorry, but the functional spec (parseInt_func?) contains introduced logic bugs that undermine meaningfulness.",
+      "score": 0.55
+    },
+    {
+      "id": "7c3c4f28f9e1943d9638f0256e6e8d31818b922db14d056893cb7e8fea761f8a",
+      "reasoning": "unquote_equiv_thm exactly matches the reference statement with sorry, plus an additional quote_equiv_thm.",
+      "score": 0.9
+    },
+    {
+      "id": "8cb486244ba356f49645f4e14ea006cf1a272c776183147f9aaf276d39331798",
+      "reasoning": "No compare_digest equivalence theorem present; file ends after tests.",
+      "score": 0.1
+    },
+    {
+      "id": "88bf30b692001f5fd3df3140dcaed8bac3451eed98d681e708444aa5ae552587",
+      "reasoning": "compare_equiv_thm exactly matches the reference statement with sorry.",
+      "score": 0.9
+    },
+    {
+      "id": "eef24db23ff0180d5bedc37c345eb8285bccd3d57dadec221e2714b75511c8cd",
+      "reasoning": "No sort_equiv_thm is present; the file ends after tests without any correctness/equivalence theorem.",
+      "score": 0.1
+    },
+    {
+      "id": "bac9fc76b064dced9bb2caba304b2547642a3f5d0078f103bc380bfe70bed44d",
+      "reasoning": "sort_equiv_thm exactly matches the reference statement, derived from order_thm as in reference.",
+      "score": 0.9
+    },
+    {
+      "id": "f458eef87e09282af2284be53d5ea314de5677400588cb50360a7b6deb523e3a",
+      "reasoning": "median_low_equivalence_thm matches the reference statement exactly with sorry.",
+      "score": 0.9
+    },
+    {
+      "id": "eb8954b95aea01d07bf14dd67637671ce959930b2f6b15256e4995ba9f924f24",
+      "reasoning": "median_high_equivalence_thm matches the reference statement exactly with sorry.",
+      "score": 0.9
+    },
+    {
+      "id": "1c0549dac02a2c85e5a64e99baf2b5de39835f6cae62e130fe116498b9830468",
+      "reasoning": "File ends after unit tests with no bisect_equiv_thm or Pre/Post structure at all.",
+      "score": 0.1
+    },
+    {
+      "id": "13d415fdc19a9cb85958f691e691fb76062b1bf491d422110ce32d3e4e57440e",
+      "reasoning": "Includes Pre/Post and partition property theorems but omits the core bisect_equiv_thm equivalence theorem entirely.",
+      "score": 0.15
+    },
+    {
+      "id": "c9a958f6f535b026a3ecb960184c609a44af2a49a96a651c0b530b9ee2b1676f",
+      "reasoning": "Completely different, unrelated heappush formalization (generic List α, Mathlib-based) with no correctness_thm matching the reference's Pre/Post/Array Int structure.",
+      "score": 0.0
+    },
+    {
+      "id": "eb2a5e9af41a95d390b4e6c94770f43efcc1cd7c2addbf736fa4ffc83fc1ee6f",
+      "reasoning": "Unrelated generic-list heappush formalization lacking any theorem corresponding to the reference's correctness_thm over Array Int with Pre/Post.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.03033,
+        "inputTokens": 30270,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 37318,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.18099479999999998,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3063,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 37318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 37318,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 37318,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 37318,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 3063,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3063,
+      "output_tokens_details": {
+        "thinking_tokens": 1461
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

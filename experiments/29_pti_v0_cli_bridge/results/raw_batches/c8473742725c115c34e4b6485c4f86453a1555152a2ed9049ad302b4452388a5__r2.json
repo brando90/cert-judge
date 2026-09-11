@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "c8473742725c115c34e4b6485c4f86453a1555152a2ed9049ad302b4452388a5",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "9e743f4c1f550919cbf2ba02f4a02a34391f9029d04f121f753af2479b87dc15",
+  "completed_at": "2026-08-26T07:41:39.895860+00:00",
+  "effort": "low",
+  "elapsed_seconds": 42.79876058298396,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "02d5411ced11f80e51c69df7bb01f10c85d08e654fd691f288b16bc06f455e20",
+  "repeat_id": 2,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "c6bf8bb407793a17fdf8d97ab3a95ef9a581dbaaa50b1bee95a473cfe66ead71",
+      "reasoning": "Array-based bisect_right/insort_right with analogous sorry'd spec theorems, reasonably equivalent structure.",
+      "score": 0.7
+    },
+    {
+      "id": "ff74624a3973f1db273b1b038b7e18218c599404e0562267ca7de9bbc617c8f3",
+      "reasoning": "List-based reimplementation with custom Option type, structurally analogous but diverges in representation.",
+      "score": 0.65
+    },
+    {
+      "id": "a4cb9e2714ed5ea503c34361756110646c484c5f470ae692078eef38e766ea89",
+      "reasoning": "List-based bisect/insort with matching spec structure and sorry'd correctness theorems.",
+      "score": 0.7
+    },
+    {
+      "id": "87ee120c0e75dca9f17a5c67ec0635cc81a01644b0c7583413405a2f484f3d12",
+      "reasoning": "Full safeCopy spec/correctness theorem with detailed post-conditions, reasonably faithful given trivial reference.",
+      "score": 0.7
+    },
+    {
+      "id": "13b320158abe75b76ef69ce72cd4a2bf93ef89c1596624ec148e4e004892c2d3",
+      "reasoning": "Generated theorem is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "90b33e422c7742c4d202dcbc493f38499e15898b2ac1b753cb66541666d02035",
+      "reasoning": "safeCopy returns Unit and relies on mutation of immutable ByteArray, so tests are semantically broken despite similar intent.",
+      "score": 0.25
+    },
+    {
+      "id": "0f1c9c23ecd9d98dea792584fd84ac2ea8408f94104337b4546a1ba7e2f9ab7d",
+      "reasoning": "Mean functional/imperative implementations match reference structure with analogous spec/correctness theorems.",
+      "score": 0.7
+    },
+    {
+      "id": "5b09fd9f1bfc5cffb59a79c2c17df79f2ec8c5f32b71f5b17709afc8be5e3a15",
+      "reasoning": "Captures first-char extraction intent but wraps in custom Str type and uses questionable indexing, diverging from reference semantics.",
+      "score": 0.45
+    },
+    {
+      "id": "3e7b086144e8ac5e917d2bb4a1f479966a48e886c15d09b7c043e8b6e497a4a0",
+      "reasoning": "Median functional/imperative implementations closely mirror reference with matching equivalence theorem.",
+      "score": 0.75
+    },
+    {
+      "id": "1ebaa7ede0e54fcd2796bb2069b025c7271f27cb17f1aedbce3da14c93a9feb8",
+      "reasoning": "sum_func and mean_func have inverted/buggy logic (subtraction instead of addition, flipped conditional), breaking correctness despite matching shape.",
+      "score": 0.2
+    },
+    {
+      "id": "2099d8d40164d03d3a7c1e64945b91801b732c32655234c017bac0edd7497eec",
+      "reasoning": "Variance implementation correctly matches reference definitions and structure closely.",
+      "score": 0.85
+    },
+    {
+      "id": "a941871ad17bb9e2a893dbea7aacd1c34422ce30f0bbbf95b7217c3d5af3b565",
+      "reasoning": "Uses a manual map-based uppercase conversion rather than toUpper, a different but plausible approach with a sorry'd equivalence gap.",
+      "score": 0.55
+    },
+    {
+      "id": "43c4b53320674925c8cba7f2e379d4bda5af1a273ab88672af1759f63fd8c434",
+      "reasoning": "Generated theorem is identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "f55a38438b2ea9ffa7ff4139a07ed5204f961a0865b8605ca3e08236347d2ab5",
+      "reasoning": "Faithful reimplementation using s.toUpper matching reference semantics with equivalent test cases.",
+      "score": 0.75
+    },
+    {
+      "id": "0f68ee2470aab2cc34b2ccf31707723bf21c36b5bc955bed83a436f24bd1f06f",
+      "reasoning": "sum_func uses subtraction instead of addition, breaking mean and correlation correctness despite matching overall structure.",
+      "score": 0.2
+    },
+    {
+      "id": "0b561384a927acb0c793a65df993badeffbf24ed19be6a1f7e4079f60ec03823",
+      "reasoning": "Generated theorem is identical to the reference implementation.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.025447,
+        "inputTokens": 25387,
+        "maxOutputTokens": 32000,
+        "outputTokens": 12,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 36645,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.033233,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2590,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 36645,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 36645,
+          "input_tokens": 2,
+          "output_tokens": 2590,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2590,
+      "output_tokens_details": {
+        "thinking_tokens": 1012
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

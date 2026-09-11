@@ -1,0 +1,25 @@
+% Status: DRAFT — do not include in paper_latex/ until machine-readable PTI-v0 bridge results are committed.
+% Protocol: experiments/04_veribench_validation/pti_v0_v4/PROTOCOL.md
+% Data/results: experiments/04_veribench_validation/results_pti_v0_v4/
+
+\subsection{A label-free proxy for judge trustworthiness}
+
+We distinguish the scoped trustworthiness construct $\mathrm{TW}_m$, the human-grounded criterion $\mathrm{TI}_m$, and the label-free proxy family $\mathrm{PTI}_p$.
+Our frozen implementation, $\mathrm{PTI}_{\mathrm{v0}}$, measures four pre-specified behavioral diagnostics rather than claiming to prove judge trustworthiness.
+
+Let $f=(i,a,q)$ identify a benchmark item, generating agent, and generation.
+At each ladder level $\ell$, we aggregate repeated judge calls locally as $\widetilde{s}_{f,T,\ell}=\operatorname{median}_r s_{f,T,\ell,r}$.
+For a structurally valid degradation ladder, we compute $C_{f,T}=(1-\rho_{f,T})/2$, where $\rho_{f,T}$ is Spearman correlation between $\ell$ and $\widetilde{s}_{f,T,\ell}$.
+A constant score ladder remains in the analysis with $C_{f,T}=0$; only a score-independent construction failure excludes a probe.
+
+With at least two repeats, the instability term is $\sigma_{f,T}=\operatorname{mean}_{\ell}\!\left[2\operatorname{sd}_{r,\mathrm{ddof}=0}(s_{f,T,\ell,r})\right]$, and the ladder factor is $\sqrt{C_{f,T}(1-\sigma_{f,T})}$.
+With one repeat, the factor equals $C_{f,T}$.
+The four properties measure exact equality, bug monotonicity, missing-specification monotonicity, and invariance to a validated alpha-renaming.
+For non-self comparisons, we reproduce the human-criterion pipeline's frozen reference preprocessing by selecting the final theorem or lemma block, with full-source fallback.
+We aggregate within and across properties using exact-zero-preserving geometric means evaluated in log space, with no epsilon floor.
+
+The outer validation analysis compares one $\mathrm{PTI}_{\mathrm{v0}}$ value per judge configuration with the paired human criterion $\mathrm{TI}_{m_1}$.
+Because these quantities use different level scales, the analysis uses rank association and never an identity line or a PTI-versus-TI level error.
+
+% Results remain intentionally absent until the primary score tensor, property table,
+% pre-bridge commit, and bridge output satisfy the locked protocol.

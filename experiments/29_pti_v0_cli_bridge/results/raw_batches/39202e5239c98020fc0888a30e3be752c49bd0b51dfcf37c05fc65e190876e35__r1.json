@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "39202e5239c98020fc0888a30e3be752c49bd0b51dfcf37c05fc65e190876e35",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "a0075923774222a1020501879df71dfecc22e52c5b1cbce7ff74e7648d960570",
+  "completed_at": "2026-08-26T08:04:18.096088+00:00",
+  "effort": "low",
+  "elapsed_seconds": 37.5484240000369,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "2d4c2cfe33423b650ae0cff79b07bf2f85e9fdcd28eb214970be86c19cd6bdfa",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "ebb96703c7ddd3662be53670bda5005bfef9c73cf02962794da98abeaed43713",
+      "reasoning": "Same structure with compare_digest_imp and compare_digest_func, equivalence theorem statement matches reference closely.",
+      "score": 0.85
+    },
+    {
+      "id": "9e3e44ef3277a86f7a32295840eeedcfb13b3d1114719d16214bcae308ee4af1",
+      "reasoning": "Function names match but signature differs (no explicit hi param split, no let hi binding), and functional definition has a subtle logic comment but no explicit equivalence theorem restated matching reference exactly.",
+      "score": 0.4
+    },
+    {
+      "id": "8795cf23b45606d83e1cb9e40326d77a8521fb96c9beaff3e7b32ac38c586683",
+      "reasoning": "bisect_left_functional has bugs (mid computed as (lo-hi)/2 instead of (lo+hi)/2, fuel off-by-one) making it semantically incorrect relative to imp, though overall structure and equivalence theorem match reference.",
+      "score": 0.5
+    },
+    {
+      "id": "4483b302d785869b7ba53a6d85e0211b9c1705a169c670cc73235e85a7103ee3",
+      "reasoning": "Covariance/covarianceImp both defined as same underlying function so equivalence is trivial rather than testing distinct implementations, missing the imperative loop version but matches reference theorem statement structurally.",
+      "score": 0.6
+    },
+    {
+      "id": "8212f50886eca5b0d86c25dc07a92769e86d8f9e1e3e64ab146597bdc66fb8f2",
+      "reasoning": "Very thorough match to reference with proper functional/imperative split, Pre/Post, and correct equivalence theorem statement.",
+      "score": 0.9
+    },
+    {
+      "id": "559a16394df6df35bc5fe11cf73232edf01a5445ec500d94714c2a476eb80f8f",
+      "reasoning": "Comprehensive implementation with functional and imperative versions and equivalence theorem matching reference structure closely.",
+      "score": 0.9
+    },
+    {
+      "id": "9d421f9990e31c9b003c04633c5711997739cb785ef6644a74af981d12ea0baa",
+      "reasoning": "Missing perfectSquareOrAddFiveImp entirely and no equivalence theorem present, only a correctness theorem for a differently named function.",
+      "score": 0.15
+    },
+    {
+      "id": "57de24597dc9b9bd39e2774aecc566ac0fc54556415dcca771d28fc427ae8a45",
+      "reasoning": "No quadAbsDiffPlusThree/quadAbsDiffPlusThreeImp functions or equivalence theorem at all, just unrelated spec definitions.",
+      "score": 0.05
+    },
+    {
+      "id": "3c1f326766f7e9b454082111481eb9ab152f2d60e578bd57681c6dc2b4c0390b",
+      "reasoning": "Has insort_left_imp/functional matching names but bisect_left_functional contains bugs (mid = (lo-hi)/2) and no explicit equivalence theorem stated matching reference exactly.",
+      "score": 0.5
+    },
+    {
+      "id": "332b52e6118a32397a2ab9b1760b6c0561b18fcfa0ef8b72ae6ec84f0d69ccb0",
+      "reasoning": "Correct helper definitions match reference closely but the final equivalence theorem itself is missing (left blank/omitted after Post definition).",
+      "score": 0.4
+    },
+    {
+      "id": "32bde8913c9cbb4bcb77bf79ba1478673b07819db238ee3e1c13c5b81c5b0569",
+      "reasoning": "Has heappush_imp/functional matching names and structure but equivalence theorem itself is absent from the generated code.",
+      "score": 0.5
+    },
+    {
+      "id": "47673b8799472bc92c2063b037f718d7ab323b17e6fbaff8e636bc10557a83f9",
+      "reasoning": "Very close match to reference including full Pre/Post/correctness and explicit equivalence theorem statement.",
+      "score": 0.9
+    },
+    {
+      "id": "306ae206d7e07e6d57921b4045591af1f743b88ac3e65ef82fb6f543ad743229",
+      "reasoning": "Uses entirely different function names (JSONDecoder.decode) with no loads/loadsImp or equivalence theorem matching reference at all.",
+      "score": 0.05
+    },
+    {
+      "id": "ed206055790f3cfcd8ab19708de762bde5fbe92284c4859d9946a8fe3994e7e7",
+      "reasoning": "No loads/loadsImp functions or equivalence theorem present, unrelated JSON decoder implementation.",
+      "score": 0.05
+    },
+    {
+      "id": "3cf1c26b36766dc2c0bf6cf20ae97de9f6909aa1d0e5dcffd069c11853bf0524",
+      "reasoning": "No loads/loadsImp or equivalence theorem matching reference; unrelated JSON decoder code.",
+      "score": 0.05
+    },
+    {
+      "id": "c43bca1c3708a5cffe99291298b153bc9862ee28ccd57b7bb453fdf740cdcb03",
+      "reasoning": "Has a correctness_thm but no relation to reference's SafeUnsafeCounter Pre/Post trivial theorem structure or equivalence semantics.",
+      "score": 0.15
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.042358,
+        "inputTokens": 42293,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 57919,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.029697799999999996,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1811,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 57919,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 57919,
+          "input_tokens": 2,
+          "output_tokens": 1811,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1811,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

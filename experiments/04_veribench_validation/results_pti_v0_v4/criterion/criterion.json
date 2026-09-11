@@ -1,0 +1,579 @@
+{
+  "bootstrap_iterations": 10000,
+  "candidate_root": "data/generated_agents",
+  "config_fingerprint": "e28eb03c09991b93779a8a41ecfc5ce471ebe3275d0ab8b1d0b9f1e25f5826ad",
+  "criterion": "TI_m1",
+  "criterion_coverage_threshold": 1.0,
+  "detail_rows_path": "experiments/04_veribench_validation/results_exp16_final_robust/detail_rows.csv",
+  "detail_rows_sha256": "60bec4ceb08b9086a1f5d7df7b2dc99e19c320609786a898ee8a2607072ba70b",
+  "gold_root": "data/veribench_dataset/lean_src/veribench",
+  "legacy_cache_path": "experiments/02_reviewer_response_neurips_math_ai_2026/results/judge_cache.json",
+  "legacy_cache_sha256": "26268deaaf4d7bc731d23232a43b0106fa7c9cf097c05b3a871d144f0d6456b5",
+  "lineage_policy": {
+    "deterministic_controls": "recomputed from source and compared at stored six-decimal precision",
+    "fallback_reason_prefixes": [
+      "openai_error:",
+      "anthropic_error:",
+      "parse_error on:",
+      "oauth_http_",
+      "oauth_error:",
+      "cli_failed:",
+      "extracted from malformed json",
+      "extracted from prose:",
+      "extracted bare number:"
+    ],
+    "legacy_reasoning_scope": "the legacy cache stores only first-repeat reasoning; non-fallback verification applies to that stored reasoning",
+    "llm_lineage": "exact legacy cache key and non-fallback entry required",
+    "score_coverage_threshold": 1.0
+  },
+  "panel_manifest_fingerprint": "0554cc9afe7bacd6d747dc962a810f2c3f134df5411fa7223746cc84eb945512",
+  "primary_view": "average",
+  "records": [
+    {
+      "family": "edit_distance_control",
+      "judge_id": "editdist_e1",
+      "lineage": {
+        "excluded_count": 0,
+        "excluded_rows": [],
+        "failure_counts": {},
+        "fallback_count": 0,
+        "verified_count": 72
+      },
+      "role": "control",
+      "views": {
+        "average": {
+          "bootstrap": {
+            "ci_high": 0.4561754047481547,
+            "ci_low": -0.07926695338883977,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 3147799333,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.1483612543914942,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.1986746699690646
+        },
+        "lenient": {
+          "bootstrap": {
+            "ci_high": 0.3373256838579631,
+            "ci_low": -0.24531561193520685,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 2829733036,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.01455399061032864,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.05828591609909393
+        },
+        "strict": {
+          "bootstrap": {
+            "ci_high": 0.5370417281384611,
+            "ci_low": 0.04321445582586931,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 4241825941,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.24239945434727497,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.3033920565957686
+        }
+      }
+    },
+    {
+      "family": "gpt-4o-mini",
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "lineage": {
+        "excluded_count": 0,
+        "excluded_rows": [],
+        "failure_counts": {},
+        "fallback_count": 0,
+        "verified_count": 72
+      },
+      "role": "primary",
+      "views": {
+        "average": {
+          "bootstrap": {
+            "ci_high": 0.32015961219844863,
+            "ci_low": -0.14692569007496867,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 2500780791,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.07885604149805907,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.09161538619482858
+        },
+        "lenient": {
+          "bootstrap": {
+            "ci_high": 0.3563236540579135,
+            "ci_low": -0.11015843007679287,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 3457592493,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.11448755515796095,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.13077574435194078
+        },
+        "strict": {
+          "bootstrap": {
+            "ci_high": 0.24896867167485823,
+            "ci_low": -0.24084160630780513,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 2031905959,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.008661269490280432,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.0073036219395437784
+        }
+      }
+    },
+    {
+      "family": "gpt-4o-mini",
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "lineage": {
+        "excluded_count": 0,
+        "excluded_rows": [],
+        "failure_counts": {},
+        "fallback_count": 0,
+        "verified_count": 72
+      },
+      "role": "primary",
+      "views": {
+        "average": {
+          "bootstrap": {
+            "ci_high": 0.22670934783339608,
+            "ci_low": -0.2557566179281764,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 44426084,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": -0.01392065393684155,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": -0.014160512185608296
+        },
+        "lenient": {
+          "bootstrap": {
+            "ci_high": 0.27171455811923617,
+            "ci_low": -0.18631990311014723,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 2887017280,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.03890503135048164,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.04677699868458159
+        },
+        "strict": {
+          "bootstrap": {
+            "ci_high": 0.13421418358984644,
+            "ci_low": -0.3261865555252789,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 1351489612,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": -0.0938874849238849,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": -0.10163612995231239
+        }
+      }
+    },
+    {
+      "family": "string_similarity_control",
+      "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+      "lineage": {
+        "excluded_count": 0,
+        "excluded_rows": [],
+        "failure_counts": {},
+        "fallback_count": 0,
+        "verified_count": 72
+      },
+      "role": "control",
+      "views": {
+        "average": {
+          "bootstrap": {
+            "ci_high": 0.6318520576866079,
+            "ci_low": 0.20608873785044993,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 2780137215,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.3513371195349239,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.43480891424983525
+        },
+        "lenient": {
+          "bootstrap": {
+            "ci_high": 0.5128792953336666,
+            "ci_low": 0.052734812172914716,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 1415140980,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.23497078032307295,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.29368917019399016
+        },
+        "strict": {
+          "bootstrap": {
+            "ci_high": 0.598253377305067,
+            "ci_low": 0.17348075104115626,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 1079779792,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.3366203119801754,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.40108327325351717
+        }
+      }
+    },
+    {
+      "family": "gpt-5.3-codex",
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "lineage": {
+        "excluded_count": 0,
+        "excluded_rows": [],
+        "failure_counts": {},
+        "fallback_count": 0,
+        "verified_count": 72
+      },
+      "role": "primary",
+      "views": {
+        "average": {
+          "bootstrap": {
+            "ci_high": 0.6461954893153516,
+            "ci_low": 0.2508469266229306,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 813234651,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.3884594289084881,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.4664222492906237
+        },
+        "lenient": {
+          "bootstrap": {
+            "ci_high": 0.49890481974248246,
+            "ci_low": 0.023141819222156985,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 4143873654,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.23052603339018157,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.27804119394140325
+        },
+        "strict": {
+          "bootstrap": {
+            "ci_high": 0.6773672993499578,
+            "ci_low": 0.38845906593492774,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 1625015775,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.46640055418446374,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.5445671607442176
+        }
+      }
+    },
+    {
+      "family": "gpt-5.3-codex",
+      "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+      "lineage": {
+        "excluded_count": 0,
+        "excluded_rows": [],
+        "failure_counts": {},
+        "fallback_count": 0,
+        "verified_count": 72
+      },
+      "role": "primary",
+      "views": {
+        "average": {
+          "bootstrap": {
+            "ci_high": 0.6014725092031883,
+            "ci_low": 0.1958974593360758,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 2291556687,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.35852162142965516,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.4192981354479041
+        },
+        "lenient": {
+          "bootstrap": {
+            "ci_high": 0.5256878769970776,
+            "ci_low": 0.06239724202521808,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 514257624,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.26864277495619976,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.3110283795932125
+        },
+        "strict": {
+          "bootstrap": {
+            "ci_high": 0.6037511826394271,
+            "ci_low": 0.2252656896656098,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 3863288897,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.38136464911772777,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.4321997783805317
+        }
+      }
+    },
+    {
+      "family": "gpt-5.3-codex",
+      "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+      "lineage": {
+        "excluded_count": 8,
+        "excluded_rows": [
+          {
+            "cache_key_sha256": "768723f62574e7225af0eba09e8b4773930dc77ead9dd1ff3ecf2324c8df19d7",
+            "fallback_class": "openai_error",
+            "item_key": "0_bisect_right.lean::0_bisect_right__agent0.lean",
+            "status": "fallback_entry"
+          },
+          {
+            "cache_key_sha256": "9f264b6667313f39a1f371a4a5afc6c5706dcaad360c553d635bd8a8641ac902",
+            "fallback_class": "openai_error",
+            "item_key": "0_bisect_right.lean::0_bisect_right__agent1.lean",
+            "status": "fallback_entry"
+          },
+          {
+            "cache_key_sha256": "7cfa76f866e67de1573947b58af6035c8261940ccc5093bf3a53ffb9dfe10376",
+            "fallback_class": "openai_error",
+            "item_key": "0_bisect_right.lean::0_bisect_right__agent2.lean",
+            "status": "fallback_entry"
+          },
+          {
+            "cache_key_sha256": "6d960b841a639b66fb1283b3281128c75aba27585d26314b0d93937963b64696",
+            "fallback_class": "openai_error",
+            "item_key": "0_unsafeCopy_safe.lean::0_unsafeCopy_safe__agent0.lean",
+            "status": "fallback_entry"
+          },
+          {
+            "cache_key_sha256": "dcafae0bfcd55e905b5f1d3bf410d13d66ab8a3e3398f471d17423b564c1cdf7",
+            "fallback_class": "openai_error",
+            "item_key": "0_unsafeCopy_safe.lean::0_unsafeCopy_safe__agent1.lean",
+            "status": "fallback_entry"
+          },
+          {
+            "cache_key_sha256": "b318d7296db6eaf398e9c6505536ebc6ac9728f1dd48ac689a49d463fbd4af71",
+            "fallback_class": "openai_error",
+            "item_key": "0_unsafeCopy_safe.lean::0_unsafeCopy_safe__agent2.lean",
+            "status": "fallback_entry"
+          },
+          {
+            "cache_key_sha256": "ee9f5df8ed5e82bca216db433e1978dcdd5f1c4b420272be7c18dfec1eba3f64",
+            "fallback_class": "openai_error",
+            "item_key": "13_MyUppercase.lean::13_MyUppercase__agent0.lean",
+            "status": "fallback_entry"
+          },
+          {
+            "cache_key_sha256": "525d92e3898806318047c5d5457752ebba4a46612f996c37a8ac71763433cd3e",
+            "fallback_class": "openai_error",
+            "item_key": "13_MyUppercase.lean::13_MyUppercase__agent1.lean",
+            "status": "fallback_entry"
+          }
+        ],
+        "failure_counts": {
+          "fallback_entry": 8
+        },
+        "fallback_count": 8,
+        "verified_count": 64
+      },
+      "role": "primary",
+      "views": {
+        "average": {
+          "coverage": 0.8888888888888888,
+          "kendall_tau_b": null,
+          "observed_count": 64,
+          "required_count": 72,
+          "status": "NOT_COMPUTABLE",
+          "value": null
+        },
+        "lenient": {
+          "coverage": 0.8888888888888888,
+          "kendall_tau_b": null,
+          "observed_count": 64,
+          "required_count": 72,
+          "status": "NOT_COMPUTABLE",
+          "value": null
+        },
+        "strict": {
+          "coverage": 0.8888888888888888,
+          "kendall_tau_b": null,
+          "observed_count": 64,
+          "required_count": 72,
+          "status": "NOT_COMPUTABLE",
+          "value": null
+        }
+      }
+    },
+    {
+      "family": "random_control",
+      "judge_id": "random_r1",
+      "lineage": {
+        "excluded_count": 0,
+        "excluded_rows": [],
+        "failure_counts": {},
+        "fallback_count": 0,
+        "verified_count": 72
+      },
+      "role": "control",
+      "views": {
+        "average": {
+          "bootstrap": {
+            "ci_high": 0.2253736539278342,
+            "ci_low": -0.23511249673191267,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 4194616917,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": -0.003118705047268647,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": -0.0008176599049625538
+        },
+        "lenient": {
+          "bootstrap": {
+            "ci_high": 0.19128533057429384,
+            "ci_low": -0.2299204824824157,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 462989558,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": -0.011737089201877934,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": -0.020457516300741118
+        },
+        "strict": {
+          "bootstrap": {
+            "ci_high": 0.2968275876257328,
+            "ci_low": -0.19406351089843848,
+            "method": "paired cluster percentile bootstrap",
+            "requested_replicates": 10000,
+            "seed": 2271696749,
+            "undefined_replicates": 0,
+            "valid_replicates": 10000
+          },
+          "coverage": 1.0,
+          "kendall_tau_b": 0.04421122123315078,
+          "observed_count": 72,
+          "required_count": 72,
+          "status": "COMPUTED",
+          "value": 0.0558221058792071
+        }
+      }
+    }
+  ],
+  "repeat_aggregation": "median",
+  "schema_version": "TI_m1_criterion_v2"
+}

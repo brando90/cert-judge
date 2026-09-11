@@ -1,0 +1,45 @@
+% Status: DRAFT
+% Experiment 29: PTI-v0 CLI bridge (v5)
+% This source is a staging draft; only committed machine-readable results may
+% be copied into the active ICLR manuscript.
+
+\paragraph{PTI-v0 execution.}
+We evaluated the frozen four-property proxy on five primary judge--prompt
+configurations and three controls.  The run used locally authenticated
+subscription CLIs, completed all 4,728 unique score cells with three repeats
+per cell, and incurred zero provider-API spend.  The exact v4 model panel was
+not run: this versioned v5 protocol used \texttt{gpt-5.6-terra} and requested
+\texttt{claude-sonnet-5}.  Claude's retained telemetry additionally reports a
+small \texttt{claude-haiku-4-5} helper call on every accepted Claude CLI task, so we do
+not describe those runs as Sonnet-only.  Unrelated cases shared a batch context,
+but artifact-disjoint packing prevented levels or transformation partners of a
+typed artifact from appearing together.
+
+\paragraph{Property screen.}
+All four property estimates were computable at complete coverage.  Under the
+pre-registered exact-zero-first geometric mean, four of five primary
+configurations obtained \(\mathrm{PTI}_{\mathrm{v0}}=0\); each zero was traced
+to at least one observed zero artifact factor rather than to missing data.  The
+Sonnet--P8 configuration obtained
+\(\mathrm{PTI}_{\mathrm{v0}}=0.8114\), with a 95\% artifact-cluster bootstrap
+interval of \([0.7820,0.8391]\).  Passing remains a behavioral screen result,
+not proof of trustworthiness.
+
+\paragraph{Outer bridge.}
+The pre-registered primary association across five judge--prompt
+configurations was Spearman
+\(\rho_s=-0.354\) (95\% judge-bootstrap interval
+\([-1.000,0.395]\); 6,647 of 10,000 replicates defined) and Kendall
+\(\tau_b=-0.316\).  The three-property sensitivity retained the same tie
+pattern and the same association.  Including three controls yielded
+\(\rho_s=-0.247\) (95\% interval \([-0.816,0.257]\), \(n=8\)).  Both
+family-leave-one-out analyses were not computable at this panel size.  Thus the
+result is below the frozen \(0.5\) SESOI and inconclusive about zero; it does not
+support a positive PTI--criterion bridge.
+
+\paragraph{Decision sensitivity.}
+In the frozen Gaussian-copula simulation, the complete positive rule---point
+Spearman at least \(0.5\) and a lower bootstrap bound above zero---had 27.1\%
+power at a true Spearman correlation of \(0.5\).  The five-judge bridge is
+therefore low-power.  No per-property deployment threshold was frozen, so we
+make no claim about human validations saved.

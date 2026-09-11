@@ -1,0 +1,47 @@
+{
+  "approval_status": "NOT_REQUESTED",
+  "cache_admissible_paid_calls": 0,
+  "cost_status": "QUOTED_CONSERVATIVE_UPPER_BOUND",
+  "execution_command": null,
+  "metric_version": "PTI_v0",
+  "models": {
+    "gpt-4o-mini": {
+      "input_token_upper_bound": 16817412,
+      "missing_calls": 3132,
+      "output_token_upper_bound": 801792,
+      "pricing_usd_per_million_tokens": {
+        "cached_input": 0.075,
+        "input": 0.15,
+        "output": 0.6,
+        "source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+      },
+      "repeats_per_cell": 3,
+      "request_cells": 1044,
+      "upper_bound_cost_usd": 3.003687
+    },
+    "gpt-5.3-codex": {
+      "input_token_upper_bound": 34074870,
+      "missing_calls": 6264,
+      "output_token_upper_bound": 1603584,
+      "pricing_usd_per_million_tokens": {
+        "cached_input": 0.175,
+        "input": 1.75,
+        "output": 14.0,
+        "source": "https://platform.openai.com/pricing"
+      },
+      "repeats_per_cell": 3,
+      "request_cells": 2088,
+      "upper_bound_cost_usd": 82.0811985
+    }
+  },
+  "no_api_guarantee": "this CLI contains no inference client or credential loading code",
+  "quote_date": "2026-08-21",
+  "schema_version": "PTI_v0_spend_quote_v1",
+  "token_bound": "input <= UTF-8 bytes of rendered prompt + 128 protocol tokens; output <= 256 tokens; all input billed uncached",
+  "total_missing_calls": 9396,
+  "transforms": [
+    "ALL"
+  ],
+  "unavailable_transforms": [],
+  "upper_bound_cost_usd": 85.0848855
+}

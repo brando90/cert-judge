@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "a162f220ed16292d52859c86b98934ab4c7e8f06fd012f91377b9fba4405c3f0",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "1164ee53be021f77cd08270446374527cc672c20b11f66923bd2bf4e1a07f0f9",
+  "completed_at": "2026-08-26T08:28:15.246638+00:00",
+  "effort": "low",
+  "elapsed_seconds": 38.73272529197857,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "31c78a4666d5232ed40f97830f4e4035337aeb44c8b75b585b1a9834e1687f0a",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "71790bdf002c1ba0584236f8bb96c510454a564648fda0391734f854c6bffd1c",
+      "reasoning": "Equivalence theorem structurally matches but has sorry, and mean_func is broken (if n != 0.0 then 0.0 else division) making the spec trivialized/incorrect for the core logic.",
+      "score": 0.5
+    },
+    {
+      "id": "9eb21d96c885e97cb8b264440893aa6392597480fb2c60643eb0d1ce67dbf9a9",
+      "reasoning": "Equivalence theorem matches reference exactly (sorry) with correct implementations and a proven spec_thm, minor gap being the unproven equivalence.",
+      "score": 0.75
+    },
+    {
+      "id": "a274177d1a883ddaeadd22483c46fe80c03defc01bfbbda81ace202d7ce60b08",
+      "reasoning": "Equivalence theorem is fully proven-absent (no equivalence theorem at all in generated file), and sum_func is broken (foldl subtraction), diverging from reference guarantees.",
+      "score": 0.2
+    },
+    {
+      "id": "8ff66453eacb2c0d04270efebf3e5e9f696dcfea151b7d3165242edb460d0dcc",
+      "reasoning": "Correct implementations and equivalence theorem matches reference exactly (sorry), with additional spec/correctness theorems also present as sorry.",
+      "score": 0.8
+    },
+    {
+      "id": "850150667de4a7861d7c3e167fe359a14451a368334f9887f1d99fccb8fa3bc7",
+      "reasoning": "No equivalence theorem present at all, and sum_func is broken (subtraction fold) causing wrong mean/correlation, a significant trivialization/incorrectness.",
+      "score": 0.15
+    },
+    {
+      "id": "720d578ea77b7a58b4b4f27614e770c614341cf5a539ecb9a16e8673f4b882f6",
+      "reasoning": "Correct implementations but the equivalence theorem itself is entirely missing (only correctness_thm section stub with no proof/theorem, no correctness_thm at all).",
+      "score": 0.2
+    },
+    {
+      "id": "4350d9a7bfe3a0d8ec078fb12d7f62886fa21bd8a79045fbde1cb4499fd7977c",
+      "reasoning": "Correctness theorem matches reference exactly with actual proofs (not sorry) for canonical_thm and addition_thm, closely mirroring reference structure.",
+      "score": 0.85
+    },
+    {
+      "id": "403e6e06b832805e1589dac0a0d136687f0224d2b4caf841255e01bc4fddbe35",
+      "reasoning": "Equivalence theorem matches reference exactly (sorry) with faithful imperative/functional implementations of LRU cache semantics.",
+      "score": 0.75
+    },
+    {
+      "id": "251097e3cb3017fb52ef50e2b9879f82ca95ef907246feb6db866c36d31fcc86",
+      "reasoning": "Equivalence theorem for mergeKw is completely absent from the generated file despite correct implementations, only a partial positional property theorem exists.",
+      "score": 0.15
+    },
+    {
+      "id": "7b2338719f5b85525c3a9dabc4238ab7ba88d240b30dd858dfae62aa640d43f7",
+      "reasoning": "Equivalence theorem entirely missing (only unrelated default/idempotent properties proven/sorry'd, no indent_equiv_thm at all).",
+      "score": 0.15
+    },
+    {
+      "id": "07af2baf289225b3a7b3fa126ac1f5d909ea5fb36105e6f0ccc81b1399145735",
+      "reasoning": "Equivalence theorem matches reference exactly (sorry), implementations faithful, plus proven margin_thm as bonus.",
+      "score": 0.8
+    },
+    {
+      "id": "cb23ed4c500f8c7136ba06060617e34c2d691d9ec3e0b9b02274dba39f2c2982",
+      "reasoning": "Different domain (Int-based with pre/post and error handling) rather than Nat myAdd/myAddImp equivalence; captures addition correctness intent but doesn't match the imperative/functional equivalence structure of the reference.",
+      "score": 0.3
+    },
+    {
+      "id": "ffb6c72b84f4ad8b66181156fbabb43d17c78cb0c6564c8ce72061b31f2336b2",
+      "reasoning": "Similar mismatch to reference's imp/func equivalence theorem structure; captures sum correctness but weaker (panic-based, incomplete proof) and no equivalence to a second implementation.",
+      "score": 0.25
+    },
+    {
+      "id": "dfffc07793dc9ef66efe7601a543f8e2c1db8b4b329a6508b32b70dd6ab3c316",
+      "reasoning": "Same pattern as other sum_nat variants - captures addition correctness intent but not the specific imp/func equivalence structure of the reference, and correctness proof is incomplete (sorry).",
+      "score": 0.25
+    },
+    {
+      "id": "f9862fe43f04ebc42590ecf77f54266a896fb8ee76ef415725f7408bdb564afc",
+      "reasoning": "Captures bisect_left/insort_left correctness specs (partition properties) analogous to reference but as separate spec theorems rather than the combined insort_partition_after_insert_left equivalence, all left as sorry.",
+      "score": 0.3
+    },
+    {
+      "id": "f7377bc59a8bafe5b1b4dd416399d860dc65ceb89b31ea5391af09f2e0b86353",
+      "reasoning": "Similar bisect_left/insort_left pre/post correctness theorems capturing related partition properties, but not matching the exact combined equivalence theorem, left unproven, and wrapped in markdown code fence.",
+      "score": 0.3
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.028626,
+        "inputTokens": 28541,
+        "maxOutputTokens": 32000,
+        "outputTokens": 17,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 35839,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1640388,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1959,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 35839,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 35839,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 35839,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 35839,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 1959,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1959,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

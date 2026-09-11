@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "dd613338daf8bb7aa0735561aac54035682a586177a8e2775738df63d871ab60",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "8f8aa56e78734f236fa1f7e21857d324cfb3c9266c610f9fdf58eadb5c493814",
+  "completed_at": "2026-08-26T08:55:51.601875+00:00",
+  "effort": "low",
+  "elapsed_seconds": 57.552777333010454,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "d3731be11572170909cf59b6d8cb4796106b72f23110536b503aa0321f9c1df6",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e8453845a41e0e5f170e6a35cf03179822d1836c4c890217f640d690cff28f33",
+      "reasoning": "Both benchmark_covariance and covarianceImp call the same covariance function, making the equivalence theorem trivial rather than comparing distinct implementations, and covariance itself has a sign bug.",
+      "score": 0.2
+    },
+    {
+      "id": "e8ddd32e4bce3e2d4f1d5c8e6b90823d40a439c4972ee8f986a5356cf9783804",
+      "reasoning": "Faithfully reproduces the full spec (Pre, symmetry/self-variance/shift-invariance properties, correctness theorem, genuine imperative implementation) and preserves the equivalence theorem statement.",
+      "score": 0.9
+    },
+    {
+      "id": "aa31295d1f6b340dd5a875fbf4d6b4e32b0a89b2e87f647a05228ad7f78ef55a",
+      "reasoning": "Comprehensive reproduction of pre/post conditions, property theorems, correctness theorem, distinct imperative implementation, and the exact equivalence theorem statement.",
+      "score": 0.9
+    },
+    {
+      "id": "d0e83fcbbe892d6c4247615ddc494e2b73713b5cefebaa7bfe05c3a24b303b69",
+      "reasoning": "The file ends after defining insort implementations without any correctness or equivalence theorem, omitting the core guarantee entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "cae96c5949dc214615087430d82d07904941965a28a89ffd6b8558f667a0f724",
+      "reasoning": "Includes Pre-condition and a sorted_prop theorem stub but omits the Post-condition's correctness theorem and the final equivalence theorem, missing the core guarantee.",
+      "score": 0.15
+    },
+    {
+      "id": "7f5eee5fcb7cdc99caf7113f0705f400dd3c20d272c98f624c8da771fb2bce4a",
+      "reasoning": "Property, correctness, and equivalence theorem sections are all left empty (blank lines only), entirely omitting the core equivalence guarantee.",
+      "score": 0.05
+    },
+    {
+      "id": "89d2f4a6d8f5c4cf1ee6866303e36f0ff72ff510c790732beefc715c462ab93d",
+      "reasoning": "Property theorems, Post-condition proof, correctness theorem, and the required equivalence theorem are all missing (blank sections), omitting the core guarantee.",
+      "score": 0.05
+    },
+    {
+      "id": "934659c6f7f5453d0dbcab2de57aaaaeac276fda3f38bf33f02c69b8dec4b101",
+      "reasoning": "Generated theorem is byte-identical to the reference implementation including the sorry'd equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "70ee7fcfc023b1c9ff79b2d24c63512e5eb2f0e7358d851471def72ab13d7774",
+      "reasoning": "The property theorems, correctness theorem, and the actual correctness_thm matching the reference are all omitted (blank sections), missing the core guarantee entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "574f7650081cd2b5f0382c073065cfdffcc29d9d661c6675b724bab7088a16e4",
+      "reasoning": "Generated theorem is byte-identical to the reference implementation including the sorry'd equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "6edc76fe614835ed9b8a7424c379d35b70003df7b116b277248da3f95d9a44a5",
+      "reasoning": "The generated file implements an entirely different function (oddSumParity) and never defines myOddSumParity or myOddSumParityImp referenced by the reference theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "7dbc014cc1acf1558a1253f2b1c2b200d4616061bfb9833a68d574f353ba3b5e",
+      "reasoning": "Generated theorem is byte-identical to the reference implementation including the sorry'd equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "10031e6a3dba6e5440b789b1ab9324ab452b3642f2662915d9da8879f02d795d",
+      "reasoning": "Includes a genuine imperative bfsImp implementation, pre/post conditions, soundness/optimality property theorems, correctness theorem, and the exact equivalence theorem statement.",
+      "score": 0.9
+    },
+    {
+      "id": "06a22f4b2d5ce3c66e8069bb5fc38a5eae3a159ab5eacd3f3f2223566488c98e",
+      "reasoning": "No binarySearchImp or equivalence theorem is defined at all, entirely missing the core functional/imperative equivalence guarantee from the reference.",
+      "score": 0.1
+    },
+    {
+      "id": "f110abd9fa2a3dac27a769b38cd9c1bdd90ce26da3c157210e21a42ebfbf5456",
+      "reasoning": "No binarySearchImp or equivalence theorem is present, missing the core guarantee the reference theorem asserts.",
+      "score": 0.1
+    },
+    {
+      "id": "c5407683a2db01c7754a185ab341467cb8133669932792aa16ecf13658832b87",
+      "reasoning": "No binarySearchImp or equivalence theorem is present; only the functional search plus unrelated correctness lemmas are given, missing the reference's core guarantee.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.042451,
+        "inputTokens": 42381,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 2875,
+        "cacheReadInputTokens": 175614,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.08966479999999999,
+        "inputTokens": 6,
+        "maxOutputTokens": 64000,
+        "outputTokens": 4303,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2875,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 2875,
+      "cache_read_input_tokens": 175614,
+      "inference_geo": "not_available",
+      "input_tokens": 6,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 649,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 649,
+          "cache_read_input_tokens": 60022,
+          "input_tokens": 2,
+          "output_tokens": 1911,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 4303,
+      "output_tokens_details": {
+        "thinking_tokens": 1537
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

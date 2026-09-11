@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "79ed515f59f4ec8895745865bed57fc60d755cbe53063b27722573ee7b33b375",
+  "case_count": 5,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "31a71cd3595fcfec7b88de81e06db618f0b49fac733547c98bef276fab0f8682",
+  "completed_at": "2026-08-26T09:37:59.982053+00:00",
+  "effort": "low",
+  "elapsed_seconds": 12.46830508299172,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "a43cf65730d0f4b8a8dc22d11a5fda579d77a19a4aa7a8ee1dd8d2275a16395e",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f9857d7cccfbd0fe8233feb1b0b534caa07db10d53a1c7473d50f73d808608db",
+      "reasoning": "The generated theorem exactly states equality between `dfs` and `dfsImp` with the same parameters as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "fe4a79896b06f02936dbf30976fbf00ed168069ded3fba896f418a8dbfac7b81",
+      "reasoning": "The generated theorem exactly states equality between `dijkstra` and `dijkstraImp` with the same parameters as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "976d673dd9349e4631b6dec10176032a71a5ba4b9cbe3e7d7416b4cb87b7e7dd",
+      "reasoning": "It proves properties of differently named functional routines but provides no equivalence theorem involving `decodeShiftImp`.",
+      "score": 0.0
+    },
+    {
+      "id": "c50e8d9e95671c3edb5cd3a500017f5515ab25995292bae9d0377c97e2397223",
+      "reasoning": "It states a conditional encode/decode round-trip property and contains no imperative implementation or functional-imperative equivalence claim.",
+      "score": 0.0
+    },
+    {
+      "id": "ecd780811e1590cb4f71aac3bd8a07d7775d3ca2261552fc677c55a0f2a82c5f",
+      "reasoning": "It specifies the functional result against primality of string length but omits any relation to `primeLengthImp`.",
+      "score": 0.2
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

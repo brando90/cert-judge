@@ -1,0 +1,117 @@
+{
+  "attempt": 2,
+  "backend": "codex",
+  "batch_id": "eaa5490f8f41ad9f1739275b42634c3614d6e54edc2ca9d1fff922ba862f8d67",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "0f281d93f4fd58c01fc52868c7f3b3c617f7a9018f4c3e121648135ca5defeef",
+  "completed_at": "2026-08-26T09:10:33.674815+00:00",
+  "effort": "low",
+  "elapsed_seconds": 26.185313583002426,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "400c2c9c44c65e4f238ce36748f132f27876a57ae4829d9cdcf7d2ef2e692cae",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "a9062bff878a06d043ad9a1579f8af1253bea3d1df754de1d774cbc78fad2aaa",
+      "reasoning": "The generated theorem and surrounding implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "54d45efe59b267a471073d5a546cf63160c877469b6187c0b50a2de1df86a187",
+      "reasoning": "It states exactly the same mean equivalence theorem as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "ab739ae3207fa43369db1399bbfa4f59d0621427efa2fbc5030b6981079f06eb",
+      "reasoning": "It proves correctness of a newly wrapped option-returning program rather than the required equivalence of myFirstChar and myFirstCharImp.",
+      "score": 0.1
+    },
+    {
+      "id": "b73ffd8522d2550b50aacb183a94a97937784f8a1982e11fee329cf218e71d88",
+      "reasoning": "The generated theorem and implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "44f6352102eb7ca2904bc47ad1549476e0bd57d6f887dcf5d5b496d1e3a5c832",
+      "reasoning": "The generated code contains no variance equivalence or other correctness theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "238e3bea437c762d260f4bc66be3173468bc4033ba0a0baaaab7b2c606fa812e",
+      "reasoning": "It includes the same variance equivalence theorem as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "fe6a1f4f963071c0105612b5468d4ea0b9f2791c165933a761e01f2fdcfff397",
+      "reasoning": "It proves its direct toUpper program matches toUpper but does not establish equivalence between the referenced functional and imperative implementations.",
+      "score": 0.3
+    },
+    {
+      "id": "2c6d7b1398d6009dbf16a56c9b47701ce0ff467a57c854b6d799e86bfe867ae7",
+      "reasoning": "The generated code contains no correlation equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "46f85c2bfc3cf875e42fcb73248fb101b059b906ad0f17c4c2484cf881489dba",
+      "reasoning": "The generated theorem and implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "536140bffa01183f2f2d78aba461b6e0c5fba12d730f3ee0e113b53cf6d21484",
+      "reasoning": "The generated theorem and implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "5ad3ec9e9e17555143e645c694b34a0f5aa2a0a37297ffa525302be66f965333",
+      "reasoning": "The generated theorem and implementation are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "60d2e3bc114050b7c04a055c3cb304383af587c3ade22f07168605bc43a96f3c",
+      "reasoning": "It omits the required mergeKw_imp equals mergeKw_func equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "eee3045a72b06876064de9a370522b4936e0c8da6f9e7cbe2887c93e651d1574",
+      "reasoning": "It gives a different Int-based Fibonacci correctness claim and omits the required functional-imperative equivalence theorem.",
+      "score": 0.2
+    },
+    {
+      "id": "aa2d9f3e198603c02fdc7c87afae15b95a3a60bd4c3ce483cd27d2f67e3fa29c",
+      "reasoning": "The generated code merely repeats the implementation and tests without a correctness theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "433f7de4daf6f8e95ebd9a450fea7fa480ca235ac5ab800f324a87d324e9109d",
+      "reasoning": "It omits the required indent_imp equals indent_func equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "1a00b16694c3d0190db14c65d816e843494f6c3c29312bc38f98bc2785c94b4c",
+      "reasoning": "The generated code merely repeats the implementation and tests without a correctness theorem.",
+      "score": 0.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

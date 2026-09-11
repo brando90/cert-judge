@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "59fb795e44ed178d2e3381b96ac4e575bdd1971d850c09522e62538013e2d4ef",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "c67d63349fe0c3c7d510ef545b2fe4ae1e70a0ee7f613d09a810f07360fec323",
+  "completed_at": "2026-08-26T08:52:09.934787+00:00",
+  "effort": "low",
+  "elapsed_seconds": 64.20976133295335,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "1364f0fc1d939d2643b6821f2aa97175bd14c8e8cf2c6ef7b0d713da4a71e470",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f76bfb928ecc8951263ef50b55bbe6060be091d4513e7df1d835178ffa75add5",
+      "reasoning": "Core bisect_left implementations match reference semantics correctly but property/pre/post scaffolding is omitted.",
+      "score": 0.65
+    },
+    {
+      "id": "d704f9ec9301f0e192fa5cf269f7f8ac105bf6d22a5b940929bfb9ca211a92b1",
+      "reasoning": "The functional bisect_left implementation uses incorrect arithmetic (lo-hi, lo-1, mismatched fuel) diverging from the correct algorithm, trivializing the equivalence claim.",
+      "score": 0.1
+    },
+    {
+      "id": "ba54e3a4edd429b6d42a09849b00ff390b2e9eb0d36d42e5e86074523dc78fab",
+      "reasoning": "Covariance implementation and equivalence theorem statement match the reference closely with consistent tests.",
+      "score": 0.9
+    },
+    {
+      "id": "af102b595efb3c85128295b1df67133509b022f75b890f259e378569530b6ab2",
+      "reasoning": "Thorough matching pipeline with Pre/Post/property theorems for covariance, though an unused helper (meanRat) has inverted logic.",
+      "score": 0.75
+    },
+    {
+      "id": "5bfbb443005b36aa0f4f9baa4e036dd8611347b17b9f672d650342b9be3d96b2",
+      "reasoning": "Comprehensive quantiles implementation with matching functional/imperative versions, pre/post conditions, and equivalence theorem consistent with reference.",
+      "score": 0.8
+    },
+    {
+      "id": "8ec421e966a41b8f0cd48499133a8659ed71f62502dad25b95149a9e33a73f39",
+      "reasoning": "Captures the core perfect-square-or-add-five logic and correctness proof but uses different naming and omits the imperative implementation/equivalence theorem entirely.",
+      "score": 0.4
+    },
+    {
+      "id": "f6b9341e9e58f5ebbfc9babe8c21a46c77b2b10ec707fdf535b5963de8964ab1",
+      "reasoning": "Only a bare definition and pre/post props are given; the imperative implementation and required equivalence theorem are entirely missing.",
+      "score": 0.15
+    },
+    {
+      "id": "7fc348b11fae3cb2fef685c37f053a1f59c61d61f819ad3669782886940f6187",
+      "reasoning": "Implementation and equivalence theorem align with the reference structure, though the property/pre/post sections are omitted.",
+      "score": 0.75
+    },
+    {
+      "id": "9e2ff161bd2e9c4353108fee66822ccc8425ef4452e2459b64319445f3cda7ec",
+      "reasoning": "Generated theorem file is essentially identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "c9eaa8c1351c5795b94aeeb23e184224ba77296eb381a9e0a0a884ac1ec0e239",
+      "reasoning": "Core heappush implementations and equivalence theorem statement match, but Pre/Post/property theorem scaffolding present in reference is dropped.",
+      "score": 0.55
+    },
+    {
+      "id": "23961a05a3f4dde95f3140f50c0ec00ffd47f102ffbf8090029718024941569b",
+      "reasoning": "Generated theorem file is identical to the reference implementation including all property and correctness scaffolding.",
+      "score": 1.0
+    },
+    {
+      "id": "40d62586008498a4b3f51fdf173bd2646c6bec104f19e26d3a19199ebc500e0a",
+      "reasoning": "Comprehensive heappop implementation with siftup/siftdown, pre/post conditions, and equivalence theorem matching the reference structure.",
+      "score": 0.85
+    },
+    {
+      "id": "d4516a06bcc54453e99ce5d55a8b15beea5ba0a25007b2dde543edc475ea6771",
+      "reasoning": "The generated content is an unrelated safe-format-string implementation that does not correspond to the referenced Pre/Post correctness theorem, effectively trivializing the intended claim.",
+      "score": 0.1
+    },
+    {
+      "id": "03d81fa1612e0e68ecae4f68cee3b293c10348477353d484ffe96a24f3672ca9",
+      "reasoning": "Functional/imperative queue implementations and the get_equiv_thm statement closely match the reference including pre/post and property theorems.",
+      "score": 0.85
+    },
+    {
+      "id": "10e9cd4d787971aed7d374d5d5bc1b0880360016dfa7d162bdbda78f565fe974",
+      "reasoning": "Thread-safe queue implementation with FIFO/LIFO/priority strategies, pre/post conditions, and correctness theorem align closely with the reference.",
+      "score": 0.85
+    },
+    {
+      "id": "2d2c29a144012ce89c1890a067a22e54636cbfc5c56a0aa7364a3c285ba13c7a",
+      "reasoning": "Counter implementation (functional and imperative) with property theorems and the update_equiv_thm statement match the reference structure well.",
+      "score": 0.85
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.042569,
+        "inputTokens": 42504,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 3223,
+        "cacheReadInputTokens": 115162,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0844724,
+        "inputTokens": 4,
+        "maxOutputTokens": 64000,
+        "outputTokens": 4854,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 3223,
+      "cache_read_input_tokens": 115162,
+      "inference_geo": "not_available",
+      "input_tokens": 4,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 3223,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 3223,
+          "cache_read_input_tokens": 57581,
+          "input_tokens": 2,
+          "output_tokens": 1766,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 4854,
+      "output_tokens_details": {
+        "thinking_tokens": 1341
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

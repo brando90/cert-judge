@@ -1,0 +1,117 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "b5b09c75adb3eddbfffa72b46569b97cb2d653e668ac90aa2ebffa1dfb792704",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "f95feadd12eff0cd1415eed5f8d9108929dc8aa2b4bede6ab9291e1c0b4185f5",
+  "completed_at": "2026-08-26T06:29:39.667556+00:00",
+  "effort": "low",
+  "elapsed_seconds": 36.41473770799348,
+  "judge_id": "gpt-5.6-terra|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "902e0282a6b3b8ffc96342727a315265571cab50d9c7c17f06c057f8f7353b13",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "19c66a33692559ada1e97d13e42ef29e9b48f998307bf2ba69f18bce4bcbdad7",
+      "reasoning": "The intended insertion logic is related, but the keyless generic branches require an unavailable coercion from α to β and do not typecheck.",
+      "score": 0.1
+    },
+    {
+      "id": "872fb9e87bb748ae0670fdaac6072c03380f336a9ee2e5cae68412efa06ab273",
+      "reasoning": "This is a related list-based implementation, but its keyless branches compare T values as K without the required coercion and therefore do not typecheck.",
+      "score": 0.1
+    },
+    {
+      "id": "c941b5aa98fa1fbd29aa0e2bec6ff56855923e524fe1a71f6c07742b8d2eba25",
+      "reasoning": "The proposed list implementation follows the intended algorithm but lacks a coercion from α to β in keyless use, making it ill-typed.",
+      "score": 0.1
+    },
+    {
+      "id": "ebfb3cdbe7c83fe76f057e80d2537f4e5a17d8d9a001438b87451e4600543e1b",
+      "reasoning": "It implements the intended bounded byte-array copy and gives an appropriate success-or-overflow specification, though it is not the same presentation as the reference.",
+      "score": 0.9
+    },
+    {
+      "id": "0e1e0906443067367f08d14e0840ec25198e1711015152af85aa0173b2ecc596",
+      "reasoning": "The generated code is identical to the reference implementation and theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "aa19e46c9cf95d26b8ad2a7b187cacf64d2b3b1c6b26e77cf7dcb026d6b675d6",
+      "reasoning": "It changes the operation to return Unit and assumes mutation of an immutable ByteArray, so it does not establish the intended copied-result semantics.",
+      "score": 0.1
+    },
+    {
+      "id": "12911010a62037d26fed87cc6aeeef49156281a2ec1ec88b918c9cd71891c612",
+      "reasoning": "It provides the same functional and imperative mean definitions and the requested equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "52458a38e42c96e120463378535a7021b2253100fea587794a52ae72d90f89de",
+      "reasoning": "The generated theorem and surrounding program are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "03ecaee051d3232e66a39e7853e1dab08aff0caf83d359d016b6312a66124e42",
+      "reasoning": "The generated median implementation and equivalence theorem are identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "0e00ca2a8d88ef347b33b9882bfec1c52304c891bf8bfd34185050c2fdb9f6c1",
+      "reasoning": "The generated variance implementation is identical to the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "0dc2c0219405f0af33ac7a78832678da1ccef98c99ef5e164e37eeafe61a0012",
+      "reasoning": "It supplies the intended functional and imperative variance definitions together with the requested equivalence theorem.",
+      "score": 1.0
+    },
+    {
+      "id": "761a0babd2774d40887b90127472c3b2318966d391ca8ebef0944af35d72f1ff",
+      "reasoning": "The program attempts the intended uppercase transformation but its Boolean postcondition improperly contains a universal proposition and is ill-typed.",
+      "score": 0.3
+    },
+    {
+      "id": "10a730f16cbf166a75d7ed50323645fac186fedaeef4cd2544d415c27e021ca7",
+      "reasoning": "Using String.toUpper has the intended uppercase semantics, although it does not state the reference equivalence theorem or both implementations.",
+      "score": 0.7
+    },
+    {
+      "id": "3681a39afcb7618ba64391fd769046c3dbfa3235fffc6692fa13edebd4a57393",
+      "reasoning": "The uppercase function has the intended behavior, but the supplied proof script is malformed after simp closes the goal and it omits the requested equivalence formulation.",
+      "score": 0.3
+    },
+    {
+      "id": "24a45db77e889de0c2921a67cceee969f8c1687529ec4843a32a853c2fd6bb50",
+      "reasoning": "Its functional correlation code uses subtraction where sums and centering require addition and subtraction respectively, so the claimed equivalence is not valid.",
+      "score": 0.1
+    },
+    {
+      "id": "032ebb674e6768c86b7a4e58684c725dfa87539966b844ffd31a1a282b6eb5fc",
+      "reasoning": "It provides the intended centered functional correlation, optimized imperative correlation, and requested equivalence theorem.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

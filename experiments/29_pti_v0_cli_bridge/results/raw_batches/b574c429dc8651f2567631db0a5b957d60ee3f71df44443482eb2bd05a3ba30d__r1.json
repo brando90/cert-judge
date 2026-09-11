@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "b574c429dc8651f2567631db0a5b957d60ee3f71df44443482eb2bd05a3ba30d",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "8008afe7c5e5a3b3e612ff15dcf8f2eecdc89bc6ab7b073a5966dad10cda682d",
+  "completed_at": "2026-08-26T08:41:26.772275+00:00",
+  "effort": "low",
+  "elapsed_seconds": 42.6742584159947,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "00482d870374123b9761e586b7cf84e079cafccd9f7409ab6ef01e848f638911",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "9cbaf23ad54353ca254ce3a68f166b71e46c4bc13de64b1b3b8b69e85d0bdafa",
+      "reasoning": "No equivalence theorem (insort_equiv_thm) is present at all in the generated file, only a sorted_prop sorry theorem, so the core equivalence guarantee is missing.",
+      "score": 0.1
+    },
+    {
+      "id": "eecfc5a0731e952afe0bf766959a94a652e82dbf48c22641f1ffc04f041d2605",
+      "reasoning": "The generated file never states quote_equiv_thm; only property theorems are proved, so the required imp/func equivalence claim is entirely absent.",
+      "score": 0.1
+    },
+    {
+      "id": "f3f3bcdd491bfc0fdbc7d90b9de54a106cc73d9b8d1464bfdeb6576882090182",
+      "reasoning": "The file ends after tests with no join_equiv_thm statement at all, missing the core equivalence guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "d069b9c2f403b6e39274bc8828ee3323e385eddaa78bf773a075ef3a3f27f9fe",
+      "reasoning": "The generated file includes join_equiv_thm with the identical statement as the reference (still sorry), preserving the intended equivalence claim.",
+      "score": 0.9
+    },
+    {
+      "id": "d53719b0db49d0361c67c42068e405fad9f5163c4afb4843244ad3b268101354",
+      "reasoning": "No encode_equiv_thm is stated anywhere in the generated file, so the core equivalence guarantee is missing entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "c44c9b2c7307241a1d40c39a1a74157df2515c29fc52511f20b8487884ee3a2f",
+      "reasoning": "encode_equiv_thm is present matching the reference statement (sorry), though the functional spec itself contains a subtraction bug that weakens confidence in the surrounding spec.",
+      "score": 0.75
+    },
+    {
+      "id": "a3118a433c022e1386532fe26b342c82fac568a4eacc375f2c14f95bac2d8767",
+      "reasoning": "The file ends after unit tests with no loads_equiv_thm present, missing the required equivalence guarantee.",
+      "score": 0.1
+    },
+    {
+      "id": "9b49ef462ad5eb7563d269a1fb977da9ab0e49b34eee819d3efe75b8cd77e78a",
+      "reasoning": "No loads_equiv_thm is stated; only trivial rfl properties are proved, so the core equivalence claim is absent.",
+      "score": 0.1
+    },
+    {
+      "id": "54b9100e51eaeda548f3953d679f620fb6b75655b7414fa12fddcba35e1235b3",
+      "reasoning": "unquote_equiv_thm is present with the same statement as the reference (sorry), preserving the intended equivalence guarantee.",
+      "score": 0.85
+    },
+    {
+      "id": "71a41e40654a75b08b5e124685fef4ba6de3cf9299eba3dd89a77370874afe09",
+      "reasoning": "The generated file never states compare_equiv_thm, missing the core equivalence guarantee entirely.",
+      "score": 0.1
+    },
+    {
+      "id": "47cf70e6ff978da769f929f05de34edb6039e367b21cb048eaa5c4fd2a574991",
+      "reasoning": "No compare_equiv_thm is present despite other property theorems being proved, so the required equivalence claim is missing.",
+      "score": 0.1
+    },
+    {
+      "id": "bc3099cdde2d297f50b2b6229843f4c652c19721710fb008465d6105c55411ac",
+      "reasoning": "The generated file is textually identical to the reference implementation file.",
+      "score": 1.0
+    },
+    {
+      "id": "94e778593e0a749cfcc4c9b02664beab0ee36e163f5ee7e82f32df83bf7f47a7",
+      "reasoning": "sort_equiv_thm is present and matches the reference statement exactly, backed by order_thm which is left as sorry.",
+      "score": 0.85
+    },
+    {
+      "id": "603e64772b9b47708f980471e05952227de513de8d6bede6e3742f4d296c3fc5",
+      "reasoning": "median_low_equivalence_thm is present with identical statement to the reference and matching implementation, left as sorry.",
+      "score": 0.9
+    },
+    {
+      "id": "cbf6f9ac6fad8fd7e089aee2121ec9aeca57cbfbe98073617a9d176bbceb8d6f",
+      "reasoning": "median_high_equivalence_thm matches the reference statement exactly and the implementations align, left as sorry.",
+      "score": 0.9
+    },
+    {
+      "id": "0a5ea7c02625b3b156c69d042d3c0308ac348fd30a0e679941b2a72c9f772945",
+      "reasoning": "The generated file ends after unit tests with no bisect_equiv_thm present, missing the core equivalence guarantee.",
+      "score": 0.1
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.030915,
+        "inputTokens": 30845,
+        "maxOutputTokens": 32000,
+        "outputTokens": 14,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 43703,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0368946,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 2815,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 43703,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 43703,
+          "input_tokens": 2,
+          "output_tokens": 2815,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 2815,
+      "output_tokens_details": {
+        "thinking_tokens": 1128
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

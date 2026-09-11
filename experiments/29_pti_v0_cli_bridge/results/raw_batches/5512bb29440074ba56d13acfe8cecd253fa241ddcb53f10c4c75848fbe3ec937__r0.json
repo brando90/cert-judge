@@ -1,0 +1,72 @@
+{
+  "attempt": 1,
+  "backend": "codex",
+  "batch_id": "5512bb29440074ba56d13acfe8cecd253fa241ddcb53f10c4c75848fbe3ec937",
+  "case_count": 7,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "13eda4f01276c1fe231161ae1d506b5f60b0b4d0640728986756b1c1af705425",
+  "completed_at": "2026-08-26T10:03:09.720436+00:00",
+  "effort": "low",
+  "elapsed_seconds": 14.970374625001568,
+  "judge_id": "gpt-5.6-terra|BAD_STRINGY",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "57e1fb6bcff27b910fd2eab65e4a2b1d3955d7c67c7e8422bf2363ce3c0133ac",
+  "repeat_id": 0,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "d743d61b3e070bd68a4dc39601c19c1f0e263981d64d0c1ec82c18095e21cf6d",
+      "reasoning": "The generated text contains matching DFS identifiers and namespace context but omits the reference equivalence theorem.",
+      "score": 0.38
+    },
+    {
+      "id": "ece9bb6404264d11d635ad908d5585de2c35e3e5148760ca365af614c5bf45f7",
+      "reasoning": "The reference theorem appears verbatim at the end of the generated text, including its namespace closure.",
+      "score": 1.0
+    },
+    {
+      "id": "ca19fbef6d0f16ffaa7cabe062b0145c8823481a064cecabe9228c36270fb5a8",
+      "reasoning": "It shares the MaxElement namespace and max_element identifiers but does not include the equivalence theorem or imperative name.",
+      "score": 0.25
+    },
+    {
+      "id": "f906504a2095a5445fdac277c77c1562b954942c3d3f473878ae35575f2c5b6e",
+      "reasoning": "The generated text shares the pairsSumToZero function identifier but lacks the theorem, namespace, and imperative identifier.",
+      "score": 0.18
+    },
+    {
+      "id": "5248f0d93837f6e091606028727331b8d8949c2dcaa6a8e9d9b1135bf50dabe0",
+      "reasoning": "It uses related decode_shift wording but differs in casing, naming convention, theorem structure, and namespace.",
+      "score": 0.18
+    },
+    {
+      "id": "9ea7b7d8fb8a1ee657022675658748aebe8ef7a0e9d982e1ca5fa61cca2b85c7",
+      "reasoning": "It contains the exact decodeShift identifier and String signature context but omits the equivalence theorem and uses a different namespace.",
+      "score": 0.32
+    },
+    {
+      "id": "df318a431cd97e56555102e1e0c8705501e828e8c6344a3eb4933aee2b03c8b0",
+      "reasoning": "It has related prime_length terminology and String context but differs in naming, theorem text, and namespace.",
+      "score": 0.15
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

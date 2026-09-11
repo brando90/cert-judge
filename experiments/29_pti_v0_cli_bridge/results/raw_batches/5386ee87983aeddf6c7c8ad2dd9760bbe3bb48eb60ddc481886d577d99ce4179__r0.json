@@ -1,0 +1,113 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "5386ee87983aeddf6c7c8ad2dd9760bbe3bb48eb60ddc481886d577d99ce4179",
+  "case_count": 5,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "b5765e76d4cbedb844a053f1f613b1730f339c9f2d44d41d23adfcbb70f55a53",
+  "completed_at": "2026-08-26T08:20:52.699504+00:00",
+  "effort": "low",
+  "elapsed_seconds": 13.24831237498438,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "398501c9303e66c88e62e62de7beb222d3007e00863c167cebb492865d1e61b7",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e4adba943aa4fa24306c324527b8244d217b05a69ea83607ea786dba90cf87bb",
+      "reasoning": "Generated theorem includes an equivalent dfs/dfsImp equivalence structure with matching Graph, dfs, dfsImp definitions and similar overall pipeline, though implementation details differ slightly.",
+      "score": 0.75
+    },
+    {
+      "id": "f9b78b20b819269ddefc9335d61986ae889031635ebd6ff01e7732f28db4370d",
+      "reasoning": "Contains matching dijkstra/dijkstraImp equivalence theorem with consistent semantics and full pipeline matching the reference structure.",
+      "score": 0.8
+    },
+    {
+      "id": "82d52556ca243b6c3eeb33b9fb6e55c924d10b7d54db357504008cc098ce041c",
+      "reasoning": "This is an unrelated HumanEval encode/decode shift file with different naming (encode_shift/decode_shift) and no decodeShiftImp equivalence theorem matching the reference.",
+      "score": 0.05
+    },
+    {
+      "id": "c1239c7a90b7285873946766394296c61a8eaf8af6b3ced54e5d5a269592f4c5",
+      "reasoning": "Has decodeShift function matching name but lacks decodeShiftImp and the required equivalence theorem entirely, and encodeShift/decodeShift are identical buggy implementations.",
+      "score": 0.15
+    },
+    {
+      "id": "fb0cbb99607f16dcb207437b8bdbbc719c19d40d55cd6e645e863512fe67562e",
+      "reasoning": "This is an unrelated HumanEval prime_length file with no primeLength/primeLengthImp equivalence theorem matching the reference.",
+      "score": 0.05
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.0071140000000000005,
+        "inputTokens": 7039,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 8180,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.040132799999999996,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 632,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8180,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 8180,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 8180,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 8180,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 632,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 632,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "320735e466ae4dab6fa2caf092cc5a51ae085022e81b566d7e292e4403f35f1a",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "dedbce12f3ae848174d15c63566e29ef74c418585888f0bcb744a1d1e0632383",
+  "completed_at": "2026-08-26T08:03:30.935927+00:00",
+  "effort": "low",
+  "elapsed_seconds": 50.8801275829901,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "887a0d10cc0f373bdb5d1e2686b08844522ddc876bbbeda263e7a2d635c2904d",
+  "repeat_id": 1,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "f1ebd1c692b80ff530684c120fb8e8ab6a5d5dc0b16796c8b993de42755c0711",
+      "reasoning": "Generated file is identical to reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "c57e7efe7f976a29324cfed0514fe3379aa2e3ded210db6ebf492b8d1cb2f468",
+      "reasoning": "Core implementation and equivalence theorem (sorry) match the reference semantics, though supporting property/postcondition scaffolding is stripped.",
+      "score": 0.75
+    },
+    {
+      "id": "d8cd7e0afb5f915b9e8da03953f307b3600e79848fbbace2eaa4639baa88cc43",
+      "reasoning": "Generated file matches the reference implementation exactly, including all properties and the equivalence theorem stub.",
+      "score": 1.0
+    },
+    {
+      "id": "93dba9d2751f51f4e2836ae3f7c31405ba618a6510f2f05e3f9f563638f45048",
+      "reasoning": "Functional bisect implementation has incorrect mid computation (lo-hi)/2 and wrong recursive branch, breaking the intended semantics vs. reference.",
+      "score": 0.15
+    },
+    {
+      "id": "7e7a1b92039a9a1e76df5a6ff43b3af714a885f7d3faec6abb1badc94277ac96",
+      "reasoning": "Correct bisect_left semantics and Pre/partition property definitions match reference, but the right-partition theorem statement, its proof, and the correctness theorem are entirely omitted.",
+      "score": 0.65
+    },
+    {
+      "id": "35f4567c30ea3f0647918fe8358ab00c9b0bb04f6512f4fd3f7023725be75cc7",
+      "reasoning": "Generated covariance implementation and tests match the reference exactly (equivalence theorem left as sorry as expected).",
+      "score": 1.0
+    },
+    {
+      "id": "724ec8f99d3b58ac5d37ae1ad1e05d82c273ffd0e04aae71a9fc0323fc7c6d3e",
+      "reasoning": "Covariance function, tests, and equivalence theorem match reference; only the unused meanRat helper has an inverted condition, a minor cosmetic defect.",
+      "score": 0.8
+    },
+    {
+      "id": "3886d1870a4594d97b1ea9804fa5fd0b4552666df77dee2a7e37858550f15813",
+      "reasoning": "Implementation, tests, and equivalence theorem closely mirror the reference with equivalent semantics.",
+      "score": 0.9
+    },
+    {
+      "id": "bb7d37d631fdbb54726c1f9b5cd23451cd0152093448fedd424f41634e21d33f",
+      "reasoning": "Generated file bears little resemblance to the reference min-list equivalence benchmark: different naming, no imperative implementation, no equivalence theorem, uses panic! instead of matching structure.",
+      "score": 0.1
+    },
+    {
+      "id": "7c66e1d0b513cebe4f538f926c0afbeb96d7b85bfea27da60fab74e88492be46",
+      "reasoning": "Implements the correct perfect-square-or-add-five logic and a correctness proof, but omits the imperative implementation and equivalence theorem entirely, unlike the reference structure.",
+      "score": 0.3
+    },
+    {
+      "id": "4ced7040d11dcb95e9161e06cc05fb291d08942557f0850a69f86a07192d52b5",
+      "reasoning": "Generated file is byte-identical to the reference implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "15920339a07a0135a3cd550246b15b48e3644694fecdf2fbae5c2aa12ab94f80",
+      "reasoning": "Reuses the buggy bisect_left_functional (incorrect mid formula and branch direction) which undermines correctness of insort_left_functional relative to the reference.",
+      "score": 0.2
+    },
+    {
+      "id": "2e1406e6f9b5a729431c09c634fd6dac6659cca7f806af3b1a4c82ebb72174d3",
+      "reasoning": "Core insort/bisect logic matches reference correctly, but the sortedness property theorem and the full correctness theorem section are left blank/omitted.",
+      "score": 0.6
+    },
+    {
+      "id": "b837e5e49fb9cf9caa9379c780b2d04dcc0b3e776af4db3bd8e0f2b5ab77be26",
+      "reasoning": "Only provides a functional replaceSpaces with a convoluted, unlikely-to-typecheck postcondition; entirely missing the imperative implementation and equivalence theorem required by the reference.",
+      "score": 0.2
+    },
+    {
+      "id": "386d5b34f0b7b01be959d4cfaed0bbc559ff9eb04ed5e267c55f29637393bb54",
+      "reasoning": "Uses a different structure-based API with no imperative implementation or equivalence theorem, diverging substantially from the reference's function-based approach.",
+      "score": 0.15
+    },
+    {
+      "id": "0abf9fce831a653a3600c03ddba61c8ccd499ce645f5d213028e8e1fc49f4207",
+      "reasoning": "Generated file is identical to the reference heap-push implementation.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.03757,
+        "inputTokens": 37495,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 51358,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.0448456,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3457,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 51358,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 51358,
+          "input_tokens": 2,
+          "output_tokens": 3457,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3457,
+      "output_tokens_details": {
+        "thinking_tokens": 1687
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

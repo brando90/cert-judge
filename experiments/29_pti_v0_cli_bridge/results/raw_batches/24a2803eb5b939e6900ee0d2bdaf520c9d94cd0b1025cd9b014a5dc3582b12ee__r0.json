@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "24a2803eb5b939e6900ee0d2bdaf520c9d94cd0b1025cd9b014a5dc3582b12ee",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "8c0c8bd8b6d0cf128fb1893a6112c51d4fb187821cdbf5e0731145b2b83e8740",
+  "completed_at": "2026-08-26T08:26:51.136533+00:00",
+  "effort": "low",
+  "elapsed_seconds": 51.36927424999885,
+  "judge_id": "claude-sonnet-5|P4_CHECKLIST",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "f0c9e3402070643ee5c48ca23ec94fcf47a3cd61172503c1b661747cf06a9215",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "36065dde3ed92e8191b575565f02546458191ad91b4dd0638bf8d16a96e32c08",
+      "reasoning": "Generated file is byte-identical to reference.",
+      "score": 1.0
+    },
+    {
+      "id": "36e47b0abc7f51d2f57d1cfbe8caaa94e525d1aaa41b69f6c037fc7b759af580",
+      "reasoning": "Generated omits the required equivalence theorem (mean_equiv_thm) entirely, missing the core guarantee the reference demands.",
+      "score": 0.2
+    },
+    {
+      "id": "db8a8a929b4b13cb1adb4881647f819c29372bedd1bc15171c5d1cfdde4a4fe7",
+      "reasoning": "Generated file is byte-identical to reference.",
+      "score": 1.0
+    },
+    {
+      "id": "69865a3fcb9d622cab228d6b2fe4ab62672b81cf6edfdc19f6f644d877907c2e",
+      "reasoning": "Generated retains the required equivalence theorem (with sorry matching reference) plus proves auxiliary spec_thm, closely matching reference guarantees.",
+      "score": 0.85
+    },
+    {
+      "id": "a1535b28103cd39426c1073698d55da5c0be8838b0d7b447244cd63080400623",
+      "reasoning": "sum_func and mean_func are logically inverted/broken (uses subtraction and reversed condition), trivializing the mean computation underlying variance.",
+      "score": 0.1
+    },
+    {
+      "id": "5fd4659642f98e18ef9d49c6030c45f5aa8485ae1d9fb1c4c515fb891224b208",
+      "reasoning": "Generated file is byte-identical to reference including all theorem statements.",
+      "score": 1.0
+    },
+    {
+      "id": "c896f84d8dc119b7db0da4bad7c768d0e969b409104116cb93a5ce9155507913",
+      "reasoning": "Generated implements and fully proves the uppercase correctness property (no sorry), consistent with the intended equivalence guarantee.",
+      "score": 0.85
+    },
+    {
+      "id": "7f4b0deb4516bc2d0e257c55a5c3fc5cd8b40a6bac6daf2a21cd877f7f0085ae",
+      "reasoning": "sum_func and mean_func are inverted/broken and center_func adds instead of subtracts the mean, trivializing correlation computation.",
+      "score": 0.1
+    },
+    {
+      "id": "4e5b9ed6d5f377c446cd49240f964a9724eaf8bbc63cfb782e99ef0e9f14d142",
+      "reasoning": "Correctly implements sum/mean/center functions matching mathematical definitions and retains the required equivalence theorem structure with sorry, matching reference.",
+      "score": 0.9
+    },
+    {
+      "id": "2baf7a4245747b3a0526475b908d5742356396850911cff59593ec7ba0ad3394",
+      "reasoning": "Generated fully proves canonical_thm and addition_thm and matches the reference's correctness_thm structure exactly.",
+      "score": 0.95
+    },
+    {
+      "id": "24ef5e64d77137fd624dab122978acbe064b47b320a54a897ea8e808d28096b7",
+      "reasoning": "Full LRU cache model matches reference, preserving the required equivalence theorem (with sorry) and consistent semantics.",
+      "score": 0.85
+    },
+    {
+      "id": "09ab7148e8cfef60a8397fee20798035b690bf292e6478749013d657c5315aaa",
+      "reasoning": "Implementation matches reference structure and preserves the required mergeKw equivalence theorem with sorry, consistent semantics.",
+      "score": 0.85
+    },
+    {
+      "id": "974078d511375516151eb9dd66f5023053687f1d19f21aa967a2dcfa8da276c0",
+      "reasoning": "Implements Fibonacci with matching recursive spec and equivalence theorem (sorry), though error handling for negative input uses panic rather than a testable exception path.",
+      "score": 0.7
+    },
+    {
+      "id": "e5cbce4836d3a4dbb56c7215972178d8fb7a6f887b151064e0b92a8a5376b853",
+      "reasoning": "Generated file is byte-identical to reference.",
+      "score": 1.0
+    },
+    {
+      "id": "06636ed01210f96facc22aa1bcf3bcbdc24fb21f8781a5fbcb1c7d48d6c79d04",
+      "reasoning": "Generated omits the required indent_equiv_thm entirely and leaves default_prop/correctness_thm unproven, missing the core equivalence guarantee.",
+      "score": 0.3
+    },
+    {
+      "id": "1ccfcc9326f8ce6bcd30a6b62f9dad89e7e9be53fe547b2902982cf633d32087",
+      "reasoning": "Generated file is byte-identical to reference including test theorems.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.02843,
+        "inputTokens": 28365,
+        "maxOutputTokens": 32000,
+        "outputTokens": 13,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 36116,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1814068,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3585,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 36116,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 36116,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 36116,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 36116,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 3585,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3585,
+      "output_tokens_details": {
+        "thinking_tokens": 1946
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}

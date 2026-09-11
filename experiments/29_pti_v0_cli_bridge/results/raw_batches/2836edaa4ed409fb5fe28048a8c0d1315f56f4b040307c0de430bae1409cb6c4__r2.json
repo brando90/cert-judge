@@ -1,0 +1,117 @@
+{
+  "attempt": 2,
+  "backend": "codex",
+  "batch_id": "2836edaa4ed409fb5fe28048a8c0d1315f56f4b040307c0de430bae1409cb6c4",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "dc11fcbc57043b1e407adfdd25bf05e173d6310a6867eda1d0fc23de753668ec",
+  "completed_at": "2026-08-26T09:28:35.389746+00:00",
+  "effort": "low",
+  "elapsed_seconds": 31.155320290999953,
+  "judge_id": "gpt-5.6-terra|P1_BASELINE",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "4214dac476385126282058e5bf426b504c7fd78941242518f5a243f555728200",
+  "repeat_id": 2,
+  "requested_model": "gpt-5.6-terra",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "eeddb5f096ebb59642d49763093458ff7593e1414d8b15a909aee46c2cdec3cd",
+      "reasoning": "No equivalence theorem is provided, and the functional binary-search midpoint is incorrect.",
+      "score": 0.0
+    },
+    {
+      "id": "e466bd5bdc0de1d5c392417b72f88447be54425b7c90c2bd74f2461e6369719d",
+      "reasoning": "It states exactly the reference equivalence theorem with the same parameters and defaulted bound.",
+      "score": 1.0
+    },
+    {
+      "id": "808788989cc9fe50db9dfed6a6569a5e12af82fdd5039af63e43e24d7d334163",
+      "reasoning": "It states exactly the requested covariance equivalence, with both sides definitionally the same implementation.",
+      "score": 1.0
+    },
+    {
+      "id": "6ba3f3fec3e1d9a7416d77327590a15ca935305cec941b1017e3e3d180425cf8",
+      "reasoning": "It states exactly the reference equivalence theorem between the functional and imperative covariance functions.",
+      "score": 1.0
+    },
+    {
+      "id": "623b693639212a6ed24b6db5e2505a56718dce027d9869b3096e813020e8b7b4",
+      "reasoning": "It states the same universal equality between benchmark_quantiles and benchmark_quantilesImp as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "fde0ebb33908ada7f482cf446f17a81b61c347de88013cc509840c43aa77f3e6",
+      "reasoning": "It proves a functional postcondition but omits the required equivalence theorem and imperative implementation.",
+      "score": 0.1
+    },
+    {
+      "id": "bcd263d86b0a2c398297e2d0be8aedea59693aa8e61e441b6b67efbde3596c57",
+      "reasoning": "It changes the domain from Nat to Int and omits the required functional-imperative equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "5596fd743f0caf0dcb025814ddcf2b5f063dc321c65513a5484f54ad2c141bf8",
+      "reasoning": "The generated text supplies implementations and tests but no theorem expressing their equivalence.",
+      "score": 0.0
+    },
+    {
+      "id": "4b40bf39ecb88454a9bcb49e02e2dce2edc2bcc7a390722681cd68e6b6aa9cec",
+      "reasoning": "It omits the reference insort equivalence theorem entirely.",
+      "score": 0.0
+    },
+    {
+      "id": "7f595672aaa28eda5a421996f8ccabd109de1ac6386491c38f656d73b55e111a",
+      "reasoning": "It defines both implementations but provides no heappush equivalence theorem.",
+      "score": 0.0
+    },
+    {
+      "id": "8e616afcdf9ad5bc89de3863ddabeafbb36d39466be170865ed20107455f6eeb",
+      "reasoning": "It states exactly the requested heappush imperative-functional equality for all heap and item inputs.",
+      "score": 1.0
+    },
+    {
+      "id": "2273a56fac69df7be98b477f2fd714ef79129f47fa8c3ed924c75287169be7a4",
+      "reasoning": "It states exactly the requested heappop imperative-functional equality.",
+      "score": 1.0
+    },
+    {
+      "id": "ebc9aabe3df9744c2e11d3d0b862245d0f0b8e116c3d35402adce1e320a6d2c6",
+      "reasoning": "It replaces the referenced Pre-to-Post correctness theorem with unrelated placeholder-replacement lemmas.",
+      "score": 0.0
+    },
+    {
+      "id": "04afba72df4983e5e96a11fe7715b5dc059235eb0b13da275973864e5488fd13",
+      "reasoning": "It reproduces the reference FIFO queue correctness properties and theorem, including the equivalence statement.",
+      "score": 1.0
+    },
+    {
+      "id": "180754e105e2d43bdecb1052aacf60c2b50a07925ced8b5d9a6696dd387076c9",
+      "reasoning": "It contains the same Pre_Put-to-Post correctness theorem and proof as the reference.",
+      "score": 1.0
+    },
+    {
+      "id": "1ac0ea164a3e304b1e27f3525bb16a7648a0e0d88c944fb36d1005c11281c19f",
+      "reasoning": "It states exactly the reference update equivalence, including conversion from HashMap to association list and universal lookup equality.",
+      "score": 1.0
+    }
+  ],
+  "usage": {
+    "event_types": {
+      "item.completed": 1,
+      "thread.started": 1,
+      "turn.completed": 1,
+      "turn.started": 1
+    },
+    "forbidden_tool_item_count": 0,
+    "item_types": {
+      "agent_message": 1
+    },
+    "model_provenance": "explicit -m argument; successful CLI invocation; Codex JSONL does not currently expose a model field",
+    "observed_effort": null,
+    "observed_model": "gpt-5.6-terra",
+    "requested_model": "gpt-5.6-terra"
+  }
+}

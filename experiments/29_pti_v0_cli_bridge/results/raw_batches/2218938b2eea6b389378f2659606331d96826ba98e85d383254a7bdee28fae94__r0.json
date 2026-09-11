@@ -1,0 +1,168 @@
+{
+  "attempt": 1,
+  "backend": "clauded",
+  "batch_id": "2218938b2eea6b389378f2659606331d96826ba98e85d383254a7bdee28fae94",
+  "case_count": 16,
+  "cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cli_stdout_sha256": "bba34f09ed76123833054d1711d2e8c0e0a553d6d30ec7420b65bc891eb8df5e",
+  "completed_at": "2026-08-26T07:57:42.593541+00:00",
+  "effort": "low",
+  "elapsed_seconds": 48.906283290998545,
+  "judge_id": "claude-sonnet-5|P8_STRICT_B",
+  "metric_version": "PTI_v0",
+  "protocol_version": "PTI_v0_cli_protocol_v5",
+  "provider_api_spend_usd": 0.0,
+  "rendered_prompt_sha256": "eb7c8858d30eb637ce36f4b9fa23fd08638b0bb9d9188b03c4e68535b80d3182",
+  "repeat_id": 0,
+  "requested_model": "claude-sonnet-5",
+  "schema_version": "PTI_v0_cli_batch_result_v1",
+  "scores": [
+    {
+      "id": "e4a17e20fd66bdb659c1deecbee1a19e0d57a07ba2939588112980052417bdd3",
+      "reasoning": "Final quote_equiv_thm present matching reference signature exactly, with plausible functional/imperative implementations, proof left as sorry like reference.",
+      "score": 0.85
+    },
+    {
+      "id": "fd61520c334f487666f51f426eccba0cf4349f9f7b4ac3dfa55dec813bb4897a",
+      "reasoning": "Final join_equiv_thm present matching reference signature, implementations look consistent, sorry proof as in reference.",
+      "score": 0.85
+    },
+    {
+      "id": "e334879024641860e8c6e617b45f8663d17ac1c4af8e694f473e45fea62e2a74",
+      "reasoning": "Full pipeline with final join_equiv_thm present matching reference statement (renamed variable but same type), sorry proof.",
+      "score": 0.85
+    },
+    {
+      "id": "e10d0438f930220f5d3256b63a234ddba20c17797f67da551e648354a8fc83d2",
+      "reasoning": "Final encode_equiv_thm matches reference statement exactly; implementation has a somewhat suspicious bit-accumulation formula but structure and final theorem align with reference.",
+      "score": 0.8
+    },
+    {
+      "id": "e8c84f85a3815dfa78d8858d0783db23866f2985634f5bcfb99d3ce82ee205d1",
+      "reasoning": "Final encode_equiv_thm matches reference exactly and includes extra property theorems; core implementation has same questionable bit-math as sibling case but statement matches.",
+      "score": 0.8
+    },
+    {
+      "id": "c310fd6188909a82b858b08ec8fa6080ad70afe52901b351aa5a9108ba8673d7",
+      "reasoning": "Final loads_equiv_thm matches reference signature and is left sorry, consistent with the reference.",
+      "score": 0.8
+    },
+    {
+      "id": "ae6c8c7ce38d3543424475c72c3a421d80adaca56471283cbba3963f0f18a275",
+      "reasoning": "Final loads_equiv_thm matches reference exactly, includes extra pre/post scaffolding, proof sorry as in reference.",
+      "score": 0.8
+    },
+    {
+      "id": "a73f7b31f6693a372ab9ff2acc46d5fd8bc999eec9d0b59ba257e84ac8305346",
+      "reasoning": "The file never states the required unquote_equiv_thm theorem; the Correctness/Equivalence sections are left empty.",
+      "score": 0.1
+    },
+    {
+      "id": "75c838dc613978460d38ed534e0e4073c88864018346627a08dcd39488455bd2",
+      "reasoning": "No compare_equiv_thm (or any equivalence theorem) is present in the file at all.",
+      "score": 0.1
+    },
+    {
+      "id": "747da8790d520d737d231b5573c50b4fb0234081d7482007cefa0c0960f0099f",
+      "reasoning": "File ends after Post definition; the required compare_equiv_thm is never stated.",
+      "score": 0.1
+    },
+    {
+      "id": "b3024b95ccabb4d80ed40f8211ccded5fa75bd8245dcff5b221b3b454cf70336",
+      "reasoning": "No order_thm, correctness_thm, or sort_equiv_thm theorem is present; file ends after tests.",
+      "score": 0.1
+    },
+    {
+      "id": "ab5340bee3c661064c7719b5277814a3967e9a9fab1f3dccd8b50b720684d145",
+      "reasoning": "Contains order_thm (sorry) and correctness_thm matching the semantic content the reference relies on, but never states the final sort_equiv_thm theorem itself.",
+      "score": 0.35
+    },
+    {
+      "id": "1da2a19fb50a84e0e02d6db6c7125d727b82359d0950559fb3314d69675be5ef",
+      "reasoning": "Final median_low_equivalence_thm matches reference exactly with consistent functional/imperative implementations and sorry proof.",
+      "score": 0.85
+    },
+    {
+      "id": "82f1e237aba76f7254903cbdb0a88699eb459a4802e1509ee5190090cf512648",
+      "reasoning": "Final median_high_equivalence_thm matches reference exactly with consistent implementations and sorry proof.",
+      "score": 0.85
+    },
+    {
+      "id": "420c3985cae6adbd60290ddc8eb656d88efa4021c3e2d05762c7138c488f270e",
+      "reasoning": "File ends after unit tests; the required bisect_equiv_thm is never stated.",
+      "score": 0.1
+    },
+    {
+      "id": "105abfdcfdd4abcb4b72e70a5bd8577e8005f3e6d8a72fbbf4f3ccb62c82c9d5",
+      "reasoning": "Final bisect_equiv_thm matches reference exactly, plus extensive Pre/Post/property scaffolding, proof left sorry as in reference.",
+      "score": 0.85
+    }
+  ],
+  "usage": {
+    "canonical_models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-5"
+    ],
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costUSD": 0.028307,
+        "inputTokens": 28232,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      },
+      "claude-sonnet-5": {
+        "cacheCreationInputTokens": 34846,
+        "cacheReadInputTokens": 5444,
+        "canonicalModel": "claude-sonnet-5",
+        "contextWindow": 1000000,
+        "costUSD": 0.1731268,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 3265,
+        "provider": "firstParty",
+        "webSearchRequests": 0
+      }
+    },
+    "requested_model": "claude-sonnet-5",
+    "service_tier": "standard",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 34846,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 34846,
+      "cache_read_input_tokens": 5444,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 34846,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 34846,
+          "cache_read_input_tokens": 5444,
+          "input_tokens": 2,
+          "output_tokens": 3265,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 3265,
+      "output_tokens_details": {
+        "thinking_tokens": 1584
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    }
+  }
+}
