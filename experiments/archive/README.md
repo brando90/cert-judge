@@ -38,13 +38,13 @@ Archived 2026-09-10 (Trigger Rule 39: `experiments/` holds active work only).
 
 These were in the 00–26 range (or are shared data / later numbered work) and were **not** archived:
 
-- `02_reviewer_response_neurips_math_ai_2026` — OpenReview / reviewer response
-- `03_tvdmi_elicitation_crossover` — TVD-MI (Total Variation Distance–Mutual Information)
+- `02_neurips_reviews` — OpenReview / reviewer response
+- `03_tvdmi` — TVD-MI (Total Variation Distance–Mutual Information)
 - `04_efg_baseline` — EFG (Epistemically and Formally Grounded; Zhang et al., arXiv:2506.10903) baseline
-- `12_leanstral_replication_exp16_exp19` — Leanstral replication
-- `18_open_revievew_feedback_ICML_2026_mathai_ws` — OpenReview feedback (folder name misspelled)
-- `27_judge_human_agreement_and_stability_plots` — outside 00–26
-- `29_proxy_trust_index_vs_human_agreement` — outside 00–26; live CLI-only PTI-v0 scorer, rewritten to call the archived v4 runner
+- `12_leanstral` — Leanstral replication
+- `18_icml_reviews` — OpenReview feedback
+- `27_trust_plots` — outside 00–26
+- `29_proxy_validation` — outside 00–26; live CLI-only PTI-v0 scorer, rewritten to call the archived v4 runner
 - `ethan_hand_labels/`, `human_labels/` — shared label data
 - `idea_oap_+_tvdmi.md`, `scoring_judges.md` — stay at `experiments/` root
 
@@ -58,5 +58,11 @@ valid; executable commands, live documentation, and tests use the current names.
 
 | Former name | Current name | Purpose |
 |---|---|---|
-| `27_ti_plot_like_scatter_plots` | `experiments/27_judge_human_agreement_and_stability_plots` | Plot paired judge/human scores and within-output judge repeatability. |
-| `29_pti_v0_cli_bridge` | `experiments/29_proxy_trust_index_vs_human_agreement` | Test whether the behavioral Proxy Trust Index predicts human agreement across judge configurations. |
+| `27_ti_plot_like_scatter_plots` | `experiments/27_trust_plots` | Plot paired judge/human scores and within-output judge repeatability. |
+| `29_pti_v0_cli_bridge` | `experiments/29_proxy_validation` | Test whether the behavioral Proxy Trust Index predicts human agreement across judge configurations. |
+| `02_reviewer_response_neurips_math_ai_2026` | `experiments/02_neurips_reviews` | Reviewer feedback and response experiments. |
+| `03_tvdmi_elicitation_crossover` | `experiments/03_tvdmi` | Compare information-based elicitation with direct scoring. |
+| `12_leanstral_replication_exp16_exp19` | `experiments/12_leanstral` | Replicate judge scoring with Leanstral. |
+| `18_open_revievew_feedback_ICML_2026_mathai_ws` | `experiments/18_icml_reviews` | Reviewer feedback and response packet. |
+| `27_judge_human_agreement_and_stability_plots` | `experiments/27_trust_plots` | Plot human agreement and repeat stability. |
+| `29_proxy_trust_index_vs_human_agreement` | `experiments/29_proxy_validation` | Validate the proxy against human agreement. |

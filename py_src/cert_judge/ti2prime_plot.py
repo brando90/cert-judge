@@ -12,7 +12,7 @@ spread of the judge's scores across items (see
 uutils.stats_uu.validity_stability's module docstring for why). With raw repeat
 scores in [0,1], STD is at most 0.5, so this factor is a monotone noise penalty
 rather than a second zero-annihilator. Sources of truth:
-experiments/27_judge_human_agreement_and_stability_plots/cert_judge_notes/certjudge-revision-memo.md
+experiments/27_trust_plots/cert_judge_notes/certjudge-revision-memo.md
 Sec 1 ("Stability appears once on each side, measuring different things") and
 paper_latex/ICLR_2027_submission/main.tex (TI_{2'} definition).
 
@@ -23,7 +23,7 @@ own stability" math and plotting live in uutils
 module is only the cert-judge-specific notation on top (TI_2', judge/human
 axis labels). The data loading specific to this repo's result files
 (detail_rows.csv, aligned_panel_n75.tsv) lives in
-experiments/27_judge_human_agreement_and_stability_plots/, not here.
+experiments/27_trust_plots/, not here.
 """
 
 from __future__ import annotations

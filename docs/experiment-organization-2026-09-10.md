@@ -1,9 +1,9 @@
-# Experiment archive completion and descriptive names
+# Experiment archive completion and shorter names
 
-**TLDR:** The 00–26 archive cleanup is complete with all five requested exception folders retained, and experiments 27 and 29 now state their purpose in their names. Frozen results are preserved; the incomplete archive move’s runtime paths and frozen-configuration integrity were repaired.
+**TLDR:** The 00–26 archive cleanup is complete with all five requested exception folders retained, and six active folders now have shorter names explained in the experiment index. Frozen results are preserved, and the relocated runners reproduce the accepted results.
 
-**Last updated:** 2026-09-10 21:19 PDT
-**Status:** COMPLETE — verified and ready to publish on main.
+**Last updated:** 2026-09-10 21:57 PDT
+**Status:** Short-name changes verified; independent review passed; synchronization in progress.
 
 ## Organization
 
@@ -15,8 +15,8 @@ Total Variation Distance Mutual Information (TVD-MI), and the Epistemically
 and Formally Grounded (EFG) baseline. Shared human-label directories remain.
 
 The two retained later experiments are:
-- `experiments/27_judge_human_agreement_and_stability_plots/`: plots of paired human/judge scores and repeated-judgment variation.
-- `experiments/29_proxy_trust_index_vs_human_agreement/`: the completed test of the Proxy Trust Index against human agreement, including its frozen scoring runner and results.
+- `experiments/27_trust_plots/`: plots of paired human/judge scores and repeated-judgment variation.
+- `experiments/29_proxy_validation/`: the completed test of the Proxy Trust Index against human agreement, including its frozen scoring runner and results.
 
 Former-to-current names are recorded only in `experiments/archive/README.md`.
 Live command examples, tests, figure-module documentation and supplement paths
@@ -77,3 +77,36 @@ Final reconciled verdict: **FIXED; CRITICAL_ISSUES: 0; unresolved major issues: 
 Reviewer model: `gpt-6-astra`, ultra effort, acceptance role. Original review
 session: `01a08eab-9d8b-7372-8c39-6df77dbea83d`. This was one independent review
 round followed by deterministic verification of the fix; no second round.
+
+## Shorter names follow-up
+
+Six retained folders now use short names, with full purposes in
+`experiments/README.md` and rename history in `experiments/archive/README.md`.
+All 2,756 tracked files in these folders remain present: 2,728 are byte-identical,
+and 28 contain only path, documentation, or runtime-relocation metadata updates.
+Frozen configurations, raw results, reference packets, figures, numerical tables,
+and saved execution metadata remain byte-identical.
+
+All 89 relevant tests passed; the same pre-existing Lean integration test was
+excluded because this change touches no Lean source. The complete outer-correlation
+reconstruction, including 10,000-bootstrap uncertainty intervals, exactly matches
+the frozen analyses and source rows. The runner still reports 774/774 completed
+tasks, zero invalid tasks, and zero remaining tasks. Both changed shell scripts
+pass syntax checks, current executable references contain no obsolete names,
+and all directory links in the experiment index resolve.
+
+The relocation record additionally records the moved prompt-source path; the
+prompt source itself and all numerical protocol fields remain unchanged. The
+original frozen-configuration file retains its SHA-256 hash recorded above.
+
+Short-name review: **PASS; CRITICAL_ISSUES: 0; MAJOR_ISSUES: 0.** The independent
+reviewer was Codex `gpt-6-astra`, ultra effort, acceptance role, session
+`01a08ed3-8d03-7c91-af20-41d70af5f5d7`, against base
+`97ef020e752fb001654eb36b8ad67c8b10024999`. Claude's strongest reviewer had already
+returned a usage-credit error in this session, so the configured strongest-model
+fallback was used; cross-company review was unavailable. It independently
+confirmed exact path-only executable changes, unchanged frozen authority and
+prompts, strict runtime-drift rejection, and preservation of the symbolic link.
+The staged scan found no literal credentials; its one pattern match at
+`experiments/02_neurips_reviews/utils/judge_caller.py:475` is an existing function
+call, confirmed from the Python syntax tree and unchanged from the base.

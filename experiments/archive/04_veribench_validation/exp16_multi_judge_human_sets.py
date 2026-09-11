@@ -28,7 +28,7 @@ from typing import Dict, List, Sequence, Tuple
 import numpy as np
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-EXP02_DIR = REPO_ROOT / "experiments" / "02_reviewer_response_neurips_math_ai_2026"
+EXP02_DIR = REPO_ROOT / "experiments" / "02_neurips_reviews"
 sys.path.insert(0, str(EXP02_DIR))
 
 from utils.judge_caller import judge

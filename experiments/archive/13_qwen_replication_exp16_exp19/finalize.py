@@ -95,7 +95,7 @@ def git_branch_commit_push() -> str:
 
     add_paths = [
         str(EXP_DIR.relative_to(REPO)),  # whole exp13 dir incl. results, scripts, README, cc.md
-        "experiments/02_reviewer_response_neurips_math_ai_2026/utils/judge_caller.py",
+        "experiments/02_neurips_reviews/utils/judge_caller.py",
     ]
     for p in add_paths:
         run(["git", "add", p], check=False)

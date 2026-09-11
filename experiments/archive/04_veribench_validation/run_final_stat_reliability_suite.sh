@@ -16,7 +16,7 @@ RUN_EXP13="${RUN_EXP13:-0}"   # 1 => rerun exp13 sweep first
 # Paths
 EXP16_OUT="${EXP16_OUT:-$SCRIPT_DIR/results_exp16_final_robust}"
 EXP17_PREFIX="${EXP17_PREFIX:-$SCRIPT_DIR/results_exp17_final_robust}"
-EXP13_RESULTS_DIR="${EXP13_RESULTS_DIR:-$REPO_ROOT/experiments/02_reviewer_response_neurips_math_ai_2026/results/threshold_calibration_sweep}"
+EXP13_RESULTS_DIR="${EXP13_RESULTS_DIR:-$REPO_ROOT/experiments/02_neurips_reviews/results/threshold_calibration_sweep}"
 OUT_DIR="${OUT_DIR:-$SCRIPT_DIR/results_final_stat_reliability_suite}"
 
 # Human labels
@@ -63,7 +63,7 @@ if [[ "$RUN_EXP13" == "1" ]]; then
   echo
   echo "[2/6] Running EXP13 threshold sweep (API-heavy)"
   BOOTSTRAP_ITERS="$BOOTSTRAP_ITERS" \
-  bash "$REPO_ROOT/experiments/02_reviewer_response_neurips_math_ai_2026/run_exp13_threshold_sweep.sh"
+  bash "$REPO_ROOT/experiments/02_neurips_reviews/run_exp13_threshold_sweep.sh"
 else
   echo
   echo "[2/6] Skipping EXP13 rerun (RUN_EXP13=0), using existing threshold sweep outputs"
@@ -80,7 +80,7 @@ python -u "$SCRIPT_DIR/exp18_human_label_reliability.py" \
 
 echo
 echo "[4/6] EXP13B: formal threshold delta significance vs t=0.85"
-python -u "$REPO_ROOT/experiments/02_reviewer_response_neurips_math_ai_2026/exp13_threshold_significance.py" \
+python -u "$REPO_ROOT/experiments/02_neurips_reviews/exp13_threshold_significance.py" \
   --detail-rows-csv "$EXP13_RESULTS_DIR/detail_rows.csv" \
   --thresholds "0.6,0.65,0.7,0.75,0.8,0.85" \
   --reference-threshold 0.85 \

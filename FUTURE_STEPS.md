@@ -43,10 +43,10 @@ The current evaluation is vulnerable to the critique that the conclusions may de
 
 **What to add.**
 
-- `experiments/02_reviewer_response_neurips_math_ai_2026/exp8_cross_judge_robustness.py`
-- `experiments/02_reviewer_response_neurips_math_ai_2026/utils/judge_registry.py`
-- edit `experiments/02_reviewer_response_neurips_math_ai_2026/run_all_experiments.sh`
-- edit `experiments/02_reviewer_response_neurips_math_ai_2026/SUMMARY.md`
+- `experiments/02_neurips_reviews/exp8_cross_judge_robustness.py`
+- `experiments/02_neurips_reviews/utils/judge_registry.py`
+- edit `experiments/02_neurips_reviews/run_all_experiments.sh`
+- edit `experiments/02_neurips_reviews/SUMMARY.md`
 
 **Outputs to generate.**
 
@@ -72,9 +72,9 @@ The current perturbation ladders mainly test clean degradation under bug injecti
 
 **What to add.**
 
-- `experiments/02_reviewer_response_neurips_math_ai_2026/exp10_adversarial_gaming.py`
-- `experiments/02_reviewer_response_neurips_math_ai_2026/utils/adversarial_generator.py`
-- optionally reuse `experiments/02_reviewer_response_neurips_math_ai_2026/utils/sensitivity_sweep.py`
+- `experiments/02_neurips_reviews/exp10_adversarial_gaming.py`
+- `experiments/02_neurips_reviews/utils/adversarial_generator.py`
+- optionally reuse `experiments/02_neurips_reviews/utils/sensitivity_sweep.py`
 
 **Attack families to include.**
 
@@ -108,9 +108,9 @@ A judge is more useful in practice if it can detect when it is uncertain and abs
 
 **What to add.**
 
-- edit `experiments/02_reviewer_response_neurips_math_ai_2026/utils/judge_caller.py`
-- add `experiments/02_reviewer_response_neurips_math_ai_2026/utils/abstention.py`
-- add `experiments/02_reviewer_response_neurips_math_ai_2026/exp11_uncertainty_abstention.py`
+- edit `experiments/02_neurips_reviews/utils/judge_caller.py`
+- add `experiments/02_neurips_reviews/utils/abstention.py`
+- add `experiments/02_neurips_reviews/exp11_uncertainty_abstention.py`
 
 **Uncertainty signals to compute.**
 
@@ -142,9 +142,9 @@ The paper’s current claims are strongest at the aggregate level. A more carefu
 
 **What to add.**
 
-- `experiments/02_reviewer_response_neurips_math_ai_2026/utils/stats_core.py`
-- `experiments/02_reviewer_response_neurips_math_ai_2026/exp12_split_calibration.py`
-- edit `experiments/02_reviewer_response_neurips_math_ai_2026/utils/make_wandb_report.py`
+- `experiments/02_neurips_reviews/utils/stats_core.py`
+- `experiments/02_neurips_reviews/exp12_split_calibration.py`
+- edit `experiments/02_neurips_reviews/utils/make_wandb_report.py`
 
 **Metrics to standardize.**
 
@@ -181,7 +181,7 @@ The strongest external-validity addition would be a small but clean human study.
 - `experiments/archive/03_human_validation/annotation_template.csv`
 - `experiments/archive/03_human_validation/rubric.md`
 - `experiments/archive/03_human_validation/analyze_human_agreement.py`
-- optional wrapper: `experiments/02_reviewer_response_neurips_math_ai_2026/exp9_human_validation_eval.py`
+- optional wrapper: `experiments/02_neurips_reviews/exp9_human_validation_eval.py`
 
 **What to measure.**
 

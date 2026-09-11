@@ -13,7 +13,7 @@ import pandas as pd
 from scipy.stats import kendalltau, pearsonr, spearmanr
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-EXP02_DIR = REPO_ROOT / "experiments" / "02_reviewer_response_neurips_math_ai_2026"
+EXP02_DIR = REPO_ROOT / "experiments" / "02_neurips_reviews"
 import sys
 sys.path.insert(0, str(EXP02_DIR))
 

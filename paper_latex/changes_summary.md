@@ -1,9 +1,9 @@
 # Paper Changes Summary
 ## What needs updating after addressing NeurIPS Math-AI 2026 reviewer comments
 
-Experiments live in: `experiments/02_reviewer_response_neurips_math_ai_2026/`
-Key numbers file: `experiments/02_reviewer_response_neurips_math_ai_2026/results/PAPER_NUMBERS.md`
-Original reviews: `experiments/02_reviewer_response_neurips_math_ai_2026/or_neurips_2025_math_ai_workshop/`
+Experiments live in: `experiments/02_neurips_reviews/`
+Key numbers file: `experiments/02_neurips_reviews/results/PAPER_NUMBERS.md`
+Original reviews: `experiments/02_neurips_reviews/or_neurips_2025_math_ai_workshop/`
 
 ---
 
@@ -136,7 +136,7 @@ Replace all `X.XX` placeholders with:
 
 ## New Figures to Add to Paper
 
-Copy from `experiments/02_reviewer_response_neurips_math_ai_2026/figures/` to `paper_latex/COLM_2026/figures/` (or NeurIPS figures):
+Copy from `experiments/02_neurips_reviews/figures/` to `paper_latex/COLM_2026/figures/` (or NeurIPS figures):
 
 | File | Where to use |
 |---|---|

@@ -58,7 +58,7 @@ source $HOME/uv_envs/cert-judge/bin/activate
 export OPENAI_API_KEY=$(cat ~/keys/openai_api_brandos_personal_key.txt)
 export WANDB_API_KEY=$(cat ~/keys/brandos_wandb_key.txt)
 
-cd experiments/02_reviewer_response_neurips_math_ai_2026
+cd experiments/02_neurips_reviews
 bash run_all_experiments.sh          # Exp5→Exp1→Exp2→Exp4→Exp3
 python utils/make_wandb_report.py    # Plotly charts + full stats
 python utils/create_wandb_report_simple.py  # clean W&B leaderboard report
@@ -82,7 +82,7 @@ py_src/cert_judge/
 
 experiments/
   00_overall_cert_judge_metric_with_properties/   — full P1–P7 JTI pipeline
-  02_reviewer_response_neurips_math_ai_2026/      — certification experiments
+  02_neurips_reviews/      — certification experiments
     SUMMARY.md                                    — results + next steps
     exp1_hard_identity.py / exp2_hard_monotonicity.py / ...
     utils/  judge_caller.py · metrics.py · variant_generator.py · ...
@@ -106,7 +106,7 @@ paper_latex/
 
 ## Next Experiments
 
-See `experiments/02_reviewer_response_neurips_math_ai_2026/SUMMARY.md` for full details.
+See `experiments/02_neurips_reviews/SUMMARY.md` for full details.
 
 1. **Human validation** (`experiments/archive/03_human_validation/`) — ICC(2,1) + Spearman human-vs-judge; code prompt ready
 2. **More LLM judges** — Claude 3.5/3.7, Llama 3, Gemini on the same certification protocol
