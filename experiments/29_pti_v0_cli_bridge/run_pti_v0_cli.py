@@ -40,10 +40,11 @@ RESULTS_DIR = EXPERIMENT_DIR / "results"
 RAW_BATCH_DIR = RESULTS_DIR / "raw_batches"
 FROZEN_CONFIG_PATH = EXPERIMENT_DIR / "frozen_config.json"
 BATCH_SCHEMA_PATH = EXPERIMENT_DIR / "batch_score_schema.json"
-V4_RUNNER_PATH = REPO_ROOT / "experiments" / "04_veribench_validation" / "run_pti_v0.py"
+V4_RUNNER_PATH = REPO_ROOT / "experiments" / "archive" / "04_veribench_validation" / "run_pti_v0.py"
 V4_CONFIG_PATH = (
     REPO_ROOT
     / "experiments"
+    / "archive"
     / "04_veribench_validation"
     / "pti_v0_v4"
     / "frozen_config.json"
@@ -51,6 +52,7 @@ V4_CONFIG_PATH = (
 V4_REQUESTS_PATH = (
     REPO_ROOT
     / "experiments"
+    / "archive"
     / "04_veribench_validation"
     / "results_pti_v0_v4"
     / "score_requests.json"
@@ -58,6 +60,7 @@ V4_REQUESTS_PATH = (
 V4_PROBES_PATH = (
     REPO_ROOT
     / "experiments"
+    / "archive"
     / "04_veribench_validation"
     / "results_pti_v0_v4"
     / "probe_validity_manifest.json"
@@ -65,6 +68,7 @@ V4_PROBES_PATH = (
 V4_PANEL_PATH = (
     REPO_ROOT
     / "experiments"
+    / "archive"
     / "04_veribench_validation"
     / "results_pti_v0_v4"
     / "panel_audit"
@@ -73,6 +77,7 @@ V4_PANEL_PATH = (
 V4_POOL_PATH = (
     REPO_ROOT
     / "experiments"
+    / "archive"
     / "04_veribench_validation"
     / "pti_v0_v4"
     / "base_pool_manifest.json"
@@ -87,6 +92,7 @@ PROMPT_SOURCE = (
 BAD_PROMPT_SOURCE = (
     REPO_ROOT
     / "experiments"
+    / "archive"
     / "04_veribench_validation"
     / "exp16_multi_judge_human_sets.py"
 )

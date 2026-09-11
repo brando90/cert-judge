@@ -23,7 +23,7 @@ print('headline oversight quantity' in (r.pages[8].extract_text() or ''))"
 
 ## 0. Pre-flight verification (prompt ground rule 4)
 
-Re-ran `experiments/26_human_label_dataset_audit/audit_human_labels.py`, `reconcile_paper_numbers.py`,
+Re-ran `experiments/archive/26_human_label_dataset_audit/audit_human_labels.py`, `reconcile_paper_numbers.py`,
 and `trace_analyzed_panel.py` (pure stdlib) on this branch before editing any number.
 Outcome vs memo §4: **MATCH on every fact** — 75 rated / 72 analyzed (25/24 problems), one annotator
 × two rubric rounds, 150/144 labels, inter-round Spearman 0.2486 / Pearson 0.3747 / Kendall 0.2214 /
@@ -128,10 +128,10 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
 ## 6. Number provenance ledger
 
 **DOCUMENTED** (repo artifact, path):
-- Bridge 0.833 avg — `experiments/04_veribench_validation/results_exp28_varaware_codex_avg/summary.json`
+- Bridge 0.833 avg — `experiments/archive/04_veribench_validation/results_exp28_varaware_codex_avg/summary.json`
   (`rho_TI_vs_human = 0.8333`); 0.905 strict / 0.738 lenient + Opus row (0.810/0.595/0.643) + Qwen
   row (0.476/0.905/0.905) — TMLR draft Table `tab:tivar_cross_model_results` + tikz coordinates
-  (generator: `experiments/04_veribench_validation/make_fig2_tivar_cross_model.py`).
+  (generator: `experiments/archive/04_veribench_validation/make_fig2_tivar_cross_model.py`).
 - Bootstrap CIs [0.24,1.00]/[0.41,1.00]/[0.11,1.00], perm p=0.017/0.005/0.045, seed 42 — TMLR draft
   App. (exp16 robust suite). Pearson 0.774/0.661/0.837; Kendall 0.571/0.571/0.643 — draft §5.3.
 - Index comparison v1/v2/GM/PTIvar table — draft `tab:cross_model_index_compare_avg`.
@@ -153,14 +153,14 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
   p=0.49) — draft §sec:val-vs-test; drift also re-derived (0.123) by `trace_analyzed_panel.py`.
 - Inter-round Spearman 0.249 (CI [−0.015,0.489]), Pearson 0.375 (CI [0.076,0.604]), Kendall 0.221,
   QWK 0.372 (CI [0.073,0.581]) — cached exp18 reliability run, re-verified via
-  `experiments/26_human_label_dataset_audit/results/PANEL_TRACE.md` (4/4 MATCH).
+  `experiments/archive/26_human_label_dataset_audit/results/PANEL_TRACE.md` (4/4 MATCH).
 - Best single-judge Spearman (avg 0.480, strict 0.559); naive blind baseline table; Leanstral
   re-aggregation table; alpha-ablation deltas (0.810→0.690 strict, 0.810→0.714 lenient,
   0.881→0.786 avg — trend-v1); reversal rates (0.00/0.167/0.833/0.667–0.750/1.00);
   canonicalization 0.250→0.070 (median 64%); BAD_STRINGY ≈0.45 with 12.5% weak mono;
   r9/median rerun table — all from the TMLR draft's corresponding tables/paragraphs (cached exp
-  packages under `experiments/04_veribench_validation/results_*`).
-- Panel agents codex/claude/llama — `experiments/04_veribench_validation/run_veribench_validation.py:29`
+  packages under `experiments/archive/04_veribench_validation/results_*`).
+- Panel agents codex/claude/llama — `experiments/archive/04_veribench_validation/run_veribench_validation.py:29`
   (`AGENT_MAP`).
 - Selection freeze commit `3a7b75c` (2026-04-07) — `git log`, `experiments/ethan_hand_labels/`.
 - Study-41 seeded template (seed 41, n=30) — veribench
@@ -191,10 +191,10 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
 | Figure (used in paper) | Embedded legacy text | Generating script |
 |---|---|---|
 | `figures/pull_fig.png` (former Fig. 1; removed from the submission during Experiment 29 Mega-QA) | "TI_var", certification, and savings language | original overview graphic (source asset; no script in repo) |
-| `figures/exp16_final_robust/fig_cert_vs_human_scatter_{pass1,pass2,avg}.png` | "cert index", "pass1/pass2" | `experiments/04_veribench_validation/exp16_multi_judge_human_sets.py` (`_make_plots`) |
+| `figures/exp16_final_robust/fig_cert_vs_human_scatter_{pass1,pass2,avg}.png` | "cert index", "pass1/pass2" | `experiments/archive/04_veribench_validation/exp16_multi_judge_human_sets.py` (`_make_plots`) |
 | `figures/exp16_final_robust/fig_human_corr_by_judge_and_labelset.png` | "pass1/pass2" | same as above |
 | `figures/exp17_final_robust/fig_property_vs_human_bars_{pass1,pass2,avg}.png` | "pass1/pass2" | exp17 property-vs-human script (results package `results_exp17_*`) |
-| `figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png` | "trust index (geometric)" | `experiments/04_veribench_validation/exp25_plot_baseline_vs_geometric*.py` |
+| `figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png` | "trust index (geometric)" | `experiments/archive/04_veribench_validation/exp25_plot_baseline_vs_geometric*.py` |
 | `figures/fig_main_monotonicity_lowvar_exp19.png` + exp19 failure plots | judge-id labels only (OK); axis wording fine | `exp19_replot_low_variance.py` |
 
 Captions in the ICLR draft explicitly note the legacy labels for the remaining historical appendix

@@ -34,7 +34,17 @@ from pathlib import Path
 from statistics import NormalDist
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+def _repo_root() -> Path:
+    here = Path(__file__).resolve()
+    for parent in (here.parent, *here.parents):
+        if (parent / "py_src" / "cert_judge").is_dir() and (
+            parent / "pyproject.toml"
+        ).is_file():
+            return parent
+    raise RuntimeError(f"Could not locate cert-judge repository root from {here}")
+
+
+REPO_ROOT = _repo_root()
 sys.path.insert(0, str(REPO_ROOT / "py_src"))
 
 from cert_judge.probe_validation import (

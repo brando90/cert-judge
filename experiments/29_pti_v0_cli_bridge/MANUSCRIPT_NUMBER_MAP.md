@@ -17,7 +17,7 @@ Canonical Experiment 29 authorities:
 - `results/sesoi/sesoi_simulation.json` — frozen SESOI/power simulation.
 - `results/figures/outer_bridge_source_data.{csv,json}` — plotted points and both-axis intervals.
 - `results/figures/ti2prime_scatter_gpt53_p4_source.json` — repository-relative source bindings, item-level statistics, and uncertainty for the reused Experiment 27 diagnostic.
-- `experiments/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json` — judge-free structural pool and valid-probe counts.
+- `experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json` — judge-free structural pool and valid-probe counts.
 
 The property-table authority was content-frozen before the bridge; its committed CSV SHA-256 is `7a904f31a6dbd626a728e44fd7a00043c61b5e1630937986f111a0be4af15c0a`. The identity-bearing public VCS identifier is deliberately excluded from blinded submission material.
 
@@ -73,13 +73,13 @@ These facts are context, not PTI-v0 evidence:
 
 | Main-text fact | Authority | Status |
 |---|---|---|
-| 75 rated pairs = 25 problems × 3 generations; 72 analyzed pairs | `experiments/26_human_label_dataset_audit/results/audit_summary.json`, `RECONCILIATION.md`, and `aligned_panel_n75.tsv` | Audited; appendix explains 75-vs-72 and duplicate policy |
-| Published 72-row rubric-stability statistics: Spearman `0.249`, Pearson `0.375`, QWK `0.372`, MAE `0.771` | `experiments/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json`; alternative duplicate-policy recomputations in Exp26 `RECONCILIATION.md` | Historical published pipeline; discrepancy disclosed |
+| 75 rated pairs = 25 problems × 3 generations; 72 analyzed pairs | `experiments/archive/26_human_label_dataset_audit/results/audit_summary.json`, `RECONCILIATION.md`, and `aligned_panel_n75.tsv` | Audited; appendix explains 75-vs-72 and duplicate policy |
+| Published 72-row rubric-stability statistics: Spearman `0.249`, Pearson `0.375`, QWK `0.372`, MAE `0.771` | `experiments/archive/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json`; alternative duplicate-policy recomputations in Exp26 `RECONCILIATION.md` | Historical published pipeline; discrepancy disclosed |
 | Revised-protocol pool: 5 raters, 343 labels, 78 pairs, 63 shared | Exp26 `audit_summary.json:.heldout_pool`; Exp22 `results/results.json` | Audited |
-| Cross-protocol Spearman approximately `0.13` on 63 shared pairs and pool ceiling approximately `0.87` | `experiments/22_pooled_heldout_and_noise_ceiling/results/results.json` and `REPORT.md` | Criterion drift; not pooled with PTI-v0 |
-| First registered screen: `n=14`, underpowered | `experiments/23_reanchored_calibration/results/results.json` and `REPORT.md` | Historical registered outcome |
-| Expanded registered screen: `n=32`, strongest `|rho|=0.3911`, Holm `p=0.2484`; LOO `rho=0.2416`, `p=0.4908` | `experiments/24_expanded_panel_cli/results/pass2_full_screen_results.json` | Historical registered negative |
-| Calibration-era `PTI_var` associations | `experiments/04_veribench_validation/results_exp16_final_robust*` and `results_exp28_varaware_*` | Retained only in appendix as `LEGACY—NOT PTI-v0` |
+| Cross-protocol Spearman approximately `0.13` on 63 shared pairs and pool ceiling approximately `0.87` | `experiments/archive/22_pooled_heldout_and_noise_ceiling/results/results.json` and `REPORT.md` | Criterion drift; not pooled with PTI-v0 |
+| First registered screen: `n=14`, underpowered | `experiments/archive/23_reanchored_calibration/results/results.json` and `REPORT.md` | Historical registered outcome |
+| Expanded registered screen: `n=32`, strongest `|rho|=0.3911`, Holm `p=0.2484`; LOO `rho=0.2416`, `p=0.4908` | `experiments/archive/24_expanded_panel_cli/results/pass2_full_screen_results.json` | Historical registered negative |
+| Calibration-era `PTI_var` associations | `experiments/archive/04_veribench_validation/results_exp16_final_robust*` and `results_exp28_varaware_*` | Retained only in appendix as `LEGACY—NOT PTI-v0` |
 
 The workshop-era alpha mean `0.399`, its malformed-transform plots, early degradation plots that predate the structural gate, and a downstream theorem-ranking table without a located machine-readable result authority were removed from the submitted PDF.
 
@@ -90,8 +90,8 @@ Run from repository root in the project `uv` environment:
 ```bash
 python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py status
 
-python experiments/04_veribench_validation/run_pti_v0.py compute-properties \
-  --probe-manifest experiments/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
+python experiments/archive/04_veribench_validation/run_pti_v0.py compute-properties \
+  --probe-manifest experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
   --requests experiments/29_pti_v0_cli_bridge/results/score_requests.json \
   --config experiments/29_pti_v0_cli_bridge/frozen_config.json \
   --scores experiments/29_pti_v0_cli_bridge/results/scores.json \
@@ -100,7 +100,7 @@ python experiments/04_veribench_validation/run_pti_v0.py compute-properties \
 
 python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py compute-criterion
 
-python experiments/04_veribench_validation/run_pti_v0.py compute-bridge \
+python experiments/archive/04_veribench_validation/run_pti_v0.py compute-bridge \
   --properties experiments/29_pti_v0_cli_bridge/results/properties/properties.json \
   --criterion experiments/29_pti_v0_cli_bridge/results/criterion/criterion.json \
   --variant PTI_v0 \
@@ -109,7 +109,7 @@ python experiments/04_veribench_validation/run_pti_v0.py compute-bridge \
   --out experiments/29_pti_v0_cli_bridge/results/bridge/bridge_pti_v0.json \
   --no-api
 
-python experiments/04_veribench_validation/run_pti_v0.py simulate-sesoi \
+python experiments/archive/04_veribench_validation/run_pti_v0.py simulate-sesoi \
   --criterion experiments/29_pti_v0_cli_bridge/results/criterion/criterion.json \
   --rhos 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 \
   --draws 10000 --seed 0 --sesoi 0.5 --decision-bootstrap-iters 10000 \

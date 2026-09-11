@@ -343,7 +343,7 @@ configurations.
 # 4 Data: audited ground truth the paper must state
 
 A repository audit (`cert-judge@main`, 13 Aug 2026; write-up in
-`experiments/26_human_label_dataset_audit/`, tidy source of truth
+`experiments/archive/26_human_label_dataset_audit/`, tidy source of truth
 `results/aligned_panel_n75.tsv`) established the following. The revised paper states these
 facts plainly.
 

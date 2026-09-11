@@ -517,7 +517,7 @@ Bug monotonicity (P2) shows a clear negative trend (Pearson $r=-0.717$, Spearman
 Prompt stability (P4) yields a pooled within-item standard deviation of $0.088$, comparable to the Codex run.
 These preliminary cross-model results suggest that the certification properties are not specific to a single LLM family; a full-scale Claude run across all VeriBench files is planned.
 Our primary replication target is a frontier Claude Opus model (same prompts, same variance-aware trust index, same error-bar protocol as the Codex runs), while smaller Claude variants (e.g., Haiku) are treated as robustness controls rather than primary evidence.
-% Script: experiments/05_claude_code_properties_all_vb/run_veribench_properties.py
+% Script: experiments/archive/05_claude_code_properties_all_vb/run_veribench_properties.py
 
 \paragraph{Claude Opus 4.7 replication (full Exp16 panel).}
 Using the same \(8\)-judge Exp16 panel and the same variance-aware trust index
@@ -580,17 +580,17 @@ To keep uncertainty reporting conservative and readable, we display trend bars a
   \centering
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_trust_index_vs_human.png}
+    \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp28_varaware_codex_avg/fig_trust_index_vs_human.png}
     \caption{Variance-aware trust index vs human}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varcorr_vs_human.png}
+    \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varcorr_vs_human.png}
     \caption{\(\mathrm{Var(Corr)}\) vs human}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varscore_vs_human.png}
+    \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varscore_vs_human.png}
     \caption{\(\mathrm{Var(Scores)}\) vs human}
   \end{subfigure}
   \caption{\textbf{Variance-aware trust framing across judges (Codex, avg labels).}

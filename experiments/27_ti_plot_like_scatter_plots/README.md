@@ -41,7 +41,7 @@ from the ICLR-2027 / workshop submission runs.
    distinction matters (an across-item measure would reward a judge that
    never varies its score regardless of item quality).
 2. *Why does `random_r1` report `sigma = 0.00`?* By design, not a bug --
-   confirmed in `experiments/04_veribench_validation/exp16_multi_judge_human_sets.py:231-269`.
+   confirmed in `experiments/archive/04_veribench_validation/exp16_multi_judge_human_sets.py:231-269`.
    The "random" baseline is a SHA256 hash of the judge id + item content
    (deterministic per item, reproducible across pipeline reruns), not a
    stateful RNG draw, so its 3 "repeats" are the same value 3 times by
@@ -144,8 +144,8 @@ python3 run_ti2prime_demo.py
 ```
 
 Reads:
-- `experiments/06_cert_index_vs_human_judge_corr_and_low_var/full_run/mean/{detail_rows.csv,summary.json}`
-- `experiments/26_human_label_dataset_audit/results/aligned_panel_n75.tsv` (audited source of truth)
+- `experiments/archive/06_cert_index_vs_human_judge_corr_and_low_var/full_run/mean/{detail_rows.csv,summary.json}`
+- `experiments/archive/26_human_label_dataset_audit/results/aligned_panel_n75.tsv` (audited source of truth)
 
 Writes `results/ti2prime_scatter_<judge>.{png,pdf}` + `results/ti2prime_demo_summary.json`
 for 3 judges spanning the range TI_2' should discriminate (not all 9 — this

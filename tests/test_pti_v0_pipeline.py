@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = REPO_ROOT / "experiments" / "04_veribench_validation" / "run_pti_v0.py"
+SCRIPT = REPO_ROOT / "experiments" / "archive" / "04_veribench_validation" / "run_pti_v0.py"
 SPEC = importlib.util.spec_from_file_location("run_pti_v0_test_module", SCRIPT)
 assert SPEC is not None and SPEC.loader is not None
 PIPELINE = importlib.util.module_from_spec(SPEC)
@@ -721,7 +721,7 @@ def test_sesoi_simulation_reports_frozen_decision_power(tmp_path: Path) -> None:
 
 
 def test_frozen_artifacts_quarantine_fallbacks_and_bind_lean_environment() -> None:
-    results = REPO_ROOT / "experiments/04_veribench_validation/results_pti_v0_v4"
+    results = REPO_ROOT / "experiments/archive/04_veribench_validation/results_pti_v0_v4"
     criterion = json.loads((results / "criterion/criterion.json").read_text())
     records = {record["judge_id"]: record for record in criterion["records"]}
     affected = records["gpt-5.3-codex|P8_STRICT_B"]

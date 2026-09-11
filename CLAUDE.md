@@ -39,10 +39,10 @@ Some dependencies (`vllm`, `sglang`, `unsloth`, `flash-attn`) are Linux-only and
 The frozen PTI-v0 numerical specification is `docs/spec/PTI_V0.md`. Its zero-spend entry point is:
 
 ```bash
-python experiments/04_veribench_validation/run_pti_v0.py --help
+python experiments/archive/04_veribench_validation/run_pti_v0.py --help
 ```
 
-That CLI has no inference client and cannot load credentials. Paid judge inference requires a separate exact call/cost quote and explicit approval. Historical JTI evaluations remain under `experiments/00_overall_cert_judge_metric_with_properties/`.
+That CLI has no inference client and cannot load credentials. Paid judge inference requires a separate exact call/cost quote and explicit approval. Historical JTI evaluations remain under `experiments/archive/00_overall_cert_judge_metric_with_properties/`.
 
 ## Architecture
 
@@ -62,9 +62,9 @@ The PTI-v0 properties are exact equality (`P_eq`), bug monotonicity (`P_bm`), mi
 
 ### PTI-v0 Data Layout
 
-- Base candidates: `data/generated_agents/`, frozen as typed `f=(item,agent,generation)` rows in `experiments/04_veribench_validation/pti_v0_v4/base_pool_manifest.json`.
+- Base candidates: `data/generated_agents/`, frozen as typed `f=(item,agent,generation)` rows in `experiments/archive/04_veribench_validation/pti_v0_v4/base_pool_manifest.json`.
 - Golds: resolved by the frozen precedence policy across the legacy and newest VeriBench roots.
-- Probe validity, requests, cache inventory, quotes, and results: new artifacts under `experiments/04_veribench_validation/results_pti_v0_v4/`; legacy result directories are never overwritten.
+- Probe validity, requests, cache inventory, quotes, and results: new artifacts under `experiments/archive/04_veribench_validation/results_pti_v0_v4/`; legacy result directories are never overwritten.
 
 Historical P1–P5 fixtures retained for compatibility:
 

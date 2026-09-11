@@ -23,9 +23,9 @@ from datetime import datetime
 from pathlib import Path
 
 REPO = Path("/dfs/scratch0/brando9/cert-judge")
-RES16 = REPO / "experiments/04_veribench_validation/results_exp16_leanstral_r3_median"
-RES19 = REPO / "experiments/04_veribench_validation/results_exp19_low_variance_replot_leanstral"
-RES25 = REPO / "experiments/04_veribench_validation/results_exp22_geometric_trust_index"
+RES16 = REPO / "experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median"
+RES19 = REPO / "experiments/archive/04_veribench_validation/results_exp19_low_variance_replot_leanstral"
+RES25 = REPO / "experiments/archive/04_veribench_validation/results_exp22_geometric_trust_index"
 
 EMAIL_TO = "brando.science@gmail.com"
 EMAIL_CC = ",".join([
@@ -105,7 +105,7 @@ def git_branch_commit_push() -> str:
     ]
     # Also include the patched judge_caller.py if it has unstaged changes
     add_paths.append("experiments/02_reviewer_response_neurips_math_ai_2026/utils/judge_caller.py")
-    add_paths.append("experiments/04_veribench_validation/results_exp16_leanstral_r3_median.MODEL_USED.txt")
+    add_paths.append("experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median.MODEL_USED.txt")
 
     for p in add_paths:
         run(["git", "add", p], check=False)

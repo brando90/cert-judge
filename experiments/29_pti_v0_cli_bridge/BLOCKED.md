@@ -20,4 +20,4 @@
 - No screening/pass or human-validations-saved claim is permitted because thresholds were not frozen.
 - No W&B Report is created for this blocked zero-spend preparation.
 
-The exact gate ledger and completed local evidence are under `experiments/04_veribench_validation/results_pti_v0_v4/`.
+The exact gate ledger and completed local evidence are under `experiments/archive/04_veribench_validation/results_pti_v0_v4/`.

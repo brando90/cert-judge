@@ -19,7 +19,7 @@ prompt, the memo wins; if it conflicts with repository facts, stop and report).
 3. Any number you insert or change in the manuscript must be labeled in your change log as
    DOCUMENTED (traced to a repo artifact, cite the path), DERIVED (computed by you, show the
    command), or UNKNOWN (insert `\todo{}` and flag). Never guess a number.
-4. Verify before you trust: re-run `experiments/26_human_label_dataset_audit/audit_human_labels.py`
+4. Verify before you trust: re-run `experiments/archive/26_human_label_dataset_audit/audit_human_labels.py`
    and `reconcile_paper_numbers.py` (pure stdlib) and confirm their outputs match the memo's §4
    table before propagating any data facts into the text. If they disagree with the memo,
    stop and report the discrepancy instead of choosing a side.

@@ -412,7 +412,7 @@ def main() -> int:
             text=(
                 "```bash\n"
                 "python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py status\n"
-                "python experiments/04_veribench_validation/run_pti_v0.py "
+                "python experiments/archive/04_veribench_validation/run_pti_v0.py "
                 "compute-bridge --variant PTI_v0 --prebridge-commit "
                 f"{bridge['prebridge_commit']} --bootstrap-iters 10000 --seed 0 --no-api\n"
                 "python experiments/29_pti_v0_cli_bridge/generate_bridge_figure.py\n"

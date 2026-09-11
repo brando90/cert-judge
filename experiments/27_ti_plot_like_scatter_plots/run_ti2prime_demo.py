@@ -4,10 +4,10 @@ Exp27: TI_2' scatter demo on real (already-collected) cert-judge data.
 
 Reuses results already on disk from the ICLR-2027 / workshop submission runs
 -- no judge inference, no LLM calls, no spend:
-  - experiments/06_cert_index_vs_human_judge_corr_and_low_var/full_run/mean/
+  - experiments/archive/06_cert_index_vs_human_judge_corr_and_low_var/full_run/mean/
       detail_rows.csv   per-item, per-judge repeat scores (already computed)
       summary.json      per-judge audited human_spearman_r_* for cross-check
-  - experiments/26_human_label_dataset_audit/results/aligned_panel_n75.tsv
+  - experiments/archive/26_human_label_dataset_audit/results/aligned_panel_n75.tsv
       the audited 75-row human-label source of truth; 72 rows join the
       panel above (3 rows are `missing_gold`, per that audit -- they drop
       out of the join naturally, no special-casing needed here)
@@ -40,9 +40,9 @@ sys.path.insert(0, str(REPO_ROOT / "py_src"))
 
 from cert_judge.ti2prime_plot import compute_ti2prime, plot_ti2prime_scatter  # noqa: E402
 
-EXP06_DIR = REPO_ROOT / "experiments" / "06_cert_index_vs_human_judge_corr_and_low_var" / "full_run" / "mean"
-AUDIT_TSV = REPO_ROOT / "experiments" / "26_human_label_dataset_audit" / "results" / "aligned_panel_n75.tsv"
-AUDIT_MD = REPO_ROOT / "experiments" / "26_human_label_dataset_audit" / "results" / "AUDIT.md"
+EXP06_DIR = REPO_ROOT / "experiments" / "archive" / "06_cert_index_vs_human_judge_corr_and_low_var" / "full_run" / "mean"
+AUDIT_TSV = REPO_ROOT / "experiments" / "archive" / "26_human_label_dataset_audit" / "results" / "aligned_panel_n75.tsv"
+AUDIT_MD = REPO_ROOT / "experiments" / "archive" / "26_human_label_dataset_audit" / "results" / "AUDIT.md"
 OUT_DIR = Path(__file__).resolve().parent / "results"
 
 LABEL_VIEW = "avg"  # paper's headline label view (revision memo Sec 5: "headline = avg")

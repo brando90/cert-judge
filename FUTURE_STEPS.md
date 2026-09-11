@@ -178,9 +178,9 @@ The strongest external-validity addition would be a small but clean human study.
 
 **What to add.**
 
-- `experiments/03_human_validation/annotation_template.csv`
-- `experiments/03_human_validation/rubric.md`
-- `experiments/03_human_validation/analyze_human_agreement.py`
+- `experiments/archive/03_human_validation/annotation_template.csv`
+- `experiments/archive/03_human_validation/rubric.md`
+- `experiments/archive/03_human_validation/analyze_human_agreement.py`
 - optional wrapper: `experiments/02_reviewer_response_neurips_math_ai_2026/exp9_human_validation_eval.py`
 
 **What to measure.**

@@ -69,7 +69,7 @@ Judge call results are cached in `results/judge_cache.json` (~800 calls).
 
 ### Full JTI evaluation (P1–P7)
 ```bash
-cd experiments/00_overall_cert_judge_metric_with_properties
+cd experiments/archive/00_overall_cert_judge_metric_with_properties
 bash main_overall_judge_score.sh
 ```
 
@@ -108,6 +108,6 @@ paper_latex/
 
 See `experiments/02_reviewer_response_neurips_math_ai_2026/SUMMARY.md` for full details.
 
-1. **Human validation** (`experiments/03_human_validation/`) — ICC(2,1) + Spearman human-vs-judge; code prompt ready
+1. **Human validation** (`experiments/archive/03_human_validation/`) — ICC(2,1) + Spearman human-vs-judge; code prompt ready
 2. **More LLM judges** — Claude 3.5/3.7, Llama 3, Gemini on the same certification protocol
 3. **Lean 4 compilation ground truth** — use Lean as binary oracle; AUC-ROC for judge as compiler proxy

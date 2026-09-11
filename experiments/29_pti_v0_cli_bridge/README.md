@@ -8,7 +8,7 @@ initially staged under an Experiment 28 directory; it was moved here after the
 run so the already-frozen Experiment 29 output paths and hashes did not change.
 
 This is the executable, subscription-CLI-only successor to the blocked exact-
-model v4 protocol in `experiments/04_veribench_validation/pti_v0_v4/`.
+model v4 protocol in `experiments/archive/04_veribench_validation/pti_v0_v4/`.
 
 The PTI metric and audited probes are reused rather than forked. Only the model
 panel and the preregistered batching execution protocol are versioned to v5.
@@ -106,8 +106,8 @@ batch/repeat is atomic and validated; rerunning resumes missing work.
 ## Properties and criterion
 
 ```bash
-python experiments/04_veribench_validation/run_pti_v0.py compute-properties \
-  --probe-manifest experiments/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
+python experiments/archive/04_veribench_validation/run_pti_v0.py compute-properties \
+  --probe-manifest experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
   --requests experiments/29_pti_v0_cli_bridge/results/score_requests.json \
   --config experiments/29_pti_v0_cli_bridge/frozen_config.json \
   --scores experiments/29_pti_v0_cli_bridge/results/scores.json \
