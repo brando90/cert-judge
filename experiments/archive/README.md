@@ -40,7 +40,7 @@ These were in the 00–26 range (or are shared data / later numbered work) and w
 
 - `02_reviewer_response_neurips_math_ai_2026` — OpenReview / reviewer response
 - `03_tvdmi_elicitation_crossover` — TVD-MI (Total Variation Distance–Mutual Information)
-- `04_efg_baseline` — EFG (Expected Free Energy) baseline
+- `04_efg_baseline` — EFG (Epistemically and Formally Grounded; Zhang et al., arXiv:2506.10903) baseline
 - `12_leanstral_replication_exp16_exp19` — Leanstral replication
 - `18_open_revievew_feedback_ICML_2026_mathai_ws` — OpenReview feedback (folder name misspelled)
 - `27_ti_plot_like_scatter_plots` — outside 00–26
