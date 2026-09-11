@@ -39,6 +39,7 @@ from cert_judge.ti_validation import (
     pairwise_rank_accuracy,
     pearson_r,
     pooled_leave_one_group_out,
+    predictor_tie_fraction,
     resolving_power,
     spearman_brown,
     ti_2prime,
@@ -307,6 +308,41 @@ class TestResolvingPower:
         narrow = fisher_ci(0.70, 50)
         wide = fisher_ci(0.70, 8)
         assert (narrow[1] - narrow[0]) < (wide[1] - wide[0])
+
+    def test_degenerate_proxy_is_flagged(self):
+        """A multiplicative index collapses to zero, tying most of the panel."""
+        criterion = [0.011, 0.211, 0.338, 0.089, 0.210]
+        proxy = [0.0, 0.0, 0.0, 0.811, 0.0]
+        report = resolving_power(criterion, predictor_values=proxy)
+        assert report.predictor_degenerate is True
+        assert report.predictor_distinct_values == 2
+        assert report.predictor_tie_fraction == pytest.approx(0.8)
+        assert any("degenerate" in note for note in report.notes)
+
+    def test_well_spread_proxy_is_not_flagged(self):
+        report = resolving_power(
+            [0.1, 0.3, 0.5, 0.7, 0.9], predictor_values=[0.2, 0.4, 0.5, 0.8, 1.0]
+        )
+        assert report.predictor_degenerate is False
+        assert report.predictor_distinct_values == 5
+
+    def test_tie_fraction_counts_the_most_common_value(self):
+        assert predictor_tie_fraction([0.0, 0.0, 0.0, 1.0]) == pytest.approx(0.75)
+        assert predictor_tie_fraction([1, 2, 3, 4]) == pytest.approx(0.25)
+        assert predictor_tie_fraction([]) is None
+
+    def test_predictor_check_is_skipped_when_no_proxy_supplied(self):
+        report = resolving_power([0.1, 0.5, 0.9])
+        assert report.predictor_distinct_values is None
+        assert report.predictor_degenerate is False
+
+    def test_validate_pti_marks_a_degenerate_proxy_underpowered(self):
+        """Real shape of experiment 29: four judges tied at the floor."""
+        pti = {"a": 0.0, "b": 0.0, "c": 0.0, "d": 0.811, "e": 0.0}
+        ti = {"a": 0.011, "b": 0.211, "c": 0.338, "d": 0.089, "e": 0.210}
+        report = validate_pti(pti, ti, n_items_per_unit=72, resamples=200)
+        assert report.status == UNDERPOWERED
+        assert report.power.predictor_degenerate is True
 
     def test_min_units_for_ci_width_is_monotone(self):
         loose = min_units_for_ci_width(0.70, 0.6)
