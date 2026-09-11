@@ -42,52 +42,52 @@ export MPLCONFIGDIR=/tmp/mpl
 #   openrouter/mistralai/leanstral
 export LEANSTRAL_MODEL="${LEANSTRAL_MODEL:-leanstral}"
 
-echo "MODEL_USED=${LEANSTRAL_MODEL}" | tee experiments/04_veribench_validation/results_exp16_leanstral_r3_median.MODEL_USED.txt
+echo "MODEL_USED=${LEANSTRAL_MODEL}" | tee experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median.MODEL_USED.txt
 
 # 1) Exp16
-python3 experiments/04_veribench_validation/exp16_multi_judge_human_sets.py \
+python3 experiments/archive/04_veribench_validation/exp16_multi_judge_human_sets.py \
   --judge-repeats 3 \
   --repeat-agg median \
   --threshold 0.85 \
   --plot-error-bars on \
   --cache-tag leanstral_full_r3_median \
   --judges "llm:${LEANSTRAL_MODEL}:P8_STRICT_B,llm:${LEANSTRAL_MODEL}:P4_CHECKLIST,llm:${LEANSTRAL_MODEL}:P1_BASELINE,llm_bad:${LEANSTRAL_MODEL}:BAD_STRINGY,llm:gpt-4o-mini:P8_STRICT_B,llm:gpt-4o-mini:P4_CHECKLIST,editdist:e1:na,random:r1:na" \
-  --out-dir experiments/04_veribench_validation/results_exp16_leanstral_r3_median
+  --out-dir experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median
 
 # 2) Exp19
-python3 experiments/04_veribench_validation/exp19_replot_low_variance.py \
-  --detail-rows experiments/04_veribench_validation/results_exp16_leanstral_r3_median/detail_rows.csv \
-  --judge-rows experiments/04_veribench_validation/results_exp16_leanstral_r3_median/judge_rows.csv \
+python3 experiments/archive/04_veribench_validation/exp19_replot_low_variance.py \
+  --detail-rows experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median/detail_rows.csv \
+  --judge-rows experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median/judge_rows.csv \
   --repeat-agg median \
   --bootstrap-iters 4000 \
-  --out-dir experiments/04_veribench_validation/results_exp19_low_variance_replot_leanstral
+  --out-dir experiments/archive/04_veribench_validation/results_exp19_low_variance_replot_leanstral
 
 # 3) Exp25 geometric reanalysis (offline)
 for LS in avg pass1 pass2; do
-  python3 experiments/04_veribench_validation/exp25_plot_baseline_vs_geometric.py \
-    --summary-json experiments/04_veribench_validation/results_exp16_leanstral_r3_median/summary.json \
+  python3 experiments/archive/04_veribench_validation/exp25_plot_baseline_vs_geometric.py \
+    --summary-json experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median/summary.json \
     --label-set "$LS" \
     --mono-weight 0.4 \
     --stab-weight 0.6 \
-    --out-dir "experiments/04_veribench_validation/results_exp22_geometric_trust_index/leanstral_r3_median_mono_stab_40_60_${LS}"
+    --out-dir "experiments/archive/04_veribench_validation/results_exp22_geometric_trust_index/leanstral_r3_median_mono_stab_40_60_${LS}"
 done
 ```
 
 ## Expected outputs
 
 Exp16:
-- `experiments/04_veribench_validation/results_exp16_leanstral_r3_median/summary.json`
+- `experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median/summary.json`
 - `.../fig_cert_vs_human_scatter_pass1.png`
 - `.../fig_cert_vs_human_scatter_pass2.png`
 - `.../fig_cert_vs_human_scatter_avg.png`
 
 Exp19:
-- `experiments/04_veribench_validation/results_exp19_low_variance_replot_leanstral/fig_main_monotonicity_lowvar.png`
+- `experiments/archive/04_veribench_validation/results_exp19_low_variance_replot_leanstral/fig_main_monotonicity_lowvar.png`
 - `.../fig_failure_alpha_variant_breakdown.png`
 - `.../fig_failure_bug_reversal_rates.png`
 
 Exp25 / GM:
-- `experiments/04_veribench_validation/results_exp22_geometric_trust_index/leanstral_r3_median_mono_stab_40_60_avg/summary.json`
+- `experiments/archive/04_veribench_validation/results_exp22_geometric_trust_index/leanstral_r3_median_mono_stab_40_60_avg/summary.json`
 - `...pass1/summary.json`
 - `...pass2/summary.json`
 - plus `fig7_trend_update_baseline_vs_geom.png` in each folder

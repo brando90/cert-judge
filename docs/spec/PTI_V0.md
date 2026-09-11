@@ -4,7 +4,7 @@
 
 - Status: frozen v4 implementation contract
 - Metric version: `PTI_v0`
-- Frozen protocol: `experiments/04_veribench_validation/pti_v0_v4/frozen_config.json`
+- Frozen protocol: `experiments/archive/04_veribench_validation/pti_v0_v4/frozen_config.json`
 
 ## Scientific objects
 
@@ -107,4 +107,4 @@ Every result must include `metric_version="PTI_v0"`, exact probe and score-manif
 
 The metric and transformer source hashes are intentional config-fingerprint integrity gates. Any byte change to either file, including a comment-only change, requires deterministic config and downstream-artifact regeneration. The raw pipeline-file hash is provenance only; `PIPELINE_VERSION` is its semantic identity and must be bumped for a semantic pipeline change. Structural manifests also record the host platform and measured filesystem case sensitivity because this checkout has lowercase `veribench` source/olean paths while some imports use `VeriBench`.
 
-The canonical executable is `experiments/04_veribench_validation/run_pti_v0.py`. It contains no inference client and cannot load API credentials. Paid scoring requires a separately reviewed scorer, an exact request/cost quote, and explicit approval.
+The canonical executable is `experiments/archive/04_veribench_validation/run_pti_v0.py`. It contains no inference client and cannot load API credentials. Paid scoring requires a separately reviewed scorer, an exact request/cost quote, and explicit approval.

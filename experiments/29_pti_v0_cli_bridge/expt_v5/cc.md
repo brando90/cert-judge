@@ -27,8 +27,8 @@ From the repository root:
 ```bash
 python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py status
 python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py score --workers 2
-python experiments/04_veribench_validation/run_pti_v0.py compute-properties \
-  --probe-manifest experiments/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
+python experiments/archive/04_veribench_validation/run_pti_v0.py compute-properties \
+  --probe-manifest experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
   --requests experiments/29_pti_v0_cli_bridge/results/score_requests.json \
   --config experiments/29_pti_v0_cli_bridge/frozen_config.json \
   --scores experiments/29_pti_v0_cli_bridge/results/scores.json \

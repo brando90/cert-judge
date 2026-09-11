@@ -480,7 +480,7 @@ Identity (P1) remains perfect ($\mu=1.000$, $\sigma=0.000$), confirming that sel
 Bug monotonicity (P2) shows a clear negative trend (Pearson $r=-0.717$, Spearman $\rho=-0.674$, weak monotonicity $66.7\%$), and specification ablation (P3) is directionally correct (Pearson $r=-0.560$, Spearman $\rho=-0.402$).
 Prompt stability (P4) yields a pooled within-item standard deviation of $0.088$, comparable to the Codex run.
 These preliminary cross-model results suggest that the certification properties are not specific to a single LLM family; a full-scale Claude run across all VeriBench files is planned.
-% Script: experiments/05_claude_code_properties_all_vb/run_veribench_properties.py
+% Script: experiments/archive/05_claude_code_properties_all_vb/run_veribench_properties.py
 
 \paragraph{Claude Opus 4.7 replication (full Exp16 panel).}
 On the full \(8\)-judge Exp16 validation panel, we re-run the same analysis for a cross-model robustness check.
@@ -528,17 +528,17 @@ For visualization, we report mean \(\pm\) SE error bars (repeat-noise proxy) to 
   \centering
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_trust_index_vs_human.png}
+    \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp28_varaware_codex_avg/fig_trust_index_vs_human.png}
     \caption{Variance-aware trust index vs human}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varcorr_vs_human.png}
+    \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varcorr_vs_human.png}
     \caption{\(\mathrm{Var(Corr)}\) vs human}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varscore_vs_human.png}
+    \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp28_varaware_codex_avg/fig_varscore_vs_human.png}
     \caption{\(\mathrm{Var(Scores)}\) vs human}
   \end{subfigure}
   \caption{\textbf{Variance-aware trust framing across judges (Codex, avg labels).}
@@ -1221,13 +1221,13 @@ Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167
   \centering
   \begin{subfigure}[t]{0.48\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_main_monotonicity_lowvar.png}
+    \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp19_low_variance_replot/fig_main_monotonicity_lowvar.png}
     \caption{Main low-variance monotonicity curves (core GPT-5.3 judges, robust repeat aggregation).}
     \label{fig:app-exp19-main-lowvar}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_alpha_variant_breakdown.png}
+    \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_alpha_variant_breakdown.png}
     \caption{Failure-mode isolation: identity variant breakdown with ALPHA shown separately.}
     \label{fig:app-exp19-alpha-failure}
   \end{subfigure}
@@ -1238,7 +1238,7 @@ Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{../../../experiments/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_bug_reversal_rates.png}
+  \includegraphics[width=\linewidth]{../../../experiments/archive/04_veribench_validation/results_exp19_low_variance_replot/fig_failure_bug_reversal_rates.png}
   \caption{\textbf{EXP19 failure-mode plot: local bug-ladder reversal rates by judge.}
     This explicitly surfaces where monotonicity fails locally, separating robustness diagnostics from the primary trend plot.}
   \label{fig:app-exp19-reversals}

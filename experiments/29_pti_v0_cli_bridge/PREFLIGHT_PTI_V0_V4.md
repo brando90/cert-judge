@@ -116,8 +116,8 @@ An accidental dependency initialization attempt created an incomplete untracked 
 - `hsj_scoring.py:76-87`: P2/P3 use a pooled pairwise ordering AUC transformation.
 - `hsj_scoring.py:90-112`: P4 uses pooled within-item variance with a `tau` scale.
 - `hsj_scoring.py:164-205`: JTI is a weighted arithmetic mean of P1-P7.
-- `experiments/04_veribench_validation/exp28_variance_aware_trust_index.py:68-133`: legacy TIvar reads only bug detail rows, drops undefined correlations, normalizes variance across the observed panel, and uses an epsilon-floored geometric expression.
-- `experiments/04_veribench_validation/results_exp30_tivar_v3_all_models/`: checked legacy outputs. They must not be overwritten or renamed PTI-v0.
+- `experiments/archive/04_veribench_validation/exp28_variance_aware_trust_index.py:68-133`: legacy TIvar reads only bug detail rows, drops undefined correlations, normalizes variance across the observed panel, and uses an epsilon-floored geometric expression.
+- `experiments/archive/04_veribench_validation/results_exp30_tivar_v3_all_models/`: checked legacy outputs. They must not be overwritten or renamed PTI-v0.
 
 ### 6.2 Repeat and cache schema
 
@@ -156,7 +156,7 @@ Do not modify legacy JTI/TIvar semantics in place and do not leave a reference s
 1. Add a reusable, versioned numerical core in `py_src/cert_judge/pti_v0.py`, export its public API through `py_src/cert_judge/__init__.py`, and keep `metric_version="PTI_v0"` in every result record.
 2. Add syntax-aware probe construction/validation as reusable code in `py_src/cert_judge/probe_validation.py`; it must emit structural manifests without importing the judge caller.
 3. Add coherent vectors under `tests/data/PTI_V0_TEST_VECTORS_v4.json` and conformance tests under `tests/test_pti_v0.py`.
-4. Add the data/cache adapter and CLI under `experiments/04_veribench_validation/run_pti_v0.py`, reusing the canonical panel/cache data but writing only to a new `results_pti_v0_v4/` directory.
+4. Add the data/cache adapter and CLI under `experiments/archive/04_veribench_validation/run_pti_v0.py`, reusing the canonical panel/cache data but writing only to a new `results_pti_v0_v4/` directory.
 5. Add the outer judge-level source-data and plot generator within the same PTI-v0 experiment tree.
 6. Reuse Exp27/PR #38 for inner item-level diagnostics after dependency resolution; add its missing join/constant/tie/error-bar tests rather than duplicating plotting code.
 7. Add the concise frozen spec and decision record under `docs/spec/`; explicitly mark JTI/TIvar outputs as legacy compatibility artifacts.
@@ -492,15 +492,15 @@ The conformance test must load `tests/data/PTI_V0_TEST_VECTORS_v4.json`, enforce
 
 ```bash
 cd /Users/brandomiranda/cert-judge
-uv run python experiments/04_veribench_validation/run_pti_v0.py audit-probes \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py audit-probes \
   --metric-version PTI_v0 \
-  --pool-manifest experiments/04_veribench_validation/pti_v0_v4/base_pool.json \
+  --pool-manifest experiments/archive/04_veribench_validation/pti_v0_v4/base_pool.json \
   --lean-bin /Users/brandomiranda/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean \
   --require-elaboration \
   --reject-noops \
   --reject-comment-fallbacks \
   --no-api \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json
 ```
 
 The command must fail nonzero if any included probe lacks a documented semantic step or an elaboration result. It must never import or initialize an API client.
@@ -509,16 +509,16 @@ The command must fail nonzero if any included probe lacks a documented semantic 
 
 ```bash
 cd /Users/brandomiranda/cert-judge
-uv run python experiments/04_veribench_validation/run_pti_v0.py audit-panel \
-  --strict experiments/04_veribench_validation/data/ethan_human_scores_20260425.tsv \
-  --lenient experiments/04_veribench_validation/data/ethan_human_scores_ORIGINAL.tsv \
-  --checked-average experiments/04_veribench_validation/data/ethan_human_scores_avg_two_passes_20260425.tsv \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py audit-panel \
+  --strict experiments/archive/04_veribench_validation/data/ethan_human_scores_20260425.tsv \
+  --lenient experiments/archive/04_veribench_validation/data/ethan_human_scores_ORIGINAL.tsv \
+  --checked-average experiments/archive/04_veribench_validation/data/ethan_human_scores_avg_two_passes_20260425.tsv \
   --duplicate-rule mean \
   --unsafe-multiply-policy APPROVED_POLICY_PLACEHOLDER \
   --bootstrap-iters 10000 \
   --seed 0 \
   --no-api \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/panel_audit
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/panel_audit
 ```
 
 Replace `APPROVED_POLICY_PLACEHOLDER` only with a recorded human choice; the CLI must otherwise refuse to write canonical derivatives.
@@ -527,28 +527,28 @@ Replace `APPROVED_POLICY_PLACEHOLDER` only with a recorded human choice; the CLI
 
 ```bash
 cd /Users/brandomiranda/cert-judge
-uv run python experiments/04_veribench_validation/run_pti_v0.py inventory-cache \
-  --frozen-config experiments/04_veribench_validation/pti_v0_v4/frozen_config.json \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py inventory-cache \
+  --frozen-config experiments/archive/04_veribench_validation/pti_v0_v4/frozen_config.json \
   --cache experiments/02_reviewer_response_neurips_math_ai_2026/results/judge_cache.json \
   --require-exact-repeat-count \
   --no-api \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/cache_inventory.json
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/cache_inventory.json
 
-uv run python experiments/04_veribench_validation/run_pti_v0.py quote-spend \
-  --frozen-config experiments/04_veribench_validation/pti_v0_v4/frozen_config.json \
-  --cache-inventory experiments/04_veribench_validation/results_pti_v0_v4/cache_inventory.json \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py quote-spend \
+  --frozen-config experiments/archive/04_veribench_validation/pti_v0_v4/frozen_config.json \
+  --cache-inventory experiments/archive/04_veribench_validation/results_pti_v0_v4/cache_inventory.json \
   --transforms ALPHA \
   --dry-run \
   --no-api \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/spend_alpha_only.json
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/spend_alpha_only.json
 
-uv run python experiments/04_veribench_validation/run_pti_v0.py quote-spend \
-  --frozen-config experiments/04_veribench_validation/pti_v0_v4/frozen_config.json \
-  --cache-inventory experiments/04_veribench_validation/results_pti_v0_v4/cache_inventory.json \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py quote-spend \
+  --frozen-config experiments/archive/04_veribench_validation/pti_v0_v4/frozen_config.json \
+  --cache-inventory experiments/archive/04_veribench_validation/results_pti_v0_v4/cache_inventory.json \
   --transforms RENAME REORDER STYLE \
   --dry-run \
   --no-api \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/spend_optional_diagnostics.json
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/spend_optional_diagnostics.json
 ```
 
 The CLI must print and persist exact model-by-model calls, repeats, input/output token assumptions, unit prices with an as-of date, cached deductions, and upper-bound cost. It must not load keys in dry-run/no-API mode.
@@ -559,15 +559,15 @@ There is deliberately **no paid alpha command in this report**. It may be genera
 
 ```bash
 cd /Users/brandomiranda/cert-judge
-uv run python experiments/04_veribench_validation/run_pti_v0.py compute-properties \
-  --frozen-config experiments/04_veribench_validation/pti_v0_v4/frozen_config.json \
-  --probe-manifest experiments/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
-  --cache-inventory experiments/04_veribench_validation/results_pti_v0_v4/cache_inventory.json \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py compute-properties \
+  --frozen-config experiments/archive/04_veribench_validation/pti_v0_v4/frozen_config.json \
+  --probe-manifest experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
+  --cache-inventory experiments/archive/04_veribench_validation/results_pti_v0_v4/cache_inventory.json \
   --cache-only \
   --no-api \
   --bootstrap-iters 10000 \
   --seed 0 \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/properties
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/properties
 
 git diff --check
 git status --short
@@ -579,25 +579,25 @@ Commit the spec, vectors, implementation, tests, structural manifest, panel disp
 
 ```bash
 cd /Users/brandomiranda/cert-judge
-uv run python experiments/04_veribench_validation/run_pti_v0.py compute-criterion \
-  --frozen-config experiments/04_veribench_validation/pti_v0_v4/frozen_config.json \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py compute-criterion \
+  --frozen-config experiments/archive/04_veribench_validation/pti_v0_v4/frozen_config.json \
   --no-api \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/criterion
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/criterion
 
-uv run python experiments/04_veribench_validation/run_pti_v0.py compute-bridge \
-  --frozen-config experiments/04_veribench_validation/pti_v0_v4/frozen_config.json \
-  --properties experiments/04_veribench_validation/results_pti_v0_v4/properties \
-  --criterion experiments/04_veribench_validation/results_pti_v0_v4/criterion \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py compute-bridge \
+  --frozen-config experiments/archive/04_veribench_validation/pti_v0_v4/frozen_config.json \
+  --properties experiments/archive/04_veribench_validation/results_pti_v0_v4/properties \
+  --criterion experiments/archive/04_veribench_validation/results_pti_v0_v4/criterion \
   --bootstrap-iters 10000 \
   --seed 0 \
   --no-api \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/bridge
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/bridge
 
-uv run python experiments/04_veribench_validation/run_pti_v0.py plot-outer-bridge \
-  --bridge experiments/04_veribench_validation/results_pti_v0_v4/bridge \
+uv run python experiments/archive/04_veribench_validation/run_pti_v0.py plot-outer-bridge \
+  --bridge experiments/archive/04_veribench_validation/results_pti_v0_v4/bridge \
   --no-diagonal \
   --no-level-mae \
-  --out experiments/04_veribench_validation/results_pti_v0_v4/figures
+  --out experiments/archive/04_veribench_validation/results_pti_v0_v4/figures
 
 git switch -c codex/iclr2027-final
 cd paper_latex/ICLR_2027_submission

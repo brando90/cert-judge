@@ -391,7 +391,7 @@ Annotators scored each aligned pair twice under different rubric strictness. Agr
 Figure~\ref{fig:tivar_cross_model_avg} with Table~\ref{tab:tivar_cross_model_results} states the headline cross-family trend. Table~\ref{tab:cross_model_index_compare_avg} compares trust-index formulations on averaged labels: \(\mathrm{TI}_{\mathrm{var}}\) improves over arithmetic baseline \(v2\) for every family (Codex \(0.476\!\rightarrow\!0.833\), Claude Opus \(0.143\!\rightarrow\!0.643\), Qwen3-Coder \(0.500\!\rightarrow\!0.905\)). Geometric mean (GM) is competitive on Codex and Opus and has the higher worst-family value (\(0.714\) vs.\ \(0.643\)); \(\mathrm{TI}_{\mathrm{var}}\) has the higher cross-family mean and the strongest single-family value (Qwen, \(0.905\)).
 We adopt \(\mathrm{TI}_{\mathrm{var}}\) for its explicit instability penalty, not because it uniformly dominates the simpler geometric form.
 The equal-weight form is deliberately not tuned: an in-sample sweep over property/variance weightings moves the Codex-panel trend from \(0.762\) (arithmetic baseline) to at most \(0.881\), and any such gain is in-sample by construction, so we keep the simple equal-weight index rather than optimize weights on the labels that evaluate them.
-% source: experiments/04_veribench_validation/results_exp21_cert_index_sweep/median/summary.md
+% source: experiments/archive/04_veribench_validation/results_exp21_cert_index_sweep/median/summary.md
 
 \begin{table}[t]
   \centering
@@ -417,12 +417,12 @@ Falsifiable diagnostics predict which judges track human assessments; P3 weak mo
 \subsection{Frozen held-out stress test on an independent annotation pool}\label{sec:heldout-stress}
 The calibration results above leave open whether the relationship transfers to new raters once every design choice is frozen.
 We attempted to test this directly: we froze a fixed cross-family \(\mathrm{TI}_{\mathrm{var}}\) weighting (property weights \(0.2{:}0.2{:}0.2{:}0.15\), variance-penalty weights \(0.125{:}0.125\)), together with the prompt panel and aggregation, and evaluated judge-level transfer against an independent annotation pool: five reviewers contributed \(343\) scored labels over \(78\) distinct candidate--gold pairs (\(60\) scored items per judge after alignment, eight judge configurations per family).
-% first frozen run: experiments/04_veribench_validation/results_exp43_frozen_tivar_heldout — TI_var-transfer numbers withheld as protocol-confounded (judge-level facts reported below), see audit
+% first frozen run: experiments/archive/04_veribench_validation/results_exp43_frozen_tivar_heldout — TI_var-transfer numbers withheld as protocol-confounded (judge-level facts reported below), see audit
 
 \paragraph{A two-stage audit reframes the first attempt.}
 The first frozen run returned near-zero correlations for every family.
 A post-hoc audit initially attributed this to a data-integrity failure --- the per-item judge-score file appeared unable to reproduce the published calibration correlations, e.g.\ the primary Codex judge recomputing to \(0.02\) against a published \(0.47\) and the lexical negative control flipping sign by \(0.74\) --- but independent verification refuted that hypothesis: recomputed against the label files the calibration actually used, the per-item file reproduces every published calibration statistic to machine precision (all eight judges, all three label sets).
-% audit + verification: experiments/22_pooled_heldout_and_noise_ceiling/REPORT.md Finding C (corrected 2026-07-21): detail_rows.csv ≡ judge_rows.csv to <1e-12 vs ethan_human_scores_*; the 0.02-vs-0.47 gap came from joining scores against the other campaign's label files
+% audit + verification: experiments/archive/22_pooled_heldout_and_noise_ceiling/REPORT.md Finding C (corrected 2026-07-21): detail_rows.csv ≡ judge_rows.csv to <1e-12 vs ethan_human_scores_*; the 0.02-vs-0.47 gap came from joining scores against the other campaign's label files
 The verified cause lies in the labels, not the scores: the held-out pool was annotated under a revised labeling protocol, and labels collected under the two protocols are nearly uncorrelated on shared items (Spearman \(\approx 0.13\), \(n{=}63\)) --- the same annotator matches the pool mean at \(0.90\) when re-labeling under the revised protocol but matches their own earlier calibration-campaign labels at only \(\approx 0.18\).
 The apparent integrity discrepancy was exactly this drift, and its direction is informative: against revised-protocol labels the lexical controls turn negative (edit distance \(-0.57\), the lexical-overlap prompt \(-0.46\) vs.\ the pool mean), consistent with a lexical-to-semantic shift in what the revised rubric rewards.
 Because \(\mathrm{TI}_{\mathrm{var}}\) and all calibration evidence were developed against the earlier protocol's labels, the frozen test compared judges to a different measurement construct; we therefore withhold the per-family \(\mathrm{TI}_{\mathrm{var}}\)-transfer correlations as unable to answer the transfer question, rather than report them as evidence for or against transfer.
@@ -431,19 +431,19 @@ Judge-level transfer of the certification signal is therefore an \emph{open ques
 
 One transfer analysis survives the audit intact because it never crosses protocols: a pool-internal, zero-leakage calibration-transfer test on revised-protocol labels only.
 Fitting a global isotonic calibration of judge scores on \(18\) training tasks and applying it unchanged to \(8\) unseen test tasks yields test item-level correlations between \(-0.460\) and \(0.295\) across judge families for a single split, and multi-seed means (ten random \(70/30\) splits) between \(0.119 \pm 0.275\) and \(0.457 \pm 0.218\), against same-item oracle bounds of up to \(0.843\)--\(0.870\) for the strongest families.
-% source: experiments/04_veribench_validation/results_exp42_proper_transfer/PAPER_TABLE.md and MULTISEED_TABLE.md; pool-internal (one protocol end-to-end), hence valid — REPORT.md Finding C (corrected 2026-07-21)
+% source: experiments/archive/04_veribench_validation/results_exp42_proper_transfer/PAPER_TABLE.md and MULTISEED_TABLE.md; pool-internal (one protocol end-to-end), hence valid — REPORT.md Finding C (corrected 2026-07-21)
 Within the revised protocol, current judge scores therefore show weak-to-null item-level calibration transfer --- valid evidence that complements, but does not settle, the open judge-level question above.
 
 \paragraph{What the independent pool does verify.}
 The label side yields two verified results.
 First, the pool is reliable: mean pairwise inter-rater Spearman is \(0.42\) across \(343\) labels (\(\approx 4.4\) raters per item), giving a Spearman--Brown reliability of \(0.76\) for the pool mean and an achievable judge-vs-pool ceiling of \(\approx 0.87\).
 Second, the pool is stable within its own protocol: a strict-pass expert label set from the same campaign matches the pool mean at Spearman \(0.96\) over all \(78\) pairs, and the annotator's single re-labeling pass matches at \(0.90\) --- while the same annotator's earlier calibration-campaign labels match the pool at only \(\approx 0.13\), sharpening the drift finding rather than corroborating the calibration target.
-% source: experiments/22_pooled_heldout_and_noise_ceiling/results/results.json (B_noise_ceiling) and REPORT.md Findings B and C (corrected); 0.96 = repeat-averaged strict set vs pool, 0.90 = ethans_data_same_prompt vs pool
+% source: experiments/archive/22_pooled_heldout_and_noise_ceiling/results/results.json (B_noise_ceiling) and REPORT.md Findings B and C (corrected); 0.96 = repeat-averaged strict set vs pool, 0.90 = ethans_data_same_prompt vs pool
 A reliable pool means label noise cannot be blamed for a null in a protocol-consistent rerun; the open design question is which labeling protocol defines the construct a certified judge should track.
 
 \paragraph{A pre-registered re-anchoring screen (registered outcome: underpowered).}
 Using only existing artifacts, we pre-registered a screen of nine label-free property signals against pool-anchored judge alignment across the \(14\) non-control configurations, with candidates, decision thresholds, and seed committed before computation.
-% prereg: experiments/23_reanchored_calibration/PREREG.md (commit 241f3de precedes results); results: experiments/23_reanchored_calibration/results/results.json
+% prereg: experiments/archive/23_reanchored_calibration/PREREG.md (commit 241f3de precedes results); results: experiments/archive/23_reanchored_calibration/results/results.json
 No candidate met the registered success bar (\(\rho \ge 0.60\) with Holm-corrected permutation \(p<0.05\), or leave-one-out selection-transfer \(\ge 0.50\) with \(p<0.05\)), and the registered flat-null bar also failed, yielding the registered ``underpowered'' outcome.
 The one near-threshold signal is disclosed as suggestive only: identity compliance \emph{anti}-correlates with semantic alignment (\(\rho=-0.539\) pool anchor, \(-0.517\) strict anchor; raw \(p\approx 0.05\)--\(0.06\); Holm-corrected \(0.46\)--\(0.56\); leave-one-out transfer \(+0.539\), \(p=0.155\), with folds selecting negative-sign identity).
 This direction was coherent with the protocol-drift diagnosis --- surface-matching judges ace identity checks yet misalign with the semantic construct --- and became a registered hypothesis for an expanded pre-registered test rather than a claim.
@@ -451,7 +451,7 @@ The property suite does still separate degenerate judges: the aggregate indices 
 
 \paragraph{A second pre-registered test (n{=}32): registered negative --- no stable transfer signal.}
 We expanded the panel to \(32\) non-control configurations --- adding twelve metered \texttt{gpt-5.3-codex}/\texttt{gpt-4o-mini} prompt variants and six \texttt{GPT-5.6-Sol} configurations, scored on the identical item set --- under a pre-registration committed before the new scores existed.
-% prereg experiments/24_expanded_panel_cli/PREREG.md (c5a621c precedes results); analysis pass2_full_screen.py; results pass2_full_screen_results.json
+% prereg experiments/archive/24_expanded_panel_cli/PREREG.md (c5a621c precedes results); analysis pass2_full_screen.py; results pass2_full_screen_results.json
 Every feature was drift-gated to reproduce the published trust-vector column at rank-Spearman \(\ge 0.90\) (six of seven pass; the stability feature failed reproduction at \(0.80\)). We report the pre-registered nine-candidate primary screen unchanged and exclude stability only in the eight-candidate drift-gated sensitivity screen.
 All three registered routes to a positive outcome fail.
 The identity primary is null (\(\rho=+0.13\), \(p=0.48\)); its pooled value masks opposite-sign subgroups --- \(-0.62\) on the diverse original panel (the same pass-1 observations, not an independent replication) versus \(+0.85\) on the narrow, pseudo-replicated new panel --- so it is not a population-independent signal.
@@ -582,7 +582,7 @@ Appendix~\ref{app:judge-prompts} lists judge prompt templates; Appendix~\ref{app
 The results in Section~\ref{sec:validation-human-alignment} are validation-set numbers. The same human labels were used to choose the trust-index form, repeat aggregation, threshold, and prompt panel, so the reported trends should be interpreted as calibration findings rather than out-of-sample generalization claims.
 
 Beyond the \(n=75\) panel, we collected an independent annotation pool with five reviewers and \(343\) scored labels over \(78\) distinct candidate--gold pairs. Those labels enter none of the calibration numbers. The frozen analysis against this pool is discussed in Section~\ref{sec:heldout-stress}: the first attempt is confounded by a labeling-protocol revision --- the audit first suspected a data-integrity failure, but verification confirmed the per-item scores reproduce the published calibration statistics exactly and traced the discrepancy to near-uncorrelated label campaigns --- so we withhold the \(\mathrm{TI}_{\mathrm{var}}\)-transfer numbers as unable to answer the transfer question pending a protocol-consistent rerun.
-% sources: experiments/22_pooled_heldout_and_noise_ceiling/REPORT.md (corrected audit); confounded run: results_exp43_frozen_tivar_heldout/; pool-internal and valid: results_exp42_proper_transfer/ (see evidence_map.md); CALIBRATION_STATUS.md
+% sources: experiments/archive/22_pooled_heldout_and_noise_ceiling/REPORT.md (corrected audit); confounded run: results_exp43_frozen_tivar_heldout/; pool-internal and valid: results_exp42_proper_transfer/ (see evidence_map.md); CALIBRATION_STATUS.md
 
 Two analysis styles must not be conflated in any follow-up rerun.
 Per-task isotonic calibration that consumes same-item human labels is an oracle diagnostic: it scores high on test tasks precisely because it uses their labels.
@@ -595,9 +595,9 @@ Among semantics-preserving rewrite probes, aggressive \textsc{Alpha}-renaming is
 Tokenized programs under \textsc{Alpha} can look far from both the gold reference and typical training text, so lexical-similarity cues can shift scores even when Lean semantics are unchanged.
 Two follow-up analyses sharpen this picture.
 Post-hoc alpha-canonicalization---normalizing bound-variable names before aggregating identity scores---reduces mean within-item score standard deviation from \(0.250\) to \(0.070\), a \(64.3\%\) median reduction; this proxy does not rescore the canonicalized Lean text, which remains the true mitigation to test.
-% source: experiments/04_veribench_validation/results_exp24_alpha_canonicalized_identity/summary.json
+% source: experiments/archive/04_veribench_validation/results_exp24_alpha_canonicalized_identity/summary.json
 Conversely, excluding \textsc{Alpha} variants from the index weakens the certification-to-human trend (avg \(0.762 \rightarrow 0.619\)), so the alpha probes contribute genuine signal rather than only noise.
-% source: experiments/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json
+% source: experiments/archive/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json
 
 BAD\_STRINGY, an intentionally bad baseline, achieves moderate validation-set human Spearman (\(\approx0.45\)) while failing weak monotonicity (12.5\%).
 Aggregate validation-set human Spearman alone does not detect this judge's monotonicity failure, but \(\mathrm{TI}_{\mathrm{var}}\) does.
@@ -1099,7 +1099,7 @@ The baseline tracks pass2 labels somewhat but remains substantially weaker and l
 \subsection{Human-Human Agreement Ceiling Context}
 Validation-set judge-human Spearman values should be interpreted relative to the reliability of human labels themselves.
 Across the two human annotation passes on the aligned set (\(n=72\) overlapping pairs; pass2 adds three legacy-duplicate rows), inter-pass agreement is moderate (Spearman \(0.249\), Pearson \(0.375\), Kendall \(0.221\), QWK \(0.372\)).
-% source: experiments/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json (n_overlap_pairs=72, n_pass2_only=3)
+% source: experiments/archive/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json (n_overlap_pairs=72, n_pass2_only=3)
 Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range are non-trivial and should be interpreted as approaching the available annotation ceiling in this dataset rather than as ``low absolute'' values.
 
 \begin{table}[t]
@@ -1116,10 +1116,10 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
     Human-human RMSE (pass1 vs pass2)           & 1.059          & On \(n=72\) overlap, 0--5 rubric    \\
     JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence      \\
     KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence               \\
-    % source: experiments/04_veribench_validation/results_exp16_final_robust_r9_median/human_pass_divergence_aligned72.json (JS_divergence_bits=0.0810, KL_bits_pass1_to_pass2=0.4152, aligned n=72)
+    % source: experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/human_pass_divergence_aligned72.json (JS_divergence_bits=0.0810, KL_bits_pass1_to_pass2=0.4152, aligned n=72)
     Best validation-set Spearman (avg labels)   & 0.480          & Best single judge on avg labels     \\
     Best validation-set Spearman (pass1 labels) & 0.559          & Best single judge on pass1 labels   \\
-    % source: experiments/04_veribench_validation/results_exp16_final_robust/summary.json (max human_spearman_r_avg=0.4797, max human_spearman_r_pass1=0.5591)
+    % source: experiments/archive/04_veribench_validation/results_exp16_final_robust/summary.json (max human_spearman_r_avg=0.4797, max human_spearman_r_pass1=0.5591)
     \bottomrule
   \end{tabular}
   \caption{\textbf{Human-human agreement ceiling context.}
@@ -1265,7 +1265,7 @@ We therefore report both strengths and weaknesses, and include alpha-ablation di
 On trend-v1 Spearman (TI \(\rightarrow\) validation-set human Spearman), excluding alpha variants changes
 pass1 \(0.762\rightarrow0.643\), pass2 \(0.810\rightarrow0.690\), avg \(0.762\rightarrow0.619\),
 showing that alpha cases materially affect measured robustness.
-% source: experiments/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json (stage-3 QA fix: previous values were stale pre-R9 numbers)
+% source: experiments/archive/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json (stage-3 QA fix: previous values were stale pre-R9 numbers)
 
 \subsection{Newest Results (Latest Rerun at Appendix Bottom)}
 To reduce judge-call noise, we reran the multi-judge validation trend with higher repeats and robust repeat aggregation:

@@ -130,13 +130,13 @@ Both fail the 80% weak_mono threshold on VeriBench-complexity theorems. Same mod
 
 ## What to Do Next
 
-### Priority 1 — Human Validation Study (`experiments/03_human_validation/`)
+### Priority 1 — Human Validation Study (`experiments/archive/03_human_validation/`)
 **Why critical**: Both reviewers flagged the lack of human ground truth. This is the single biggest gap.
 - Recruit 3–5 Lean 4 experts (or use grad students with formal methods background)
 - Rate 30 theorem pairs on 1–10 quality scale (original + 3-level degradation)
 - Compute: ICC(2,1) human-human inter-rater, Pearson/Spearman human vs LLM judge
 - Target: ICC > 0.70, Spearman human-vs-judge > 0.70
-- **Code prompt**: see `experiments/03_human_validation/claude_code.md`
+- **Code prompt**: see `experiments/archive/03_human_validation/claude_code.md`
 
 ### Priority 2 — More LLM Judges (`experiments/04_llm_judge_comparison/`)
 **Why**: ivJs cited "single architecture" as a limitation. We only tested OpenAI models.

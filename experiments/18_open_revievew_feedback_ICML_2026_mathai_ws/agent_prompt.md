@@ -15,21 +15,21 @@ Target paper paths:
 
 Main supporting experiment paths:
 
-- `experiments/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json`
-- `experiments/04_veribench_validation/results_exp16_final_robust_r9_median/detail_rows.csv`
-- `experiments/04_veribench_validation/results_exp23_heldout_human_labels/report.md`
-- `experiments/04_veribench_validation/results_exp23_heldout_human_labels/summary.json`
-- `experiments/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json`
-- `experiments/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json`
-- `experiments/04_veribench_validation/results_exp24_alpha_canonicalized_identity/summary.json`
-- `experiments/04_veribench_validation/results_exp21_cert_index_sweep/median/summary.md`
-- `experiments/04_veribench_validation/results_exp30_tivar_v3_all_models/summary.json`
+- `experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json`
+- `experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/detail_rows.csv`
+- `experiments/archive/04_veribench_validation/results_exp23_heldout_human_labels/report.md`
+- `experiments/archive/04_veribench_validation/results_exp23_heldout_human_labels/summary.json`
+- `experiments/archive/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json`
+- `experiments/archive/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json`
+- `experiments/archive/04_veribench_validation/results_exp24_alpha_canonicalized_identity/summary.json`
+- `experiments/archive/04_veribench_validation/results_exp21_cert_index_sweep/median/summary.md`
+- `experiments/archive/04_veribench_validation/results_exp30_tivar_v3_all_models/summary.json`
 
 Safety and evidence rules:
 
 - Do not run new experiments, judge scoring, LLM-provider APIs, LLM CLI calls for evidence generation, or scripts that read LLM keys unless the user explicitly approves the exact command, model/provider, data coverage, and estimated cost.
 - Use existing local artifacts for all paper numbers. If a required number is absent, report it as missing work rather than generating it silently.
-- The current Exp23 held-out result is not positive evidence: `experiments/04_veribench_validation/results_exp23_heldout_human_labels/report.md` reports primary held-out Spearman(TI_var, held-out human Spearman) = -0.238 with p = 0.5821 on 60 exact matched pairs; the candidate-alias sensitivity is 0.119 with p = 0.7930 on 72 pairs. Only a later locked rerun with complete coverage and positive results could change this conclusion.
+- The current Exp23 held-out result is not positive evidence: `experiments/archive/04_veribench_validation/results_exp23_heldout_human_labels/report.md` reports primary held-out Spearman(TI_var, held-out human Spearman) = -0.238 with p = 0.5821 on 60 exact matched pairs; the candidate-alias sensitivity is 0.119 with p = 0.7930 on 72 pairs. Only a later locked rerun with complete coverage and positive results could change this conclusion.
 
 ## Recommended Actions
 
@@ -88,9 +88,9 @@ Required edits:
 2. Human-labeling protocol:
    - Add a concise protocol paragraph or table explaining label scale, number of pairs, pass1/pass2, overlap, averaging, and disagreement handling.
    - Use exact values only after checking the experiment JSON/CSV files. Relevant sources include:
-     - `experiments/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json`
-     - `experiments/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json`
-     - `experiments/04_veribench_validation/results_exp23_heldout_human_labels/summary.json`
+     - `experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json`
+     - `experiments/archive/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json`
+     - `experiments/archive/04_veribench_validation/results_exp23_heldout_human_labels/summary.json`
 
 3. Uncertainty:
    - Add CIs and/or permutation p-values for judge-level correlations if available.
@@ -101,13 +101,13 @@ Required edits:
    - Add a short paragraph explaining why the variance-aware index is used: it rewards property success and penalizes instability.
    - Add an ablation/sensitivity sentence or appendix table comparing TI_var to simpler alternatives.
    - Use existing artifacts first:
-     - `experiments/04_veribench_validation/results_exp21_cert_index_sweep/median/summary.md`
-     - `experiments/04_veribench_validation/results_exp29_geom_p1_p4_plus_var/summary.json`
-     - `experiments/04_veribench_validation/results_exp30_tivar_v3_all_models/summary.json`
+     - `experiments/archive/04_veribench_validation/results_exp21_cert_index_sweep/median/summary.md`
+     - `experiments/archive/04_veribench_validation/results_exp29_geom_p1_p4_plus_var/summary.json`
+     - `experiments/archive/04_veribench_validation/results_exp30_tivar_v3_all_models/summary.json`
    - Do not claim TI_var is uniquely optimal. Say it is a reasonable operational summary supported by validation-set evidence.
 
 5. Held-out validation:
-   - Read `experiments/04_veribench_validation/results_exp23_heldout_human_labels/report.md` and `summary.json`.
+   - Read `experiments/archive/04_veribench_validation/results_exp23_heldout_human_labels/report.md` and `summary.json`.
    - The existing held-out result is weak/negative under the primary exact-match analysis. Do not present it as confirmatory.
    - Either:
      - include it as a limitation/stress-test result, or
@@ -117,8 +117,8 @@ Required edits:
 6. Alpha-renaming:
    - Add a concrete failure-mode paragraph.
    - Use:
-     - `experiments/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json`
-     - `experiments/04_veribench_validation/results_exp24_alpha_canonicalized_identity/summary.json`
+     - `experiments/archive/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json`
+     - `experiments/archive/04_veribench_validation/results_exp24_alpha_canonicalized_identity/summary.json`
    - State that post-hoc alpha-canonicalization reduces identity variance, but true Lean-side canonicalization requires rescoring canonicalized text.
 
 7. VeriBench downstream demo:
@@ -172,14 +172,14 @@ Audit tasks:
    - citation stability
 
 3. Read at minimum:
-   - `experiments/04_veribench_validation/results_exp23_heldout_human_labels/report.md`
-   - `experiments/04_veribench_validation/results_exp23_heldout_human_labels/summary.json`
-   - `experiments/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json`
-   - `experiments/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json`
-   - `experiments/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json`
-   - `experiments/04_veribench_validation/results_exp24_alpha_canonicalized_identity/summary.json`
-   - `experiments/04_veribench_validation/results_exp21_cert_index_sweep/median/summary.md`
-   - `experiments/04_veribench_validation/results_exp30_tivar_v3_all_models/summary.json`
+   - `experiments/archive/04_veribench_validation/results_exp23_heldout_human_labels/report.md`
+   - `experiments/archive/04_veribench_validation/results_exp23_heldout_human_labels/summary.json`
+   - `experiments/archive/04_veribench_validation/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json`
+   - `experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/summary.json`
+   - `experiments/archive/04_veribench_validation/results_exp18_alpha_ablation_r9/summary.json`
+   - `experiments/archive/04_veribench_validation/results_exp24_alpha_canonicalized_identity/summary.json`
+   - `experiments/archive/04_veribench_validation/results_exp21_cert_index_sweep/median/summary.md`
+   - `experiments/archive/04_veribench_validation/results_exp30_tivar_v3_all_models/summary.json`
    - `paper_latex/ICML_2026_AI4Math/main.tex`
    - `paper_latex/ICML_2026_AI4Math/refs.bib`
 

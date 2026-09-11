@@ -30,7 +30,7 @@ Review the complete chain, not merely the latest commit:
   `results/scores.json`.
 - Implementations and tests:
   `experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py`,
-  `experiments/04_veribench_validation/run_pti_v0.py`,
+  `experiments/archive/04_veribench_validation/run_pti_v0.py`,
   `py_src/cert_judge/pti_v0.py`, `py_src/cert_judge/ti2prime_plot.py`, and all
   five relevant test files under `tests/`.
 - Derived evidence:

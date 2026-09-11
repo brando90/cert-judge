@@ -493,7 +493,7 @@ def main() -> int:
         # --- Phase 4: Compare with existing judge baseline ---
         # Load the existing gpt-4o-mini coarse-grained results for comparison
         existing_summary_path = (
-            REPO_ROOT / "experiments" / "03_human_validation" / "results"
+            REPO_ROOT / "experiments" / "archive" / "03_human_validation" / "results"
             / "ethan_human_vs_judge" / "summary.json"
         )
         comparison = {}
