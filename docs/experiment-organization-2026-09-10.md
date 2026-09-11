@@ -2,8 +2,8 @@
 
 **TLDR:** The 00–26 archive cleanup is complete with all five requested exception folders retained, and six active folders now have shorter names explained in the experiment index. Frozen results are preserved, and the relocated runners reproduce the accepted results.
 
-**Last updated:** 2026-09-10 21:57 PDT
-**Status:** Short-name changes verified; independent review passed; synchronization in progress.
+**Last updated:** 2026-09-10 22:01 PDT
+**Status:** COMPLETE — shorter names and concurrent main changes verified together.
 
 ## Organization
 
@@ -110,3 +110,19 @@ prompts, strict runtime-drift rejection, and preservation of the symbolic link.
 The staged scan found no literal credentials; its one pattern match at
 `experiments/02_neurips_reviews/utils/judge_caller.py:475` is an existing function
 call, confirmed from the Python syntax tree and unchanged from the base.
+
+## Concurrent main synchronization
+
+Fetched and merged the newer `origin/main` at `7060f6e`, preserving the newly
+landed experiment 30 and its numerical validation module. The index conflict was
+resolved by retaining every entry and command from both sides. Experiment 30's
+reader and findings link now use experiment 29's shorter path; its saved panel
+files retain their original provenance. No upstream numerical code was changed.
+
+After integration, **162 tests passed and 1 unchanged Lean integration test was
+excluded**. Both experiment-30 saved panels reproduced exactly except for their
+updated source-directory metadata; the saved panel files were not overwritten.
+Incoming numerical code, tests, and data remain byte-identical to `origin/main`.
+All merge conflicts were resolved, and the 11 staged merge files passed the
+credential scan and whitespace checks. The short-name change is committed as
+`7c7c19f`; the integration retains the fetched upstream commit as a merge parent.

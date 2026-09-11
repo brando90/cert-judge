@@ -11,6 +11,7 @@
 | [`18_icml_reviews/`](18_icml_reviews/) | International Conference on Machine Learning (ICML) AI4Math 2026 OpenReview feedback. |
 | [`27_trust_plots/`](27_trust_plots/) | Manuscript figures of human agreement and repeated-score stability. |
 | [`29_proxy_validation/`](29_proxy_validation/) | Completed Proxy Trust Index version 0 (PTI-v0) validation against human agreement, with the scoring runner and frozen results. |
+| [`30_proxy_trust_index_held_out_validity/`](30_proxy_trust_index_held_out_validity/) | Test proxy prediction on unseen judge families, accounting for human-label reliability and sample size. |
 | [`ethan_hand_labels/`](ethan_hand_labels/), [`human_labels/`](human_labels/) | Shared human-label data. |
 | [`archive/`](archive/README.md) | Earlier experiments and the folder-rename history. |
 
@@ -21,6 +22,7 @@ Entry points that display help without model inference:
 ```bash
 python experiments/archive/04_veribench_validation/run_pti_v0.py --help
 python experiments/29_proxy_validation/run_pti_v0_cli.py --help
+python experiments/30_proxy_trust_index_held_out_validity/design_check.py --demo
 ```
 
 The retained runner imports the frozen predecessor from the archive. Reusable
