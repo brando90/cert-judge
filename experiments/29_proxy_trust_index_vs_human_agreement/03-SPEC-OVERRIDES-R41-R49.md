@@ -12,7 +12,7 @@ These rulings supersede conflicting language in the Fable v2/v3 handoff. All non
 ## R42 — Repository topology and Exp27
 
 - `paper_latex/ICLR_2027_submission/main.tex` is the active manuscript and is revised in place.
-- `experiments/27_ti_plot_like_scatter_plots` is existing work on cert-judge PR #38.
+- `experiments/27_judge_human_agreement_and_stability_plots` is existing work on cert-judge PR #38.
 - PR #38 depends on ultimate-utils PR #44.
 - Review dependency order: #44, then #38.
 - Do not duplicate, relocate, or silently rewrite Exp27.

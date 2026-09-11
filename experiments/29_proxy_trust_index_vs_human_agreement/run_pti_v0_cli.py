@@ -508,11 +508,22 @@ def frozen_config() -> dict[str, Any]:
 
 def _verify_frozen_config(path: Path = FROZEN_CONFIG_PATH) -> dict[str, Any]:
     observed = _read_json(path)
+    _verify_embedded_fingerprint(observed, "config_fingerprint")
     expected = frozen_config()
     if observed != expected:
-        raise ValueError(
-            f"frozen config drift: regenerate and commit {path} before inference"
-        )
+        # A reviewed relocation pins BOTH the original authority bytes and the
+        # complete current runtime fingerprint (including runner/input hashes).
+        # Keep the original identity used by accepted requests and score records.
+        relocation_path = EXPERIMENT_DIR / "runtime_relocation.json"
+        relocation = _read_json(relocation_path) if relocation_path.is_file() else {}
+        if not (
+            _sha256_file(path) == relocation.get("frozen_config_sha256")
+            and expected["config_fingerprint"]
+            == relocation.get("relocated_config_fingerprint")
+        ):
+            raise ValueError(
+                f"frozen config drift: regenerate and commit {path} before inference"
+            )
     return observed
 
 

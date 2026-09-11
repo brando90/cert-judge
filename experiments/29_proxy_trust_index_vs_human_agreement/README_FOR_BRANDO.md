@@ -19,7 +19,7 @@ Use **Claude Fable 5 as the independent reviewer**, not as the sole executor of 
 ## Current repository facts that change the plan
 
 1. The ICLR draft already exists at `paper_latex/ICLR_2027_submission/main.tex`. Revise it in place; do not port TMLR again.
-2. `experiments/27_ti_plot_like_scatter_plots` is preserved on `main`; cert-judge PRs **#38** and **#40** are merged.
+2. `experiments/27_judge_human_agreement_and_stability_plots` is preserved on `main`; cert-judge PRs **#38** and **#40** are merged.
 3. The repaired `brando90/ultimate-utils` PR **#44** is merged to `master`, and [release 0.10.9](https://pypi.org/project/ultimate-utils/0.10.9/) is public.
 4. The repository `AGENTS.md` distinguishes PTI-v0 from the historical P1–P7/JTI pipeline; the frozen PTI-v0 specification remains authoritative.
 

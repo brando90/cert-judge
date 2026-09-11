@@ -19,10 +19,10 @@ from typing import Dict, List, Tuple
 import numpy as np
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_DETAIL_ROWS = REPO_ROOT / "experiments" / "04_veribench_validation" / "results_exp16_final_robust" / "detail_rows.csv"
-DEFAULT_JUDGE_ROWS = REPO_ROOT / "experiments" / "04_veribench_validation" / "results_exp16_final_robust" / "judge_rows.csv"
-DEFAULT_OUT_DIR = REPO_ROOT / "experiments" / "04_veribench_validation" / "results_exp19_low_variance_replot"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_DETAIL_ROWS = Path(__file__).resolve().parent / "results_exp16_final_robust" / "detail_rows.csv"
+DEFAULT_JUDGE_ROWS = Path(__file__).resolve().parent / "results_exp16_final_robust" / "judge_rows.csv"
+DEFAULT_OUT_DIR = Path(__file__).resolve().parent / "results_exp19_low_variance_replot"
 
 
 def parse_args() -> argparse.Namespace:

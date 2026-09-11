@@ -27,7 +27,7 @@ from typing import Dict, List, Sequence, Tuple
 
 import numpy as np
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 EXP02_DIR = REPO_ROOT / "experiments" / "02_reviewer_response_neurips_math_ai_2026"
 sys.path.insert(0, str(EXP02_DIR))
 
@@ -38,8 +38,8 @@ from utils.variant_generator import generate_variants
 from utils.veribench_variance_utils import build_bug_ladder, extract_theorem_blocks
 
 
-DEFAULT_DATA_DIR = REPO_ROOT / "experiments" / "04_veribench_validation" / "data"
-DEFAULT_OUT_DIR = REPO_ROOT / "experiments" / "04_veribench_validation" / "results_exp16_multi_judge_human_sets"
+DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "data"
+DEFAULT_OUT_DIR = Path(__file__).resolve().parent / "results_exp16_multi_judge_human_sets"
 DEFAULT_VERIBENCH_ROOT = REPO_ROOT / "data" / "veribench_dataset" / "lean_src" / "veribench"
 DEFAULT_GENERATED_AGENTS_DIR = REPO_ROOT / "data" / "generated_agents"
 _GLOBAL_CACHE_TAG = ""

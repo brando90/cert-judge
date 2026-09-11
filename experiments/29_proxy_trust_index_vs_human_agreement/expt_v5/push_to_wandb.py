@@ -411,11 +411,11 @@ def main() -> int:
         wr.MarkdownBlock(
             text=(
                 "```bash\n"
-                "python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py status\n"
+                "python experiments/29_proxy_trust_index_vs_human_agreement/run_pti_v0_cli.py status\n"
                 "python experiments/archive/04_veribench_validation/run_pti_v0.py "
                 "compute-bridge --variant PTI_v0 --prebridge-commit "
                 f"{bridge['prebridge_commit']} --bootstrap-iters 10000 --seed 0 --no-api\n"
-                "python experiments/29_pti_v0_cli_bridge/generate_bridge_figure.py\n"
+                "python experiments/29_proxy_trust_index_vs_human_agreement/generate_bridge_figure.py\n"
                 "```"
             )
         ),

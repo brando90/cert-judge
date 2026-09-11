@@ -1,8 +1,8 @@
 # Create a figure code that I can reuse just like it exists to plot scatter plots in matplot lib but for my TT_2'
 
-self ref: `/Users/brandomiranda/cert-judge/experiments/27_ti_plot_like_scatter_plots/preprompt.md`
+self ref: `/Users/brandomiranda/cert-judge/experiments/27_judge_human_agreement_and_stability_plots/preprompt.md`
 
-See `/Users/brandomiranda/cert-judge/experiments/27_ti_plot_like_scatter_plots/cert_judge_notes` that contains all my growing notes and agent prompt for this task.
+See `/Users/brandomiranda/cert-judge/experiments/27_judge_human_agreement_and_stability_plots/cert_judge_notes` that contains all my growing notes and agent prompt for this task.
 
 The high level idea is with whatever we have here -- I'd like to run our currrent cert-judge stuff (or a subset of it, since it's just a test we don't need all the ai judges), to test the TI_2' (Trust Index 2') 
 plot that we are creating. Similar to how "to see correlations we plot a scatter plot and report the corr in the legend" -- I want to do 

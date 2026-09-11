@@ -4,9 +4,9 @@
 
 Date: 2026-08-20 (America/Los_Angeles)
 
-Scope: read-only, zero-spend preflight governed by `experiments/29_pti_v0_cli_bridge/00-CODEX-SOL-MAX-PREFLIGHT.md` and the higher-priority rulings in `03-SPEC-OVERRIDES-R41-R49.md`.
+Scope: read-only, zero-spend preflight governed by `experiments/29_proxy_trust_index_vs_human_agreement/00-CODEX-SOL-MAX-PREFLIGHT.md` and the higher-priority rulings in `03-SPEC-OVERRIDES-R41-R49.md`.
 
-References below to `PTI_V0_CANONICAL_SPEC.md`, `PTI_V0_TEST_VECTORS_v2.json`, `RECONCILIATION-R36-R40.md`, and `test_pti_v0_reference_final.py` refer to the inner archive nested under `experiments/29_pti_v0_cli_bridge/ref/files (22).zip`; the archive was inspected in a temporary directory and not modified.
+References below to `PTI_V0_CANONICAL_SPEC.md`, `PTI_V0_TEST_VECTORS_v2.json`, `RECONCILIATION-R36-R40.md`, and `test_pti_v0_reference_final.py` refer to the inner archive nested under `experiments/29_proxy_trust_index_vs_human_agreement/ref/files (22).zip`; the archive was inspected in a temporary directory and not modified.
 
 ## 1. Verdict
 
@@ -145,7 +145,7 @@ The repeat-count omission is correctness-critical: requesting a new repeat count
 - `make_fig2_tivar_cross_model.py:18-34` hardcodes three legacy panels; lines 59-82 join legacy TIvar and human rows; lines 128-138 fit an OLS guide and compute Spearman. Its output path targets the ICML tree. It is not a PTI-v0 outer-bridge generator.
 - The active ICLR outer figure is inline TikZ at `main.tex:349-539`, with hardcoded legacy TIvar coordinates. It does not draw `y=x`, but it is still a legacy artifact and has no source-data contract.
 - `py_src/cert_judge/ti2prime_plot.py:46-93` is a thin reusable wrapper around ultimate-utils. `show_diagonal=False` and `show_calibration_gap=False` are correct defaults.
-- `experiments/27_ti_plot_like_scatter_plots/run_ti2prime_demo.py:62-93,145-194` loads the 72-row audited item join and produces the inner item-level diagnostic. It is not the outer judge-level bridge.
+- `experiments/27_judge_human_agreement_and_stability_plots/run_ti2prime_demo.py:62-93,145-194` loads the 72-row audited item join and produces the inner item-level diagnostic. It is not the outer judge-level bridge.
 - `tests/test_ti2prime_plot.py` is the only checked test file. The zero-spend command `PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tests/test_ti2prime_plot.py -q` passed 8/8 in 3.57 seconds.
 - ICLR build command: `cd paper_latex/ICLR_2027_submission && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` (preflight used a temporary copy).
 

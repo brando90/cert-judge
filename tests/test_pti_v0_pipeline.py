@@ -823,3 +823,36 @@ def test_bridge_status_does_not_compute_statistic_when_hard_gate_fails(
     assert result["status"] == PIPELINE.NOT_COMPUTABLE
     assert result["bridge_statistic_computed"] is False
     assert result["hard_gate"] == hard_gate
+
+
+@pytest.mark.parametrize("relocate", [False, True])
+@pytest.mark.parametrize("tamper", [False, True])
+def test_prebridge_authority_survives_only_content_preserving_moves(
+    tmp_path, monkeypatch, relocate, tamper
+) -> None:
+    import subprocess
+
+    def git(*args):
+        return subprocess.check_output(["git", *args], cwd=tmp_path).decode().strip()
+
+    git("init", "-q")
+    original = tmp_path / "old_experiment" / "properties.json"
+    original.parent.mkdir()
+    original.write_text('{"value": 0.5}\n')
+    git("add", ".")
+    git("-c", "user.name=Test", "-c", "user.email=test@example.invalid",
+        "-c", "commit.gpgsign=false", "commit", "-qm", "Freeze test properties")
+    commit = git("rev-parse", "HEAD")
+    current = original
+    if relocate:
+        current = tmp_path / "renamed_experiment" / "properties.json"
+        current.parent.mkdir()
+        original.rename(current)
+    if tamper:
+        current.write_text('{"value": 0.9}\n')
+    monkeypatch.setattr(PIPELINE, "REPO_ROOT", tmp_path)
+    if tamper:
+        with pytest.raises(ValueError, match="absent|differs"):
+            PIPELINE._verify_prebridge_commit(commit, current)
+    else:
+        PIPELINE._verify_prebridge_commit(commit, current)

@@ -2613,7 +2613,31 @@ def _verify_prebridge_commit(commit: str, properties_path: Path) -> None:
         check=False,
     )
     if committed.returncode != 0:
-        raise ValueError("properties file is absent from the pre-bridge commit")
+        # A directory rename changes the path, not the pre-result authority.
+        # Resolve a unique same-named, identical Git blob in the original tree;
+        # never substitute a later commit or accept changed property contents.
+        blob = subprocess.run(
+            ["git", "hash-object", "--no-filters", "--", str(properties_path)],
+            cwd=REPO_ROOT, capture_output=True, check=True,
+        ).stdout.strip()
+        tree = subprocess.run(
+            ["git", "ls-tree", "-r", "-z", commit],
+            cwd=REPO_ROOT, capture_output=True, check=True,
+        )
+        matches = []
+        for entry in tree.stdout.split(b"\0"):
+            metadata, separator, name = entry.partition(b"\t")
+            if separator and metadata.split()[1:] == [b"blob", blob]:
+                if Path(os.fsdecode(name)).name == properties_path.name:
+                    matches.append(os.fsdecode(name))
+        if len(matches) != 1:
+            raise ValueError(
+                "properties file is absent or ambiguous in the pre-bridge commit"
+            )
+        committed = subprocess.run(
+            ["git", "show", f"{commit}:{matches[0]}"],
+            cwd=REPO_ROOT, capture_output=True, check=True,
+        )
     if hashlib.sha256(committed.stdout).hexdigest() != _sha256_file(properties_path):
         raise ValueError(
             "current properties file differs from the pre-bridge committed blob"

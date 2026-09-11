@@ -1,4 +1,4 @@
-# Integrating `experiments/27_ti_plot_like_scatter_plots`
+# Integrating `experiments/27_judge_human_agreement_and_stability_plots`
 
 ## Two figures, two index sets
 

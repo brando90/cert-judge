@@ -27,7 +27,7 @@ The regenerated `uv.lock` resolves the declared `ultimate-utils>=0.10.9,<0.11` e
 
 All task-specific planning, preflight, blocker, independent-review, execution,
 raw-output, derived-result, QA, and decision artifacts now live together under
-`experiments/29_pti_v0_cli_bridge/`. The original planning archive is retained
+`experiments/29_proxy_trust_index_vs_human_agreement/`. The original planning archive is retained
 byte-for-byte as `ref/files (22).zip` with SHA-256
 `7362ab1d1dcc9161fefca3aff87c33276b71941a647f2bd2b7f8e176509d6859`.
 
@@ -107,11 +107,11 @@ Primary average-view `TI_m1` values are:
 
 ## Independent QA
 
-The fresh read-only numerical audit in `experiments/29_pti_v0_cli_bridge/RESULTS_QA.md` reconstructed every score binding, property, criterion, bootstrap, and CSV/JSON output. All numerical and structural checks passed. Its formal verdict is `FAIL` only under the literal exact-model-only provenance claim, with one major finding: Claude's auxiliary Haiku telemetry. The final report and manuscript retain the narrower evidence-backed model claim.
+The fresh read-only numerical audit in `experiments/29_proxy_trust_index_vs_human_agreement/RESULTS_QA.md` reconstructed every score binding, property, criterion, bootstrap, and CSV/JSON output. All numerical and structural checks passed. Its formal verdict is `FAIL` only under the literal exact-model-only provenance claim, with one major finding: Claude's auxiliary Haiku telemetry. The final report and manuscript retain the narrower evidence-backed model claim.
 
-The fresh paper audit in `experiments/29_pti_v0_cli_bridge/PAPER_QA.md` used ephemeral read-only `gpt-5.6-sol` at `xhigh` after the requested Fable 5 session was quota-capped before review. It independently reproduced all scientific numbers and returned `REQUEST CHANGES` for blinding, cost-claim scope, omitted PTI uncertainty, the 470/471 count, and three minor provenance facts. Every deterministic correction was applied; the workflow intentionally used one reviewer round rather than claiming an unperformed re-review.
+The fresh paper audit in `experiments/29_proxy_trust_index_vs_human_agreement/PAPER_QA.md` used ephemeral read-only `gpt-5.6-sol` at `xhigh` after the requested Fable 5 session was quota-capped before review. It independently reproduced all scientific numbers and returned `REQUEST CHANGES` for blinding, cost-claim scope, omitted PTI uncertainty, the 470/471 count, and three minor provenance facts. Every deterministic correction was applied; the workflow intentionally used one reviewer round rather than claiming an unperformed re-review.
 
-The manuscript number map is `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER_MAP.md`. It binds every new manuscript number to the committed authorities and records the deterministic commands. The sanitized inner-figure sidecar binds Kendall/interval/source hashes, and `paper_latex/ICLR_2027_submission/ANONYMIZED_SUPPLEMENT_ALLOWLIST.md` excludes identity-bearing VCS, W&B, status, authentication, and local-path artifacts from double-blind distribution.
+The manuscript number map is `experiments/29_proxy_trust_index_vs_human_agreement/MANUSCRIPT_NUMBER_MAP.md`. It binds every new manuscript number to the committed authorities and records the deterministic commands. The sanitized inner-figure sidecar binds Kendall/interval/source hashes, and `paper_latex/ICLR_2027_submission/ANONYMIZED_SUPPLEMENT_ALLOWLIST.md` excludes identity-bearing VCS, W&B, status, authentication, and local-path artifacts from double-blind distribution.
 
 ## Pull requests, W&B, and manuscript
 

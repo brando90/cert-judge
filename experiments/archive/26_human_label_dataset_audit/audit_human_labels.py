@@ -33,7 +33,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Dict, Iterable, List, Sequence, Tuple
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 EXP_DIR = Path(__file__).resolve().parent
 
 Pair = Tuple[str, str]  # (gold_file, candidate_file)
@@ -46,7 +46,7 @@ Pair = Tuple[str, str]  # (gold_file, candidate_file)
 # The "shared" human-label folder that experiments/19 documents as canonical.
 SHARED_DIR = REPO_ROOT / "experiments" / "human_labels"
 # The folder the actual paper pipeline (exp16/exp29/exp43) reads from.
-PIPELINE_DIR = REPO_ROOT / "experiments" / "04_veribench_validation" / "data"
+PIPELINE_DIR = REPO_ROOT / "experiments" / "archive" / "04_veribench_validation" / "data"
 
 FILES: Dict[str, Path] = {
     # --- shared folder (experiments/human_labels) ---

@@ -25,16 +25,16 @@ the inaccessible exact-model v4 run.
 From the repository root:
 
 ```bash
-python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py status
-python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py score --workers 2
+python experiments/29_proxy_trust_index_vs_human_agreement/run_pti_v0_cli.py status
+python experiments/29_proxy_trust_index_vs_human_agreement/run_pti_v0_cli.py score --workers 2
 python experiments/archive/04_veribench_validation/run_pti_v0.py compute-properties \
   --probe-manifest experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
-  --requests experiments/29_pti_v0_cli_bridge/results/score_requests.json \
-  --config experiments/29_pti_v0_cli_bridge/frozen_config.json \
-  --scores experiments/29_pti_v0_cli_bridge/results/scores.json \
-  --out-dir experiments/29_pti_v0_cli_bridge/results/properties \
+  --requests experiments/29_proxy_trust_index_vs_human_agreement/results/score_requests.json \
+  --config experiments/29_proxy_trust_index_vs_human_agreement/frozen_config.json \
+  --scores experiments/29_proxy_trust_index_vs_human_agreement/results/scores.json \
+  --out-dir experiments/29_proxy_trust_index_vs_human_agreement/results/properties \
   --bootstrap-iters 10000 --seed 0 --no-api
-python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py compute-criterion
+python experiments/29_proxy_trust_index_vs_human_agreement/run_pti_v0_cli.py compute-criterion
 ```
 
 Run independent read-only results QA. Commit every validated score, transcript,
