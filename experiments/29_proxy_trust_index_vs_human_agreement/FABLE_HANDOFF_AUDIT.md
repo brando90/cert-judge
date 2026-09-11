@@ -40,7 +40,7 @@ The live repository already contains `paper_latex/ICLR_2027_submission/main.tex`
 
 ### 4. Experiment 27 already exists
 
-Open cert-judge PR #38 contains `experiments/27_ti_plot_like_scatter_plots`, tests, and an item-level TI_2' diagnostic built from audited cached data. It depends on ultimate-utils PR #44.
+Open cert-judge PR #38 contains `experiments/27_judge_human_agreement_and_stability_plots`, tests, and an item-level TI_2' diagnostic built from audited cached data. It depends on ultimate-utils PR #44.
 
 The new work must:
 

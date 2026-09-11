@@ -46,13 +46,13 @@ concordance coefficient, which do penalise location and scale mismatch.
 Design check on the submission's published parameters, no input needed:
 
 ```bash
-python experiments/30_pti_ti_criterion_validity/design_check.py --demo
+python experiments/30_proxy_trust_index_held_out_validity/design_check.py --demo
 ```
 
 Full validation on a panel of your own:
 
 ```bash
-python experiments/30_pti_ti_criterion_validity/design_check.py \
+python experiments/30_proxy_trust_index_held_out_validity/design_check.py \
     --input panel.json --output report.json
 ```
 

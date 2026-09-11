@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-RUNNER = REPO_ROOT / "experiments" / "29_pti_v0_cli_bridge" / "run_pti_v0_cli.py"
+RUNNER = REPO_ROOT / "experiments" / "29_proxy_trust_index_vs_human_agreement" / "run_pti_v0_cli.py"
 
 
 def _module():
@@ -253,3 +253,34 @@ def test_codex_usage_does_not_relabel_requested_model_as_observed(
     assert usage["requested_model"] == "gpt-5.6-terra"
     assert usage["observed_model"] is None
     assert usage["model_provenance"].startswith("explicit -m argument")
+
+
+def test_relocated_frozen_config_preserves_accepted_score_identity() -> None:
+    module = _module()
+    config = module._verify_frozen_config()
+    requests = module._read_json(module.RESULTS_DIR / "score_requests.json")
+    module._verify_embedded_fingerprint(config, "config_fingerprint")
+    assert config["config_fingerprint"] == requests["config_fingerprint"]
+
+
+def test_relocated_config_rejects_runtime_changes(monkeypatch) -> None:
+    module = _module()
+    changed = module.frozen_config()
+    changed["metric_contract"]["bootstrap_seed"] += 1
+    changed.pop("config_fingerprint")
+    changed["config_fingerprint"] = module._fingerprint(changed)
+    monkeypatch.setattr(module, "frozen_config", lambda: changed)
+    with pytest.raises(ValueError, match="frozen config drift"):
+        module._verify_frozen_config()
+
+
+def test_relocated_config_rejects_rehashed_authority_changes(tmp_path) -> None:
+    module = _module()
+    changed = module._read_json(module.FROZEN_CONFIG_PATH)
+    changed["metric_contract"]["bootstrap_seed"] += 1
+    changed.pop("config_fingerprint")
+    changed["config_fingerprint"] = module._fingerprint(changed)
+    path = tmp_path / "changed_config.json"
+    path.write_text(json.dumps(changed))
+    with pytest.raises(ValueError, match="frozen config drift"):
+        module._verify_frozen_config(path)

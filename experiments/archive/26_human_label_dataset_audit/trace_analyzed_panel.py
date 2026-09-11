@@ -25,7 +25,7 @@ import audit_human_labels as A
 
 REPO_ROOT = A.REPO_ROOT
 EXP_DIR = A.EXP_DIR
-VB = REPO_ROOT / "experiments" / "04_veribench_validation"
+VB = REPO_ROOT / "experiments" / "archive" / "04_veribench_validation"
 
 # Cached run artifacts that the paper's numbers come from.
 EXP16_DIR = VB / "results_exp16_final_robust"

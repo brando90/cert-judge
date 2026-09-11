@@ -4,12 +4,12 @@
     "editdist_e1": {
       "empty_empty_similarity": 1.0,
       "formula": "1 - character Levenshtein distance / max character length",
-      "legacy_source": "experiments/archive/04_veribench_validation/exp16_multi_judge_human_sets.py",
+      "legacy_source": "experiments/04_veribench_validation/exp16_multi_judge_human_sets.py",
       "repeat_policy": "repeat the deterministic score at every repeat_id"
     },
     "random_r1": {
       "formula": "first 12 hex digits of sha256(judge_id || seed || reference[:200] || candidate[:200]) divided by 16^12-1",
-      "legacy_source": "experiments/archive/04_veribench_validation/exp16_multi_judge_human_sets.py",
+      "legacy_source": "experiments/04_veribench_validation/exp16_multi_judge_human_sets.py",
       "repeat_policy": "repeat the deterministic score at every repeat_id",
       "seed": 42
     }
@@ -164,7 +164,7 @@
     "repeat_aggregation": "median",
     "repeat_count": 3,
     "sesoi_spearman": 0.5,
-    "source": "experiments/archive/04_veribench_validation/pti_v0_v4/frozen_config.json",
+    "source": "experiments/04_veribench_validation/pti_v0_v4/frozen_config.json",
     "source_sha256": "ea399015d4352e22f190830fd3e7ae02f8804eff1ff5f620762810da76d753b3"
   },
   "metric_version": "PTI_v0",
@@ -210,15 +210,15 @@
     "token_quote_rule": "one token per UTF-8 byte plus 128 request-overhead tokens"
   },
   "source_provenance": {
-    "bad_prompt_source": "experiments/archive/04_veribench_validation/exp16_multi_judge_human_sets.py",
+    "bad_prompt_source": "experiments/04_veribench_validation/exp16_multi_judge_human_sets.py",
     "bad_prompt_source_sha256": "8cd04391ca9b293c956f0e402456b9b6088bfc77e78ee8d67966f78db1f9bb45",
     "prompt_source": "experiments/02_reviewer_response_neurips_math_ai_2026/utils/sensitivity_sweep.py",
     "prompt_source_sha256": "30abd16312fbf6df210dfe5f92f40188dcfe8e176a73cd031022fd82cad71b03",
     "runner": "experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py",
     "runner_sha256": "73db07a2779df480b23a76bd833f894ba6578f111684241ae0de4b6bc560417e",
-    "v4_panel_manifest": "experiments/archive/04_veribench_validation/results_pti_v0_v4/panel_audit/panel_manifest.json",
+    "v4_panel_manifest": "experiments/04_veribench_validation/results_pti_v0_v4/panel_audit/panel_manifest.json",
     "v4_panel_manifest_sha256": "e664bf782ad3c5a55b42c1810a53531680780564512162e988d4e58aec98e4e4",
-    "v4_probe_manifest": "experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json",
+    "v4_probe_manifest": "experiments/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json",
     "v4_probe_manifest_sha256": "eb44f0a9366c068dbae88ccfdcc45ca6063b0d3c7477f7964338cb14bab5dc99"
   },
   "statistics": {

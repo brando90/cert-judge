@@ -6,20 +6,21 @@
 
 These paths contain repository-relative provenance and passed the identity-string scan:
 
-- `experiments/29_pti_v0_cli_bridge/frozen_config.json`
-- `experiments/29_pti_v0_cli_bridge/results/batch_manifest.json`
-- `experiments/29_pti_v0_cli_bridge/results/score_requests.json`
-- `experiments/29_pti_v0_cli_bridge/results/scores.json`
-- `experiments/29_pti_v0_cli_bridge/results/properties/properties.json`
-- `experiments/29_pti_v0_cli_bridge/results/properties/property_table.csv`
-- `experiments/29_pti_v0_cli_bridge/results/criterion/criterion.json`
-- `experiments/29_pti_v0_cli_bridge/results/criterion/criterion.csv`
-- `experiments/29_pti_v0_cli_bridge/results/sesoi/sesoi_simulation.json`
-- `experiments/29_pti_v0_cli_bridge/results/figures/outer_bridge_source_data.csv`
-- `experiments/29_pti_v0_cli_bridge/results/figures/outer_bridge_primaries.pdf`
-- `experiments/29_pti_v0_cli_bridge/results/figures/ti2prime_scatter_gpt53_p4_source.json`
-- `experiments/27_ti_plot_like_scatter_plots/results/ti2prime_scatter_gpt-5.3-codex_P4_CHECKLIST.pdf`
-- `experiments/29_pti_v0_cli_bridge/MANUSCRIPT_NUMBER_MAP.md`
+- `experiments/29_proxy_trust_index_vs_human_agreement/frozen_config.json`
+- `experiments/29_proxy_trust_index_vs_human_agreement/runtime_relocation.json`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/batch_manifest.json`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/score_requests.json`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/scores.json`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/properties/properties.json`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/properties/property_table.csv`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/criterion/criterion.json`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/criterion/criterion.csv`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/sesoi/sesoi_simulation.json`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/figures/outer_bridge_source_data.csv`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/figures/outer_bridge_primaries.pdf`
+- `experiments/29_proxy_trust_index_vs_human_agreement/results/figures/ti2prime_scatter_gpt53_p4_source.json`
+- `experiments/27_judge_human_agreement_and_stability_plots/results/ti2prime_scatter_gpt-5.3-codex_P4_CHECKLIST.pdf`
+- `experiments/29_proxy_trust_index_vs_human_agreement/MANUSCRIPT_NUMBER_MAP.md`
 
 Include the frozen analysis and figure-generation code needed to interpret these files, preserving repository-relative layout.
 
@@ -34,9 +35,9 @@ Record the SHA-256 of each original internal source and each sanitized bundle co
 ## Never include during review
 
 - `STATUS_PTI_V0_V4.md`
-- `experiments/29_pti_v0_cli_bridge/expt_v5/results/results_summary_*.md`
+- `experiments/29_proxy_trust_index_vs_human_agreement/expt_v5/results/results_summary_*.md`
 - W&B report/link artifacts, authentication-status files, or credential diagnostics
-- `experiments/27_ti_plot_like_scatter_plots/results/ti2prime_demo_summary.json` (contains local absolute paths; the sanitized Experiment 29 sidecar replaces it)
+- `experiments/27_judge_human_agreement_and_stability_plots/results/ti2prime_demo_summary.json` (contains local absolute paths; the sanitized Experiment 29 sidecar replaces it)
 - `PAPER_QA.md`, internal review transcripts, Git metadata/history, public VCS identifiers, PR links, branch names, author emails, or machine-local absolute paths
 
 ## Mandatory pre-upload scan

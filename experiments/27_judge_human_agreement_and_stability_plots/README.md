@@ -1,4 +1,6 @@
-# Exp27 — TI_2' scatter plot (reusable)
+# Experiment 27 — Plot judge–human agreement and repeat stability
+
+**TLDR:** Reproduce scatter plots comparing judge scores with human ratings and showing variation across repeated judgments. The plots use existing data to explain the combined Trust Index; this folder launches no model inference.
 
 Reusable matplotlib figure for TI_2', the paper's per-judge human-alignment
 criterion (`paper_latex/ICLR_2027_submission/main.tex`, TI_{2'} definition;

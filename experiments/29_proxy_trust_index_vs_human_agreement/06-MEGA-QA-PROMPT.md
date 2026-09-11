@@ -21,15 +21,15 @@ authority conflict and downstream impact.
 Review the complete chain, not merely the latest commit:
 
 - Planning and rulings:
-  `experiments/29_pti_v0_cli_bridge/00-CODEX-SOL-MAX-PREFLIGHT.md` through
+  `experiments/29_proxy_trust_index_vs_human_agreement/00-CODEX-SOL-MAX-PREFLIGHT.md` through
   `05-ICLR2027-FINALIZATION-CHECKLIST.md`, especially
   `03-SPEC-OVERRIDES-R41-R49.md`.
 - Frozen execution authority:
-  `experiments/29_pti_v0_cli_bridge/PROTOCOL.md`, `frozen_config.json`,
+  `experiments/29_proxy_trust_index_vs_human_agreement/PROTOCOL.md`, `frozen_config.json`,
   `batch_score_schema.json`, manifests, score requests, raw batches, and
   `results/scores.json`.
 - Implementations and tests:
-  `experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py`,
+  `experiments/29_proxy_trust_index_vs_human_agreement/run_pti_v0_cli.py`,
   `experiments/archive/04_veribench_validation/run_pti_v0.py`,
   `py_src/cert_judge/pti_v0.py`, `py_src/cert_judge/ti2prime_plot.py`, and all
   five relevant test files under `tests/`.

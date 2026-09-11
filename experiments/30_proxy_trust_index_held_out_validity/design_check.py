@@ -20,11 +20,11 @@ you already have and answers three questions, in the order that matters:
 
 Run the design check on the submission's own published parameters::
 
-    python experiments/30_pti_ti_criterion_validity/design_check.py --demo
+    python experiments/30_proxy_trust_index_held_out_validity/design_check.py --demo
 
 Run the full validation on a panel of your own::
 
-    python experiments/30_pti_ti_criterion_validity/design_check.py \
+    python experiments/30_proxy_trust_index_held_out_validity/design_check.py \
         --input panel.json --output report.json
 
 Input schema

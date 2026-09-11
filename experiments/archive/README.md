@@ -23,7 +23,7 @@ Archived 2026-09-10 (Trigger Rule 39: `experiments/` holds active work only).
 | `15_autometrics_related_work` | AutoMetrics related-work contrast; closed | 2026-08-13 | 2026-09-10 |
 | `17_autojudge_human_corr_val_test` | Autojudge human-correlation val/test split; historical | 2026-05-27 | 2026-09-10 |
 | `17_pseudo_formalization_related_work` | Pseudo-formalization related-work contrast; closed | 2026-05-27 | 2026-09-10 |
-| `18_human_judgment_study` | Symlink to VeriBench `experiments/41_human_judgment_study` (that folder was later archived on the VeriBench side); dangling | 2026-06-04 | 2026-09-10 |
+| `18_human_judgment_study` | Symlink to VeriBench `experiments/archive/41_human_judgment_study`; resolves when the sibling VeriBench checkout is present | 2026-06-04 | 2026-09-10 |
 | `19_trust_index_vs_correlation_human_judge` | Trust Index vs human-judge correlation study; historical | 2026-06-04 | 2026-09-10 |
 | `20` | Bare folder with motivation notes for why LLM judges are used | 2026-08-24 | 2026-09-10 |
 | `20_fixed_judge_across_agents` | Fixed-judge-across-VeriBench-agents study; historical | 2026-06-04 | 2026-09-10 |
@@ -43,9 +43,20 @@ These were in the 00–26 range (or are shared data / later numbered work) and w
 - `04_efg_baseline` — EFG (Epistemically and Formally Grounded; Zhang et al., arXiv:2506.10903) baseline
 - `12_leanstral_replication_exp16_exp19` — Leanstral replication
 - `18_open_revievew_feedback_ICML_2026_mathai_ws` — OpenReview feedback (folder name misspelled)
-- `27_ti_plot_like_scatter_plots` — outside 00–26
-- `29_pti_v0_cli_bridge` — outside 00–26; live CLI-only PTI-v0 scorer, rewritten to call the archived v4 runner
+- `27_judge_human_agreement_and_stability_plots` — outside 00–26
+- `29_proxy_trust_index_vs_human_agreement` — outside 00–26; live CLI-only PTI-v0 scorer, rewritten to call the archived v4 runner
 - `ethan_hand_labels/`, `human_labels/` — shared label data
 - `idea_oap_+_tvdmi.md`, `scoring_judges.md` — stay at `experiments/` root
 
 `04_veribench_validation` holds live-looking PTI-v0 infrastructure (`run_pti_v0.py`, `pti_v0_v4/`, `results_pti_v0_v4/`). Per the archive request it was moved here rather than promoted, and every live pointer was rewritten to `experiments/archive/04_veribench_validation/`. The reusable numerics remain in `py_src/cert_judge/pti_v0.py`.
+
+## Renames of retained experiment folders
+
+These folders remain under `experiments/`; only their names changed on 2026-09-10.
+Frozen result payloads retain historical paths so their recorded hashes remain
+valid; executable commands, live documentation, and tests use the current names.
+
+| Former name | Current name | Purpose |
+|---|---|---|
+| `27_ti_plot_like_scatter_plots` | `experiments/27_judge_human_agreement_and_stability_plots` | Plot paired judge/human scores and within-output judge repeatability. |
+| `29_pti_v0_cli_bridge` | `experiments/29_proxy_trust_index_vs_human_agreement` | Test whether the behavioral Proxy Trust Index predicts human agreement across judge configurations. |

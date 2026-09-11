@@ -1,6 +1,6 @@
 # cert-judge experiments — live work for the paper rewrite
 
-**TLDR:** `experiments/` holds only active work. Experiments `00_`–`26_` that are not OpenReview, Leanstral, Total Variation Distance Mutual Information (TVD-MI), or Epistemically and Formally Grounded (EFG) live under [`archive/`](archive/README.md). Start with the OpenReview folders; 27 and 29 stay live because they are the current plot and Proxy Trust Index version 0 (PTI-v0) CLI, not leftover 00–26 campaigns.
+**TLDR:** `experiments/` holds only active work. Experiments `00_`–`26_` that are not OpenReview, Leanstral, Total Variation Distance Mutual Information (TVD-MI), or Epistemically and Formally Grounded (EFG) live under [`archive/`](archive/README.md). Start with the OpenReview folders; 27 and 29 retain the manuscript plots and completed Proxy Trust Index version 0 (PTI-v0) validation for the rewrite.
 
 ## Keepers (do not archive)
 
@@ -19,16 +19,16 @@ These are the 00–26-range folders that stay live through the rewrite, plus sha
 
 | Folder | Why it stays |
 |---|---|
-| [`27_ti_plot_like_scatter_plots/`](27_ti_plot_like_scatter_plots/) | Trust Index 2-prime (`TI_2'`) scatter figures for the ICLR 2027 manuscript; reads archived Exp06/Exp26 artifacts |
-| [`29_pti_v0_cli_bridge/`](29_pti_v0_cli_bridge/) | Live CLI-only PTI-v0 scorer and accepted v5 run; calls [`archive/04_veribench_validation/run_pti_v0.py`](archive/04_veribench_validation/run_pti_v0.py) |
-| [`30_pti_ti_criterion_validity/`](30_pti_ti_criterion_validity/) | Does PTI-v0 predict the human-grounded Trust Index (`TI_m`)? Label-reliability ceiling, resolving power, and held-out-family splits; numerics in `py_src/cert_judge/ti_validation.py` |
+| [`27_judge_human_agreement_and_stability_plots/`](27_judge_human_agreement_and_stability_plots/) | Trust Index 2-prime (`TI_2'`) scatter figures for the ICLR 2027 manuscript; reads archived Exp06/Exp26 artifacts |
+| [`29_proxy_trust_index_vs_human_agreement/`](29_proxy_trust_index_vs_human_agreement/) | Completed test of PTI-v0 against human agreement, with its scorer and accepted v5 run; calls [`archive/04_veribench_validation/run_pti_v0.py`](archive/04_veribench_validation/run_pti_v0.py) |
+| [`30_proxy_trust_index_held_out_validity/`](30_proxy_trust_index_held_out_validity/) | Does PTI-v0 still predict human agreement on a judge family it has never seen? Adds the label-reliability ceiling, resolving-power checks, and held-out-family splits that 29 does not test; numerics in `py_src/cert_judge/ti_validation.py` |
 
 Zero-spend PTI-v0 entry point:
 
 ```bash
 python experiments/archive/04_veribench_validation/run_pti_v0.py --help
-python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py --help
-python experiments/30_pti_ti_criterion_validity/design_check.py --demo
+python experiments/29_proxy_trust_index_vs_human_agreement/run_pti_v0_cli.py --help
+python experiments/30_proxy_trust_index_held_out_validity/design_check.py --demo
 ```
 
 Paid judge inference still needs an exact quote and explicit approval.

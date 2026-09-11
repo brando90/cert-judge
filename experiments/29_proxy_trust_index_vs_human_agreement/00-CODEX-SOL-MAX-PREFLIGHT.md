@@ -20,7 +20,7 @@ Inspect:
 
 - open ultimate-utils PR #44;
 - open cert-judge PR #38;
-- `experiments/27_ti_plot_like_scatter_plots` on the PR head and in the current checkout;
+- `experiments/27_judge_human_agreement_and_stability_plots` on the PR head and in the current checkout;
 - `paper_latex/ICLR_2027_submission/main.tex`;
 - overlapping branches/PRs such as `iclr2027-port`, `pti-v0`, or bridge branches;
 - stale `AGENTS.md`/`CLAUDE.md` guidance.

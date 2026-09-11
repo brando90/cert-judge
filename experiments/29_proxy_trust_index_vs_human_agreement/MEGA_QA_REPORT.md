@@ -5,7 +5,7 @@
 - Date completed: 2026-08-28 (America/Los_Angeles)
 - Integration audit completed: 2026-08-31 (America/Los_Angeles)
 - Release closeout: 2026-09-10 (America/Los_Angeles)
-- Experiment home: `experiments/29_pti_v0_cli_bridge/`
+- Experiment home: `experiments/29_proxy_trust_index_vs_human_agreement/`
 - Canonical branch: `main`
 - Canonical pull request: [cert-judge #40](https://github.com/brando90/cert-judge/pull/40), merged directly into `main` at `03946b83d85af2530971322ec6dfcdba80e0bacd`
 - Permanent results report: [Experiment 29 — PTI-v0 v5 outer bridge](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgyMzE2MA==)

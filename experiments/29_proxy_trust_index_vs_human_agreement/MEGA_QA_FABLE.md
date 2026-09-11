@@ -46,7 +46,7 @@
 
 ## Fixes applied (working tree, uncommitted)
 
-- `experiments/29_pti_v0_cli_bridge/generate_bridge_figure.py` (SHA-256 `34beeb04cf5098983ff611bfc7be3946a5fde73a1bd099bd4bca58a747f97417`), regenerated `results/figures/outer_bridge_primaries.{pdf,png}` (`dd91088665e36525649d005f81983a9ed3c94a3b5a8999ed925d82a8d7b4a745`, `2420d56d94dc2260275325fc7c38fdbc2a7280b00160adb51a0902be6605c2d6`) and `outer_bridge_pooled_secondary.{pdf,png}` (`50a498d89df8ddafb36be09afd98cfb7a4d8e4ab6f18d432dd445607edd4278b` for the PDF); `results/figures/outer_bridge_source_data.{csv,json}` byte-unchanged.
+- `experiments/29_proxy_trust_index_vs_human_agreement/generate_bridge_figure.py` (SHA-256 `34beeb04cf5098983ff611bfc7be3946a5fde73a1bd099bd4bca58a747f97417`), regenerated `results/figures/outer_bridge_primaries.{pdf,png}` (`dd91088665e36525649d005f81983a9ed3c94a3b5a8999ed925d82a8d7b4a745`, `2420d56d94dc2260275325fc7c38fdbc2a7280b00160adb51a0902be6605c2d6`) and `outer_bridge_pooled_secondary.{pdf,png}` (`50a498d89df8ddafb36be09afd98cfb7a4d8e4ab6f18d432dd445607edd4278b` for the PDF); `results/figures/outer_bridge_source_data.{csv,json}` byte-unchanged.
 - `paper_latex/ICLR_2027_submission/main.tex` (`0532ad9285cb227a2e4cf576afb951dfb5ca15a65634c9c34f1ddab5b38d0cb1`) and `figures/outer_bridge_primaries.pdf` (byte-identical to the experiment asset); rebuilt `main.pdf` (`3d35607cb19656126318a2574c5a0cbac7068565edce549539cf4b0357e292ba`, 22 pages, conclusion on page 9).
 - `REPORT.md`, `STATUS_PTI_V0_V4.md`, `MANUSCRIPT_NUMBER_MAP.md`, `results.md`, `expt_v5/cc.md`, `README.md` (this record).
 - Frozen authorities untouched: `frozen_config.json`, manifests, raw batches, `scores.json`, properties, criterion, bridge, SESOI, and the figure source data.

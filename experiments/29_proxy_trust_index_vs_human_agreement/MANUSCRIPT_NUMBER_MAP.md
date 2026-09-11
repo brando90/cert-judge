@@ -88,36 +88,36 @@ The workshop-era alpha mean `0.399`, its malformed-transform plots, early degrad
 Run from repository root in the project `uv` environment:
 
 ```bash
-python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py status
+python experiments/29_proxy_trust_index_vs_human_agreement/run_pti_v0_cli.py status
 
 python experiments/archive/04_veribench_validation/run_pti_v0.py compute-properties \
   --probe-manifest experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json \
-  --requests experiments/29_pti_v0_cli_bridge/results/score_requests.json \
-  --config experiments/29_pti_v0_cli_bridge/frozen_config.json \
-  --scores experiments/29_pti_v0_cli_bridge/results/scores.json \
-  --out-dir experiments/29_pti_v0_cli_bridge/results/properties \
+  --requests experiments/29_proxy_trust_index_vs_human_agreement/results/score_requests.json \
+  --config experiments/29_proxy_trust_index_vs_human_agreement/frozen_config.json \
+  --scores experiments/29_proxy_trust_index_vs_human_agreement/results/scores.json \
+  --out-dir experiments/29_proxy_trust_index_vs_human_agreement/results/properties \
   --bootstrap-iters 10000 --seed 0 --no-api
 
-python experiments/29_pti_v0_cli_bridge/run_pti_v0_cli.py compute-criterion
+python experiments/29_proxy_trust_index_vs_human_agreement/run_pti_v0_cli.py compute-criterion
 
 python experiments/archive/04_veribench_validation/run_pti_v0.py compute-bridge \
-  --properties experiments/29_pti_v0_cli_bridge/results/properties/properties.json \
-  --criterion experiments/29_pti_v0_cli_bridge/results/criterion/criterion.json \
+  --properties experiments/29_proxy_trust_index_vs_human_agreement/results/properties/properties.json \
+  --criterion experiments/29_proxy_trust_index_vs_human_agreement/results/criterion/criterion.json \
   --variant PTI_v0 \
   --prebridge-commit <PREBRIDGE_COMMIT_FROM_ANONYMIZED_BUNDLE> \
   --bootstrap-iters 10000 --seed 0 \
-  --out experiments/29_pti_v0_cli_bridge/results/bridge/bridge_pti_v0.json \
+  --out experiments/29_proxy_trust_index_vs_human_agreement/results/bridge/bridge_pti_v0.json \
   --no-api
 
 python experiments/archive/04_veribench_validation/run_pti_v0.py simulate-sesoi \
-  --criterion experiments/29_pti_v0_cli_bridge/results/criterion/criterion.json \
+  --criterion experiments/29_proxy_trust_index_vs_human_agreement/results/criterion/criterion.json \
   --rhos 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 \
   --draws 10000 --seed 0 --sesoi 0.5 --decision-bootstrap-iters 10000 \
-  --out experiments/29_pti_v0_cli_bridge/results/sesoi/sesoi_simulation.json \
+  --out experiments/29_proxy_trust_index_vs_human_agreement/results/sesoi/sesoi_simulation.json \
   --no-api
 
-MPLBACKEND=Agg python experiments/29_pti_v0_cli_bridge/generate_bridge_figure.py
-python experiments/27_ti_plot_like_scatter_plots/run_ti2prime_demo.py
+MPLBACKEND=Agg python experiments/29_proxy_trust_index_vs_human_agreement/generate_bridge_figure.py
+python experiments/27_judge_human_agreement_and_stability_plots/run_ti2prime_demo.py
 
 cd paper_latex/ICLR_2027_submission
 SOURCE_DATE_EPOCH=1787763818 FORCE_SOURCE_DATE=1 TZ=UTC \

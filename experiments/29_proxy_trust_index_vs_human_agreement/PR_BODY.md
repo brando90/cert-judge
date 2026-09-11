@@ -20,4 +20,4 @@
 - Run CLI status, byte-compilation, JSON/CSV/schema/hash reconciliation, changed-file secret/direct-provider scans, and deterministic manuscript builds; expected result: all pass with zero provider calls.
 - Render and inspect all 22 PDF pages; verify the main-text boundary, references/appendix transition, anonymity, citations, and figure/table readability.
 
-Results: [consolidated Mega-QA report](https://github.com/brando90/cert-judge/blob/main/experiments/29_pti_v0_cli_bridge/MEGA_QA_REPORT.md) · [W&B report](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgyMzE2MA==)
+Results: [consolidated Mega-QA report](https://github.com/brando90/cert-judge/blob/main/experiments/29_proxy_trust_index_vs_human_agreement/MEGA_QA_REPORT.md) · [W&B report](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-29-%E2%80%94-PTI-v0-v5-outer-bridge--VmlldzoxNzgyMzE2MA==)
