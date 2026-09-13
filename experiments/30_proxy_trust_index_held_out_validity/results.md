@@ -2,8 +2,8 @@
 
 **TLDR-start:** [cert-judge: proxy-followups] Completed and independently reviewed all follow-ups. The frozen and floored proxies remain negatively associated with the combined target among primary judges, with intervals crossing zero. These are exploratory analyses of previously inspected data, not a fresh held-out test.
 
-**Status:** DONE. Analyses, independent review and report publication complete; this record accompanies the final main-branch commit.
-**Last updated:** 2026-09-10 23:08 PDT
+**Status:** RUNNING (version3 started 2026-09-13 11:46 PDT); version2 remains complete.
+**Last updated:** 2026-09-13 11:46 PDT
 
 | Phase | Status | Evidence |
 |---|---|---|
@@ -13,6 +13,8 @@
 | Shared-problem uncertainty and family diagnostics | DONE | 2,000 problem draws; 32 synthetic settings × 2,000 datasets; only two primary model families. |
 | Independent review | DONE | PASS, zero critical or major issues; every numerical output reproduced. |
 | Report publication | DONE | New experiment-30 run and report verified; frozen experiment-29 artifacts preserved. |
+
+Version3: [within-problem diagnostic protocol](expt_v3/PROTOCOL.md), recorded before execution; analysis/review/publication pending. No fresh inference has started.
 
 Source pull requests: [41](https://github.com/brando90/cert-judge/pull/41) and [42](https://github.com/brando90/cert-judge/pull/42).
 
