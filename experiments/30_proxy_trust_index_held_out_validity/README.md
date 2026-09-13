@@ -14,6 +14,10 @@ and the proxy distinct. A high score on behavioral properties does not prove
 agreement with humans. Likewise, stability alone can reward a deterministic
 but inaccurate control.
 
+## Current continuation
+
+Version3 is complete and independently reviewed. It audits whether the string-control advantage survives within-problem comparison and prepares a six-problem cached-pilot inventory; the selected cache lacks bug and missing-specification probes, and no fresh-family inference is launched. See [protocol](expt_v3/PROTOCOL.md), [report](expt_v3/results/report.md) and [meeting note](meeting_2026-09-14.md). Version2 remains frozen and complete.
+
 ## Versions and structure
 
 ```text
