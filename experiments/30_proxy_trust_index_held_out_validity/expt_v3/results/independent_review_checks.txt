@@ -1,0 +1,21 @@
+# Independent acceptance checks
+
+**TLDR:** The reviewer reproduced observed metrics and intervals; the renderer defect at the end was subsequently fixed and regression-tested.
+
+Reproduction: audit.json, pilot_inventory.json and report.md match exactly; 11 source hashes match; 9 immutable sources equal original base.
+Independent metrics: average informative 22 unequal 52 tied 20 decision INCONCLUSIVE
+Independent metrics: strict informative 16 unequal 37 tied 35 decision INCONCLUSIVE
+Independent metrics: lenient informative 18 unequal 39 tied 33 decision INCONCLUSIVE
+All 24 judge/view metric rows and 15 paired confidence intervals independently match.
+Permutation checks passed: candidate rows, judge ordering, repeat ordering.
+Rank/magnitude counterexample: pair accuracy 0.9583333333333334 centered Pearson -0.9998160169264427
+Denominator counterexample: equal-problem accuracy 0.5 pooled-pair accuracy 0.6
+All-constant judge counterexample retains 0.5 pair accuracy and zero paired difference.
+Missingness rejection: missing
+Missingness rejection: duplicate
+Missingness rejection: nonfinite
+DETERMINISTIC_REVIEW_CHECKS_PASS
+Inventory independently verified: 18 candidates; 168 requests; 160 cells; 480 cached scores; all repeats 0,1,2; zero missing.
+Inventory property coverage: {'eq': 8, 'eqalpha': 16, 'criterion': 144}
+Inventory explicit repeat_id entries: 0
+CONFIRMED_MINOR_RENDERER_DEFECT: unsupported format string passed to NoneType.__format__
