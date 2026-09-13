@@ -3,7 +3,7 @@
 **TLDR-start:** [cert-judge: proxy-followups] Version3 independently confirms that the string-control ordering comparison is inconclusive within problems; version2 did not establish proxy validity after adding repeat stability. No new inference or human labeling ran.
 
 **Status:** RUNNING (publication only; version3 analysis and review DONE, started 2026-09-13 11:46 PDT).
-**Last updated:** 2026-09-13 12:03 PDT
+**Last updated:** 2026-09-13 12:08 PDT
 
 | Version3 phase | Status | Evidence |
 |---|---|---|
@@ -11,11 +11,14 @@
 | Within-problem audit | DONE | All three human rubric views INCONCLUSIVE |
 | Pilot inventory | DONE | 18 candidates; 160 judge/cell keys; 480 repeat scores; no bug/missing-spec probes |
 | Independent review and fixes | DONE | Strongest Codex fallback PASS, two minor fixes; 90 tests pass |
-| Report and main publication | IN PROGRESS | Pull request 43 |
+| Report publication | DONE | Run finished; saved report text read back exactly |
+| Main landing | IN PROGRESS | Pull request 43 |
 
 Average-rubric within-problem accuracy is **0.477** for the string control and **0.576** for Sonnet checklist; their difference is −0.098 with a conditional 95% interval [−0.280, 0.071]. All five paired intervals cross zero. This does not establish label invalidity, a composition explanation or new-family generalization.
 
 Version3: [protocol](expt_v3/PROTOCOL.md), [report and figure](expt_v3/results/report.md), [review and fixes](expt_v3/QA.md), [meeting note](meeting_2026-09-14.md). The deterministic six-problem cache selection is not ready for complete four-property validation. Fresh-family inference remains unstarted.
+
+Version3 [timestamped summary](expt_v3/results/results_summary_2026-09-13__12-08-13.md) · [Weights & Biases report](https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-30-v3-—-Within-problem-criterion-audit--VmlldzoxNzkyNTMxNQ==) · [run](https://wandb.ai/brando-su/cert-judge-pti-v0/runs/cj30v3b4f940eda85cac32).
 
 ## Preserved version2 results
 

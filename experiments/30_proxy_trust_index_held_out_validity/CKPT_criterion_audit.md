@@ -3,7 +3,7 @@
 **TLDR:** Continue experiment30 with a bounded within-problem audit and replay-pilot inventory; preserve all frozen evidence.
 
 Created: 2026-09-13 11:46 PDT
-Last updated: 2026-09-13 12:03 PDT
+Last updated: 2026-09-13 12:08 PDT
 Status: ANALYSIS COMPLETE; ACCEPTANCE REVIEW RUNNING
 - Owner: Codex task 01a08e7d-addc-7bb0-a191-f959857b10eb.
 - Owned checkout: /private/tmp/cj-proxy-next-20260913.
@@ -21,3 +21,9 @@ Status: ANALYSIS COMPLETE; ACCEPTANCE REVIEW RUNNING
 - Exact observed repeat IDs are stored and undefined intervals render safely. Numeric audit unchanged.
 - Selected pilot lacks bug and missing-specification probes; no four-property pilot or new-family inference claimed.
 - Next: scan/stage owned artifacts, commit/push; publish new version3 run/report only; merge PR43 and synchronize main.
+
+## Publication verified
+- Source commit e26925b; new run cj30v3b4f940eda85cac32 is finished; report readback matches local content.
+- Report: https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-30-v3-—-Within-problem-criterion-audit--VmlldzoxNzkyNTMxNQ==
+- Receipt: expt_v3/results/wandb_report.json; immutable summary: expt_v3/results/results_summary_2026-09-13__12-08-13.md
+- Next command: push publication receipt; ready and head-match merge pull request43, then verify main.

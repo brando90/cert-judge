@@ -1,9 +1,9 @@
 # Certification-judge coordination checkpoint
 
-**TLDR:** Own the current scientific continuation and coordinate the separate historical release review. Experiment30 version3 has new within-problem evidence and a cached pilot inventory, with acceptance review and deterministic fixes complete; report/main publication underway.
+**TLDR:** Own the current scientific continuation and coordinate the separate historical release review. Experiment30 version3 has new within-problem evidence and a cached pilot inventory, with acceptance review and deterministic fixes complete; report publication verified; main landing underway.
 
 Created: 2026-09-13 11:54 PDT
-Last updated: 2026-09-13 12:03 PDT
+Last updated: 2026-09-13 12:08 PDT
 Status: ACTIVE
 
 ## Identity and recovery
@@ -21,7 +21,7 @@ Status: ACTIVE
 ## Owned work and workers
 - Scientific phase: experiment30/expt_v3; PR43; [checkpoint](30_proxy_trust_index_held_out_validity/CKPT_criterion_audit.md), [results](30_proxy_trust_index_held_out_validity/results.md).
 - Reviewer: cj-criterion-review-astra-20260913, gpt-6-astra ultra, session 01a09c1c-b40a-75c0-9336-7d79024cca2e; /tmp/cj-review-20260913/codex.log, verdict.md, codex_exit. 15-minute non-model timeout; parent observes completion. This short attended review is not an overnight remote job.
-- Pinned release owner was contacted and acknowledged inspection; historical gate not yet resolved. It must avoid experiment30 edits.
+- Pinned release owner was contacted and acknowledged inspection; historical gate not resolved: latest turn idle at 12:00 Pacific without substantive result; scoped read afterward failed with no readable remote host match. It must avoid experiment30 edits.
 
 ## Watches and inventory
 - At start, no matching local Codex scheduled task and no local experiment processes; Cursor extension hosts are editor processes.
@@ -37,7 +37,7 @@ Status: ACTIVE
 
 ## Landings
 - Prior main 6e9df01: version2 completed and independently reviewed.
-- PR43: new protocol committed before version3 execution; new results reviewed and fixed; publication pending.
+- PR43: new protocol committed before version3 execution; new results reviewed and fixed; source e26925b and report published/verified; main merge pending.
 
 ## Next commands
 - Publish accepted report, merge PR43 at its verified head, then fast-forward the clean user main checkout safely.
