@@ -1,29 +1,20 @@
-# Criterion audit checkpoint
+# Within-problem criterion audit checkpoint
 
-**TLDR:** Continue experiment30 with a bounded within-problem audit and replay-pilot inventory; preserve all frozen evidence.
+**TLDR:** Version3 is complete, independently reviewed, published and merged; the matched fresh-family experiment remains unstarted. Resume from the saved inventory and limitations, without repeating measured calls.
 
 Created: 2026-09-13 11:46 PDT
-Last updated: 2026-09-13 12:08 PDT
-Status: ANALYSIS COMPLETE; ACCEPTANCE REVIEW RUNNING
-- Owner: Codex task 01a08e7d-addc-7bb0-a191-f959857b10eb.
-- Owned checkout: /private/tmp/cj-proxy-next-20260913.
-- Branch: codex/cj-proxy-next-20260913; base 6e9df01.
-- Scope: expt_v3, root results/readme, meeting note and matching tests.
-- Selected implementation: master/direct deterministic Python; no model inference.
-- Acceptance: one strongest independent reviewer, not a new Mega review.
-- Done: protocol recorded before run, PR43 draft, analysis and pilot inventory generated, 88 targeted tests passed.
-- Review primary Claude Fable5.1 max failed429; fresh Codex Astra ultra fallback active, tmux cj-criterion-review-astra-20260913, 15min bound.
-- Next: inspect /tmp/cj-review-20260913/verdict.md and codex_exit, reconcile findings, verify, publish report, merge PR43.
-- Existing Codex credits17317.08 reported at launch; no new purchase or provider API keys; one acceptance worker, no experiment inference.
+Last updated: 2026-09-13 12:11 PDT
+Status: DONE
 
-## Acceptance completed
-- Strongest Codex gpt-6-astra ultra fallback exited 0: PASS, 0 critical/major, 2 minor findings fixed. Review: expt_v3/QA.md; 90 tests pass.
-- Exact observed repeat IDs are stored and undefined intervals render safely. Numeric audit unchanged.
-- Selected pilot lacks bug and missing-specification probes; no four-property pilot or new-family inference claimed.
-- Next: scan/stage owned artifacts, commit/push; publish new version3 run/report only; merge PR43 and synchronize main.
-
-## Publication verified
-- Source commit e26925b; new run cj30v3b4f940eda85cac32 is finished; report readback matches local content.
-- Report: https://wandb.ai/brando-su/cert-judge-pti-v0/reports/Experiment-30-v3-—-Within-problem-criterion-audit--VmlldzoxNzkyNTMxNQ==
-- Receipt: expt_v3/results/wandb_report.json; immutable summary: expt_v3/results/results_summary_2026-09-13__12-08-13.md
-- Next command: push publication receipt; ready and head-match merge pull request43, then verify main.
+- Owner: Codex task 01a08e7d-addc-7bb0-a191-f959857b10eb; gpt-6-astra ultra.
+- Current directory: /Users/sanmikoyejo-mba-1/cert-judge, main; source base 6e9df01, implementation e26925b, publication cc865af.
+- Protocol was committed before analysis in efb402f; no frozen experiment29/version2, proxy, label or reference changes.
+- Existing-data result: all three rubric decisions INCONCLUSIVE; all15 paired intervals cross zero.
+- Inventory: six problems,18 candidates,160 judge/cell keys,480 cached repeat scores; bug/missing-specification probes absent. New measured inference calls:0.
+- Review: Claude Fable5.1 max failed429 before review; fresh strongest Codex gpt-6-astra ultra passed, two minor findings fixed; 90 tests pass. See expt_v3/QA.md.
+- Review session 01a09c1c-b40a-75c0-9336-7d79024cca2e exited0. No reviewer or experiment worker remains running.
+- Publication: expt_v3/results/wandb_report.json is VERIFIED; saved report text matches and run state is finished.
+- Source/report merged via https://github.com/brando90/cert-judge/pull/43; local main fast-forward verified 2026-09-13 12:11 PDT.
+- Branches removed only after complete merge; owned temporary worktree removed. Only main remains locally/remotely.
+- LANDED 63e6a848cd6fe9d4d346649c8b2dfd94a0157c56 https://github.com/brando90/cert-judge/pull/43 2026-09-13 12:11 PDT
+- Next: consult meeting_2026-09-14.md and expt_v3/results/pilot_inventory.json to define the smallest matched-coverage/new-family development test. No new inference is admitted by this checkpoint.

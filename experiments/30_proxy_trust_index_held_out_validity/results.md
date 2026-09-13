@@ -2,8 +2,8 @@
 
 **TLDR-start:** [cert-judge: proxy-followups] Version3 independently confirms that the string-control ordering comparison is inconclusive within problems; version2 did not establish proxy validity after adding repeat stability. No new inference or human labeling ran.
 
-**Status:** RUNNING (publication only; version3 analysis and review DONE, started 2026-09-13 11:46 PDT).
-**Last updated:** 2026-09-13 12:08 PDT
+**Status:** DONE (version3 offline diagnostic, acceptance review and publication; fresh-family experiment unstarted).
+**Last updated:** 2026-09-13 12:11 PDT
 
 | Version3 phase | Status | Evidence |
 |---|---|---|
@@ -12,7 +12,7 @@
 | Pilot inventory | DONE | 18 candidates; 160 judge/cell keys; 480 repeat scores; no bug/missing-spec probes |
 | Independent review and fixes | DONE | Strongest Codex fallback PASS, two minor fixes; 90 tests pass |
 | Report publication | DONE | Run finished; saved report text read back exactly |
-| Main landing | IN PROGRESS | Pull request 43 |
+| Main landing | DONE | [Pull request 43](https://github.com/brando90/cert-judge/pull/43) merged at `63e6a84`; local main synchronized |
 
 Average-rubric within-problem accuracy is **0.477** for the string control and **0.576** for Sonnet checklist; their difference is −0.098 with a conditional 95% interval [−0.280, 0.071]. All five paired intervals cross zero. This does not establish label invalidity, a composition explanation or new-family generalization.
 
@@ -42,4 +42,4 @@ new families. Both the negative point estimates and the wide intervals remain
 visible. No frozen data changed, no new human labels were opened, and no new
 model inference ran.
 
-**TLDR-end:** [cert-judge: proxy-followups] Zero handling improves resolution without establishing the intended ranking; the reviewed report preserves the negative findings and the limits of the current panel.
+**TLDR-end:** [cert-judge: proxy-followups] Versions2–3 are reviewed, published and on main. Neither zero handling nor the within-problem diagnostic establishes proxy validity; matched structural probes and a separately frozen new-family design remain necessary.
