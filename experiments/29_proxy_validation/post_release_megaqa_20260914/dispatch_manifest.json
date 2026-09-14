@@ -2,6 +2,8 @@
   "schema_version": 1,
   "run_id": "cj-exp29-release-megaqa-20260914-opus5-a1",
   "created_at": "2026-09-14 15:24 PDT",
+  "last_updated_at": "2026-09-14 15:29 PDT",
+  "status": "BLOCKED_BEFORE_DISPATCH",
   "coordinator": "root",
   "recovery_owner": "root",
   "target_host": "mercury1.stanford.edu",
@@ -25,6 +27,16 @@
     "role": "advisory",
     "max_invocations": 1,
     "max_budget_usd_list_price_ceiling": 10
+  },
+  "attempt": {
+    "attempted_at": "2026-09-14 15:29 PDT",
+    "remote_clone_created": false,
+    "tmux_session_created": false,
+    "model_invocations": 0,
+    "actual_model": null,
+    "actual_effort": null,
+    "blocker": "Host rejected destination-specific private-repository transmission to mercury1.stanford.edu and the external Vals AI/Anthropic claude-opus-5 reviewer with paid model usage.",
+    "retry_policy": "No workaround; retry only after explicit user authorization for the payload, host, reviewer destination, and bounded paid invocation."
   },
   "acceptance": {
     "classification": "critical scientific release",
