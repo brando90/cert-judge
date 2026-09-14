@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "run_id": "cj-exp29-release-megaqa-20260914-opus5-a1",
+  "created_at": "2026-09-14 15:24 PDT",
+  "coordinator": "root",
+  "recovery_owner": "root",
+  "target_host": "mercury1.stanford.edu",
+  "transport": "ssh-submit.sh --direct",
+  "remote_checkout": "/dfs/scratch0/brando9/cj-exp29-release-megaqa-20260914/cert-judge",
+  "task_branch": "codex/exp29-release-megaqa-20260914",
+  "tmux_prefix": "cj-exp29-release-opus5",
+  "input": {
+    "base_commit": "03946b83d85af2530971322ec6dfcdba80e0bacd",
+    "release_commit": "c20027dc2b10758b8128adca5d5b93eeacba2653",
+    "dispatch_main_commit": "0fa83475fc0f8e147ca281b7bfbc6a2f8652990c",
+    "release_patch_sha256": "e720c9042bc65b0c7179fb7b1aeffdc67e9b1c1dc00aa8c6b6ea63627f00dc64"
+  },
+  "executor": {
+    "provider": "Anthropic",
+    "account_profile": "Vals AI team subscription",
+    "client": "clauded-vals",
+    "client_version": "2.1.270",
+    "requested_model": "claude-opus-5",
+    "requested_effort": "max",
+    "role": "advisory",
+    "max_invocations": 1,
+    "max_budget_usd_list_price_ceiling": 10
+  },
+  "acceptance": {
+    "classification": "critical scientific release",
+    "accepted_stages_before_dispatch": 0,
+    "required_stages": 3,
+    "required_chain": [
+      "claude-fable-5-1:max",
+      "gpt-6-astra:ultra",
+      "claude-fable-5-1:max"
+    ],
+    "opus5_counts_as_required_stage": false
+  },
+  "billing_guard": {
+    "route": "existing authorized Vals AI inference-only grant",
+    "new_purchase_allowed": false,
+    "automatic_recharge_allowed": false,
+    "on_demand_or_postpaid_spillover_allowed": false,
+    "provider_api_keys_allowed": false
+  },
+  "scope": {
+    "review_historical_range": "03946b83d85af2530971322ec6dfcdba80e0bacd..c20027dc2b10758b8128adca5d5b93eeacba2653",
+    "writable_paths": [
+      "experiments/29_proxy_validation/post_release_megaqa_20260914/results.md",
+      "experiments/29_proxy_validation/post_release_megaqa_20260914/CKPT_post_release_megaqa.md"
+    ],
+    "forbidden": [
+      "Experiment 30",
+      "new or repeated measurements",
+      "Weights & Biases publication or report deletion",
+      "Python Package Index publication",
+      "manuscript edits",
+      "merge to main"
+    ]
+  },
+  "watch": {
+    "owner": "root",
+    "cadence_seconds": 120,
+    "success_evidence": "result JSON plus pushed review-record commit",
+    "reboot_recovery": "none; resume from checkpoint",
+    "automatic_provider_failover": false
+  }
+}
