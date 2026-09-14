@@ -6,6 +6,8 @@
 
 **Quality assurance verdict:** PASS for this wording-only scope. This is not a new scientific acceptance review or a new experiment.
 
+**Published:** [Pull request 44](https://github.com/brando90/cert-judge/pull/44) merged at `17a49522bf2ffe2919b4438b4a38ec2401251488`; the canonical checkout was synchronized to that paper landing on 2026-09-13 20:48 PDT. The merged topic branch and owned worktree were removed.
+
 ## Wording decisions
 
 | Context | Wording used |

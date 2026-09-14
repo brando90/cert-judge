@@ -1,19 +1,20 @@
 # Certification-judge coordination checkpoint
 
-**TLDR:** Own the current scientific continuation and coordinate the separate historical release review. Experiment30 version3 has new within-problem evidence and a cached pilot inventory, with acceptance review and deterministic fixes complete; report publication and main landing verified. Historical release acceptance remains pending/unverified.
+**TLDR:** Scientific continuation is complete through pull request 43. The terminology cleanup is complete through pull request 44: all 13 stored paper documents were rebuilt, verified and synchronized to main; the separate historical three-stage review remains with its release owner.
 
 Created: 2026-09-13 11:54 PDT
-Last updated: 2026-09-13 20:44 PDT
+Last updated: 2026-09-13 20:48 PDT
 Status: ACTIVE
 
 ## Current continuation — terminology only
 - User-expanded scope: all stored paper versions, including archived drafts; wording only and rebuild each affected PDF. Source coordinator owns VeriBench and shared policy edits.
-- Owned checkout: /private/tmp/cj-terminology-20260913; branch codex/cj-terminology-20260913; base 5ff0678. Canonical user checkout stays on main.
+- Terminology worktree and topic branch were removed after merge. Canonical checkout /Users/sanmikoyejo-mba-1/cert-judge is on main; paper landing 17a49522bf2ffe2919b4438b4a38ec2401251488 was verified before this documentation receipt.
 - Short read-only inventories complete; bounded non-paper prose edits complete. No inference, numerical results or frozen experiment protocols changed.
 - COMPLETE: all stored manuscript and paper-note wording updated; 13 PDFs rebuilt and visually checked; 23 original TeX sources preserve 9,913 numeric tokens plus all mathematical expressions/citation keys. Final logs have no errors, missing glyphs or undefined references/citations.
 - Build record: docs/terminology_cleanup_20260913.md and .json. Four existing missing bibliography entries restored verbatim; original figures retained with text-only wording layers.
-- Next: scanned commit, push, pull request merge and safe main synchronization; update this record with the verified landing.
-- Resume from build outputs /private/tmp/cj-build-results.json and source list /private/tmp/cj-paper-roots.json. Historical sections below describe the earlier scientific phase, not the current writer state.
+- LANDED 17a49522bf2ffe2919b4438b4a38ec2401251488 https://github.com/brando90/cert-judge/pull/44 2026-09-13 20:48 PDT; canonical main synchronized, local/remote topic branch removed. No terminology work or owned run remains.
+- Final build logs retained locally at /private/tmp/cj-terminology-logs-20260913; durable artifact hashes and outcomes are in the verification record.
+- Resume from committed docs/terminology_cleanup_20260913.md and .json. Historical sections below describe the earlier scientific phase, not current work or current schedule cadence.
 - Historical release owner later reported release c20027d on main; separate requested multi-stage review remains 0/3 due its external-content approval gate; do not restart.
 - Coordinator schedule now every 30 minutes (source owner); no independent recovery/watch started for this attended wording task.
 
