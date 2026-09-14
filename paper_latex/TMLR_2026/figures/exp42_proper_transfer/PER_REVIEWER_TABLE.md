@@ -1,6 +1,6 @@
 # EXP42 Per-Reviewer Judge–Human Alignment (Test Tasks)
 
-Global isotonic calibration, fit on train tasks, applied to test tasks.  
+Global isotonic score mapping, fit on train tasks, applied to test tasks.\
 Best prompt per model selected on train raw ρ (primary target = zscore_mean).
 
 Each reviewer shown separately; 'Agg' = zscore_mean of all five.

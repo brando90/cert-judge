@@ -1,6 +1,6 @@
 # ICLR 2027 manuscript number and result-status map
 
-**TLDR-start:** [cj: pti-v0] Every new PTI-v0 number in the ICLR 2027 manuscript is bound below to a committed machine-readable authority and a deterministic reproduction command. Historical calibration numbers remain explicitly separate; malformed legacy probe plots and an unbound downstream table were removed rather than carried forward.
+**TLDR-start:** [cj: pti-v0] Every new PTI-v0 number in the ICLR 2027 manuscript is bound below to a committed machine-readable authority and a deterministic reproduction command. Historical development-panel numbers remain explicitly separate; malformed legacy probe plots and an unbound downstream table were removed rather than carried forward.
 
 ## Scope and authority
 
@@ -79,7 +79,7 @@ These facts are context, not PTI-v0 evidence:
 | Cross-protocol Spearman approximately `0.13` on 63 shared pairs and pool ceiling approximately `0.87` | `experiments/archive/22_pooled_heldout_and_noise_ceiling/results/results.json` and `REPORT.md` | Criterion drift; not pooled with PTI-v0 |
 | First registered screen: `n=14`, underpowered | `experiments/archive/23_reanchored_calibration/results/results.json` and `REPORT.md` | Historical registered outcome |
 | Expanded registered screen: `n=32`, strongest `|rho|=0.3911`, Holm `p=0.2484`; LOO `rho=0.2416`, `p=0.4908` | `experiments/archive/24_expanded_panel_cli/results/pass2_full_screen_results.json` | Historical registered negative |
-| Calibration-era `PTI_var` associations | `experiments/archive/04_veribench_validation/results_exp16_final_robust*` and `results_exp28_varaware_*` | Retained only in appendix as `LEGACY—NOT PTI-v0` |
+| Development-panel `PTI_var` associations | `experiments/archive/04_veribench_validation/results_exp16_final_robust*` and `results_exp28_varaware_*` | Retained only in appendix as `LEGACY—NOT PTI-v0` |
 
 The workshop-era alpha mean `0.399`, its malformed-transform plots, early degradation plots that predate the structural gate, and a downstream theorem-ranking table without a located machine-readable result authority were removed from the submitted PDF.
 

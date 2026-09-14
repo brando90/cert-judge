@@ -90,7 +90,7 @@ $157 \times 3$ candidates).
 
 **Bans.** "Trust Index" never appears in the title or public branding (title collision:
 arXiv:2507.16028, Rug et al. 2025); $\mathrm{TI}_m$ survives as internal math. No `CI` or `CC`
-abbreviations. No hat notation: a hat is earned by a fitted calibration map
+abbreviations. No hat notation: a hat is earned by a fitted score-mapping function
 $f_{\mathrm{cal}}: \mathbf P \mapsto \widehat{\mathrm{TI}}_{m_1}$, which is premature below
 roughly 40 judge configurations; the raw aggregate never receives one.
 
@@ -142,7 +142,7 @@ $$C_{\mathrm{amortized}} \;=\; \underbrace{\lvert\Pi\rvert\, n\, c_{\mathrm{huma
 \;+\; \underbrace{\lvert AJ_{\mathrm{val}}\rvert\, \lvert I\rvert\, c_{\mathrm{human}}}_{\text{bridge, once}}
 \;+\; \underbrace{\lvert AJ\rvert\, \lvert A\rvert\, \lvert Q\rvert\, c_{\mathrm{API}}}_{\text{per screened judge}}$$
 — $O(1)$ in agents and screened judges, $O(\lvert\Pi\rvert)$ in personas. Approved phrasings:
-"no new human labels per screened judge," "human-calibrated," "human-label amortized."
+"no new human labels per screened judge," "human-anchored," "human-label amortized."
 
 **2.6 Three-claim structure.** Claim A (definitional): $aj$ is $\mathrm{TW}_2$-trustworthy —
 needs humans. Claim B (proxy): $\mathrm{PTI}_p(aj) \ge \tau$ — label-free. Claim C (bridge):
@@ -159,14 +159,14 @@ conflates their metrics.
 |---|---|---|
 | Claim | catches unacceptable judges cheaply | $\mathrm{PTI}$ tracks $\mathrm{TI}_{m_1}$ numerically |
 | Decision | FAIL-SCREEN / PASS-SCREEN / DEFER | predicted score with interval |
-| Metrics | false-pass rate, false-reject rate, defer rate, coverage, **human ratings saved at a fixed false-pass tolerance** | held-out rank correlation, MAE/calibration, prediction intervals, transfer across families/prompts/personas/agents |
+| Metrics | false-pass rate, false-reject rate, defer rate, coverage, **human ratings saved at a fixed false-pass tolerance** | held-out rank correlation, MAE/score-scale agreement, prediction intervals, transfer across families/prompts/personas/agents |
 
 Decision utility is the headline scalable-oversight number: *at false-pass tolerance
 $\alpha$, the screen avoids X% of human validations*, with sensitivity to shift and a stated
 re-validation horizon. For power-limited analyses we pre-register a smallest effect size of
 interest (SESOI; candidate $\rho_0 = 0.5$, the level below which screening saves less than it
 costs) and run equivalence tests, so an inconclusive interval is reported as inconclusive and a
-bounded null becomes a finding. A learned calibration map is deferred until roughly 40 judge
+bounded null becomes a finding. A learned score-mapping function is deferred until roughly 40 judge
 configurations exist; at $n \approx 8$–13 the honest object is the pre-specified aggregate
 with its raw held-out correlation.
 
@@ -217,7 +217,7 @@ facts plainly.
 | Inter-round agreement | Spearman 0.249, Pearson 0.375, QWK 0.372 on the 72. With one rater this is **rubric stability**, not inter-rater agreement: the criterion itself moves this much under a strictness change alone |
 | Item selection | Stratified 5-per-split, **hand-picked** within split, frozen 2026-04-07 (commit `3a7b75c`), no script, no seed, not compile-filtered. Estimand: alignment on a fixed curated panel — say so. A seeded selection template (study 41, seed 41, $n=30$) exists but was never run; it is the upgrade path if a probability sample is demanded |
 | Agents on the slice | codex / claude / llama (`AGENT_MAP`); the full candidate pool is 471 files $= 157$ problems $\times 3$ (problem granularity; 857 is the theorem count) |
-| The 5-rater pool | A **separate population**: 343 labels over 78 pairs, 5 raters, revised rubric. It correlates with the calibration panel at only $\rho \approx 0.13$ |
+| The 5-rater pool | A **separate population**: 343 labels over 78 pairs, 5 raters, revised rubric. It correlates with the original human panel at only $\rho \approx 0.13$ |
 | Number hygiene | The draft's MAE/MSE (0.778/1.139) uses first-of-duplicates; the cached mean-of-duplicates values are 0.7708/1.1215 — pick one convention and regenerate. The "approximately 72-75" hedge is determinate: 72 |
 
 **Interpretation the paper needs (one paragraph each).** (i) With $\lvert H\rvert = 1$, the
@@ -225,13 +225,13 @@ panel criterion is one person's judgment under a stated rubric — legitimate as
 criterion via the $h_j = (\text{person}, \pi)$ decomposition, but it must be said, and the
 rubric is part of the criterion's identity. (ii) **Criterion drift, then power**: the held-out
 null is documented in-repo as caused by testing against a different rater pool under a revised
-rubric ($\rho \approx 0.13$ with the calibration criterion) — a bridge calibrated on criterion
+rubric ($\rho \approx 0.13$ with the original-rubric criterion) — a bridge fitted on criterion
 A and tested on criterion B with $\mathrm{Corr}(A,B) \approx 0.13$ fails at any judge count.
 Power remains binding on top: the outer correlation's $n$ is the number of judge
 configurations (8–13 today; CI roughly $\pm 0.5$), and the fix is more judges (~40, API-priced),
 not more items. The inner correlation runs over 72 items (CI roughly $\pm 0.2$); report both
 CIs. (iii) All reported correlations to date are **validation-set numbers** — the same labels
-tuned the index form, aggregation, and thresholds — and are labeled as calibration evidence;
+tuned the index form, aggregation, and thresholds — and are labeled as development-set evidence;
 held-out claims come only from the locked protocol.
 
 # 5 Packaging for ICLR 2027
@@ -267,7 +267,7 @@ eliminating — the cost of human validation.
 
 | Main text (9 pp) | Appendix (unlimited; reviewers not obliged to read) |
 |---|---|
-| Problem + amortization framing; construct/criterion/instrument; definitions ($m$-ladder compressed to one table); properties and estimators; screen-vs-surrogate protocol; bridge results with CIs and validation/test labeling; decision-utility result; criterion-drift and single-rater disclosure; limitations | Full $m$-ladder derivation; Route B lemma proof and $\delta$-measurement design; index-formulation comparisons (v1/v2/GM/$\mathrm{PTI}$); per-property diagnostics and failure modes (ALPHA analysis, reversal rates); audit details and counts reconciliation; prompt templates; threshold-calibration sweeps; expanded judge-panel analyses; pre-registration documents |
+| Problem + amortization framing; construct/criterion/instrument; definitions ($m$-ladder compressed to one table); properties and estimators; screen-vs-surrogate protocol; bridge results with CIs and validation/test labeling; decision-utility result; criterion-drift and single-rater disclosure; limitations | Full $m$-ladder derivation; Route B lemma proof and $\delta$-measurement design; index-formulation comparisons (v1/v2/GM/$\mathrm{PTI}$); per-property diagnostics and failure modes (ALPHA analysis, reversal rates); audit details and counts reconciliation; prompt templates; threshold-selection sweeps; expanded judge-panel analyses; pre-registration documents |
 
 **Compliance items.** Genuine abstract by Sep 18 (bidding uses it). Anonymize: strip
 acknowledgments and identifying repo links (use an anonymized repo or zip), cite the workshop

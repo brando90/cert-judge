@@ -13,4 +13,4 @@ TIvar frozen from EXP30; labels never seen during TIvar development.
 **✓** = ρ ≥ 0.70.
 
 **Held-out ρ**: Spearman between frozen TIvar and judge-level human Spearman
-on the held-out participant corpus. Calibration panel labels were never used.
+on the held-out participant corpus. Development-panel labels were never used.

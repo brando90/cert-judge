@@ -12,7 +12,7 @@ We complement these approaches with explicit falsification tests on perturbation
 
 \paragraph{Adaptive metric induction.}
 \citet{ryan2025autometrics} propose \textsc{AutoMetrics}, which starts from sparse human feedback, generates or retrieves candidate evaluators from a MetricBank, and composes them with partial least-squares regression to improve correlation with human judgments.
-This is complementary to our trust-index view: learned metric composition can help calibrate judge-selection scores, while our core contribution keeps the underlying evidence falsifiable through behavioral diagnostics rather than replacing it with an opaque reward model.
+This is complementary to our trust-index view: learned metric composition can help fit judge-selection scores to human ratings, while our core contribution keeps the underlying evidence falsifiable through behavioral diagnostics rather than replacing it with an opaque reward model.
 
 \paragraph{Code and formal-verification evaluation.}
 In code tasks, judge-based metrics are useful when exact execution-based grading is unavailable or incomplete \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
@@ -21,5 +21,5 @@ Agentic verification differs because systems must also infer \emph{what should b
 This makes semantic theorem/specification quality a central measurement problem and motivates certification of the judge itself.
 
 \paragraph{Scalable oversight and AI measurement science.}
-Scalable oversight work argues that automated evaluators must be calibrated against human standards and stress-tested under realistic failure modes \citep{bowman2022scalable,zhou2025graders}.
-Our protocol contributes one concrete mechanism for that agenda: a reusable validity layer for judge selection that can be recalibrated across model updates and distribution shifts.
+Scalable oversight work argues that automated evaluators must be assessed against human standards and stress-tested under realistic failure modes \citep{bowman2022scalable,zhou2025graders}.
+Our protocol contributes one concrete mechanism for that agenda: a reusable validity layer for judge selection that can be reassessed across model updates and distribution shifts.

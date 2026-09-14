@@ -25,10 +25,10 @@ Metric: family-level Spearman(TIvar, judge-level human Spearman) on held-out cor
 
 - **Held-out ρ** is the primary TMLR claim: TIvar predicts which judge
   configurations are more human-aligned, evaluated on labels collected
-  independently from the calibration panel.
+  independently from the development panel.
 - **Calib ρ** (pass1/pass2/avg) is the within-panel validation result
   already reported in the paper (Table in Section 4).
 - Agreement between held-out ρ and calib ρ demonstrates that the
-  TIvar ranking is not overfit to the calibration labels.
+  TIvar ranking is not overfit to the original development labels.
 - n judges ≈ 8 per family; CIs are wide by design — we report them
   explicitly rather than suppressing the uncertainty.

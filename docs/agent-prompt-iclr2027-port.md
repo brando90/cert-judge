@@ -66,7 +66,7 @@ table headers, and code identifiers referenced in the paper:
   both sides.
 - Cost claims use "de-indexed, not eliminated" phrasing and the C_amortized decomposition
   (memo §2.5).
-- Every correlation currently reported from the calibration labels is explicitly labeled a
+- Every correlation currently reported from the original development labels is explicitly labeled a
   validation-set number.
 
 ## Step 3 — Data-facts corrections (memo §4)
@@ -83,7 +83,7 @@ table headers, and code identifiers referenced in the paper:
   estimand = alignment on a fixed curated panel; cite the seeded study-41 template as the
   upgrade path.
 - Add the criterion-drift paragraph: the 5-rater 343-label pool is a separate population under
-  a revised rubric, ρ ≈ 0.13 with the calibration criterion; held-out claims must use one
+  a revised rubric, ρ ≈ 0.13 with the original-rubric criterion; held-out claims must use one
   rubric and one pool per claim ("criterion drift first, power second").
 - Add the b′→b item-level extrapolation sentence (validated on 72 items; used on 157 × 3).
 - MAE/MSE: adopt mean-of-duplicates, recompute via the audit scripts, and make the table

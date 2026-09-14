@@ -87,7 +87,7 @@
     \end{itemize}
 
     \smallskip
-    {\centering\itshape Can one human calibration be amortized across future judges,\\ via checks that are automatic and falsifiable?\par}
+    {\centering\itshape Can one human study be amortized across future judges,\\ via checks that are automatic and falsifiable?\par}
 
   \end{block}
 
@@ -107,7 +107,7 @@
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.86\linewidth]{figures/pull_fig.png}
+      \resizebox{0.86\linewidth}{!}{\input{../overview_wording.tex}}
       \caption{Label once, then certify automatically: property checks plus \tivar{} replace per-judge human studies, so labeling cost stops growing with the number of judges.}
     \end{figure}
 
@@ -128,7 +128,7 @@
 
     $C_f$: geometric aggregate of P1--P4; the variance terms penalize unstable judges. Multiplicative: \textbf{one failed property collapses the index}.
 
-    \heading{Calibration setup}
+    \heading{Human-labeled development setup}
     \textsc{VeriBench} Lean~4 artifacts \cite{anonymous2026veribench}: $n{=}75$ aligned candidate--gold pairs from 24 problems (3 agent generations per problem), two human passes each on a 0--5 rubric. 8 judge configurations per family panel (incl.\ cross-family and edit/random controls): GPT-5.3-Codex, Claude Opus 4.7, Qwen3-Coder.
 
   \end{block}
@@ -178,7 +178,7 @@
   % CS197 move 5 (downstream use)
   \begin{block}{The certified judge ranks theorem-generation agents}
 
-    On \textsc{VeriBench}, the calibrated judge ranks feedback-driven agents above plain prompting (avg normalized score): \textbf{DSPy ReAct 0.615} $>$ Trace++ 0.588 $>$ Trace+ 0.477 $>$ \textbf{baseline 0.470} --- a downstream sanity check, not independent proof of correctness.
+    On \textsc{VeriBench}, the property-checked judge ranks feedback-driven agents above plain prompting (avg normalized score): \textbf{DSPy ReAct 0.615} $>$ Trace++ 0.588 $>$ Trace+ 0.477 $>$ \textbf{baseline 0.470} --- a downstream sanity check, not independent proof of correctness.
 
   \end{block}
 
@@ -188,7 +188,7 @@
     \begin{itemize}
       \item \textbf{Amortized oversight:} one $n{=}75$ single-annotator panel + automated falsifiable checks screen every new judge configuration --- no re-labeling.
       \item \textbf{Measure trust, don't assume it:} behavioral properties expose failures (broken baselines, $\alpha$-renaming brittleness) that human-agreement scores miss.
-      \item \textbf{Scope:} \emph{validation-set calibration evidence, not universal reliability} --- a locked held-out test on an independent pool (5 raters, 343 labels, 78 pairs) is next.
+      \item \textbf{Scope:} \emph{development-set evidence, not universal reliability} --- a locked held-out test on an independent pool (5 raters, 343 labels, 78 pairs) is next.
     \end{itemize}
 
   \end{alertblock}

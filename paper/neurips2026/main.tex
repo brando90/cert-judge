@@ -86,11 +86,11 @@
 
 \begin{abstract}
   Trustworthy LLM judges for AI-generated code and proofs are gated by human evaluation: every new judge, prompt change, or model update requires re-collecting human ratings, which does not scale to the agent-generated artifact volume we now face.
-  We propose property certification as an amortized alternative: humans specify falsifiable behavioral properties once---identity (P1), bug-monotonicity (P2), spec-monotonicity (P3), and repeat-stability (P4)---gold references are collected once on a labeled calibration set, and the resulting primary trust index \( \mathrm{JTI\!-\!v1}=(P_1P_2P_3P_4)^{1/4}\) then grades future judges without further annotation.
-  On a calibration panel of 8 judges spanning GPT-5.3-Codex prompts, GPT-4o-mini, edit-distance, and random baselines, JTI-v1 predicts validation-set human Spearman at \(\rho=0.881\) (avg labels; pass1 \(=0.810\), pass2 \(=0.810\)).
+  We propose property certification as an amortized alternative: humans specify falsifiable behavioral properties once---identity (P1), bug-monotonicity (P2), spec-monotonicity (P3), and repeat-stability (P4)---gold references are collected once on a labeled development set, and the resulting primary trust index \( \mathrm{JTI\!-\!v1}=(P_1P_2P_3P_4)^{1/4}\) then grades future judges without further annotation.
+  On a development panel of 8 judges spanning GPT-5.3-Codex prompts, GPT-4o-mini, edit-distance, and random baselines, JTI-v1 predicts validation-set human Spearman at \(\rho=0.881\) (avg labels; pass1 \(=0.810\), pass2 \(=0.810\)).
   This converts trust validation from \(O(N\) labels \(\times M\) judges) to \(O(N\) labels \(+\) property scores per new judge for free).
   P3 weak monotonicity is the strongest single predictor of validation human-alignment (\(\rho = 0.747\), \(p = 0.043\)), with P2 bug-rank monotonicity second (\(\rho = 0.714\), \(p = 0.056\)); P1 identity and P4 stability are weaker as standalone predictors at this scale.
-  These results are validation-set numbers---calibration-side optimization (JTI weighting, aggregation, threshold, prompt panel) used the same human ratings reported here---and we outline a held-out test protocol, with independent annotators on unseen judges and items, as immediate next work; we frame property certification as a reproducible, model-agnostic calibration protocol for scalable oversight of AI-generated tests and theorems.
+  These results are validation-set numbers---fitting and selection (JTI weighting, aggregation, threshold, prompt panel) used the same human ratings reported here---and we outline a held-out test protocol, with independent annotators on unseen judges and items, as immediate next work; we frame property certification as a reproducible, model-agnostic human-agreement assessment protocol for scalable oversight of AI-generated tests and theorems.
 \end{abstract}
 
 \section{Introduction}
@@ -110,16 +110,16 @@ Every new model family or prompt revision asks for another round of annotation, 
 Humans remain the anchor; the problem is that re-using humans from scratch for every judge wastes the expensive part of the process.
 
 Validating LLM judges against humans is the standard reliability check but does not scale: every new judge, prompt, or model needs fresh annotation.
-Property certification AMORTIZES this cost---gold references collected once, used to calibrate a four-property trust index (identity, bug-monotonicity, spec-monotonicity, repeat-stability), then deployed without further human annotation.
-In our setting, humans rate a validation set once, and the calibrated property suite extends that trust signal to new judges for free.
+Property certification AMORTIZES this cost---gold references collected once, used to select a four-property trust index (identity, bug-monotonicity, spec-monotonicity, repeat-stability), then deployed without further human annotation.
+In our setting, humans rate a validation set once, and the property suite, linked to human agreement on the development panel, extends that trust signal to new judges for free.
 The four properties are concrete: a judge should give maximal scores to identical artifacts, lower scores as semantic bugs accumulate, lower scores as theorem/test specifications are removed, and stable scores under prompt rewordings and semantics-preserving rewrites.
 On a panel of eight judges, the resulting JTI-v1 predicts validation-set human Spearman at \(\rho=0.881\) on averaged labels (\(p=0.008\)); held-out test results are reported in a forthcoming revision.
 
 Our \textbf{contributions} are:
 \begin{enumerate}
-  \item \textbf{An amortized trust-validation protocol:} we formalize property certification as a one-time human calibration on a gold reference set, after which any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) judge tuple can be validated by computing four falsifiable properties without further human annotation.
-  \item \textbf{A validation-set calibration result:} on a panel of 8 judges, JTI-v1 predicts validation-set human Spearman at \(\rho=0.881\) (averaged labels, \(p=0.008\); pass1 \(=0.810\), pass2 \(=0.810\)), with P3 weak-monotonicity and P2 bug-rank monotonicity as the strongest single predictors. Held-out test results are reported in a forthcoming revision.
-  \item \textbf{An application to \textsc{VeriBench}:} a calibrated judge ranks agentic methods consistently with humans, distinguishing feedback-driven approaches (DSPy ReAct: 0.615) from baseline prompting (0.470).
+  \item \textbf{An amortized trust-validation protocol:} we formalize property certification as a one-time human-agreement assessment on a gold reference set, after which any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) judge tuple can be validated by computing four falsifiable properties without further human annotation.
+  \item \textbf{A development-set human agreement result:} on a panel of 8 judges, JTI-v1 predicts validation-set human Spearman at \(\rho=0.881\) (averaged labels, \(p=0.008\); pass1 \(=0.810\), pass2 \(=0.810\)), with P3 weak-monotonicity and P2 bug-rank monotonicity as the strongest single predictors. Held-out test results are reported in a forthcoming revision.
+  \item \textbf{An application to \textsc{VeriBench}:} a property-checked judge ranks agentic methods consistently with humans, distinguishing feedback-driven approaches (DSPy ReAct: 0.615) from baseline prompting (0.470).
 \end{enumerate}
 
 \section{Related Work}
@@ -150,8 +150,8 @@ Recent work has shown that unconstrained chain-of-thought reasoning can reduce e
 \section{Problem Setup: Judging Lean Theorem/Specification Quality}
 
 \section{Property Certification Protocol}
-\subsection{Calibration Protocol}
-We frame property certification as a calibration protocol, analogous to standardized diagnostic-instrument calibration.
+\subsection{Human-agreement assessment protocol}
+We frame property certification as a human-agreement assessment protocol, analogous to standardized diagnostic-instrument assessment.
 \textbf{One-time setup:} humans rate a labeled subset of \(N\) gold artifacts under fixed rubrics; here, \(n=72\) aligned candidate--gold pairs are rated by one annotator under two rubrics, R1 and R2.
 \textbf{Per-judge, no human in the loop:} for each new judge tuple, compute P1--P4 via scripted perturbations on the gold artifacts and aggregate them as
 \[
@@ -160,23 +160,23 @@ We frame property certification as a calibration protocol, analogous to standard
 \textbf{Unit of a judge.} A judge is a tuple
 \((\text{model}, \text{prompt/rubric}, n_\text{repeats}, \text{aggregation}, t)\),
 where \(t\) is the binary threshold used for pass/fail operating points.
-\textbf{Calibration claim:} JTI on the validation set predicts the judge's validation-set human Spearman, supported by \(\rho=0.881\) across our \(8\)-judge panel.
+\textbf{Human-agreement hypothesis:} JTI on the validation set predicts the judge's validation-set human Spearman, supported by \(\rho=0.881\) across our \(8\)-judge panel.
 \textbf{Deployment:} any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) tuple is evaluated for trust by computing JTI on the existing gold reference set, with no additional human annotation.
-Thus P1--P4 are the four calibration targets for the trust index, not binary gates: they grade how strongly a judge preserves identity, monotone degradation, and repeat stability on controlled perturbations.
+Thus P1--P4 are the four behavioral targets for the trust index, not binary gates: they grade how strongly a judge preserves identity, monotone degradation, and repeat stability on controlled perturbations.
 These are necessary but not sufficient conditions: a judge that fails identity, rewards added bugs, rewards missing specs, or is unstable under equivalent prompting is unsuitable, but passing P1--P4 does not guarantee correctness on all unseen failure modes.
 
 \paragraph{Why is an LLM judge needed for theorem-quality scoring?}
 Evaluating AI-generated theorems/specifications requires a method to assess their quality, as proof assistants can verify a proof's correctness but not whether the agent proved the correct theorem.
 This is challenging because proving the logical equivalence of two arbitrary theorem statements is generally undecidable, and an agent may generate theorems that are semantically valid but syntactically different or incomparable with the gold reference specification/theorem (e.g., by splitting a theorem into different parts).
 
-Our goal is to calibrate the trustworthiness of an LLM judge for the task of formal specification/theorem generation.
+Our goal is to assess the trustworthiness of an LLM judge for the task of formal specification/theorem generation.
 This is akin to scoring the quality of a conjecture.
 We operationalize this by requiring the judge to compare a candidate Lean~4 artifact (implementation, tests, theorems) against its gold-standard Lean~4 reference.
 We provide the full set of Lean~4 artifacts because theorems might not make sense in isolation.
 The judge returns a discrete score $s\in\{0,1,\dots,10\}$ for correctness, completeness, and semantic alignment, which we later normalize to $[0,1]$.
 We use this score as a metric signal for evaluating the specifications generated by the agents.
 
-To be considered trustworthy, the judge should score well on the following falsifiable calibration targets.
+To be considered trustworthy, the judge should score well on the following falsifiable behavioral targets.
 They provide graded evidence that the judge reacts logically to structured perturbations.
 
 \paragraph{P1 — Identity \& Consistency.}
@@ -205,13 +205,13 @@ We implement four scripted perturbation families on the \emph{candidate} while h
 (iv) \emph{Prompt Stability/Invariance} (P4), evaluating each pair under multiple instruction-equivalent prompt templates and repeated calls, then measuring repeatability, prompt agreement, and invariance gaps by variant type.\footnote{We distinguish \emph{prompt wording} from \emph{task instruction}. P4 varies phrasing/format while preserving the same judging instruction and rubric. We do not include adversarial or instruction-changing prompts (e.g., ``ignore the input'') in this stability metric.}
 We then verify monotonicity by computing rank correlations (Kendall’s $\tau$, Spearman’s $\rho$) between $(k,m)$ and judged scores, and by reporting pairwise ordering accuracy (AUC) that “worse’’ artifacts receive lower scores \citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
 
-\paragraph{Decision-threshold calibration (Exp13).}
-After validating score-level behavior (P1--P4), we calibrate the binary operating point used for deployment decisions.
+\paragraph{Decision-threshold selection (Exp13).}
+After validating score-level behavior (P1--P4), we select the binary operating point used for deployment decisions.
 For threshold $t\in[0,1]$, we define \textsc{Pass} iff $\bar{s}\ge t$, where $\bar{s}$ is the mean over repeated calls for the same pair.
 We sweep $t\in\{0.60,0.65,0.70,0.75,0.80,0.85\}$ and report:
 (i) \emph{flip rate} (fraction of items whose repeat-level pass/fail decisions disagree),
 (ii) \emph{pass rate} (coverage),
-and (iii) ranking diagnostics (Spearman bug-correlation) to verify that calibration affects classification stability, not score ordering.
+and (iii) ranking diagnostics (Spearman bug-correlation) to verify that threshold selection affects classification stability, not score ordering.
 All reported threshold metrics include 95\% bootstrap confidence intervals over files.
 
 \textbf{Establishing trust in the LLM judge.} To ensure trustworthiness of the LLM judge in evaluating agentic autoformalization, we systematically validate key properties the judge must satisfy in Figure~\ref{fig:judge_sanity_checks}: (1) scores decrease consistently as more theorems and tests are omitted, (2) scores similarly degrade when more implementation bugs are introduced, and (3) semantically preserving edits keep scores high.
@@ -266,7 +266,7 @@ The Trace++ agent, employing both self-debugging and self-improvement mechanisms
 These results underscore the effectiveness of agentic, feedback-driven approaches in enhancing theorem-generation quality compared to non-agentic baselines \citep{khattab2024dspy,cheng2024trace,chen2021evaluating}.
 
 \subsection{Property sanity checks on GPT-5.3-Codex}
-We added a new property-calibration run in
+We added a new property-assessment run in
 \texttt{codex\_api\_gpt53\_r3\_20260418\_230027} under the experiment results directory.
 This run uses GPT-5.3-Codex in API judge mode with three repeated judge calls per pair (\(n_\text{repeats}=3\)), over \(184\) Lean files (\(736\) identity rows and \(920\) rows each for bug/missing ladders).
 
@@ -331,18 +331,18 @@ Under our operating-point rule (minimize flip rate, tie-break by pass rate proxi
     0.85               & \textbf{0.046} \([\textbf{0.037}, \textbf{0.057}]\) & 0.536 \([0.515, 0.557]\)     \\
     \bottomrule
   \end{tabular}
-  \caption{\textbf{Threshold calibration summary (Exp13, full 176-file run).}
-    Calibration yields a modest but consistent reduction in decision flips at stricter thresholds, with moderate coverage loss.
+  \caption{\textbf{Threshold selection summary (Exp13, full 176-file run).}
+    Threshold selection yields a modest but consistent reduction in decision flips at stricter thresholds, with moderate coverage loss.
     Ranking behavior is unchanged across thresholds (\(\rho_{\text{bug}}=-0.790\) at all \(t\)).}
   \label{tab:exp13_threshold_sweep}
 \end{table}
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{figures/threshold_calibration_sweep/threshold_stability_curve.png}
-  \caption{\textbf{Decision calibration curve from Exp13.}
+  \resizebox{\linewidth}{!}{\input{../../paper_latex/threshold_sweep_wording.tex}}
+  \caption{\textbf{Decision-threshold sweep from Exp13.}
     As threshold increases, pass rate declines smoothly; flip rate improves modestly and reaches its minimum at \(t=0.85\) in this run.
-    This supports a calibration-first framing: improve binary reliability via threshold selection while preserving score-order semantics.}
+    This supports a threshold-selection framing: improve binary reliability via threshold selection while preserving score-order semantics.}
   \label{fig:exp13_threshold_curve}
 \end{figure}
 
@@ -485,7 +485,7 @@ These preliminary cross-model results suggest that the certification properties 
 \paragraph{Claude Opus 4.7 replication (full Exp16 panel).}
 On the full \(8\)-judge Exp16 validation panel, we re-run the same analysis for a cross-model robustness check.
 Using the same panel/protocol, Opus shows pass1 \(\rho=0.810\), avg \(\rho=0.643\), pass2 \(\rho=0.595\).
-These are supportive robustness trends, but the main method claim remains tied to JTI-v1 on the Codex-calibrated validation panel.
+These are supportive robustness trends, but the main method claim remains tied to JTI-v1 on the Codex-human-labeled development panel.
 
 \paragraph{Generalization to a larger judge panel.}
 Using a legacy geometric-index ablation on an expanded \emph{13-judge} panel (extra Codex prompt variants and baselines, same \(72\) aligned rows, \(t=0.85\)),
@@ -589,9 +589,9 @@ For visualization, we report mean \(\pm\) SE error bars (repeat-noise proxy) to 
 \subsection{Downstream \textsc{VeriBench} agent ranking}
 \section{Limitations and Held-Out Test Protocol}
 We study an LLM judge that \emph{compares each candidate artifact against its task’s gold reference} for Lean~4 code verification and a framework to increase confidence in it.
-The judge satisfies falsifiable score-level properties (identity and monotonicity) and, with Exp13, we additionally calibrate its binary decision boundary using full-dataset threshold sweeps with uncertainty estimates.
+The judge satisfies falsifiable score-level properties (identity and monotonicity) and, with Exp13, we additionally select its binary decision boundary using full-dataset threshold sweeps with uncertainty estimates.
 Our data supports a clear separation: score ranking remains stable under threshold changes, while binary stability and coverage trade off in a tunable way.
-In experiments, calibrated JTI judging produces informative method rankings and tracks engineering signals (Pass@$k$, unit-test accuracy); Easy and HumanEval show the strongest agreement, while Security and RealCode remain hardest \citep{chen2021evaluating}.
+In experiments, property-checked JTI judging produces informative method rankings and tracks engineering signals (Pass@$k$, unit-test accuracy); Easy and HumanEval show the strongest agreement, while Security and RealCode remain hardest \citep{chen2021evaluating}.
 
 \subsection{Validation vs. test protocol}
 The results in Section~\ref{sec:validation-human-alignment} are validation-set numbers.
@@ -601,19 +601,19 @@ The same human ratings (single annotator under rubrics R1 and R2; \(n=72\) align
 (iii) decision threshold \(t=0.85\) (Exp13);
 (iv) prompt panel composition;
 and then to report \(\rho=0.881\) against.
-Calibration-side optimization and reporting share the same labels.
+Fitting and selection and reporting share the same labels.
 
-We treat this as a calibration finding rather than a generalization claim.
+We treat this as a development-panel finding rather than a generalization claim.
 A held-out TEST protocol is in progress with three differences from the validation set:
 (a) independent annotators (multiple humans, including Elyas as a second annotator) under rubric R2 frozen;
 (b) held-out judges from a model family unseen during validation (e.g., Gemini, DeepSeek, or a new prompt template);
-(c) held-out items from \textsc{VeriBench} problems not in the \(n=72\) calibration set.
+(c) held-out items from \textsc{VeriBench} problems not in the \(n=72\) development set.
 
 All test-set choices (judges, items, prompt panel, JTI weighting) will be frozen in a separate \texttt{PROTOCOL\_test.md} BEFORE any test invocation, with a single test run reported as-is regardless of outcome.
 We will report the test \(\rho\) in a forthcoming revision; if it differs materially from the validation \(\rho=0.881\), we treat the discrepancy as a methodological finding rather than a result to retune.
 
 \paragraph{What would falsify our claim?}
-Our calibration hypothesis would be falsified if, on a frozen held-out test, high-JTI judges do not align better with human labels than low-JTI judges, or if low-JTI judges align equally well or better.
+Our human-agreement hypothesis would be falsified if, on a frozen held-out test, high-JTI judges do not align better with human labels than low-JTI judges, or if low-JTI judges align equally well or better.
 In that case, P1--P4 would still be useful diagnostics, but not a reliable amortized predictor of judge-human alignment.
 
 \subsection{Finite perturbations, specification-relative scoring, and release details}
@@ -625,12 +625,12 @@ The empirical question we answer is whether higher-JTI judges are more validatio
 \textbf{Limitations.} The judge is a \emph{proxy}: scores are prompt/rubric-sensitive and do not constitute kernel-level proof checking; they provide evidence against a rigorous yet necessarily incomplete gold specification since no complete mechanical checks of specification equivalence exist~\citep{rice1953}.
 Our certification relies on a finite perturbation suite, so untested failure modes may persist. Specifications that are exotic to this dataset may be correct but receive incorrect scores.
 Even in stronger runs, alpha-renaming remains the weakest invariance mode (lower mean / larger gap than STYLE and often RENAME), making binder-rename robustness a clear future-work target.
-Calibration improvements are modest in absolute magnitude and do not by themselves establish external validity.
+Threshold-selection improvements are modest in absolute magnitude and do not by themselves establish external validity.
 The validation set has one annotator under two rubrics (R1/R2) on \(n=72\) aligned pairs and \(n=8\) judges; Elyas is planned as an independent second annotator under the frozen R2 rubric.
-The current validation-set human-alignment results should be read as calibration evidence because judge, prompt, aggregation, threshold, and reporting choices were developed with this label set in view; a locked held-out human-label test remains in progress before claiming broad out-of-sample amortization.
+The current validation-set human-alignment results should be read as development-panel evidence because judge, prompt, aggregation, threshold, and reporting choices were developed with this label set in view; a locked held-out human-label test remains in progress before claiming broad out-of-sample amortization.
 BAD\_STRINGY, an intentionally bad baseline, achieves moderate validation-set human Spearman (\(\approx0.45\)) while failing weak monotonicity (12.5\%).
-This is a feature of the calibration protocol, not a bug: aggregate validation-set human Spearman alone does not detect this judge's monotonicity failure, but JTI does.
-Future work will expand independent raters and problem coverage, strengthen semantic equivalence handling (candidate $\Rightarrow$ gold postcondition checks), add adversarial judge stress tests, and introduce standardized ``judge cards'' for reproducible calibrated deployment \citep{zhou2025graders}.
+This is a feature of the human-agreement assessment protocol, not a bug: aggregate validation-set human Spearman alone does not detect this judge's monotonicity failure, but JTI does.
+Future work will expand independent raters and problem coverage, strengthen semantic equivalence handling (candidate $\Rightarrow$ gold postcondition checks), add adversarial judge stress tests, and introduce standardized ``judge cards'' for reproducible assessed deployment \citep{zhou2025graders}.
 Compositional certification---extending local property checks to bounded edit sequences via edit-graph induction---is a natural future-work direction, but not a claimed result here.
 % TODO(submission): Add exact compute accounting (hardware, runtime, model calls, approximate cost).
 % TODO(submission): Add explicit asset/dataset/license table for VeriBench, Lean/Mathlib, and API model terms.
@@ -638,7 +638,7 @@ Compositional certification---extending local property checks to bounded edit se
 
 \section{Conclusion}
 We present an amortized human-validation protocol for LLM judges based on falsifiable properties.
-Rather than re-labeling every new judge configuration, we calibrate once with human labels and then score new judges via property diagnostics.
+Rather than re-labeling every new judge configuration, we fit and select once using human labels and then score new judges via property diagnostics.
 Our main empirical result is that this property-based trust index tracks judge-level human alignment on the validation panel, with strong signals from monotonicity and stability.
 The key open step is locked held-out testing with independent annotators and unseen judge families.
 
@@ -769,19 +769,19 @@ Standard judge queries can be brittle in the absence of ground truth, particular
 \paragraph{Single-judge certification vs.\ peer-prediction consensus.}
 Information-elicitation approaches such as TVD-MI \citep{robertson2025stepbystep} certify trust by asking multiple judges whether their outputs share information about the same source---fundamentally a consensus-based protocol over a judge population.
 Property certification is complementary: identity and monotonicity properties evaluate a single judge in isolation, with no agent-population dependency.
-This makes property certification deployable in settings where consensus is unavailable (single-judge inference, novel domains, sparse model panels), and our calibration protocol amortizes the human-annotation cost that consensus mechanisms also incur.
+This makes property certification deployable in settings where consensus is unavailable (single-judge inference, novel domains, sparse model panels), and our human-agreement assessment protocol amortizes the human-annotation cost that consensus mechanisms also incur.
 
 \paragraph{Formal Methods as Oversight.}
 Proof assistants provide binary, kernel-level guarantees. \citet{zhou2024donttrustverify} autoformalize math solutions into Isabelle/HOL and show that filtering via proof checking outperforms majority voting by 12\% on GSM8K. \citet{liu2025safe} extend this approach with SAFE, which verifies every intermediate step in Lean 4 and introduces the FormalStep benchmark, reducing hallucinations and enabling fine-grained oversight.
 
 \paragraph{Agentic Iterative Pipelines.}
 \citet{ospanov2023apollo} integrate Lean feedback into recursive repair cycles, boosting general-purpose LLM proof success from 3--7\% to over 40\% on miniF2F, and achieving 75\% with fewer than 1000 samples. \citet{miranda2025veribench} extend this paradigm to program verification, showing that self-debugging agents quadruple success compared to one-shot prompting.
-Incorporating an LLM judge improved completeness on security tasks but required calibration to avoid regressions on simpler cases.
+Incorporating an LLM judge improved completeness on security tasks but required tuning to avoid regressions on simpler cases.
 
 \paragraph{Benchmarks for Judge Reliability.}
 Benchmarks such as VeriBench and FormalStep quantify judge reliability across compilation, proof success, and specification quality.
 \citet{miranda2025veribench} report normalized specification scores of 0.470 for one-shot prompting versus 0.615 for self-debugging agents.
-Outside formal mathematics, MT-Bench and G-Eval provide complementary judge-evaluation settings using pairwise preferences and rubric-guided scoring, underscoring the need for calibration and validity reporting \citep{Zheng2023MTBench,Liu2023GEval}.
+Outside formal mathematics, MT-Bench and G-Eval provide complementary judge-evaluation settings using pairwise preferences and rubric-guided scoring, underscoring the need for human-agreement analysis and validity reporting \citep{Zheng2023MTBench,Liu2023GEval}.
 Together with validity frameworks and robust information-theoretic scoring, these benchmarks advance the agenda of certifying LLM judges for formal verification.
 
 % https://gemini.google.com/app/d39eba54ee6763e1
@@ -798,7 +798,7 @@ Our work, in contrast, proceeds from the basis that gold standards are sufficien
 \subsection{HCI for Solving Scalable Oversight}
 
 \paragraph{From more evaluation to \emph{human-centered} oversight.}
-HCI reframes scalable oversight as a \emph{calibration} problem: design interactions that let people verify, steer, and place \emph{appropriate} trust in LLM outputs rather than maximizing raw trust \citep{bach2022trusthci}. Interface choices (e.g., citations, explanations, confidence cues) can substantially shift user trust---sometimes in misleading ways---so the goal is to expose process and embed lightweight verification instead of presenting one-shot answers \citep{ding2025citations}. User studies in AI pair-programming similarly surface needs to communicate model performance, provide control over output style/constraints, and expose uncertainty to avoid over-reliance \citep{wang2024trustcode}.%
+HCI reframes scalable oversight as a problem of matching reliance to demonstrated reliability: design interactions that let people verify, steer, and place \emph{appropriate} trust in LLM outputs rather than maximizing raw trust \citep{bach2022trusthci}. Interface choices (e.g., citations, explanations, confidence cues) can substantially shift user trust---sometimes in misleading ways---so the goal is to expose process and embed lightweight verification instead of presenting one-shot answers \citep{ding2025citations}. User studies in AI pair-programming similarly surface needs to communicate model performance, provide control over output style/constraints, and expose uncertainty to avoid over-reliance \citep{wang2024trustcode}.%
 % :contentReference[oaicite:0]{index=0}
 
 \paragraph{Hybrid human$\leftrightarrow$AI evaluation.}
@@ -828,10 +828,10 @@ Our \textsc{VeriBench} program targets this gap by challenging the \emph{generat
 However, our framework has only been tested with a judge with gold references files with specifications but we will explore metrics/methods that don't require this like TVD-MI in \citep{robertson2025stepbystep}.
 
 Beyond spec-first settings, the Unsolved Questions (UQ) paradigm evaluates models on difficult, real-world problems that have neither ground-truth answers nor formal specifications; instead, it relies on validator pipelines and community verification to track progress without oracles \cite{nie2025uqassessinglanguagemodels,uq2025}.
-Taken together, these lines of work shift evaluation from “solve what is already specified” to “specify, calibrate, then solve”:
-vericoding provides end-to-end rigor under given specs, \textsc{VeriBench} adds specification synthesis with a calibrated semantic judge, and UQ extends evaluation to specless, answerless settings that require validator-assisted screening.
-Our contribution is a calibrated, semantics-sensitive judge that enables scalable oversight when the specification must be proposed rather than merely proved.
-Because specification generation often lacks a unique ground truth, we will extend our oracle-free property-calibration protocol with UQ-style validators, adding cycle-consistency tests (spec to code/docs) alongside our bug and ablation ladders, and enabling abstention when validators disagree to prioritize precision over coverage.
+Taken together, these lines of work shift evaluation from “solve what is already specified” to “specify, validate, then solve”:
+vericoding provides end-to-end rigor under given specs, \textsc{VeriBench} adds specification synthesis with a property-checked semantic judge, and UQ extends evaluation to specless, answerless settings that require validator-assisted screening.
+Our contribution is a property-checked, semantics-sensitive judge that enables scalable oversight when the specification must be proposed rather than merely proved.
+Because specification generation often lacks a unique ground truth, we will extend our oracle-free property-assessment protocol with UQ-style validators, adding cycle-consistency tests (spec to code/docs) alongside our bug and ablation ladders, and enabling abstention when validators disagree to prioritize precision over coverage.
 
 \section{Discussion (Cont.)}
 \textbf{Formal methods as scalable oversight.}
@@ -906,7 +906,7 @@ Verus is a verification framework for Rust programs using SMT solvers. A user st
 % https://chatgpt.com/c/68dc38a5-93f4-8322-bf91-c2802fe73f6f
 While \citep{robertson2025stepbystep} study demonstrates that total-variation-based mutual information (TVD-MI) provides robust, gaming-resistant evaluation without ground truth, many settings —such as VeriBench— do provide gold specifications in Lean 4.
 A promising direction is to develop hybrid protocols that combine TVD-MI’s black-box robustness with supervised ground-truth checks (compile success, unit tests, post-condition proofs, and equivalence theorems).
-By calibrating MI scores against known gold outcomes, we can create composite metrics that preserve gaming-resistance while offering calibrated probabilities of correctness where supervision exists.
+By fitting mappings from MI scores to known gold outcomes, we can create composite metrics that preserve gaming-resistance while offering probabilities of correctness whose predictions match observed frequencies where supervision exists.
 This opens the door to semi-supervised label propagation, active selection of items to prove, and cross-system experiments in domains with heterogeneous supervision.
 Such an integration would extend Robertson’s information-theoretic framework into a practical, specification-aware oversight system that leverages the best of both unsupervised robustness and supervised precision.
 
@@ -1065,11 +1065,11 @@ We report judge--human agreement under two settings: (i) \textbf{zero-shot judge
 Each example is a \((\texttt{gold\_file}, \texttt{candidate\_file})\) pair with a human label.
 Splits are task-level by \texttt{gold\_file} (not row-level), so all candidates for one task stay in one partition.
 For each split: fit remapping on train tasks only, then evaluate Pearson/Spearman/Kendall on held-out tasks only.
-This prevents task leakage between calibration and test.
+This prevents task leakage between score-map fitting and test.
 
 \paragraph{Judge/model/prompt setup used in these runs.}
-Zero-shot and calibration analyses use \texttt{gpt-5.3-codex} judge outputs on the same human-labeled pair set.
-Core prompt families in the robust panel include \texttt{P1\_BASELINE}, \texttt{P2\_FORMAL}, \texttt{P4\_CHECKLIST}, and \texttt{P8\_STRICT\_B}; the stacked calibration analysis excludes intentionally bad controls.
+Zero-shot and score-mapping analyses use \texttt{gpt-5.3-codex} judge outputs on the same human-labeled pair set.
+Core prompt families in the robust panel include \texttt{P1\_BASELINE}, \texttt{P2\_FORMAL}, \texttt{P4\_CHECKLIST}, and \texttt{P8\_STRICT\_B}; the stacked score mapping analysis excludes intentionally bad controls.
 No separate ``agent model'' is introduced in this appendix section: the evaluated items are the fixed generated candidate Lean files already present in the benchmark artifacts.
 
 \begin{table}[t]
@@ -1095,7 +1095,7 @@ No separate ``agent model'' is introduced in this appendix section: the evaluate
 \paragraph{Interpretation (including negative results).}
 The direct zero-shot judge already tracks human labels moderately (\(r=0.5154,\rho=0.4720\)).
 Post-hoc isotonic remapping improves linear-scale alignment substantially (up to \(r=0.7033\), held-out), which is the main positive result.
-At the same time, rank metrics do not uniformly improve (e.g., CV2 isotonic \(\rho=0.3211\)), so gains are concentrated in calibration-to-human-scale matching rather than global rank recovery.
+At the same time, rank metrics do not uniformly improve (e.g., CV2 isotonic \(\rho=0.3211\)), so gains are concentrated in mapping scores to the human rating scale rather than global rank recovery.
 We keep these negative outcomes explicit to avoid overstating robustness.
 
 \paragraph{Practical significance (effect size).}
@@ -1115,7 +1115,7 @@ On the averaged-label evaluation split, \(d_z=3.264\) for isotonic vs.\ best-sin
 For completeness: pass1 gives \(d_z=2.816\) (vs best-single) and \(0.375\) (vs ridge), while pass2 gives \(d_z=2.226\) and \(0.423\), respectively.
 
 \subsection{Naive Codex-Style Blind Baseline}
-To contextualize JTI-ranked judge performance, we evaluate a naive blind baseline on the same pair set (\(n=72\) overlap), using a single-pass, surface-form-oriented Codex-style rubric without property-calibration constraints (no monotonicity/stability calibration).
+To contextualize JTI-ranked judge performance, we evaluate a naive blind baseline on the same pair set (\(n=72\) overlap), using a single-pass, surface-form-oriented Codex-style rubric without property-based tuning constraints (no tuning for monotonicity/stability).
 The baseline tracks pass2 labels somewhat but remains substantially weaker and less consistent than the top JTI-ranked judges, especially on pass1 and in absolute error.
 
 \begin{table}[t]

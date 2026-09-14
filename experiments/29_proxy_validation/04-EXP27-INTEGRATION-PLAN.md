@@ -29,7 +29,7 @@ Reuse PR #38's Exp27 implementation:
 - discrete-aware marginals;
 - vertical repeat-std error bars;
 - Spearman, Kendall tau-b, and CI;
-- no 2D KDE dependence claim and no identity line on uncalibrated scales.
+- no 2D KDE dependence claim and no identity line on scales without a shared level interpretation.
 
 Place one representative panel in Methods or an appendix; provide the remaining judges in supplementary material.
 

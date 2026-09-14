@@ -3,8 +3,20 @@
 **TLDR:** Own the current scientific continuation and coordinate the separate historical release review. Experiment30 version3 has new within-problem evidence and a cached pilot inventory, with acceptance review and deterministic fixes complete; report publication and main landing verified. Historical release acceptance remains pending/unverified.
 
 Created: 2026-09-13 11:54 PDT
-Last updated: 2026-09-13 12:11 PDT
+Last updated: 2026-09-13 20:44 PDT
 Status: ACTIVE
+
+## Current continuation — terminology only
+- User-expanded scope: all stored paper versions, including archived drafts; wording only and rebuild each affected PDF. Source coordinator owns VeriBench and shared policy edits.
+- Owned checkout: /private/tmp/cj-terminology-20260913; branch codex/cj-terminology-20260913; base 5ff0678. Canonical user checkout stays on main.
+- Short read-only inventories complete; bounded non-paper prose edits complete. No inference, numerical results or frozen experiment protocols changed.
+- COMPLETE: all stored manuscript and paper-note wording updated; 13 PDFs rebuilt and visually checked; 23 original TeX sources preserve 9,913 numeric tokens plus all mathematical expressions/citation keys. Final logs have no errors, missing glyphs or undefined references/citations.
+- Build record: docs/terminology_cleanup_20260913.md and .json. Four existing missing bibliography entries restored verbatim; original figures retained with text-only wording layers.
+- Next: scanned commit, push, pull request merge and safe main synchronization; update this record with the verified landing.
+- Resume from build outputs /private/tmp/cj-build-results.json and source list /private/tmp/cj-paper-roots.json. Historical sections below describe the earlier scientific phase, not the current writer state.
+- Historical release owner later reported release c20027d on main; separate requested multi-stage review remains 0/3 due its external-content approval gate; do not restart.
+- Coordinator schedule now every 30 minutes (source owner); no independent recovery/watch started for this attended wording task.
+
 
 ## Identity and recovery
 - Host: local Mac; task 01a08e7d-addc-7bb0-a191-f959857b10eb, Codex gpt-6-astra ultra; outside tmux.

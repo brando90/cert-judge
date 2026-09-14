@@ -18,7 +18,7 @@ The protocol tests identity (P1), monotonicity to injected bugs (P2), monotonici
 This framing aligns with three core problems in AI Measurement Science.
 First, it supports \emph{interactive measurement} by evaluating judges in agentic settings where artifacts are generated end-to-end rather than in isolated subtasks.
 Second, it addresses \emph{measurement under strategic optimization} by making important failure modes auditable before judge deployment.
-Third, it supports \emph{measurement under non-stationarity} by enabling repeated recalibration as prompts, models, and task mixtures evolve.
+Third, it supports \emph{measurement under non-stationarity} by enabling repeated reassessment as prompts, models, and task mixtures evolve.
 
 Beyond this specific Lean~4 setting, the key claim is measurement-theoretic:
 evaluation quality must be measured and governed as a first-class object.
@@ -30,6 +30,6 @@ Our contributions are:
 We recast judge validation from one-shot correlation to property-based certification with explicit validity constraints.
 \item \textbf{A concrete certification protocol for Lean~4 judge reliability with general measurement value.}
 We provide a reproducible four-property suite and trust-index aggregation for amortized judge screening.
-\item \textbf{Empirical evidence on calibration and downstream ranking.}
+\item \textbf{Empirical evidence on human agreement and downstream ranking.}
 On a human-labeled validation panel, the trust index tracks judge-level human alignment, and on \textsc{VeriBench} the certified judge recovers meaningful method ordering between baseline and feedback-driven agents.
 \end{enumerate}

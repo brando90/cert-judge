@@ -9,7 +9,7 @@ The highest-leverage future work is:
 1. **Cross-judge robustness** to show the conclusions are not specific to one judge model. The current paper/experiments leverage Claude 3.5 as well as GPT 4o-Mini. Be consistent with models and also correlate between different models where applicable.
 2. **Adversarial judge-gaming tests** to stress whether the judge can be fooled by style, verbosity, or superficially plausible artifacts.
 3. **Uncertainty-aware judging and abstention** so the judge can avoid overconfident failures.
-4. **Per-split calibration and stronger statistics** to quantify where the judge is reliable and where it is weak.
+4. **Per-split reliability analysis and stronger statistics** to quantify where the judge is reliable and where it is weak.
 5. **Human validation** to connect certification-style behavioral checks to criterion validity with expert raters.
 
 Together, these additions would make the paper stronger scientifically, more convincing to reviewers, and more useful as a general-purpose framework for certifying LLM judges in formal verification.
@@ -117,7 +117,7 @@ A judge is more useful in practice if it can detect when it is uncertain and abs
 - standard deviation across repeated judge calls
 - interquartile range
 - vote entropy / score entropy
-- optional calibrated confidence score
+- optional confidence score checked against observed outcomes
 
 **Outputs to generate.**
 
@@ -135,7 +135,7 @@ Low-Medium.
 
 ---
 
-### 4) Per-Split Calibration + Unified Statistics with Confidence Intervals
+### 4) Per-Split Reliability Analysis + Unified Statistics with Confidence Intervals
 
 **Why it matters.**
 The paper’s current claims are strongest at the aggregate level. A more careful analysis should show where the judge is reliable and where it is not, split by split. This makes the results statistically harder to dismiss and provides a clearer picture of failure modes.
@@ -153,18 +153,18 @@ The paper’s current claims are strongest at the aggregate level. A more carefu
 - Kendall tau
 - pairwise ordering accuracy / AUC
 - bootstrap confidence intervals
-- optional calibration bins / ECE-like measures
+- optional reliability bins / ECE-like measures
 
 **Outputs to generate.**
 
 - `results/split_calibration/summary.json`
 - per-split confidence interval tables
-- calibration plots by split
+- reliability plots by split
 
 **Possible paper artifact.**
 
 - Forest plot: split-level correlations with 95% CIs
-- Calibration plot for Easy / CS / HE / Real / Sec
+- Reliability plot for Easy / CS / HE / Real / Sec
 
 **Difficulty.**
 Low-Medium.
@@ -212,7 +212,7 @@ To maximize impact while staying realistic, the suggested order is:
 1. **Cross-judge robustness**
 2. **Adversarial judge-gaming**
 3. **Uncertainty / abstention**
-4. **Per-split calibration + CIs**
+4. **Per-split reliability analysis + CIs**
 5. **Human validation** (start early due to annotation latency)
 
 This ordering prioritizes additions that are fast to implement and most likely to strengthen reviewer confidence right away.
@@ -226,7 +226,7 @@ If completed, these future steps would strengthen the project along five dimensi
 - **Robustness:** the judge is not only monotone under clean perturbations, but stable across judge models and attack styles.
 - **Reliability:** the system reports uncertainty instead of hiding it.
 - **Statistical rigor:** results are reported with stronger and more complete metrics.
-- **Interpretability:** split-wise calibration reveals where the judge works best and where it needs caution.
+- **Interpretability:** split-wise reliability analysis reveals where the judge works best and where it needs caution.
 - **Validity:** human comparison provides evidence that certification aligns with expert assessment.
 
 ---
