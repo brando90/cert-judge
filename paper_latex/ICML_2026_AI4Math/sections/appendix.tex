@@ -41,7 +41,7 @@ Certifying judges requires not only behavioral properties but also principled va
 
 \paragraph{Adaptive metric induction.}
 \citet{ryan2025autometrics} propose \textsc{AutoMetrics}, which learns interpretable automatic evaluators from sparse human feedback by generating or retrieving candidate metrics and composing them with partial least-squares regression.
-This is complementary to our protocol: learned composition can calibrate property scores against small human panels, while our main judge-certification evidence remains falsifiable through identity, monotonicity, and stability diagnostics.
+This is complementary to our protocol: learned composition can fit mappings from property scores to ratings from small human panels, while our main judge-certification evidence remains falsifiable through identity, monotonicity, and stability diagnostics.
 
 \paragraph{Robust Evaluation without Ground Truth.}
 Standard judge queries can be brittle in the absence of ground truth, particularly under adversarial manipulation \citep{Zhuo2024ICEScore,TongZhang2024CodeJudge}. \citet{robertson2025stepbystep} model the overseer as an agent and propose using information-theoretic, incentive-compatible queries instead of direct ratings. They introduce bounded $f$-divergence measures such as TVD-MI, which exhibit polynomial robustness to adversarial strategies, unlike unbounded KL-based criteria. This work highlights a pathway toward robust, certifiable judges when explicit ground truth is unavailable.
@@ -51,7 +51,7 @@ Standard judge queries can be brittle in the absence of ground truth, particular
 For each test example, in-context demonstrations are drawn from historical human ratings of the \emph{same source}, yielding 54--119\% character-level F1 gains over \textsc{XCOMET} on the WMT'23/'24 MQM tasks.
 Their work and ours share a common motivation---amortizing the expensive part of human evaluation rather than re-annotating from scratch---but amortize along orthogonal axes.
 Specialist amortizes \emph{within} a test set: it reuses many historical ratings (under a pseudo-SxS, single-rater-per-input regime) as inference-time demonstrations, so the judge must be re-specialized for each new benchmark and, as the authors show, to the individual rater.
-Property certification instead amortizes \emph{across judge configurations}: a one-time calibration panel relates falsifiable behavioral properties (P1--P4) to human agreement, after which any new $(\text{model},\text{prompt},n_\text{repeats},\text{aggregation})$ tuple is screened by fully automated perturbation checks, with no human-vs-gold labels required on the perturbed variants.
+Property certification instead amortizes \emph{across judge configurations}: a one-time human-agreement assessment panel relates falsifiable behavioral properties (P1--P4) to human agreement, after which any new $(\text{model},\text{prompt},n_\text{repeats},\text{aggregation})$ tuple is screened by fully automated perturbation checks, with no human-vs-gold labels required on the perturbed variants.
 The two approaches are complementary: Specialist still consumes human ratings at scoring time and presumes a curated pool of same-source annotations, whereas our property-certification protocol targets the setting where new judges proliferate faster than any per-test-set rating pool can be maintained.
 Notably, their finding that a Specialist autorater specializes to a \emph{single} rater echoes our own concern with human-pass dispersion; both works suggest single-rater ground truth is an imperfect ceiling, motivating the multi-rater held-out protocol we defer to future work.
 
@@ -60,19 +60,19 @@ Proof assistants provide binary, kernel-level guarantees. \citet{zhou2024donttru
 
 \paragraph{Agentic Iterative Pipelines.}
 \citet{ospanov2023apollo} integrate Lean feedback into recursive repair cycles, boosting general-purpose LLM proof success from 3--7\% to over 40\% on miniF2F, and achieving 75\% with fewer than 1000 samples. \citet{miranda2025veribench} extend this paradigm to program verification, showing that self-debugging agents quadruple success compared to one-shot prompting. 
-Incorporating an LLM judge improved completeness on security tasks but required calibration to avoid regressions on simpler cases.
+Incorporating an LLM judge improved completeness on security tasks but required tuning to avoid regressions on simpler cases.
 
 \paragraph{Benchmarks for Judge Reliability.}
 Benchmarks such as VeriBench and FormalStep quantify judge reliability across compilation, proof success, and specification quality. 
 \citet{miranda2025veribench} report normalized specification scores of 0.470 for one-shot prompting versus 0.615 for self-debugging agents. 
-Outside formal mathematics, MT-Bench and G-Eval provide complementary judge-evaluation settings using pairwise preferences and rubric-guided scoring, underscoring the need for calibration and validity reporting \citep{Zheng2023MTBench,Liu2023GEval}. 
+Outside formal mathematics, MT-Bench and G-Eval provide complementary judge-evaluation settings using pairwise preferences and rubric-guided scoring, underscoring the need for human-agreement analysis and validity reporting \citep{Zheng2023MTBench,Liu2023GEval}.
 Together with validity frameworks and robust information-theoretic scoring, these benchmarks advance the agenda of certifying LLM judges for formal verification.
 
 % https://chatgpt.com/c/68dc36c7-c4b0-8327-9dcd-694c10fa5d93?model=gpt-5-pro
 \subsection{HCI for Solving Scalable Oversight}
 
 \paragraph{From more evaluation to \emph{human-centered} oversight.}
-HCI reframes scalable oversight as a \emph{calibration} problem: design interactions that let people verify, steer, and place \emph{appropriate} trust in LLM outputs rather than maximizing raw trust \citep{bach2022trusthci}. Interface choices (e.g., citations, explanations, confidence cues) can substantially shift user trust---sometimes in misleading ways---so the goal is to expose process and embed lightweight verification instead of presenting one-shot answers \citep{ding2025citations}. User studies in AI pair-programming similarly surface needs to communicate model performance, provide control over output style/constraints, and expose uncertainty to avoid over-reliance \citep{wang2024trustcode}.%
+HCI reframes scalable oversight as a problem of matching reliance to demonstrated reliability: design interactions that let people verify, steer, and place \emph{appropriate} trust in LLM outputs rather than maximizing raw trust \citep{bach2022trusthci}. Interface choices (e.g., citations, explanations, confidence cues) can substantially shift user trust---sometimes in misleading ways---so the goal is to expose process and embed lightweight verification instead of presenting one-shot answers \citep{ding2025citations}. User studies in AI pair-programming similarly surface needs to communicate model performance, provide control over output style/constraints, and expose uncertainty to avoid over-reliance \citep{wang2024trustcode}.%
 % :contentReference[oaicite:0]{index=0}
 
 \paragraph{Hybrid human$\leftrightarrow$AI evaluation.}
@@ -180,7 +180,7 @@ Verus is a verification framework for Rust programs using SMT solvers. A user st
 % https://chatgpt.com/c/68dc38a5-93f4-8322-bf91-c2802fe73f6f
 While \citep{robertson2025stepbystep} study demonstrates that total-variation-based mutual information (TVD-MI) provides robust, gaming-resistant evaluation without ground truth, many settings —such as VeriBench— do provide gold specifications in Lean 4. 
 A promising direction is to develop hybrid protocols that combine TVD-MI’s black-box robustness with supervised ground-truth checks (compile success, unit tests, post-condition proofs, and equivalence theorems). 
-By calibrating MI scores against known gold outcomes, we can create composite metrics that preserve gaming-resistance while offering calibrated probabilities of correctness where supervision exists. 
+By fitting mappings from MI scores to known gold outcomes, we can create composite metrics that preserve gaming-resistance while offering probabilities of correctness whose predictions match observed frequencies where supervision exists.
 This opens the door to semi-supervised label propagation, active selection of items to prove, and cross-system experiments in domains with heterogeneous supervision.
 Such an integration would extend Robertson’s information-theoretic framework into a practical, specification-aware oversight system that leverages the best of both unsupervised robustness and supervised precision.
 

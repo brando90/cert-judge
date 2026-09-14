@@ -12,11 +12,11 @@
 - Added/retained key evidence blocks:
   - Exp16 validation-set trend (JTI-v1 -> human alignment)
   - Exp17 property decomposition
-  - Cross-pass no-overfitting check (explicitly labeled as calibration-side robustness)
+  - Cross-pass no-overfitting check (explicitly labeled as development-panel robustness)
   - Robustness material (Opus + expanded panel) framed as robustness/ablation, not primary claim.
 - Added explicit judge-unit definition (model + prompt/rubric + repeats + aggregation + threshold).
 - Added explicit 8-judge panel table with judge roles.
-- Added explicit falsifiability paragraph (what would falsify the calibration hypothesis).
+- Added explicit falsifiability paragraph (what would falsify the human-agreement hypothesis).
 
 ## What Was Deleted / Compressed
 - Removed date-based section titles from the main body.

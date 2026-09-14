@@ -77,11 +77,11 @@ frozen 2026-04-07 commit `3a7b75c` with no script/seed.
   PTIvar-vs-TI_{m1} does not violate the both-sides rule (criterion here is m1, correlation-only).
 - **Cost claim**: C_amortized decomposition (memo §2.5) as Eq. (5); "de-indexed, not eliminated";
   approved phrasings only.
-- **Validation-set labeling**: every correlation from the calibration labels is labeled
-  validation-set/calibration evidence (§6 header, figure caption, §7 opening, Limitations).
+- **Validation-set labeling**: every correlation from the original development labels is labeled
+  development-set evidence (§6 header, figure caption, §7 opening, Limitations).
 - **Three-claim structure** (A/B/C) in §3; four generalization axes named incl. item-level b′→b
   (72 validated / 157×3 scored).
-- Two-jobs table (screen vs surrogate) + SESOI ρ₀=0.5 pre-registration + "calibration map deferred
+- Two-jobs table (screen vs surrogate) + SESOI ρ₀=0.5 pre-registration + "score mapping deferred
   until ~40 configs" in §5. Decision utility defined as the headline oversight quantity with **no
   value claimed** (UNKNOWN by design; registered as next analysis — see OPEN_QUESTIONS).
 

@@ -1,4 +1,4 @@
-# AGENT PROMPT — Build the PTI ↔ TI bridge calibration figure
+# AGENT PROMPT — Build the PTI ↔ TI bridge association figure
 
 ## Goal
 
@@ -121,7 +121,7 @@ can compose; write files only when `out` is given.
 
 ## What not to do
 
-- Do not fit or display any calibration model mapping PTI to TI. At this judge count that is
+- Do not fit or display any level-mapping model from PTI to TI. At this judge count that is
   overfitting; the honest object is the raw scatter.
 - Do not extrapolate the fit beyond the observed range or into a predicted-value readout.
 - Do not silently drop judges with missing CIs — plot them without whiskers and note the count.
@@ -142,5 +142,5 @@ about: it reports Spearman/Pearson twice — primaries only and with controls �
 random and edit-distance controls sit near (0,0) and can carry the correlation on
 their own, which is exactly the objection a reviewer would raise. Hard rules: no
 inference runs, no spend, synthetic data if the real per-judge numbers aren't on disk,
-and no calibration model fitted at n≈10 judges.
+and no level-mapping model fitted at n≈10 judges.
 ```

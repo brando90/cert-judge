@@ -42,7 +42,7 @@ expt_v2/
 3. Combine nonnegative human agreement with one minus mean within-candidate sample standard deviation, on normalized scores; retain signed correlations and the separate factors.
 4. Compare the frozen proxy with declared zero-handling sensitivities, and keep primary judges separate from controls.
 5. Jointly resample problems to preserve shared observations across judges; report what these conditional intervals omit.
-6. Diagnose held-out judge-family calibration against a training-mean baseline and simulate how independence affects sample-size requirements.
+6. Diagnose family-held-out fitted prediction against a training-mean baseline and simulate how independence affects sample-size requirements.
 
 The combined criterion's sample standard deviation is different from the frozen
 proxy's twice-population-standard-deviation convention; both are reported as
@@ -59,14 +59,14 @@ reliability to those outer correlations. Choose an ICC form to match the
 measurement design ([Koo and Li](https://pmc.ncbi.nlm.nih.gov/articles/PMC4913118/)).
 
 The earlier panel-size floor and tie flags are diagnostic heuristics, not
-empirical power calculations. Pooled out-of-family calibration can reverse a
+empirical power calculations. Pooled out-of-family fitted prediction can reverse a
 proxy's direction and can extrapolate far outside the observed target range;
 it tests that fitted prediction procedure. Its folds are dependent, and a
 bootstrap of completed prediction pairs does not account for overlapping fits
 ([Bengio and Grandvalet](https://www.jmlr.org/papers/v5/grandvalet04a.html)).
 
-The follow-up therefore reports raw scores, positive-direction calibration,
-unrestricted calibration and the training-mean baseline separately, without
+The follow-up therefore reports raw scores, nonnegative-slope fitted linear mapping,
+unrestricted fitted linear mapping, and the training-mean baseline separately, without
 claiming an independent-family uncertainty interval from two families. No
 whole-family train/validation/test split is available. Generation-slot labels
 also do not establish generator-model families.

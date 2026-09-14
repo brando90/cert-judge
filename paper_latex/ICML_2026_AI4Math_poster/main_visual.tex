@@ -84,7 +84,7 @@
   % CS197 moves 1-2: motivation folded into the single italic hook line
   \begin{block}{Validating LLM judges one human study at a time does not scale}
 
-    {\centering\itshape Agents write Lean~4 code and its specs faster than humans can inspect --- can one human calibration, via automatic falsifiable checks, be amortized across every future judge?\par}
+    {\centering\itshape Agents write Lean~4 code and its specs faster than humans can inspect --- can one human study, via automatic falsifiable checks, be amortized across every future judge?\par}
 
   \end{block}
 
@@ -93,7 +93,7 @@
 
     \begin{itemize}
       \item \textbf{CertJudge}: rate a small panel \textbf{once} $\rightarrow$ \textbf{automatic falsifiable property checks} + \tivar{} certify every new judge --- no new labels.
-      \item Calibration: $n{=}75$ candidate--gold Lean pairs, single annotator, two rubric passes; 8 judge configs per family panel.
+      \item Human panel: $n{=}75$ candidate--gold Lean pairs, single annotator, two rubric passes; 8 judge configs per family panel.
     \end{itemize}
 
   \end{alertblock}
@@ -103,7 +103,7 @@
 
     \begin{figure}
       \centering
-      \includegraphics[width=\linewidth]{figures/pull_fig.png}
+      \resizebox{\linewidth}{!}{\input{../overview_wording.tex}}
       \caption{Label once, then certify automatically --- labeling cost stops growing with the number of judges.}
     \end{figure}
 
@@ -193,7 +193,7 @@
       \setlength{\itemsep}{0.8ex}
       \item \textbf{Amortized oversight:} one $n{=}75$ panel + automatic falsifiable checks screen every new judge --- no re-labeling.
       \item \textbf{Measure trust, don't assume it:} behavioral properties expose failures human-agreement scores miss.
-      \item \textbf{Scope:} \emph{validation-set calibration evidence, not universal reliability} --- locked held-out test (5 raters, 343 labels, 78 pairs) is next.
+      \item \textbf{Scope:} \emph{development-set evidence, not universal reliability} --- locked held-out test (5 raters, 343 labels, 78 pairs) is next.
     \end{itemize}
 
   \end{alertblock}

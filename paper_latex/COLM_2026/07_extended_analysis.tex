@@ -48,7 +48,7 @@ For this reason, we view trust indices as dynamic artifacts with explicit mainte
 Based on our experiments, we recommend four implementation rules for teams deploying judge-based evaluation:
 \begin{enumerate}
 \item publish per-property scores alongside aggregate trust values;
-\item maintain a frozen anchor subset for longitudinal recalibration;
+\item maintain a frozen anchor subset for longitudinal reassessment;
 \item run disagreement audits between primary and secondary judges;
 \item treat large prompt or model updates as mandatory re-certification events.
 \end{enumerate}
@@ -57,7 +57,7 @@ These rules keep evaluator governance lightweight while preserving interpretabil
 \paragraph{Relation to robustness-without-ground-truth methods.}
 Information-theoretic evaluation approaches and incentive-compatible query designs offer complementary tools in settings with weak or absent gold references.
 Our setting includes curated references, so we emphasize supervised property checks.
-A promising direction is hybridization: combine robust unsupervised disagreement signals with supervised perturbation diagnostics and human-anchor calibration.
+A promising direction is hybridization: combine robust unsupervised disagreement signals with supervised perturbation diagnostics and human-anchored assessment.
 Such hybrids may improve resilience to evaluator gaming while retaining semantic grounding.
 
 \paragraph{Why this scope is suitable for a workshop contribution.}
@@ -69,17 +69,17 @@ The broader research program is to standardize these evidence bundles across tas
 \paragraph{A minimal reporting template for evaluator cards.}
 To support comparability across papers, we propose a concise evaluator-card template with five fields.
 Field 1 is \emph{intended use}: rank model variants for research iteration, not certify deployment correctness.
-Field 2 is \emph{evidence}: calibration panel size, rating protocol, and measured human-alignment statistics.
+Field 2 is \emph{evidence}: development panel size, rating protocol, and measured human-alignment statistics.
 Field 3 is \emph{behavioral validity}: per-property scores with confidence intervals where possible.
 Field 4 is \emph{known blind spots}: uncovered perturbation classes and domains with weak support.
-Field 5 is \emph{maintenance policy}: re-certification triggers and latest calibration date.
+Field 5 is \emph{maintenance policy}: re-certification triggers and latest assessment date.
 This template is short enough for workshop papers and strong enough to improve reproducibility.
 
 \paragraph{Error analysis priorities for next iterations.}
 Our current protocol highlights whether monotonicity holds, but not always \emph{why} failures occur.
 The next iteration should classify monotonicity violations by semantic category:
 arithmetic specification drift, boundary-condition omission, theorem weakening, and proof-irrelevant style changes.
-That taxonomy would make calibration interventions more targeted.
+That taxonomy would make judge-assessment interventions more targeted.
 For example, if failures cluster in boundary-condition omissions, perturbation suites should over-sample those edits and judge prompts should include boundary-sensitive criteria.
 This turns property failures into actionable engineering signals.
 
@@ -87,7 +87,7 @@ This turns property failures into actionable engineering signals.
 Evaluator quality is partly a human-systems problem.
 Annotator instructions, rubric granularity, and quality-control policies can all alter apparent judge alignment.
 Even with fixed models, small rubric wording changes can shift correlations enough to reorder judge candidates.
-For that reason, calibration metadata should be versioned as carefully as model checkpoints.
+For that reason, judge-assessment metadata should be versioned as carefully as model checkpoints.
 We recommend including rubric hashes and annotation-guideline versions in experiment logs to keep judge comparisons auditable over time.
 
 \paragraph{Positioning against ``single-number'' evaluation culture.}
@@ -102,5 +102,5 @@ For workshop goals focused on rigorous evaluation, this decomposition is a pract
 As AI systems become increasingly agentic, evaluator design must be treated as model design.
 A judge is not only a metric; it is part of the control loop that shapes what systems learn to optimize.
 CertJudge provides one concrete recipe for this perspective:
-define falsifiable evaluator properties, calibrate against humans once, monitor under drift, and re-certify on change.
+define falsifiable evaluator properties, measure agreement with humans once, monitor under drift, and re-certify on change.
 We view this as a broadly reusable pattern for moving from benchmark-centric evaluation to measurement-centric evaluation.

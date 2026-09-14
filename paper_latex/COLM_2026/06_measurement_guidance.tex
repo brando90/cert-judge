@@ -13,7 +13,7 @@ Let
 \[
 \mathbf{v}_\theta = (P_1, P_2, P_3, P_4, H_\theta),
 \]
-where \(H_\theta\) is human-alignment performance on the calibration panel.
+where \(H_\theta\) is human-alignment performance on the development panel.
 Trust-index aggregation is useful for selection, but individual coordinates identify failure modes.
 For example, two judges may have similar aggregate trust values but different weaknesses:
 one may fail stability while another fails monotonicity under bug ladders.
@@ -24,9 +24,9 @@ In strategically optimized environments, agents can learn evaluator quirks.
 We therefore recommend a staged deployment policy:
 \begin{enumerate}
 \item \textbf{Pre-screening.} Eliminate judge configurations that fail hard minimum thresholds on identity and monotonicity.
-\item \textbf{Calibration ranking.} Rank remaining judges by trust index and human alignment.
+\item \textbf{Human-agreement ranking.} Rank remaining judges by trust index and human alignment.
 \item \textbf{Shadow evaluation.} Run at least one alternate judge in parallel for disagreement monitoring.
-\item \textbf{Drift alarms.} Trigger re-calibration when disagreement rates or property scores shift materially.
+\item \textbf{Drift alarms.} Trigger reassessment when disagreement rates or property scores shift materially.
 \end{enumerate}
 This policy is intentionally lightweight and can be integrated into existing benchmark pipelines with minimal annotation overhead.
 
@@ -37,17 +37,17 @@ Property-based certification is therefore not merely a post-hoc reporting tool.
 It is a control mechanism for the feedback signal that drives agent behavior.
 In this view, P1--P4 act as guardrails for the evaluator channel in an adaptive system.
 
-\paragraph{Non-stationarity and recalibration cadence.}
+\paragraph{Non-stationarity and reassessment cadence.}
 Evaluator quality drifts for at least three reasons:
 model updates, prompt updates, and benchmark mixture updates.
-A simple periodic recalibration schedule can reduce silent failures.
+A simple periodic reassessment schedule can reduce silent failures.
 Concretely, we recommend:
 \begin{itemize}
-\item fixed-interval recalibration (for example monthly or per major model release);
-\item event-triggered recalibration after significant prompt or rubric edits;
-\item domain-triggered recalibration when new task families are added.
+\item fixed-interval reassessment (for example monthly or per major model release);
+\item event-triggered reassessment after significant prompt or rubric edits;
+\item domain-triggered reassessment when new task families are added.
 \end{itemize}
-The calibration panel can remain small if property suites are informative, but it should include anchor items that persist over time to enable longitudinal comparability.
+The development panel can remain small if property suites are informative, but it should include anchor items that persist over time to enable longitudinal comparability.
 
 \paragraph{Threat model and failure taxonomy.}
 Certification should report which failure modes were actually tested.
@@ -73,13 +73,13 @@ To make measurement claims reproducible, we suggest that judge-evaluation papers
 \item the exact judge configuration tuple \((\text{model}, \text{prompt}, \text{repeats}, \text{aggregation})\);
 \item property definitions and perturbation generation rules;
 \item per-property scores and uncertainty summaries;
-\item calibration-panel composition and annotation protocol;
+\item development-panel composition and annotation protocol;
 \item drift monitoring and re-certification criteria.
 \end{enumerate}
 These fields are lightweight to report and substantially improve comparability across studies.
 
 \paragraph{Scope of claims in this paper.}
 Our empirical claims are intentionally bounded.
-We show that a property-certified judge can track human alignment on a fixed calibration suite and can produce informative method rankings on \textsc{VeriBench}.
+We show that a property-certified judge can track human alignment on a fixed development suite and can produce informative method rankings on \textsc{VeriBench}.
 We do not claim universal validity across all formal domains or all future judge families.
 The broader claim is methodological: property-based certification can serve as a robust measurement layer for AI evaluation pipelines where interaction, optimization pressure, and drift are first-order concerns.

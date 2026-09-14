@@ -15,10 +15,10 @@ One judge configuration, one figure, mapped onto the paper's own m-ladder
 
 | Element | Shows | Rung |
 |---|---|---|
-| Top/right marginal histograms (discrete-aware, tie-snapped -- **not** a KDE) | calibration gap; range restriction | m0 |
+| Top/right marginal histograms (discrete-aware, tie-snapped -- **not** a KDE) | Wasserstein distribution gap; range restriction | m0 |
 | Central panel: item positions (marker size = # tied items) | alignment, summarized by Spearman rho (+ Kendall tau-b under ties) | m1 |
 | Per-position vertical error bars (mean judge repeat-std) | judge self-consistency | m2 |
-| Info panel | decomposed `TI_2' = (rho * (1-sigma))^0.5` formula + bootstrap 95% CI on rho + calibration gap (Wasserstein) | — |
+| Info panel | decomposed `TI_2' = (rho * (1-sigma))^0.5` formula + bootstrap 95% CI on rho + Wasserstein distribution gap | — |
 
 **Revision history worth knowing**: the first version of this figure used a
 2D Gaussian KDE density wash instead of marginals, and drew a `y=x` reference
@@ -26,8 +26,8 @@ line. Both were wrong for this data and got removed after review: although a
 joint KDE can encode dependence, smoothing n=72 observations over ~9 distinct
 human values turns a tie-heavy lattice into an apparent continuum and obscures
 the exact tied counts that the figure needs to show. And `y=x` implied a
-calibration target the metric doesn't claim: judge and human scores are on
-uncalibrated scales, and TI_2' is correlation-based (level-invariant by
+level target the metric doesn't claim: judge and human scores are on
+incommensurate scales, and TI_2' is correlation-based (level-invariant by
 construction). See `cert_judge_notes/agent-prompt-bridge-plot.md`, "Revision
 notes on the item-level figure already built," for the full critique.
 

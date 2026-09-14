@@ -19,6 +19,10 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 The older P1–P7/JTI and TIvar pipelines remain historical compatibility code. Their outputs are not PTI-v0 and must not be relabeled as such.
 
+## Terminology for Scientific Prose
+
+Name the operation precisely rather than using "calibration" as a catchall: distinguish development-set association, a fitted score mapping, threshold selection, and score--outcome reliability. Preserve external titles and citations, literal paths and code identifiers, and frozen evidence; wording cleanup also applies to stored archived manuscript prose, whose corresponding PDF artifacts must be rebuilt.
+
 ## Environment Setup
 
 Uses `uv` for environment management (not pip/conda):
@@ -52,7 +56,7 @@ That CLI has no inference client and cannot load credentials. Paid judge inferen
 
 **`probe_validation.py`** — conservative alpha-renaming and cumulative bug/missing-spec probe construction with fail-closed Lean elaboration.
 
-**`hsj_scoring.py`** — legacy JTI/HSJ compatibility logic, including `compute_p1_identity()`, `compute_p2_or_p3_ordering_auc()`, `compute_p4_stability()`, `compute_jti()`, and calibration/fusion helpers.
+**`hsj_scoring.py`** — legacy JTI/HSJ compatibility logic, including `compute_p1_identity()`, `compute_p2_or_p3_ordering_auc()`, `compute_p4_stability()`, `compute_jti()`, and score-mapping/fusion helpers.
 
 **`tvd_mi_tools.py`** — TVD-MI information robustness metric:
 - `tvd_mi_from_critic()` — Youden's J (TPR+TNR-1) from categorical labels

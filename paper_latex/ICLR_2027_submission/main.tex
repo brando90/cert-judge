@@ -66,8 +66,8 @@
 \newcommand{\PTI}{\mathrm{PTI}}                  % proxy trust index (instrument)
 \newcommand{\TIm}[1]{\TI_{m_{#1}}}
 \newcommand{\PTIvzero}{\PTI_{\mathrm{v0}}}        % exact frozen implementation in Experiment 29
-\newcommand{\PTIvar}{\PTI_{\mathrm{var}}}        % LEGACY calibration aggregate (formerly TI_var)
-\newcommand{\PTIbridge}{\PTI_{\{1,2,3\}}}        % LEGACY three-property calibration aggregate
+\newcommand{\PTIvar}{\PTI_{\mathrm{var}}}        % LEGACY development-panel aggregate (formerly TI_var)
+\newcommand{\PTIbridge}{\PTI_{\{1,2,3\}}}        % LEGACY three-property development-panel aggregate
 \newcommand{\GM}{\mathrm{GM}}
 
 \newtheorem{lemma}{Lemma}
@@ -86,7 +86,7 @@ Paper under double-blind review\\
 \maketitle
 
 \begin{abstract}
-When a language-model judge scores AI-generated Lean~4 theorems against gold references, how much should we trust the judge itself? Re-validating every model and prompt with fresh human ratings does not scale, so we test whether validation can be \emph{amortized}: collect a fixed human criterion once, then evaluate new judges with falsifiable, label-free behavioral probes. We separate scoped trustworthiness $\TW_m$ (construct), human agreement $\TIm{1}$ (criterion), and the exact frozen proxy $\PTIvzero$ (instrument). $\PTIvzero$ is the zero-first geometric mean of equality, bug-monotonicity, missing-specification monotonicity, and alpha-invariance properties; passing is a screen result, not proof of trustworthiness. Our complete subscription-CLI experiment evaluates five primary judge--prompt configurations and three controls with three repeats per score cell (774 CLI tasks; 4,728 cells; no missing scores). Four of five primary $\PTIvzero$ point estimates are exactly zero; the remaining configuration scores $0.811$. The pre-registered outer bridge is not positive: primaries-only Spearman is $-0.354$ (95\% judge-bootstrap interval $[-1.000,0.395]$, $n{=}5$), below the $0.5$ smallest effect size of interest and inconclusive about zero. A frozen simulation gives only 27.1\% power for the complete positive decision rule at true $\rho=0.5$. Historical calibration-era $\PTIvar$ associations are retained only as \textsc{Legacy---not $\PTIvzero$}; criterion drift ($\rho\approx0.13$ across annotation protocols) and a registered 32-judge negative further bound transfer. The result is an audited failure to support the registered positive bridge for this frozen proxy panel and a protocol for stronger tests, not evidence that human validation can yet be replaced.
+When a language-model judge scores AI-generated Lean~4 theorems against gold references, how much should we trust the judge itself? Re-validating every model and prompt with fresh human ratings does not scale, so we test whether validation can be \emph{amortized}: collect a fixed human criterion once, then evaluate new judges with falsifiable, label-free behavioral probes. We separate scoped trustworthiness $\TW_m$ (construct), human agreement $\TIm{1}$ (criterion), and the exact frozen proxy $\PTIvzero$ (instrument). $\PTIvzero$ is the zero-first geometric mean of equality, bug-monotonicity, missing-specification monotonicity, and alpha-invariance properties; passing is a screen result, not proof of trustworthiness. Our complete subscription-CLI experiment evaluates five primary judge--prompt configurations and three controls with three repeats per score cell (774 CLI tasks; 4,728 cells; no missing scores). Four of five primary $\PTIvzero$ point estimates are exactly zero; the remaining configuration scores $0.811$. The pre-registered outer bridge is not positive: primaries-only Spearman is $-0.354$ (95\% judge-bootstrap interval $[-1.000,0.395]$, $n{=}5$), below the $0.5$ smallest effect size of interest and inconclusive about zero. A frozen simulation gives only 27.1\% power for the complete positive decision rule at true $\rho=0.5$. Historical development-panel $\PTIvar$ associations are retained only as \textsc{Legacy---not $\PTIvzero$}; criterion drift ($\rho\approx0.13$ across annotation protocols) and a registered 32-judge negative further bound transfer. The result is an audited failure to support the registered positive bridge for this frozen proxy panel and a protocol for stronger tests, not evidence that human validation can yet be replaced.
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -123,7 +123,7 @@ Our \textbf{contributions} are:
 \textbf{LLM-as-a-judge.}
 LLMs are increasingly used as automated evaluators, with reliability commonly validated by agreement with people: \textsc{G-Eval} reports Spearman correlation with human scores \citep{Liu2023GEval}, MT-Bench reports judge agreement with human preferences \citep{Zheng2023MTBench}, and Judge-Bench evaluates replication of human annotations across 20 NLP datasets \citep{Kocmi2024HumanVsLLM}.
 Large-scale audits caution that reliability varies by task and setup and stress explicit validation before replacing human judgment; known biases include position, verbosity, and prompt sensitivity \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments,Zheng2023MTBench}.
-We keep human agreement as the criterion and test a possible amortization: one calibration panel relates falsifiable behavioral properties to human agreement, after which new configurations could be screened without new labels only if the bridge succeeds. The frozen result below does not license that step.
+We keep human agreement as the criterion and test a possible amortization: one development panel relates falsifiable behavioral properties to human agreement, after which new configurations could be screened without new labels only if the bridge succeeds. The frozen result below does not license that step.
 Closest to this paper, a non-archival workshop study certifies a Lean-aware theorem judge with identity and monotonicity checks \citep{anonymous2025formaljudge}; this paper recasts that protocol in construct/criterion/instrument terms and adds screen-versus-surrogate semantics, audited data disclosures, and pre-registered held-out tests.
 
 \textbf{Improving and evaluating judge reliability.}
@@ -189,7 +189,7 @@ and at the $m_2$ target the criterion gains a stability conjunct,
 \end{equation}
 with the stability term judge-side (it is $P_4$, the label-free conjunct), orientation-flipped, and the correlation clipped before the geometric mean.
 Correlations are computed only over \emph{paired} observations --- the same candidate scored by both sides --- with repeats aggregated first: the $K_a$ agent generations, $K_{aj}$ judge repeats, and $K_h$ human passes are three distinct indices that never align pairwise.
-The exact headline instrument in this paper is $\PTIvzero$, whose four components and numerical rules were frozen before the new judge scores and before the bridge statistic (Section~\ref{sec:probes}). The item-level $\TI_{2'}$ diagnostic remains a decomposition of criterion validity and judge repeat stability; it is not the target axis of the outer bridge. The older $\PTIbridge$ and variance-aware $\PTIvar$ aggregates survive only as historical calibration analyses and are never relabeled $\PTIvzero$.
+The exact headline instrument in this paper is $\PTIvzero$, whose four components and numerical rules were frozen before the new judge scores and before the bridge statistic (Section~\ref{sec:probes}). The item-level $\TI_{2'}$ diagnostic remains a decomposition of criterion validity and judge repeat stability; it is not the target axis of the outer bridge. The older $\PTIbridge$ and variance-aware $\PTIvar$ aggregates survive only as historical development-panel analyses and are never relabeled $\PTIvzero$.
 
 \textbf{Three claims.}
 \emph{Claim A} (definitional): $aj$ is $\TW_2$-trustworthy --- needs humans.
@@ -248,7 +248,7 @@ Here $\alpha$ renames binders and all bound occurrences consistently and is the 
 
 Probe validity is frozen independently of judge output: missing, duplicate/no-op, malformed, or non-elaborating transformations are excluded globally. After that structural freeze, required score coverage is 100\%; insufficient coverage makes the property \texttt{NOT\_COMPUTABLE} and the screen \texttt{DEFER}. Property and $\PTIvzero$ intervals use 10,000 percentile bootstrap replicates clustered by $f$ with shared resampling across properties. The criterion is
 $\TIm{1}(aj)=\operatorname{Spearman}_{i\in72}(\operatorname{median}_r\hat s_{aj,i},\operatorname{mean}_u s^*_{H,i,u})$, with strict and lenient views secondary and 10,000 paired item-cluster bootstrap replicates.
-The outer bridge is judge-indexed, $\{(\PTIvzero(aj_j),\TIm{1}(aj_j))\}_{j=1}^{n}$: primaries-only Spearman is primary, Kendall $\tau_b$ is robustness, controls are secondary, and undefined judge-bootstrap replicates are dropped and counted. The axes are not a common calibrated level scale, so we use neither an identity line nor level MAE.
+The outer bridge is judge-indexed, $\{(\PTIvzero(aj_j),\TIm{1}(aj_j))\}_{j=1}^{n}$: primaries-only Spearman is primary, Kendall $\tau_b$ is robustness, controls are secondary, and undefined judge-bootstrap replicates are dropped and counted. The axes are not a common measurement scale, so we use neither an identity line nor level MAE.
 
 \textbf{The \textsc{Screen} workflow.}
 (1)~Label a fixed panel once; (2)~evaluate P1--P4 for bridge-set judges on scripted perturbations; (3)~establish the bridge with uncertainty; (4)~screen new configurations by property checks alone --- FAIL-SCREEN on a per-property violation, PASS-SCREEN licenses acceptance only through the bridge within the validated population, DEFER otherwise. The present result stops at step~(3) with \textsc{Defer}; it does not license step~(4).
@@ -266,7 +266,7 @@ The instrument does two jobs that require different evidence, and the paper neve
     \midrule
     Claim & catches unacceptable judges cheaply & $\PTI_p$ tracks $\TIm{1}$ numerically \\
     Decision & FAIL-SCREEN / PASS-SCREEN / DEFER & predicted score with interval \\
-    Metrics & false-pass rate, false-reject rate, defer rate, coverage, human ratings saved at a fixed false-pass tolerance & held-out rank correlation, MAE/calibration, prediction intervals, transfer across families/prompts/personas/agents \\
+    Metrics & false-pass rate, false-reject rate, defer rate, coverage, human ratings saved at a fixed false-pass tolerance & held-out rank correlation, MAE/score-scale agreement, prediction intervals, transfer across families/prompts/personas/agents \\
     \bottomrule
   \end{tabular}
   \caption{\textbf{Screen vs.\ surrogate.} Decision utility --- \emph{at false-pass tolerance $\alpha$, the screen avoids X\% of human validations} --- is the headline scalable-oversight quantity; measuring it on an expanded judge panel is registered as the next analysis and no value is claimed here.}
@@ -274,14 +274,14 @@ The instrument does two jobs that require different evidence, and the paper neve
 \end{table}
 
 For the frozen experiment we pre-register a smallest effect size of interest (SESOI) of Spearman $\rho_0=0.5$ and call an interval containing zero inconclusive rather than negative evidence about the sign.
-A learned calibration map $f_{\mathrm{cal}}: \mathbf{P} \mapsto \TIm{1}$ is deferred until roughly 40 judge configurations exist; at $n=5$ primaries the honest object is the pre-specified aggregate with its raw correlation and discrete judge-bootstrap uncertainty.
+A fitted score mapping $f_{\mathrm{cal}}: \mathbf{P} \mapsto \TIm{1}$ is deferred until roughly 40 judge configurations exist; at $n=5$ primaries the honest object is the pre-specified aggregate with its raw correlation and discrete judge-bootstrap uncertainty.
 
 \section{Experiments: Frozen PTI-v0 and Historical Context}\label{sec:experiments}
 
 \subsection{Data and human-annotation protocol (audited)}\label{sec:data}
 All experiments use \textsc{VeriBench} \citep{miranda2026veribench}, which comprises 857 theorems over five subsets: \textbf{HumanEval} (387 theorems from 56 programming puzzles; \citealp{chen2021evaluating}), \textbf{Easy} (278 from 41 introductory tasks), \textbf{CS} (68 from 10 classical algorithm problems), \textbf{Security} (112 from 28 vulnerability labs), and \textbf{RealCode} (12 from 5 Python standard-library programs).
 
-\textbf{Calibration panel.}
+\textbf{Development panel.}
 Judge validation uses an aligned panel of \textbf{75 rated candidate--gold pairs} = 25 problems $\times$ 3 agent generations (generations by Codex-, Claude-, and Llama-family agents); \textbf{72 pairs (24 problems) enter all analyses}, because one problem's gold artifact is indexed under a pre-renumbering filename and is skipped by the gold lookup.
 A repository audit reproduced every published statistic from the raw label files; Appendix~\ref{app:audit} gives the reconciliation, and the supplementary archive contains the tidy panel.
 \textbf{One annotator, two rubric-strictness rounds}: a single expert annotator scored every pair twice on a 0--5 rubric under a \emph{strict} and a \emph{lenient} reading (150 rated labels; 144 analyzed).
@@ -294,14 +294,14 @@ The same panel is reused across judges, so differences in trend reflect judge be
 
 \subsection{Probe-validity audit and excluded legacy diagnostics}\label{sec:sanity}
 
-The calibration-era degradation and \textsc{Alpha} plots used an earlier string-generated probe suite. A judge-free structural re-audit found malformed \textsc{Alpha} files (including duplicated assignment tokens and inconsistent bound-occurrence renaming) and older degradation ladders that did not satisfy the frozen construction contract. We therefore exclude those plots, their workshop-era $0.399$ \textsc{Alpha} mean, and their associated aggregate comparisons from the evidentiary chain; they are neither reproduced here nor relabeled as $\PTIvzero$. The v5 experiment instead uses repaired, hash-bound manifests whose original and transformed Lean files elaborate under the same toolchain. Invalid constructions are excluded before scoring, while a structurally valid constant-score ladder remains a behavioral failure with factor zero. The validated probe counts, coverage, and property estimates appear in Table~\ref{tab:pti-v0-properties}.
+The development-panel degradation and \textsc{Alpha} plots used an earlier string-generated probe suite. A judge-free structural re-audit found malformed \textsc{Alpha} files (including duplicated assignment tokens and inconsistent bound-occurrence renaming) and older degradation ladders that did not satisfy the frozen construction contract. We therefore exclude those plots, their workshop-era $0.399$ \textsc{Alpha} mean, and their associated aggregate comparisons from the evidentiary chain; they are neither reproduced here nor relabeled as $\PTIvzero$. The v5 experiment instead uses repaired, hash-bound manifests whose original and transformed Lean files elaborate under the same toolchain. Invalid constructions are excluded before scoring, while a structurally valid constant-score ladder remains a behavioral failure with factor zero. The validated probe counts, coverage, and property estimates appear in Table~\ref{tab:pti-v0-properties}.
 
-% LEGACY — NOT PTI-v0. The calibration-era bridge block below is retained in
+% LEGACY — NOT PTI-v0. The development-panel bridge block below is retained in
 % source history only; its figures and tuned aggregates are suppressed from the
 % submitted PDF. Historical diagnostics remain available in Appendix
 % Section~\ref{app:exp16-exp17} with explicit legacy labeling.
 \iffalse
-\subsection{Historical calibration bridge (legacy; not PTI-v0)}
+\subsection{Historical development-panel bridge (legacy; not PTI-v0)}
 
 The bridge question is whether the label-free aggregate tracks $\TIm{1}$ over judge configurations.
 Across Codex, Claude Opus, and Qwen3-Coder, judges with higher $\PTIvar$ also agree more with human ratings.
@@ -488,7 +488,7 @@ $\PTIvar$ does not only reward average property satisfaction --- it also penaliz
   Each point is one judge configuration; the $y$-axis is Spearman agreement with averaged human labels on the analyzed panel ($n{=}72$ rows).
   Vertical bars show approximate bootstrap standard errors; dashed lines are OLS guides.
   Across families, higher aggregate property satisfaction tracks higher human agreement.
-  All values are validation-set calibration evidence (Section~\ref{sec:drift}).}
+  All values are development-set evidence of human agreement (Section~\ref{sec:drift}).}
   \label{fig:bridge_cross_model}
   \vspace{-2mm}
 \end{figure*}
@@ -543,7 +543,7 @@ Notably, the intentionally bad lexical baseline \textsc{Bad\_Stringy} achieves m
 \textbf{Cross-view robustness.}
 When the aggregate's weighting is tuned on one label view and evaluated on the other, the judge-level Spearman stays above $0.7$ in both directions (strict$\rightarrow$lenient: fit $0.881$, test $0.810$; lenient$\rightarrow$strict: fit $0.857$, test $0.786$).
 
-\textbf{Decision-threshold calibration and downstream use.}
+\textbf{Decision-threshold selection and downstream use.}
 Converting scores to yes/no decisions at threshold $t \in \{0.60,\dots,0.85\}$ leaves ranking behavior unchanged ($\rho_{\text{bug}}=-0.790$ throughout) while stricter thresholds modestly reduce decision flips at some coverage cost; we select $t=0.85$ (flip rate $0.046$, pass rate $0.536$; full sweep in Appendix~\ref{app:threshold}).
 As a downstream portability check --- outside the eight-judge bridge panel --- a property-checked judge ranks \textsc{VeriBench} theorem-generation agents in the expected order (baseline prompting $0.470$; DSPy ReAct $0.615$; Trace++ $0.588$; Appendix~\ref{app:downstream}); this is a sanity check, not independent proof of judge correctness.
 \fi
@@ -582,7 +582,7 @@ The frozen structural sets contain 86 equality, 49 bug-ladder, 63 missing-specif
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.92\linewidth]{figures/outer_bridge_primaries.pdf}
-  \caption{\textbf{Outer bridge, one point per primary judge configuration.} Horizontal and vertical bars are 95\% artifact-cluster $\PTIvzero$ and paired-item $\TIm{1}$ intervals. The four primaries tied at exactly $\PTIvzero=0$ are offset horizontally by $\pm0.013$ and $\pm0.039$ for legibility; their exact abscissa is the dotted vertical line at $0$. The bridge statistic resamples judges, not items: Spearman $-0.354$, 95\% bootstrap interval $[-1.000,0.395]$, $n=5$ (6,647/10,000 valid replicates). The axes are not a shared calibrated level scale, so there is no identity line or level-error statistic.}
+  \caption{\textbf{Outer bridge, one point per primary judge configuration.} Horizontal and vertical bars are 95\% artifact-cluster $\PTIvzero$ and paired-item $\TIm{1}$ intervals. The four primaries tied at exactly $\PTIvzero=0$ are offset horizontally by $\pm0.013$ and $\pm0.039$ for legibility; their exact abscissa is the dotted vertical line at $0$. The bridge statistic resamples judges, not items: Spearman $-0.354$, 95\% bootstrap interval $[-1.000,0.395]$, $n=5$ (6,647/10,000 valid replicates). The axes are not a shared measurement scale, so there is no identity line or level-error statistic.}
   \label{fig:pti-v0-outer-bridge}
 \end{figure}
 
@@ -593,18 +593,18 @@ Figure~\ref{fig:pti-v0-outer-bridge} shows the pre-registered primaries-only ana
 The frozen Gaussian-copula simulation fixes the five empirical primary criterion ranks and applies the complete positive rule (point Spearman $\ge0.5$ and lower bootstrap bound $>0$). At true Spearman $0.5$, only 27.1\% of 10,000 simulations pass; the mean realized correlation is $0.475$. Thus the panel is low-power, but the observed point and upper interval are also below the SESOI. The correct outcome is \emph{below-SESOI and inconclusive about zero}: no positive bridge, PASS-SCREEN, deployment threshold, causal interpretation, or human-validations-saved claim is supported. The item-level $\TI_{2'}$ diagnostic is statistically distinct from this outer bridge and is shown for a representative judge in Appendix~\ref{app:ti2prime}; its remaining panels ship as supplementary material.
 
 \textbf{Historical context.}
-Calibration-era $\PTIvar$ associations (including the earlier $0.833/0.905/0.738$ Codex label-view correlations) used a tuned legacy aggregate and are \textsc{Legacy---not $\PTIvzero$}. They remain useful diagnostics in Appendix~\ref{app:exp16-exp17}, but they cannot be renamed, pooled with, or used to override this frozen result.
+Development-panel $\PTIvar$ associations (including the earlier $0.833/0.905/0.738$ Codex label-view correlations) used a tuned legacy aggregate and are \textsc{Legacy---not $\PTIvzero$}. They remain useful diagnostics in Appendix~\ref{app:exp16-exp17}, but they cannot be renamed, pooled with, or used to override this frozen result.
 
 \section{Criterion Drift and the Pre-Registered Held-Out Outcome}\label{sec:drift}
 
-\textbf{Separate the frozen result from historical calibration.}
+\textbf{Separate the frozen result from historical fitting and selection.}
 The $\PTIvzero$ judge panel in Section~\ref{sec:bridge} was frozen and its property table committed before the bridge was revealed, so it is the paper's new pre-specified judge-level validation analysis on the 72-row criterion.
-It is not an out-of-sample or held-out generalization result; by contrast, the calibration-era $\PTIvar$ analyses reused human labels while choosing aggregate forms, repeat aggregation, thresholds, and prompt panels, so those are historical validation findings rather than $\PTIvzero$ evidence.
+It is not an out-of-sample or held-out generalization result; by contrast, the development-panel $\PTIvar$ analyses reused human labels while choosing aggregate forms, repeat aggregation, thresholds, and prompt panels, so those are historical validation findings rather than $\PTIvzero$ evidence.
 
 \textbf{The held-out pool measures a different criterion.}
-Beyond the calibration panel, an independent pool was collected as the intended held-out test: five raters, 343 scored labels over 78 distinct candidate--gold pairs, many pairs with 4--5 independent ratings.
-The pool was annotated under a \emph{revised} rubric protocol, and its labels are nearly uncorrelated with the calibration labels on shared items (Spearman $\approx 0.13$ on 63 shared pairs).
-A bridge calibrated on criterion A and tested on criterion B with $\mathrm{Corr}(A,B) \approx 0.13$ fails at any judge count, so the direct frozen transfer test cannot answer the transfer question, and we withhold its correlations as uninformative rather than negative.
+Beyond the development panel, an independent pool was collected as the intended held-out test: five raters, 343 scored labels over 78 distinct candidate--gold pairs, many pairs with 4--5 independent ratings.
+The pool was annotated under a \emph{revised} rubric protocol, and its labels are nearly uncorrelated with the original development labels on shared items (Spearman $\approx 0.13$ on 63 shared pairs).
+A bridge fitted to criterion A and tested on criterion B with $\mathrm{Corr}(A,B) \approx 0.13$ fails at any judge count, so the direct frozen transfer test cannot answer the transfer question, and we withhold its correlations as uninformative rather than negative.
 \emph{Criterion drift precedes power.}
 The pool itself is reliable within its own protocol: its estimated pool-mean reliability ceiling is $\approx 0.87$, and an annotator re-labeling under the revised protocol matches the pool mean at Spearman $0.90$ --- label noise cannot be blamed for a null in a protocol-consistent rerun.
 
@@ -619,7 +619,7 @@ Power remains binding on top of drift: the frozen outer correlation has five pri
 We report both uncertainty levels and the outer valid-replicate count; the fix for the outer constraint is more judge configurations (target ${\approx}40$), not more items.
 
 \textbf{What this establishes.}
-A protocol requirement rather than a verdict on the method: one labeling protocol end-to-end --- re-anchoring calibration to the revised-protocol criterion before any frozen test --- with one rubric and one rater pool per claim, and label-lineage verification alongside the behavioral properties.
+A protocol requirement rather than a verdict on the method: one labeling protocol end-to-end --- fitting and selection against the revised-protocol criterion before any frozen test --- with one rubric and one rater pool per claim, and label-lineage verification alongside the behavioral properties.
 The rubric is part of the criterion's identity; with $\lvert H \rvert = 1$ the panel criterion is one person's judgment under a stated rubric --- legitimate as a \emph{scoped} criterion via the $h_j = (\text{person}, \pi)$ decomposition, but it must be said plainly, and we say it here.
 
 \section{Failure Modes and Limitations}\label{sec:failure}
@@ -630,12 +630,12 @@ The workshop-era $0.399$ mean is not clean evidence of judge failure because its
 \textbf{Limitations.}
 The judge is a proxy: scores are prompt- and rubric-sensitive and do not constitute kernel-level checking; evaluations are specification-relative (Appendix~\ref{app:spec-relative}).
 No finite probe suite certifies all failure modes; untested modes may persist.
-The calibration panel is small, single-rater, and hand-curated, so the criterion is scoped to that panel and rubric. The frozen bridge has only five primaries, four point estimates tied at zero, a wide discrete bootstrap interval, and only 27.1\% simulated positive-rule power at the SESOI. It substitutes accessible v5 models for an exact v4 panel that was not run; unrelated cases share batch context; and every accepted Claude CLI task records an auxiliary Haiku helper alongside Sonnet. The separate revised-protocol screens returned underpowered and negative outcomes on a drifted criterion --- cross-protocol transfer is bounded, not settled.
+The development panel is small, single-rater, and hand-curated, so the criterion is scoped to that panel and rubric. The frozen bridge has only five primaries, four point estimates tied at zero, a wide discrete bootstrap interval, and only 27.1\% simulated positive-rule power at the SESOI. It substitutes accessible v5 models for an exact v4 panel that was not run; unrelated cases share batch context; and every accepted Claude CLI task records an auxiliary Haiku helper alongside Sonnet. The separate revised-protocol screens returned underpowered and negative outcomes on a drifted criterion --- cross-protocol transfer is bounded, not settled.
 Item-level extrapolation ($b' \to b$: 72 validated items vs.\ 470 observed typed candidates over 157 items; nominally 471 with one missing candidate) is a stated assumption, not a measured one.
 
 \section{Conclusion}\label{sec:conclusion}
 We reframed judge validation as measurement: a construct ($\TW_m$), a criterion ($\TI_m$) on a specified panel, and a label-free instrument ($\mathbf{P}$, $\PTI_p$) whose acceptance semantics are a screen backed by a bridge.
-The exact frozen $\PTIvzero$ experiment does not support its positive bridge: four of five primary point estimates are zero and the judge-level association is below-SESOI/inconclusive. Historical calibration associations are not $\PTIvzero$ evidence; on a drifted criterion a separate pre-registered screen likewise found no qualifying signal, and auditing the labels showed how much of ``ground truth'' is protocol.
+The exact frozen $\PTIvzero$ experiment does not support its positive bridge: four of five primary point estimates are zero and the judge-level association is below-SESOI/inconclusive. Historical development-panel associations are not $\PTIvzero$ evidence; on a drifted criterion a separate pre-registered screen likewise found no qualifying signal, and auditing the labels showed how much of ``ground truth'' is protocol.
 The next steps are mechanical: one rubric end-to-end, ${\approx}40$ judge configurations for a powered bridge, CLI/model provenance that excludes auxiliary execution, per-property screening bounds frozen before data, Route~B margin measurement, and decision utility as the headline oversight quantity.
 
 % ---------------------------------------------------------------
@@ -646,7 +646,7 @@ The next steps are mechanical: one rubric end-to-end, ${\approx}40$ judge config
 This work reuses research-team annotations of machine-generated Lean artifacts and contains no personal or sensitive attributes. We disclose the single-rater scope and rubric instability rather than treating the labels as universal ground truth. Over-reliance on an imperfect proxy judge could misrank systems or obscure specification errors; accordingly, we frame PTI as a diagnostic screen, not a replacement for human review or kernel-level validation.
 
 \section*{Reproducibility Statement}
-The supplementary material is assembled from an explicit anonymized allowlist and contains the tidy calibration panel (75 rated / 72 analyzed pairs with strict, lenient, and averaged views), structural manifests for 470 observed typed candidates, the frozen $\PTIvzero$ config and score-request bindings, all 14,184 normalized score records and identity-scanned CLI transcripts, per-ladder diagnostics, property/criterion/bridge/SESOI JSON and CSV authorities, figure source data, and the pre-registration documents for the separate held-out screens. The canonical commands use metric version \texttt{PTI\_v0}, 10,000 replicates, seed 0, and a content-bound pre-bridge property authority identified inside the anonymized bundle. Appendix~\ref{app:audit} reconciles the human counts; every new manuscript number is mapped to a machine-readable artifact in the supplementary result-status table.
+The supplementary material is assembled from an explicit anonymized allowlist and contains the tidy development panel (75 rated / 72 analyzed pairs with strict, lenient, and averaged views), structural manifests for 470 observed typed candidates, the frozen $\PTIvzero$ config and score-request bindings, all 14,184 normalized score records and identity-scanned CLI transcripts, per-ladder diagnostics, property/criterion/bridge/SESOI JSON and CSV authorities, figure source data, and the pre-registration documents for the separate held-out screens. The canonical commands use metric version \texttt{PTI\_v0}, 10,000 replicates, seed 0, and a content-bound pre-bridge property authority identified inside the anonymized bundle. Appendix~\ref{app:audit} reconciles the human counts; every new manuscript number is mapped to a machine-readable artifact in the supplementary result-status table.
 
 \section*{AI Use Statement}
 Large language models were used in two capacities.
@@ -689,15 +689,15 @@ The estimand is alignment on a fixed curated panel.
 A seeded, audited stratified-selection template (30 problems, fixed seed, per-rater sheets) exists for a successor study and is the upgrade path to a probability sample.
 
 \textbf{The independent five-rater pool.}
-343 labels over 78 distinct pairs from 5 raters under a revised rubric; overlap with the calibration panel is 63 pairs; Spearman between pool mean and calibration labels on shared items is $\approx 0.13$.
-The two label populations are not interchangeable, and any experiment that calibrates on one and tests on the other is confounded by construct drift (Section~\ref{sec:drift}).
+343 labels over 78 distinct pairs from 5 raters under a revised rubric; overlap with the development panel is 63 pairs; Spearman between pool mean and original development labels on shared items is $\approx 0.13$.
+The two label populations are not interchangeable, and any experiment that fits or selects on one and tests on the other is confounded by construct drift (Section~\ref{sec:drift}).
 
 \textbf{Agents on the panel.}
 The three generations per problem come from Codex-, Claude-, and Llama-family agents. The typed pool contains 470 observed candidates over 157 problems; the nominal $157 \times 3=471$ grid has one documented missing candidate (problem granularity; the benchmark's 857 counts theorems).
 
 \section{Item-Level Criterion Diagnostic}\label{app:ti2prime}
 
-The outer bridge in Figure~\ref{fig:pti-v0-outer-bridge} has one point per judge; the inner diagnostic below has one point per paired item for a single historical judge and explains what $\TIm{1}$ measures. Marker area counts tied item pairs, vertical bars show within-item judge repeat standard deviation, and the top/right marginals expose range restriction without asserting a paired dependence pattern. There is no identity line because human and judge scores are not calibrated to a common level scale. The displayed GPT-5.3-Codex configuration is illustrative and predates the v5 $\PTIvzero$ panel; its $\TI_{2'}$ value is not an outer-bridge point in Experiment~29.
+The outer bridge in Figure~\ref{fig:pti-v0-outer-bridge} has one point per judge; the inner diagnostic below has one point per paired item for a single historical judge and explains what $\TIm{1}$ measures. Marker area counts tied item pairs, vertical bars show within-item judge repeat standard deviation, and the top/right marginals expose range restriction without asserting a paired dependence pattern. There is no identity line because human and judge scores are not mapped to a common measurement scale. The displayed GPT-5.3-Codex configuration is illustrative and predates the v5 $\PTIvzero$ panel; its $\TI_{2'}$ value is not an outer-bridge point in Experiment~29.
 
 \begin{figure}[t]
   \centering
@@ -726,7 +726,7 @@ This is registered as the $\delta$-measurement collection.
 
 \section{Historical Aggregate Definitions (Legacy---Not PTI-v0)}\label{app:index-definitions}
 
-Every aggregate and association in this section predates the frozen $\PTIvzero$ experiment. They are retained for calibration-history transparency and must not be renamed, pooled with, or interpreted as $\PTIvzero$.
+Every aggregate and association in this section predates the frozen $\PTIvzero$ experiment. They are retained for transparency about earlier fitting and selection and must not be renamed, pooled with, or interpreted as $\PTIvzero$.
 
 The arithmetic baselines are
 \[
@@ -760,7 +760,7 @@ To stress-test whether aggregate choice alone can rescue a weak judge family, we
   \end{tabular}
   \caption{\textbf{Leanstral remains low-alignment under multiple aggregate constructions.}
     Re-aggregation improves over the arithmetic baseline in some views, but all settings remain near-zero or negative, suggesting the bottleneck is the underlying judge behavior for this pairwise-rubric task rather than aggregate form.
-    One testable conjecture: Leanstral is stronger at Lean proof editing/generation than at calibrated pairwise judging under this rubric.}
+    One testable conjecture: Leanstral is stronger at Lean proof editing/generation than at pairwise judging assessed against human ratings under this rubric.}
   \label{tab:app-leanstral-index-reagg}
 \end{table}
 
@@ -799,7 +799,7 @@ Across the five primaries, validated $P_{\rm eq\alpha}$ ranges from $0$ to $0.93
 
 \section{Historical Validation-Set Bridge (Legacy---Not PTI-v0)}\label{app:exp16-exp17}
 
-\textsc{Legacy---not $\PTIvzero$.} This appendix reports full visual diagnostics for the calibration-era bridge analyses under the three label views (strict, lenient, avg); several embedded figure legends predate the current notation and show \texttt{pass1}/\texttt{pass2} (strict $=$ \texttt{pass1}, lenient $=$ \texttt{pass2}) or the legacy aggregate names ``cert index'' / ``trust index (geometric)'' for the quantities now written $v1$/GM/$\PTIvar$.
+\textsc{Legacy---not $\PTIvzero$.} This appendix reports full visual diagnostics for the development-panel bridge analyses under the three label views (strict, lenient, avg); several embedded figure legends predate the current notation and show \texttt{pass1}/\texttt{pass2} (strict $=$ \texttt{pass1}, lenient $=$ \texttt{pass2}) or the legacy aggregate names ``cert index'' / ``trust index (geometric)'' for the quantities now written $v1$/GM/$\PTIvar$.
 We evaluate eight judge configurations spanning frontier-model prompts, weaker LLM baselines, edit-distance heuristics, and random controls.
 $10{,}000$-resample bootstrap $95\%$ confidence intervals for the headline bridge coefficients are $[0.24,1.00]$ (avg), $[0.41,1.00]$ (strict), and $[0.11,1.00]$ (lenient), with two-sided permutation $p$-values $0.017$, $0.005$, and $0.045$ (fixed seed $42$); the intervals are wide, as expected at this panel size, but all exclude zero.
 
@@ -882,7 +882,7 @@ To reduce judge-call noise, the multi-judge validation trend was rerun with \tex
 \end{table}
 
 \subsection{Naive blind baseline}
-A single-pass, surface-form-oriented blind rubric without property calibration tracks lenient labels somewhat but remains substantially weaker and less consistent than the top-ranked judges:
+A single-pass, surface-form-oriented blind rubric without property-based tuning tracks lenient labels somewhat but remains substantially weaker and less consistent than the top-ranked judges:
 
 \begin{table}[h]
   \centering
@@ -996,7 +996,7 @@ Early Claude 3.x Sonnet scatterplots were small-file protocol iterations used to
   \label{tab:app-cross-model-status}
 \end{table}
 
-\section{Threshold Calibration (Legacy---Not PTI-v0)}\label{app:threshold}
+\section{Threshold Selection (Legacy---Not PTI-v0)}\label{app:threshold}
 
 A threshold $t$ converts a continuous judge score into a yes/no decision; flip rate measures how often repeated judge calls on the same item disagree after thresholding.
 Across $t \in \{0.60, 0.65, 0.70, 0.75, 0.80, 0.85\}$, ranking behavior is unchanged ($\rho_{\text{bug}}=-0.790$ throughout), while stricter thresholds modestly reduce flip rate at some coverage cost; $t=0.85$ gives the lowest observed flip rate with pass rate near $0.5$.
@@ -1014,7 +1014,7 @@ Across $t \in \{0.60, 0.65, 0.70, 0.75, 0.80, 0.85\}$, ranking behavior is uncha
     0.85 & \textbf{0.046} $[\textbf{0.037}, \textbf{0.057}]$ & 0.536 $[0.515, 0.557]$ \\
     \bottomrule
   \end{tabular}
-  \caption{\textbf{Threshold calibration summary.} Modest, consistent reduction in decision flips at stricter thresholds, with moderate coverage loss; ranking unchanged across thresholds.}
+  \caption{\textbf{Threshold selection summary.} Modest, consistent reduction in decision flips at stricter thresholds, with moderate coverage loss; ranking unchanged across thresholds.}
   \label{tab:exp13_threshold_sweep}
 \end{table}
 
@@ -1140,7 +1140,7 @@ Behavioral-property screening is complementary: it evaluates a single judge in i
 
 \paragraph{Consensus aggregation vs.\ property screening.}
 \citet{denisovblanch2026consensus} stress-test five inference-time aggregation strategies across benchmarks and model scales; even at $25\times$ single-sample cost, no aggregator consistently beats a single sample in verifier-absent domains, and several amplify shared misconceptions rooted in structurally correlated LLM errors (in MATH plurality-wrong cases the most common incorrect answer accounts for 65--87\% of wrong responses; models agree at $\kappa \approx 0.35$ even on random-ASCII controls).
-Their diagnosis --- consensus tracks what the crowd will say, not what is true --- sharpens the case for property-based, single-judge screening whenever a verifier or calibrated reference exists; our work sits on the verifier-present side of that boundary.
+Their diagnosis --- consensus tracks what the crowd will say, not what is true --- sharpens the case for property-based, single-judge screening whenever a verifier or reference checked against known outcomes exists; our work sits on the verifier-present side of that boundary.
 For oracle-free extensions, TVD-MI-style cross-judge information is a robustness diagnostic, not a truth proxy.
 
 \paragraph{Specializing to a test set vs.\ screening across configurations.}
@@ -1154,15 +1154,15 @@ Their single-rater specialization finding echoes our single-annotator ceiling; b
 
 \paragraph{Reference-free judging of autoformalization.}
 \citet{zhang2025goldstandardsepistemicensemble} score formalizations without a gold reference via an ensemble with a fine-grained taxonomy --- scalable when golds are unavailable, but validated against subjective human preference rather than machine-checkable equivalence, and motivated by a small non-random sample of ``potentially incorrect'' formalizations pre-selected by an uncertified LLM.
-Benchmark noise rarely alters relative model rankings because errors correlate across systems \citep{salaudeen2024imagenot}, so a small number of flawed gold examples does not invalidate comparative evaluation; we proceed from kernel-checked gold references and emphasize calibration evidence for pairwise scores.
+Benchmark noise rarely alters relative model rankings because errors correlate across systems \citep{salaudeen2024imagenot}, so a small number of flawed gold examples does not invalidate comparative evaluation; we proceed from kernel-checked gold references and emphasize development-panel evidence for pairwise scores.
 
 \paragraph{Verified-coding benchmarks and specification generation.}
 \citet{bursuc2025benchmarkvericodingformallyverified} presume well-formed specifications and evaluate end-to-end verification under them (Dafny, Verus/Rust, Lean).
 Impactful problems often lack both complete specifications and ground-truth answers; \textsc{VeriBench} targets the specification-\emph{generation} gap, and the Unsolved Questions paradigm \citep{nie2025uqassessinglanguagemodels} extends evaluation to specless, answerless settings via validator pipelines.
-Together these shift evaluation from ``solve what is specified'' to ``specify, calibrate, then solve''; our contribution is the validation layer for the semantic judges that grading generated specifications requires.
+Together these shift evaluation from ``solve what is specified'' to ``specify, validate, then solve''; our contribution is the validation layer for the semantic judges that grading generated specifications requires.
 
 \paragraph{HCI for oversight.}
-HCI reframes oversight as calibrated trust: interfaces that expose process and embed lightweight verification rather than one-shot answers \citep{bach2022trusthci,ding2025citations,wang2024trustcode}.
+HCI reframes oversight as appropriate reliance: interfaces that expose process and embed lightweight verification rather than one-shot answers \citep{bach2022trusthci,ding2025citations,wang2024trustcode}.
 Interaction loops that make correctness checkable during generation --- test-elicitation \citep{naik2024ticoder}, explain-then-correct \citep{yan2024intelliexplain}, pair debugging \citep{ma2024hypocompass}, exposed multi-step pipelines \citep{wu2022promptchainer}, and source-grounded verification \citep{shen2024symgen} --- shift user trust from fluency to verifiable progress.
 Two patterns port directly to formal specs: counterfactual spec probes (remove a postcondition or inject a bug, display the score impact) and stepwise proof oversight (surface intermediate goals, mark unverified suggestions); both interface naturally with a graded, semantics-sensitive evaluator and a judge-card report in the validity-centered sense of \citet{salaudeen2025measurement}.
 
@@ -1172,12 +1172,12 @@ Lean~4 lets runnable code, specifications, and machine-checked proofs live in on
 Alternatives trade differently: Dafny's SMT-centered workflow offers push-button automation but not Lean's value-indexed, higher-order specifications; TLA+ excels at protocol specification but is not executable; Verus verifies Rust with a larger trusted surface than Lean's small kernel.
 
 \paragraph{Hybrid TVD-MI protocols.}
-Where gold specifications exist, calibrating TVD-MI-style information scores against known gold outcomes (compile success, unit tests, post-condition proofs) could yield composite metrics that preserve gaming-resistance while adding calibrated correctness probabilities --- a practical bridge between unsupervised robustness and supervised precision \citep{robertson2025stepbystep}.
+Where gold specifications exist, fitting mappings from TVD-MI-style information scores to known gold outcomes (compile success, unit tests, post-condition proofs) could yield composite metrics that preserve gaming-resistance while adding correctness probabilities whose predictions match observed frequencies --- a practical bridge between unsupervised robustness and supervised precision \citep{robertson2025stepbystep}.
 
 \section{Pre-Registration Summaries}\label{app:prereg}
 Two held-out screens were pre-registered against the revised-protocol criterion (Section~\ref{sec:drift}); their documents (candidates, decision thresholds, analysis seeds, success bars, committed before new judge scores existed) ship in the supplementary archive.
 \textbf{Screen 1} (14 configurations): registered outcome \emph{underpowered}.
 \textbf{Screen 2} (32 configurations): registered outcome \emph{negative} --- no candidate met the success bar (strongest $|\rho|=0.39$, Holm-corrected $p=0.25$; leave-one-out selection transfer $\rho=0.24$, permutation $p=0.49$).
-The registered next analyses are: re-anchored calibration under one rubric end-to-end; expansion toward ${\approx}40$ judge configurations; the $\delta$-measurement collection for Route~B (Appendix~\ref{app:routeb}); and decision-utility measurement at a fixed false-pass tolerance (Table~\ref{tab:twojobs}).
+The registered next analyses are: fitting and selection under one rubric end-to-end; expansion toward ${\approx}40$ judge configurations; the $\delta$-measurement collection for Route~B (Appendix~\ref{app:routeb}); and decision-utility measurement at a fixed false-pass tolerance (Table~\ref{tab:twojobs}).
 
 \end{document}

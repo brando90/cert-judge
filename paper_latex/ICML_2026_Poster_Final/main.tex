@@ -76,7 +76,7 @@
   % CS197 moves 1-2: motivation folded into the single italic hook line
   \begin{block}{Validating LLM judges one human study at a time does not scale}
 
-    {\centering\itshape Agents write Lean~4 code and its specs faster than humans can inspect --- can one human calibration, via automatic falsifiable checks, be amortized across every future judge?\par}
+    {\centering\itshape Agents write Lean~4 code and its specs faster than humans can inspect --- can one human study, via automatic falsifiable checks, be amortized across every future judge?\par}
 
   \end{block}
 
@@ -88,7 +88,7 @@
       \setlength{\itemsep}{1.2ex}
       \item \textbf{CertJudge}: rate a small panel \textbf{once}.
       \item \textbf{Automatic falsifiable property checks} + \tivar{} certify every new judge --- no new labels.
-      \item Calibration: $n{=}75$ candidate--gold Lean pairs, single annotator, two rubric passes; 8 judge configs per family panel.
+      \item Human panel: $n{=}75$ candidate--gold Lean pairs, single annotator, two rubric passes; 8 judge configs per family panel.
     \end{itemize}
 
   \end{alertblock}
@@ -123,8 +123,8 @@
 
       % ---------- Panel (b): amortized-cost schematic ----------
       % Human-only is drawn as a single straight ray from the origin, with the same (gentle)
-      % slope as CertJudge's first (pre-calibration) segment: both incur identical per-judge
-      % labeling cost until the calibration point, where CertJudge breaks away and flattens.
+      % slope as CertJudge's first (before human assessment) segment: both incur identical per-judge
+      % labeling cost until the human-assessment point, where CertJudge breaks away and flattens.
       \resizebox{0.76\linewidth}{!}{%
       \begin{tikzpicture}[every node/.style={font=\sffamily}]
         % axes
@@ -133,19 +133,19 @@
         \node[font=\sffamily\bfseries, rotate=90, anchor=south] at (-1.6,4.2) {Expert labeling cost};
         \node[font=\sffamily\bfseries, anchor=north] at (7.2,-0.9) {More judges / evaluation rounds};
 
-        % Human-only: straight ray, slope = 0.55 = CertJudge's pre-calibration slope
+        % Human-only: straight ray, slope = 0.55 = CertJudge's before human assessment slope
         \draw[blue!70!black, dashed, very thick] (0,0) -- (14,7.7);
         \node[blue!70!black, font=\sffamily\bfseries, anchor=south] at (13.6,7.85) {Human-only};
 
         % CertJudge curve (solid dark green): shares the Human-only slope up to the
-        % calibration point (2,1.1), then breaks away and flattens
+        % human-assessment point (2,1.1), then breaks away and flattens
         \draw[green!30!black, very thick]
           (0,0) -- (2,1.1) -- (2.3,1.2) -- (14,1.75);
         \node[green!30!black, font=\sffamily\bfseries, anchor=west] at (14.2,1.75) {CertJudge};
 
-        % calibration point + callout
+        % human-assessment point + callout
         \filldraw[green!30!black] (2,1.1) circle (5pt);
-        \node[cardinalred, font=\sffamily\bfseries, align=center, anchor=south west] (calib) at (1.15,4.0) {one-time\\calibration};
+        \node[cardinalred, font=\sffamily\bfseries, align=center, anchor=south west] (calib) at (1.15,4.0) {one-time\\human study};
         \draw[cardinalred, thick, -{Latex[length=2.5mm]}] (calib.south) to[bend left=15] (1.9,1.4);
 
         % reuse label
@@ -159,10 +159,10 @@
         \draw[gray!55!black, dashed, thick] (2.3,0.35) -- (13.7,0.35);
         \draw[gray!55!black, thick] (2.3,0.18) -- (2.3,0.52);
         \draw[gray!55!black, thick] (13.7,0.18) -- (13.7,0.52);
-        \node[gray!30!black, font=\sffamily\footnotesize, anchor=south] at (8.0,0.6) {cost amortized after calibration};
+        \node[gray!30!black, font=\sffamily\footnotesize, anchor=south] at (8.0,0.6) {cost amortized after study};
       \end{tikzpicture}%
       }
-      \caption{Upper: certification pipeline. Lower: schematic (not measured data) — cost stops growing after one-time calibration.}
+      \caption{Upper: certification pipeline. Lower: schematic (not measured data) — cost stops growing after one human study.}
     \end{figure}
 
     % P1-P4 as a 2x2 grid of uniform-size boxed cards, matching panel (a)'s "Property checks" color
@@ -267,7 +267,7 @@
       \setlength{\itemsep}{0.9ex}
       \item \textbf{Amortized oversight:} one $n{=}75$ panel + automatic falsifiable checks screen every new judge --- no re-labeling.
       \item \textbf{Measure trust, don't assume it:} behavioral properties expose failures human-agreement scores miss.
-      \item \textbf{Scope:} \emph{validation-set calibration evidence, not universal reliability} --- locked held-out test (5 raters, 343 labels, 78 pairs) is next.
+      \item \textbf{Scope:} \emph{development-set evidence, not universal reliability} --- locked held-out test (5 raters, 343 labels, 78 pairs) is next.
     \end{itemize}
 
   \end{alertblock}
