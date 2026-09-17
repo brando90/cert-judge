@@ -17,7 +17,7 @@ import wandb_workspaces.reports.v2 as wr
 
 ENTITY = "brando-su"
 PROJECT = "cert-judge-pti-v0"
-REPO_ROOT = Path(__file__).resolve().parents[3]
+REPO_ROOT = Path(__file__).resolve().parents[4]
 EXPERIMENT_ROOT = Path(__file__).resolve().parents[1]
 RESULTS = EXPERIMENT_ROOT / "results"
 DEFAULT_KEY_FILE = Path("/Users/brandomiranda/keys/brandos_wandb_key.txt")
@@ -411,11 +411,11 @@ def main() -> int:
         wr.MarkdownBlock(
             text=(
                 "```bash\n"
-                "python experiments/29_proxy_validation/run_pti_v0_cli.py status\n"
+                "python experiments/archive/29_proxy_validation/run_pti_v0_cli.py status\n"
                 "python experiments/archive/04_veribench_validation/run_pti_v0.py "
                 "compute-bridge --variant PTI_v0 --prebridge-commit "
                 f"{bridge['prebridge_commit']} --bootstrap-iters 10000 --seed 0 --no-api\n"
-                "python experiments/29_proxy_validation/generate_bridge_figure.py\n"
+                "python experiments/archive/29_proxy_validation/generate_bridge_figure.py\n"
                 "```"
             )
         ),

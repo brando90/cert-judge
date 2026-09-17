@@ -16,11 +16,11 @@ you already have and answers three questions, in the order that matters:
 
 Run the design check on the submission's own published parameters::
 
-    python experiments/30_proxy_trust_index_held_out_validity/design_check.py --demo
+    python experiments/archive/30_proxy_trust_index_held_out_validity/design_check.py --demo
 
 Run the full validation on a panel of your own::
 
-    python experiments/30_proxy_trust_index_held_out_validity/design_check.py \
+    python experiments/archive/30_proxy_trust_index_held_out_validity/design_check.py \
         --input panel.json --output report.json
 
 Input schema
@@ -56,7 +56,7 @@ from dataclasses import asdict, is_dataclass
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO_ROOT / "py_src"))
 
 from cert_judge.ti_validation import (  # noqa: E402

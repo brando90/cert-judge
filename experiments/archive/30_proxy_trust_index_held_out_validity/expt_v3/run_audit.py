@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
+ROOT = HERE.parents[3]
 V2 = HERE.parent / "expt_v2/run_diagnostics.py"
 spec = importlib.util.spec_from_file_location("proxy_v2_audit_input", V2)
 v2 = importlib.util.module_from_spec(spec)
@@ -188,8 +188,8 @@ def report(audit, inventory):
         "client/effort, output directory, budget and review must be frozen separately. "
         "This inventory is preparation for that runner, not a fresh-model evaluation.", "",
         "## Reproduce", "", "```bash",
-        "CUDA_VISIBLE_DEVICES='' PYTHONPATH=py_src python experiments/30_proxy_trust_index_held_out_validity/expt_v3/run_audit.py",
-        "CUDA_VISIBLE_DEVICES='' python experiments/30_proxy_trust_index_held_out_validity/expt_v3/render_plot.py",
+        "CUDA_VISIBLE_DEVICES='' PYTHONPATH=py_src python experiments/archive/30_proxy_trust_index_held_out_validity/expt_v3/run_audit.py",
+        "CUDA_VISIBLE_DEVICES='' python experiments/archive/30_proxy_trust_index_held_out_validity/expt_v3/render_plot.py",
         "```", "", "**TLDR-end:** Use the within-problem diagnostic to choose the next audit; "
         "keep the new-family claim pending and preserve all earlier frozen results."]
     return "\n".join(lines) + "\n"

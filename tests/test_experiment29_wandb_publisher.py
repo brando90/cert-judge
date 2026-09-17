@@ -14,7 +14,7 @@ pytestmark = pytest.mark.filterwarnings(
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PUBLISHER = (
-    REPO_ROOT / "experiments" / "29_proxy_validation" / "expt_v5" / "push_to_wandb.py"
+    REPO_ROOT / "experiments" / "archive" / "29_proxy_validation" / "expt_v5" / "push_to_wandb.py"
 )
 
 

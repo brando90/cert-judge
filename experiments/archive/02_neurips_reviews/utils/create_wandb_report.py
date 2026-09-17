@@ -327,7 +327,7 @@ report = wr.Report(
         wr.P(text=(
             "All interactive Plotly figures are in the "
             f"[full stats report run](https://wandb.ai/{ENTITY}/{PROJECT}/runs/{RUN_IDS['full_report']}). "
-            "Static PNGs are in `experiments/02_neurips_reviews/figures/`."
+            "Static PNGs are in `experiments/archive/02_neurips_reviews/figures/`."
         )),
         wr.MarkdownBlock(text=(
             "| Figure | Description |\n"
@@ -352,7 +352,7 @@ report = wr.Report(
             "export OPENAI_API_KEY=$(cat ~/keys/openai_api_brandos_personal_key.txt)\n"
             "export WANDB_PROJECT=trusting-formal-judge\n"
             "export WANDB_GROUP=certification-experiments\n\n"
-            "cd experiments/02_neurips_reviews\n"
+            "cd experiments/archive/02_neurips_reviews\n"
             "bash run_all_experiments.sh   # Exp5 → Exp1 → Exp2 → Exp4 → Exp3\n"
             "python utils/final_report.py  # W&B leaderboard\n"
             "python utils/make_wandb_report.py   # Rich Plotly charts\n"

@@ -13,7 +13,7 @@ from typing import Any
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 DODGE_STEP = 0.026
 EXPERIMENT_ROOT = Path(__file__).resolve().parent
 DEFAULT_PROPERTIES = EXPERIMENT_ROOT / "results" / "properties" / "properties.json"

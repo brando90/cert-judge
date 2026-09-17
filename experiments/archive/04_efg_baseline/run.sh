@@ -9,7 +9,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-REPO_ROOT="$(cd ../.. && pwd)"
+REPO_ROOT="$(cd ../../.. && pwd)"
 
 # Activate environment if available
 if [ -f "$HOME/uv_envs/cert-judge/bin/activate" ]; then

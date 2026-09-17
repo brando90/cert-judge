@@ -34,7 +34,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 EXPERIMENT_DIR = Path(__file__).resolve().parent
 RESULTS_DIR = EXPERIMENT_DIR / "results"
 RAW_BATCH_DIR = RESULTS_DIR / "raw_batches"
@@ -85,7 +85,7 @@ V4_POOL_PATH = (
 PROMPT_SOURCE = (
     REPO_ROOT
     / "experiments"
-    / "02_neurips_reviews"
+    / "archive" / "02_neurips_reviews"
     / "utils"
     / "sensitivity_sweep.py"
 )

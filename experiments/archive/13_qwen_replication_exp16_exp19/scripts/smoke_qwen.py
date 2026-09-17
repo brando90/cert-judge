@@ -19,7 +19,7 @@ for k in ("PYTHONPATH", "PYTHONHOME"):
     os.environ.pop(k, None)
 
 REPO = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(REPO / "experiments" / "02_neurips_reviews"))
+sys.path.insert(0, str(REPO / "experiments" / "archive" / "02_neurips_reviews"))
 
 QWEN_BASE_URL = os.environ.setdefault("QWEN_BASE_URL", "http://127.0.0.1:8765/v1")
 QWEN_API_KEY  = os.environ.setdefault("QWEN_API_KEY", "EMPTY")

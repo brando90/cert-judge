@@ -84,7 +84,7 @@ DEFAULT_PANEL_DIR = DEFAULT_RESULTS / "panel_audit"
 DEFAULT_CACHE = (
     REPO_ROOT
     / "experiments"
-    / "02_neurips_reviews"
+    / "archive" / "02_neurips_reviews"
     / "results"
     / "judge_cache.json"
 )
@@ -311,7 +311,7 @@ def frozen_config() -> dict[str, Any]:
     prompt_source = (
         REPO_ROOT
         / "experiments"
-        / "02_neurips_reviews"
+        / "archive" / "02_neurips_reviews"
         / "utils"
         / "sensitivity_sweep.py"
     )

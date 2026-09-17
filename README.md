@@ -24,7 +24,7 @@ We verify these properties via scripted perturbations and rank-correlation tests
 | Monotonicity (Spearman ρ) | both ladders | **−0.985** |
 | VeriBench: agentic vs. baseline | judge score | **0.615 vs. 0.470** |
 
-Certification experiments (NeurIPS reviewer response, `experiments/02_*`):
+Certification experiments (NeurIPS reviewer response, `experiments/archive/02_neurips_reviews/`):
 - Identity mean on 30 VeriBench theorems × 4 syntactic variants: **0.920 ±0.155**
 - Spearman ρ on 5-level bug ladder: **−0.862** (p<0.001) · Weak monotonicity: **80%**
 - Out-of-domain (15 manual Lean 4 theorems): identity=**1.000**, weak_mono=**100%**, **CERTIFIED ✅**
@@ -58,7 +58,7 @@ source $HOME/uv_envs/cert-judge/bin/activate
 export OPENAI_API_KEY=$(cat ~/keys/openai_api_brandos_personal_key.txt)
 export WANDB_API_KEY=$(cat ~/keys/brandos_wandb_key.txt)
 
-cd experiments/02_neurips_reviews
+cd experiments/archive/02_neurips_reviews
 bash run_all_experiments.sh          # Exp5→Exp1→Exp2→Exp4→Exp3
 python utils/make_wandb_report.py    # Plotly charts + full stats
 python utils/create_wandb_report_simple.py  # clean W&B leaderboard report
@@ -75,24 +75,18 @@ bash main_overall_judge_score.sh
 
 ## Repo Structure
 
-```
-py_src/cert_judge/
-  hsj_scoring.py       — P1–P5 scoring functions, JTI computation
-  tvd_mi_tools.py      — TVD-MI information-robustness metric (P5)
+- `experiments/`: active work only, plus shared label data. See [the current index](experiments/README.md).
+- `experiments/archive/`: completed, superseded, and parked studies, including the recent proxy-validation results.
+- `py_src/cert_judge/`: reusable scoring and plotting code.
+- `paper_latex/ICLR_2027_submission/`: active manuscript.
 
-experiments/
-  00_overall_cert_judge_metric_with_properties/   — full P1–P7 JTI pipeline
-  02_neurips_reviews/      — certification experiments
-    SUMMARY.md                                    — results + next steps
-    exp1_hard_identity.py / exp2_hard_monotonicity.py / ...
-    utils/  judge_caller.py · metrics.py · variant_generator.py · ...
-  03_human_validation/
-    claude_code.md     — full code prompt for human-judge agreement study (ICC, next experiment)
+Check for obsolete local folders after pulling:
 
-paper_latex/
-  ICML_2026/           — main.tex (latexmk -pdf main.tex)
-  NeurIPS_2025/        — neurips_2025.tex
+```bash
+python3 py_src/cert_judge/experiment_layout.py --check
 ```
+
+Use `--reconcile` to preserve and relocate ignored leftovers safely.
 
 ## Certification Thresholds
 
@@ -104,9 +98,9 @@ paper_latex/
 
 `combined_score = identity_mean × (weak_mono_pct / 100)` — perfect judge = 1.00
 
-## Next Experiments
+## Historical follow-up suggestions
 
-See `experiments/02_neurips_reviews/SUMMARY.md` for full details.
+See `experiments/archive/02_neurips_reviews/SUMMARY.md` for full details.
 
 1. **Human validation** (`experiments/archive/03_human_validation/`) — ICC(2,1) + Spearman human-vs-judge; code prompt ready
 2. **More LLM judges** — Claude 3.5/3.7, Llama 3, Gemini on the same certification protocol

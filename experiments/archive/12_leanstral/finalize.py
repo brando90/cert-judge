@@ -4,7 +4,7 @@ open a PR assigned to ehersch, and email Brando + Ethan with key figures.
 
 Run:
     PYTHONPATH=~/ultimate-utils/py_src \
-        python3 experiments/12_leanstral/finalize.py \
+        python3 experiments/archive/12_leanstral/finalize.py \
         --log /tmp/exp12_leanstral_<TS>.log
 
 Idempotent-ish: if the branch / PR already exists it logs and proceeds to email.
@@ -101,10 +101,10 @@ def git_branch_commit_push() -> str:
         str((RES25 / "leanstral_r3_median_mono_stab_40_60_avg").relative_to(REPO)),
         str((RES25 / "leanstral_r3_median_mono_stab_40_60_pass1").relative_to(REPO)),
         str((RES25 / "leanstral_r3_median_mono_stab_40_60_pass2").relative_to(REPO)),
-        "experiments/12_leanstral/finalize.py",
+        "experiments/archive/12_leanstral/finalize.py",
     ]
     # Also include the patched judge_caller.py if it has unstaged changes
-    add_paths.append("experiments/02_neurips_reviews/utils/judge_caller.py")
+    add_paths.append("experiments/archive/02_neurips_reviews/utils/judge_caller.py")
     add_paths.append("experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median.MODEL_USED.txt")
 
     for p in add_paths:
@@ -132,7 +132,7 @@ def open_pr(branch: str, summary_text: str) -> str:
         "- Runs Exp16 (multi-judge cert→human trend), Exp19 (low-variance replot), and Exp22-GM\n"
         "  (geometric cert-index, avg/pass1/pass2) with **Leanstral** (`labs-leanstral-2603`) as the\n"
         "  primary judge family. gpt-4o-mini retained as cross-family judge.\n"
-        "- Adds Mistral routing in `experiments/02_neurips_reviews/utils/judge_caller.py`\n"
+        "- Adds Mistral routing in `experiments/archive/02_neurips_reviews/utils/judge_caller.py`\n"
         "  (additive `elif` for `leanstral`/`labs-leanstral` model prefixes; no impact on existing\n"
         "  `claude-*`/`gpt-*`/`o*` paths — verified by routing test + e2e smoke).\n\n"
         f"## Headline numbers (auto)\n```\n{summary_text}\n```\n\n"

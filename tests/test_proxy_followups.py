@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from cert_judge.ti_validation import compute_ti_m, fisher_ci, top_k_overlap
 
-PATH = Path(__file__).resolve().parents[1] / "experiments/30_proxy_trust_index_held_out_validity/expt_v2/run_diagnostics.py"
+PATH = Path(__file__).resolve().parents[1] / "experiments/archive/30_proxy_trust_index_held_out_validity/expt_v2/run_diagnostics.py"
 spec = importlib.util.spec_from_file_location("proxy_followups", PATH)
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)

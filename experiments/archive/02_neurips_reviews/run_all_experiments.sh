@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run all certification judge experiments in order.
 # Usage: bash run_all_experiments.sh
-# Run from: experiments/02_neurips_reviews/
+# Run from: experiments/archive/02_neurips_reviews/
 
 set -e
 

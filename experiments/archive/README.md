@@ -1,6 +1,6 @@
 # experiments/archive — retired experiment folders
 
-**TLDR:** Folders here are finished or superseded. History is preserved via `git mv`; live docs, tests, keepers, and the PTI-v0 (Proxy Trust Index version 0) CLI callers were rewritten to `experiments/archive/<dir>`. Do not start new results from here. Active work stays under `experiments/` (OpenReview, Leanstral, TVD-MI, EFG, TI₂′ plots, the experiment-29 CLI bridge, and shared label dirs).
+**TLDR:** Folders here are finished or superseded. History is preserved via `git mv`; live docs, tests, keepers, and the PTI-v0 (Proxy Trust Index version 0) CLI callers were rewritten to `experiments/archive/<dir>`. Do not start new results from here. Only currently pursued work belongs under `experiments/`; shared label directories are data support.
 
 Archived 2026-09-10 (Trigger Rule 39: `experiments/` holds active work only).
 
@@ -34,25 +34,36 @@ Archived 2026-09-10 (Trigger Rule 39: `experiments/` holds active work only).
 | `25_motivation_llm_judges` | Motivation writeup for LLM judges; superseded by the paper intro | 2026-08-11 | 2026-09-10 |
 | `26_human_label_dataset_audit` | Human-label dataset audit (75-vs-72 panel); exp 27/29 still read the audited TSV from here | 2026-08-14 | 2026-09-10 |
 
-## Keepers left live under `experiments/`
+## Lifecycle cleanup — 09-17-2026
 
-These were in the 00–26 range (or are shared data / later numbered work) and were **not** archived:
+There are no active numbered experiments in this checkout. The previous retention
+list treated finished paper inputs and dormant runbooks as active; that policy is
+superseded. Shared human-label folders remain data support. Core metric and plotting
+functions remain in `py_src/cert_judge/`; historical runners stay reproducible here.
 
-- `02_neurips_reviews` — OpenReview / reviewer response
-- `03_tvdmi` — TVD-MI (Total Variation Distance–Mutual Information)
-- `04_efg_baseline` — EFG (Epistemically and Formally Grounded; Zhang et al., arXiv:2506.10903) baseline
-- `12_leanstral` — Leanstral replication
-- `18_icml_reviews` — OpenReview feedback
-- `27_trust_plots` — outside 00–26
-- `29_proxy_validation` — outside 00–26; live CLI-only PTI-v0 scorer, rewritten to call the archived v4 runner
-- `ethan_hand_labels/`, `human_labels/` — shared label data
-- `idea_oap_+_tvdmi.md`, `scoring_judges.md` — stay at `experiments/` root
+| Former root under `experiments/` | Canonical home | Outcome / reason |
+|---|---|---|
+| `02_neurips_reviews/` | `experiments/archive/02_neurips_reviews/` | Historical reviewer-response results retained; no current continuation recorded. |
+| `03_tvdmi/` | `experiments/archive/03_tvdmi/` | Offline elicitation comparison and figures complete. |
+| `04_efg_baseline/` | `experiments/archive/04_efg_baseline/` | Parked baseline implementation; no current run recorded. Not declared completed. |
+| `12_leanstral/` | `experiments/archive/12_leanstral/` | Parked replication runbook; no current run recorded. Not declared completed. |
+| `18_icml_reviews/` | `experiments/archive/18_icml_reviews/` | Historical review-feedback packet; retained for reference. |
+| `27_trust_plots/` | `experiments/archive/27_trust_plots/` | Existing-data figures complete; reusable plotting code is in the core package. |
+| `29_proxy_validation/` | `experiments/archive/29_proxy_validation/` | Complete: accepted scores and negative/inconclusive proxy validation preserved. |
+| `30_proxy_trust_index_held_out_validity/` | `experiments/archive/30_proxy_trust_index_held_out_validity/` | Versions 2–3 complete; proposed fresh-family evaluation unstarted. |
 
-`04_veribench_validation` holds live-looking PTI-v0 infrastructure (`run_pti_v0.py`, `pti_v0_v4/`, `results_pti_v0_v4/`). Per the archive request it was moved here rather than promoted, and every live pointer was rewritten to `experiments/archive/04_veribench_validation/`. The reusable numerics remain in `py_src/cert_judge/pti_v0.py`.
+No open pull requests were listed at cleanup. Older local branches still reference
+retired paths (including `codex/exp29-release-megaqa-20260914`); their checkouts and
+commits were not altered. Any future merge must route additions through
+`layout.json` and pass the layout check, rather than recreate retired roots.
+
+Ignored local leftovers are reconciled through the retirement map. Conflicting
+files are preserved separately under ignored `.local_leftovers/`; no frozen result
+payload is rewritten.
 
 ## Renames of retained experiment folders
 
-These folders remain under `experiments/`; only their names changed on 2026-09-10.
+These were retained on 2026-09-10 and moved to the archive on 09-17-2026. The table below preserves the earlier rename history; `layout.json` gives current destinations.
 Frozen result payloads retain historical paths so their recorded hashes remain
 valid; executable commands, live documentation, and tests use the current names.
 
@@ -66,3 +77,21 @@ valid; executable commands, live documentation, and tests use the current names.
 | `18_open_revievew_feedback_ICML_2026_mathai_ws` | `experiments/18_icml_reviews` | Reviewer feedback and response packet. |
 | `27_judge_human_agreement_and_stability_plots` | `experiments/27_trust_plots` | Plot human agreement and repeat stability. |
 | `29_proxy_trust_index_vs_human_agreement` | `experiments/29_proxy_validation` | Validate the proxy against human agreement. |
+
+## Current read-only entry points
+
+Older experiment documents retain historical commands and provenance paths. Use
+these current locations to inspect the retained runners without starting inference:
+
+```bash
+python experiments/archive/04_veribench_validation/run_pti_v0.py --help
+python experiments/archive/29_proxy_validation/run_pti_v0_cli.py --help
+```
+
+For new work, create a registered active experiment with its own output directory.
+The reusable baseline cache lives in ignored `.cache/efg_judge/`, outside the archive.
+
+Verification on 09-17-2026: all tracked files accounted for after relocation; frozen
+result/configuration/table/figure contents unchanged. The mutable runner relocation
+record was refreshed after checking that its scientific configuration is identical.
+144 local leftover entries were relocated without overwriting destination files.

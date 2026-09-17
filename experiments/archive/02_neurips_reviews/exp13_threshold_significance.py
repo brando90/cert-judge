@@ -19,8 +19,8 @@ from typing import Dict, List
 import numpy as np
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-EXP_DIR = REPO_ROOT / "experiments" / "02_neurips_reviews"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+EXP_DIR = REPO_ROOT / "experiments" / "archive" / "02_neurips_reviews"
 DEFAULT_IN = EXP_DIR / "results" / "threshold_calibration_sweep" / "detail_rows.csv"
 DEFAULT_OUT = EXP_DIR / "results" / "threshold_calibration_sweep_significance"
 

@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Dict, List
 
 EXP_DIR = Path(__file__).parent
-REPO_ROOT = EXP_DIR.parents[1]
+REPO_ROOT = EXP_DIR.parents[2]
 sys.path.insert(0, str(EXP_DIR))
 
 from utils.metrics import pearson_r, spearman_r, weak_monotonicity_pct

@@ -29,7 +29,7 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Sequence, Tuple
 
 EXP_DIR = Path(__file__).parent
-REPO_ROOT = EXP_DIR.parents[1]
+REPO_ROOT = EXP_DIR.parents[2]
 sys.path.insert(0, str(EXP_DIR))
 
 from utils.judge_caller import judge

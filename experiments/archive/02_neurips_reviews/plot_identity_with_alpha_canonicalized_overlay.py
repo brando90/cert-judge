@@ -134,7 +134,7 @@ def main() -> int:
     parser.add_argument(
         "--results-dir",
         type=Path,
-        default=Path("experiments/02_neurips_reviews/results/codex_api_gpt53_r3_20260418_230027"),
+        default=Path("experiments/archive/02_neurips_reviews/results/codex_api_gpt53_r3_20260418_230027"),
     )
     parser.add_argument(
         "--figures-dir",

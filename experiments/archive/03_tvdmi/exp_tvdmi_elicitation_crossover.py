@@ -37,7 +37,7 @@ from scipy import stats
 from sklearn.metrics import roc_auc_score
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = ROOT / "data" / "file_equiv_08_19_2025"
 OUT_DIR = Path(__file__).resolve().parent / "results"
 

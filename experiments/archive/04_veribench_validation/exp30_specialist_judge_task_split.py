@@ -16,7 +16,7 @@ from scipy.stats import kendalltau, pearsonr, spearmanr
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-EXP02_DIR = REPO_ROOT / "experiments" / "02_neurips_reviews"
+EXP02_DIR = REPO_ROOT / "experiments" / "archive" / "02_neurips_reviews"
 sys.path.insert(0, str(EXP02_DIR))
 
 from utils.judge_caller import judge

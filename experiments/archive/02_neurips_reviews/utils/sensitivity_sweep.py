@@ -15,7 +15,7 @@ from utils.variant_generator import generate_variants
 
 
 VERIBENCH_DIR = Path.home() / "veribench/veribench_dataset/lean_src/veribench"
-LOCAL_FILE_EQ_DIR = Path(__file__).resolve().parents[3] / "data" / "file_equiv_08_19_2025"
+LOCAL_FILE_EQ_DIR = Path(__file__).resolve().parents[4] / "data" / "file_equiv_08_19_2025"
 
 
 PROMPT_VARIANTS: Dict[str, str] = {

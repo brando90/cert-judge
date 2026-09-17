@@ -19,7 +19,7 @@ sys.path.insert(0, str(VB))
 import exp43_frozen_tivar_heldout as e43
 import exp28_variance_aware_trust_index as e28
 from scipy.stats import spearmanr
-sys.path.insert(0, str(REPO / "experiments" / "02_neurips_reviews"))
+sys.path.insert(0, str(REPO / "experiments" / "archive" / "02_neurips_reviews"))
 from utils.metrics import weak_monotonicity_pct
 
 SEED = 42

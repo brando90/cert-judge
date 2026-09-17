@@ -35,7 +35,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO_ROOT / "py_src"))
 
 from cert_judge.ti2prime_plot import compute_ti2prime, plot_ti2prime_scatter  # noqa: E402

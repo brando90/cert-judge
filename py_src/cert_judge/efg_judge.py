@@ -289,7 +289,7 @@ def _call_llm(
 # ---------------------------------------------------------------------------
 # Cache
 # ---------------------------------------------------------------------------
-_CACHE_DIR = Path(__file__).resolve().parent.parent.parent / "experiments" / "04_efg_baseline" / "cache"
+_CACHE_DIR = Path(__file__).resolve().parent.parent.parent / ".cache" / "efg_judge"
 
 
 def _load_cache(namespace: str) -> dict:

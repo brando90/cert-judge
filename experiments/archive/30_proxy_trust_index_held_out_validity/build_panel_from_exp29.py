@@ -11,7 +11,7 @@ Joins the proxy and the criterion on ``judge_id``:
 Reads committed artifacts only. No inference, no credentials, no writes outside
 the chosen output path.
 
-    python experiments/30_proxy_trust_index_held_out_validity/build_panel_from_exp29.py \
+    python experiments/archive/30_proxy_trust_index_held_out_validity/build_panel_from_exp29.py \
         --view average --role primary --output panel_exp29_primary.json
 
 Then feed the result to ``design_check.py --input``.
@@ -24,8 +24,8 @@ import json
 import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-EXP29 = REPO_ROOT / "experiments" / "29_proxy_validation" / "results"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+EXP29 = REPO_ROOT / "experiments" / "archive" / "29_proxy_validation" / "results"
 
 
 def build(view: str, roles: set[str] | None) -> dict:
@@ -70,7 +70,7 @@ def build(view: str, roles: set[str] | None) -> dict:
 
     counts = [u["observed_count"] for u in units.values() if u["observed_count"]]
     return {
-        "_source": "experiments/29_proxy_validation/results",
+        "_source": "experiments/archive/29_proxy_validation/results",
         "_view": view,
         "_roles": sorted(roles) if roles else "all",
         "_metric_version": properties.get("metric_version"),

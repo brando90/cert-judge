@@ -16,7 +16,7 @@ import numpy as np
 import scipy
 from scipy.stats import rankdata
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / "py_src"))
 from cert_judge.pti_v0 import ladder_factor
 from cert_judge.ti_validation import (
@@ -24,7 +24,7 @@ from cert_judge.ti_validation import (
 )
 
 HERE = Path(__file__).resolve().parent
-SOURCE = ROOT / "experiments/29_proxy_validation/results"
+SOURCE = ROOT / "experiments/archive/29_proxy_validation/results"
 PROBES = ROOT / "experiments/archive/04_veribench_validation/results_pti_v0_v4/probe_validity_manifest.json"
 PROPERTIES = ("P_eq", "P_bm", "P_ms", "P_eqalpha")
 FLOORS = (1e-6, 1e-4, 1e-3, 1e-2)

@@ -68,7 +68,7 @@ The PTI-v0 properties are exact equality (`P_eq`), bug monotonicity (`P_bm`), mi
 
 - Base candidates: `data/generated_agents/`, frozen as typed `f=(item,agent,generation)` rows in `experiments/archive/04_veribench_validation/pti_v0_v4/base_pool_manifest.json`.
 - Golds: resolved by the frozen precedence policy across the legacy and newest VeriBench roots.
-- Probe validity, requests, cache inventory, quotes, and results: new artifacts under `experiments/archive/04_veribench_validation/results_pti_v0_v4/`; legacy result directories are never overwritten.
+- Frozen probe validity, requests, cache inventory, quotes, and results: `experiments/archive/04_veribench_validation/results_pti_v0_v4/`. New work must use a newly registered active experiment; never write new runs into an archive.
 
 Historical P1–P5 fixtures retained for compatibility:
 
@@ -82,3 +82,26 @@ Historical P1–P5 fixtures retained for compatibility:
 The active manuscript is `paper_latex/ICLR_2027_submission/main.tex`. Older ICML/NeurIPS trees are historical. Populate PTI-v0 claims only from committed machine-readable PTI-v0 outputs.
 
 Build with: `latexmk -pdf <main_file.tex>`
+
+## Experiment lifecycle (required)
+
+Only work currently being pursued belongs directly under `experiments/`. Completed,
+superseded, stopped, or parked experiments belong in `experiments/archive/`, even
+when their results support the current paper. Unstarted follow-up suggestions do
+not keep a completed study active. Shared label directories are data, not experiments.
+
+`experiments/archive/layout.json` is the machine-readable active/support inventory
+and retirement map. Register an active experiment there with its concrete current
+task and add its row to `experiments/README.md`. When closing it, use `git mv`, record
+the outcome in the archive index, update executable consumers and path depths, and
+preserve frozen results byte-for-byte. Reusable code belongs in the core package.
+
+After a pull or archive move, run:
+
+```bash
+python3 py_src/cert_judge/experiment_layout.py --check
+```
+
+If obsolete local folders remain, run the same command with `--reconcile`, then
+`--check`. Reconciliation preserves ignored local files and conflicting versions;
+never use `git clean -fdx`. Do not recreate retired roots when merging older branches.

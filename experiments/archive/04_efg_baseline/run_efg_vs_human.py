@@ -32,7 +32,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO_ROOT / "py_src"))
 
 from cert_judge.efg_judge import efg_judge, efg_judge_direct, efg_judge_oap_wa, EFGResult
@@ -56,7 +56,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--bug-ladder-dir", type=Path, default=REPO_ROOT / "data" / "file_equiv_08_19_2025" / "my_add_file_eq_with_bugs")
     p.add_argument("--spec-ladder-dir", type=Path, default=REPO_ROOT / "data" / "file_equiv_08_19_2025" / "my_add_file_eq_with_missing_specs")
     p.add_argument("--identity-dir", type=Path, default=REPO_ROOT / "data" / "file_equiv_08_19_2025" / "correct_file_dir")
-    p.add_argument("--out-dir", type=Path, default=REPO_ROOT / "experiments" / "04_efg_baseline" / "results")
+    p.add_argument("--out-dir", type=Path, default=REPO_ROOT / "experiments" / "archive" / "04_efg_baseline" / "results")
     p.add_argument("--model", type=str, default="gpt-4o-mini")
     p.add_argument("--mode", type=str, default="oap_wa", choices=["direct", "oap_wa", "both"])
     p.add_argument("--n-repeats", type=int, default=3, help="Repeats for P4 stability")

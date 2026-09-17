@@ -25,7 +25,7 @@ from typing import Dict, List, Optional, Sequence, Tuple
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-JUDGE_UTILS_DIR = REPO_ROOT / "experiments" / "02_neurips_reviews"
+JUDGE_UTILS_DIR = REPO_ROOT / "experiments" / "archive" / "02_neurips_reviews"
 sys.path.insert(0, str(JUDGE_UTILS_DIR))
 
 

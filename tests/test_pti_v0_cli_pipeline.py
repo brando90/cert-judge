@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-RUNNER = REPO_ROOT / "experiments" / "29_proxy_validation" / "run_pti_v0_cli.py"
+RUNNER = REPO_ROOT / "experiments" / "archive" / "29_proxy_validation" / "run_pti_v0_cli.py"
 
 
 def _module():

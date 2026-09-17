@@ -18,7 +18,7 @@ THRESHOLDS="${THRESHOLDS:-0.6,0.65,0.7,0.75,0.8,0.85}"
 BOOTSTRAP_ITERS="${BOOTSTRAP_ITERS:-1000}"
 RESULTS_DIR="${RESULTS_DIR:-$SCRIPT_DIR/results/threshold_calibration_sweep}"
 FIGURES_DIR="${FIGURES_DIR:-$SCRIPT_DIR/figures/threshold_calibration_sweep}"
-VERIBENCH_ROOT="${VERIBENCH_ROOT:-$SCRIPT_DIR/../../data/veribench_dataset/lean_src/veribench}"
+VERIBENCH_ROOT="${VERIBENCH_ROOT:-$SCRIPT_DIR/../../../data/veribench_dataset/lean_src/veribench}"
 
 echo "============================================================"
 echo "EXP13 Threshold Calibration Sweep"

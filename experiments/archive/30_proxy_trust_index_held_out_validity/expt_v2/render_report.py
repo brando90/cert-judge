@@ -121,8 +121,8 @@ def main(snapshot=False):
         "## Uncertainty and interpretation", "",
         "The problem bootstrap jointly resamples problems for every judge and recomputes proxy and criterion with the same weights. It preserves candidates within a problem and complete observed repeat vectors. Its intervals condition on the observed human labels, model calls and configurations; they do not measure uncertainty over new raters, future calls or new model families. Undefined correlations are counted. Pairwise ranking fractions are bootstrap frequencies, not posterior probabilities.", "",
         "The new analysis does not use the earlier automatic ceiling correction or independent-pair intervals for fitted cross-validation predictions. The same-person cross-rubric Spearman value 0.249 is not an intraclass-correlation estimate for the revised five-rater pool. Judge-level criterion reliability must be established at that level rather than borrowed from individual labels.", "",
-        "## Reproduce and inspect", "", "```bash", "PYTHONPATH=py_src .venv/bin/python experiments/30_proxy_trust_index_held_out_validity/expt_v2/run_diagnostics.py",
-        ".venv/bin/python experiments/30_proxy_trust_index_held_out_validity/expt_v2/render_report.py", "```", "",
+        "## Reproduce and inspect", "", "```bash", "PYTHONPATH=py_src .venv/bin/python experiments/archive/30_proxy_trust_index_held_out_validity/expt_v2/run_diagnostics.py",
+        ".venv/bin/python experiments/archive/30_proxy_trust_index_held_out_validity/expt_v2/render_report.py", "```", "",
         "The run manifest records source hashes, the seed, software versions and exact judge identifiers. No experiment-29 files were overwritten. All grids were specified in PROTOCOL.md before this follow-up run, after the historical data had already been inspected.", "",
         (f"Weights & Biases report: [open published report]({publication['report_url']})."
          if publication else "Weights & Biases report: pending publication after review."), "",

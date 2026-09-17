@@ -1,31 +1,39 @@
 # Experiments
 
-**TLDR:** Start here for the paper rewrite: reviewer feedback, retained baselines, trust plots, and proxy validation. Folder names are short; the table explains each purpose, and completed historical work lives in [`archive/`](archive/README.md).
+Only currently pursued experiments belong directly in this directory.
+**There are no active experiments recorded at this cleanup (09-17-2026).**
+The completed proxy studies are archived; the suggested new-family follow-up
+has not started and is not an active run. This is a repository classification,
+not a claim about processes on remote machines.
 
-| Folder | Purpose |
+| Location | Purpose |
 |---|---|
-| [`02_neurips_reviews/`](02_neurips_reviews/) | Neural Information Processing Systems (NeurIPS) Math-AI 2026 reviewer feedback and response experiments. |
-| [`03_tvdmi/`](03_tvdmi/) | Total Variation Distance–Mutual Information (TVD-MI): compare information-based elicitation with direct scoring. |
-| [`04_efg_baseline/`](04_efg_baseline/) | Epistemically and Formally Grounded (EFG) judge baseline against human labels. |
-| [`12_leanstral/`](12_leanstral/) | Leanstral replication: judge agreement with humans and repeated-score stability. |
-| [`18_icml_reviews/`](18_icml_reviews/) | International Conference on Machine Learning (ICML) AI4Math 2026 OpenReview feedback. |
-| [`27_trust_plots/`](27_trust_plots/) | Manuscript figures of human agreement and repeated-score stability. |
-| [`29_proxy_validation/`](29_proxy_validation/) | Completed Proxy Trust Index version 0 (PTI-v0) validation against human agreement, with the scoring runner and frozen results. |
-| [`30_proxy_trust_index_held_out_validity/`](30_proxy_trust_index_held_out_validity/) | Versions 2–3 complete: combined-target and within-problem diagnostics are inconclusive; unseen-family validation remains unstarted. |
-| [`ethan_hand_labels/`](ethan_hand_labels/), [`human_labels/`](human_labels/) | Shared human-label data. |
-| [`archive/`](archive/README.md) | Earlier experiments and the folder-rename history. |
+| [archive/](archive/README.md) | Completed, superseded, or parked studies, including recent results. |
+| [human_labels/](human_labels/) | Shared human-label data; not an experiment. |
+| [ethan_hand_labels/](ethan_hand_labels/) | Shared human-label data; not an experiment. |
 
-## Run or inspect
+The ignored local `keys/` directory is credential storage, not an experiment.
 
-Entry points that display help without model inference:
+## Recent completed work
+
+- [29_proxy_validation](archive/29_proxy_validation/README.md): completed behavioral-proxy validation; negative/inconclusive finding.
+- [30_proxy_trust_index_held_out_validity](archive/30_proxy_trust_index_held_out_validity/README.md): completed combined-target and within-problem diagnostics; new-family validation remains unstarted.
+- [27_trust_plots](archive/27_trust_plots/README.md): completed figures from existing scores; reusable plotting functions remain in `py_src/cert_judge/`.
+
+## Layout maintenance
+
+Register new active work in [the inventory](archive/layout.json) with a concrete
+current task, and add it here. Archive finished or parked work promptly; a future
+idea or a paper citation does not make a finished experiment active.
+
+Git moves tracked files but leaves ignored caches and local outputs behind. After
+a pull, check and reconcile those leftovers without deleting unique evidence:
 
 ```bash
-python experiments/archive/04_veribench_validation/run_pti_v0.py --help
-python experiments/29_proxy_validation/run_pti_v0_cli.py --help
-python experiments/30_proxy_trust_index_held_out_validity/design_check.py --demo
+python3 py_src/cert_judge/experiment_layout.py --check
+python3 py_src/cert_judge/experiment_layout.py --reconcile
 ```
 
-The retained runner imports the frozen predecessor from the archive. Reusable
-metric calculations live in `py_src/cert_judge/pti_v0.py`; historical result files
-keep their original provenance paths. Paid judge inference still requires an
-exact quote and explicit approval.
+Reconciliation never overwrites existing files; collisions are preserved under
+`archive/.local_leftovers/` and remain ignored. Frozen records retain their original
+provenance paths; executable consumers use the current archive locations.
