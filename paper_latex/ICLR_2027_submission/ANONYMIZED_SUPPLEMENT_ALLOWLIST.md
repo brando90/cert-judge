@@ -1,5 +1,13 @@
 # ICLR 2027 anonymized supplement allowlist
 
+> **SUPERSEDED ARTIFACT LIST (2026-09-17).** The ICLR 2027 paper is now the accepted ICML 2026 DL4C
+> manuscript (`TI_var`, EXP16–EXP19), not the PTI-v0 / Experiment-29 surrogate-gap study. The
+> *artifact paths* enumerated below therefore no longer correspond to anything this paper reports and
+> must be re-derived before any supplement is built. The **double-blind hygiene rules** — the "Never
+> include during review" list and the mandatory pre-upload scan — still apply verbatim. See
+> `OPEN_QUESTIONS.md` item 5. The version of this file written for the superseded draft is preserved
+> at `paper_latex/archive/ICLR_2027_submission_old_09162026/ANONYMIZED_SUPPLEMENT_ALLOWLIST.md`.
+
 **TLDR:** Build the review supplement only from the content-bound artifacts below, using sanitized derivatives where stated. Never distribute internal status, W&B, authentication, local-path, Git-history, or public-commit records during double-blind review.
 
 ## Directly allowed

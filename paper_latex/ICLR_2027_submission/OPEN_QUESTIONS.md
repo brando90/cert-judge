@@ -1,53 +1,43 @@
 # OPEN QUESTIONS — human decisions needed for the ICLR 2027 submission
 
-**TLDR:** The remaining author decisions concern the panel scope, title, decision utility, residual
-legacy appendix figures, and the submission bundle. Experiment 29 resolved the prior PTI recompute,
-Ethics-statement, and headline-figure questions.
+**TLDR:** The ICLR 2027 paper is now the accepted ICML 2026 DL4C paper in ICLR format (see
+`CHANGES.md`). Four author decisions remain: the ~2-page main-text overflow, whether to write the
+ICLR statements, the title, and whether to fold in the newer 343-label annotation pool. The prior
+question list — which concerned the superseded *Surrogate Gap* / PTI-v0 draft — is preserved at
+`paper_latex/archive/ICLR_2027_submission_old_09162026/OPEN_QUESTIONS.md`.
 
-1. **72-vs-75, Option B (memo §6.1 recommends it; requires approval because it changes headline
-   numbers).** Rename the 3 stale `0_unsafeMultiply_safe` label rows to `1_unsafeMultiply_safe` and
-   regenerate EXP16/EXP18-family outputs so n=75 / 25 problems becomes literally true. This re-runs
-   LLM judges on the 3 restored pairs × all bridge judges (API-priced) and shifts every inter-round
-   and bridge statistic by small amounts. The draft currently uses Option A wording (75 rated / 72
-   analyzed), which is correct as-is. **Decide: stay with A, or approve B + budget.**
+1. **Main-text page budget (blocking for submission).** Main text runs pages 1–11; ICLR counts main
+   text only and allows 9. Two pages must come out, and that is a content call. Cheapest candidates,
+   in order of least scientific loss:
+   - §2 Related Work is ~1 page in the main text while Appendix A already holds an extended version;
+     compress the main-text version to a short paragraph and lean on the appendix.
+   - §6 Limitations repeats the `n=75` / 343-label held-out plan twice (once under "Validation vs.
+     test protocol", once under "Limitations"); merging removes ~0.4 page.
+   - Move Table 6 (threshold sweep) and/or Table 7 (VeriBench agent ranking) to the appendix.
+   **Decide: which cuts, or request a different target length.**
 
-2. **Title.** Working title = memo shortlist #1 (*The Surrogate Gap: …*, graded 9/10). #2 (*Do
-   Behavioral Stress Tests Predict Human Agreement? …*, also 9/10) names the formal-code domain in
-   the title, which #1 does not. One-line change.
+2. **ICLR statements (Ethics / Reproducibility / LLM usage).** None are present — the ICML paper had
+   none, and nothing was invented. The reproducibility statement can be drafted from repository
+   facts; the LLM-usage statement needs the authors' own account of how LLMs were used in writing.
+   **Decide: draft them (and supply the LLM-usage facts), or submit without.**
 
-3. **Resolved by Experiment 29 — three-property sensitivity.** The frozen v5 run computes all four
-   properties separately and reports both four-property `PTI_v0` and the labeled
-   `PTI_{eq,bm,ms}` sensitivity. Their primary judge-level rank statistics coincide because they
-   retain the same tie pattern; neither result supports a positive bridge.
+3. **Title.** Currently the accepted ICML title verbatim: *"Certifying the Judge: Falsifiable
+   Properties for LLM-Based Evaluation of Formal Code"*. It is the right title for a resubmission of
+   the accepted work. **Decide: keep, or retitle for the main-conference audience.**
 
-4. **Decision-utility measurement** (screen's headline number: % human validations avoided at
-   false-pass tolerance α). Framework + metrics are in §5; no value is claimed. Needs ~40 judge
-   configurations (API-priced) per the memo. **Decide: pre-register + run before ICLR, or keep as
-   registered-next-analysis (current draft).**
+4. **The newer annotation pool.** §6 announces, but does not use, the 5-reviewer / 343-label / 78-pair
+   corpus in `experiments/human_labels`, framing the locked held-out test as future work. A main
+   conference submission is a natural place to actually run it. **Decide: keep as announced future
+   work (zero new spend), or register an active experiment and run the locked held-out analysis
+   before the deadline.** Any judge re-runs need an explicit call/cost quote first.
 
-5. **Resolved — Ethics statement.** The Ethics statement is active before the references and states
-   that annotators were consenting research-team members and no sensitive data was used.
+5. **Supplement bundle.** `ANONYMIZED_SUPPLEMENT_ALLOWLIST.md` still enumerates Experiment-29 /
+   PTI-v0 artifacts, which this paper no longer reports. Its double-blind hygiene rules still apply;
+   its artifact list must be re-derived against the `TI_var` / EXP16–EXP19 outputs this paper cites.
+   **Decide: whether a supplement is being submitted at all.**
 
-6. **Residual legacy appendix figures.** Experiment 29 removed the old raster overview and regenerated
-   the new outer-bridge figures from audited source data. Some historical appendix PNGs still embed
-   `TI_var`/`cert index`/`pass1`/`pass2`; their captions disclose the legacy names. **Decide: regenerate
-   the remaining historical appendix figures before submission or keep the explicit caption notes.**
+## Inherited nits (flagged, not changed)
 
-7. **Supplementary anonymized archive.** The Reproducibility statement promises: tidy panel TSV,
-   audit scripts, probe/prompt definitions, cached bridge statistics, pre-registration docs.
-   Assemble the zip (strip git metadata + names) close to the deadline. Also verify
-   `refs.bib`'s `anonymous2025formaljudge` entry still matches how the workshop version should be
-   cited (currently "NeurIPS (to appear), 2025" — update venue/year if that's stale).
-
-8. **Two notational threads deliberately left open** (memo §6.7): the "IS" benchmark-subset label is
-   unidentified in the working archive, and the prompt dimension `k_x` is deferred. Neither appears
-   in the draft; resolve only if a future section needs them.
-
-9. **JS/KL rows** were dropped from the human-ceiling table (unreproducible from raw files —
-   plug-in KL infinite on disjoint support; derived JS 0.1035 bits ≠ draft's 0.081). If you want
-   them back, regenerate with the exp18 script's exact smoothing convention and re-insert with a
-   stated convention.
-
-10. **Codex/`gpt-4o-mini` naming in App. E table** retains the draft's judge-panel composition
-    labels. If the panel is expanded toward ~40 configurations (memo §6.5), the cross-model status
-    table should be regenerated from the new run rather than edited by hand.
+- Appendix E says "Figures A.1–A.3"; under ICLR numbering those are Appendix F figures. Present in
+  the accepted ICML paper too; fixing it means choosing the right `\ref` targets.
+- The `TI_var` display equation keeps the two-line `aligned` break tuned for the narrow ICML column.
