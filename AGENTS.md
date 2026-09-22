@@ -23,6 +23,18 @@ The older P1–P7/JTI and TIvar pipelines remain historical compatibility code. 
 
 Name the operation precisely rather than using "calibration" as a catchall: distinguish development-set association, a fitted score mapping, threshold selection, and score--outcome reliability. Preserve external titles and citations, literal paths and code identifiers, and frozen evidence; wording cleanup also applies to stored archived manuscript prose, whose corresponding PDF artifacts must be rebuilt.
 
+### "Specification" has one meaning here
+
+"Specification" is ambiguous (natural-language intent vs. a formal object; written by an agent, a human, or a script). The paper fixes it in §3 "Task" (`sec:problem-setup`); all prose must match:
+
+- **Intent** — the informal requirement in the natural-language problem statement or docstring. Never call it a "specification"; say "intent".
+- **Formal specification** (adopted; common formal-methods usage, as preferred by the formal-methods experts consulted) — the theorem statements about the implementation plus the `Prop` predicates they use: pre/postconditions, properties, `Pre → Post` correctness, equivalence to a reference implementation. Bare "specification"/"spec" in prose means exactly this.
+- **Not specification:** unit tests (`example : f 1 = 2 := by decide`, `#eval`, `#guard`), which are *tests*; proofs, which certify the theorems (golds often use `sorry`); the implementation itself. Never write "theorem/test specifications", "specification items (tests/theorems)", or "code, tests, theorems, and formal specifications" as if theorems and specs were different things.
+- **Competing view (not adopted):** a unit test is a ground (closed) theorem, so tests are point specifications. It is stated only as a position in appendix `app:spec-vs-tests`; do not import it into the main text.
+- **Authorship is orthogonal to the term.** Name the provenance when it matters: candidate (agent-generated), gold (the audited reference artifact `g`), probe (a scripted perturbation of a gold).
+- **Frozen names vs. the definition.** The missing-specification ladder (`P_ms`, P3, `build_missing_spec_ladder`, `_is_spec_declaration` in `py_src/cert_judge/probe_validation.py`) removes theorem statements *and* tests. Keep frozen names and identifiers, but describe what it removes as "theorem statements and unit tests".
+- **Bug ladders differ.** The PTI-v0 `build_bug_ladder` mutates only implementation `def`s. The historical P2 `my_add` ladder (`data/file_equiv_08_19_2025/my_add_file_eq_with_bugs/BUGS_SUMMARY.md`) mostly corrupts specification statements. State which one you mean.
+
 ## Environment Setup
 
 Uses `uv` for environment management (not pip/conda):

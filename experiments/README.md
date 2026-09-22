@@ -1,7 +1,10 @@
 # Experiments
 
 Only currently pursued experiments belong directly in this directory.
-**There are no active experiments recorded at this cleanup (09-17-2026).**
+| Active experiment | Current task |
+|---|---|
+| [31_final_iclr_paper_writing](31_final_iclr_paper_writing/notes.md) | Targeted main-text rewrite of the ICLR 2027 submission: replace development-set "predicts"/"fit" framing for the fixed-weight TI_var, label the exp23 tuned-weight cross-pass table as a separate variant, reconcile the 0.881 quote, cut to 9 pages. Started 2026-09-22. |
+
 The completed proxy studies are archived; the suggested new-family follow-up
 has not started and is not an active run. This is a repository classification,
 not a claim about processes on remote machines.

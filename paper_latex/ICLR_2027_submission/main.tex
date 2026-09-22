@@ -102,22 +102,29 @@
 \maketitle
 
 \begin{abstract}
-  LLM judges are increasingly central to evaluating AI-generated code, tests, and formal specifications, yet their reliability is still checked in the least scalable way possible: fresh human ratings for every new judge, prompt, model, and threshold. We challenge this validation loop by asking whether human judgment can be amortized and \textbf{scaled} through falsifiable behavioral properties. We propose a property-certification protocol for LLM judges of Lean~4 theorem and specification quality, where each judge is scored by four automatically testable conditions: identity, bug monotonicity, specification monotonicity, and repeat/prompt stability. Our variance-aware trust index \(\mathrm{TI}_{\mathrm{var}}\) is one instantiation assessed against human ratings of these diagnostics. The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled development pairs constitute a universally fixed evaluator constant.
+  LLM judges are increasingly central to evaluating AI-generated code, tests, and formal specifications.
+  Practitioners typically establish their reliability through agreement with human ratings and must repeat that check for every new judge, prompt, model, and domain.
+  We challenge this validation loop by asking whether human judgment can be amortized and \textbf{scaled} through falsifiable behavioral properties. 
+  We propose a property-certification protocol for LLM judges of Lean~4 formal-specification quality, where each judge is scored by four automatically testable conditions: identity, bug monotonicity, specification monotonicity, and repeat/prompt stability. Our variance-aware trust index \(\mathrm{TI}_{\mathrm{var}}\) is one instantiation assessed against human ratings of these diagnostics. The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled development pairs constitute a universally fixed evaluator constant.
 
-  On eight judge configurations spanning frontier prompts, weaker baselines, edit-distance, and random controls, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on that development suite, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2). Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs, while identity and stability are weaker standalone signals. Applied to \textsc{VeriBench}, the protocol illustrates development-set human agreement for scalable evaluation settings involving AI-generated code, tests, theorems, and formal specifications, while explicitly not claiming deployed generalization guarantees.
+  On eight judge configurations spanning frontier prompts, weaker baselines, edit-distance, and random controls, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on that development suite, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2). Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs, while identity and stability are weaker standalone signals. Applied to \textsc{VeriBench}, the protocol illustrates development-set human agreement for scalable evaluation settings involving AI-generated code, tests, and formal specifications, while explicitly not claiming deployed generalization guarantees.
 \end{abstract}
 
 \section{Introduction}
 Agentic AI systems increasingly generate both code and the trust artifacts meant to evaluate that code: tests, specifications, and formal theorems.
-In Lean~4, these artifacts are code-adjacent formal objects: runnable programs paired with theorem or specification statements and, sometimes, proofs that those statements hold.
+In Lean~4, these artifacts are code-adjacent formal objects: runnable programs paired with unit tests, formal specifications (theorem statements about the program), and, sometimes, proofs of those theorems.
 In classical autoformalization, the target theorem is supplied, so evaluation can often reduce to proof success.
 In agentic verification, the system must decide \emph{what should be true} before it can prove anything.
 The Lean kernel can check a proof, but it cannot tell us whether the proposed theorem is complete, semantically aligned with the intended program, or merely a weak statement that happens to typecheck.
 As agents produce more candidate artifacts than humans can inspect, theorem-quality evaluation becomes a code-evaluation and scalable-oversight problem \citep{bowman2022scalable,zhou2025graders,khattab2024dspy,cheng2024trace}.
 
-The standard reliability check is per-judge human validation: collect labels, measure agreement between each judge and human ratings, and keep the judge if the correlation is high enough.
-That check is necessary, but it scales linearly with the number of judges, prompts, model updates, thresholds, and domains under consideration.
+The standard reliability check is per-judge human validation: collect labels, measure agreement between each judge and human ratings, and keep the judge if the correlation is high enough~\citep{Liu2023GEval,Zheng2023MTBench}.
+The check is necessary because judge--human agreement varies substantially across judge models, datasets, and evaluated properties~\citep{Kocmi2024HumanVsLLM}.
+But it scales linearly with the number of judges, prompts, model updates, and domains under consideration.
 Every new model family or prompt revision asks for another round of annotation, so direct human validation becomes untenable at agent-generation rates.
+% TODO(internal-review): a reviewer may ask why a new judge on the SAME domain cannot simply reuse the existing n=75 labels (no fresh ratings needed).
+% The amortization argument is strongest for new domains / artifact distributions and for repeated judge selection on one fixed labeled set (adaptive overfitting; e.g., Dwork et al. 2015, "The reusable holdout").
+% Consider stating explicitly which of these the protocol amortizes.
 Humans remain the anchor; the problem is that re-using humans from scratch for every judge wastes the expensive part of the process.
 
 % \begin{figure}[t]
@@ -131,10 +138,9 @@ Humans remain the anchor; the problem is that re-using humans from scratch for e
 
 We focus on a core deep-learning-for-code bottleneck: code agents can generate candidate formal artifacts far faster than humans can inspect them. In this setting, LLM judges are useful only if their reliability can be measured scalably rather than assumed.
 
-Validating LLM judges against humans is the standard reliability check but does not scale: every new judge, prompt, or model needs fresh annotations.
-Property certification \textbf{amortizes} this cost---gold references collected once, used to select a four-property trust metric, then deployed without re-annotating every new judge configuration.
+Property certification \textbf{amortizes} the cost of human validation---gold references collected once, used to select a four-property trust metric, then deployed without re-annotating every new judge configuration.
 In our setting, humans rate a compact validation set once (\(n {=} 75\) aligned pairs in this proof-of-concept run), and the property suite, linked to human agreement on the development panel, extends that trust signal to new judges through automated property checks; the research question is whether the \emph{method} (property certification + a variance-aware index) tracks human agreement, not whether this single weighting is the final word for all domains.
-The four properties are concrete: a judge should give maximal scores to identical artifacts, lower scores as semantic bugs accumulate, lower scores as theorem/test specifications are removed, and stable scores under prompt rewordings and semantics-preserving rewrites.
+The four properties are concrete: a judge should give maximal scores to identical artifacts, lower scores as semantic bugs accumulate, lower scores as theorem statements and unit tests are removed, and stable scores under prompt rewordings and semantics-preserving rewrites.
 On a panel of eight judge configurations, \(\mathrm{TI}_{\mathrm{var}}\) fits the pooled development corpus with validation-set Spearman coefficients of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2); held-out generalization to new raters, benchmarks, and judge families remains future work.
 
 Our \textbf{contributions} are:
@@ -161,16 +167,22 @@ Common biases include position and verbosity effects and sensitivity to prompt p
 To mitigate biases and instability, multi-agent debate frameworks such as \emph{ChatEval} emulate panel-style review to yield more robust consensus scores \citep{Chan2024ChatEval}. Structured prompting like \emph{G-Eval} elicits rubric-driven, stepwise reasoning prior to scoring, improving agreement with human criteria on NLG tasks \citep{Liu2023GEval}. Reliability can also be quantified via repeated scorings and internal consistency measures (e.g., Cronbach’s $\alpha$) to detect prompt/run sensitivity \citep{Li2024TrustLLMJudgments}.
 
 \paragraph{Code and formal-spec evaluation.}
-For programming, single-pass metrics like pass@k can be brittle or unavailable; early LLM-judge approaches such as \emph{ICE-Score} highlighted difficulty distinguishing partial vs.\ full correctness from a one-shot review \citep{Zhuo2024ICEScore}. \emph{CodeJudge} operationalizes a two-stage “analyze-then-summarize’’ procedure with a taxonomy of code faults, significantly improving correlation with functional ground truth \citep{TongZhang2024CodeJudge}. In formal verification/autoformalization, prior work typically provides fixed target theorems, reducing evaluation to proof success. In contrast, agentic systems must propose specifications, necessitating \emph{semantic} judges. We adopt a certification protocol (akin to metamorphic testing) and verify that our LLM judge obeys \emph{identity/consistency}, \emph{monotonicity} with respect to injected bugs and specification omissions, and \emph{prompt/rewrite stability}, directly answering recent calls for validated, trustworthy LLM evaluators in safety-critical domains \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
+For programming, single-pass metrics like pass@k can be brittle or unavailable; early LLM-judge approaches such as \emph{ICE-Score} highlighted difficulty distinguishing partial vs.\ full correctness from a one-shot review \citep{Zhuo2024ICEScore}. \emph{CodeJudge} operationalizes a two-stage “analyze-then-summarize’’ procedure with a taxonomy of code faults, significantly improving correlation with functional ground truth \citep{TongZhang2024CodeJudge}. In formal verification/autoformalization, prior work typically provides fixed target theorems, reducing evaluation to proof success. In contrast, agentic systems must propose specifications, necessitating \emph{semantic} judges. We adopt a certification protocol (akin to metamorphic testing) and verify that our LLM judge obeys \emph{identity/consistency}, \emph{monotonicity} with respect to injected bugs and omitted theorems and tests, and \emph{prompt/rewrite stability}, directly answering recent calls for validated, trustworthy LLM evaluators in safety-critical domains \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
 
 \paragraph{Evaluation Consistency.}
 Recent work has shown that unconstrained chain-of-thought reasoning can reduce evaluation consistency, and that simple comparative prompting often outperforms complex multi-step pipelines \citep{chen2026rethinking}. We interpret these findings as evidence that stability, rather than reasoning complexity, is the primary driver of reliable grading. Our work formalizes this intuition by introducing falsifiable structural diagnostics---identity, monotonicity under controlled edits, and reliability under prompt variation---that aggregate into a graded trust signal aligned with human judgments.
 
-\section{Problem Setup: Judging Lean Theorem/Specification Quality}\label{sec:problem-setup}
+\section{Problem Setup: Judging Lean Formal-Specification Quality}\label{sec:problem-setup}
 \paragraph{Task.}
 Each benchmark item contains a natural-language problem statement, a gold Lean~4 artifact
-$g$, and a candidate artifact $x$ produced by an AI agent. The artifact may include code,
-tests or specification scaffolds, and a target theorem/specification statement. Our goal is
+$g$, and a candidate artifact $x$ produced by an AI agent.
+We call the informal requirement conveyed by the problem statement the \emph{intent}.
+An artifact contains an implementation, a \emph{formal specification} of it, and possibly unit tests and proofs.
+Following common formal-methods usage, the formal specification is the set of theorem statements about the implementation, together with the predicates they use.
+Typical examples are pre/postconditions, algebraic properties, \(\mathrm{Pre}\rightarrow\mathrm{Post}\) correctness, and equivalence to a reference implementation.
+Unit tests are not part of it, and proofs only certify that its theorems hold; Appendix~\ref{app:spec-vs-tests} discusses the competing view that a unit test is a ground theorem.
+Hereafter, ``specification'' means formal specification, whether an agent, a human, or a script wrote it.
+Our goal is
 to assign a score $J(x,g) \in [0,1]$ reflecting how well the candidate captures the intended formal specification represented
 by the gold artifact.
 For non-formal-methods readers, a Lean artifact is a code file in a programming language and proof assistant where executable code, tests, definitions, and theorem statements can live together.
@@ -229,7 +241,8 @@ The judge should assign the maximum score to an artifact compared with itself: \
 Scores should decrease as semantic bugs are cumulatively introduced.
 
 \paragraph{P3 — Monotonicity to Missing Specs.}
-Scores should decrease as specification elements (theorems/tests) are removed.
+Scores should decrease as theorem statements and unit tests are removed.
+We keep the historical name even though, by the definition in Section~\ref{sec:problem-setup}, removed tests are not specification.
 
 \paragraph{P4 — Prompt Stability \& Semantic Invariance.}
 Scores should remain stable across repeated calls and under semantics-preserving rewrites.
@@ -311,7 +324,7 @@ For judge-validation, we use an aligned panel of \(n=75\) candidate--gold pairs 
 The same aligned panel is reused across judges, so differences in trend reflect judge behavior rather than row selection. Human-pass dispersion is non-trivial (Appendix Figure~\ref{fig:app-human-pass-hist}), which is why we report all three label views rather than a single pass.
 
 \subsection{Property sanity checks on GPT-5.3-Codex}
-\textbf{Establishing trust in the judge.} Figure~\ref{fig:judge_sanity_checks} shows that the Codex judge satisfies the intended qualitative behavior: scores decrease as semantic bugs accumulate and as specifications are removed, while identity and rewrite robustness are handled separately through P1/P4 diagnostics. The strongest signal is specification-ablation monotonicity (\(\rho=-0.899\), \(r=-0.892\)); bug monotonicity is also directionally correct but noisier (\(\rho=-0.808\), \(r=-0.687\)), indicating occasional local reversals. Appendix Figures~\ref{fig:fig3_style_opus_codex} and~\ref{fig:lowvar_mono_codex_opus} show that the same monotone degradation pattern is also visible for Claude Opus under matched plotting protocols.
+\textbf{Establishing trust in the judge.} Figure~\ref{fig:judge_sanity_checks} shows that the Codex judge satisfies the intended qualitative behavior: scores decrease as semantic bugs accumulate and as theorem statements and tests are removed, while identity and rewrite robustness are handled separately through P1/P4 diagnostics. The strongest signal is specification-ablation monotonicity (\(\rho=-0.899\), \(r=-0.892\)); bug monotonicity is also directionally correct but noisier (\(\rho=-0.808\), \(r=-0.687\)), indicating occasional local reversals. Appendix Figures~\ref{fig:fig3_style_opus_codex} and~\ref{fig:lowvar_mono_codex_opus} show that the same monotone degradation pattern is also visible for Claude Opus under matched plotting protocols.
 
 \begin{table}[t]
   \centering
@@ -1001,6 +1014,15 @@ Rice's theorem directly implies that the gold reference files used by our judge 
 
 This leads to a critical limitation for interpreting our artifact scores: evaluations are \textbf{specification-relative}. A maximal score denotes close agreement with \emph{our} audited gold formalization and rubric-conditioned human ratings, not a universal guarantee beyond that reference.
 
+\section{Unit Tests as Ground Theorems: A Definition We Do Not Adopt}\label{app:spec-vs-tests}
+Section~\ref{sec:problem-setup} follows common formal-methods usage: the formal specification consists of theorem statements about the implementation, and unit tests are not part of it.
+We record a competing view that we do not adopt.
+In Lean~4, a unit test is often itself a closed theorem.
+The gold \texttt{myAdd} artifact states its tests as, e.g., \texttt{example : myAdd 1 2 = 3 := by native\_decide}, an anonymous theorem with no free variables.
+On this view, a unit test specifies the implementation at one concrete input, and specifications range from such ground instances to universally quantified properties such as \(\forall n,\ \texttt{myAdd}\ n\ 0 = n\).
+The choice changes terminology, not our measurements.
+The P3 ladder removes theorem statements and unit tests alike; under the adopted definition, only the removed theorems count as missing specification.
+
 \section{Judge Prompt Templates}\label{app:judge-prompts}
 For reproducibility, we include the main judge prompt templates used in the paper's principal judge panels. The primary Codex / Opus / Qwen comparisons use the prompt variants \texttt{P1\_BASELINE}, \texttt{P4\_CHECKLIST}, and \texttt{P8\_STRICT\_B}; the BAD\_STRINGY lexical baseline is included as a negative control.
 
@@ -1094,7 +1116,7 @@ Return ONLY a JSON object:
 
 
 \section{Judge Certification: Additional Plots}\label{app:judge-cert}
-We report raw scatterplots used during certification of the LLM judge. These plots visualize the judge’s response to controlled perturbations: (P1) identity/reflexivity, (P2) cumulative bug injection, and (P3) removal of specification items (tests/theorems). Figures A.1–A.3 show that scores drop as artifacts worsen; the bug plot is noisier with an early prompt, which motivated the simplified rubric used in the main experiments. P4 (prompt stability/invariance) is reported in the main text with dedicated aggregate plots.
+We report raw scatterplots used during certification of the LLM judge. These plots visualize the judge’s response to controlled perturbations: (P1) identity/reflexivity, (P2) cumulative bug injection, and (P3) removal of theorem statements and unit tests. Figures A.1–A.3 show that scores drop as artifacts worsen; the bug plot is noisier with an early prompt, which motivated the simplified rubric used in the main experiments. P4 (prompt stability/invariance) is reported in the main text with dedicated aggregate plots.
 
 \textit{Protocol variants.} The scatterplots below are “sanity-check” runs with the simplest prompts to stress visible monotonic behavior. In the bug study (Fig.~\ref{fig:app-bugs}) the earlier, theorem-equivalence prompt produced a noisier trend; this prompted a simplified, rubric-first prompt that we use for all reported results in the main paper, yielding the stronger correlations cited in Fig.~\ref{fig:judge_sanity_checks}. For missing-specs (Fig.~\ref{fig:app-missing-specs}), both Claude 3.5 and 3.7 show clear negative trends; minor non-monotonicity in 3.7 disappears with the finalized rubric.
 
