@@ -352,3 +352,39 @@ generalize (property-based) tests; judging intent can't be automated by running 
   working tree (uncommitted, ~185+/372− across abstract–§5, with `% CS197 move 1–6` comments; commits f6f96f0, 2844d7b,
   bb40162, d017f55 today are theirs). This session messaged it (msg 497c716d) with the approved closing and left the
   main.tex commit to it. Do not run two rewrites on the same file; this session's remaining role is review of that pass.
+
+## 2026-09-22 — main text cut to the 9-page limit + consistency pass (APPLIED)
+
+**Result:** the main text ends at the top of p. 8 (about 7.1 pp; the limit is 9). Before, it ran to p. 11. Build is clean,
+there are no undefined references and no overfull boxes in the main text, and every main-text float is on pp. 4–7.
+
+- **Structure:** every section is condensed (redundant restatements removed).
+- **Moved to a new appendix section** `app:moved-results`:
+  - the cross-pass table, now labeled as a *weight-tuned geometric variant, not TI_var*;
+  - the threshold table.
+- **Tables:**
+  - Merged the family table with the index-comparison table (`tab:tivar_cross_model_results`).
+  - New table `tab:property_assoc`, from the exp17 `per_property_correlations.csv` (pass1/pass2/avg).
+  - New table `tab:codex_configs`: human ρ and TI_var from the Figure 2 data, reversal rate from the exp19
+    `bug_reversal_rates.csv`.
+- **Added back:**
+  - a compact workflow table;
+  - an Alpha-renaming analysis paragraph;
+  - a related-work paragraph on judging formal statements (FormalAlign, prover-pipeline judges, ReForm, Kenton);
+  - a bootstrap-interval disclosure (13-config panel ρ=0.769, CI [0.34, 0.95]).
+- **Removed or corrected claims:**
+  - ρ=0.881 presented as TI_var;
+  - "fit/discovered weightings" (TI_var has fixed equal weights);
+  - "n=75 from 24×3": now 75 rated, 72 analyzed;
+  - the main-panel 0–10 scale;
+  - "GPT-4o", now GPT-4o-mini;
+  - "same property-checked judge" downstream: the downstream judge is Claude 3.7 and is not certified;
+  - the unsourced "Easy/HumanEval strongest agreement" claim;
+  - the untraceable "12.5% weak monotonicity" (replaced by the 20/24 reversal count from the CSV);
+  - "In every family, higher TI_var agrees more", which overclaimed;
+  - the headline 0.833/0.905/0.738 now labeled as Codex-family.
+- **Abstract closing:** from session "paper writing certjudge" (Brando-approved vision line), with one factual fix:
+  "the same property-checked judge" → "an LLM judge … in the expected order".
+- **Needs Brando:** Limitations now say the 343-label pool is a *different criterion* (ρ≈0.13 with the panel
+  labels), not "not yet analyzed". A `% TODO(internal-review)` notes that the archived exp23/24 re-bridging attempts
+  found no reliable signal. Decide whether to disclose them.
