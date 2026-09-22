@@ -182,7 +182,7 @@ def run_codex_once(prompt: str, cfg: dict, timeout: int) -> dict:
         })
         m = re.search(r"(?m)^model:\s*(\S+)\s*$", completed.stdout + "\n" + completed.stderr)
         result["observed_model_header"] = m.group(1) if m else None
-        benign = [e for e in error_items if str(e.get("message", "")).startswith("Skill descriptions were shortened")]
+        benign = [e for e in error_items if str(e.get("message", "")).startswith(("Skill descriptions were shortened", "Reconnecting..."))]
         real_errors = [e for e in error_items if e not in benign]
         result["benign_warnings"] = benign
         if real_errors:
