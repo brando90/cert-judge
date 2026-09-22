@@ -330,3 +330,10 @@ generalize (property-based) tests; judging intent can't be automated by running 
   pipelines). Ends with "This paper asks when such a judge of AI-written formal specifications can be trusted."
 - 5 new bib entries (arXiv API / Crossref verified). The PDF is 30 pp; the main text still ends on p. 11, the same as
   before the edit.
+
+## 2026-09-22 — ρ=0.881 quote (audit #4 closed)
+
+- §6.2 said "the answer (ρ=0.881 across 8 judges) is supportive but graded, and generalization to held-out humans and judges is reported separately". 0.881 is an in-sample weight-search value (exp23 `summary_fit_pass1.json` fit_corr_spearman=0.88095; also the exp21 best swept config per `archive/21_tmlr_submission/evidence_map.md`), not TI_var. "Reported separately" was also false, since the held-out pool is unanalyzed.
+- Now: "the averaged-label Spearman correlation across 8 judges is ρ=0.833, with a 95% bootstrap CI of [0.24, 1.00]. Generalization to held-out humans and judges awaits the locked held-out test described above." Source: `archive/21_tmlr_submission/ci_provenance/headline_cis.json` (avg ρ=0.8333, ci95 [0.241, 1.0], seed 42, 10k bootstrap; artifact `results_exp28_varaware_codex_avg_newindex`).
+- Kept: `:615` cross-pass table 0.881/0.810 (that is the tuned variant's own number; audit #3 is about labelling it) and `:1525` trend-v1 avg 0.881→0.786 (a separate, older index analysis).
+- Build: 30 pp; conclusion and references still start on p11, so the added pages are appendix float placement.

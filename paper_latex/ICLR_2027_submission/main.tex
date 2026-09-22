@@ -755,7 +755,9 @@ An encouraging sign is that a separate expanded 13-judge analysis remains above 
 We treat \(\mathrm{TI}_{\mathrm{var}}\) as a graded trust signal rather than a binary pass/fail gate.
 Individual properties are necessary conditions on the perturbations we test (a judge that scores \(X=X\) at less than \(1.0\) has, by definition, failed identity), but no finite property suite can certify all possible judge failures.
 TI is multiplicative, so a single low-scoring property collapses the index, but it does not impose a hard threshold.
-The empirical question we answer is whether higher-TI judges agree more with humans on the development panel in expectation; the answer (\(\rho=0.881\) across \(8\) judges) is supportive but graded, and generalization to held-out humans and judges is reported separately.
+The empirical question we answer is whether higher-TI judges agree more with humans on the development panel in expectation.
+The answer is supportive but graded: the averaged-label Spearman correlation across \(8\) judges is \(\rho=0.833\), with a 95\% bootstrap CI of \([0.24, 1.00]\).
+Generalization to held-out humans and judges awaits the locked held-out test described above.
 
 \paragraph{\textsc{Alpha}-renaming robustness.}
 Among semantics-preserving rewrite probes, aggressive \textsc{Alpha}-renaming (systematically changing bound variable and binder names while leaving Lean-semantics intact) is systematically the hardest for our judges: mean scores and score stability remain much worse than under milder RENAME/REORDER/STYLE edits (Table~\ref{tab:codex_invariance_variants} and appendix failure-mode plots).
