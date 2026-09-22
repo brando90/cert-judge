@@ -4,7 +4,6 @@ Only currently pursued experiments belong directly in this directory.
 | Active experiment | Current task |
 |---|---|
 | [31_final_iclr_paper_writing](31_final_iclr_paper_writing/notes.md) | Targeted main-text rewrite of the ICLR 2027 submission: replace development-set "predicts"/"fit" framing for the fixed-weight TI_var, label the exp23 tuned-weight cross-pass table as a separate variant, reconcile the 0.881 quote, cut to 9 pages. Started 2026-09-22. |
-| [32_veribench_ranking_certified_judge](32_veribench_ranking_certified_judge/RUNBOOK.md) | Re-score the VeriBench agent-ranking table with a certified judge configuration via subscription CLIs (option 3 of the abstract-closing decision). Started 2026-09-22. |
 | [33_openreview_complaints_all_venues_to_iclr2027_paper](33_openreview_complaints_all_venues_to_iclr2027_paper/README.md) | Every OpenReview complaint (NeurIPS 2025 MATH-AI, ICML 2026 AI4Math, ICML 2026 DL4C, TMLR 2026 desk reject) captured verbatim and tracked one row each against the ICLR 2027 main.tex; edits E1–E9 applied from archived artifacts. DL4C reviews await Brando's paste. Started 2026-09-22. |
 | [18_icml_reviews](18_icml_reviews/pre_prompt.md) | Reference packet: ICML 2026 AI4Math OpenReview capture and action prompt, re-activated from the archive on 2026-09-22 (commit ff22793); complaint tracking lives in 33. |
 
@@ -23,6 +22,7 @@ The ignored local `keys/` directory is credential storage, not an experiment.
 
 ## Recent completed work
 
+- [32_veribench_ranking_certified_judge](archive/32_veribench_ranking_certified_judge/REPORT.md): stopped 2026-09-22 — re-ranked VeriBench agents with a certified prompt on gpt-5.6-terra (826 cells, $0 API); superseded when §5.4/Table 5 (a carried-over VeriBench result) was cut from the paper.
 - [29_proxy_validation](archive/29_proxy_validation/README.md): completed behavioral-proxy validation; negative/inconclusive finding.
 - [30_proxy_trust_index_held_out_validity](archive/30_proxy_trust_index_held_out_validity/README.md): completed combined-target and within-problem diagnostics; new-family validation remains unstarted.
 - [27_trust_plots](archive/27_trust_plots/README.md): completed figures from existing scores; reusable plotting functions remain in `py_src/cert_judge/`.

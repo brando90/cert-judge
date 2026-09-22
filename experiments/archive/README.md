@@ -6,6 +6,7 @@ Archived 2026-09-10 (Trigger Rule 39: `experiments/` holds active work only).
 
 | Folder | What it was | Last commit | Archived |
 |---|---|---|---|
+| `32_veribench_ranking_certified_judge` | Re-score the VeriBench agent ranking (paper §5.4) with a certified judge prompt via subscription CLI; stopped after repeat layer 0 because §5.4/Table 5 was removed from the ICLR paper (carried-over VeriBench ICML 2025 result, uncertified Claude 3.7 judge) | d7f37c3 | 2026-09-22 |
 | `00_overall_cert_judge_metric_with_properties` | Full P1–P7 Judge Trust Index (JTI) evaluation pipeline; superseded by PTI-v0 and not relabeled as such | 2025-10-31 | 2026-09-10 |
 | `01_no_gold_ref_metric` | No-gold-reference metric sketch; unused by the frozen PTI-v0 protocol | 2025-10-22 | 2026-09-10 |
 | `03_human_validation` | Early human-vs-judge agreement prompts/scripts; current labels live in `experiments/human_labels/` | 2026-04-07 | 2026-09-10 |
