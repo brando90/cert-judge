@@ -198,3 +198,37 @@ by one annotator under two rubric strictness levels" and claim nothing about wha
 - [ ] Brando → Ethan: panel rubric text
 - [ ] (optional, paid) vacuity/weakening probe — quote first
 - [ ] `latexmk -pdf`; `scripts/latex_sentence_lines.py --check`; grep main text for bare "quality"
+
+## 2026-09-22 — did the HUMANS assess presentation? (zero-spend check on existing labels)
+
+Brando: "More than the judge judging presentation, what matters is if the humans did — that's the hard part to
+redo. Judges I could re-run."
+
+Script: `presentation_probe.py` (this folder). Output: `presentation_probe_output.txt`. No API calls, no new labels.
+Presentation proxies come from the candidate `.lean` file (comments stripped): chars, non-empty lines, # theorem/lemma
+declarations, # `def`s, # `: True :=` theorems. "Within-problem" = ranks demeaned across the 3 candidates of the same
+problem (same gold). "|judge" = additionally residualized on gpt-5.3-codex P4_CHECKLIST, a fidelity-targeted score.
+
+| view (n=72, 24 problems) | chars: within-prob / within\|judge | # theorems: within\|judge |
+|---|---|---|
+| panel avg | **+0.38 / +0.38 (p<0.01)** | −0.04 (p=0.71) |
+| panel pass1 | +0.17 / +0.18 (p=0.13) | +0.05 |
+| panel pass2 | +0.29 / +0.28 (p=0.02) | −0.02 |
+| pool mean | +0.24 / +0.25 (p=0.03) | +0.00 |
+
+**Findings (exploratory: n=72, 5 proxies × 4 views, crude proxies):**
+1. **No sign that humans penalized size.** Within a problem, the *longer* candidate gets the *higher* human score,
+   even after controlling for the judge's fidelity score. Theorem count is unrelated to scores.
+2. **Spam and vacuity were never exercised.** Panel candidates have 1–7 theorem/lemma declarations (median 1) and
+   **0/72** contain a `: True :=` theorem. Whatever the rubric said, this panel has no theorem spam and no trivially
+   true specs to penalize. The human data cannot show that raters penalize either.
+3. **Consequence:** don't claim humans assessed presentation or vacuity. Scope the claim: "on a panel whose candidates
+   contain few theorem statements (median 1, max 7) and no trivially true ones".
+
+**No human relabel is needed.** Judge behavior on vacuity/bloat can be tested with **property probes whose direction
+is known by construction**, which needs no human labels. That is the paper's own method:
+- vacuity probe: replace theorem statements with `True` (or add a `False` hypothesis) → score must drop toward 0;
+- bloat probe: add redundant implied theorems → fidelity score must stay the same (like alpha-renaming).
+Building the probes costs nothing. Scoring = paid judge inference → exact quote + Brando's OK first.
+The only human-side action is retrieval: ask Ethan for the panel rubric text and whether he penalized size/spam.
+Record his answer as an annotator report.
