@@ -8,7 +8,9 @@ judge_trust_vector_codex_avg.csv (ident, mono, weak, stab, varcorr_1_minus, vars
 
 Frozen formulas:
   ident  = mean identity-variant score (24 x 4 rows), repeat-median per row
-  mono   = C_f = mean over files of clip((1 - rho_f)/2, 0, 1), rho_f = Spearman(level, median score) over 5 bug levels
+  mono   = clip((1 - rho_bug)/2, 0, 1) with rho_bug the POOLED Spearman between bug level and median score over all 24 x 5 bug rows
+           (this reproduces results_exp30 exactly: mono == (1 - judge_rows.bug_spearman_r)/2; the per-file mean C_f of the paper
+           appendix is reported alongside as cf_mono and differs by <= 0.02 on the panel)
   weak   = fraction of bug ladders that are non-increasing (utils.metrics.weak_monotonicity_pct / 100)
   stab   = 1 - flip_rate, flip_rate = fraction of all 288 rows whose repeats straddle the 0.85 accept threshold
   varcorr_raw  = variance over files of the per-file corr terms;  varscore_raw = mean over bug rows of the repeat variance
@@ -116,6 +118,7 @@ def features_from_rows(rows: list[dict], repeat_agg: str = "median") -> dict:
         "flip_rate": float(flip_rate),
         "lvl1_mean_drop": float(np.mean(lvl1_drops)) if lvl1_drops else 0.0,
         "cf_mono": float(np.mean(corrs)) if corrs else 0.0,
+        "mono_flat": min(1.0, max(0.0, (1.0 - float(bug_r)) / 2.0)) if math.isfinite(float(bug_r)) else 0.0,
         "n_files_with_corr": len(corrs),
         "varcorr_raw": float(np.var(corrs)) if corrs else 1.0,
         "varscore_raw": float(np.mean(svars)) if svars else 1.0,
@@ -194,7 +197,7 @@ def main() -> None:
     panel_table, max_abs_diff = [], 0.0
     for i, j in enumerate(jids):
         f = panel_feat[j]
-        terms = dict(ident=f["identity_mean"], mono=f["cf_mono"], weak=f["bug_weak_mono_pct"] / 100.0, stab=1.0 - f["flip_rate"], varcorr_1_minus=1.0 - float(vco[i]), varscore_1_minus=1.0 - float(vsc[i]))
+        terms = dict(ident=f["identity_mean"], mono=f["mono_flat"], weak=f["bug_weak_mono_pct"] / 100.0, stab=1.0 - f["flip_rate"], varcorr_1_minus=1.0 - float(vco[i]), varscore_1_minus=1.0 - float(vsc[i]))
         ti = tivar(terms["ident"], terms["mono"], terms["weak"], terms["stab"], terms["varcorr_1_minus"], terms["varscore_1_minus"])
         diff = abs(ti - float(pub[j]["ti_var_v3"]))
         max_abs_diff = max(max_abs_diff, diff)
@@ -216,7 +219,7 @@ def main() -> None:
         # (a) fixed panel scale: normalize with the 8-judge panel min/max (values outside the range are clipped to [0,1])
         vc1, vs1 = place(nf["varcorr_raw"], nf["varscore_raw"], panel_raw_range)
         vc1, vs1 = min(1.0, max(0.0, vc1)), min(1.0, max(0.0, vs1))
-        terms_fixed = dict(ident=nf["identity_mean"], mono=nf["cf_mono"], weak=nf["bug_weak_mono_pct"] / 100.0, stab=1.0 - nf["flip_rate"], varcorr_1_minus=vc1, varscore_1_minus=vs1)
+        terms_fixed = dict(ident=nf["identity_mean"], mono=nf["mono_flat"], weak=nf["bug_weak_mono_pct"] / 100.0, stab=1.0 - nf["flip_rate"], varcorr_1_minus=vc1, varscore_1_minus=vs1)
         ti_fixed = tivar(**terms_fixed)
         # (b) 9-judge renormalization (panel + new judge)
         all_ids = jids + [NEW_JUDGE_ID]
@@ -225,7 +228,7 @@ def main() -> None:
         ti9 = {}
         for i, j in enumerate(all_ids):
             f = panel_feat[j] if j in panel_feat else nf
-            ti9[j] = tivar(f["identity_mean"], f["cf_mono"], f["bug_weak_mono_pct"] / 100.0, 1.0 - f["flip_rate"], 1.0 - float(vco9[i]), 1.0 - float(vsc9[i]))
+            ti9[j] = tivar(f["identity_mean"], f["mono_flat"], f["bug_weak_mono_pct"] / 100.0, 1.0 - f["flip_rate"], 1.0 - float(vco9[i]), 1.0 - float(vsc9[i]))
         published = {j: float(pub[j]["ti_var_v3"]) for j in jids}
         rank_fixed = 1 + sum(1 for v in published.values() if v > ti_fixed)
         ha = human_alignment(new_rows, nf["human_scores"])
