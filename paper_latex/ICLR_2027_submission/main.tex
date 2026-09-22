@@ -116,16 +116,24 @@
 \end{abstract}
 
 \section{Introduction}
-Agentic AI systems increasingly generate both code and the trust artifacts meant to check that code, such as unit tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning,bursuc2025benchmarkvericodingformallyverified}.
+Agentic AI systems increasingly generate both code and the checks meant to establish trust in it, such as unit tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning,bursuc2025benchmarkvericodingformallyverified}.
+Deciding whether such a check is itself correct is the test-oracle problem~\citep{barr2015oracle}, now posed for checks that an AI wrote.
 When the same system writes the code and its checks, the checks can be gamed: coding agents modify or delete failing tests instead of fixing the code~\citep{baker2025monitoring,zhong2025impossiblebench}.
-Ensuring that AI-generated specifications capture the developer's intent is likewise an open challenge~\citep{yang2024formalreasoning}.
+Running a check cannot settle whether it is right, because a passing test shows only that the code and the test agree.
+Benchmarks of AI-written tests accordingly grade them against a human-written reference: a generated test counts as reproducing an issue only if it fails before and passes after the developers' fix~\citep{mundler2024swtbench}.
+Writing a formal specification is the formal analogue of writing the tests that SWE-bench uses to grade a patch~\citep{jimenez2024swebench}, with a stronger guarantee.
+A property-based test checks a property on sampled inputs~\citep{claessen2000quickcheck}, whereas a theorem asserts it for every input.
+
 In Lean~4, these artifacts are code-adjacent formal objects: runnable programs paired with unit tests, formal specifications (theorem statements about the program), and, sometimes, proofs of those theorems.
 In classical autoformalization, the target theorem is supplied, so evaluation can often reduce to proof success.
 In agentic verification, the system must decide \emph{what should be true} before it can prove anything.
-The Lean kernel can check a proof, but it cannot tell us whether the proposed theorem is complete, semantically aligned with the intended program, or merely a weak statement that happens to typecheck~\citep{lahiri2024evaluating}.
+The Lean kernel can check a proof, but it cannot tell us whether the proposed theorem is complete, semantically aligned with the intended program, or merely a weak statement that happens to typecheck~\citep{lahiri2024evaluating,yang2024formalreasoning}.
+No kernel check or test run supplies this judgment of intent, so it falls to a human oracle~\citep{barr2015oracle}: autoformalization benchmarks rely on expert review of statement correctness~\citep{azerbayev2023proofnet}.
 As agents produce more candidate artifacts than humans can inspect, specification-quality evaluation becomes a code-evaluation and scalable-oversight problem \citep{bowman2022scalable,zhou2025graders,khattab2024dspy,cheng2024trace}.
-LLM judges are increasingly used for this evaluation, both for AI-generated code~\citep{Zhuo2024ICEScore,TongZhang2024CodeJudge,he2025llmjudgese} and for filtering autoformalized Lean statements in prover-training data~\citep{ying2024leanworkbook,lin2025goedelprover,wang2025kiminaprover}.
+LLM judges already stand in for the human oracle at scale.
+Open theorem-prover pipelines use them to filter over a million autoformalized Lean statements~\citep{ying2024leanworkbook,lin2025goedelprover,wang2025kiminaprover}, and they are increasingly used to evaluate AI-generated code~\citep{Zhuo2024ICEScore,TongZhang2024CodeJudge,he2025llmjudgese}.
 Yet the reliability of these judges on formal statements has received little study~\citep{chen2026reform}.
+This paper asks when such a judge of AI-written formal specifications can be trusted.
 
 The standard reliability check is per-judge human validation: collect labels, measure agreement between each judge and human ratings, and keep the judge if the correlation is high enough~\citep{Liu2023GEval,Zheng2023MTBench}.
 The check is necessary because judge--human agreement varies substantially across judge models, datasets, and evaluated properties~\citep{Kocmi2024HumanVsLLM}.

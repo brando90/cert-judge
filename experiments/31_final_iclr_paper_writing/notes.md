@@ -311,3 +311,22 @@ The PDF grew from 28 to 29 pages.
     `zhong2025impossiblebench`).
   - New sentence: faithful AI-generated specs are an open challenge (`yang2024formalreasoning`).
   - All four bib entries were checked against the arXiv API.
+
+## 2026-09-22 — intro ¶1: "checking the checks" framing (APPLIED)
+
+Brando: generating theorems is like generating the tests SWE-bench uses; the paper checks the checks; theorems
+generalize (property-based) tests; judging intent can't be automated by running code, which is why LLM judges exist.
+- **Term:** the test-oracle problem (`barr2015oracle`). A spec is a "specified oracle"; when no automated oracle exists,
+  the fallback is the **human oracle**. That is the precise version of "intrinsically human".
+- **Tests:** "graded by running them" is descriptive, not a validity claim. Execution grades a test only against a
+  human-written reference (SWT-bench fail→pass on the developers' fix, `mundler2024swtbench`). Tests can also be gamed
+  (`baker2025monitoring`, `zhong2025impossiblebench`).
+- **Analogy in the text:** writing a formal specification is the formal analogue of writing SWE-bench's grading tests
+  (`jimenez2024swebench`), with a stronger guarantee. A property-based test samples inputs
+  (`claessen2000quickcheck`); a theorem covers every input. This is phrased as an analogy only and does NOT adopt
+  "tests are specs" (the CLAUDE.md spec rule).
+- **Lean:** no kernel check or test run supplies the judgment of intent, so it falls to a human oracle; ProofNet relies
+  on expert review (`azerbayev2023proofnet`). "LLM judges already stand in for the human oracle at scale" (prover
+  pipelines). Ends with "This paper asks when such a judge of AI-written formal specifications can be trusted."
+- 5 new bib entries (arXiv API / Crossref verified). The PDF is 30 pp; the main text still ends on p. 11, the same as
+  before the edit.
