@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "real_code/3_heappop",
+ "agent": "trace_plusplus",
+ "split": "real_code",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/real_code/3_heappop.lean",
+ "candidate_sha256": "6201111b83a0cb5b0922cb37cc442b9a40e24e3b1ce100a4bb204f4c63fd2ac0",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/3_heappop.lean",
+ "gold_sha256": "2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "8f0659ccc95dc0505ba66bde2d38449a628b41718ebdd95688e6dea74e11d8d0",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "`and` is not a valid generated theorem establishing any of the reference postconditions.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 44.66,
+ "usage": {
+  "input_tokens": 13025,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 64,
+  "reasoning_output_tokens": 24
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:41:57.129807Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:41:57.282965Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb48-7026-7fb0-bac4-98ece0c69c9a\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"`and` is not a valid generated theorem establishing any of the reference postconditions.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13025,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":64,\"reasoning_output_tokens\":24}}\n",
+ "finished_at": "2026-09-22T22:42:36+00:00"
+}

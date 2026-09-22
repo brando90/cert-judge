@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "cs_set/heap_sort",
+ "agent": "baseline",
+ "split": "cs_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/cs_set/heap_sort.lean",
+ "candidate_sha256": "a5dd43202a76bc22cedb5ec46229efc6e34d5abaf0f38cf60f2d7322fd0693ca",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/cs_set/heap_sort.lean",
+ "gold_sha256": "d2a6e27a8eafec86462e05549303d0241afaa993dec0dabc072a57db219653ad",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "3deecaf05d2b630c01f4f2bd5e05e246fbc36ea2126491d18f56c989a07c85a4",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "It provides no theorem relating the reference `heapSort : List Nat → List Nat` to `heapSortImp`, and instead defines a different `List Int` implementation with unrelated partial properties.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 46.74,
+ "usage": {
+  "input_tokens": 14105,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 144,
+  "reasoning_output_tokens": 83
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:43:02.526557Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb49-5c3b-7071-9e6d-7b21724e9a8d\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"It provides no theorem relating the reference `heapSort : List Nat → List Nat` to `heapSortImp`, and instead defines a different `List Int` implementation with unrelated partial properties.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14105,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":144,\"reasoning_output_tokens\":83}}\n",
+ "finished_at": "2026-09-22T22:43:43+00:00"
+}

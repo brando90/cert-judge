@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "real_code/3_heappop",
+ "agent": "baseline",
+ "split": "real_code",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/real_code/3_heappop.lean",
+ "candidate_sha256": "15f3558cf5b71a232f3bb9cc720cb9649cac5400fa9961b344a50be7f8fb1fb9",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/3_heappop.lean",
+ "gold_sha256": "2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "f82031aa021086f99158202dadf7b9ec17275f58dc4fe4973de782f33c9b59bb",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.4,
+ "reasoning": "It conditionally asserts invariant preservation and minimum return, but omits the reference's required size and multiset preservation properties (and relies on unfinished `sorry` proofs).",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 40.55,
+ "usage": {
+  "input_tokens": 14338,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 170,
+  "reasoning_output_tokens": 114
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:41:33.247238Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:41:33.331819Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:41:52.849431Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb48-1295-74e2-b0bf-7aa3b574e471\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.4,\\\"reasoning\\\":\\\"It conditionally asserts invariant preservation and minimum return, but omits the reference's required size and multiset preservation properties (and relies on unfinished `sorry` proofs).\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14338,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":170,\"reasoning_output_tokens\":114}}\n",
+ "finished_at": "2026-09-22T22:42:08+00:00"
+}

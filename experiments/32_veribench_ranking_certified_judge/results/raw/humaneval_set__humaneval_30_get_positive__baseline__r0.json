@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_30_get_positive",
+ "agent": "baseline",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/humaneval_set/humaneval_30_get_positive.lean",
+ "candidate_sha256": "7a387ade170da79d20781b19e614311994ac65262d7f58dfd5ce7a01ed48147a",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_30_get_positive.lean",
+ "gold_sha256": "5074fb804716abb3dcbb1a7c5c8e10831c21b5d19df321ddf5684ecfa23a5b8a",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "a249b605ddf8c81f9a3b7aa2895ae764a6bbdbfbeb138ff7e00eb4a42b2c63a6",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.45,
+ "reasoning": "It specifies useful filtering properties of `get_positive`, but entirely omits `get_positiveImp` and the core equivalence guarantee of the reference theorem.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 38.84,
+ "usage": {
+  "input_tokens": 13475,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 173,
+  "reasoning_output_tokens": 120
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:43:14.767415Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb49-8ba8-78e3-87f0-a4f08548ba1d\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.45,\\\"reasoning\\\":\\\"It specifies useful filtering properties of `get_positive`, but entirely omits `get_positiveImp` and the core equivalence guarantee of the reference theorem.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13475,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":173,\"reasoning_output_tokens\":120}}\n",
+ "finished_at": "2026-09-22T22:43:47+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/43_replace_spaces",
+ "agent": "baseline",
+ "split": "easy_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/easy_set/43_replace_spaces.lean",
+ "candidate_sha256": "8c1f48dd37ce1ab33a16770b32a07d7f7e6437f138aedbe04e435ca39a9ccddd",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/43_replace_spaces.lean",
+ "gold_sha256": "ef54d562f0568fb58ef6f69c48b3db077a58a1cf89cb1c5d038563d5825fdd5e",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "562fdb3307dff557645fd6691e2be289f0fb7eaeb65ae41820b133366d2f6e81",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It defines and proves some properties of replaceSpaces, but entirely omits replaceSpacesImp and the required equivalence theorem, so it does not capture the reference guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 70.75,
+ "usage": {
+  "input_tokens": 13504,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 101,
+  "reasoning_output_tokens": 45
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:44:32.914842Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb4a-bd41-7e21-9455-c350d90d9302\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It defines and proves some properties of replaceSpaces, but entirely omits replaceSpacesImp and the required equivalence theorem, so it does not capture the reference guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13504,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":101,\"reasoning_output_tokens\":45}}\n",
+ "finished_at": "2026-09-22T22:45:37+00:00"
+}

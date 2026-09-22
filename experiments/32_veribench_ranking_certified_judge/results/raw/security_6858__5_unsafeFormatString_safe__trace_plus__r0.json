@@ -1,0 +1,48 @@
+{
+ "status": "ok",
+ "item": "security_6858/5_unsafeFormatString_safe",
+ "agent": "trace_plus",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/security_6858/5_unsafeFormatString_safe.lean",
+ "candidate_sha256": "291c1cc31552d41d36be533bee3f13552abce0d3022e60527ebad80145d7137a",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/safe/5_unsafeFormatString_safe.lean",
+ "gold_sha256": "d1f9957c77bbef5b8d8b6230d383996b3f834c2599adec20f0eb23baf8bd386c",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "b543f27ac82c6169e7a4357aec39a239f58ed233cfa5d690e5114f4e85654aa7",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated code defines unrelated string-formatting behavior and does not state or prove the reference theorem `Pre → Post` (with one theorem left as `sorry`).",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 95.44,
+ "usage": {
+  "input_tokens": 12918,
+  "cached_input_tokens": 9984,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 137,
+  "reasoning_output_tokens": 82
+ },
+ "benign_warnings": [
+  {
+   "type": "error",
+   "message": "Reconnecting... 2/5 (request timed out)"
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "error": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:37:43.434869Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:37:43.654320Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:37:52.285193Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: failed to lookup address information: nodename nor servname provided, or not known, url: wss://chatgpt.com/backend-api/codex/responses\n2026-09-22T22:38:14.845157Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest(\"http/request failed: route-aware request timed out\")))\n2026-09-22T22:38:56.699995Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb44-9169-7a70-8cbc-576a16abab4e\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"error\",\"message\":\"Reconnecting... 2/5 (request timed out)\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated code defines unrelated string-formatting behavior and does not state or prove the reference theorem `Pre → Post` (with one theorem left as `sorry`).\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":12918,\"cached_input_tokens\":9984,\"cache_write_input_tokens\":0,\"output_tokens\":137,\"reasoning_output_tokens\":82}}\n",
+ "finished_at": "2026-09-22T22:39:13+00:00"
+}

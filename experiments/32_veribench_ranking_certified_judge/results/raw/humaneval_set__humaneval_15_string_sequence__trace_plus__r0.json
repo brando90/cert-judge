@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_15_string_sequence",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_15_string_sequence.lean",
+ "candidate_sha256": "800ab34fba67d319b511dc96abc110f61b349dfb5e2436c72b31078a2ac48f25",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_15_string_sequence.lean",
+ "gold_sha256": "5a15951d6ec400f2ba72c51ea76b87b2ea218a1251852b742aced4e97ab97eda",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "631f2062d8399b04280af247b7ebcae7ff11e384e12e0163bf365bfe459d2ace",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "The generated code defines and tests a plausible sequence formatter, but it omits the core universal equivalence claim `string_sequence n = string_sequenceImp n` guaranteed by the reference.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 84.42,
+ "usage": {
+  "input_tokens": 12726,
+  "cached_input_tokens": 0,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 112,
+  "reasoning_output_tokens": 53
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:33:00.057951Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:33:00.260669Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:33:14.481066Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest(\"http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)\")))\n2026-09-22T22:33:15.469407Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: Connection reset by peer (os error 54), url: wss://chatgpt.com/backend-api/codex/responses\n2026-09-22T22:33:23.305238Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest(\"http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)\")))\n2026-09-22T22:33:31.036167Z ERROR rmcp::transport::worker: worker quit with fatal: Client error: HTTP request failed: http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp), when send initialized notification\n2026-09-22T22:33:49.695797Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb40-3e68-7573-b724-dad9a6db2963\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"The generated code defines and tests a plausible sequence formatter, but it omits the core universal equivalence claim `string_sequence n = string_sequenceImp n` guaranteed by the reference.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":12726,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":112,\"reasoning_output_tokens\":53}}\n",
+ "finished_at": "2026-09-22T22:34:18+00:00"
+}

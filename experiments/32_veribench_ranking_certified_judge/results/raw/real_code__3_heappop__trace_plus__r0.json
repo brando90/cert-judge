@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "real_code/3_heappop",
+ "agent": "trace_plus",
+ "split": "real_code",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/real_code/3_heappop.lean",
+ "candidate_sha256": "658a1dfe707d700d412d36e07d1d7613c8345a4508dae91f85b5845b21804e89",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/3_heappop.lean",
+ "gold_sha256": "2d13b4c8a23726d5be44f13e2d8620aaf6467f9c57ebfcb42dc6707339bdf812",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "d764db73e8f0254bcdc0ff3f299f02b98490fc189d9c1c8c72d8590fd9a8c8ba",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.25,
+ "reasoning": "It captures only conditional preservation of a Boolean heap invariant, omitting the reference’s size and multiset guarantees (and any explicit postcondition structure), as well as the returned-minimum property.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 52.7,
+ "usage": {
+  "input_tokens": 14254,
+  "cached_input_tokens": 0,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 143,
+  "reasoning_output_tokens": 82
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:41:34.146218Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:41:34.245374Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:42:06.725660Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb48-1627-7411-956f-b973c623ffc2\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.25,\\\"reasoning\\\":\\\"It captures only conditional preservation of a Boolean heap invariant, omitting the reference’s size and multiset guarantees (and any explicit postcondition structure), as well as the returned-minimum property.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14254,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":143,\"reasoning_output_tokens\":82}}\n",
+ "finished_at": "2026-09-22T22:42:21+00:00"
+}

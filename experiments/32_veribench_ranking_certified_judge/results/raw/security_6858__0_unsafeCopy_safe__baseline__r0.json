@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/0_unsafeCopy_safe",
+ "agent": "baseline",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_6858/0_unsafeCopy_safe.lean",
+ "candidate_sha256": "ffe7f59d6a0ac5d887e6f0b0e2a12aff947f83ad1d4ac186b037088465d75e3c",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/safe/0_unsafeCopy_safe.lean",
+ "gold_sha256": "07a1f29ce9bf78b7acb82c34c11357c2705b03d6c0e71c88d7e55e136eb1f720",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "154ca0fe6aa1e886f7480b3807e22288d8c1ca721d8d88333e7a2d412d739c71",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems concern an unrelated `safeCopy` function and do not state or establish the reference implication from `Pre` to `Post` (and one proof is unfinished with `sorry`).",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 40.43,
+ "usage": {
+  "input_tokens": 13807,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 153,
+  "reasoning_output_tokens": 90
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:43:51.792297Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb4a-1c37-7303-9eca-61c28f1ea4ff\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems concern an unrelated `safeCopy` function and do not state or establish the reference implication from `Pre` to `Post` (and one proof is unfinished with `sorry`).\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13807,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":153,\"reasoning_output_tokens\":90}}\n",
+ "finished_at": "2026-09-22T22:44:26+00:00"
+}

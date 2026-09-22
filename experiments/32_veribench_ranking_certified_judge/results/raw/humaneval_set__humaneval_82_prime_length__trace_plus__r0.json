@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_82_prime_length",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_82_prime_length.lean",
+ "candidate_sha256": "7826e42e90b1aff9a54e72ecff6a59792653c5abd66cd2b54600b21db58f41db",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_82_prime_length.lean",
+ "gold_sha256": "425c7faa9c9e05686090e89a82182ed963aa289e4d6fba433d3e7ba41efee3f5",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "a2e5b6a586c2528815247f7cf357b09cfc7bbde98533b3c1ed3e54e1f5013dc4",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems characterize a newly defined `prime_length` but establish no relationship whatsoever between the reference functions `primeLength` and `primeLengthImp`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 50.63,
+ "usage": {
+  "input_tokens": 13874,
+  "cached_input_tokens": 0,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 132,
+  "reasoning_output_tokens": 76
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:45:11.707300Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb4b-5496-7e12-b459-49378cf079ee\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems characterize a newly defined `prime_length` but establish no relationship whatsoever between the reference functions `primeLength` and `primeLengthImp`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13874,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":132,\"reasoning_output_tokens\":76}}\n",
+ "finished_at": "2026-09-22T22:45:56+00:00"
+}
