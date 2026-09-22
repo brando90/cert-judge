@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/0_shell_injection",
+ "agent": "baseline",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_python/0_shell_injection.lean",
+ "candidate_sha256": "302959123077ff761f5f6ed5f8f1f5deedaf3e5b608e77a765ff59d2209078fa",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/vulnerabilities/0_shell_injection.lean",
+ "gold_sha256": "044f951f3cef088e4b9a94439eac7210817c7758e2d359b60ce9aeae968cc8da",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "22975768c864f211ac12c418f2a2b728d92da067da8c6be20d61b82a5b88afbf",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The theorem only states the tautological non-negativity of a string length and does not capture the reference’s core guarantee that inputs are passed literally to `ls` with `--`, while the generated implementation is shell-injection vulnerable.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 27.84,
+ "usage": {
+  "input_tokens": 14496,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 137,
+  "reasoning_output_tokens": 68
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:27:19.860381Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb3a-fa6d-7862-9693-a426864cee01\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The theorem only states the tautological non-negativity of a string length and does not capture the reference’s core guarantee that inputs are passed literally to `ls` with `--`, while the generated implementation is shell-injection vulnerable.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14496,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":137,\"reasoning_output_tokens\":68}}\n",
+ "finished_at": "2026-09-22T22:27:40+00:00"
+}

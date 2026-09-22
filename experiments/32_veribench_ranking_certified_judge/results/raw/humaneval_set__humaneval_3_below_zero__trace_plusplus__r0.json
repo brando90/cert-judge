@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_3_below_zero",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humaneval_3_below_zero.lean",
+ "candidate_sha256": "35626fdcf06da7dde3d3ff022b7ca0cbf8e67b0d0557ce016bd53ab1c63ff19d",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_3_below_zero.lean",
+ "gold_sha256": "b1cb8cac217e787239482083821d8749a573455ee6f96b0a293f1448adb31177",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "ae3b4f6cfb0f8218ce5916053c79d4244916bcf46b8ff08794d3b111ff4045d9",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It states several plausible properties of `belowZero`, but entirely omits `belowZeroImp` and the reference's central equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 26.75,
+ "usage": {
+  "input_tokens": 13657,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 156,
+  "reasoning_output_tokens": 105
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:27:10.561843Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:27:17.670112Z ERROR codex_core::shell_snapshot: Shell snapshot validation failed: Snapshot command exited with status exit status: 127: zsh:.:1: no such file or directory: /Users/brandomiranda/.codex/shell_snapshots/01a0cb3a-d5cf-7d63-8569-0977fd8a2e97.tmp-1790116025952058000\n\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb3a-d5cf-7d63-8569-0977fd8a2e97\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It states several plausible properties of `belowZero`, but entirely omits `belowZeroImp` and the reference's central equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13657,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":156,\"reasoning_output_tokens\":105}}\n",
+ "finished_at": "2026-09-22T22:27:30+00:00"
+}

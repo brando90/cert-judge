@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/2_unsafeMemoryAccess",
+ "agent": "baseline",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_6858/2_unsafeMemoryAccess.lean",
+ "candidate_sha256": "00328aa93fca909b4e0f169ee6eac936a8cc91bae5699c03bda283c667de8cb0",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/2_unsafeMemoryAccess.lean",
+ "gold_sha256": "a2cf661f38ad31d3002f7df40c0e16479ec66e64be965fd401f6deb6530e9d07",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "874c4985716552f037516891c667382066658c19fe1f3506a4d7cb16f9e2ce7d",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "The generated code proves several concrete properties of its own memory model, but it does not state or establish the reference theorem's unspecified `Pre block → Post_prop block` contract.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 19.98,
+ "usage": {
+  "input_tokens": 13719,
+  "cached_input_tokens": 0,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 111,
+  "reasoning_output_tokens": 53
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb3a-23e9-73b1-8261-5c715d7b3844\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"The generated code proves several concrete properties of its own memory model, but it does not state or establish the reference theorem's unspecified `Pre block → Post_prop block` contract.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13719,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":111,\"reasoning_output_tokens\":53}}\n",
+ "finished_at": "2026-09-22T22:26:38+00:00"
+}

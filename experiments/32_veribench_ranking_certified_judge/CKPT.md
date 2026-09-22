@@ -25,7 +25,7 @@ Brando pre-approved subscription-CLI runs ("go!"); no API spend is requested.
 ```bash
 cd ~/cert-judge && python3 experiments/32_veribench_ranking_certified_judge/run_ranking_cli.py --workers 8
 # then
-python3 experiments/32_veribench_ranking_certified_judge/aggregate_ranking.py
+~/uv_envs/cert-judge/bin/python3 experiments/32_veribench_ranking_certified_judge/aggregate_ranking.py   # needs numpy+scipy (the default python3 on this Mac has a broken numpy); the runner itself is stdlib-only
 ```
 The runner skips every cell whose `results/raw/<split>__<stem>__<agent>__r<k>.json` has `status: ok`; failed cells are written as `*.failed.json` and re-attempted on the next run.
 

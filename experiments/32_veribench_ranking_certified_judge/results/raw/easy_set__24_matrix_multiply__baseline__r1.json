@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/24_matrix_multiply",
+ "agent": "baseline",
+ "split": "easy_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/easy_set/24_matrix_multiply.lean",
+ "candidate_sha256": "7aeaf08ff69f8605f7b775a8edbea6ad77649a548f26715f8e0ba82110722eb7",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/24_matrix_multiply.lean",
+ "gold_sha256": "00b80cde8d2a4ae08bb6664dd64ee5bf687ec4ac7bb152c6bd074ab9cc73f15f",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "53421c234fe4e5f876e2a20130e253466b296f3b15f4845bcbaf2a5b6a43d1e4",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It specifies some Fibonacci behavior for a different Int/Option implementation, but never relates `fastFibonacci` to `fastFibonacciImp` as the reference theorem does.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 32.92,
+ "usage": {
+  "input_tokens": 13920,
+  "cached_input_tokens": 0,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 275,
+  "reasoning_output_tokens": 218
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:24:07.188870Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb38-08e2-7790-bc1a-d1bfeb3af618\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It specifies some Fibonacci behavior for a different Int/Option implementation, but never relates `fastFibonacci` to `fastFibonacciImp` as the reference theorem does.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13920,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":275,\"reasoning_output_tokens\":218}}\n",
+ "finished_at": "2026-09-22T22:24:33+00:00"
+}

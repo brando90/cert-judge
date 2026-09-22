@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/20_MySumDigits",
+ "agent": "baseline",
+ "split": "easy_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/easy_set/20_MySumDigits.lean",
+ "candidate_sha256": "07c88c2d41dbbe96f0a58963a9d771f41ff4d734a49931523d748accd6702423",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/20_MySumDigits.lean",
+ "gold_sha256": "0515ea2e3ae87cc9a565313ae3667a8dc5b6a99ca7b5b044550de09f41227f49",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "83751722fa4341ca18ba4d2715e421698ccd4f8864121df67bda31306212c071",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems specify properties of a new Int/Option function and do not establish the required equivalence between `mySumDigits` and `mySumDigitsImp` on natural numbers.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 47.03,
+ "usage": {
+  "input_tokens": 13211,
+  "cached_input_tokens": 0,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 119,
+  "reasoning_output_tokens": 57
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:23:24.162593Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:23:51.037191Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest(\"http/request failed: route-aware request timed out\")))\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb37-6174-7880-9be6-d11cf99cd354\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems specify properties of a new Int/Option function and do not establish the required equivalence between `mySumDigits` and `mySumDigitsImp` on natural numbers.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13211,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":119,\"reasoning_output_tokens\":57}}\n",
+ "finished_at": "2026-09-22T22:24:05+00:00"
+}

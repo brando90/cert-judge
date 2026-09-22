@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/0_shell_injection",
+ "agent": "trace_plusplus",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/security_python/0_shell_injection.lean",
+ "candidate_sha256": "cd2c2265463dd35e208c09836a17baa74d2b58c1d78bb8d3c825b8372bb3eaee",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/vulnerabilities/0_shell_injection.lean",
+ "gold_sha256": "044f951f3cef088e4b9a94439eac7210817c7758e2d359b60ce9aeae968cc8da",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "32e7c9fbb64f5e88ca2cf1ef8f4b3367a71965f454d75d96a13565296aaf13fd",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorem only proves a tautological pure model equality and does not capture the reference's safe `ls -- path` command-construction or security guarantees.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 38.85,
+ "usage": {
+  "input_tokens": 14775,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 155,
+  "reasoning_output_tokens": 101
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:27:37.174135Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb3b-3d8d-7080-85f3-a90ad43e61b9\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorem only proves a tautological pure model equality and does not capture the reference's safe `ls -- path` command-construction or security guarantees.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14775,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":155,\"reasoning_output_tokens\":101}}\n",
+ "finished_at": "2026-09-22T22:28:09+00:00"
+}

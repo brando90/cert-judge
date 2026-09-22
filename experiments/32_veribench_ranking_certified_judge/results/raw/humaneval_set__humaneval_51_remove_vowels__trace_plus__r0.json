@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_51_remove_vowels",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_51_remove_vowels.lean",
+ "candidate_sha256": "6faec4912f70e1163545f53f55e54f17640fd6232bf006a2dba4d57ba8c3bb24",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_51_remove_vowels.lean",
+ "gold_sha256": "565e5df9b783e137e1ebf383ffa323bc6acb9689976a759ec2c63a1bc1c45d96",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "47b136540ef87f3091d7a6e0b8e175900e782f01415d2c06cca8c4c37e5548e4",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It proves only basic single-character properties of a newly defined removeVowels and never relates it to removeVowelsImp, so it misses the reference theorem's core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 32.78,
+ "usage": {
+  "input_tokens": 13508,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 147,
+  "reasoning_output_tokens": 88
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:26:45.097862Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb3a-71e2-7d51-83e0-d9292a86188c\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It proves only basic single-character properties of a newly defined removeVowels and never relates it to removeVowelsImp, so it misses the reference theorem's core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13508,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":147,\"reasoning_output_tokens\":88}}\n",
+ "finished_at": "2026-09-22T22:27:11+00:00"
+}
