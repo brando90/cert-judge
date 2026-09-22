@@ -406,3 +406,14 @@ there are no undefined references and no overfull boxes in the main text, and ev
 - `experiments/33_openreview_complaints_all_venues_to_iclr2027_paper/complaints_ledger.md` holds one row per reviewer complaint from NeurIPS 2025 MATH-AI, ICML 2026 AI4Math (`18_`), ICML 2026 DL4C (reviews not yet retrieved; skeleton), and the TMLR desk reject, each with its status against `main.tex`.
 - Edits E1–E9 from that ledger were applied by session cert-judge-05 (P2/P3 weak-monotonicity wording; Fig. 1 "w.r.t."; Codex headline bootstrap CIs; exp24 canonicalization proxy; disclosure of the pre-registered n=14/n=32 screens in §6; untested failure classes; nine-repeat median; appendix agreement stats on the 72 overlapping pairs with MAE 0.771 / MSE 1.121; refs.bib hygiene). §5.4, the abstract, and the intro were left to experiments 31/32.
 - Open non-reviewer items found during the audit are listed at the bottom of the ledger (O1–O3: histogram still on 75-pair files; appendix "best Spearman 0.480/0.559" comes from the alpha-ablation panel; intro TODO on label reuse).
+
+## 2026-09-22 ~16:45 — §5.4 / Table 5 cut; experiment 32 stopped (Brando)
+- Brando: the Baseline / DSPy ReAct / Trace+ / Trace++ agent ranking is the VeriBench ICML 2025 result carried over from the
+  workshop version (table present since the first paper import `7612d6e`, 2026-03-14; numbers cited from `miranda2026veribench`),
+  scored by an uncertified Claude 3.7 judge. Not a cert-judge result; irrelevant to the ICLR claims.
+- Action: removed §5.4 "Downstream use: ranking VeriBench agents" (24 lines incl. `tab:theorem_quality_table_split`) and the
+  intro "Downstream use" contribution bullet; no dangling refs; sentence-line check OK; scratch build + commit in progress.
+- Experiment 32 (re-rank with a certified judge) STOPPED: runner killed at 826 cached cells (layer 0 complete), $0 API spend;
+  to be archived under `experiments/archive/32_...` with outcome "stopped — table removed from paper". Lesson recorded: option 3
+  reinforced a table that should have been questioned first; ask "does this belong in the paper?" before spending calls on it.
+- Peers `cert-judge-57` (main-text owner) and `cert-judge-05` (exp 33 complaints ledger) notified (msgs 9fa984bd, 15b5522a).
