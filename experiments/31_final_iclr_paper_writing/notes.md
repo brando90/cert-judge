@@ -259,3 +259,40 @@ Record his answer as an annotator report.
 - App. caption `:1315` → "strongest association"; "weaker standalone signals".
 - Kept on purpose: "peer-prediction", "prediction-weighted", "Predict-the-Future" (`:912-920`, external names) and `:1070` (probabilistic predictions matching observed frequencies = score–outcome reliability, correct usage).
 - Still open: "validation-set" in the intro, contributions, `:648`, `:767`; `:778` says "validation panel".
+
+## 2026-09-22 — abstract first sentence: deep research + rewrite (APPLIED)
+
+Report: `reports/LLM judges for AI trust artifacts.md`. Notes: `research_notes/LLM judges for AI trust artifacts/`
+(5 threads: general adoption, code, tests, formal specs, open problem).
+
+**Verdict on the old sentence** ("LLM judges are increasingly central to evaluating AI-generated code, tests, and formal
+specifications"):
+- General use of LLM judges: accurate.
+- Code: "increasingly used" holds; "central" is overstated (benchmarks and RL rewards still run tests).
+- Tests: **inaccurate** (graded by execution; LLM judges only triage).
+- Lean theorem statements: accurate (prover pipelines filter with LLM judges).
+- Program specs: emerging.
+
+**Applied (candidate A):** "LLM judges are increasingly used to evaluate AI-generated code and formal specifications,
+especially where passing tests or type-checking cannot show that an artifact captures its intended meaning."
+
+**Intro support added** (§1 ¶1):
+- `lahiri2024evaluating` on the kernel/intent gap.
+- A new sentence citing code judges (`Zhuo2024ICEScore`, `TongZhang2024CodeJudge`, `he2025llmjudgese`) and
+  prover-pipeline statement filtering (`ying2024leanworkbook`, `lin2025goedelprover`, `wang2025kiminaprover`).
+- "Yet the reliability of these judges on formal statements has received little study" (`chen2026reform`).
+- Also fixed §1's first sentence to follow the spec rule: "unit tests and formal specifications", not
+  "tests, specifications, and formal theorems".
+
+**refs.bib fixes:**
+- `Chan2024ChatEval`: first author → Chi-Min Chan.
+- `TongZhang2024CodeJudge`: authors → Weixi Tong & Tianyi Zhang; venue → EMNLP 2024.
+- `naik2024ticoder`: → Fakhoury et al., TSE 50(9).
+- `kenton2024oversight`: title now starts with "On".
+- `ospanov2023apollo`: → APOLLO, arXiv 2505.05758, 2025. The "3–7% → over 40%" claim is verified against the abstract.
+  The paper's "75% with fewer than 1000 samples" does NOT match the v5 abstract (84.9%, sub-8B, <100 samples).
+  **Recheck `main.tex` "achieving 75%…"**.
+
+**Not done (optional):** the trust-artifact framing with citations for "agents write tests" (AIDev, Haque et al.) and
+for "models game their own tests" (Baker et al., ImpossibleBench, Claude 3.7 card). A Lahiri/Yang open-problem sentence.
+The PDF grew from 28 to 29 pages.

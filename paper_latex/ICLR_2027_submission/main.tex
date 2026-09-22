@@ -102,7 +102,7 @@
 \maketitle
 
 \begin{abstract}
-  LLM judges are increasingly central to evaluating AI-generated code, tests, and formal specifications.
+  LLM judges are increasingly used to evaluate AI-generated code and formal specifications, especially where passing tests or type-checking cannot show that an artifact captures its intended meaning.
   Practitioners typically establish their reliability through agreement with human ratings and must repeat that check for every new judge, prompt, model, and domain.
   We challenge this validation loop by asking whether human judgment can be amortized and \textbf{scaled} through falsifiable behavioral properties.
   We propose a property-certification protocol for LLM judges of reference-based Lean~4 specification quality: how completely and correctly a candidate specification captures a gold reference.
@@ -116,12 +116,14 @@
 \end{abstract}
 
 \section{Introduction}
-Agentic AI systems increasingly generate both code and the trust artifacts meant to evaluate that code: tests, specifications, and formal theorems.
+Agentic AI systems increasingly generate both code and the trust artifacts meant to check that code, such as unit tests and formal specifications.
 In Lean~4, these artifacts are code-adjacent formal objects: runnable programs paired with unit tests, formal specifications (theorem statements about the program), and, sometimes, proofs of those theorems.
 In classical autoformalization, the target theorem is supplied, so evaluation can often reduce to proof success.
 In agentic verification, the system must decide \emph{what should be true} before it can prove anything.
-The Lean kernel can check a proof, but it cannot tell us whether the proposed theorem is complete, semantically aligned with the intended program, or merely a weak statement that happens to typecheck.
+The Lean kernel can check a proof, but it cannot tell us whether the proposed theorem is complete, semantically aligned with the intended program, or merely a weak statement that happens to typecheck~\citep{lahiri2024evaluating}.
 As agents produce more candidate artifacts than humans can inspect, specification-quality evaluation becomes a code-evaluation and scalable-oversight problem \citep{bowman2022scalable,zhou2025graders,khattab2024dspy,cheng2024trace}.
+LLM judges are increasingly used for this evaluation, both for AI-generated code~\citep{Zhuo2024ICEScore,TongZhang2024CodeJudge,he2025llmjudgese} and for filtering autoformalized Lean statements in prover-training data~\citep{ying2024leanworkbook,lin2025goedelprover,wang2025kiminaprover}.
+Yet the reliability of these judges on formal statements has received little study~\citep{chen2026reform}.
 
 The standard reliability check is per-judge human validation: collect labels, measure agreement between each judge and human ratings, and keep the judge if the correlation is high enough~\citep{Liu2023GEval,Zheng2023MTBench}.
 The check is necessary because judge--human agreement varies substantially across judge models, datasets, and evaluated properties~\citep{Kocmi2024HumanVsLLM}.
