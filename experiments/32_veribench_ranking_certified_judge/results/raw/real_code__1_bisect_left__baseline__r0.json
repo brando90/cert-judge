@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "real_code/1_bisect_left",
+ "agent": "baseline",
+ "split": "real_code",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/real_code/1_bisect_left.lean",
+ "candidate_sha256": "c5e9def6cd82e0c467831b929873b59e759f2596c53a447e5797e77556717836",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/1_bisect_left.lean",
+ "gold_sha256": "b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "25cacdcea482fe43eb142e18b4864ee6dbba0b5a43360faa9e67130901a9e7af",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems only prove a few concrete evaluation examples and omit the reference's general preconditioned partition guarantees for arbitrary arrays, bounds, keys, and insertion results.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 42.8,
+ "usage": {
+  "input_tokens": 14199,
+  "cached_input_tokens": 9984,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 207,
+  "reasoning_output_tokens": 149
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:13:53.963343Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T23:13:54.261354Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T23:14:17.889577Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest(\"http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)\")))\n2026-09-22T23:14:23.536215Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb65-b059-75a0-8016-da5e1553ab96\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems only prove a few concrete evaluation examples and omit the reference's general preconditioned partition guarantees for arbitrary arrays, bounds, keys, and insertion results.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14199,\"cached_input_tokens\":9984,\"cache_write_input_tokens\":0,\"output_tokens\":207,\"reasoning_output_tokens\":149}}\n",
+ "finished_at": "2026-09-22T23:14:29+00:00"
+}

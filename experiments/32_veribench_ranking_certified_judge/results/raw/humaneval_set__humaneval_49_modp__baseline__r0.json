@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_49_modp",
+ "agent": "baseline",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/humaneval_set/humaneval_49_modp.lean",
+ "candidate_sha256": "b64c517dfacc06283f10a903e79b50350eaed84bb79017280b2fe0de061229f5",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_49_modp.lean",
+ "gold_sha256": "03e548119ffd6de9f539e9ea52db8daa1be2b3053d5219160977737efb69702d",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "83a4d15aa420e5ea3846ff8a265a86bff80e866bdda8190d1347b699fa0d6a39",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "No generated theorem was produced, so it captures none of the reference implementation's correctness property.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 36.34,
+ "usage": {
+  "input_tokens": 18349,
+  "cached_input_tokens": 16128,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 39,
+  "reasoning_output_tokens": 0
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6b-2d8b-7141-8acd-af9c707586d6\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"No generated theorem was produced, so it captures none of the reference implementation's correctness property.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":18349,\"cached_input_tokens\":16128,\"cache_write_input_tokens\":0,\"output_tokens\":39,\"reasoning_output_tokens\":0}}\n",
+ "finished_at": "2026-09-22T23:20:27+00:00"
+}

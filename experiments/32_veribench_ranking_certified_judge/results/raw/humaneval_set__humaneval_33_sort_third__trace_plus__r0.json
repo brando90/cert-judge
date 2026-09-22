@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_33_sort_third",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_33_sort_third.lean",
+ "candidate_sha256": "3b2e8fae912601391d0a31db76d96beabf6d1a3a50995c88b620021f4a4cbe20",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_33_sort_third.lean",
+ "gold_sha256": "e4263271aee04d15e8af9c60b9f9342b71fcd4f534dde2e8f4e71f5058f046c9",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "7abb7d3f4b97ea1ab26318aeb265898e615aa1a8d82adddd747308fef73804c3",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "The generated statements describe plausible invariants of a different generic `sortThird` function but provide no connection to `sort_third` or `sort_thirdImp`, so they do not establish the reference equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 32.21,
+ "usage": {
+  "input_tokens": 13574,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 169,
+  "reasoning_output_tokens": 102
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:19:32.209558Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6a-c8cc-7f60-b236-936775983237\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"The generated statements describe plausible invariants of a different generic `sortThird` function but provide no connection to `sort_third` or `sort_thirdImp`, so they do not establish the reference equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13574,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":169,\"reasoning_output_tokens\":102}}\n",
+ "finished_at": "2026-09-22T23:19:57+00:00"
+}

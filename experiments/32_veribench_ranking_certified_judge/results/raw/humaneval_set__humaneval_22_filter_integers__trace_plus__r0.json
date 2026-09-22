@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_22_filter_integers",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_22_filter_integers.lean",
+ "candidate_sha256": "39e65bb3c2a378499cafc9a2c7f58601fe335ab37f3f4bf86d356a106b236ab7",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_22_filter_integers.lean",
+ "gold_sha256": "33d88c2a2e8144b9fa6c5efd781c3780a0121629f3ff5bb31c51b206479468dc",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "241a255c38f8a2d2785257d03cca92d29a8d3f80351dd85b04e223d543965a02",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems concern a different `Value`-based filtering function and do not establish the reference’s equivalence between `filter_integers` and `filter_integersImp` on `List Int`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 30.87,
+ "usage": {
+  "input_tokens": 13551,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 121,
+  "reasoning_output_tokens": 53
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6f-027f-7572-91f0-c5cf231d4fe8\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems concern a different `Value`-based filtering function and do not establish the reference’s equivalence between `filter_integers` and `filter_integersImp` on `List Int`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13551,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":121,\"reasoning_output_tokens\":53}}\n",
+ "finished_at": "2026-09-22T23:24:34+00:00"
+}

@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "real_code/2_heappush",
+ "agent": "trace_plus",
+ "split": "real_code",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/real_code/2_heappush.lean",
+ "candidate_sha256": "77fa4fc60a4a74749b58b9a32eae53760e019ddcd7005444b6c82aa36369023f",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/2_heappush.lean",
+ "gold_sha256": "eeadcd500e318eb14991b95cad32bbebc9d104673fe8941feaf09df7a846c3d8",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "f8a4418c374e59535f863c0149e6b44bb9f4d78ed104d48c3112ae240ff669c1",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.6,
+ "reasoning": "It captures conditional heap-invariant preservation and size growth, but omits the essential multiset/content-preservation guarantee included in the reference postcondition.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 45.32,
+ "usage": {
+  "input_tokens": 18765,
+  "cached_input_tokens": 17152,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 122,
+  "reasoning_output_tokens": 70
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb70-45ab-7330-838e-94db5ef206ac\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.6,\\\"reasoning\\\":\\\"It captures conditional heap-invariant preservation and size growth, but omits the essential multiset/content-preservation guarantee included in the reference postcondition.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":18765,\"cached_input_tokens\":17152,\"cache_write_input_tokens\":0,\"output_tokens\":122,\"reasoning_output_tokens\":70}}\n",
+ "finished_at": "2026-09-22T23:26:08+00:00"
+}

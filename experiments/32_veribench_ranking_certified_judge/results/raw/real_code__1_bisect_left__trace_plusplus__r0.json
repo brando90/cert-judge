@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "real_code/1_bisect_left",
+ "agent": "trace_plusplus",
+ "split": "real_code",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/real_code/1_bisect_left.lean",
+ "candidate_sha256": "1638f9106feb1c57bd29e505525d8ca1de691f81e29e7d5cbfa1b33e03b7dbe2",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/1_bisect_left.lean",
+ "gold_sha256": "b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "773c7d3eefd562694b657e56885fa12418100e401e2c1a0947294a8384526bc0",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.25,
+ "reasoning": "It sketches related bisect partition facts, but does not state the reference’s essential post-insertion Array partition property (and several definitions/theorems appear ill-typed or unjustified for arbitrary slice bounds).",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 43.07,
+ "usage": {
+  "input_tokens": 20192,
+  "cached_input_tokens": 9984,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 354,
+  "reasoning_output_tokens": 290
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:14:26.283066Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T23:14:26.642183Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T23:14:57.177091Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb66-2ed7-7a21-93ef-b7e2e5341b76\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.25,\\\"reasoning\\\":\\\"It sketches related bisect partition facts, but does not state the reference’s essential post-insertion Array partition property (and several definitions/theorems appear ill-typed or unjustified for arbitrary slice bounds).\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":20192,\"cached_input_tokens\":9984,\"cache_write_input_tokens\":0,\"output_tokens\":354,\"reasoning_output_tokens\":290}}\n",
+ "finished_at": "2026-09-22T23:15:02+00:00"
+}

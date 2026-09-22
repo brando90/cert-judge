@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/0_no_shell_injection_safe",
+ "agent": "baseline",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_python/0_no_shell_injection_safe.lean",
+ "candidate_sha256": "add7e49c69f636d1420ed84c339aeafeadbad2d57a706a11ff9986b7db8bf45e",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/safe/0_no_shell_injection_safe.lean",
+ "gold_sha256": "7136cf01142371500ca74e38518f042caa04a91e3c1dbe18a456196517b4fbbc",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "10198d050b22ee478931565a0a75a321ff2729393c7cb010beb2bcb97fe9cea1",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated text contains no theorem or formal correctness claim, so it captures none of the reference implementation's guarantees.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 31.23,
+ "usage": {
+  "input_tokens": 13967,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 103,
+  "reasoning_output_tokens": 58
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:15:11.081060Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb66-c9fe-7522-bc5f-49fc8876c64b\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated text contains no theorem or formal correctness claim, so it captures none of the reference implementation's guarantees.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13967,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":103,\"reasoning_output_tokens\":58}}\n",
+ "finished_at": "2026-09-22T23:15:35+00:00"
+}

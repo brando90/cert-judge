@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/5_unsafeFormatString",
+ "agent": "baseline",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_6858/5_unsafeFormatString.lean",
+ "candidate_sha256": "eee63bc1cb5e4410b91a13fc83b1670cca8118ff1073844573d0940d3156ad5f",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/5_unsafeFormatString.lean",
+ "gold_sha256": "95b3af7c39e4e093d5dcf43d83b2d981d34b7adf0f216f4711b42ca15241b2df",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "3236dfcde1d3d6fcb9eea7c310105695e1350bcce7da6750bbf7eb23dc3b3a37",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems prove behavior of an unrelated `unsafeFormatString` function and do not state or establish the reference contract `Pre → Post`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 30.73,
+ "usage": {
+  "input_tokens": 13962,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 161,
+  "reasoning_output_tokens": 107
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:23:16.859966Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6e-349b-7f90-b86f-7335fad6c38c\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems prove behavior of an unrelated `unsafeFormatString` function and do not state or establish the reference contract `Pre → Post`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13962,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":161,\"reasoning_output_tokens\":107}}\n",
+ "finished_at": "2026-09-22T23:23:40+00:00"
+}

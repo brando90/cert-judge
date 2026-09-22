@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/8_crossSiteScripting",
+ "agent": "trace_plusplus",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/security_6858/8_crossSiteScripting.lean",
+ "candidate_sha256": "cf91a6957ea3e25dd53af7eb01a3b7f3d5ac3d1a6ed2786ac480ce6342275b39",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/8_crossSiteScripting.lean",
+ "gold_sha256": "4999e0a4fdc254236ca7e0855f28b54958cfdc80add92847654542f80ccb3347",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "5143be8561c5ae5ea4037a69ff7946d77b127f3ad7d94f2f62eadeea31cb8e7f",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "The generated file states several XSS-specific lemmas (all left as `sorry`) but does not reproduce or establish the reference `correctness_thm : Pre → Post`, so correspondence to the reference guarantee is very weak.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 31.18,
+ "usage": {
+  "input_tokens": 15222,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 289,
+  "reasoning_output_tokens": 221
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6e-a778-7f43-9ebe-caed3e32fbd1\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"The generated file states several XSS-specific lemmas (all left as `sorry`) but does not reproduce or establish the reference `correctness_thm : Pre → Post`, so correspondence to the reference guarantee is very weak.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":15222,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":289,\"reasoning_output_tokens\":221}}\n",
+ "finished_at": "2026-09-22T23:24:10+00:00"
+}

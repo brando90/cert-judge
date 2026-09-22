@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/10_serverSideRequestForgery_safe",
+ "agent": "trace_plus",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/security_6858/10_serverSideRequestForgery_safe.lean",
+ "candidate_sha256": "78e8d0be728c121bdb3c6150dbdbcc47cc03db2ede3bf7bbd3cea061cb587d5b",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/safe/10_serverSideRequestForgery_safe.lean",
+ "gold_sha256": "b17f1526602deb79c746251c44f8cccd6481cd856b492eebd7c61ea059b7f9a9",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "d5ff053201d7b6535801005b74546fb55d88796d9403ed6df0dc8688a6ac7a7b",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated code implements SSRF checks but provides no proved theorem corresponding to the reference's `correctness_thm (h : Pre) : Post`, and its stated examples are left as `sorry`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 49.47,
+ "usage": {
+  "input_tokens": 13878,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 129,
+  "reasoning_output_tokens": 65
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:16:26.648214Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb67-f1da-7c63-b4e9-9bdb4de148a0\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated code implements SSRF checks but provides no proved theorem corresponding to the reference's `correctness_thm (h : Pre) : Post`, and its stated examples are left as `sorry`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13878,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":129,\"reasoning_output_tokens\":65}}\n",
+ "finished_at": "2026-09-22T23:17:08+00:00"
+}

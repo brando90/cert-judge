@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/0_unsafeCopy",
+ "agent": "trace_plus",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/security_6858/0_unsafeCopy.lean",
+ "candidate_sha256": "8505ffa8680dfc06f9f5bfb8c6dbed3adb9276554d659e5d60f2b452fb66d293",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/0_unsafeCopy.lean",
+ "gold_sha256": "3fd2d5b443cbf3dc66d6417d63b8df83960296bde0ddf258b0302a2df361f325",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "90b339c6006cc6147814c83637a1a6ac14c0988cef4f43068eaa6aa22bd58b50",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It models copying and an overflow panic for arrays, but provides no proved theorem corresponding to the reference's List-based guarantee that overflow returns `none`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 49.16,
+ "usage": {
+  "input_tokens": 13796,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 143,
+  "reasoning_output_tokens": 90
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:12:12.607464Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb64-12ac-7ea0-80d6-b49f511f6617\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It models copying and an overflow panic for arrays, but provides no proved theorem corresponding to the reference's List-based guarantee that overflow returns `none`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13796,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":143,\"reasoning_output_tokens\":90}}\n",
+ "finished_at": "2026-09-22T23:12:54+00:00"
+}

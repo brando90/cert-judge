@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_27_flip_case",
+ "agent": "baseline",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/humaneval_set/humaneval_27_flip_case.lean",
+ "candidate_sha256": "d66717509e5fa0629e1fe566554566b904d809676758008f691b68ede537faf2",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_27_flip_case.lean",
+ "gold_sha256": "86935c985aef9a7ed1af5483aa22419939b71cf3643ba4ecbd3c439eb5f85ede",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "af4a47eccd899516e1d879c3247bc71e4709c13b61732458cd7d5b2d2b315011",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It provides some independent properties of a newly defined `flipCase`, but never states or proves the required equivalence with `flipCaseImp`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 40.52,
+ "usage": {
+  "input_tokens": 13421,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 175,
+  "reasoning_output_tokens": 123
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:12:26.203673Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb64-46f8-78a2-b1ac-3e70029ed1e1\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It provides some independent properties of a newly defined `flipCase`, but never states or proves the required equivalence with `flipCaseImp`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13421,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":175,\"reasoning_output_tokens\":123}}\n",
+ "finished_at": "2026-09-22T23:12:59+00:00"
+}

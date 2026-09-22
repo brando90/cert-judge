@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_50_encode_shift",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_50_encode_shift.lean",
+ "candidate_sha256": "b3c680ca0ff38302657084904e660059143df89e153ac587eade3619de35d004",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_50_encode_shift.lean",
+ "gold_sha256": "db282494f9e3b462a89e76ae4e750a4c9fb4150a2303807fcaa7852b09bc0f10",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "cc2c68ce67079f73920fd13b75e625622d3c027fedd61e10a7feb5c5900c5998",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "It does not relate `decodeShift` to `decodeShiftImp`, and its inverse claims are false for arbitrary strings (especially non-lowercase characters).",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 35.9,
+ "usage": {
+  "input_tokens": 13345,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 152,
+  "reasoning_output_tokens": 98
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:24:52.747402Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6f-ab90-7ac0-9c05-829c9026371d\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"It does not relate `decodeShift` to `decodeShiftImp`, and its inverse claims are false for arbitrary strings (especially non-lowercase characters).\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13345,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":152,\"reasoning_output_tokens\":98}}\n",
+ "finished_at": "2026-09-22T23:25:21+00:00"
+}

@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_28_concatenate",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_28_concatenate.lean",
+ "candidate_sha256": "e2b49d3fb69e86f4fd6f46badfbcd01f246061d168c9fe6290a03ae7f1dd222f",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_28_concatenate.lean",
+ "gold_sha256": "c1f6dff58373100b0b4059925184e05debc3d4addc3bb4f845f4ff73678f97fe",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "a88a7a90c74cc97324cf074716550282de20b579fa06654af1236dcf1962a244",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated statements describe properties of a redefined `concatenate` but never relate it to `concatenateImp`, so they miss the reference theorem's core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 46.64,
+ "usage": {
+  "input_tokens": 18130,
+  "cached_input_tokens": 16128,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 113,
+  "reasoning_output_tokens": 55
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6b-d966-7791-9e8c-4dbe8e76f37c\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated statements describe properties of a redefined `concatenate` but never relate it to `concatenateImp`, so they miss the reference theorem's core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":18130,\"cached_input_tokens\":16128,\"cache_write_input_tokens\":0,\"output_tokens\":113,\"reasoning_output_tokens\":55}}\n",
+ "finished_at": "2026-09-22T23:21:21+00:00"
+}

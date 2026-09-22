@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/3_unsafeLinkedList_safe",
+ "agent": "baseline",
+ "split": "security_6858",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_6858/3_unsafeLinkedList_safe.lean",
+ "candidate_sha256": "8621efd25df9baef5a21f9241f900a1220444b4f19c84e4ace90dc9713a99bed",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/safe/3_unsafeLinkedList_safe.lean",
+ "gold_sha256": "43ce1d26325d047936681d9df530702dbcf3aaf135d4cd40d9682cb0ba17435c",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "ccb2adc794f728120b471ccd35d4de6e49aa2bf578f3228b5ffee88eac0de27c",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The reference establishes an unspecified `Post` from `Pre`, while the generated code provides only examples and two special-case lemmas, with its general correctness theorem left as `sorry`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 34.45,
+ "usage": {
+  "input_tokens": 13540,
+  "cached_input_tokens": 0,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 116,
+  "reasoning_output_tokens": 56
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:26:17.604202Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb70-f606-70c0-a504-b41442995659\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The reference establishes an unspecified `Post` from `Pre`, while the generated code provides only examples and two special-case lemmas, with its general correctness theorem left as `sorry`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13540,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":116,\"reasoning_output_tokens\":56}}\n",
+ "finished_at": "2026-09-22T23:26:44+00:00"
+}

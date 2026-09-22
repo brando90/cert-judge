@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/0_shell_injection",
+ "agent": "trace_plus",
+ "split": "security_python",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/security_python/0_shell_injection.lean",
+ "candidate_sha256": "e97ab0a4156b8b5edb6d67647f993156273f037e4892e570651db8e54eb75e25",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/vulnerabilities/0_shell_injection.lean",
+ "gold_sha256": "044f951f3cef088e4b9a94439eac7210817c7758e2d359b60ce9aeae968cc8da",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "76f5220cac238ab7c9159478a236719af0380f6147512a13ea3ae58fae03ccee",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems merely restate the function's type and provide no correctness, safety, precondition/postcondition, argument-format, or injection-neutralization guarantee from the reference.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 33.38,
+ "usage": {
+  "input_tokens": 14144,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 144,
+  "reasoning_output_tokens": 85
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb74-1356-71b1-8089-df2e51d7db89\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems merely restate the function's type and provide no correctness, safety, precondition/postcondition, argument-format, or injection-neutralization guarantee from the reference.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14144,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":144,\"reasoning_output_tokens\":85}}\n",
+ "finished_at": "2026-09-22T23:30:05+00:00"
+}

@@ -1,0 +1,1339 @@
+{
+ "schema_version": "exp32_ranking_v1",
+ "judge": {
+  "prompt_name": "P1_BASELINE",
+  "model_requested_by_cli_flag": "gpt-5.6-terra",
+  "models_requested_observed_in_records": [
+   "gpt-5.6-terra"
+  ],
+  "model_observed_header_values": [
+   "None"
+  ],
+  "reasoning_effort": [
+   "low"
+  ],
+  "certified_configuration_requested": "gpt-5.3-codex|P1_BASELINE",
+  "model_fallback_reason": "The Codex CLI (codex-cli 0.155.1) no longer offers gpt-5.3-codex: ~/.codex/models_cache.json lists only gpt-6-astra, gpt-reserve, gpt-5.6-sol, gpt-5.6-terra, gpt-5.6-luna, gpt-5.5, codex-auto-review, and experiments/archive/29_proxy_validation/REPORT.md records the CLI rejecting the exact gpt-5.3-codex ID. gpt-5.6-terra is the regular-tier (non-Sol) GPT-5.6 Codex model mandated for experiment workloads by agents-config Hard Rule 8, and it is the model on which experiments/archive/29_proxy_validation already ran P1_BASELINE/P4_CHECKLIST/P8_STRICT_B property checks through the same CLI at the same effort."
+ },
+ "calls": {
+  "ok_cells": 591,
+  "expected_cells": 1680,
+  "failed_cell_files": 0,
+  "total_cli_invocations_including_retries": 611,
+  "cells_needing_retry": 17,
+  "cells_with_benign_skills_warning": 154,
+  "mean_elapsed_seconds_per_ok_call": 47.15275803722504,
+  "input_tokens_total": 8809883,
+  "output_tokens_total": 79422,
+  "provider_api_spend_usd": 0.0,
+  "repeat_coverage_histogram_over_item_agent_pairs": {
+   "1": 543,
+   "2": 3,
+   "3": 14
+  }
+ },
+ "normalization": "score in [0,1] as emitted; mean over 3 repeats per (item, agent); mean over items per split; Avg = macro-average over the five table splits; ItemMean = mean over all scored items (six splits)",
+ "claude37_table": {
+  "baseline": {
+   "Easy": 0.58,
+   "CS": 0.69,
+   "Real": 0.472,
+   "HE": 0.41,
+   "Sec": 0.347,
+   "Avg": 0.47
+  },
+  "dspy_react": {
+   "Easy": 0.659,
+   "CS": 0.754,
+   "Real": 0.58,
+   "HE": 0.65,
+   "Sec": 0.454,
+   "Avg": 0.615
+  },
+  "trace_plus": {
+   "Easy": 0.342,
+   "CS": 0.68,
+   "Real": 0.592,
+   "HE": 0.573,
+   "Sec": 0.411,
+   "Avg": 0.477
+  },
+  "trace_plusplus": {
+   "Easy": 0.62,
+   "CS": 0.756,
+   "Real": 0.504,
+   "HE": 0.645,
+   "Sec": 0.432,
+   "Avg": 0.588
+  }
+ },
+ "analyses": {
+  "median": {
+   "status": "no complete items yet"
+  },
+  "mean": {
+   "status": "no complete items yet"
+  },
+  "median_available_repeats__sec_6858_only": {
+   "n_paired_items": 140,
+   "min_repeats_required": 1,
+   "repeats_present_per_pair": [
+    1,
+    2,
+    3
+   ],
+   "point": {
+    "baseline": {
+     "Easy": 0.07560975609756097,
+     "CS": 0.05,
+     "Real": 0.14,
+     "HE": 0.07053571428571428,
+     "Sec": 0.04318181818181818,
+     "Avg": 0.0758654577130187,
+     "ItemMean": 0.06642857142857142
+    },
+    "dspy_react": {
+     "Easy": 0.18902439024390244,
+     "CS": 0.06,
+     "Real": 0.45,
+     "HE": 0.11160714285714286,
+     "Sec": 0.07954545454545456,
+     "Avg": 0.17803539752929998,
+     "ItemMean": 0.13642857142857143
+    },
+    "trace_plus": {
+     "Easy": 0.07804878048780488,
+     "CS": 0.06999999999999999,
+     "Real": 0.22000000000000003,
+     "HE": 0.1348214285714286,
+     "Sec": 0.09090909090909093,
+     "Avg": 0.11875585999366486,
+     "ItemMean": 0.10571428571428572
+    },
+    "trace_plusplus": {
+     "Easy": 0.12317073170731707,
+     "CS": 0.06,
+     "Real": 0.18,
+     "HE": 0.11160714285714286,
+     "Sec": 0.08409090909090909,
+     "Avg": 0.11177375673107379,
+     "ItemMean": 0.10535714285714287
+    }
+   },
+   "ci": {
+    "baseline": {
+     "Easy": [
+      0.054878048780487805,
+      0.0975609756097561
+     ],
+     "CS": [
+      0.02,
+      0.08
+     ],
+     "Real": [
+      0.02,
+      0.27999999999999997
+     ],
+     "HE": [
+      0.04732142857142858,
+      0.09553571428571428
+     ],
+     "Sec": [
+      0.018181818181818184,
+      0.07272727272727274
+     ],
+     "Avg": [
+      0.05013088770985113,
+      0.1058764491605955
+     ],
+     "ItemMean": [
+      0.053214285714285714,
+      0.08035714285714286
+     ]
+    },
+    "dspy_react": {
+     "Easy": [
+      0.12317073170731709,
+      0.2670731707317073
+     ],
+     "CS": [
+      0.030000000000000006,
+      0.09
+     ],
+     "Real": [
+      0.18,
+      0.75
+     ],
+     "HE": [
+      0.08392857142857145,
+      0.14107142857142857
+     ],
+     "Sec": [
+      0.022727272727272728,
+      0.1590909090909091
+     ],
+     "Avg": [
+      0.11931021539436173,
+      0.24015549572378841
+     ],
+     "ItemMean": [
+      0.10964285714285715,
+      0.1657142857142857
+     ]
+    },
+    "trace_plus": {
+     "Easy": [
+      0.05000000000000001,
+      0.10731707317073172
+     ],
+     "CS": [
+      0.030000000000000006,
+      0.11000000000000001
+     ],
+     "Real": [
+      0.05,
+      0.41
+     ],
+     "HE": [
+      0.11250000000000002,
+      0.15803571428571428
+     ],
+     "Sec": [
+      0.03636363636363637,
+      0.15681818181818186
+     ],
+     "Avg": [
+      0.08005925720620843,
+      0.1617302264808362
+     ],
+     "ItemMean": [
+      0.08892857142857143,
+      0.12357142857142858
+     ]
+    },
+    "trace_plusplus": {
+     "Easy": [
+      0.08170731707317075,
+      0.17195121951219514
+     ],
+     "CS": [
+      0.02,
+      0.1
+     ],
+     "Real": [
+      0.04,
+      0.31999999999999995
+     ],
+     "HE": [
+      0.0830357142857143,
+      0.14464285714285713
+     ],
+     "Sec": [
+      0.022727272727272728,
+      0.17954545454545456
+     ],
+     "Avg": [
+      0.07679395985112447,
+      0.1489821151409566
+     ],
+     "ItemMean": [
+      0.0832142857142857,
+      0.12964285714285714
+     ]
+    }
+   },
+   "pairwise_diff": {
+    "baseline-dspy_react": {
+     "Easy": {
+      "point": -0.11341463414634147,
+      "ci": [
+       -0.19271341463414637,
+       -0.0475609756097561
+      ],
+      "p_boot_two_sided": 0.0
+     },
+     "CS": {
+      "point": -0.009999999999999995,
+      "ci": [
+       -0.04,
+       0.020000000000000004
+      ],
+      "p_boot_two_sided": 0.747
+     },
+     "Real": {
+      "point": -0.31,
+      "ci": [
+       -0.68,
+       2.7755575615628914e-17
+      ],
+      "p_boot_two_sided": 0.0562
+     },
+     "HE": {
+      "point": -0.04107142857142858,
+      "ci": [
+       -0.07857142857142856,
+       -0.00535714285714288
+      ],
+      "p_boot_two_sided": 0.0214
+     },
+     "Sec": {
+      "point": -0.036363636363636376,
+      "ci": [
+       -0.12045454545454545,
+       0.025
+      ],
+      "p_boot_two_sided": 0.3664
+     },
+     "Avg": {
+      "point": -0.10216993981628128,
+      "ci": [
+       -0.17717960880582836,
+       -0.03428129553373461
+      ],
+      "p_boot_two_sided": 0.0004
+     },
+     "ItemMean": {
+      "point": -0.07,
+      "ci": [
+       -0.10214285714285715,
+       -0.04035714285714284
+      ],
+      "p_boot_two_sided": 0.0
+     }
+    },
+    "baseline-trace_plus": {
+     "Easy": {
+      "point": -0.0024390243902439046,
+      "ci": [
+       -0.03658536585365855,
+       0.03170731707317073
+      ],
+      "p_boot_two_sided": 0.905
+     },
+     "CS": {
+      "point": -0.01999999999999999,
+      "ci": [
+       -0.060000000000000026,
+       0.029999999999999992
+      ],
+      "p_boot_two_sided": 0.4972
+     },
+     "Real": {
+      "point": -0.08000000000000002,
+      "ci": [
+       -0.33999999999999997,
+       0.1
+      ],
+      "p_boot_two_sided": 0.6236
+     },
+     "HE": {
+      "point": -0.06428571428571431,
+      "ci": [
+       -0.09374999999999999,
+       -0.03482142857142856
+      ],
+      "p_boot_two_sided": 0.0002
+     },
+     "Sec": {
+      "point": -0.04772727272727274,
+      "ci": [
+       -0.1090909090909091,
+       0.004545454545454554
+      ],
+      "p_boot_two_sided": 0.0896
+     },
+     "Avg": {
+      "point": -0.04289040228064617,
+      "ci": [
+       -0.09669091107063667,
+       -0.001350857222046255
+      ],
+      "p_boot_two_sided": 0.0404
+     },
+     "ItemMean": {
+      "point": -0.0392857142857143,
+      "ci": [
+       -0.059642857142857164,
+       -0.019642857142857142
+      ],
+      "p_boot_two_sided": 0.0002
+     }
+    },
+    "baseline-trace_plusplus": {
+     "Easy": {
+      "point": -0.0475609756097561,
+      "ci": [
+       -0.09756097560975611,
+       -0.004878048780487809
+      ],
+      "p_boot_two_sided": 0.0252
+     },
+     "CS": {
+      "point": -0.009999999999999995,
+      "ci": [
+       -0.04000000000000001,
+       0.020000000000000004
+      ],
+      "p_boot_two_sided": 0.7298
+     },
+     "Real": {
+      "point": -0.03999999999999998,
+      "ci": [
+       -0.27,
+       0.21000000000000002
+      ],
+      "p_boot_two_sided": 0.7224
+     },
+     "HE": {
+      "point": -0.04107142857142858,
+      "ci": [
+       -0.08214285714285714,
+       -0.0035714285714285726
+      ],
+      "p_boot_two_sided": 0.0284
+     },
+     "Sec": {
+      "point": -0.04090909090909091,
+      "ci": [
+       -0.1409090909090909,
+       0.022727272727272742
+      ],
+      "p_boot_two_sided": 0.4348
+     },
+     "Avg": {
+      "point": -0.03590829901805509,
+      "ci": [
+       -0.08675437717770035,
+       0.01714449041811843
+      ],
+      "p_boot_two_sided": 0.1898
+     },
+     "ItemMean": {
+      "point": -0.03892857142857145,
+      "ci": [
+       -0.06607142857142856,
+       -0.013214285714285706
+      ],
+      "p_boot_two_sided": 0.0014
+     }
+    },
+    "dspy_react-trace_plus": {
+     "Easy": {
+      "point": 0.11097560975609756,
+      "ci": [
+       0.04390243902439024,
+       0.1902439024390244
+      ],
+      "p_boot_two_sided": 0.0
+     },
+     "CS": {
+      "point": -0.009999999999999995,
+      "ci": [
+       -0.060000000000000026,
+       0.039999999999999994
+      ],
+      "p_boot_two_sided": 0.8544
+     },
+     "Real": {
+      "point": 0.22999999999999998,
+      "ci": [
+       -0.16999999999999998,
+       0.64
+      ],
+      "p_boot_two_sided": 0.325
+     },
+     "HE": {
+      "point": -0.02321428571428573,
+      "ci": [
+       -0.058035714285714315,
+       0.012522321428571142
+      ],
+      "p_boot_two_sided": 0.2042
+     },
+     "Sec": {
+      "point": -0.011363636363636367,
+      "ci": [
+       -0.061363636363636384,
+       0.03636363636363639
+      ],
+      "p_boot_two_sided": 0.6796
+     },
+     "Avg": {
+      "point": 0.05927953753563511,
+      "ci": [
+       -0.021687446547355087,
+       0.1463693795533735
+      ],
+      "p_boot_two_sided": 0.1752
+     },
+     "ItemMean": {
+      "point": 0.030714285714285708,
+      "ci": [
+       0.00107142857142857,
+       0.0625
+      ],
+      "p_boot_two_sided": 0.0424
+     }
+    },
+    "dspy_react-trace_plusplus": {
+     "Easy": {
+      "point": 0.06585365853658537,
+      "ci": [
+       -0.01585365853658538,
+       0.15731707317073174
+      ],
+      "p_boot_two_sided": 0.123
+     },
+     "CS": {
+      "point": 0.0,
+      "ci": [
+       -0.03,
+       0.029999999999999992
+      ],
+      "p_boot_two_sided": 1.2424
+     },
+     "Real": {
+      "point": 0.27,
+      "ci": [
+       -0.09999999999999992,
+       0.67
+      ],
+      "p_boot_two_sided": 0.1658
+     },
+     "HE": {
+      "point": 0.0,
+      "ci": [
+       -0.03839285714285716,
+       0.04017857142857144
+      ],
+      "p_boot_two_sided": 1.0064
+     },
+     "Sec": {
+      "point": -0.004545454545454533,
+      "ci": [
+       -0.04318181818181817,
+       0.029545454545454555
+      ],
+      "p_boot_two_sided": 0.8684
+     },
+     "Avg": {
+      "point": 0.06626164079822619,
+      "ci": [
+       -0.007839459930313592,
+       0.1492866150617674
+      ],
+      "p_boot_two_sided": 0.089
+     },
+     "ItemMean": {
+      "point": 0.031071428571428555,
+      "ci": [
+       -0.0014285714285714318,
+       0.06607142857142859
+      ],
+      "p_boot_two_sided": 0.062
+     }
+    },
+    "trace_plus-trace_plusplus": {
+     "Easy": {
+      "point": -0.045121951219512194,
+      "ci": [
+       -0.09999999999999998,
+       0.003658536585365857
+      ],
+      "p_boot_two_sided": 0.0778
+     },
+     "CS": {
+      "point": 0.009999999999999995,
+      "ci": [
+       -0.05000000000000002,
+       0.07000000000000002
+      ],
+      "p_boot_two_sided": 0.8454
+     },
+     "Real": {
+      "point": 0.040000000000000036,
+      "ci": [
+       -0.10999999999999999,
+       0.17000000000000004
+      ],
+      "p_boot_two_sided": 0.6116
+     },
+     "HE": {
+      "point": 0.02321428571428573,
+      "ci": [
+       -0.011607142857142871,
+       0.05714285714285715
+      ],
+      "p_boot_two_sided": 0.1962
+     },
+     "Sec": {
+      "point": 0.006818181818181834,
+      "ci": [
+       -0.061363636363636356,
+       0.07272727272727272
+      ],
+      "p_boot_two_sided": 0.8192
+     },
+     "Avg": {
+      "point": 0.006982103262591077,
+      "ci": [
+       -0.03093611221095975,
+       0.04236850055432373
+      ],
+      "p_boot_two_sided": 0.7008
+     },
+     "ItemMean": {
+      "point": 0.00035714285714284755,
+      "ci": [
+       -0.023928571428571438,
+       0.023928571428571438
+      ],
+      "p_boot_two_sided": 0.9622
+     }
+    }
+   },
+   "ordering_bootstrap_frequency": {
+    "Avg": {
+     "DSPy ReAct > Trace+ > Trace++ > Baseline": 4794,
+     "DSPy ReAct > Trace++ > Trace+ > Baseline": 3251,
+     "DSPy ReAct > Trace+ > Baseline > Trace++": 802,
+     "Trace+ > DSPy ReAct > Trace++ > Baseline": 483,
+     "Trace+ > Trace++ > DSPy ReAct > Baseline": 286,
+     "DSPy ReAct > Baseline > Trace+ > Trace++": 107,
+     "Trace++ > Trace+ > DSPy ReAct > Baseline": 82,
+     "DSPy ReAct > Trace++ > Baseline > Trace+": 79,
+     "Trace++ > DSPy ReAct > Trace+ > Baseline": 75,
+     "Trace+ > DSPy ReAct > Baseline > Trace++": 23,
+     "DSPy ReAct > Baseline > Trace++ > Trace+": 16,
+     "Trace+ > Baseline > Trace++ > DSPy ReAct": 1,
+     "Trace++ > Trace+ > Baseline > DSPy ReAct": 1
+    },
+    "ItemMean": {
+     "DSPy ReAct > Trace+ > Trace++ > Baseline": 5076,
+     "DSPy ReAct > Trace++ > Trace+ > Baseline": 4483,
+     "Trace++ > DSPy ReAct > Trace+ > Baseline": 226,
+     "Trace+ > DSPy ReAct > Trace++ > Baseline": 134,
+     "Trace++ > Trace+ > DSPy ReAct > Baseline": 37,
+     "Trace+ > Trace++ > DSPy ReAct > Baseline": 36,
+     "DSPy ReAct > Trace+ > Baseline > Trace++": 7,
+     "DSPy ReAct > Trace++ > Baseline > Trace+": 1
+    }
+   },
+   "n_items_by_split": {
+    "easy_set": 41,
+    "cs_set": 10,
+    "real_code": 5,
+    "humaneval_set": 56,
+    "security_6858": 22,
+    "security_python": 6
+   },
+   "orderings": {
+    "Avg": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ],
+    "ItemMean": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ],
+    "Easy": [
+     "DSPy ReAct",
+     "Trace++",
+     "Trace+",
+     "Baseline"
+    ],
+    "CS": [
+     "Trace+",
+     "DSPy ReAct",
+     "Trace++",
+     "Baseline"
+    ],
+    "Real": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ],
+    "HE": [
+     "Trace+",
+     "DSPy ReAct",
+     "Trace++",
+     "Baseline"
+    ],
+    "Sec": [
+     "Trace+",
+     "Trace++",
+     "DSPy ReAct",
+     "Baseline"
+    ]
+   },
+   "agreement_with_claude37": {
+    "claude37_avg_order": [
+     "DSPy ReAct",
+     "Trace++",
+     "Trace+",
+     "Baseline"
+    ],
+    "new_avg_order": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ],
+    "identical_avg_order": false,
+    "spearman_avg_4_agents": 0.7999999999999999,
+    "kendall_avg_4_agents": 0.6666666666666669,
+    "per_split_identical_order": {
+     "Easy": false,
+     "CS": false,
+     "Real": false,
+     "HE": false,
+     "Sec": false
+    },
+    "per_split_spearman": {
+     "Easy": 0.7999999999999999,
+     "CS": -0.316227766016838,
+     "Real": 0.7999999999999999,
+     "HE": 0.316227766016838,
+     "Sec": 0.19999999999999998
+    },
+    "cell_spearman_20": -0.06699285382267986
+   }
+  },
+  "median_available_repeats__sec_6858_plus_python": {
+   "n_paired_items": 140,
+   "min_repeats_required": 1,
+   "repeats_present_per_pair": [
+    1,
+    2,
+    3
+   ],
+   "point": {
+    "baseline": {
+     "Easy": 0.07560975609756097,
+     "CS": 0.05,
+     "Real": 0.14,
+     "HE": 0.07053571428571428,
+     "Sec": 0.0375,
+     "Avg": 0.07472909407665504,
+     "ItemMean": 0.06642857142857142
+    },
+    "dspy_react": {
+     "Easy": 0.18902439024390244,
+     "CS": 0.06,
+     "Real": 0.45,
+     "HE": 0.11160714285714286,
+     "Sec": 0.08035714285714288,
+     "Avg": 0.17819773519163765,
+     "ItemMean": 0.13642857142857143
+    },
+    "trace_plus": {
+     "Easy": 0.07804878048780488,
+     "CS": 0.06999999999999999,
+     "Real": 0.22000000000000003,
+     "HE": 0.1348214285714286,
+     "Sec": 0.08035714285714286,
+     "Avg": 0.11664547038327526,
+     "ItemMean": 0.10571428571428572
+    },
+    "trace_plusplus": {
+     "Easy": 0.12317073170731707,
+     "CS": 0.06,
+     "Real": 0.18,
+     "HE": 0.11160714285714286,
+     "Sec": 0.06964285714285715,
+     "Avg": 0.10888414634146341,
+     "ItemMean": 0.10535714285714287
+    }
+   },
+   "ci": {
+    "baseline": {
+     "Easy": [
+      0.054878048780487805,
+      0.0975609756097561
+     ],
+     "CS": [
+      0.02,
+      0.08
+     ],
+     "Real": [
+      0.02,
+      0.27999999999999997
+     ],
+     "HE": [
+      0.04732142857142858,
+      0.09553571428571428
+     ],
+     "Sec": [
+      0.01607142857142857,
+      0.0625
+     ],
+     "Avg": [
+      0.04926550522648084,
+      0.10433749999999999
+     ],
+     "ItemMean": [
+      0.053214285714285714,
+      0.08035714285714286
+     ]
+    },
+    "dspy_react": {
+     "Easy": [
+      0.12317073170731709,
+      0.2670731707317073
+     ],
+     "CS": [
+      0.030000000000000006,
+      0.09
+     ],
+     "Real": [
+      0.18,
+      0.75
+     ],
+     "HE": [
+      0.08392857142857145,
+      0.14107142857142857
+     ],
+     "Sec": [
+      0.03571428571428571,
+      0.14290178571428508
+     ],
+     "Avg": [
+      0.12030178571428572,
+      0.2394199477351916
+     ],
+     "ItemMean": [
+      0.10964285714285715,
+      0.1657142857142857
+     ]
+    },
+    "trace_plus": {
+     "Easy": [
+      0.05000000000000001,
+      0.10731707317073172
+     ],
+     "CS": [
+      0.030000000000000006,
+      0.11000000000000001
+     ],
+     "Real": [
+      0.05,
+      0.41
+     ],
+     "HE": [
+      0.11250000000000002,
+      0.15803571428571428
+     ],
+     "Sec": [
+      0.03571428571428571,
+      0.13392857142857142
+     ],
+     "Avg": [
+      0.07875777439024391,
+      0.15922868031358883
+     ],
+     "ItemMean": [
+      0.08892857142857143,
+      0.12357142857142858
+     ]
+    },
+    "trace_plusplus": {
+     "Easy": [
+      0.08170731707317075,
+      0.17195121951219514
+     ],
+     "CS": [
+      0.02,
+      0.1
+     ],
+     "Real": [
+      0.04,
+      0.31999999999999995
+     ],
+     "HE": [
+      0.0830357142857143,
+      0.14464285714285713
+     ],
+     "Sec": [
+      0.02142857142857143,
+      0.14464285714285713
+     ],
+     "Avg": [
+      0.07504070121951219,
+      0.14421726916376307
+     ],
+     "ItemMean": [
+      0.0832142857142857,
+      0.12964285714285714
+     ]
+    }
+   },
+   "pairwise_diff": {
+    "baseline-dspy_react": {
+     "Easy": {
+      "point": -0.11341463414634147,
+      "ci": [
+       -0.19271341463414637,
+       -0.0475609756097561
+      ],
+      "p_boot_two_sided": 0.0
+     },
+     "CS": {
+      "point": -0.009999999999999995,
+      "ci": [
+       -0.04,
+       0.020000000000000004
+      ],
+      "p_boot_two_sided": 0.747
+     },
+     "Real": {
+      "point": -0.31,
+      "ci": [
+       -0.68,
+       2.7755575615628914e-17
+      ],
+      "p_boot_two_sided": 0.0562
+     },
+     "HE": {
+      "point": -0.04107142857142858,
+      "ci": [
+       -0.07857142857142856,
+       -0.00535714285714288
+      ],
+      "p_boot_two_sided": 0.0214
+     },
+     "Sec": {
+      "point": -0.04285714285714288,
+      "ci": [
+       -0.11071428571428568,
+       0.007142857142857145
+      ],
+      "p_boot_two_sided": 0.122
+     },
+     "Avg": {
+      "point": -0.1034686411149826,
+      "ci": [
+       -0.17826356707317073,
+       -0.035897735191637664
+      ],
+      "p_boot_two_sided": 0.0006
+     },
+     "ItemMean": {
+      "point": -0.07,
+      "ci": [
+       -0.10214285714285715,
+       -0.04035714285714284
+      ],
+      "p_boot_two_sided": 0.0
+     }
+    },
+    "baseline-trace_plus": {
+     "Easy": {
+      "point": -0.0024390243902439046,
+      "ci": [
+       -0.03658536585365855,
+       0.03170731707317073
+      ],
+      "p_boot_two_sided": 0.905
+     },
+     "CS": {
+      "point": -0.01999999999999999,
+      "ci": [
+       -0.060000000000000026,
+       0.029999999999999992
+      ],
+      "p_boot_two_sided": 0.4972
+     },
+     "Real": {
+      "point": -0.08000000000000002,
+      "ci": [
+       -0.33999999999999997,
+       0.1
+      ],
+      "p_boot_two_sided": 0.6236
+     },
+     "HE": {
+      "point": -0.06428571428571431,
+      "ci": [
+       -0.09374999999999999,
+       -0.03482142857142856
+      ],
+      "p_boot_two_sided": 0.0002
+     },
+     "Sec": {
+      "point": -0.042857142857142864,
+      "ci": [
+       -0.09285714285714286,
+       7.112366251502385e-18
+      ],
+      "p_boot_two_sided": 0.0578
+     },
+     "Avg": {
+      "point": -0.04191637630662022,
+      "ci": [
+       -0.09562728658536587,
+       -0.0008979747386759487
+      ],
+      "p_boot_two_sided": 0.043
+     },
+     "ItemMean": {
+      "point": -0.0392857142857143,
+      "ci": [
+       -0.059642857142857164,
+       -0.019642857142857142
+      ],
+      "p_boot_two_sided": 0.0002
+     }
+    },
+    "baseline-trace_plusplus": {
+     "Easy": {
+      "point": -0.0475609756097561,
+      "ci": [
+       -0.09756097560975611,
+       -0.004878048780487809
+      ],
+      "p_boot_two_sided": 0.0252
+     },
+     "CS": {
+      "point": -0.009999999999999995,
+      "ci": [
+       -0.04000000000000001,
+       0.020000000000000004
+      ],
+      "p_boot_two_sided": 0.7298
+     },
+     "Real": {
+      "point": -0.03999999999999998,
+      "ci": [
+       -0.27,
+       0.21000000000000002
+      ],
+      "p_boot_two_sided": 0.7224
+     },
+     "HE": {
+      "point": -0.04107142857142858,
+      "ci": [
+       -0.08214285714285714,
+       -0.0035714285714285726
+      ],
+      "p_boot_two_sided": 0.0284
+     },
+     "Sec": {
+      "point": -0.03214285714285715,
+      "ci": [
+       -0.1125,
+       0.021428571428571425
+      ],
+      "p_boot_two_sided": 0.4336
+     },
+     "Avg": {
+      "point": -0.034155052264808375,
+      "ci": [
+       -0.08411977351916375,
+       0.018232883275261295
+      ],
+      "p_boot_two_sided": 0.2052
+     },
+     "ItemMean": {
+      "point": -0.03892857142857145,
+      "ci": [
+       -0.06607142857142856,
+       -0.013214285714285706
+      ],
+      "p_boot_two_sided": 0.0014
+     }
+    },
+    "dspy_react-trace_plus": {
+     "Easy": {
+      "point": 0.11097560975609756,
+      "ci": [
+       0.04390243902439024,
+       0.1902439024390244
+      ],
+      "p_boot_two_sided": 0.0
+     },
+     "CS": {
+      "point": -0.009999999999999995,
+      "ci": [
+       -0.060000000000000026,
+       0.039999999999999994
+      ],
+      "p_boot_two_sided": 0.8544
+     },
+     "Real": {
+      "point": 0.22999999999999998,
+      "ci": [
+       -0.16999999999999998,
+       0.64
+      ],
+      "p_boot_two_sided": 0.325
+     },
+     "HE": {
+      "point": -0.02321428571428573,
+      "ci": [
+       -0.058035714285714315,
+       0.012522321428571142
+      ],
+      "p_boot_two_sided": 0.2042
+     },
+     "Sec": {
+      "point": 1.3877787807814457e-17,
+      "ci": [
+       -0.04107142857142856,
+       0.03928571428571429
+      ],
+      "p_boot_two_sided": 1.006
+     },
+     "Avg": {
+      "point": 0.061552264808362386,
+      "ci": [
+       -0.01926506968641113,
+       0.14849766986062715
+      ],
+      "p_boot_two_sided": 0.157
+     },
+     "ItemMean": {
+      "point": 0.030714285714285708,
+      "ci": [
+       0.00107142857142857,
+       0.0625
+      ],
+      "p_boot_two_sided": 0.0424
+     }
+    },
+    "dspy_react-trace_plusplus": {
+     "Easy": {
+      "point": 0.06585365853658537,
+      "ci": [
+       -0.01585365853658538,
+       0.15731707317073174
+      ],
+      "p_boot_two_sided": 0.123
+     },
+     "CS": {
+      "point": 0.0,
+      "ci": [
+       -0.03,
+       0.029999999999999992
+      ],
+      "p_boot_two_sided": 1.2424
+     },
+     "Real": {
+      "point": 0.27,
+      "ci": [
+       -0.09999999999999992,
+       0.67
+      ],
+      "p_boot_two_sided": 0.1658
+     },
+     "HE": {
+      "point": 0.0,
+      "ci": [
+       -0.03839285714285716,
+       0.04017857142857144
+      ],
+      "p_boot_two_sided": 1.0064
+     },
+     "Sec": {
+      "point": 0.010714285714285732,
+      "ci": [
+       -0.023214285714285722,
+       0.04285714285714286
+      ],
+      "p_boot_two_sided": 0.5098
+     },
+     "Avg": {
+      "point": 0.06931358885017423,
+      "ci": [
+       -0.004927330139372791,
+       0.15269675522648082
+      ],
+      "p_boot_two_sided": 0.0724
+     },
+     "ItemMean": {
+      "point": 0.031071428571428555,
+      "ci": [
+       -0.0014285714285714318,
+       0.06607142857142859
+      ],
+      "p_boot_two_sided": 0.062
+     }
+    },
+    "trace_plus-trace_plusplus": {
+     "Easy": {
+      "point": -0.045121951219512194,
+      "ci": [
+       -0.09999999999999998,
+       0.003658536585365857
+      ],
+      "p_boot_two_sided": 0.0778
+     },
+     "CS": {
+      "point": 0.009999999999999995,
+      "ci": [
+       -0.05000000000000002,
+       0.07000000000000002
+      ],
+      "p_boot_two_sided": 0.8454
+     },
+     "Real": {
+      "point": 0.040000000000000036,
+      "ci": [
+       -0.10999999999999999,
+       0.17000000000000004
+      ],
+      "p_boot_two_sided": 0.6116
+     },
+     "HE": {
+      "point": 0.02321428571428573,
+      "ci": [
+       -0.011607142857142871,
+       0.05714285714285715
+      ],
+      "p_boot_two_sided": 0.1962
+     },
+     "Sec": {
+      "point": 0.010714285714285718,
+      "ci": [
+       -0.04464285714285714,
+       0.06250000000000001
+      ],
+      "p_boot_two_sided": 0.6908
+     },
+     "Avg": {
+      "point": 0.007761324041811846,
+      "ci": [
+       -0.029477983449477344,
+       0.0419270905923345
+      ],
+      "p_boot_two_sided": 0.6634
+     },
+     "ItemMean": {
+      "point": 0.00035714285714284755,
+      "ci": [
+       -0.023928571428571438,
+       0.023928571428571438
+      ],
+      "p_boot_two_sided": 0.9622
+     }
+    }
+   },
+   "ordering_bootstrap_frequency": {
+    "Avg": {
+     "DSPy ReAct > Trace+ > Trace++ > Baseline": 4978,
+     "DSPy ReAct > Trace++ > Trace+ > Baseline": 3095,
+     "DSPy ReAct > Trace+ > Baseline > Trace++": 873,
+     "Trace+ > DSPy ReAct > Trace++ > Baseline": 456,
+     "Trace+ > Trace++ > DSPy ReAct > Baseline": 236,
+     "DSPy ReAct > Baseline > Trace+ > Trace++": 118,
+     "DSPy ReAct > Trace++ > Baseline > Trace+": 83,
+     "Trace++ > Trace+ > DSPy ReAct > Baseline": 70,
+     "Trace++ > DSPy ReAct > Trace+ > Baseline": 54,
+     "Trace+ > DSPy ReAct > Baseline > Trace++": 20,
+     "DSPy ReAct > Baseline > Trace++ > Trace+": 14,
+     "Trace+ > Baseline > DSPy ReAct > Trace++": 1,
+     "Trace++ > Trace+ > Baseline > DSPy ReAct": 1,
+     "Trace+ > Trace++ > Baseline > DSPy ReAct": 1
+    },
+    "ItemMean": {
+     "DSPy ReAct > Trace+ > Trace++ > Baseline": 5076,
+     "DSPy ReAct > Trace++ > Trace+ > Baseline": 4483,
+     "Trace++ > DSPy ReAct > Trace+ > Baseline": 226,
+     "Trace+ > DSPy ReAct > Trace++ > Baseline": 134,
+     "Trace++ > Trace+ > DSPy ReAct > Baseline": 37,
+     "Trace+ > Trace++ > DSPy ReAct > Baseline": 36,
+     "DSPy ReAct > Trace+ > Baseline > Trace++": 7,
+     "DSPy ReAct > Trace++ > Baseline > Trace+": 1
+    }
+   },
+   "n_items_by_split": {
+    "easy_set": 41,
+    "cs_set": 10,
+    "real_code": 5,
+    "humaneval_set": 56,
+    "security_6858": 22,
+    "security_python": 6
+   },
+   "orderings": {
+    "Avg": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ],
+    "ItemMean": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ],
+    "Easy": [
+     "DSPy ReAct",
+     "Trace++",
+     "Trace+",
+     "Baseline"
+    ],
+    "CS": [
+     "Trace+",
+     "DSPy ReAct",
+     "Trace++",
+     "Baseline"
+    ],
+    "Real": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ],
+    "HE": [
+     "Trace+",
+     "DSPy ReAct",
+     "Trace++",
+     "Baseline"
+    ],
+    "Sec": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ]
+   },
+   "agreement_with_claude37": {
+    "claude37_avg_order": [
+     "DSPy ReAct",
+     "Trace++",
+     "Trace+",
+     "Baseline"
+    ],
+    "new_avg_order": [
+     "DSPy ReAct",
+     "Trace+",
+     "Trace++",
+     "Baseline"
+    ],
+    "identical_avg_order": false,
+    "spearman_avg_4_agents": 0.7999999999999999,
+    "kendall_avg_4_agents": 0.6666666666666669,
+    "per_split_identical_order": {
+     "Easy": false,
+     "CS": false,
+     "Real": false,
+     "HE": false,
+     "Sec": false
+    },
+    "per_split_spearman": {
+     "Easy": 0.7999999999999999,
+     "CS": -0.316227766016838,
+     "Real": 0.7999999999999999,
+     "HE": 0.316227766016838,
+     "Sec": 0.7999999999999999
+    },
+    "cell_spearman_20": -0.04516372167821115
+   }
+  }
+ }
+}

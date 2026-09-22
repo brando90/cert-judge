@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_50_encode_shift",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humaneval_50_encode_shift.lean",
+ "candidate_sha256": "69acd3c6c1c4d45fe3f60560a7086c682e213327d9fde081724838e9f960fe40",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_50_encode_shift.lean",
+ "gold_sha256": "db282494f9e3b462a89e76ae4e750a4c9fb4150a2303807fcaa7852b09bc0f10",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "64ae852687b1f01a4597d1bb3cc13dbf8540ba739a537d0d5c3e32819e44ca1b",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "It defines unrelated encode/decode functions and inverse claims, but never states that `decodeShift s = decodeShiftImp s`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 35.34,
+ "usage": {
+  "input_tokens": 13441,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 47,
+  "reasoning_output_tokens": 0
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:24:54.400203Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6f-b1f7-74b0-ac40-bfc93ff50797\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"It defines unrelated encode/decode functions and inverse claims, but never states that `decodeShift s = decodeShiftImp s`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13441,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":47,\"reasoning_output_tokens\":0}}\n",
+ "finished_at": "2026-09-22T23:25:22+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "real_code/1_bisect_left",
+ "agent": "dspy_react",
+ "split": "real_code",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/real_code/1_bisect_left.lean",
+ "candidate_sha256": "fa8b9d9b64bd35976e1d369451a2c704edc429e3f8e3affe16ccbdbcc7ad54f2",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/1_bisect_left.lean",
+ "gold_sha256": "b6b204d4b1eefb00a3dee2e5ed2ae94eb8645bf91cafe8fe337be510680652c9",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "2bd63c91232159121e740086cc31eec27fba14afe3e6578f596982e30a4a03c5",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.45,
+ "reasoning": "The generated bisect correctness theorems capture the pre-insertion partition on the original array, but no theorem establishes the reference's crucial post-insertion partition around the inserted element at its computed index.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 51.18,
+ "usage": {
+  "input_tokens": 15055,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 194,
+  "reasoning_output_tokens": 131
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:14:14.424732Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T23:14:14.860341Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T23:14:42.253638Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb66-00d0-7130-b356-107ee8b49f44\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.45,\\\"reasoning\\\":\\\"The generated bisect correctness theorems capture the pre-insertion partition on the original array, but no theorem establishes the reference's crucial post-insertion partition around the inserted element at its computed index.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":15055,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":194,\"reasoning_output_tokens\":131}}\n",
+ "finished_at": "2026-09-22T23:14:58+00:00"
+}

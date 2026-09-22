@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "real_code/0_bisect_right",
+ "agent": "dspy_react",
+ "split": "real_code",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/real_code/0_bisect_right.lean",
+ "candidate_sha256": "48074d0d8f68fde7932df1fd2b007a2b3ef472c2cea29655849e65117e116e87",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/0_bisect_right.lean",
+ "gold_sha256": "2dc442d66718a018ae54a3471eccb628033198de258067b818ab27327a027183",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "e0d530ae89e5785e3b282acb0149c7777ece6068ab1e86a888e4bb99a67127bc",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated code is not valid generic Lean (it attempts impossible pattern type refinements from `α` to `κ`), and its stated theorems are all unproved `sorry`s rather than the reference partition-after-insertion guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 38.96,
+ "usage": {
+  "input_tokens": 14697,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 192,
+  "reasoning_output_tokens": 121
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:24:22.622415Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb6f-35d5-7da2-b581-2af6302519b8\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated code is not valid generic Lean (it attempts impossible pattern type refinements from `α` to `κ`), and its stated theorems are all unproved `sorry`s rather than the reference partition-after-insertion guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14697,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":192,\"reasoning_output_tokens\":121}}\n",
+ "finished_at": "2026-09-22T23:24:54+00:00"
+}

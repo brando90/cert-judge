@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/0_no_shell_injection_safe",
+ "agent": "trace_plusplus",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/security_python/0_no_shell_injection_safe.lean",
+ "candidate_sha256": "0243aa6a40f2ac48f38e2c3b3e45ef682662ef343ca719b24123963173859a14",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/safe/0_no_shell_injection_safe.lean",
+ "gold_sha256": "7136cf01142371500ca74e38518f042caa04a91e3c1dbe18a456196517b4fbbc",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "42ab3e7cb04c3b7e4e6701a1758031fb6b20216f26d574d74c1d6731c3a2c210",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems establish only properties of an unlinked abstract model (with several vacuous claims) and do not relate listFilesSafe to the reference theorem’s arbitrary Pre/Post correctness contract.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 36.94,
+ "usage": {
+  "input_tokens": 15427,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 148,
+  "reasoning_output_tokens": 86
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb67-4508-7431-aefa-8c55cfaff756\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems establish only properties of an unlinked abstract model (with several vacuous claims) and do not relate listFilesSafe to the reference theorem’s arbitrary Pre/Post correctness contract.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":15427,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":148,\"reasoning_output_tokens\":86}}\n",
+ "finished_at": "2026-09-22T23:16:12+00:00"
+}

@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "real_code/4_json_decoder",
+ "agent": "baseline",
+ "split": "real_code",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/real_code/4_json_decoder.lean",
+ "candidate_sha256": "8d575a6f57761233c5c0daadd5da5522f6d97381153472167b152302f7ee47cc",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/real_code/4_json_decoder.lean",
+ "gold_sha256": "5a58ffe5b5a1697498abf2dcfe74e1f9d3b4f6671f226105f191c0ff8333e8bb",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "66e05641afc2a85cf912e5dacd5822636b67b93fb3678e0f2f7185b74fb02e7c",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems concern a separate JSON string scanner and do not state or prove the reference equality `loads s = loadsImp s`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 40.73,
+ "usage": {
+  "input_tokens": 19808,
+  "cached_input_tokens": 9984,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 83,
+  "reasoning_output_tokens": 31
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb72-1edb-7f22-8d6e-9eebc6802caa\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems concern a separate JSON string scanner and do not state or prove the reference equality `loads s = loadsImp s`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":19808,\"cached_input_tokens\":9984,\"cache_write_input_tokens\":0,\"output_tokens\":83,\"reasoning_output_tokens\":31}}\n",
+ "finished_at": "2026-09-22T23:28:02+00:00"
+}

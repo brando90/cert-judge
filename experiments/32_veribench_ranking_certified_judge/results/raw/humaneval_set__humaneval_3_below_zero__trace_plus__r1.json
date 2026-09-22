@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_3_below_zero",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_3_below_zero.lean",
+ "candidate_sha256": "63bddeecda13fddf0cbde039bff9d52c3ec726184bc0b938b4fd63451ef4a87f",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_3_below_zero.lean",
+ "gold_sha256": "b1cb8cac217e787239482083821d8749a573455ee6f96b0a293f1448adb31177",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "4dcc1a43148df186f7d37500aa781944fead95d2b985fee9b0e74907bbe5ba04",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated statements describe some behavior of `belowZero` but entirely omit the reference's core guarantee that `belowZero` equals `belowZeroImp` for every input.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 32.03,
+ "usage": {
+  "input_tokens": 13583,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 132,
+  "reasoning_output_tokens": 75
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:28:52.943698Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb73-555e-7911-bc92-215dba88b87a\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated statements describe some behavior of `belowZero` but entirely omit the reference's core guarantee that `belowZero` equals `belowZeroImp` for every input.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13583,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":132,\"reasoning_output_tokens\":75}}\n",
+ "finished_at": "2026-09-22T23:29:17+00:00"
+}

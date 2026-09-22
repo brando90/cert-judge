@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/26_longest_common_subsequence",
+ "agent": "baseline",
+ "split": "easy_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/easy_set/26_longest_common_subsequence.lean",
+ "candidate_sha256": "4ddd062325f10ec8dd8a78080c08aaeded45765f8be4a09cb5161005f8e545f5",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/26_longest_common_subsequence.lean",
+ "gold_sha256": "41907bfa9ae08a85d60d37ce67a3c9e80aa977193a7292c326de83950c578769",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "fe61a24f89c1935623fee6de624f4e60196f910334a307b53c0e1d7c59bd8f5c",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It provides unrelated, mostly unproven LCS property statements and never states or proves equivalence with `longestCommonSubsequenceImp`, which is the reference theorem's core guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 31.27,
+ "usage": {
+  "input_tokens": 14441,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 232,
+  "reasoning_output_tokens": 172
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:27:55.198515Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb72-738e-7ea0-876f-f8a89b3edb30\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It provides unrelated, mostly unproven LCS property statements and never states or proves equivalence with `longestCommonSubsequenceImp`, which is the reference theorem's core guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14441,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":232,\"reasoning_output_tokens\":172}}\n",
+ "finished_at": "2026-09-22T23:28:19+00:00"
+}
