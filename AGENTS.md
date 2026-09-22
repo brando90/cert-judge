@@ -21,7 +21,15 @@ The older P1–P7/JTI and TIvar pipelines remain historical compatibility code. 
 
 ## Terminology for Scientific Prose
 
-Name the operation precisely rather than using "calibration" as a catchall: distinguish development-set association, a fitted score mapping, threshold selection, and score--outcome reliability. Preserve external titles and citations, literal paths and code identifiers, and frozen evidence; wording cleanup also applies to stored archived manuscript prose, whose corresponding PDF artifacts must be rebuilt.
+Name the operation precisely rather than using "calibration" as a catchall: distinguish validation-set association, a fitted score mapping, threshold selection, and score--outcome reliability. Preserve external titles and citations, literal paths and code identifiers, and frozen evidence; wording cleanup also applies to stored archived manuscript prose, whose corresponding PDF artifacts must be rebuilt.
+
+### Data splits: train / validation / test only
+
+Brando's rule (09-22-2026; `~/agents-config/writing/ml_research/ml_research_writing.md` § Data-Split Names): call data splits train, validation (val), and test. Never write "development set", "dev set", or "development panel".
+
+- The 72-pair human panel (75 rated pairs, one gold file missing; one annotator, pass1/pass2 strictness levels) is the **validation set**. It was used to choose the index form, repeat aggregation, threshold, and prompt panel, so its correlations are optimistic.
+- `TI_var` has no fitted weights, so there is **no training set**. The exp23 weight-tuned variant is trained on one label pass and evaluated on the other pass of the same pairs; that is not a test set.
+- There is **no test-set result**. The five-rater pool (343 labels, 78 pairs) used a revised rubric that agrees with the validation labels at only rho ~ 0.13 on 63 shared pairs (archive `22_pooled_heldout_and_noise_ceiling`), so its null results (exp23 rho = -0.238, exp43, exp22) cannot test transfer. A real test set needs new raters under the validation set's rubric, with the properties and `TI_var` frozen first.
 
 ### "Specification" has one meaning here
 

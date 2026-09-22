@@ -388,3 +388,10 @@ there are no undefined references and no overfull boxes in the main text, and ev
 - **Needs Brando:** Limitations now say the 343-label pool is a *different criterion* (ρ≈0.13 with the panel
   labels), not "not yet analyzed". A `% TODO(internal-review)` notes that the archived exp23/24 re-bridging attempts
   found no reliable signal. Decide whether to disclose them.
+
+## 2026-09-22 — splits are train / validation / test (Brando)
+
+- "Development panel" confused Brando, who uses train / val / test. The 72-pair panel chose the index form, aggregation, threshold, and prompts, so in ML terms it is the **validation set**. `c243d98` renames all 34 paper uses and adds to §4: "TI_var has no fitted weights, so there is no training set, and the paper reports no test-set result (Section~\ref{sec:limitations-test})." The limitations paragraph is now "Validation set, not a test set."
+- The cross-pass caption now says both passes are one annotator's ratings of the same 72 pairs (it said n=75).
+- Rule recorded in CLAUDE.md/AGENTS.md § Data splits and in agents-config `ml_research_writing.md` § Data-Split Names.
+- Builds go in a scratch copy, not the paper dir, because overlapping latexmk runs truncated main.aux (per the cert-judge-57 session).
