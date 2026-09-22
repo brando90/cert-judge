@@ -87,21 +87,32 @@ and define it in one clause.
   correlate *positively* with the panel labels (editdist +0.20, BAD_STRINGY +0.43;
   `archive/26_human_label_dataset_audit/vb_judgements_human_scores.md:93`). A cross-checking reviewer could say
   "your human criterion isn't fidelity."
-- **Definition:** quality relative to g = **fidelity** (primary: coverage + correctness, i.e. not under-specified,
-  not over-constrained/wrong-target, not vacuous; vacuous → 0) + **presentation** (secondary: theorem spam, bloat,
-  over-abstraction). Vacuity and "spec restates the implementation" (`f x = <body of f>`, true by definition) are
-  fidelity failures, not a separate axis.
+- **Definition:** reference-based quality is **operationalized as fidelity**: coverage + correctness relative to g,
+  i.e. not under-specified, not over-constrained/wrong-target, not vacuous (vacuous → 0). Vacuity and "spec restates
+  the implementation" (`f x = <body of f>`, true by definition) are fidelity failures, not a separate axis.
+- **Presentation (theorem spam, bloat, over-abstraction) was NOT assessed — do not put it in the definition**
+  (corrected 2026-09-22; an earlier draft listed it as a "secondary" part of the construct).
+  - Headline panel: rubric text lost, so we can't say it covered presentation.
+  - Pool rubric: only *theorem spam*, folded into the single 0–5 score (−1/−2). The C/D spam answers were never
+    recorded: all label TSVs are `gold_file|candidate_file|human_score_0_5`, so the spam effect can't be separated.
+    The pool also isn't behind any headline number.
+  - LLM judge prompts (P1/P4/P8): no presentation instruction.
+  - Property probes (identity, bug, missing-spec, alpha): none target presentation.
+  - Nothing anywhere covers implementation bloat or over-abstraction.
+  → Presentation goes in **Limitations** as unassessed. The honest human-side sentence is "panel ratings are
+  holistic, so presentation may have influenced them implicitly."
 
 **Proposed text**
 - Abstract `:108`: "…a property-certification protocol for LLM judges of *reference-based* Lean~4 specification
   quality (how completely and correctly a candidate specification captures a gold reference), where each judge is
   scored by…"
-- §3 (`sec:problem-setup`), one new paragraph: quality is measured relative to g; fidelity is primary; presentation
-  is secondary. Judge prompts give no instruction on presentation, but judges see the full candidate file. The pool
-  rubric deducts up to 2 points for theorem spam. Panel ratings are holistic 0–5.
-- Limitations, one sentence: "Scores are anchored to a gold reference, but we do not evaluate candidates optimized
-  against the judge, so resistance to gaming is untested." Plus: "Implementation-level readability and concision are
-  not scored by any instrument."
+- §3 (`sec:problem-setup`), one new paragraph: quality is measured relative to g and operationalized as fidelity
+  (judge prompts ask for captured correctness properties; `True` → 0). Judge prompts give no instruction on
+  presentation, but judges see the full candidate file. Panel ratings are holistic 0–5. The pool rubric (not used
+  for headline numbers) folds a theorem-spam deduction of up to 2 points into its score.
+- Limitations: "Scores are anchored to a gold reference, but we do not evaluate candidates optimized against the
+  judge, so resistance to gaming is untested." Plus: "We do not assess presentation (redundant or bloated theorem
+  statements, implementation size, abstraction level); holistic human ratings may reflect it implicitly."
 
 **Other "quality" hits (fix differently)**
 
@@ -178,7 +189,8 @@ by one annotator under two rubric strictness levels" and claim nothing about wha
 
 ### Checklist — quality/precision pass (pending Brando's OK on the wording)
 - [ ] Abstract `:108` → anchored "reference-based specification quality (how completely and correctly …)"
-- [ ] §3: add the fidelity (primary) + presentation (secondary) paragraph; describe the three instruments precisely
+- [ ] §3: add the "reference-based quality, operationalized as fidelity" paragraph; describe the three instruments
+      precisely. Presentation goes in Limitations as unassessed, not in the definition.
 - [ ] Replace the spec-sense "quality" hits per the table; C_f "quality term" → "monotonicity term" (5 sites incl. `:613`)
 - [ ] Fix the 0–10 vs 0.0–1.0 scale inconsistency (`:222`, `:702` vs `:1103`)
 - [ ] Appendix: note that "REFERENCE IMPLEMENTATION" = the gold's last theorem block
