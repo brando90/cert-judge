@@ -25,7 +25,7 @@ Follow `~/agents-config/INDEX_RULES.md` and read `~/agents-config/writing/ml_res
 
 ## Do not touch
 
-- §5.4 and Table 5 (experiment 32 is re-scoring the VeriBench ranking with a certified judge).
+- The former §5.4 / Table 5 (VeriBench agent ranking) was removed on 09-22-2026; do not reintroduce it.
 - The abstract and intro prose beyond E-list items (experiment 31 owns them).
 - Anything in `experiments/archive/` (frozen evidence).
 

@@ -1,7 +1,7 @@
 # results.md — experiment 33 (OpenReview complaints → ICLR 2027 paper)
 
 **Status:** DONE for three venues; BLOCKED on the DL4C paste (started 09-22-2026 14:58 PDT)
-**Last updated:** 09-22-2026 15:32 PDT
+**Last updated:** 09-22-2026 15:42 PDT
 
 | Phase | Status | Evidence |
 |---|---|---|
@@ -16,10 +16,10 @@
 
 | Status | Rows |
 |---|---|
-| Addressed | 25 |
-| Disclosed (stated as a limitation) | 15 |
-| Deferred (named owner: experiment 31, experiment 32, or future work) | 5 |
-| Superseded | 1 |
+| Addressed | 24 |
+| Disclosed (stated as a limitation) | 12 |
+| Deferred (named owner: experiment 31 or future work) | 3 |
+| Superseded (old Fig. 1; §5.4 VeriBench table removed 09-22-2026) | 7 |
 | Unknown (DL4C) | placeholders only |
 
 ## Edits
@@ -49,6 +49,7 @@
 ## Still open
 
 - DL4C reviews (forum `gGR1gE7x3a`): Brando pastes them into `reviews/icml2026_dl4c_gGR1gE7x3a.md`, then prompt 03 runs.
-- O2 (appendix "best Spearman 0.480/0.559" comes from the alpha-ablation panel) and O3 (intro TODO on label reuse) are with experiment 31; §5.4 re-scoring is with experiment 32.
+- O2 (appendix "best Spearman 0.480/0.559" comes from the alpha-ablation panel) and O3 (intro TODO on label reuse) are with experiment 31.
+- §5.4 (VeriBench agent ranking, Table 5) was removed from main.tex on 09-22-2026 by Brando's decision (uncertified Claude 3.7 judge; exp32 stopped at commit d7f37c3), which closes the six VeriBench-judge rows as Superseded.
 
 **TLDR-end:** [cj: or-complaints] All 46 complaints from the three retrievable OpenReview rounds are ledgered and the nine artifact-traced paper edits landed in commit `e0631b6`; the DL4C reviews remain the one missing input and need Brando's paste before prompt 03 can run.

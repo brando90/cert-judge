@@ -47,7 +47,7 @@
 - `experiments/archive/02_neurips_reviews/or_neurips_2025_math_ai_workshop/or_reviews.md` (MATH-AI capture).
 - `experiments/archive/21_tmlr_submission/` (desk-reject record, headline CI provenance).
 - Artifacts for the edits: `experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/`, `…/results_exp24_alpha_canonicalized_identity/`, `…/results_final_stat_reliability_suite/exp18_human_label_reliability/`, `experiments/archive/23_reanchored_calibration/`, `experiments/archive/24_expanded_panel_cli/results/pass2_full_screen_results.json`.
-- Concurrent owners: experiment 31 (main-text prose), experiment 32 (§5.4 VeriBench re-scoring). This experiment stays off §5.4 and the abstract.
+- Concurrent owners: experiment 31 (main-text prose). Experiment 32 (§5.4 VeriBench re-scoring) was stopped on 09-22-2026 when Brando removed §5.4 / Table 5 from the paper. This experiment stays off the abstract and intro.
 - No LLM calls, no credentials.
 
 ## Status
