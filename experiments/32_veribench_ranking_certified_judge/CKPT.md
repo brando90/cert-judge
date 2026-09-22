@@ -4,6 +4,8 @@
 
 ## Status (update on every checkpoint)
 - 2026-09-22 — inputs located and manifested (`inputs_manifest.json`: 140 items, 560 candidate rows, all golds resolved in the frozen legacy root); `judge_config.json`, `score_schema.json`, `run_ranking_cli.py` written. NOTHING RUN YET.
+- 2026-09-22 22:16 UTC — probe: 4 cells OK (scores 0.0/0.0/0.1/…, 13–19 s per call, usage ~13.8k input / ~150 output tokens per call). Codex JSONL emits no served-model field and no `model:` header under `--json`; model identity rests on the explicit `-m gpt-5.6-terra` flag (same limitation exp29 documented). A benign `error` item ("Skill descriptions were shortened to fit the skills context budget") appears on some calls; the runner now records it as `benign_warnings` and does not retry on it.
+- 2026-09-22 22:23 UTC — FULL RUN RUNNING in background (`nohup python3 run_ranking_cli.py --workers 8`, log `results/run.log`, stdout `results/run_stdout.log`). Completed cells are cached in `results/raw/`; if the process dies, re-run the resume command below (it skips cached cells). `aggregate_ranking.py` written (bootstrap CIs, ordering agreement with the Claude 3.7 table) — run it on partial data at any time.
 
 ## Quote (written BEFORE the first inference call — Hard Rule 9 / runbook step 4)
 | Field | Value |

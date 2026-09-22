@@ -49,7 +49,12 @@ def load_prompt_template(name: str) -> str:
     import ast
     tree = ast.parse(PROMPT_SOURCE.read_text(encoding="utf-8"))
     for node in ast.walk(tree):
-        if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "PROMPT_VARIANTS" for t in node.targets):
+        targets = []
+        if isinstance(node, ast.Assign):
+            targets = node.targets
+        elif isinstance(node, ast.AnnAssign):
+            targets = [node.target]
+        if targets and any(isinstance(t, ast.Name) and t.id == "PROMPT_VARIANTS" for t in targets):
             variants = ast.literal_eval(node.value)
             return variants[name]
     raise KeyError(name)
@@ -155,7 +160,19 @@ def run_codex_once(prompt: str, cfg: dict, timeout: int) -> dict:
                         observed_models.add(it[key])
             if ev.get("type") == "turn.completed" and isinstance(ev.get("usage"), dict):
                 usage = ev["usage"]
-        forbidden = {k: v for k, v in item_types.items() if k not in {"agent_message", "reasoning"}}
+        forbidden = {k: v for k, v in item_types.items() if k not in {"agent_message", "reasoning", "error"}}
+        error_items = []
+        for line in completed.stdout.splitlines():
+            try:
+                ev = json.loads(line.strip())
+            except Exception:
+                continue
+            it = ev.get("item")
+            if isinstance(it, dict) and it.get("type") == "error":
+                error_items.append(it)
+            if ev.get("type") == "error":
+                error_items.append(ev)
+        result["error_items"] = error_items
         result.update({
             "event_types": event_types,
             "item_types": item_types,
@@ -165,6 +182,11 @@ def run_codex_once(prompt: str, cfg: dict, timeout: int) -> dict:
         })
         m = re.search(r"(?m)^model:\s*(\S+)\s*$", completed.stdout + "\n" + completed.stderr)
         result["observed_model_header"] = m.group(1) if m else None
+        benign = [e for e in error_items if str(e.get("message", "")).startswith("Skill descriptions were shortened")]
+        real_errors = [e for e in error_items if e not in benign]
+        result["benign_warnings"] = benign
+        if real_errors:
+            raise RuntimeError(f"codex error item: {json.dumps(real_errors)[:500]}", result)
         if forbidden:
             raise RuntimeError(f"codex attempted forbidden tool use: {forbidden}", result)
         parsed = parse_last_json(last)
@@ -197,7 +219,7 @@ def score_cell(job: dict, cfg: dict, template: str, retries: int, timeout: int) 
                 "reasoning_effort": cfg["reasoning_effort"],
                 "score": float(r["parsed"]["score"]), "reasoning": str(r["parsed"].get("reasoning", "")),
                 "attempt": attempt, "failed_attempts": attempts,
-                "elapsed_seconds": r["elapsed_seconds"], "usage": r["usage"],
+                "elapsed_seconds": r["elapsed_seconds"], "usage": r["usage"], "benign_warnings": r.get("benign_warnings", []),
                 "event_types": r["event_types"], "item_types": r["item_types"],
                 "cli_stderr_tail": r["stderr"][-2000:], "cli_stdout_jsonl": r["stdout"],
                 "finished_at": datetime.now(UTC).isoformat(timespec="seconds"),
@@ -210,7 +232,8 @@ def score_cell(job: dict, cfg: dict, template: str, retries: int, timeout: int) 
             attempts.append({"attempt": attempt, "error": f"timeout after {timeout}s"})
         except RuntimeError as exc:
             detail = exc.args[1] if len(exc.args) > 1 and isinstance(exc.args[1], dict) else {}
-            attempts.append({"attempt": attempt, "error": str(exc.args[0])[:600], "stderr_tail": str(detail.get("stderr", ""))[-600:]})
+            attempts.append({"attempt": attempt, "error": str(exc.args[0])[:600], "stderr_tail": str(detail.get("stderr", ""))[-600:],
+                             "stdout_tail": str(detail.get("stdout", ""))[-1500:], "elapsed_seconds": detail.get("elapsed_seconds")})
         except Exception as exc:  # noqa: BLE001
             attempts.append({"attempt": attempt, "error": f"{type(exc).__name__}: {exc}"[:600]})
         log(f"RETRY {out.name} attempt {attempt} failed: {attempts[-1]['error'][:160]}")
