@@ -4,6 +4,17 @@
 wording-only). No full rewrite. The *concept* still leaks in ~4 places in the ICLR main text; fix is a
 targeted pass on abstract / §1 / §4 opening / §5.3 / §6.1 / §7 (~25–30 sentences). Appendix untouched.
 
+**New 2026-09-22 — "quality" term + what we actually measured (scroll down; main.tex NOT edited yet):**
+- The word "quality": keep it, but always as **"reference-based specification quality"** (how completely and
+  correctly a candidate captures a gold reference). → section *the word "quality"*
+- What each instrument actually scores (panel rubric = text lost; pool rubric = coverage + spam −2; LLM prompts =
+  captured correctness properties; nothing covers implementation bloat). Also two main.tex precision bugs.
+  → section *what each instrument actually scores*
+- ICML 2026 reviews: nobody objected to "quality". They objected to the unclear annotation protocol and to missing
+  vacuity coverage. → section *ICML 2026 reviews*
+- "Calibration" explained → section *"calibration": what the word means*
+- **Checklist** of pending edits → last section of this file
+
 Target file: `paper_latex/ICLR_2027_submission/main.tex` (09-16 verbatim port of the accepted ICML DL4C paper;
 main text = lines 104–719, `\appendix` at 791). Build: `latexmk -pdf main.tex`.
 
