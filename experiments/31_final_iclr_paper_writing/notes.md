@@ -242,3 +242,10 @@ is known by construction**, which needs no human labels. That is the paper's own
 Building the probes costs nothing. Scoring = paid judge inference → exact quote + Brando's OK first.
 The only human-side action is retrieval: ask Ethan for the panel rubric text and whether he penalized size/spam.
 Record his answer as an annotator report.
+
+## 2026-09-22 — abstract "predicts" (audit #1, abstract only)
+
+- "TI_var strongly predicts judge-level human alignment ..., reporting validation-set Spearman correlations" → "We evaluate eight judge configurations ... On this development panel, TI_var is associated with judge-level human alignment, with Spearman correlations of 0.833 / 0.905 / 0.738."
+- "strongest single predictor" → "Among single properties, specification monotonicity has the strongest association with human agreement, followed by bug monotonicity". This uses the property names the abstract already defines, not "removed specifications", since the P3 ladder also removes tests.
+- Dropped "strongly" (n=8 judges) and "validation-set" (it is the development panel).
+- Still open in the main text: §5.3 header `:369`, `:641`, `:646-647`, caption `:1314`, and the intro/contributions still say "validation-set".
