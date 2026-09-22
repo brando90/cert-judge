@@ -95,6 +95,8 @@ The active manuscript is `paper_latex/ICLR_2027_submission/main.tex`. Older ICML
 
 Build with: `latexmk -pdf <main_file.tex>`
 
+Prose in `.tex` files is **one sentence per line**: a newline after every full sentence and no wraps mid-sentence (rule: `~/agents-config/writing/ml_research/ml_research_writing.md` § LaTeX Source Layout). Check with `python3 ~/agents-config/scripts/latex_sentence_lines.py --check paper_latex/ICLR_2027_submission/main.tex`.
+
 ## Experiment lifecycle (required)
 
 Only work currently being pursued belongs directly under `experiments/`. Completed,
