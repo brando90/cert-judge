@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "cs_set/insertion_sort",
+ "agent": "baseline",
+ "split": "cs_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/cs_set/insertion_sort.lean",
+ "candidate_sha256": "0614532b50029a32192ab343a5fa81aa89e12d97df2c8856a6ba1daeaa95ef51",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/cs_set/insertion_sort.lean",
+ "gold_sha256": "473701255f45e9104b33b1799aabea1a13bf1b4d76a9f855913ec7feb81aeff2",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "34a84d9a46a3b2e7ee43d0aa23cf11d6bceb0b91e94dc38d1217cf5f60685179",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It proves no relationship to insertionSortImp and even changes the input type from List Nat to List Int, so it misses the reference theorem’s core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 42.37,
+ "usage": {
+  "input_tokens": 13838,
+  "cached_input_tokens": 9984,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 198,
+  "reasoning_output_tokens": 142
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:48:07.381715Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb4e-031c-7462-9cde-69a6a9ffe302\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It proves no relationship to insertionSortImp and even changes the input type from List Nat to List Int, so it misses the reference theorem’s core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13838,\"cached_input_tokens\":9984,\"cache_write_input_tokens\":0,\"output_tokens\":198,\"reasoning_output_tokens\":142}}\n",
+ "finished_at": "2026-09-22T22:48:44+00:00"
+}

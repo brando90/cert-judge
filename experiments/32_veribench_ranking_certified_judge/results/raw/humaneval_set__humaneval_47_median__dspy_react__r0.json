@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_47_median",
+ "agent": "dspy_react",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/humaneval_set/humaneval_47_median.lean",
+ "candidate_sha256": "57ace253c7a6b9e92bf047a76c7c26fbe26adbcd521377c0474bce26b391b441",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_47_median.lean",
+ "gold_sha256": "14cb89ded62fc3d614f20520947ca701f4027f97c1cf5244642cc155626f0737",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "66076a52085a1c895c904df722f6e405426d582b8da2b5741fc7de00403de4ce",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated code never defines or relates `medianImp` to `median`, so it does not capture the reference equivalence theorem.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 51.89,
+ "usage": {
+  "input_tokens": 13942,
+  "cached_input_tokens": 9984,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 105,
+  "reasoning_output_tokens": 56
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:52:21.918936Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb51-e53c-70c2-b16e-75db5c2b2ba6\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated code never defines or relates `medianImp` to `median`, so it does not capture the reference equivalence theorem.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13942,\"cached_input_tokens\":9984,\"cache_write_input_tokens\":0,\"output_tokens\":105,\"reasoning_output_tokens\":56}}\n",
+ "finished_at": "2026-09-22T22:53:07+00:00"
+}

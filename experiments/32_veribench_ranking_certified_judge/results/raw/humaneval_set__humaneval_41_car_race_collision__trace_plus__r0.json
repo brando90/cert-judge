@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_41_car_race_collision",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_41_car_race_collision.lean",
+ "candidate_sha256": "9d062d3e9655463657cdc4e112b70128ed198b5ceffae1204f97596a8defa2f5",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_41_car_race_collision.lean",
+ "gold_sha256": "f733b510b42132d0d96be4c5ca8877166de0ba071faa10e226ad68eb30531517",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "d1dff79c217b7505cb814c21ab1936c222e18123b22f8da69ed566dec7b79c03",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated results establish only that `carRaceCollision n = n * n` and omit the reference’s core equivalence guarantee with `carRaceCollisionImp n`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 48.47,
+ "usage": {
+  "input_tokens": 13368,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 149,
+  "reasoning_output_tokens": 92
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:51:47.718745Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb51-610a-7a62-8670-ef630b76d74c\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated results establish only that `carRaceCollision n = n * n` and omit the reference’s core equivalence guarantee with `carRaceCollisionImp n`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13368,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":149,\"reasoning_output_tokens\":92}}\n",
+ "finished_at": "2026-09-22T22:52:30+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/2_unsafeMemoryAccess_safe",
+ "agent": "baseline",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_6858/2_unsafeMemoryAccess_safe.lean",
+ "candidate_sha256": "a305384ad90e347f9dffd181f0c0f93b7afde920c15c1c3cb62a1fbdd703d87a",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/safe/2_unsafeMemoryAccess_safe.lean",
+ "gold_sha256": "0ae9c035392fafa25241fe9362d2c78a802290bbedfc08a0c1bb60ee238a8e3e",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "81e6e089870abf0a3d99a1a117c49732c7e5fdb0222a46373c7975ebc3ed0e20",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems specify an unrelated memory-access API and do not state or prove the reference theorem's `Pre → Post` correctness contract.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 65.48,
+ "usage": {
+  "input_tokens": 13521,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 110,
+  "reasoning_output_tokens": 58
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:51:16.493164Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb50-e6bf-7153-9818-bb8e39be3a93\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems specify an unrelated memory-access API and do not state or prove the reference theorem's `Pre → Post` correctness contract.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13521,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":110,\"reasoning_output_tokens\":58}}\n",
+ "finished_at": "2026-09-22T22:52:15+00:00"
+}

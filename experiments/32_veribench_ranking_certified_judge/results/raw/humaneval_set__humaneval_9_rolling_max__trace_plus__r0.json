@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_9_rolling_max",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_9_rolling_max.lean",
+ "candidate_sha256": "71669c4da674e48ab3bd5979a29eca0c3fe3d5b9434e3ad71cd2db591fc9654b",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_9_rolling_max.lean",
+ "gold_sha256": "bd369388af72109a5101d42a9525a3113bcb979d741d3a2681ac726e5eaf4946",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "b6a06c4e222596461049847974c13fb9979d0344ad7437dae948ebdef0ce4025",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It defines and tests rollingMax plus proves only length preservation, but omits the core equivalence to rollingMaxImp guaranteed by the reference theorem.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 47.91,
+ "usage": {
+  "input_tokens": 13565,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 88,
+  "reasoning_output_tokens": 36
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:46:03.595390Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb4c-1f93-7f92-9952-c6e2a3fd149a\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It defines and tests rollingMax plus proves only length preservation, but omits the core equivalence to rollingMaxImp guaranteed by the reference theorem.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13565,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":88,\"reasoning_output_tokens\":36}}\n",
+ "finished_at": "2026-09-22T22:46:45+00:00"
+}

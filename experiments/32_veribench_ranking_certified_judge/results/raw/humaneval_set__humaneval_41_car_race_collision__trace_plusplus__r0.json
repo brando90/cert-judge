@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_41_car_race_collision",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humaneval_41_car_race_collision.lean",
+ "candidate_sha256": "6b6b549b9213aa9e165fb23cb84e0197b55da2dc671d9cb3fedf261eb82781cf",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_41_car_race_collision.lean",
+ "gold_sha256": "f733b510b42132d0d96be4c5ca8877166de0ba071faa10e226ad68eb30531517",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "69d1490349a80d53612ed8e4648797e537f956108a4658cddce4681de2e90d2f",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It proves properties of a redefined functional version but omits the reference's essential equivalence to `carRaceCollisionImp`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 47.74,
+ "usage": {
+  "input_tokens": 13400,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 124,
+  "reasoning_output_tokens": 75
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:51:50.624714Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb51-6b5f-72c1-8e99-2043a655839b\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It proves properties of a redefined functional version but omits the reference's essential equivalence to `carRaceCollisionImp`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13400,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":124,\"reasoning_output_tokens\":75}}\n",
+ "finished_at": "2026-09-22T22:52:32+00:00"
+}

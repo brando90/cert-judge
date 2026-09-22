@@ -1,0 +1,48 @@
+{
+ "status": "ok",
+ "item": "cs_set/insertion_sort",
+ "agent": "trace_plusplus",
+ "split": "cs_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/cs_set/insertion_sort.lean",
+ "candidate_sha256": "cafbf68c093a4df423f8afea448b123c3b4c849ee67f49cb347e8a509bd97393",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/cs_set/insertion_sort.lean",
+ "gold_sha256": "473701255f45e9104b33b1799aabea1a13bf1b4d76a9f855913ec7feb81aeff2",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "0166c5749d76b2e51a203557cb5668b45d709938b6cd09e1b4d423fa398fb25e",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It proves assorted properties of a newly defined `List Int` insertion sort but never relates it to `insertionSortImp` or the reference `List Nat` theorem, so it misses the core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 156.86,
+ "usage": {
+  "input_tokens": 13423,
+  "cached_input_tokens": 9984,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 152,
+  "reasoning_output_tokens": 86
+ },
+ "benign_warnings": [
+  {
+   "type": "error",
+   "message": "Reconnecting... 2/5 (request timed out)"
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "error": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:48:46.114009Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb4e-99fb-7561-bc65-45ac8fa58b13\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"error\",\"message\":\"Reconnecting... 2/5 (request timed out)\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It proves assorted properties of a newly defined `List Int` insertion sort but never relates it to `insertionSortImp` or the reference `List Nat` theorem, so it misses the core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13423,\"cached_input_tokens\":9984,\"cache_write_input_tokens\":0,\"output_tokens\":152,\"reasoning_output_tokens\":86}}\n",
+ "finished_at": "2026-09-22T22:51:16+00:00"
+}

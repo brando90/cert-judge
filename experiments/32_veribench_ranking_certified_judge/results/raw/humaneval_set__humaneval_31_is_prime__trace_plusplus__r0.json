@@ -1,0 +1,48 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_31_is_prime",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humaneval_31_is_prime.lean",
+ "candidate_sha256": "8bca40e10ee37b63ad09f473ef2dcfb7dfee959a976804f0b7f30a72788193c7",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_31_is_prime.lean",
+ "gold_sha256": "e54b35de647bb54dad994690b796c30287b1c939e50c3f1c1d4aefab32719cc1",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "bfda2a1540cc2f186cd02151ea65578c476bd032ad56eb04b2e9a41623d67627",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated code never defines isPrimeImp or proves the required equivalence isPrime n = isPrimeImp n, so it does not capture the reference theorem.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 102.92,
+ "usage": {
+  "input_tokens": 13624,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 108,
+  "reasoning_output_tokens": 53
+ },
+ "benign_warnings": [
+  {
+   "type": "error",
+   "message": "Reconnecting... 2/5 (stream disconnected before completion: Connection reset by peer (os error 54))"
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "error": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:48:55.754306Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:49:44.522372Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: Connection reset by peer (os error 54), url: wss://chatgpt.com/backend-api/codex/responses\n2026-09-22T22:50:00.927351Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest(\"http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)\")))\n2026-09-22T22:50:07.014531Z ERROR rmcp::transport::worker: worker quit with fatal: Client error: HTTP request failed: http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp), when send initialized notification\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb4e-bfc3-71f1-a4ef-0854a382baf4\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"error\",\"message\":\"Reconnecting... 2/5 (stream disconnected before completion: Connection reset by peer (os error 54))\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated code never defines isPrimeImp or proves the required equivalence isPrime n = isPrimeImp n, so it does not capture the reference theorem.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13624,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":108,\"reasoning_output_tokens\":53}}\n",
+ "finished_at": "2026-09-22T22:50:32+00:00"
+}
