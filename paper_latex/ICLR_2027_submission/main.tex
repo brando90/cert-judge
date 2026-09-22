@@ -105,7 +105,8 @@
   LLM judges are increasingly central to evaluating AI-generated code, tests, and formal specifications.
   Practitioners typically establish their reliability through agreement with human ratings and must repeat that check for every new judge, prompt, model, and domain.
   We challenge this validation loop by asking whether human judgment can be amortized and \textbf{scaled} through falsifiable behavioral properties.
-  We propose a property-certification protocol for LLM judges of Lean~4 formal-specification quality, where each judge is scored by four automatically testable conditions: identity, bug monotonicity, specification monotonicity, and repeat/prompt stability.
+  We propose a property-certification protocol for LLM judges of reference-based Lean~4 specification quality: how completely and correctly a candidate specification captures a gold reference.
+  Each judge is scored by four automatically testable conditions: identity, bug monotonicity, specification monotonicity, and repeat/prompt stability.
   Our variance-aware trust index \(\mathrm{TI}_{\mathrm{var}}\) is one instantiation assessed against human ratings of these diagnostics.
   The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled development pairs constitute a universally fixed evaluator constant.
   On eight judge configurations spanning frontier prompts, weaker baselines, edit-distance, and random controls, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on that development suite, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2).
@@ -119,7 +120,7 @@ In Lean~4, these artifacts are code-adjacent formal objects: runnable programs p
 In classical autoformalization, the target theorem is supplied, so evaluation can often reduce to proof success.
 In agentic verification, the system must decide \emph{what should be true} before it can prove anything.
 The Lean kernel can check a proof, but it cannot tell us whether the proposed theorem is complete, semantically aligned with the intended program, or merely a weak statement that happens to typecheck.
-As agents produce more candidate artifacts than humans can inspect, theorem-quality evaluation becomes a code-evaluation and scalable-oversight problem \citep{bowman2022scalable,zhou2025graders,khattab2024dspy,cheng2024trace}.
+As agents produce more candidate artifacts than humans can inspect, specification-quality evaluation becomes a code-evaluation and scalable-oversight problem \citep{bowman2022scalable,zhou2025graders,khattab2024dspy,cheng2024trace}.
 
 The standard reliability check is per-judge human validation: collect labels, measure agreement between each judge and human ratings, and keep the judge if the correlation is high enough~\citep{Liu2023GEval,Zheng2023MTBench}.
 The check is necessary because judge--human agreement varies substantially across judge models, datasets, and evaluated properties~\citep{Kocmi2024HumanVsLLM}.
@@ -194,14 +195,20 @@ Following common formal-methods usage, the formal specification is the set of th
 Typical examples are pre/postconditions, algebraic properties, \(\mathrm{Pre}\rightarrow\mathrm{Post}\) correctness, and equivalence to a reference implementation.
 Unit tests are not part of it, and proofs only certify that its theorems hold; Appendix~\ref{app:spec-vs-tests} discusses the competing view that a unit test is a ground theorem.
 Hereafter, ``specification'' means formal specification, whether an agent, a human, or a script wrote it.
-Our goal is to assign a score $J(x,g) \in [0,1]$ reflecting how well the candidate captures the intended formal specification represented by the gold artifact.
+Our goal is to assign a score $J(x,g) \in [0,1]$ of \emph{reference-based specification quality}: how completely and correctly the candidate captures the intended formal specification represented by the gold artifact.
 For non-formal-methods readers, a Lean artifact is a code file in a programming language and proof assistant where executable code, tests, definitions, and theorem statements can live together.
 
 \paragraph{Why this is nontrivial.}
 Lean can check whether a concrete proof script type-checks, but type-checking alone does not determine whether $x$ formalizes the same intended property as $g$.
 A candidate may compile while being under-specified, over-constrained, vacuously true, or semantically shifted.
 In \textsc{VeriBench}, this often appears as a coverage gap: candidate artifacts may capture only part of the behavior specified by the gold reference \citep{miranda2026veribench}.
-Thus, exact automatic scoring of theorem/specification quality is unavailable in general.
+Thus, exact automatic scoring of specification quality is unavailable in general.
+
+\paragraph{Why a gold reference.}
+Without ground truth, direct LLM ratings are vulnerable to strategic manipulation, which motivates information-theoretic alternatives to direct rating queries \citep{robertson2025stepbystep}.
+Our setting has ground truth in the form of an audited gold reference.
+Scoring against it ties each rating to a question with a correct answer in principle: which of the reference's guarantees the candidate states.
+The score therefore targets coverage and correctness relative to $g$, not an unanchored preference.
 
 \paragraph{Judge model.}
 We therefore use an LLM judge parameterized by
@@ -236,7 +243,7 @@ These are useful comparators, but later results show that geometric and variance
     \Big),
   \end{aligned}
 \]
-where \(C_f\) is the mean per-file monotonicity-quality term over bug ladders and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties; Appendix~\ref{app:index-definitions} gives the exact definitions.
+where \(C_f\) is the mean per-file monotonicity term over bug ladders and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties; Appendix~\ref{app:index-definitions} gives the exact definitions.
 Our human-agreement hypothesis is simple: judges with higher trust-index scores should also have higher human agreement on the validation panel.
 The equal-weighted form above is a simple variance-aware instantiation; other task-specific fitted weightings are possible, but we treat \(\mathrm{TI}_{\mathrm{var}}\) as a validation-set trust signal rather than a universal constant.
 
@@ -356,7 +363,7 @@ Appendix Figures~\ref{fig:fig3_style_opus_codex} and~\ref{fig:lowvar_mono_codex_
   \label{tab:codex_invariance_variants}
 \end{table}
 
-These sanity checks support using the judge as a semantically meaningful proxy for theorem/specification quality, while also making the main failure mode explicit: aggressive \textsc{Alpha}-renaming remains substantially less stable than milder rewrites.
+These sanity checks support using the judge as a semantically meaningful proxy for specification quality, while also making the main failure mode explicit: aggressive \textsc{Alpha}-renaming remains substantially less stable than milder rewrites.
 Rankings under repeat-resampled scores are stable enough to aggregate into a trust index, but \textsc{Alpha}-renaming stays the dominant identity gap (Figure~\ref{fig:app-exp19-main-and-alpha}).
 
 \subsection{\texorpdfstring{\(\mathrm{TI}_{\mathrm{var}}\)}{TI-var} predicts judge-level human alignment}
@@ -578,7 +585,7 @@ However, because the judge-level trend is estimated over a small panel, we treat
 
 For the Codex development panel (\(n=8\) judges), Pearson shows the same qualitative pattern (avg \(r=0.774\), pass1 \(r=0.661\), pass2 \(r=0.837\)), while Kendall \(\tau\) is noisier at this scale (avg \(\tau=0.571\), pass1 \(\tau=0.571\), pass2 \(\tau=0.643\)).
 
-Thus \(\mathrm{TI}_{\mathrm{var}}\) behaves as a behavioral reliability signal: falsifiable properties correlate with the quantity we care about---agreement with human assessments of Lean theorem and specification quality---so new judge configurations can be compared by automated property checks after the property--human-agreement relationship is measured once.
+Thus \(\mathrm{TI}_{\mathrm{var}}\) behaves as a behavioral reliability signal: falsifiable properties correlate with the quantity we care about---agreement with human assessments of Lean specification quality---so new judge configurations can be compared by automated property checks after the property--human-agreement relationship is measured once.
 
 \paragraph{Human-pass dispersion and cross-pass robustness.}
 Annotators scored each aligned pair twice under different rubric strictness.
@@ -609,7 +616,7 @@ Table~\ref{tab:cross_model_index_compare_avg} then asks a narrower question: whi
 Relative to arithmetic baselines, \(\mathrm{TI}_{\mathrm{var}}\) uniformly improves over \(v2\) for every family: Codex \(0.476\!\rightarrow\!0.833\), Claude Opus \(0.143\!\rightarrow\!0.643\), Qwen3-Coder \(0.500\!\rightarrow\!0.905\).
 The geometric index (GM) is competitive for Codex and Opus (\(0.857\) and \(0.714\) respectively), while \(\mathrm{TI}_{\mathrm{var}}\) stays most consistently strong across families and is the strongest formulation for Qwen.
 These comparisons suggest that a variance-aware trust metric can track human alignment more reliably than simpler arithmetic aggregation, while geometric aggregation also improves over the arithmetic baseline.
-We therefore adopt \(\mathrm{TI}_{\mathrm{var}}\) as the paper's primary metric because it combines property quality with explicit variance penalties while yielding positive judge-level trends everywhere we test.
+We therefore adopt \(\mathrm{TI}_{\mathrm{var}}\) as the paper's primary metric because it combines property scores with explicit variance penalties while yielding positive judge-level trends everywhere we test.
 Figure~\ref{fig:app-exp25-13judge} provides a baseline-vs-geometric visualization on an expanded judge panel.
 
 \begin{table}[t]
@@ -666,7 +673,7 @@ We therefore select \(t=0.85\), which yields the lowest observed flip rate while
 
 \subsection{Failure modes: alpha-renaming and local reversals}
 The main failure mode remains the same throughout the study: alpha-renaming is substantially less stable than milder rewrites, and local monotonicity reversals can still occur even when global trends are strong.
-Alpha-renaming is intentionally a weak perturbation---it should leave theorem quality unchanged---so failures here are informative about superficial sensitivity rather than true semantic degradation.
+Alpha-renaming is intentionally a weak perturbation---it should leave the specification's meaning unchanged---so failures here are informative about superficial sensitivity rather than true semantic degradation.
 At the same time, it is a hard robustness target, because changing binder names can alter token patterns and local readability cues even when Lean semantics are unchanged.
 On an expanded 13-judge panel, the certification trend remains above \(0.75\) across label sets, suggesting that the effect is not specific to a minimal prompt panel.
 Detailed per-model diagnostics are reported in the appendix.
@@ -694,7 +701,7 @@ Detailed per-model diagnostics are reported in the appendix.
       \textsc{Trace++}    & 0.620         & 0.756       & 0.504         & 0.645       & 0.432        & \textbf{0.588} \\
       \bottomrule
     \end{tabular}%
-  } \caption{\textbf{Theorem quality scores on \textsc{VeriBench}.} Average normalized scores by split: Easy, CS, Real, HumanEval, and Security.
+  } \caption{\textbf{Specification quality scores on \textsc{VeriBench}.} Average normalized scores by split: Easy, CS, Real, HumanEval, and Security.
   All rows use Claude~3.7 as the agent model and as the LLM judge.
   Trace+ denotes the trace self-debug agent and Trace++ the self-debug and self-improve agent.
   The DSPy ReAct agent only performs self-debug.
@@ -746,6 +753,9 @@ Failures may therefore mix (i) genuine insensitivity to equivalence with (ii) br
 
 \textbf{Limitations.} The judge is a \emph{proxy}: scores are prompt/rubric-sensitive and do not constitute kernel-level proof checking; they provide evidence against a rigorous yet necessarily incomplete gold specification since no complete mechanical checks of specification equivalence exist~\citep{rice1953}.
 Our certification relies on a finite perturbation suite, so untested failure modes may persist.
+Scores are anchored to a gold reference, but we do not evaluate candidates optimized against the judge, so resistance to gaming remains untested.
+Neither the judge prompts nor the development-panel rating protocol explicitly addresses presentation aspects of specification quality, such as redundant theorem statements, oversized implementations, or needless abstraction; only the held-out reviewer pool's rubric deducts for superfluous theorem statements.
+Holistic panel ratings may reflect these aspects implicitly, but we did not measure this; future rating protocols should make them explicit.
 Specifications that are exotic to this dataset may be correct but receive incorrect scores.
 \textsc{Alpha}-renaming sensitivity is the standout P4 weakness in our runs, as detailed in the preceding paragraph.
 Threshold-selection improvements are modest in absolute magnitude and do not by themselves establish external validity.
@@ -1452,7 +1462,7 @@ To stress-test whether index choice alone can ``rescue'' a weak judge family, we
     \Big)
   \end{aligned}
 \]
-where \(C_f\) is the mean per-file property-correlation quality term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
+where \(C_f\) is the mean per-file property-correlation term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
 We report Spearman between index score and validation-set human Spearman across judges.
 
 \subsection{Index Definitions}\label{app:index-definitions}
@@ -1468,12 +1478,12 @@ For reference, the simple arithmetic baselines in the main text are
 \]
 where \(\text{mono\_rank}=(1-\rho_{\text{bug}})/2\) rescales bug-ladder Spearman so that larger is better, and \(\text{stab}=1-\text{flip\_rate}\).
 
-For the variance-aware index, the quality term is
+For the variance-aware index, the monotonicity term is
 \[
   C_f = \frac{1}{|\mathcal{F}|}\sum_{f \in \mathcal{F}} \mathrm{clip}\!\left(\frac{1-\rho_f}{2},\,0,\,1\right),
 \]
 where \(\rho_f\) is the Spearman correlation between bug level and judge score for file \(f\).
-Thus \(C_f\) is the mean per-file bug-ladder monotonicity-quality term before the variance penalties are applied.
+Thus \(C_f\) is the mean per-file bug-ladder monotonicity term before the variance penalties are applied.
 
 \begin{table}[t]
   \centering

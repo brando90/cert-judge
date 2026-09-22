@@ -4,9 +4,19 @@
 wording-only). No full rewrite. The *concept* still leaks in ~4 places in the ICLR main text; fix is a
 targeted pass on abstract / §1 / §4 opening / §5.3 / §6.1 / §7 (~25–30 sentences). Appendix untouched.
 
-**New 2026-09-22 — "quality" term + what we actually measured (scroll down; main.tex NOT edited yet):**
-- The word "quality": keep it, but always as **"reference-based specification quality"** (how completely and
-  correctly a candidate captures a gold reference). → section *the word "quality"*
+**DECIDED + APPLIED 2026-09-22 (Brando) — "quality" wording. Discussion closed.** In `main.tex`:
+- **Term:** "reference-based specification quality" = how completely and correctly a candidate captures the gold
+  reference. Used in the abstract and in the §3 goal sentence.
+- **Gameability counter:** new §3 `\paragraph{Why a gold reference.}` cites `robertson2025stepbystep` in the main
+  body. Without ground truth, direct ratings can be manipulated; our gold reference anchors each rating to
+  "which of the reference's guarantees does the candidate state". Limitations adds: gaming is untested.
+- **Presentation (spam / bloat / abstraction):** kept low-key, in Limitations only. Neither the judge prompts nor the
+  development-panel protocol explicitly addressed it; the held-out pool rubric deducts only for superfluous theorem
+  statements. Holistic panel ratings may reflect it implicitly (not measured); future protocols should make it
+  explicit. It is NOT part of the definition.
+- Other spec-sense "quality" hits normalized; C_f "quality term" → "monotonicity term". PDF rebuilt (28 pp).
+
+**Background (2026-09-22), scroll down:**
 - What each instrument actually scores (panel rubric = text lost; pool rubric = coverage + spam −2; LLM prompts =
   captured correctness properties; nothing covers implementation bloat). Also two main.tex precision bugs.
   → section *what each instrument actually scores*
@@ -73,7 +83,7 @@ generalization, or calibration in the main text.
 - main.tex: definition added to §3 "Task"; §3 retitled "Judging Lean Formal-Specification Quality"; P3 text/§1/§5/App. figures now say "theorem statements and unit tests" (the ladder removes both); abstract no longer lists theorems apart from formal specs.
 - Rule recorded in CLAUDE.md + AGENTS.md ("Specification" has one meaning here).
 
-## 2026-09-22 — the word "quality" (recommended; main.tex NOT edited yet — waiting for Brando's OK)
+## 2026-09-22 — the word "quality" (background; DECIDED + APPLIED, see top)
 
 Line numbers below are for `main.tex` at HEAD `a3c33a2` (after the one-sentence-per-line reflow).
 
@@ -188,16 +198,16 @@ by one annotator under two rubric strictness levels" and claim nothing about wha
   validity. The abstract uses "reliability" in the validity sense.
 
 ### Checklist — quality/precision pass (pending Brando's OK on the wording)
-- [ ] Abstract `:108` → anchored "reference-based specification quality (how completely and correctly …)"
-- [ ] §3: add the "reference-based quality, operationalized as fidelity" paragraph; describe the three instruments
-      precisely. Presentation goes in Limitations as unassessed, not in the definition.
-- [ ] Replace the spec-sense "quality" hits per the table; C_f "quality term" → "monotonicity term" (5 sites incl. `:613`)
+- [x] Abstract `:108` → anchored "reference-based specification quality (how completely and correctly …)"
+- [x] §3: goal sentence defines reference-based specification quality; `Why a gold reference` paragraph with the
+      Robertson & Koyejo citation. Presentation is in Limitations only, not in the definition.
+- [x] Replace the spec-sense "quality" hits per the table; C_f "quality term" → "monotonicity term" (5 sites incl. `:613`)
 - [ ] Fix the 0–10 vs 0.0–1.0 scale inconsistency (`:222`, `:702` vs `:1103`)
 - [ ] Appendix: note that "REFERENCE IMPLEMENTATION" = the gold's last theorem block
-- [ ] Limitations: gaming untested; implementation readability not scored
+- [x] Limitations: gaming untested; presentation not explicit in judge prompts or panel protocol
 - [ ] Brando → Ethan: panel rubric text
 - [ ] (optional, paid) vacuity/weakening probe — quote first
-- [ ] `latexmk -pdf`; `scripts/latex_sentence_lines.py --check`; grep main text for bare "quality"
+- [x] `latexmk -pdf` (28 pp, no undefined refs); `latex_sentence_lines.py --check` passes
 
 ## 2026-09-22 — did the HUMANS assess presentation? (zero-spend check on existing labels)
 
