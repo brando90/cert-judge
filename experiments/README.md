@@ -14,6 +14,7 @@ not a claim about processes on remote machines.
 | [archive/](archive/README.md) | Completed, superseded, or parked studies, including recent results. |
 | [human_labels/](human_labels/) | Shared human-label data; not an experiment. |
 | [ethan_hand_labels/](ethan_hand_labels/) | Shared human-label data; not an experiment. |
+| [ideas/](ideas/README.md) | Optional, deferred research ideas; recording one does not launch it. |
 
 The ignored local `keys/` directory is credential storage, not an experiment.
 
