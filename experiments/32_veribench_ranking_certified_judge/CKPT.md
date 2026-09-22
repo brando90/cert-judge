@@ -5,6 +5,7 @@
 ## Status (update on every checkpoint)
 - 2026-09-22 — inputs located and manifested (`inputs_manifest.json`: 140 items, 560 candidate rows, all golds resolved in the frozen legacy root); `judge_config.json`, `score_schema.json`, `run_ranking_cli.py` written. NOTHING RUN YET.
 - 2026-09-22 22:16 UTC — probe: 4 cells OK (scores 0.0/0.0/0.1/…, 13–19 s per call, usage ~13.8k input / ~150 output tokens per call). Codex JSONL emits no served-model field and no `model:` header under `--json`; model identity rests on the explicit `-m gpt-5.6-terra` flag (same limitation exp29 documented). A benign `error` item ("Skill descriptions were shortened to fit the skills context budget") appears on some calls; the runner now records it as `benign_warnings` and does not retry on it.
+- 2026-09-22 22:25 UTC — throughput at 8 workers is ~34 s per call (server-side queueing; 13–19 s at 2 workers), i.e. ~14 cells/min, so the full 1,680 cells need ~2 h. DECISION: jobs are now ordered repeat-major (all 560 item x agent cells of repeat 0, then repeat 1, then repeat 2; items shuffled with seed 0) so an interrupted run leaves complete repeat layers; the aggregator reports both the all-3-repeats analysis and an all-available-repeats analysis with the repeat coverage histogram. Restarted at 22:24:40 UTC (cached cells kept).
 - 2026-09-22 22:23 UTC — FULL RUN RUNNING in background (`nohup python3 run_ranking_cli.py --workers 8`, log `results/run.log`, stdout `results/run_stdout.log`). Completed cells are cached in `results/raw/`; if the process dies, re-run the resume command below (it skips cached cells). `aggregate_ranking.py` written (bootstrap CIs, ordering agreement with the Claude 3.7 table) — run it on partial data at any time.
 
 ## Quote (written BEFORE the first inference call — Hard Rule 9 / runbook step 4)
@@ -16,7 +17,7 @@
 | Cells | 140 items x 4 agents x 3 repeats = **1,680 calls** (one case per call), plus up to 3 retries per failed cell and 2 probe cells that are part of the 1,680 (cached) |
 | Parallelism | 8 |
 | Provider API spend | **$0** (subscription CLI only; no `~/keys/*`, all `*_API_KEY` scrubbed from child env) |
-| Property-suite fallback calls | NOT yet quoted; ranking first (runbook Fallback). exp29 already ran the PTI-v0 property suite for `gpt-5.6-terra|P1_BASELINE` at effort low via the same CLI (774 tasks); see REPORT.md caveats. |
+| Property-suite fallback calls (exp16-style P1–P4 for the substitute, NOT started) | exp16 per-judge cell count from `results_exp16_final_robust_r9_median/detail_rows.csv`: 120 bug-ladder cells (24 files x 5 levels) + 96 identity/rewrite cells (24 x 4 variants) + 72 human-union pairs = 288 cells; at 3 repeats = **864 `codex exec` calls** (648 without the human-union pairs). Same CLI/model/effort as above, $0 API. Runs AFTER the ranking (runbook Fallback: ranking first). exp29 already ran the PTI-v0 property suite for `gpt-5.6-terra|P1_BASELINE` at effort low via the same CLI (774 batch tasks, $0); its numbers are cited in REPORT.md. |
 
 Brando pre-approved subscription-CLI runs ("go!"); no API spend is requested.
 
