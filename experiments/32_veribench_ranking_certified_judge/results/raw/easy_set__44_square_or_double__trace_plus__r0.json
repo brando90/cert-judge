@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/44_square_or_double",
+ "agent": "trace_plus",
+ "split": "easy_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/easy_set/44_square_or_double.lean",
+ "candidate_sha256": "99f614acb2f5ca8c316f9ddbc4d22537bac011050364b8dbeefcb9ed24c9ac41",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/44_square_or_double.lean",
+ "gold_sha256": "bcf677035f4d414d04c293c8e88f2d9e45285127f468f006904703c9ebcb2879",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "dee61c246d1be7439d6670a7a466d3ca916d0270a80fdf23b3f63dea4952579d",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.25,
+ "reasoning": "It specifies a related square-or-double function but changes the domain from Nat to Int and never states or proves the reference’s central equivalence with mySquareOrDoubleImp.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 86.71,
+ "usage": {
+  "input_tokens": 13448,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 55,
+  "reasoning_output_tokens": 0
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:29:26.856820Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:30:05.646148Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: Connection reset by peer (os error 54), url: wss://chatgpt.com/backend-api/codex/responses\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb3c-ea4c-7fe0-9fbb-050b359c531a\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.25,\\\"reasoning\\\":\\\"It specifies a related square-or-double function but changes the domain from Nat to Int and never states or proves the reference’s central equivalence with mySquareOrDoubleImp.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13448,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":55,\"reasoning_output_tokens\":0}}\n",
+ "finished_at": "2026-09-22T22:30:47+00:00"
+}

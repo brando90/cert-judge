@@ -12,8 +12,8 @@
   "reference_field": "reference_impl = last theorem/lemma block of the gold (frozen Exp16 regex), full gold if none",
   "candidate_field": "generated_theorem = full candidate .lean text",
   "n_repeats": 3,
-  "repeat_aggregation_primary": "mean of the 3 repeats per (item, agent), then mean over items per split (same as the Claude 3.7 table: mean over calls then items)",
-  "repeat_aggregation_secondary": "median of the 3 repeats (exp16 r9_median style)",
+  "repeat_aggregation_primary": "median of the 3 repeats per (item, agent) \u2014 the certified Section 5.3 Codex panel used the median over three repeated calls per pair for the LLM judges (verified by a peer session from results_exp16_final_robust_r9_median/detail_rows.csv; summary.json's judge_repeats=9 was the configured value and applied only to the edit-distance and random controls; main.tex commit e0631b6 states 'median over repeated calls per pair'); then mean over items per split",
+  "repeat_aggregation_secondary": "mean of the 3 repeats (the Claude 3.7 table's own rule: mean over five calls, then items)",
   "score_scale": "prompt-native float in [0,1]; the Claude 3.7 table divided integer 0-10 scores by 10, so both tables are on [0,1]",
   "cli": "codex exec --ignore-user-config --ignore-rules --skip-git-repo-check -C <empty tmpdir> -s read-only --ephemeral --json --color never -m gpt-5.6-terra -c model_reasoning_effort=\"low\" --output-schema score_schema.json -o <out.json> -  (prompt on stdin)",
   "environment_scrub": "every *_API_KEY variable plus ANTHROPIC_API_KEY/CLAUDE_API_KEY/CODEX_API_KEY/GEMINI_API_KEY/GOOGLE_API_KEY/OPENAI_API_KEY removed from the child environment; ~/keys never read",
@@ -21,5 +21,14 @@
   "parallelism": 8,
   "retries_per_cell": 3,
   "timeout_seconds_per_call": 300,
-  "bootstrap": {"iterations": 10000, "seed": 0, "unit": "item (resampled within split)"}
+  "bootstrap": {
+    "iterations": 10000,
+    "seed": 0,
+    "unit": "item (resampled within split)"
+  },
+  "certified_panel_repeat_protocol": {
+    "llm_judges": "median over 3 repeated calls per pair",
+    "controls_editdist_random": "9 repeats",
+    "source": "coordinator message 2026-09-22 citing results_exp16_final_robust_r9_median/detail_rows.csv and main.tex e0631b6"
+  }
 }

@@ -170,8 +170,8 @@ def main() -> None:
     for (item, agent), reps in cells.items():
         rep_counts[len(reps)] = rep_counts.get(len(reps), 0) + 1
     result["calls"]["repeat_coverage_histogram_over_item_agent_pairs"] = {str(k): v for k, v in sorted(rep_counts.items())}
-    for agg, min_reps in (("mean", CFG["n_repeats"]), ("median", CFG["n_repeats"]), ("mean_available_repeats", 1)):
-        scores = per_item_scores(cells, "median" if agg == "median" else "mean", min_reps)
+    for agg, min_reps in (("median", CFG["n_repeats"]), ("mean", CFG["n_repeats"]), ("median_available_repeats", 1)):
+        scores = per_item_scores(cells, "mean" if agg == "mean" else "median", min_reps)
         items = complete_items(scores)
         if not items:
             result["analyses"][agg] = {"status": "no complete items yet"}
@@ -195,9 +195,9 @@ def main() -> None:
             result["analyses"][f"{agg}__{sec_name}"] = {"n_paired_items": len(items), "min_repeats_required": min_reps, "repeats_present_per_pair": n_reps_used, **b, "orderings": ords, "agreement_with_claude37": agreement}
     OUT_JSON.write_text(json.dumps(result, indent=1) + "\n", encoding="utf-8")
 
-    # Markdown table (primary: mean over repeats, Sec = security_6858 only)
-    key = "mean__sec_6858_only" if "point" in result["analyses"].get("mean__sec_6858_only", {}) else "mean_available_repeats__sec_6858_only"
-    lines = [f"# Experiment 32 ranking table — judge {CFG['prompt_name']} on `{CFG['model_requested_by_cli_flag']}` (effort {CFG['reasoning_effort']}), 3 repeats", ""]
+    # Markdown table (primary: median over the 3 repeats as in the certified Section 5.3 panel, Sec = security_6858 only)
+    key = "median__sec_6858_only" if "point" in result["analyses"].get("median__sec_6858_only", {}) else "median_available_repeats__sec_6858_only"
+    lines = [f"# Experiment 32 ranking table — judge {CFG['prompt_name']} on `{CFG['model_requested_by_cli_flag']}` (effort {CFG['reasoning_effort']}), median of 3 repeats (certified-panel rule); mean-of-repeats variant in results/ranking.json analyses['mean__*']", ""]
     lines.append(f"Cells: {meta['n_ok']}/{MANIFEST['n_candidate_rows'] * CFG['n_repeats']} ok; CLI invocations incl. retries: {int(sum(meta['attempts']))}; provider API spend: $0.")
     if key in result["analyses"] and "point" in result["analyses"][key]:
         A = result["analyses"][key]
@@ -219,6 +219,19 @@ def main() -> None:
         lines += ["", "Pairwise Avg differences (point, 95% CI, two-sided bootstrap p):", ""]
         for k, v in A["pairwise_diff"].items():
             d = v["Avg"]; lines.append(f"- {k}: {d['point']:+.3f} [{d['ci'][0]:+.3f}, {d['ci'][1]:+.3f}], p={d['p_boot_two_sided']:.3f}")
+    key2 = "mean__sec_6858_only"
+    if key2 in result["analyses"] and "point" in result["analyses"][key2]:
+        A2 = result["analyses"][key2]; ag2 = A2["agreement_with_claude37"]
+        lines += ["", "## Secondary aggregation: mean of the 3 repeats (the Claude 3.7 table's rule)", "", "| Agent | Easy | CS | Real | HE | Sec | **Avg** (95% CI) |", "|---|---|---|---|---|---|---|"]
+        for a in AGENTS:
+            p = A2["point"][a]; c = A2["ci"][a]
+            lines.append(f"| {AGENT_NAMES[a]} | " + " | ".join(f"{p[l]:.3f}" for _, l in TABLE_SPLITS) + f" | **{p['Avg']:.3f}** [{c['Avg'][0]:.3f}, {c['Avg'][1]:.3f}] |")
+        lines.append("")
+        lines.append(f"Ordering by Avg (mean rule): {' > '.join(ag2['new_avg_order'])}; identical to Claude 3.7: {ag2['identical_avg_order']}; Spearman over the four Avg values: {ag2['spearman_avg_4_agents']:.3f}.")
+    key3 = "median__sec_6858_plus_python"
+    if key3 in result["analyses"] and "point" in result["analyses"][key3]:
+        A3 = result["analyses"][key3]; ag3 = A3["agreement_with_claude37"]
+        lines += ["", f"Sec = security_6858 + security_python (median rule): Avg = " + ", ".join(f"{AGENT_NAMES[a]} {A3['point'][a]['Avg']:.3f}" for a in AGENTS) + f"; ordering {' > '.join(ag3['new_avg_order'])}."]
     OUT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(OUT_MD.read_text())
 
