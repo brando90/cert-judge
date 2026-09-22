@@ -38,6 +38,8 @@ generalization, or calibration in the main text.
 4. §6.1 + `:688`; §7.
 5. `latexmk -pdf`; grep main text for `predict|fit|regression|calibrat`; diff --stat; page count.
 6. Leanstral fix (Brando's task list) is separate — not in this pass.
+7. "Quality" pass + judge/human precision fixes — see the three 2026-09-22 sections at the end of this file
+   ("quality" term, what each instrument scores, ICML-review evidence). Checklist there.
 
 ## Status
 
@@ -59,3 +61,117 @@ generalization, or calibration in the main text.
 - Brando's competing view (a unit test is a ground theorem, e.g. `example : myAdd 1 2 = 3 := by native_decide`) is stated only in new appendix `app:spec-vs-tests` (App. E) and is not adopted.
 - main.tex: definition added to §3 "Task"; §3 retitled "Judging Lean Formal-Specification Quality"; P3 text/§1/§5/App. figures now say "theorem statements and unit tests" (the ladder removes both); abstract no longer lists theorems apart from formal specs.
 - Rule recorded in CLAUDE.md + AGENTS.md ("Specification" has one meaning here).
+
+## 2026-09-22 — the word "quality" (recommended; main.tex NOT edited yet — waiting for Brando's OK)
+
+Line numbers below are for `main.tex` at HEAD `a3c33a2` (after the one-sentence-per-line reflow).
+
+**Decision (recommended):** keep "quality", but never bare. Always write **reference-based specification quality**
+and define it in one clause.
+- **Why not bare "quality":** it reads as a direct rating with no ground truth. That is the setting where
+  Robertson & Koyejo argue direct ratings are gameable, and the paper already cites that (`:897-899`, `:1058`).
+  Anchoring to the gold reference is the defense: the judge answers a question that has a real answer in principle
+  ("does x establish g's guarantees?").
+- **Why not "fidelity" alone:** it overclaims. The headline panel's rubric text is lost, and the lexical controls
+  correlate *positively* with the panel labels (editdist +0.20, BAD_STRINGY +0.43;
+  `archive/26_human_label_dataset_audit/vb_judgements_human_scores.md:93`). A cross-checking reviewer could say
+  "your human criterion isn't fidelity."
+- **Definition:** quality relative to g = **fidelity** (primary: coverage + correctness, i.e. not under-specified,
+  not over-constrained/wrong-target, not vacuous; vacuous → 0) + **presentation** (secondary: theorem spam, bloat,
+  over-abstraction). Vacuity and "spec restates the implementation" (`f x = <body of f>`, true by definition) are
+  fidelity failures, not a separate axis.
+
+**Proposed text**
+- Abstract `:108`: "…a property-certification protocol for LLM judges of *reference-based* Lean~4 specification
+  quality (how completely and correctly a candidate specification captures a gold reference), where each judge is
+  scored by…"
+- §3 (`sec:problem-setup`), one new paragraph: quality is measured relative to g; fidelity is primary; presentation
+  is secondary. Judge prompts give no instruction on presentation, but judges see the full candidate file. The pool
+  rubric deducts up to 2 points for theorem spam. Panel ratings are holistic 0–5.
+- Limitations, one sentence: "Scores are anchored to a gold reference, but we do not evaluate candidates optimized
+  against the judge, so resistance to gaming is untested." Plus: "Implementation-level readability and concision are
+  not scored by any instrument."
+
+**Other "quality" hits (fix differently)**
+
+| lines | fix |
+|---|---|
+| `:123` "theorem-quality evaluation", `:189` §3 title, `:698`/`:705` table caption (keep the `\label` id), `:710`, `:979` | "specification quality" (or "reference-based specification quality" on first use) |
+| `:205`, `:360` "theorem/specification quality"; `:582` "Lean theorem and specification quality" | Also break the CLAUDE.md spec rule (theorems *are* the spec) → "specification quality" |
+| `:670` "should leave theorem quality unchanged" | "should leave the specification's meaning unchanged" |
+| `:240`, `:1456`, `:1472`, `:1477` "(monotonicity-)quality term" for C_f; `:613` "property quality" | Different meaning → "monotonicity term" / "property scores" |
+| `:934` "specification quality" (describes external benchmarks) | optional light rephrase |
+
+## 2026-09-22 — what each instrument actually scores (facts for §3 / §5 / appendix)
+
+| instrument | used for | written instruction | bloat / style | what it sees |
+|---|---|---|---|---|
+| **Headline human panel**: 1 annotator (Ethan), 0–5, 2 strictness passes, 72/75 pairs analyzed | every TI_var↔human number | "old prompt": **text not found** in cert-judge or `~/veribench` | unknown; lexical controls correlate + with these labels | full gold + candidate files |
+| **5-rater pool**: 343 labels, collected 2026-05-03→05-12 | held-out attempt, VeriBench appendix | `~/veribench/py_src/veribench_prompts/human_judgements_prompt.md`: "Judge **statement coverage only** (not proof style or proof quality)"; a stronger agent theorem that implies the gold one counts as covering it | **yes: theorem-spam deduction up to −2** (trivial/`True`, redundant restatements, irrelevant theorems, filler) | Python source + gold + agent file |
+| **LLM judge panels** (P1_BASELINE / P4_CHECKLIST / P8_STRICT_B, App. `app:judge-prompts`) | property scores + judge–human correlations | "how well the GENERATED THEOREM captures the correctness properties of the REFERENCE IMPLEMENTATION"; `True` → 0.0 (`:1103-1109`) | not mentioned | **whole** candidate file; gold = its **last theorem block** only (`archive/04_veribench_validation/exp16_multi_judge_human_sets.py:476-477`) |
+
+- Bottom line: "mainly fidelity" is the honest phrasing for the construct. Do NOT say "fidelity only".
+- Correction to an earlier claim in chat: the "Do not grade … proof style" line is from
+  `results_manual_agentic/p15_lenient_prompt.md` / `comparative_semantic_v1`. Those are side prompts, not the main panels.
+- Naming: in the paper say **"panel rubric"** and **"pool rubric (coverage with a spam deduction)"**. Do not say
+  "old/revised": the pool labels are finished, and "revised" sounds like a change after the fact. No re-annotation
+  is proposed. All labels are frozen.
+- Reviewer answer on vacuous or bloated output:
+  - Vacuous statements: penalized by every written rubric.
+  - Theorem bloat: penalized only by the pool rubric.
+  - Implementation bloat / over-abstraction: no instruction covers it anywhere. Judges see it, so any effect is
+    implicit and unmeasured.
+
+**Precision bugs in main.tex (fix regardless of the wording decision)**
+1. `:222` and `:702` say the judge returns an integer in {0,…,10}, but the appendix prompts (`:1103`) ask for a
+   float 0.0–1.0. Reconcile per panel: which judge/prompt uses which scale?
+2. The prompt label "REFERENCE IMPLEMENTATION" (`:1103`, `:1111`, `:1134`, `:1156`) is filled with the gold's last
+   theorem block, not an implementation. Say so in the appendix.
+
+**Open item for Brando:** ask Ethan for the **text** of the panel rubric (the two rubrics he already used). This
+retrieves documentation; it does not ask him to relabel. If it's gone, describe the panel only as "holistic 0–5 ratings
+by one annotator under two rubric strictness levels" and claim nothing about what it penalized.
+
+## 2026-09-22 — ICML 2026 reviews: evidence for the wording decision (`experiments/18_icml_reviews/pre_prompt.md`)
+
+- **Nobody objected to "quality".** The AC meta-review (`:47`) and reviewer uMVy's summary (`:59`) use the word
+  themselves. `grep -i 'gam|manipul|adversar'` over the reviews → 0 hits.
+- **What they attacked** (the wording pass should close these):
+  - "unclear annotation protocol" (AC, uMVy, c7ev: "what pass1 and pass2 represent");
+  - c7ev: the property suite "cannot cover … vacuity, subtle theorem weakening, over-constraint", "How often do
+    high-TI judges still miss vacuous, overly weak, or over-constrained theorem specifications?", and "separate judge
+    failures caused by natural-language rubric ambiguity from … Lean-code semantic misunderstanding";
+  - DeJF: judges "affected by surface-level wording" (the alpha-renaming result).
+- **Highest-value follow-up:** a vacuity/weakening probe (replace theorem statements with `True`; drop a postcondition
+  conjunct), plus optionally a bloat probe (add redundant implied theorems; a fidelity score should not change).
+  c7ev asked for exactly this, and it turns "quality includes non-vacuity" into a tested property. Building the probes
+  costs nothing. **Scoring them needs paid judge inference → exact cost quote + Brando's approval first.**
+- Optional: simulated AI-reviewer comparison of three abstract variants (bare "quality" / "fidelity" / anchored
+  "reference-based quality") via `clauded -p` + `codex exec`. Not run: reviewer passes are opt-in only.
+
+## 2026-09-22 — "calibration": what the word means (Brando's question, answered in chat)
+
+- **Calibration** = P(Y=1 | p̂(X)=p) = p for every p: of all inputs scored p, a fraction p are positive. It
+  conditions on the score's level set, not on each x. p̂(x)=p*(x) for every x is strictly stronger: it implies
+  calibration, not the reverse.
+- **Why the term exists:** accuracy and AUC only see ranking/argmax, so any monotone rescaling leaves them unchanged.
+  Scoring 0.51 for every positive and 0.49 for every negative gives AUC=1 and is badly miscalibrated. Predicting the
+  base rate for everyone is perfectly calibrated and useless. Brier = reliability (calibration) − resolution +
+  uncertainty (Murphy), so one loss number mixes the two parts. Guo et al. 2017: modern networks got more accurate
+  and more overconfident at once; temperature scaling fixes calibration without changing accuracy.
+- **For this paper:** judge scores are not probabilities of any event, so the statistical sense rarely applies. Use
+  the operation names (CLAUDE.md): development-set association / fitted score mapping / threshold selection /
+  score–outcome reliability. `main.tex` already has 0 "calibrat" hits.
+- **Related trap:** in psychometrics "reliability" = consistency (test–retest, α); "measures what it claims" =
+  validity. The abstract uses "reliability" in the validity sense.
+
+### Checklist — quality/precision pass (pending Brando's OK on the wording)
+- [ ] Abstract `:108` → anchored "reference-based specification quality (how completely and correctly …)"
+- [ ] §3: add the fidelity (primary) + presentation (secondary) paragraph; describe the three instruments precisely
+- [ ] Replace the spec-sense "quality" hits per the table; C_f "quality term" → "monotonicity term" (5 sites incl. `:613`)
+- [ ] Fix the 0–10 vs 0.0–1.0 scale inconsistency (`:222`, `:702` vs `:1103`)
+- [ ] Appendix: note that "REFERENCE IMPLEMENTATION" = the gold's last theorem block
+- [ ] Limitations: gaming untested; implementation readability not scored
+- [ ] Brando → Ethan: panel rubric text
+- [ ] (optional, paid) vacuity/weakening probe — quote first
+- [ ] `latexmk -pdf`; `scripts/latex_sentence_lines.py --check`; grep main text for bare "quality"
