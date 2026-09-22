@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_36_fizz_buzz",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_36_fizz_buzz.lean",
+ "candidate_sha256": "30e3ae392b55036f841ca1f5d87320317274a6df9769177f946077b2d7b73b01",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_36_fizz_buzz.lean",
+ "gold_sha256": "efe3eebf0d53ec44d8f555ea6d5516174af4b2371e7cdbcb7c52c4bc34b60047",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "1be32e0725ce2921d677589b52ca85f7b525b1d3c49a68bfa2a896f833715b60",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems concern an unrelated digit-counting function and do not state or establish the reference equivalence between `fizzBuzz` and `fizzBuzzImp`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 36.28,
+ "usage": {
+  "input_tokens": 13470,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 57,
+  "reasoning_output_tokens": 0
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:33:25.907957Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb77-7e5d-70a3-a1a0-e7d8dade3671\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems concern an unrelated digit-counting function and do not state or establish the reference equivalence between `fizzBuzz` and `fizzBuzzImp`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13470,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":57,\"reasoning_output_tokens\":0}}\n",
+ "finished_at": "2026-09-22T23:33:55+00:00"
+}
