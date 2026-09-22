@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_37_sort_even",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_37_sort_even.lean",
+ "candidate_sha256": "978b1e84b24c3ff5b5e793873b566d0646a6c4db1a9a378bf5d64d9fb189809d",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_37_sort_even.lean",
+ "gold_sha256": "43109a6b91f24ee4f6469f6e445166eed564dad9a73ef94a9682828d9f86539f",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "443e3b51fa02e94ab5c9020f1c7fcda6b0d5eb21e0c46f41ff70b38ffb0f91a5",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems specify properties of a redefined `sortEven` but entirely omit the reference’s core guarantee that `sortEven l = sortEvenImp l`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 41.3,
+ "usage": {
+  "input_tokens": 13735,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 137,
+  "reasoning_output_tokens": 79
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:41:05.707600Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T23:41:05.990520Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T23:41:24.985295Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest(\"http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)\")))\n2026-09-22T23:41:35.624996Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb7e-964c-7e22-b412-5349b1556097\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems specify properties of a redefined `sortEven` but entirely omit the reference’s core guarantee that `sortEven l = sortEvenImp l`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13735,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":137,\"reasoning_output_tokens\":79}}\n",
+ "finished_at": "2026-09-22T23:41:39+00:00"
+}

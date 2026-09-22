@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_11_string_xor",
+ "agent": "dspy_react",
+ "split": "humaneval_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/humaneval_set/humaneval_11_string_xor.lean",
+ "candidate_sha256": "c1e11f342ed7dfb153830736605cc563f46f36077aa1b266f04b03187772761f",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_11_string_xor.lean",
+ "gold_sha256": "538276f008c7f6c5c9d6396e08e1b1046ae1c4bd1b1fd67750d474ebe65daac2",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "599cd8fbf4e21b21c158c9c7614fbdcaa507d3efa0febd06804080bdebc079bd",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems concern newly defined `stringXor` and `stringXorAlt` and do not establish the reference equivalence `string_xor a b = string_xorImp a b`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 37.85,
+ "usage": {
+  "input_tokens": 18641,
+  "cached_input_tokens": 16128,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 109,
+  "reasoning_output_tokens": 43
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb79-14fc-7081-9846-a8c56de08bd7\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems concern newly defined `stringXor` and `stringXorAlt` and do not establish the reference equivalence `string_xor a b = string_xorImp a b`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":18641,\"cached_input_tokens\":16128,\"cache_write_input_tokens\":0,\"output_tokens\":109,\"reasoning_output_tokens\":43}}\n",
+ "finished_at": "2026-09-22T23:35:39+00:00"
+}

@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "easy_set/23_is_prime",
+ "agent": "trace_plus",
+ "split": "easy_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/easy_set/23_is_prime.lean",
+ "candidate_sha256": "94d4e73daf8e154e729611e144be7750257244ac5f28c742deb5072e98060d9d",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/23_is_prime.lean",
+ "gold_sha256": "94d2a4da8834f9a641f715d27d991b4e88811c69e2d6b943b8b224aba48fa7e9",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "5b02b33151b81a68d1aab3052560e6f11d6eb40331d3f5b228e817debe7e6072",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It establishes only a few small-input facts about a newly defined Int predicate and never proves equivalence to the reference isPrimeImp implementation for all natural numbers.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 36.13,
+ "usage": {
+  "input_tokens": 18525,
+  "cached_input_tokens": 17152,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 118,
+  "reasoning_output_tokens": 64
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb78-9833-7ce0-9488-59ef312ea05e\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It establishes only a few small-input facts about a newly defined Int predicate and never proves equivalence to the reference isPrimeImp implementation for all natural numbers.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":18525,\"cached_input_tokens\":17152,\"cache_write_input_tokens\":0,\"output_tokens\":118,\"reasoning_output_tokens\":64}}\n",
+ "finished_at": "2026-09-22T23:35:06+00:00"
+}

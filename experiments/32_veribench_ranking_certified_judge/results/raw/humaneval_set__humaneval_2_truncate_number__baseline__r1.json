@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_2_truncate_number",
+ "agent": "baseline",
+ "split": "humaneval_set",
+ "repeat": 1,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/humaneval_set/humaneval_2_truncate_number.lean",
+ "candidate_sha256": "1ea34b8edbb34201030947cacd797a645a01daf2093725c7de25e51dba6615ad",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_2_truncate_number.lean",
+ "gold_sha256": "b9f12b24284d17c0d1c5c27b106f3dd0f1e7e77f2e65e99890cc0b0032169fbf",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "d6fbe4fc6d37bdeb2ba165380ed7125c5cf575c4bb87ee8f558c66bab2df1514",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated statements never relate `truncateNumber` to `truncateNumberImp`, so they do not capture the reference implementation's sole equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 45.09,
+ "usage": {
+  "input_tokens": 18173,
+  "cached_input_tokens": 17152,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 148,
+  "reasoning_output_tokens": 96
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb80-4ef2-7ea1-ba49-fbfc217e1406\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated statements never relate `truncateNumber` to `truncateNumberImp`, so they do not capture the reference implementation's sole equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":18173,\"cached_input_tokens\":17152,\"cache_write_input_tokens\":0,\"output_tokens\":148,\"reasoning_output_tokens\":96}}\n",
+ "finished_at": "2026-09-22T23:43:41+00:00"
+}
