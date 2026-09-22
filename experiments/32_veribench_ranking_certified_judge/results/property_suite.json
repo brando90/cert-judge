@@ -1,0 +1,160 @@
+{
+ "schema_version": "exp32_property_suite_v1",
+ "judge_id": "gpt-5.6-terra|P1_BASELINE",
+ "formula": "Compute exp16-style property metrics and the exp30 TI_var (v3) for the exp32 substitute judge, placed on the\nSection 5.3 Codex panel scale. No inference, no credentials.\n\nPanel reproduction: the eight Codex-panel judges are recomputed from\nresults_exp16_final_robust_r9_median/detail_rows.csv and checked against results_exp30_tivar_v3_all_models/\njudge_trust_vector_codex_avg.csv (ident, mono, weak, stab, varcorr_1_minus, varscore_1_minus, ti_var_v3).\n\nFrozen formulas:\n  ident  = mean identity-variant score (24 x 4 rows), repeat-median per row\n  mono   = clip((1 - rho_bug)/2, 0, 1) with rho_bug the POOLED Spearman between bug level and median score over all 24 x 5 bug rows\n           (this reproduces results_exp30 exactly: mono == (1 - judge_rows.bug_spearman_r)/2; the per-file mean C_f of the paper\n           appendix is reported alongside as cf_mono and differs by <= 0.02 on the panel)\n  weak   = fraction of bug ladders that are non-increasing (utils.metrics.weak_monotonicity_pct / 100)\n  stab   = 1 - flip_rate, flip_rate = fraction of all 288 rows whose repeats straddle the 0.85 accept threshold\n  varcorr_raw  = variance over files of the per-file corr terms;  varscore_raw = mean over bug rows of the repeat variance\n  varcorr_1_minus / varscore_1_minus = 1 - min-max normalization of the raw values across the panel (exp28 _norm_01)\n  ti_var_v3 = exp(0.2 ln ident + 0.2 ln mono + 0.2 ln weak + 0.15 ln stab + 0.125 ln varcorr_1_minus + 0.125 ln varscore_1_minus),\n              every term clipped to [1e-6, 1 - 1e-6]  (results_exp30_tivar_v3_all_models/summary.json weights)",
+ "weights": {
+  "ident": 0.2,
+  "mono": 0.2,
+  "weak": 0.2,
+  "stab": 0.15,
+  "varcorr": 0.125,
+  "varscore": 0.125
+ },
+ "threshold": 0.85,
+ "panel_reproduction": {
+  "max_abs_diff_ti_var_v3": 0.0,
+  "rows": [
+   {
+    "judge_id": "editdist_e1",
+    "ident": 0.93502,
+    "mono": 0.797015,
+    "weak": 0.0,
+    "stab": 1.0,
+    "varcorr_1_minus": 1.0,
+    "varscore_1_minus": 1.0,
+    "ti_var_v3_recomputed": 0.059492,
+    "ti_var_v3_published": 0.0594918363436311,
+    "abs_diff": 0.0,
+    "bug_spearman_r": -0.594,
+    "bug_constant_ladders": 0,
+    "bug_ladders_with_local_increase": 24
+   },
+   {
+    "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+    "ident": 0.8125,
+    "mono": 0.76122,
+    "weak": 0.333333,
+    "stab": 0.840278,
+    "varcorr_1_minus": 0.442386,
+    "varscore_1_minus": 0.0,
+    "ti_var_v3_recomputed": 0.114086,
+    "ti_var_v3_published": 0.1140856410623005,
+    "abs_diff": 0.0,
+    "bug_spearman_r": -0.5224,
+    "bug_constant_ladders": 0,
+    "bug_ladders_with_local_increase": 16
+   },
+   {
+    "judge_id": "gpt-4o-mini|P8_STRICT_B",
+    "ident": 0.894792,
+    "mono": 0.877687,
+    "weak": 0.25,
+    "stab": 0.878472,
+    "varcorr_1_minus": 0.930726,
+    "varscore_1_minus": 0.04106,
+    "ti_var_v3_recomputed": 0.470911,
+    "ti_var_v3_published": 0.4709113173344959,
+    "abs_diff": 0.0,
+    "bug_spearman_r": -0.7554,
+    "bug_constant_ladders": 0,
+    "bug_ladders_with_local_increase": 18
+   },
+   {
+    "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+    "ident": 0.953958,
+    "mono": 0.850849,
+    "weak": 0.208333,
+    "stab": 0.982639,
+    "varcorr_1_minus": 0.971944,
+    "varscore_1_minus": 0.997964,
+    "ti_var_v3_recomputed": 0.696357,
+    "ti_var_v3_published": 0.6963567008402584,
+    "abs_diff": 0.0,
+    "bug_spearman_r": -0.7017,
+    "bug_constant_ladders": 0,
+    "bug_ladders_with_local_increase": 19
+   },
+   {
+    "judge_id": "gpt-5.3-codex|P1_BASELINE",
+    "ident": 0.75,
+    "mono": 0.899575,
+    "weak": 1.0,
+    "stab": 1.0,
+    "varcorr_1_minus": 0.974039,
+    "varscore_1_minus": 0.996026,
+    "ti_var_v3_recomputed": 0.920821,
+    "ti_var_v3_published": 0.9208214915374655,
+    "abs_diff": 0.0,
+    "bug_spearman_r": -0.7991,
+    "bug_constant_ladders": 0,
+    "bug_ladders_with_local_increase": 0
+   },
+   {
+    "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+    "ident": 0.749792,
+    "mono": 0.895684,
+    "weak": 1.0,
+    "stab": 0.996528,
+    "varcorr_1_minus": 0.973681,
+    "varscore_1_minus": 1.0,
+    "ti_var_v3_recomputed": 0.919908,
+    "ti_var_v3_published": 0.9199082376650393,
+    "abs_diff": 0.0,
+    "bug_spearman_r": -0.7914,
+    "bug_constant_ladders": 0,
+    "bug_ladders_with_local_increase": 0
+   },
+   {
+    "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+    "ident": 0.794063,
+    "mono": 0.880813,
+    "weak": 0.833333,
+    "stab": 0.996528,
+    "varcorr_1_minus": 0.960541,
+    "varscore_1_minus": 0.993188,
+    "ti_var_v3_recomputed": 0.891925,
+    "ti_var_v3_published": 0.8919247613959114,
+    "abs_diff": 0.0,
+    "bug_spearman_r": -0.7616,
+    "bug_constant_ladders": 0,
+    "bug_ladders_with_local_increase": 4
+   },
+   {
+    "judge_id": "random_r1",
+    "ident": 0.454999,
+    "mono": 0.498639,
+    "weak": 0.0,
+    "stab": 1.0,
+    "varcorr_1_minus": 0.0,
+    "varscore_1_minus": 1.0,
+    "ti_var_v3_recomputed": 0.00834,
+    "ti_var_v3_published": 0.008339868294542453,
+    "abs_diff": 0.0,
+    "bug_spearman_r": 0.0027,
+    "bug_constant_ladders": 0,
+    "bug_ladders_with_local_increase": 24
+   }
+  ],
+  "raw_normalization_range": {
+   "varcorr_raw": [
+    1.232595164407831e-32,
+    0.07609186100259592
+   ],
+   "varscore_raw": [
+    5.777789833161707e-35,
+    0.02446759259259259
+   ]
+  }
+ },
+ "new_judge": {
+  "cells": {
+   "ok": 0,
+   "failed": 0,
+   "attempts": 0,
+   "elapsed": [],
+   "rows_with_all_repeats": 0,
+   "rows_total": 288,
+   "mean_elapsed": null
+  }
+ }
+}

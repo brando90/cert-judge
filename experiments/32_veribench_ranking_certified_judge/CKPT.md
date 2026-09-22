@@ -1,6 +1,9 @@
 # CKPT — 32_veribench_ranking_certified_judge
 
-**TLDR-start:** [cj: exp32-certified-ranking] Ranking run (1,680 quoted single-case `codex exec` calls, `gpt-5.6-terra` low, P1_BASELINE, $0 API) has its first repeat layer complete and reported in REPORT.md; the remaining repeats are still running in the background (resume command below).
+**TLDR-start:** [cj: exp32-certified-ranking] STOPPED by Brando's decision to cut §5.4: layer 0 of the quoted 1,680-call run is complete (826 cells, 846 CLI calls, $0 API) and reported; layers 1–2 and the property suite were never started.
+
+## STOPPED 2026-09-22 23:50 UTC (coordinator relaying Brando) — do not start inference
+Reason: the four-agent ranking is a VeriBench ICML 2025 result carried over from the DL4C version of the paper; §5.4 / Table 5 is being cut from the ICLR submission, not reinforced. Layers 1–2 and the P1–P4 property suite were NOT run (no `results/property_raw/`). Completed: 826 ok cells (layer 0 = 560/560 complete; layer 1 = 252; layer 2 = 14), 846 `codex exec` invocations, 0 failed cells, $0 provider-API spend. `results/ranking.json` / `ranking_table.md` / `REPORT.md` regenerated from exactly those cells. Resume only if revived (not planned): the command block under "Resume command" below (ranking runner → aggregator → `run_property_suite_cli.py` → `compute_property_suite.py`).
 
 ## Status (update on every checkpoint)
 - 2026-09-22 — inputs located and manifested (`inputs_manifest.json`: 140 items, 560 candidate rows, all golds resolved in the frozen legacy root); `judge_config.json`, `score_schema.json`, `run_ranking_cli.py` written. NOTHING RUN YET.
@@ -36,4 +39,4 @@ The runner skips every cell whose `results/raw/<split>__<stem>__<agent>__r<k>.js
 ## Layout check
 `python3 py_src/cert_judge/experiment_layout.py --check` reports only pre-existing failures that are not mine: `experiments/18_icml_reviews`, `experiments/33_openreview_complaints_all_venues_to_iclr2027_paper` (another session's new dir), and the missing archived homes for 18 / 20.
 
-**TLDR-end:** [cj: exp32-certified-ranking] Layer 0 of the quoted 1,680-call run is complete and reported (DSPy ReAct first, Baseline last, Trace+/Trace++ tied); the run continues in the background and the property suite for the substitute model is the next step.
+**TLDR-end:** [cj: exp32-certified-ranking] Experiment stopped after layer 0 (826 cells); nothing is running; resume commands are recorded above in case the table is ever revived.

@@ -1,6 +1,6 @@
 # Experiment 32 — VeriBench agent ranking under a certified-family judge
 
-**TLDR-start:** [cj: exp32-certified-ranking] Re-scoring all 140 outputs of each of the four agents with the Section 5.3 P1_BASELINE prompt on the currently served Codex model (`gpt-5.6-terra`, `gpt-5.3-codex` is no longer offered by the CLI) via 611 subscription `codex exec` calls ($0 API) keeps DSPy ReAct on top (0.178, 95% CI [0.119, 0.240]) and Baseline at the bottom (0.076 [0.050, 0.106]); Trace+ (0.119) and Trace++ (0.112) swap places relative to the Claude 3.7 table but are statistically indistinguishable (diff 0.007, CI [−0.031, 0.042]). Only repeat layer 0 (560/1,680 cells) is complete; the run is still going and the substitute judge is not yet property-certified (Section 5).
+**TLDR-start:** [cj: exp32-certified-ranking] STOPPED after repeat layer 0: re-scoring all 140 outputs of each agent with the Section 5.3 P1_BASELINE prompt on the currently served Codex model (`gpt-5.6-terra`; `gpt-5.3-codex` is no longer offered) via 846 subscription `codex exec` calls ($0 API) keeps DSPy ReAct first (0.178, 95% CI [0.118, 0.241]) and Baseline last (0.072 [0.050, 0.097]) with Trace+ (0.120) and Trace++ (0.119) tied; Brando then ruled the table a carried-over VeriBench result that will be cut from the ICLR paper, so layers 1–2 and the property suite were not run.
 
 ## 1. Question
 Section 5.4 of `paper_latex/ICLR_2027_submission/main.tex` (`tab:theorem_quality_table_split`) ranks four Claude 3.7 agents (Baseline 0.470, DSPy ReAct 0.615, Trace+ 0.477, Trace++ 0.588) with a Claude 3.7 judge that the paper's own property protocol never certified (reviewer DeJF). This experiment re-scores the same 140 agent outputs per agent with the certified primary judge configuration from Section 5.3 through subscription CLIs only, and asks whether the ordering survives.
@@ -16,29 +16,29 @@ Section 5.4 of `paper_latex/ICLR_2027_submission/main.tex` (`tab:theorem_quality
 | Aggregation | Per (item, agent): mean of the repeats; per split: mean over items; Avg: macro-average over the five table splits (Easy, CS, Real, HE, Sec = `security_6858`); ItemMean: mean over all 140 items. Scores are the prompt-native [0,1] floats (the Claude 3.7 judge emitted integers 0–10 divided by 10). 95% percentile bootstrap over items within split (10,000 draws, seed 0), paired across agents; pairwise agent differences and full-ordering frequencies from the same draws. |
 
 ## 3. Results
-Status at report time (2026-09-22 23:31 UTC): 591 of the 1,680 quoted cells are complete — repeat layer 0 is complete for every (item, agent) pair (560/560), plus 31 cells of layers 1–2 — from 611 CLI invocations (17 cells needed a retry; 0 failed cells; 8.81 M input / 79 k output tokens; mean 47 s per call under the subscription rate limit). The background run continues (`CKPT.md`); `aggregate_ranking.py` regenerates all numbers. Numbers below are the `median_available_repeats` analysis of `results/ranking.json` (median over the repeats present, which is the single repeat for 543 of 560 pairs), Sec = `security_6858`.
+**Final state (STOPPED 2026-09-22 23:50 UTC, see Section 8):** 826 of the 1,680 quoted cells were completed from 846 CLI invocations (17 cells needed a retry; 0 failed cells; 12.76 M input / 111 k output tokens; mean 46 s per call under the subscription rate limit; $0 provider-API spend). Repeat layer 0 is complete for every (item, agent) pair (560/560); repeat coverage over the 560 pairs: {'1': 308, '2': 238, '3': 14} (pairs with 1 / 2 / 3 repeats). Numbers below are the `median_available_repeats` analysis of `results/ranking.json` (median over the repeats present), Sec = `security_6858`; `aggregate_ranking.py` regenerates them from `results/raw/`.
 
 | Agent | Easy (41) | CS (10) | Real (5) | HE (56) | Sec (22) | **Avg** [95% CI] | ItemMean (140) [95% CI] |
 |---|---|---|---|---|---|---|---|
-| Baseline | 0.076 | 0.050 | 0.140 | 0.071 | 0.043 | **0.076** [0.050, 0.106] | 0.066 [0.053, 0.080] |
-| DSPy ReAct | 0.189 | 0.060 | 0.450 | 0.112 | 0.080 | **0.178** [0.119, 0.240] | 0.136 [0.110, 0.166] |
-| Trace+ | 0.078 | 0.070 | 0.220 | 0.135 | 0.091 | **0.119** [0.080, 0.162] | 0.106 [0.089, 0.124] |
-| Trace++ | 0.123 | 0.060 | 0.180 | 0.112 | 0.084 | **0.112** [0.077, 0.149] | 0.105 [0.083, 0.130] |
+| Baseline | 0.077 | 0.040 | 0.125 | 0.067 | 0.053 | **0.072** [0.050, 0.097] | 0.065 [0.053, 0.078] |
+| DSPy ReAct | 0.184 | 0.065 | 0.450 | 0.119 | 0.072 | **0.178** [0.118, 0.241] | 0.136 [0.110, 0.165] |
+| Trace+ | 0.083 | 0.075 | 0.220 | 0.127 | 0.094 | **0.120** [0.081, 0.163] | 0.105 [0.088, 0.123] |
+| Trace++ | 0.145 | 0.060 | 0.190 | 0.118 | 0.081 | **0.119** [0.082, 0.159] | 0.114 [0.093, 0.137] |
 
-Per-split 95% CIs: Baseline Easy [0.055, 0.098], CS [0.020, 0.080], Real [0.020, 0.280], HE [0.047, 0.096], Sec [0.018, 0.073]; DSPy ReAct [0.123, 0.267], [0.030, 0.090], [0.180, 0.750], [0.084, 0.141], [0.023, 0.159]; Trace+ [0.050, 0.107], [0.030, 0.110], [0.050, 0.410], [0.113, 0.158], [0.036, 0.157]; Trace++ [0.082, 0.172], [0.020, 0.100], [0.040, 0.320], [0.083, 0.145], [0.023, 0.180].
+Per-split 95% CIs: Baseline Easy [0.057, 0.098], CS [0.015, 0.070], Real [0.020, 0.235], HE [0.045, 0.091], Sec [0.030, 0.081]; DSPy ReAct Easy [0.120, 0.260], CS [0.030, 0.100], Real [0.180, 0.740], HE [0.093, 0.147], Sec [0.020, 0.149]; Trace+ Easy [0.050, 0.122], CS [0.040, 0.115], Real [0.050, 0.410], HE [0.107, 0.146], Sec [0.043, 0.159]; Trace++ Easy [0.102, 0.195], CS [0.025, 0.100], Real [0.040, 0.350], HE [0.095, 0.146], Sec [0.022, 0.175].
 
-Pairwise Avg differences (paired item bootstrap, 10,000 draws): Baseline − DSPy ReAct = −0.102 [−0.177, −0.034] (p < 0.001); Baseline − Trace+ = −0.043 [−0.097, −0.001] (p = 0.040); Baseline − Trace++ = −0.036 [−0.087, +0.017] (p = 0.19); DSPy ReAct − Trace+ = +0.059 [−0.022, +0.146] (p = 0.18); DSPy ReAct − Trace++ = +0.066 [−0.008, +0.149] (p = 0.089); Trace+ − Trace++ = +0.007 [−0.031, +0.042] (p = 0.70).
+Pairwise Avg differences (paired item bootstrap, 10,000 draws): Baseline − DSPy ReAct = -0.105 [-0.179, -0.038] (p = 0.000); Baseline − Trace+ = -0.047 [-0.099, -0.008] (p = 0.008); Baseline − Trace++ = -0.046 [-0.098, +0.004] (p = 0.071); DSPy ReAct − Trace+ = +0.058 [-0.026, +0.147] (p = 0.197); DSPy ReAct − Trace++ = +0.059 [-0.020, +0.146] (p = 0.162); Trace+ − Trace++ = +0.001 [-0.035, +0.035] (p = 0.943).
 
-Variants: with Sec = `security_6858` + `security_python`, Avg = DSPy ReAct 0.178, Trace+ 0.117, Trace++ 0.109, Baseline 0.075 (same ordering); ItemMean over all 140 items gives the same ordering (DSPy ReAct 0.136 > Trace+ 0.106 > Trace++ 0.105 > Baseline 0.066). Score distribution is near-binary at the low end (0.0 and 0.1 dominate; see caveat 3).
+Variants: with Sec = `security_6858` + `security_python`, Avg = Baseline 0.071, DSPy ReAct 0.178, Trace+ 0.118, Trace++ 0.116 (ordering DSPy ReAct > Trace+ > Trace++ > Baseline); ItemMean over all 140 items: Baseline 0.065, DSPy ReAct 0.136, Trace+ 0.105, Trace++ 0.114 (ordering DSPy ReAct > Trace++ > Trace+ > Baseline). Score distribution is near-binary at the low end (0.0 and 0.1 dominate; see caveat 3).
 
 ## 4. Ordering agreement with the Claude 3.7 table
 Claude 3.7 table (Avg): DSPy ReAct 0.615 > Trace++ 0.588 > Trace+ 0.477 > Baseline 0.470.
-This run (Avg): DSPy ReAct 0.178 > Trace+ 0.119 > Trace++ 0.112 > Baseline 0.076.
+This run (Avg): DSPy ReAct 0.178 > Trace+ 0.120 > Trace++ 0.119 > Baseline 0.072.
 
-- Identical full ordering: **no** — the middle pair is swapped. Spearman over the four Avg values 0.800, Kendall tau 0.667.
-- The endpoints agree and are supported: DSPy ReAct is first in 88% of bootstrap draws (DSPy > Trace+ > Trace++ > Baseline 47.9%, DSPy > Trace++ > Trace+ > Baseline 32.5%), Baseline is last in ~92% of draws, and Baseline is below DSPy ReAct and Trace+ with CIs excluding zero.
-- The Trace+ / Trace++ swap is not a disagreement the data can support either way: their difference is 0.007 with CI [−0.031, +0.042] here, and the Claude 3.7 table's own ordering of the two is not backed by any reported interval.
-- Per split, no split reproduces the Claude 3.7 ordering exactly (per-split Spearman: Easy 0.80, Real 0.80, HE 0.32, Sec 0.20, CS −0.32); the five smallest splits have 5–22 items and near-binary scores, so split-level orderings are noisy. Spearman over the 20 split cells is −0.07, i.e. the two judges agree on which agent is best and worst overall, not on split-level levels.
+- Identical full ordering: **no** — the middle pair (Trace+ / Trace++) is swapped. Spearman over the four Avg values 0.800, Kendall tau 0.667.
+- The endpoints agree and are supported: DSPy ReAct is first in 88% of bootstrap draws (top orderings: DSPy ReAct > Trace++ > Trace+ > Baseline 42.7%; DSPy ReAct > Trace+ > Trace++ > Baseline 41.6%; Trace+ > Trace++ > DSPy ReAct > Baseline 3.9%); Baseline is last in 96%; Baseline is below DSPy ReAct and Trace+ with CIs excluding zero.
+- The Trace+ / Trace++ swap is not a disagreement the data can support either way: their difference is +0.001 with CI [-0.035, +0.035], and the Claude 3.7 table's own ordering of the two is not backed by any reported interval.
+- Per split, no split reproduces the Claude 3.7 ordering exactly (per-split Spearman: Easy 0.80, CS -0.40, Real 0.80, HE 0.40, Sec 0.20); the smallest splits have 5–22 items and near-binary scores, so split-level orderings are noisy. Spearman over the 20 split cells is -0.05: the two judges agree on which agent is best and worst overall, not on split-level levels.
 
 ## 5. Property evidence for the substitute judge (fallback status)
 The runbook fallback asks for the four property checks on the substitute model. The exp16-style suite (TI_var inputs) was **not run in this session** (quoted in `CKPT.md`: 864 calls; the ranking was prioritized). The property evidence that exists for exactly this configuration (`gpt-5.6-terra|P1_BASELINE`, effort low, 3 repeats, same CLI) is the PTI-v0 suite of `experiments/archive/29_proxy_validation` (`results/properties/property_table.csv`, `ladder_diagnostics.csv`):
@@ -71,11 +71,23 @@ Candidate abstract line (only if the exp16-style property suite for `gpt-5.6-ter
 The same prompt-level protocol, applied to a currently served Codex judge, reproduces the best and worst agents of an earlier, uncertified ranking of four \textsc{VeriBench} agents.
 ```
 
-**TLDR-end:** [cj: exp32-certified-ranking] With the certified P1 prompt on `gpt-5.6-terra` (repeat layer 0 complete, 560 cells; 611 CLI calls; $0 API) the agent ranking keeps DSPy ReAct first (0.178 [0.119, 0.240]) and Baseline last (0.076 [0.050, 0.106]), the middle pair Trace+/Trace++ is a statistical tie (0.119 vs 0.112), so the Claude 3.7 ordering is reproduced at its endpoints but not in full; the substitute model is not yet property-certified and the paper text must say so.
+## 8. STOPPED 2026-09-22 (coordinator, relaying Brando)
+**Reason:** the Baseline / DSPy ReAct / Trace+ / Trace++ ranking is a VeriBench (ICML 2025) result carried over from the DL4C version of this paper and is not relevant to the ICLR 2027 submission; Section 5.4 / Table 5 is being cut from the paper instead of reinforced. Repeat layers 1–2 and the exp16-style P1–P4 property suite for the substitute judge were therefore **not run** (the suite's 864-call quote in `CKPT.md` was never executed: `results/property_raw/` does not exist and `property_requests.json` holds only the locally built probe texts).
+**What was actually run:** 826 ok cells (layer 0 complete 560/560; layer 1: 252; layer 2: 14) from 846 `codex exec` invocations on `gpt-5.6-terra` (effort low, P1_BASELINE), 0 failed cells, $0 provider-API spend; every raw response is in `results/raw/`. `results/ranking.json` and `results/ranking_table.md` were regenerated from exactly those cells after the stop.
+**Consequence for Section 7:** the drafted replacement sentences are moot if the section is cut; they are left in place only as a record.
+**Resume (only if ever revived; not planned):**
+```bash
+cd ~/cert-judge && python3 experiments/32_veribench_ranking_certified_judge/run_ranking_cli.py --workers 8            # finishes layers 1-2 (skips cached cells)
+~/uv_envs/cert-judge/bin/python3 experiments/32_veribench_ranking_certified_judge/aggregate_ranking.py
+~/uv_envs/cert-judge/bin/python3 experiments/32_veribench_ranking_certified_judge/run_property_suite_cli.py --workers 8   # 864-call P1-P4 suite (quote in CKPT.md)
+~/uv_envs/cert-judge/bin/python3 experiments/32_veribench_ranking_certified_judge/compute_property_suite.py            # TI_var on the Section 5.3 panel scale (panel reproduced to 1e-9)
+```
 
-**Snapshot:** 
-- `results/ranking_table.md` (regenerated 23:31 UTC): `| DSPy ReAct | 0.189 | 0.060 | 0.450 | 0.112 | 0.080 | **0.178** [0.119, 0.240] | 0.136 [0.110, 0.166] |`
-- `results/ranking.json` → `calls`: `{"ok_cells": 591, "expected_cells": 1680, "failed_cell_files": 0, "total_cli_invocations_including_retries": 611, "provider_api_spend_usd": 0.0}`
-- `results/raw/easy_set__10_MyEvenSumParity__baseline__r0.json`: `"model_requested": "gpt-5.6-terra", "model_observed_header": null, "score": 0.0, "usage": {"input_tokens": 13806, ..., "output_tokens": 149}`
-- `inputs_manifest.json`: `"n_items": 140, "n_agents": 4, "n_candidate_rows": 560`, all `gold_resolution` values in `data/veribench_dataset/lean_src/veribench`
-- `judge_config.json`: `"certified_configuration_requested": "gpt-5.3-codex|P1_BASELINE"`, `"model_requested_by_cli_flag": "gpt-5.6-terra"`, `"reasoning_effort": "low"`, `"n_repeats": 3`
+**TLDR-end:** [cj: exp32-certified-ranking] Layer 0 of the quoted run (826 cells, 846 CLI calls, $0 API) reproduces the Claude 3.7 ordering at its endpoints (DSPy ReAct first, Baseline last) with Trace+/Trace++ statistically tied; the experiment was stopped because Section 5.4 is being cut from the paper, the substitute judge was never property-certified under TI_var, and the resume commands above are the only path to finishing it.
+
+**Snapshot:**
+- `results/ranking.json` → `calls`: `{"ok_cells": 826, "expected_cells": 1680, "failed_cell_files": 0, "total_cli_invocations_including_retries": 846, "provider_api_spend_usd": 0.0}`; repeat coverage {'1': 308, '2': 238, '3': 14}
+- `results/ranking_table.md`: `| DSPy ReAct | 0.184 | 0.065 | 0.450 | 0.119 | 0.072 | **0.178** [0.118, 0.241] |`
+- `results/raw/`: 826 `*__r<k>.json` files, 0 `*.failed.json`; e.g. `easy_set__10_MyEvenSumParity__baseline__r0.json`: `"model_requested": "gpt-5.6-terra", "model_observed_header": null, "score": 0.0`
+- `results/property_raw/`: absent (suite never started); `compute_property_suite.py` panel check: max |Δ ti_var_v3| = 9.2e-10 over the 8 Codex configs
+- `inputs_manifest.json`: `"n_items": 140, "n_agents": 4, "n_candidate_rows": 560`
