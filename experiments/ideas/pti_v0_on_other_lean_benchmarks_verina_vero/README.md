@@ -1,5 +1,7 @@
 # PTI-v0 on other Lean 4 benchmarks (Verina, Vero, ...)
 
+**TLDR:** Deferred proposal (issue #45) to rerun the CertJudge protocol on Lean 4 benchmarks beyond VeriBench, starting with a Verina run that needs no new human labels, so reviewers cannot object that it was shown only on VeriBench.
+
 **Execution:** DEFERRED — NOT RUN · **Paper inclusion:** UNDECIDED · **Recorded:** 09-22-2026 · **Issue:** <https://github.com/brando90/cert-judge/issues/45>
 
 ## Hypothesis

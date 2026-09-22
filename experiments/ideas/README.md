@@ -1,5 +1,7 @@
 # Optional research ideas
 
+**TLDR:** Index of optional, deferred research ideas; one row so far, other Lean 4 benchmarks (Verina, Vero), not run.
+
 Research whose priority or paper inclusion is uncertain. Recording an idea does not launch it.
 
 | Idea | Execution | Paper inclusion | One-line setup |
