@@ -304,3 +304,10 @@ The PDF grew from 28 to 29 pages.
 - Kept: "validation" meaning the act of validating judges against humans (per-judge human validation, human-validation protocol, trust-validation protocol, cross-model validation status) and the `sec:validation-human-alignment` label.
 - Build: 29 pp (was 28). The extra page comes from appendix float placement (app:judge-prompts p20→p21); the main text ends on the same page. 0 overfull boxes.
 - Still open from the audit: #2 "weightings discovered on n=75" (abstract), #3 cross-pass table labelling, #4 the ρ=0.881 quote at `:748`, #6 "human-agreement assessment protocol" phrasing, page cut to 9.
+- **2026-09-22 follow-up: motivation now cited (resolves Brando's "new emerging problem or cite it" ask).**
+  - §1's first sentence cites AI-written tests (`haque2026agentictests`) and AI-written specs
+    (`yang2024formalreasoning`, `bursuc2025…`).
+  - New sentence: "the checks can be gamed". Coding agents modify or delete failing tests (`baker2025monitoring`,
+    `zhong2025impossiblebench`).
+  - New sentence: faithful AI-generated specs are an open challenge (`yang2024formalreasoning`).
+  - All four bib entries were checked against the arXiv API.

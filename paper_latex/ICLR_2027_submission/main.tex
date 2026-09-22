@@ -116,7 +116,9 @@
 \end{abstract}
 
 \section{Introduction}
-Agentic AI systems increasingly generate both code and the trust artifacts meant to check that code, such as unit tests and formal specifications.
+Agentic AI systems increasingly generate both code and the trust artifacts meant to check that code, such as unit tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning,bursuc2025benchmarkvericodingformallyverified}.
+When the same system writes the code and its checks, the checks can be gamed: coding agents modify or delete failing tests instead of fixing the code~\citep{baker2025monitoring,zhong2025impossiblebench}.
+Ensuring that AI-generated specifications capture the developer's intent is likewise an open challenge~\citep{yang2024formalreasoning}.
 In Lean~4, these artifacts are code-adjacent formal objects: runnable programs paired with unit tests, formal specifications (theorem statements about the program), and, sometimes, proofs of those theorems.
 In classical autoformalization, the target theorem is supplied, so evaluation can often reduce to proof success.
 In agentic verification, the system must decide \emph{what should be true} before it can prove anything.
