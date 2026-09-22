@@ -203,7 +203,7 @@ by one annotator under two rubric strictness levels" and claim nothing about wha
       Robertson & Koyejo citation. Presentation is in Limitations only, not in the definition.
 - [x] Replace the spec-sense "quality" hits per the table; C_f "quality term" → "monotonicity term" (5 sites incl. `:613`)
 - [ ] Fix the 0–10 vs 0.0–1.0 scale inconsistency (`:222`, `:702` vs `:1103`)
-- [ ] Appendix: note that "REFERENCE IMPLEMENTATION" = the gold's last theorem block
+- [ ] (DEFERRED: appendix out of scope for now) Appendix: note that "REFERENCE IMPLEMENTATION" = the gold's last theorem block
 - [x] Limitations: gaming untested; presentation not explicit in judge prompts or panel protocol
 - [ ] Brando → Ethan: panel rubric text
 - [ ] (optional, paid) vacuity/weakening probe — quote first
@@ -291,7 +291,7 @@ especially where passing tests or type-checking cannot show that an artifact cap
 - `kenton2024oversight`: title now starts with "On".
 - `ospanov2023apollo`: → APOLLO, arXiv 2505.05758, 2025. The "3–7% → over 40%" claim is verified against the abstract.
   The paper's "75% with fewer than 1000 samples" does NOT match the v5 abstract (84.9%, sub-8B, <100 samples).
-  **Recheck `main.tex` "achieving 75%…"**.
+  (Appendix-only; DEFERRED: Brando 2026-09-22, appendix out of scope for now.)
 
 **Not done (optional):** the trust-artifact framing with citations for "agents write tests" (AIDev, Haque et al.) and
 for "models game their own tests" (Baker et al., ImpossibleBench, Claude 3.7 card). A Lahiri/Yang open-problem sentence.
