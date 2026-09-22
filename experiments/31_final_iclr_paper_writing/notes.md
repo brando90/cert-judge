@@ -395,3 +395,8 @@ there are no undefined references and no overfull boxes in the main text, and ev
 - The cross-pass caption now says both passes are one annotator's ratings of the same 72 pairs (it said n=75).
 - Rule recorded in CLAUDE.md/AGENTS.md § Data splits and in agents-config `ml_research_writing.md` § Data-Split Names.
 - Builds go in a scratch copy, not the paper dir, because overlapping latexmk runs truncated main.aux (per the cert-judge-57 session).
+
+## 2026-09-22 15:0x — closing finalized; option 3 dispatched
+- Peer `cert-judge-57` (f1e3e72) corrected the closing's first line: the §5.4 VeriBench ranking used an uncertified Claude 3.7 judge.
+- **Brando: option 1** — VeriBench line dropped from the abstract; move-6 is the vision sentence alone. Committed 073be9c (main.tex + PDF from scratch build).
+- **Brando: option 3 in parallel** — re-rank VeriBench agents with a certified judge, CLI-only. Registered `experiments/32_veribench_ranking_certified_judge/` (RUNBOOK.md); Fable subagent dispatched from this session. Paper edits wait for its REPORT.md.
