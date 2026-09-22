@@ -296,3 +296,11 @@ especially where passing tests or type-checking cannot show that an artifact cap
 **Not done (optional):** the trust-artifact framing with citations for "agents write tests" (AIDev, Haque et al.) and
 for "models game their own tests" (Baker et al., ImpossibleBench, Claude 3.7 card). A Lahiri/Yang open-problem sentence.
 The PDF grew from 28 to 29 pages.
+
+## 2026-09-22 — "validation-set" → "development panel"
+
+- Every use that called the n=75 panel a validation set/panel/labels now says development panel (8 sentence rewrites plus 24 pattern replacements, main text and appendix). Examples: intro "compact development panel", §6 "Development panel vs. held-out test protocol", App. "Development-Panel Human Alignment Appendix", table rows "Best development-panel Spearman".
+- `:152` also lost "fits the pooled development corpus" (audit #2): it now reads "the development-panel Spearman correlation between TI_var and judge-level human agreement is 0.833 / 0.905 / 0.738".
+- Kept: "validation" meaning the act of validating judges against humans (per-judge human validation, human-validation protocol, trust-validation protocol, cross-model validation status) and the `sec:validation-human-alignment` label.
+- Build: 29 pp (was 28). The extra page comes from appendix float placement (app:judge-prompts p20→p21); the main text ends on the same page. 0 overfull boxes.
+- Still open from the audit: #2 "weightings discovered on n=75" (abstract), #3 cross-pass table labelling, #4 the ρ=0.881 quote at `:748`, #6 "human-agreement assessment protocol" phrasing, page cut to 9.

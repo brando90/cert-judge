@@ -147,16 +147,16 @@ We focus on a core deep-learning-for-code bottleneck: code agents can generate c
 In this setting, LLM judges are useful only if their reliability can be measured scalably rather than assumed.
 
 Property certification \textbf{amortizes} the cost of human validation---gold references collected once, used to select a four-property trust metric, then deployed without re-annotating every new judge configuration.
-In our setting, humans rate a compact validation set once (\(n {=} 75\) aligned pairs in this proof-of-concept run), and the property suite, linked to human agreement on the development panel, extends that trust signal to new judges through automated property checks; the research question is whether the \emph{method} (property certification + a variance-aware index) tracks human agreement, not whether this single weighting is the final word for all domains.
+In our setting, humans rate a compact development panel once (\(n {=} 75\) aligned pairs in this proof-of-concept run), and the property suite, linked to human agreement on that panel, extends that trust signal to new judges through automated property checks; the research question is whether the \emph{method} (property certification + a variance-aware index) tracks human agreement, not whether this single weighting is the final word for all domains.
 The four properties are concrete: a judge should give maximal scores to identical artifacts, lower scores as semantic bugs accumulate, lower scores as theorem statements and unit tests are removed, and stable scores under prompt rewordings and semantics-preserving rewrites.
-On a panel of eight judge configurations, \(\mathrm{TI}_{\mathrm{var}}\) fits the pooled development corpus with validation-set Spearman coefficients of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2); held-out generalization to new raters, benchmarks, and judge families remains future work.
+Across eight judge configurations, the development-panel Spearman correlation between \(\mathrm{TI}_{\mathrm{var}}\) and judge-level human agreement is \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2); held-out generalization to new raters, benchmarks, and judge families remains future work.
 
 Our \textbf{contributions} are:
 \begin{enumerate}
   \item \textbf{An amortized trust-validation protocol:} we formalize property certification as one-time human-agreement assessment on a fixed panel of Lean artifacts with scripted perturbations.
   After human-agreement assessment, any new (LLM + prompt + \(n_\text{repeats}\) + aggregation) judge configuration can be screened by computing four falsifiable properties, without repeating the full human-labeling budget.
 
-  \item \textbf{Proof-of-concept human-agreement assessment on \(\bm{n{=}75}\):} \(\mathrm{TI}_{\mathrm{var}}\) is one concrete geometric aggregation of diagnostics that tracks human agreement on eight judge tuples; we report validation-set correlations (avg \(=0.833\), pass1 \(=0.905\), pass2 \(=0.738\) Spearman) as evidence toward amortized oversight feasibility, \emph{not} as universally fixed aggregation weights or constants.
+  \item \textbf{Proof-of-concept human-agreement assessment on \(\bm{n{=}75}\):} \(\mathrm{TI}_{\mathrm{var}}\) is one concrete geometric aggregation of diagnostics that tracks human agreement on eight judge tuples; we report development-panel correlations (avg \(=0.833\), pass1 \(=0.905\), pass2 \(=0.738\) Spearman) as evidence toward amortized oversight feasibility, \emph{not} as universally fixed aggregation weights or constants.
   \item \textbf{End-to-end use on \textsc{VeriBench}:} the same property-checked judge ranks agent-generation methods consistently with benchmark expectations (e.g., DSPy ReAct \(0.615\) vs.\ baseline prompting \(0.470\) on normalized specs), illustrating how trust signals propagate to scalable code/spec evaluation workloads.
 \end{enumerate}
 
@@ -247,8 +247,8 @@ These are useful comparators, but later results show that geometric and variance
   \end{aligned}
 \]
 where \(C_f\) is the mean per-file monotonicity term over bug ladders and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties; Appendix~\ref{app:index-definitions} gives the exact definitions.
-Our human-agreement hypothesis is simple: judges with higher trust-index scores should also have higher human agreement on the validation panel.
-The equal-weighted form above is a simple variance-aware instantiation; other task-specific fitted weightings are possible, but we treat \(\mathrm{TI}_{\mathrm{var}}\) as a validation-set trust signal rather than a universal constant.
+Our human-agreement hypothesis is simple: judges with higher trust-index scores should also have higher human agreement on the development panel.
+The equal-weighted form above is a simple variance-aware instantiation; other task-specific fitted weightings are possible, but we treat \(\mathrm{TI}_{\mathrm{var}}\) as a trust signal assessed on the development panel rather than a universal constant.
 
 To be trustworthy, the judge should satisfy the following falsifiable behavioral targets.
 
@@ -377,7 +377,7 @@ A central question for our protocol is whether the primary trust metric \(\mathr
 We do \emph{not} claim that \(\mathrm{TI}_{\mathrm{var}}\) certifies universally correct evaluator behavior---no finite scripted suite can enumerate all plausible failure modes (Section~\ref{sec:limitations-finite}).
 
 Across Codex, Claude Opus, and Qwen3-Coder, judges with higher \(\mathrm{TI}_{\mathrm{var}}\) also have higher correlation with human ratings.
-Figure~\ref{fig:tivar_cross_model_avg} plots judge-level \(\mathrm{TI}_{\mathrm{var}}\) against human Spearman agreement (averaged validation labels) separately for those three judge families while holding fixed the \(75\) overlapping human-aligned rows that define the development panel within each regression.
+Figure~\ref{fig:tivar_cross_model_avg} plots judge-level \(\mathrm{TI}_{\mathrm{var}}\) against human Spearman agreement (averaged development-panel labels) separately for those three judge families while holding fixed the \(75\) overlapping human-aligned rows that define the development panel within each regression.
 \(\mathrm{TI}_{\mathrm{var}}\) does not only reward average property satisfaction---it also penalizes instability across repeats, prompts, and perturbations---so the signal targets configurations that behave more coherently on the perturbation suite used for development.
 
 \begin{figure}[t]
@@ -647,7 +647,7 @@ This matters for deep learning for code because code agents can generate far mor
 \paragraph{Property-level interpretation.}
 For averaged labels, per-property correlations identify \textbf{P3 weak monotonicity} as strongest (Spearman \(0.747,\ p=0.043\); Pearson \(0.744,\ p=0.048\)), with \textbf{P2 bug-rank monotonicity} next (Spearman \(0.714,\ p=0.056\); Pearson \(0.636,\ p=0.037\)).
 On their own, P1 identity and P4 stability are only weakly associated with human agreement at this \(n_\text{judges}=8\) scale.
-Across pass1/pass2/avg, P3 is consistently top-ranked, indicating that semantic monotone behavior under controlled degradations has the most consistent association with validation-set human Spearman in this study.
+Across pass1/pass2/avg, P3 is consistently top-ranked, indicating that semantic monotone behavior under controlled degradations has the most consistent association with development-panel human Spearman in this study.
 
 \subsection{Threshold selection: stability vs.\ coverage}
 \paragraph{Decision-threshold selection.}
@@ -718,7 +718,7 @@ Detailed per-model diagnostics are reported in the appendix.
 The property-checked judge is useful not only as a validation object but also as an evaluation tool.
 Table~\ref{tab:theorem_quality_table_split} shows that it ranks agentic theorem-generation methods in the expected direction: the weakest baseline is simple prompting (0.470 average normalized score), while feedback-driven methods score substantially higher, led by DSPy ReAct (0.615) and followed by Trace++ (0.588).
 We use this only as a downstream sanity check, not as independent proof of judge correctness.
-The result still matters because it shows that the same property-checked judge that aligns with humans on the validation panel also produces sensible system-level rankings on \textsc{VeriBench} \citep{khattab2024dspy,cheng2024trace,chen2021evaluating}.
+The result still matters because it shows that the same property-checked judge that aligns with humans on the development panel also produces sensible system-level rankings on \textsc{VeriBench} \citep{khattab2024dspy,cheng2024trace,chen2021evaluating}.
 
 \section{Limitations and Held-Out Test Protocol}
 We study an LLM judge that \emph{compares each candidate artifact against its task's gold reference} for Lean~4 code verification alongside a graded trust signal built from falsifiable perturbation checks.
@@ -728,8 +728,8 @@ The judge satisfies falsifiable score-level properties (identity and monotonicit
 Our data supports a clear separation: score ranking remains stable under threshold changes, while binary stability and coverage trade off in a tunable way.
 In experiments, property-checked judge scoring produces informative method rankings and tracks engineering signals (Pass@$k$, unit-test accuracy); Easy and HumanEval show the strongest agreement, while Security and RealCode remain hardest \citep{chen2021evaluating}.
 
-\subsection{Validation vs. test protocol}
-The results in Section~\ref{sec:validation-human-alignment} are validation-set numbers.
+\subsection{Development panel vs.\ held-out test protocol}
+The results in Section~\ref{sec:validation-human-alignment} are development-panel numbers.
 The same human labels were used to choose the trust-index form, repeat aggregation, threshold, and prompt panel, so the reported trends should be interpreted as development-panel findings rather than out-of-sample generalization claims.
 
 Beyond the \(n=75\) panel used in Section~\ref{sec:validation-human-alignment}, which was scored under two closely related rubric prompts corresponding to stricter and more lenient rating views, we have now collected a substantially broader independent annotation pool in \texttt{experiments/human\_labels}.
@@ -745,7 +745,7 @@ An encouraging sign is that a separate expanded 13-judge analysis remains above 
 We treat \(\mathrm{TI}_{\mathrm{var}}\) as a graded trust signal rather than a binary pass/fail gate.
 Individual properties are necessary conditions on the perturbations we test (a judge that scores \(X=X\) at less than \(1.0\) has, by definition, failed identity), but no finite property suite can certify all possible judge failures.
 TI is multiplicative, so a single low-scoring property collapses the index, but it does not impose a hard threshold.
-The empirical question we answer is whether higher-TI judges are more validation-human-aligned in expectation; the answer (\(\rho=0.881\) across \(8\) judges) is supportive but graded, and generalization to held-out humans and judges is reported separately.
+The empirical question we answer is whether higher-TI judges agree more with humans on the development panel in expectation; the answer (\(\rho=0.881\) across \(8\) judges) is supportive but graded, and generalization to held-out humans and judges is reported separately.
 
 \paragraph{\textsc{Alpha}-renaming robustness.}
 Among semantics-preserving rewrite probes, aggressive \textsc{Alpha}-renaming (systematically changing bound variable and binder names while leaving Lean-semantics intact) is systematically the hardest for our judges: mean scores and score stability remain much worse than under milder RENAME/REORDER/STYLE edits (Table~\ref{tab:codex_invariance_variants} and appendix failure-mode plots).
@@ -763,13 +763,13 @@ Specifications that are exotic to this dataset may be correct but receive incorr
 \textsc{Alpha}-renaming sensitivity is the standout P4 weakness in our runs, as detailed in the preceding paragraph.
 Threshold-selection improvements are modest in absolute magnitude and do not by themselves establish external validity.
 
-The primary validation corpus in this draft remains the \(n=75\) aligned panel scored under two closely related rubric prompts, yielding stricter and more lenient label views across eight judge tuples.
+The primary human-label corpus in this draft remains the \(n=75\) aligned development panel scored under two closely related rubric prompts, yielding stricter and more lenient label views across eight judge tuples.
 A much larger independent reviewer pool has now been collected---five reviewers, \(\mathbf{343}\) scored labels, and \(78\) distinct candidate--gold pairs---but it is intentionally held out from the reported development-panel results.
 This new corpus is recent and not yet analyzed in the present submission; its purpose is to support a frozen held-out test of whether the association between the current \(\mathrm{TI}_{\mathrm{var}}\) formulation and human agreement holds under broader item coverage and multi-rater aggregation.
-The current validation-set human-alignment results should therefore be read as development-panel evidence because judge, prompt, aggregation, threshold, and reporting choices were developed with this label set in view.
+The current human-alignment results should therefore be read as development-panel evidence because judge, prompt, aggregation, threshold, and reporting choices were developed with this label set in view.
 
-BAD\_STRINGY, an intentionally bad baseline, achieves moderate validation-set human Spearman (\(\approx0.45\)) while failing weak monotonicity (12.5\%).
-This is a feature of the human-agreement assessment protocol, not a bug: aggregate validation-set human Spearman alone does not detect this judge's monotonicity failure, but \(\mathrm{TI}_{\mathrm{var}}\) does.
+BAD\_STRINGY, an intentionally bad baseline, achieves moderate development-panel human Spearman (\(\approx0.45\)) while failing weak monotonicity (12.5\%).
+This is a feature of the human-agreement assessment protocol, not a bug: aggregate development-panel human Spearman alone does not detect this judge's monotonicity failure, but \(\mathrm{TI}_{\mathrm{var}}\) does.
 Future work will expand independent raters and problem coverage, strengthen semantic equivalence handling (candidate $\Rightarrow$ gold postcondition checks), add adversarial judge stress tests, and introduce standardized ``judge cards'' for reproducible assessed deployment \citep{zhou2025graders}.
 A concrete model-side target is Leanstral: Appendix Table~\ref{tab:app-leanstral-index-reagg} shows that it remains low-alignment under all three index constructions we tested, and understanding how to make Lean-specialized judges work well for pairwise evaluation assessed against human ratings is an explicit next step.
 Compositional certification---extending local property checks to bounded edit sequences via edit-graph induction---is a natural future-work direction, but not a claimed result here.
@@ -777,7 +777,7 @@ Compositional certification---extending local property checks to bounded edit se
 \section{Conclusion}
 We present an amortized human-validation protocol for LLM judges based on falsifiable properties.
 Rather than re-labeling every new judge configuration, we fit and select once using human labels and then score new judges via property diagnostics.
-Our main empirical result is that this property-based trust index tracks judge-level human alignment on the validation panel, with strong signals from monotonicity and stability.
+Our main empirical result is that this property-based trust index tracks judge-level human alignment on the development panel, with strong signals from monotonicity and stability.
 The key next step is a locked held-out test with independent annotators and unseen judge families.
 
 % -------------------------------
@@ -1266,13 +1266,13 @@ Indeed, the Judge File Equivalence score was not monotonic, even for Claude 3.5,
   \label{fig:lowvar_mono_codex_opus}
 \end{figure}
 
-\section{Validation-Set Human Alignment Appendix}\label{app:exp16-exp17}
-This appendix reports full visual diagnostics for the final robust validation-set human-alignment analyses under three label views: pass1, pass2, and avg.
+\section{Development-Panel Human Alignment Appendix}\label{app:exp16-exp17}
+This appendix reports full visual diagnostics for the final robust development-panel human-alignment analyses under three label views: pass1, pass2, and avg.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png}
-  \caption{\textbf{Expanded 13-judge panel trend (avg validation labels).} Geometric trust index retains strong alignment with human correlation at larger judge-panel size (\(\rho=0.769\)); pass-specific values are pass1 \(\rho=0.764\), pass2 \(\rho=0.753\).}
+  \caption{\textbf{Expanded 13-judge panel trend (avg development-panel labels).} Geometric trust index retains strong alignment with human correlation at larger judge-panel size (\(\rho=0.769\)); pass-specific values are pass1 \(\rho=0.764\), pass2 \(\rho=0.753\).}
   \label{fig:app-exp25-13judge}
 \end{figure}
 
@@ -1293,7 +1293,7 @@ This appendix reports full visual diagnostics for the final robust validation-se
     \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_avg.png}
     \caption{Judge-level trend (avg)}
   \end{subfigure}
-  \caption{\textbf{Judge-level \(\mathrm{TI}_{\mathrm{var}}\)-to-human trend across validation label sets.} Across pass1, pass2, and averaged labels, higher certification strength is associated with stronger human agreement.}
+  \caption{\textbf{Judge-level \(\mathrm{TI}_{\mathrm{var}}\)-to-human trend across development-panel label sets.} Across pass1, pass2, and averaged labels, higher certification strength is associated with stronger human agreement.}
   \label{fig:app-exp16-all}
 \end{figure}
 
@@ -1314,14 +1314,14 @@ This appendix reports full visual diagnostics for the final robust validation-se
     \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_avg.png}
     \caption{Per-property trend (avg)}
   \end{subfigure}
-  \caption{\textbf{Property-wise validation-set human-alignment diagnostics.} P3 weak monotonicity has the strongest association across label sets; P2 is second; P1/P4 are weaker standalone signals at this scale.}
+  \caption{\textbf{Property-wise development-panel human-alignment diagnostics.} P3 weak monotonicity has the strongest association across label sets; P2 is second; P1/P4 are weaker standalone signals at this scale.}
   \label{fig:app-exp17-all}
 \end{figure}
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_human_corr_by_judge_and_labelset.png}
-  \caption{\textbf{Judge-wise human alignment across label passes.} Validation-set human Spearman across pass1, pass2, and averaged labels.
+  \caption{\textbf{Judge-wise human alignment across label passes.} Development-panel human Spearman across pass1, pass2, and averaged labels.
   GPT-5.3-Codex variants remain above weaker baselines on most label sets; pass-to-pass variation is visible and motivates reporting all three label sets.}
   \label{fig:app-judge-labelset-bars}
 \end{figure}
@@ -1342,15 +1342,15 @@ The baseline tracks pass2 labels somewhat but remains substantially weaker and l
       pass2              & 0.388 (\(p=7.58\times10^{-4}\)) & 0.427 (\(p=1.87\times10^{-4}\)) & 0.343 (\(p=9.40\times10^{-4}\)) & 1.333        \\
       \bottomrule
     \end{tabular}
-  } \caption{\textbf{Naive blind baseline vs.\ validation labels (0--5 scale).} \(\rho_s\): Spearman, \(r\): Pearson, \(\tau\): Kendall; MAE is absolute error on the 0--5 scale.
+  } \caption{\textbf{Naive blind baseline vs.\ development-panel labels (0--5 scale).} \(\rho_s\): Spearman, \(r\): Pearson, \(\tau\): Kendall; MAE is absolute error on the 0--5 scale.
   This baseline is included as a sanity-check negative control and is not used for final ranking claims.}
   \label{tab:app-naive-blind-baseline}
 \end{table}
 
 \subsection{Human-Human Agreement Ceiling Context}
-Validation-set judge-human Spearman values should be interpreted relative to the reliability of human labels themselves.
+Development-panel judge-human Spearman values should be interpreted relative to the reliability of human labels themselves.
 Across the two human annotation passes on the aligned set (\(n=75\)), inter-pass agreement is moderate (Spearman \(0.249\), Pearson \(0.375\), Kendall \(0.221\), QWK \(0.372\)).
-Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range are non-trivial and should be interpreted as approaching the available annotation ceiling in this dataset rather than as ``low absolute'' values.
+Thus, development-panel judge-human Spearman values in the \(0.48\)--\(0.56\) range are non-trivial and should be interpreted as approaching the available annotation ceiling in this dataset rather than as ``low absolute'' values.
 
 \begin{table}[t]
   \centering
@@ -1366,11 +1366,11 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
     Human-human MSE (pass1 vs pass2)            & 1.139          & On aligned \(n=75\), 0--5 rubric    \\
     JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence      \\
     KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence               \\
-    Best validation-set Spearman (avg labels)   & 0.480          & Best single judge on avg labels     \\
-    Best validation-set Spearman (pass1 labels) & 0.559          & Best single judge on pass1 labels   \\
+    Best development-panel Spearman (avg labels)   & 0.480          & Best single judge on avg labels     \\
+    Best development-panel Spearman (pass1 labels) & 0.559          & Best single judge on pass1 labels   \\
     \bottomrule
   \end{tabular}
-  \caption{\textbf{Human-human agreement ceiling context.} Inter-pass human agreement is moderate, and inter-pass dispersion (MAE/divergence) is non-zero, so validation-set judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}
+  \caption{\textbf{Human-human agreement ceiling context.} Inter-pass human agreement is moderate, and inter-pass dispersion (MAE/divergence) is non-zero, so development-panel judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}
   \label{tab:app-human-human-ceiling}
 \end{table}
 
@@ -1413,7 +1413,7 @@ Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range
 
 \subsection{Cross-Model Validation Status (Full vs Preliminary)}
 To avoid over-claiming, we separate full-scale cross-model regressions (\(n{=}8\) judge tuples on the \(\sim\!\!72\)–\(75\) overlapping aligned rows for each labeling view) from narrower exploratory protocol plots.
-\textbf{Anthropic Claude Opus (4.x)} \(\mathrm{TI}_{\mathrm{var}}\) vs.\ validation human Spearman is a full-panel run of the same form as GPT-5.3-Codex and Qwen3-Coder in Figure~\ref{fig:tivar_cross_model_avg}: eight judge configurations (four Opus \(\times\) prompts plus cross-family \(\texttt{gpt-4o-mini}\)\(\times\)two prompts plus edit/random controls), repeated-judge aggregation, identical label sets.
+\textbf{Anthropic Claude Opus (4.x)} \(\mathrm{TI}_{\mathrm{var}}\) vs.\ development-panel human Spearman is a full-panel run of the same form as GPT-5.3-Codex and Qwen3-Coder in Figure~\ref{fig:tivar_cross_model_avg}: eight judge configurations (four Opus \(\times\) prompts plus cross-family \(\texttt{gpt-4o-mini}\)\(\times\)two prompts plus edit/random controls), repeated-judge aggregation, identical label sets.
 
 Early \textbf{Claude 3.x Sonnet} scatterplots reported in Appendix~\ref{app:judge-cert} were small-file protocol iterations used mainly to stabilize prompts and ladders; those plots illustrate qualitative monotonic behavior but are \emph{not} the statistic behind Table~\ref{tab:tivar_cross_model_results}.
 
@@ -1466,7 +1466,7 @@ To stress-test whether index choice alone can ``rescue'' a weak judge family, we
   \end{aligned}
 \]
 where \(C_f\) is the mean per-file property-correlation term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
-We report Spearman between index score and validation-set human Spearman across judges.
+We report Spearman between index score and development-panel human Spearman across judges.
 
 \subsection{Index Definitions}\label{app:index-definitions}
 For reference, the simple arithmetic baselines in the main text are
@@ -1510,10 +1510,10 @@ Thus \(C_f\) is the mean per-file bug-ladder monotonicity term before the varian
 \subsection{Failure Modes Found by Certification (Not Hidden)}
 The certification framework is useful precisely because it identifies failures: \textbf{(i) alpha-renaming sensitivity} is the dominant identity/invariance gap, and \textbf{(ii) local bug-ladder reversals} occur despite overall negative monotone trends.
 We therefore report both strengths and weaknesses, and include alpha-ablation diagnostics.
-On trend-v1 Spearman (TI \(\rightarrow\) validation-set human Spearman), excluding alpha variants changes pass1 \(0.810\rightarrow0.690\), pass2 \(0.810\rightarrow0.714\), avg \(0.881\rightarrow0.786\), showing that alpha cases materially affect measured robustness.
+On trend-v1 Spearman (TI \(\rightarrow\) development-panel human Spearman), excluding alpha variants changes pass1 \(0.810\rightarrow0.690\), pass2 \(0.810\rightarrow0.714\), avg \(0.881\rightarrow0.786\), showing that alpha cases materially affect measured robustness.
 
 \subsection{Newest Results (Latest Rerun at Appendix Bottom)}
-To reduce judge-call noise, we reran the multi-judge validation trend with higher repeats and robust repeat aggregation: \texttt{JUDGE\_REPEATS=9 REPEAT\_AGG=median BOOTSTRAP\_ITERS=10000 PERM\_ITERS=20000}.
+To reduce judge-call noise, we reran the multi-judge development-panel trend with higher repeats and robust repeat aggregation: \texttt{JUDGE\_REPEATS=9 REPEAT\_AGG=median BOOTSTRAP\_ITERS=10000 PERM\_ITERS=20000}.
 This run writes to \texttt{results\_exp16\_final\_robust\_r9\_median}.
 
 \begin{table}[t]
