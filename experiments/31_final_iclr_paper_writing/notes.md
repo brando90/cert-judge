@@ -249,3 +249,13 @@ Record his answer as an annotator report.
 - "strongest single predictor" → "Among single properties, specification monotonicity has the strongest association with human agreement, followed by bug monotonicity". This uses the property names the abstract already defines, not "removed specifications", since the P3 ladder also removes tests.
 - Dropped "strongly" (n=8 judges) and "validation-set" (it is the development panel).
 - Still open in the main text: §5.3 header `:369`, `:641`, `:646-647`, caption `:1314`, and the intro/contributions still say "validation-set".
+
+## 2026-09-22 — remaining "predict" wording (audit #1 closed)
+
+- §5.3 header → "TI_var tracks judge-level human alignment on the development panel" (labels unchanged).
+- `:642` takeaway → "on our development panel, judges that score higher on falsifiable diagnostics also agree more with human assessments".
+- `:647-648` property-level → "only weakly associated" / "most consistent association".
+- `:766` held-out corpus → "whether the association ... holds under broader item coverage" (was "continues to predict", which assumed the claim).
+- App. caption `:1315` → "strongest association"; "weaker standalone signals".
+- Kept on purpose: "peer-prediction", "prediction-weighted", "Predict-the-Future" (`:912-920`, external names) and `:1070` (probabilistic predictions matching observed frequencies = score–outcome reliability, correct usage).
+- Still open: "validation-set" in the intro, contributions, `:648`, `:767`; conclusion `:~1442` says "validation panel".

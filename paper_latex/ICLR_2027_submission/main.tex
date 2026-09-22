@@ -367,7 +367,7 @@ Appendix Figures~\ref{fig:fig3_style_opus_codex} and~\ref{fig:lowvar_mono_codex_
 These sanity checks support using the judge as a semantically meaningful proxy for specification quality, while also making the main failure mode explicit: aggressive \textsc{Alpha}-renaming remains substantially less stable than milder rewrites.
 Rankings under repeat-resampled scores are stable enough to aggregate into a trust index, but \textsc{Alpha}-renaming stays the dominant identity gap (Figure~\ref{fig:app-exp19-main-and-alpha}).
 
-\subsection{\texorpdfstring{\(\mathrm{TI}_{\mathrm{var}}\)}{TI-var} predicts judge-level human alignment}
+\subsection{\texorpdfstring{\(\mathrm{TI}_{\mathrm{var}}\)}{TI-var} tracks judge-level human alignment on the development panel}
 \label{sec:tivar_cross_model_results}
 \label{sec:validation-human-alignment}
 
@@ -639,13 +639,13 @@ Figure~\ref{fig:app-exp25-13judge} provides a baseline-vs-geometric visualizatio
 
 \paragraph{Takeaway for human-agreement assessment for code evaluation.}
 The main empirical claim is not that any finite property suite certifies judge correctness.
-Rather, the claim is that falsifiable diagnostics can predict which LLM judges agree more strongly with human assessments of formal-code artifacts.
+Rather, the claim is that on our development panel, judges that score higher on falsifiable diagnostics also agree more with human assessments of formal-code artifacts.
 This matters for deep learning for code because code agents can generate far more tests, specifications, and theorems than humans can inspect, while a one-time human-agreement assessment panel plus automated property checks provides a scalable way to compare judge configurations before deploying them on larger agent evaluations.
 
 \paragraph{Property-level interpretation.}
 For averaged labels, per-property correlations identify \textbf{P3 weak monotonicity} as strongest (Spearman \(0.747,\ p=0.043\); Pearson \(0.744,\ p=0.048\)), with \textbf{P2 bug-rank monotonicity} next (Spearman \(0.714,\ p=0.056\); Pearson \(0.636,\ p=0.037\)).
-P1 identity and P4 stability are not strong standalone predictors at this \(n_\text{judges}=8\) scale.
-Across pass1/pass2/avg, P3 is consistently top-ranked, indicating that semantic monotone behavior under controlled degradations is the most stable predictor of validation-set human Spearman in this study.
+On their own, P1 identity and P4 stability are only weakly associated with human agreement at this \(n_\text{judges}=8\) scale.
+Across pass1/pass2/avg, P3 is consistently top-ranked, indicating that semantic monotone behavior under controlled degradations has the most consistent association with validation-set human Spearman in this study.
 
 \subsection{Threshold selection: stability vs.\ coverage}
 \paragraph{Decision-threshold selection.}
@@ -763,7 +763,7 @@ Threshold-selection improvements are modest in absolute magnitude and do not by 
 
 The primary validation corpus in this draft remains the \(n=75\) aligned panel scored under two closely related rubric prompts, yielding stricter and more lenient label views across eight judge tuples.
 A much larger independent reviewer pool has now been collected---five reviewers, \(\mathbf{343}\) scored labels, and \(78\) distinct candidate--gold pairs---but it is intentionally held out from the reported development-panel results.
-This new corpus is recent and not yet analyzed in the present submission; its purpose is to support a frozen held-out test of whether the current \(\mathrm{TI}_{\mathrm{var}}\) formulation continues to predict human agreement under broader item coverage and multi-rater aggregation.
+This new corpus is recent and not yet analyzed in the present submission; its purpose is to support a frozen held-out test of whether the association between the current \(\mathrm{TI}_{\mathrm{var}}\) formulation and human agreement holds under broader item coverage and multi-rater aggregation.
 The current validation-set human-alignment results should therefore be read as development-panel evidence because judge, prompt, aggregation, threshold, and reporting choices were developed with this label set in view.
 
 BAD\_STRINGY, an intentionally bad baseline, achieves moderate validation-set human Spearman (\(\approx0.45\)) while failing weak monotonicity (12.5\%).
@@ -1312,7 +1312,7 @@ This appendix reports full visual diagnostics for the final robust validation-se
     \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_avg.png}
     \caption{Per-property trend (avg)}
   \end{subfigure}
-  \caption{\textbf{Property-wise validation-set human-alignment diagnostics.} P3 weak monotonicity is consistently the strongest predictor across label sets; P2 is second strongest; P1/P4 are weaker as standalone predictors at this scale.}
+  \caption{\textbf{Property-wise validation-set human-alignment diagnostics.} P3 weak monotonicity has the strongest association across label sets; P2 is second; P1/P4 are weaker standalone signals at this scale.}
   \label{fig:app-exp17-all}
 \end{figure}
 
