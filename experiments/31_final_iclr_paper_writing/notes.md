@@ -258,4 +258,4 @@ Record his answer as an annotator report.
 - `:766` held-out corpus → "whether the association ... holds under broader item coverage" (was "continues to predict", which assumed the claim).
 - App. caption `:1315` → "strongest association"; "weaker standalone signals".
 - Kept on purpose: "peer-prediction", "prediction-weighted", "Predict-the-Future" (`:912-920`, external names) and `:1070` (probabilistic predictions matching observed frequencies = score–outcome reliability, correct usage).
-- Still open: "validation-set" in the intro, contributions, `:648`, `:767`; conclusion `:~1442` says "validation panel".
+- Still open: "validation-set" in the intro, contributions, `:648`, `:767`; `:778` says "validation panel".
