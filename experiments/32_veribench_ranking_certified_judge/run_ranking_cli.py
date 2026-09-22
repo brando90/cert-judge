@@ -268,6 +268,14 @@ def main() -> None:
                 continue
             g = golds[c["item"]]
             jobs.append({**c, "rep": rep, "gold_path": g["gold_path"], "gold_sha256": g["gold_sha256"]})
+    # Order: repeat-major so an interrupted run leaves complete (all items x all agents) repeat layers;
+    # items are shuffled with a fixed seed so every split/agent is covered evenly as the run proceeds.
+    import random
+    item_order = sorted({j["item"] for j in jobs})
+    random.Random(0).shuffle(item_order)
+    item_rank = {it: i for i, it in enumerate(item_order)}
+    agent_rank = {a: i for i, a in enumerate(["baseline", "dspy_react", "trace_plus", "trace_plusplus"])}
+    jobs.sort(key=lambda j: (j["rep"], item_rank[j["item"]], agent_rank.get(j["agent"], 99)))
     if args.limit:
         jobs = jobs[: args.limit]
     total = manifest["n_candidate_rows"] * cfg["n_repeats"]

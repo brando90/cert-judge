@@ -60,11 +60,11 @@ def load_cells() -> tuple[dict, dict]:
     return cells, meta
 
 
-def per_item_scores(cells, agg: str) -> dict[str, dict[str, float]]:
-    """{agent: {item: aggregated score}} using only (item, agent) pairs with all repeats present."""
+def per_item_scores(cells, agg: str, min_repeats: int) -> dict[str, dict[str, float]]:
+    """{agent: {item: aggregated score}} over (item, agent) pairs with at least min_repeats repeats present."""
     out: dict[str, dict[str, float]] = {a: {} for a in AGENTS}
     for (item, agent), reps in cells.items():
-        if len(reps) < CFG["n_repeats"]:
+        if len(reps) < min_repeats:
             continue
         vals = [reps[k] for k in sorted(reps)]
         out[agent][item] = float(np.mean(vals)) if agg == "mean" else float(np.median(vals))
@@ -166,8 +166,12 @@ def main() -> None:
         "claude37_table": CLAUDE37,
         "analyses": {},
     }
-    for agg in ("mean", "median"):
-        scores = per_item_scores(cells, agg)
+    rep_counts = {}
+    for (item, agent), reps in cells.items():
+        rep_counts[len(reps)] = rep_counts.get(len(reps), 0) + 1
+    result["calls"]["repeat_coverage_histogram_over_item_agent_pairs"] = {str(k): v for k, v in sorted(rep_counts.items())}
+    for agg, min_reps in (("mean", CFG["n_repeats"]), ("median", CFG["n_repeats"]), ("mean_available_repeats", 1)):
+        scores = per_item_scores(cells, "median" if agg == "median" else "mean", min_reps)
         items = complete_items(scores)
         if not items:
             result["analyses"][agg] = {"status": "no complete items yet"}
@@ -187,16 +191,17 @@ def main() -> None:
                 "per_split_spearman": {l: spearman([b["point"][a][l] for a in AGENTS], [CLAUDE37[a][l] for a in AGENTS]) for _, l in TABLE_SPLITS},
                 "cell_spearman_20": spearman([b["point"][a][l] for a in AGENTS for _, l in TABLE_SPLITS], [CLAUDE37[a][l] for a in AGENTS for _, l in TABLE_SPLITS]),
             }
-            result["analyses"][f"{agg}__{sec_name}"] = {"n_paired_items": len(items), **b, "orderings": ords, "agreement_with_claude37": agreement}
+            n_reps_used = sorted({len(cells[(i, a)]) for i in items for a in AGENTS})
+            result["analyses"][f"{agg}__{sec_name}"] = {"n_paired_items": len(items), "min_repeats_required": min_reps, "repeats_present_per_pair": n_reps_used, **b, "orderings": ords, "agreement_with_claude37": agreement}
     OUT_JSON.write_text(json.dumps(result, indent=1) + "\n", encoding="utf-8")
 
     # Markdown table (primary: mean over repeats, Sec = security_6858 only)
-    key = "mean__sec_6858_only"
+    key = "mean__sec_6858_only" if "point" in result["analyses"].get("mean__sec_6858_only", {}) else "mean_available_repeats__sec_6858_only"
     lines = [f"# Experiment 32 ranking table — judge {CFG['prompt_name']} on `{CFG['model_requested_by_cli_flag']}` (effort {CFG['reasoning_effort']}), 3 repeats", ""]
     lines.append(f"Cells: {meta['n_ok']}/{MANIFEST['n_candidate_rows'] * CFG['n_repeats']} ok; CLI invocations incl. retries: {int(sum(meta['attempts']))}; provider API spend: $0.")
     if key in result["analyses"] and "point" in result["analyses"][key]:
         A = result["analyses"][key]
-        lines += ["", f"Paired items: {A['n_paired_items']} (per split: {A['n_items_by_split']}). 95% percentile bootstrap over items within split, {N_BOOT} draws, seed {SEED}.", "",
+        lines += ["", f"Analysis `{key}`: paired items {A['n_paired_items']} (per split: {A['n_items_by_split']}); repeats present per (item, agent): {A['repeats_present_per_pair']}. 95% percentile bootstrap over items within split, {N_BOOT} draws, seed {SEED}.", "",
                   "| Agent | Easy | CS | Real | HE | Sec | **Avg** (95% CI) | ItemMean (95% CI) |", "|---|---|---|---|---|---|---|---|"]
         for a in AGENTS:
             p = A["point"][a]; c = A["ci"][a]
