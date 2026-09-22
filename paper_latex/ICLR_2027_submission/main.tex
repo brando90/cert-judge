@@ -108,7 +108,6 @@
   We propose a property-certification protocol for LLM judges of Lean~4 formal-specification quality, where each judge is scored by four automatically testable conditions: identity, bug monotonicity, specification monotonicity, and repeat/prompt stability.
   Our variance-aware trust index \(\mathrm{TI}_{\mathrm{var}}\) is one instantiation assessed against human ratings of these diagnostics.
   The contribution is the method for combining falsifiable properties into an auditable trust signal, rather than asserting that particular weightings discovered on \(n {=} 75\) human-labeled development pairs constitute a universally fixed evaluator constant.
-
   On eight judge configurations spanning frontier prompts, weaker baselines, edit-distance, and random controls, \(\mathrm{TI}_{\mathrm{var}}\) strongly predicts judge-level human alignment on that development suite, reporting validation-set Spearman correlations of \(0.833\) (avg labels), \(0.905\) (pass1), and \(0.738\) (pass2).
   Property-level analysis shows that monotonicity under removed specifications is the strongest single predictor of human agreement, followed by monotonicity under injected bugs, while identity and stability are weaker standalone signals.
   Applied to \textsc{VeriBench}, the protocol illustrates development-set human agreement for scalable evaluation settings involving AI-generated code, tests, and formal specifications, while explicitly not claiming deployed generalization guarantees.
