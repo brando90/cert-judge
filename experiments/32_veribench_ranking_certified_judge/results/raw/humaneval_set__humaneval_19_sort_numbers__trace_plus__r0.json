@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_19_sort_numbers",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_19_sort_numbers.lean",
+ "candidate_sha256": "f6ac657d0964a0c596191cb0b7d1bbe48e26556a7fa79f11336c44bf39b1efe8",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_19_sort_numbers.lean",
+ "gold_sha256": "f5e650b87eb8cb454351375e874037a0ddaa6cce3838d019f14f35f77fc0fe18",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "d4663b6373c70eb5e45fb15cd0e8c7266796130feab61b8b088ac2224d6125a6",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It defines and tests a sorting function for a few cases, but does not state or prove the reference implementation's key equivalence property with sort_numbersImp for all inputs.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 46.54,
+ "usage": {
+  "input_tokens": 13391,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 100,
+  "reasoning_output_tokens": 43
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:56:07.093877Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb55-54bc-7713-b1c4-20277d492738\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It defines and tests a sorting function for a few cases, but does not state or prove the reference implementation's key equivalence property with sort_numbersImp for all inputs.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13391,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":100,\"reasoning_output_tokens\":43}}\n",
+ "finished_at": "2026-09-22T22:56:47+00:00"
+}

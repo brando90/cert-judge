@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humanevalXL_9__isPrime",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humanevalXL_9__isPrime.lean",
+ "candidate_sha256": "55035c7c3009094ceb5f2e41cb81c0d195cdf4866511372e5dc480e303086b27",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humanevalXL_9__isPrime.lean",
+ "gold_sha256": "a5f98a20c3a65b4c342bb7db42e45170da37f582468715481ae57a2a5b62e73d",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "7058c16c325391189adae6d9a9d1c08ab49fee3bc9898d87795f1908ba0e1f65",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.15,
+ "reasoning": "The generated statements establish only selected behavior of a redefined `isPrime` and never relate it to `isPrimeImp`, so they miss the reference theorem's core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 47.1,
+ "usage": {
+  "input_tokens": 13624,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 138,
+  "reasoning_output_tokens": 78
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:05:42.150775Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5e-1e4d-7150-b4e2-560a5f4af6d3\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.15,\\\"reasoning\\\":\\\"The generated statements establish only selected behavior of a redefined `isPrime` and never relate it to `isPrimeImp`, so they miss the reference theorem's core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13624,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":138,\"reasoning_output_tokens\":78}}\n",
+ "finished_at": "2026-09-22T23:06:20+00:00"
+}

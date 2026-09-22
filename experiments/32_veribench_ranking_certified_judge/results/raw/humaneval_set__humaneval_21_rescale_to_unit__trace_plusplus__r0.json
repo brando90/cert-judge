@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_21_rescale_to_unit",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humaneval_21_rescale_to_unit.lean",
+ "candidate_sha256": "e9eaa8a7a88ba3f99201750c80911e1dd50658bfd3abbbb4df7b697ab492ef5d",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_21_rescale_to_unit.lean",
+ "gold_sha256": "68ddcd1a5a60d418dabb30674a38dc55706aaf2d90db05110626727ee9658fd0",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "f5d5c045941dd936d4769e0b9d7efaeb0e7913369df09fc834dc8ea2b56afa5d",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It specifies useful standalone properties of `rescale_to_unit`, but entirely omits the reference theorem’s core guarantee that it equals `rescale_to_unitImp` for every input.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 34.35,
+ "usage": {
+  "input_tokens": 14026,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 135,
+  "reasoning_output_tokens": 76
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:56:51.733464Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb56-02c2-7692-8278-954d5650ddb0\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It specifies useful standalone properties of `rescale_to_unit`, but entirely omits the reference theorem’s core guarantee that it equals `rescale_to_unitImp` for every input.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14026,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":135,\"reasoning_output_tokens\":76}}\n",
+ "finished_at": "2026-09-22T22:57:20+00:00"
+}

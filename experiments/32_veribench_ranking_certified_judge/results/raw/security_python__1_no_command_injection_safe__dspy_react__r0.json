@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/1_no_command_injection_safe",
+ "agent": "dspy_react",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/security_python/1_no_command_injection_safe.lean",
+ "candidate_sha256": "f4f4a7817f497ed3cb8a3d8a317f93b42596acb44ebcd6ba0329ab461ec7621c",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/safe/1_no_command_injection_safe.lean",
+ "gold_sha256": "ab44eee909d68a43b559f6254803bff5a592be80f478f485e9b480626f9123d3",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "100c33a2f1d1aa0211cc6d9befc03a47b6b9835b75e2d78f1e783de3345493b5",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated module proves only unrelated, implementation-specific whitelist and formatting properties and provides no theorem connecting the reference's `Pre cmd_name args` assumption to its required `Post_prop cmd_name args` conclusion.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 36.45,
+ "usage": {
+  "input_tokens": 14719,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 149,
+  "reasoning_output_tokens": 86
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:57:22.697755Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb56-7c54-71a1-b606-c1d31450e557\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated module proves only unrelated, implementation-specific whitelist and formatting properties and provides no theorem connecting the reference's `Pre cmd_name args` assumption to its required `Post_prop cmd_name args` conclusion.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14719,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":149,\"reasoning_output_tokens\":86}}\n",
+ "finished_at": "2026-09-22T22:57:53+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "cs_set/bubble_sort",
+ "agent": "baseline",
+ "split": "cs_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/cs_set/bubble_sort.lean",
+ "candidate_sha256": "18389bc4ee7be91e2553307beb1ee35fdc8be723e894f536cf45de705777f5e3",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/cs_set/bubble_sort.lean",
+ "gold_sha256": "5cd1679538927bb8ee480dd514d8d52963d57221d14667b0a48552b7cc1434e7",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "16b2014db1b2f80968dfba34edb20c8ff951bb0bd2d7b5db7ab23aed02aa68d8",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It provides unrelated, unproven sorting-property claims over `List Int` and never states or proves equivalence between the reference `bubbleSort` and `bubbleSortImp` over `List Nat`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 41.18,
+ "usage": {
+  "input_tokens": 13985,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 153,
+  "reasoning_output_tokens": 89
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:06:28.119430Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5e-d006-7361-bec0-7296f1a4464f\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It provides unrelated, unproven sorting-property claims over `List Int` and never states or proves equivalence between the reference `bubbleSort` and `bubbleSortImp` over `List Nat`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13985,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":153,\"reasoning_output_tokens\":89}}\n",
+ "finished_at": "2026-09-22T23:07:01+00:00"
+}

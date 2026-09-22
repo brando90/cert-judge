@@ -1,0 +1,49 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_34_unique",
+ "agent": "dspy_react",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/humaneval_set/humaneval_34_unique.lean",
+ "candidate_sha256": "d751a1775f07e170c5e4ecaeaa3e07418513b72d92fd6efa603a444da67e2b96",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_34_unique.lean",
+ "gold_sha256": "a92e352b66ea1d9877711b8672bf21c81b0ddef9a646fef54a91c8e75cf9bdb1",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "59ddfd46c9f73eee4c4fba58b026c641673241ecd3e1d6f52eb1b424ffecc079",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It states useful properties of a newly defined `unique`, but never relates it to `uniqueImp`, so it misses the reference theorem’s core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 47.4,
+ "usage": {
+  "input_tokens": 18526,
+  "cached_input_tokens": 16128,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 212,
+  "reasoning_output_tokens": 157
+ },
+ "benign_warnings": [
+  {
+   "id": "item_0",
+   "type": "error",
+   "message": "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  }
+ ],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 2,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5d-5a54-7fe3-a270-01a0f99c8a2f\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It states useful properties of a newly defined `unique`, but never relates it to `uniqueImp`, so it misses the reference theorem’s core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":18526,\"cached_input_tokens\":16128,\"cache_write_input_tokens\":0,\"output_tokens\":212,\"reasoning_output_tokens\":157}}\n",
+ "finished_at": "2026-09-22T23:05:33+00:00"
+}

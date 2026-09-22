@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/28_length_of_longest_substring",
+ "agent": "baseline",
+ "split": "easy_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/easy_set/28_length_of_longest_substring.lean",
+ "candidate_sha256": "d28d64c89ba16fc208352dd1b3656a883ca51f81e1ab154d5fdbb65071bbdf6f",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/28_length_of_longest_substring.lean",
+ "gold_sha256": "819a55363e73c52a94bad6472ccb1e972d61c4ef8f5981dfd2dcf329634efeb6",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "a14fc4db2aea2b5b8025dd339eda1d04f2eaf02b8d6da2618234618b17bc7888",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.15,
+ "reasoning": "The generated theorems establish only a few basic properties of a newly defined function and completely omit the reference’s core guarantee that `lengthOfLongestSubstring` equals `lengthOfLongestSubstringImp` for every string.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 56.34,
+ "usage": {
+  "input_tokens": 14041,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 132,
+  "reasoning_output_tokens": 66
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:09:46.594234Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb61-d72d-7a02-910a-e8bbaf4213ff\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.15,\\\"reasoning\\\":\\\"The generated theorems establish only a few basic properties of a newly defined function and completely omit the reference’s core guarantee that `lengthOfLongestSubstring` equals `lengthOfLongestSubstringImp` for every string.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14041,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":132,\"reasoning_output_tokens\":66}}\n",
+ "finished_at": "2026-09-22T23:10:35+00:00"
+}

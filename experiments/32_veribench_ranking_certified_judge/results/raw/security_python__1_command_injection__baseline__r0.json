@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/1_command_injection",
+ "agent": "baseline",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_python/1_command_injection.lean",
+ "candidate_sha256": "824a0123207f9856c2a56cf42e245cc01ce2de6a88ad30038b7eb9aa501fb96b",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/vulnerabilities/1_command_injection.lean",
+ "gold_sha256": "9287b4a7600fc49b79bd39b65cbf9c45a21953088b64ede3a23cbcf577166f04",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "3454bcdcfb087b85dadb5801b045f469983a6f6cb47e51045c263a4bb3274012",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems do not state or prove the reference Pre-to-Post correctness property, and their `sorry` proofs provide no verified guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 47.7,
+ "usage": {
+  "input_tokens": 13598,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 115,
+  "reasoning_output_tokens": 62
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:08:02.137284Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb60-3f6e-73e3-9eb1-afd06b6868ab\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems do not state or prove the reference Pre-to-Post correctness property, and their `sorry` proofs provide no verified guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13598,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":115,\"reasoning_output_tokens\":62}}\n",
+ "finished_at": "2026-09-22T23:08:43+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/40_all_even",
+ "agent": "trace_plusplus",
+ "split": "easy_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/easy_set/40_all_even.lean",
+ "candidate_sha256": "7cfa8df60cb36f76b470177257707b61cd1948cea740f8c4418279f6d67733c8",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/40_all_even.lean",
+ "gold_sha256": "f03191bbbe7c8afb2a75b3e5b23912527bd0551c4ffbea8153f1f1bfe1684981",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "9113af6144a02144d41b021e05742f702ffe0c738e3af1c39cfe1947ae899ab3",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems describe an Int-based allEven predicate but omit the reference's core equivalence to allEvenImp for List Nat.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 52.03,
+ "usage": {
+  "input_tokens": 13331,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 113,
+  "reasoning_output_tokens": 62
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:11:07.205765Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb63-128b-7292-88d5-494bc0883bf8\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems describe an Int-based allEven predicate but omit the reference's core equivalence to allEvenImp for List Nat.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13331,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":113,\"reasoning_output_tokens\":62}}\n",
+ "finished_at": "2026-09-22T23:11:52+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_34_unique",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_34_unique.lean",
+ "candidate_sha256": "34dc5ad763eb202ce0f5d7c283e5b6af3fb888c59d54e4722f800c44ec41017d",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_34_unique.lean",
+ "gold_sha256": "a92e352b66ea1d9877711b8672bf21c81b0ddef9a646fef54a91c8e75cf9bdb1",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "1ad0023e5bb7d282b26dade022dbd9f90b6f0a1ea79b9d1c5ccf6d41bd41c16f",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "The generated theorems establish useful properties of a newly defined `unique` on `List Int`, but omit the reference's core equivalence to `uniqueImp` on `List Nat`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 42.07,
+ "usage": {
+  "input_tokens": 13288,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 113,
+  "reasoning_output_tokens": 51
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5d-6585-7f12-96b0-cb3831687d8a\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"The generated theorems establish useful properties of a newly defined `unique` on `List Int`, but omit the reference's core equivalence to `uniqueImp` on `List Nat`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13288,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":113,\"reasoning_output_tokens\":51}}\n",
+ "finished_at": "2026-09-22T23:05:29+00:00"
+}

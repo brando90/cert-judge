@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/6_unsafeSQLQuery_safe",
+ "agent": "baseline",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_6858/6_unsafeSQLQuery_safe.lean",
+ "candidate_sha256": "cb913122848bc993672a4effcb7701209f50fe9c21274a08e306ffdb0024c387",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/safe/6_unsafeSQLQuery_safe.lean",
+ "gold_sha256": "31c99567284bd7ebb1ad3602c795f72322c3597330a59331777a4d0c3e6ff6e9",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "cf714725a75423f6a4c9b04f84d99a048ac610cdea3a489d874f0838d5c9fc5a",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems concern an unrelated simulated username filter and do not state or prove the reference contract `Pre → Post`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 56.38,
+ "usage": {
+  "input_tokens": 13824,
+  "cached_input_tokens": 13056,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 101,
+  "reasoning_output_tokens": 52
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:59:27.795531Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb58-64c6-7383-b35e-0c7680f17412\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems concern an unrelated simulated username filter and do not state or prove the reference contract `Pre → Post`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13824,\"cached_input_tokens\":13056,\"cache_write_input_tokens\":0,\"output_tokens\":101,\"reasoning_output_tokens\":52}}\n",
+ "finished_at": "2026-09-22T23:00:17+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_19_sort_numbers",
+ "agent": "dspy_react",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/humaneval_set/humaneval_19_sort_numbers.lean",
+ "candidate_sha256": "4a842d734bc777a85eeecb5de82f88cc9a7ba967e35705547798e4cf4804e473",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_19_sort_numbers.lean",
+ "gold_sha256": "f5e650b87eb8cb454351375e874037a0ddaa6cce3838d019f14f35f77fc0fe18",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "2ad51122c6f65ae9e096344149063b2ee61d1c9b37027a0ee9d1db69709f0424",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems specify a newly defined `sortNumbers` but never relate `sort_numbers` to `sort_numbersImp`, so they do not capture the reference equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 46.0,
+ "usage": {
+  "input_tokens": 14176,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 127,
+  "reasoning_output_tokens": 67
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:56:06.345785Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb55-5187-7ec1-ba55-92dbb1fe2516\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems specify a newly defined `sortNumbers` but never relate `sort_numbers` to `sort_numbersImp`, so they do not capture the reference equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14176,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":127,\"reasoning_output_tokens\":67}}\n",
+ "finished_at": "2026-09-22T22:56:46+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_34_unique",
+ "agent": "baseline",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/humaneval_set/humaneval_34_unique.lean",
+ "candidate_sha256": "9377928b39b474ab1d6919becc4fa14ac23e075d182fa65cfbb645162f716649",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_34_unique.lean",
+ "gold_sha256": "a92e352b66ea1d9877711b8672bf21c81b0ddef9a646fef54a91c8e75cf9bdb1",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "30ba5430ed4f3cfed70e378c309735c03529010827c0c25738e6a3e26342c83b",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.05,
+ "reasoning": "The generated material defines a different `unique` over `List Int` and states unrelated properties, but never proves the reference equivalence `unique l = uniqueImp l` over `List Nat`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 26.73,
+ "usage": {
+  "input_tokens": 13536,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 131,
+  "reasoning_output_tokens": 68
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5c-fd37-7983-8b67-199c29bf76ab\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.05,\\\"reasoning\\\":\\\"The generated material defines a different `unique` over `List Int` and states unrelated properties, but never proves the reference equivalence `unique l = uniqueImp l` over `List Nat`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13536,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":131,\"reasoning_output_tokens\":68}}\n",
+ "finished_at": "2026-09-22T23:04:47+00:00"
+}

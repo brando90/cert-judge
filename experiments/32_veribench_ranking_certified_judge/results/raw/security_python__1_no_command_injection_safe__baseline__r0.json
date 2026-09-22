@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/1_no_command_injection_safe",
+ "agent": "baseline",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/security_python/1_no_command_injection_safe.lean",
+ "candidate_sha256": "3ee6c7194400d9466bc05ae9acb5494bd8d55d76444242e40dcb2f22aeb096a2",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/safe/1_no_command_injection_safe.lean",
+ "gold_sha256": "ab44eee909d68a43b559f6254803bff5a592be80f478f485e9b480626f9123d3",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "47187d592093da73bd202fc085a1bf9394c6fdaebc0db80d44fe315a48d36305",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "No theorem or proof relating `executeCommandSafe` to `Pre` and `Post_prop` is provided, so it captures none of the reference correctness guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 38.44,
+ "usage": {
+  "input_tokens": 13868,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 85,
+  "reasoning_output_tokens": 30
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb56-561d-7572-9649-adb67933fd1b\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"No theorem or proof relating `executeCommandSafe` to `Pre` and `Post_prop` is provided, so it captures none of the reference correctness guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13868,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":85,\"reasoning_output_tokens\":30}}\n",
+ "finished_at": "2026-09-22T22:57:45+00:00"
+}

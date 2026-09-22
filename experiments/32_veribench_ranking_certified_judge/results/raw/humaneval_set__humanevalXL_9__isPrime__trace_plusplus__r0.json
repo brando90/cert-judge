@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humanevalXL_9__isPrime",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humanevalXL_9__isPrime.lean",
+ "candidate_sha256": "8a9fea990c3610889be0be89dc8c205a64c93acfe8c440610869b92518c82007",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humanevalXL_9__isPrime.lean",
+ "gold_sha256": "a5f98a20c3a65b4c342bb7db42e45170da37f582468715481ae57a2a5b62e73d",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "b6796ff0fd77c88857cb09be670793f3bf26fe9f453c3fcba1b1c90b3b24c90e",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated material defines and partially specifies `isPrime`, but never states or proves the reference guarantee `isPrime n = isPrimeImp n`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 43.07,
+ "usage": {
+  "input_tokens": 13656,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 83,
+  "reasoning_output_tokens": 30
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:05:44.500944Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5e-247c-7393-8e77-46de2f26585e\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated material defines and partially specifies `isPrime`, but never states or proves the reference guarantee `isPrime n = isPrimeImp n`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13656,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":83,\"reasoning_output_tokens\":30}}\n",
+ "finished_at": "2026-09-22T23:06:20+00:00"
+}

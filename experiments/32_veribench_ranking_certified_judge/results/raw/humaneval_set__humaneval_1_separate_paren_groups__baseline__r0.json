@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_1_separate_paren_groups",
+ "agent": "baseline",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/humaneval_set/humaneval_1_separate_paren_groups.lean",
+ "candidate_sha256": "eb101b1620c912c8440cb412a20c5d85f2a6efd7d88b367d468d205a7d6c340b",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_1_separate_paren_groups.lean",
+ "gold_sha256": "b4a8efbb023b126705ea1f8fc2b018de1e9e5171ccc80858e8fa7e6f49414dbf",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "65902308eaaf7471b5487ad851556b5a5b4f057979f1c2d1b436cb6e2947093b",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated code proves only a few concrete examples of a newly defined function and does not state or relate `separateParenGroups` to `separateParenGroupsImp`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 30.39,
+ "usage": {
+  "input_tokens": 13598,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 150,
+  "reasoning_output_tokens": 92
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:02:53.888825Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5b-8aed-74c3-a51e-887742322eca\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated code proves only a few concrete examples of a newly defined function and does not state or relate `separateParenGroups` to `separateParenGroupsImp`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13598,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":150,\"reasoning_output_tokens\":92}}\n",
+ "finished_at": "2026-09-22T23:03:17+00:00"
+}

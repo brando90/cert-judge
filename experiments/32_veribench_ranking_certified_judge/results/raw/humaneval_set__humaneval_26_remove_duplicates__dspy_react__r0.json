@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_26_remove_duplicates",
+ "agent": "dspy_react",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/humaneval_set/humaneval_26_remove_duplicates.lean",
+ "candidate_sha256": "8ef363687e1ec34a0df95fbd314d8673c607b65bb2ca2c4fa3fec1566c56398a",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_26_remove_duplicates.lean",
+ "gold_sha256": "b9b3b19635205e798711f5061915230f3d8e95598246fdf09a1f94183b4c5489",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "758e59e974ecb1f8a0fd03a7cc051cd02971b5e50384f226c259707599e57d2a",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.15,
+ "reasoning": "The generated theorems establish limited properties of a newly defined function but never relate it to either `removeDuplicates` or `removeDuplicatesImp`, so they do not capture the reference equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 59.14,
+ "usage": {
+  "input_tokens": 13790,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 127,
+  "reasoning_output_tokens": 64
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:08:55.115201Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb61-0d07-7930-bfee-d3d7b4db6e63\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.15,\\\"reasoning\\\":\\\"The generated theorems establish limited properties of a newly defined function but never relate it to either `removeDuplicates` or `removeDuplicatesImp`, so they do not capture the reference equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13790,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":127,\"reasoning_output_tokens\":64}}\n",
+ "finished_at": "2026-09-22T23:09:46+00:00"
+}

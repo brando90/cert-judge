@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_39_prime_fib",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humaneval_39_prime_fib.lean",
+ "candidate_sha256": "60397a596214b0ab421afd0093ec9c0933b34304dd7f2f784cbeef6a55ad3ead",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_39_prime_fib.lean",
+ "gold_sha256": "c86e7c934ac7748e4023e6224b7bdd196ac1116bc2ca0f37c140395f7aaa35ab",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "a833846f681f703abd104eaa369db042fc4da3fbfc223b2476efb944f9146021",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems assert properties of a newly defined `prime_fib` but never relate it to `prime_fibImp`, so they miss the reference implementation's core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 34.62,
+ "usage": {
+  "input_tokens": 14082,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 130,
+  "reasoning_output_tokens": 68
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5e-1144-7102-b2ec-b696b8e1aafa\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems assert properties of a newly defined `prime_fib` but never relate it to `prime_fibImp`, so they miss the reference implementation's core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14082,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":130,\"reasoning_output_tokens\":68}}\n",
+ "finished_at": "2026-09-22T23:06:06+00:00"
+}

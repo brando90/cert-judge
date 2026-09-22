@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_6858/10_serverSideRequestForgery",
+ "agent": "trace_plus",
+ "split": "security_6858",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/security_6858/10_serverSideRequestForgery.lean",
+ "candidate_sha256": "3eb7401ff7a02243fd737a6e3be9d9485e62dd6395502bc5522a2fcbe614016d",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_6858/10_serverSideRequestForgery.lean",
+ "gold_sha256": "25fc33a94e8e50e9f175904d7a207e57ccd24339316485d0c2b97158d3b2da25",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "b5460b61ea385ca42c656ce3eb84679d960bf9b293f064473c11036bb8f735c9",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated theorems concern concrete SSRF detection outcomes and do not establish the reference theorem’s general preservation of the specified input characters by `ssrfScenario`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 48.4,
+ "usage": {
+  "input_tokens": 16769,
+  "cached_input_tokens": 16128,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 167,
+  "reasoning_output_tokens": 111
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:58:29.185727Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb57-7fd0-71b3-8565-8a7feda11ffb\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated theorems concern concrete SSRF detection outcomes and do not establish the reference theorem’s general preservation of the specified input characters by `ssrfScenario`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":16769,\"cached_input_tokens\":16128,\"cache_write_input_tokens\":0,\"output_tokens\":167,\"reasoning_output_tokens\":111}}\n",
+ "finished_at": "2026-09-22T22:59:12+00:00"
+}

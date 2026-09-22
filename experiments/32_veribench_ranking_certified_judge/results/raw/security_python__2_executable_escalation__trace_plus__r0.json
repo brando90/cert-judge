@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/2_executable_escalation",
+ "agent": "trace_plus",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/security_python/2_executable_escalation.lean",
+ "candidate_sha256": "a9e6b13ac789ae5fb0c41ffc3ff8f57734bdc690ec9c6acd3c17ec7c15bc9183",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/vulnerabilities/2_executable_escalation.lean",
+ "gold_sha256": "ed3dd9ce2d157048005b43715ac8c59f5ea1d17d44ca0b9e9b8aa88c1a8f605a",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "e5e59f47f8a6aa122c944a057ea96822748c8652f0e2f802b6a71b65acecedd9",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated code provides no theorem relating any precondition to a postcondition, and its only stated properties are trivial `True` assertions.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 42.72,
+ "usage": {
+  "input_tokens": 13397,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 48,
+  "reasoning_output_tokens": 0
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:02:40.394447Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5b-5715-7b52-97e3-d3f61d03b272\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated code provides no theorem relating any precondition to a postcondition, and its only stated properties are trivial `True` assertions.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13397,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":48,\"reasoning_output_tokens\":0}}\n",
+ "finished_at": "2026-09-22T23:03:14+00:00"
+}

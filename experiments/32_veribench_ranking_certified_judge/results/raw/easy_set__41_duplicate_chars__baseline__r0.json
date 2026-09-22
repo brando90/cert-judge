@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/41_duplicate_chars",
+ "agent": "baseline",
+ "split": "easy_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/easy_set/41_duplicate_chars.lean",
+ "candidate_sha256": "a28deaaafe3916db350f64f401583ef60de772d1af3ac24504b5bc1e2da2ba92",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/41_duplicate_chars.lean",
+ "gold_sha256": "d834fab918e3b4a587e68298bf0034def4ec417dfb28f2406ea4dbc486e83b2e",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "dc5671003baa26bfe2e36d5fb230cf550a44e06f90767b3f647da718b997b09c",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It specifies properties of a newly defined `duplicateChars` but never relates it to `duplicateCharsImp`, so it misses the reference theorem’s core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 49.06,
+ "usage": {
+  "input_tokens": 13498,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 138,
+  "reasoning_output_tokens": 82
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:01:02.587746Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb59-d7d1-7cc3-9f2d-4430e98d6a36\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It specifies properties of a newly defined `duplicateChars` but never relates it to `duplicateCharsImp`, so it misses the reference theorem’s core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13498,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":138,\"reasoning_output_tokens\":82}}\n",
+ "finished_at": "2026-09-22T23:01:42+00:00"
+}

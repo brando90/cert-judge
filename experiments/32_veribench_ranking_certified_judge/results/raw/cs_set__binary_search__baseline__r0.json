@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "cs_set/binary_search",
+ "agent": "baseline",
+ "split": "cs_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/cs_set/binary_search.lean",
+ "candidate_sha256": "8605a85b7a987d3876fe62c199d5ce2170d2e19c575006a0c3dea286a5dadd53",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/cs_set/binary_search.lean",
+ "gold_sha256": "65f2345d0a508677bddc6f179a9e7eba7f27b07e6b87e2e1904be67269c8557c",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "26b80397b91788964f5d6b73bd105c99156c96db13cdb3ff8f5f0cd854228ac8",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "The generated code specifies a different Int-based binary search and partial correctness claims, but entirely omits the reference's core equivalence to `binarySearchImp`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 25.99,
+ "usage": {
+  "input_tokens": 14139,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 124,
+  "reasoning_output_tokens": 69
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5c-8707-74e3-805c-8017f8cefa00\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"The generated code specifies a different Int-based binary search and partial correctness claims, but entirely omits the reference's core equivalence to `binarySearchImp`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14139,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":124,\"reasoning_output_tokens\":69}}\n",
+ "finished_at": "2026-09-22T23:04:17+00:00"
+}

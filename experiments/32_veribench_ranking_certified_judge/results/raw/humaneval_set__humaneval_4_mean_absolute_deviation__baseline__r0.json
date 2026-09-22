@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_4_mean_absolute_deviation",
+ "agent": "baseline",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/humaneval_set/humaneval_4_mean_absolute_deviation.lean",
+ "candidate_sha256": "39b7cb765b7991e80daca36f6c8c197a7205d469f7780096ffea1c8c83df2fd0",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_4_mean_absolute_deviation.lean",
+ "gold_sha256": "95492087fc310784e16b302a12240897941fe37dc38ca1986beed5fdcc5ad611",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "3efd54a6c128c45d2db04656ecb4aa34382590942e127b83fd7ad8ee8ea14386",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It defines and tests a separate MAD function but never states or proves the required equivalence between `meanAbsoluteDeviation` and `meanAbsoluteDeviationImp`.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 49.04,
+ "usage": {
+  "input_tokens": 13541,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 185,
+  "reasoning_output_tokens": 131
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:06:31.688071Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5e-dd99-71a2-988d-2b7eaeb6825c\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It defines and tests a separate MAD function but never states or proves the required equivalence between `meanAbsoluteDeviation` and `meanAbsoluteDeviationImp`.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13541,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":185,\"reasoning_output_tokens\":131}}\n",
+ "finished_at": "2026-09-22T23:07:13+00:00"
+}

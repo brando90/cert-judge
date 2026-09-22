@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_42_incr_list",
+ "agent": "baseline",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_baseline_on_veribench/humaneval_set/humaneval_42_incr_list.lean",
+ "candidate_sha256": "7db5f8641a81366d806b75104f16bf2582d4c9e432506cbda5b62c4a440fb141",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_42_incr_list.lean",
+ "gold_sha256": "e8388583abce7fe57e9e472fbb5c28cc5be17e8aef6d46d9b41b1fb685d53277",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "4d47a4d87948dd19789a3d0db3b7b24b46c0153229f8bebc1723e05e44cd8eae",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.15,
+ "reasoning": "The generated theorems correctly specify properties of `incr_list` itself but entirely omit the required equivalence to `incr_listImp`, so they do not establish the reference implementation's core guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 35.52,
+ "usage": {
+  "input_tokens": 13494,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 133,
+  "reasoning_output_tokens": 69
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:57:30.332392Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n2026-09-22T22:57:38.551313Z ERROR codex_core::shell_snapshot: Shell snapshot validation failed: Snapshot command exited with status exit status: 127: zsh:.:1: no such file or directory: /Users/brandomiranda/.codex/shell_snapshots/01a0cb56-9ac8-70d1-a937-168a0a8faf11.tmp-1790117845756721000\n\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb56-9ac8-70d1-a937-168a0a8faf11\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.15,\\\"reasoning\\\":\\\"The generated theorems correctly specify properties of `incr_list` itself but entirely omit the required equivalence to `incr_listImp`, so they do not establish the reference implementation's core guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13494,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":133,\"reasoning_output_tokens\":69}}\n",
+ "finished_at": "2026-09-22T22:57:59+00:00"
+}

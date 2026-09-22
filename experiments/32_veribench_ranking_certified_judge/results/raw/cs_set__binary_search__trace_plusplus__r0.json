@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "cs_set/binary_search",
+ "agent": "trace_plusplus",
+ "split": "cs_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/cs_set/binary_search.lean",
+ "candidate_sha256": "684dee0c215f48103e97083ea0667758612f501084e0e19cadcade2b270d3a63",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/cs_set/binary_search.lean",
+ "gold_sha256": "65f2345d0a508677bddc6f179a9e7eba7f27b07e6b87e2e1904be67269c8557c",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "139a8398a67f7024065bfb37e668dffb933a5962f118e9eba26b90b66369503f",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It states partial functional correctness for a newly defined Int binary search under sortedness, but omits the reference theorem’s core equivalence with binarySearchImp and changes the input type.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 28.14,
+ "usage": {
+  "input_tokens": 13787,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 207,
+  "reasoning_output_tokens": 148
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:04:24.221121Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5c-eb97-75b3-a700-10cd0e2b33da\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It states partial functional correctness for a newly defined Int binary search under sortedness, but omits the reference theorem’s core equivalence with binarySearchImp and changes the input type.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13787,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":207,\"reasoning_output_tokens\":148}}\n",
+ "finished_at": "2026-09-22T23:04:45+00:00"
+}

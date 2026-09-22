@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "security_python/1_command_injection",
+ "agent": "trace_plus",
+ "split": "security_python",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/security_python/1_command_injection.lean",
+ "candidate_sha256": "91af1bbdaec3bc315d6247fbf413ed1ce30a90fffe6465e16b3a4227f2f0e96f",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/security_python/vulnerabilities/1_command_injection.lean",
+ "gold_sha256": "9287b4a7600fc49b79bd39b65cbf9c45a21953088b64ede3a23cbcf577166f04",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "250e94cd3d5fbd54c74bc7428cb4a33f71b57a6ecd0d86978e9b08b359cd49b2",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems concern a separate simulated command lookup and do not state or establish the reference implication from Pre to Post_prop.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 42.49,
+ "usage": {
+  "input_tokens": 13806,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 131,
+  "reasoning_output_tokens": 82
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:08:05.803453Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb60-4de7-73c0-bb73-10bc21fdc960\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems concern a separate simulated command lookup and do not state or establish the reference implication from Pre to Post_prop.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13806,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":131,\"reasoning_output_tokens\":82}}\n",
+ "finished_at": "2026-09-22T23:08:41+00:00"
+}

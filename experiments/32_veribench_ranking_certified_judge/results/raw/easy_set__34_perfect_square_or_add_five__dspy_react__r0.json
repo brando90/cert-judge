@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "easy_set/34_perfect_square_or_add_five",
+ "agent": "dspy_react",
+ "split": "easy_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/dspy_3-7-sonnet/2025_m09_d23_t21h_47m_14s/allen_run_dspy_on_veribench/easy_set/34_perfect_square_or_add_five.lean",
+ "candidate_sha256": "e5fcd6d0ed0fdde49c9f01449535d1c42c83f8ec804f2ac07beb6edc30b934b6",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/easy_set/34_perfect_square_or_add_five.lean",
+ "gold_sha256": "0188e08f0d19dbe530897293d639bb3ce0c93fbf55aaef34861c3449d2ccf887",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "2e0297728e2632bcbfba5db7cffdbe21af7ea6d48d095bd70f6ea3671110bc2d",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.0,
+ "reasoning": "The generated theorems concern a newly defined Int function and never state or prove equivalence between perfectSquareOrAddFive and perfectSquareOrAddFiveImp on Nat.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 48.37,
+ "usage": {
+  "input_tokens": 13762,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 97,
+  "reasoning_output_tokens": 40
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:07:23.974910Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5f-a9f0-7db3-b850-cbff54b8958c\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.0,\\\"reasoning\\\":\\\"The generated theorems concern a newly defined Int function and never state or prove equivalence between perfectSquareOrAddFive and perfectSquareOrAddFiveImp on Nat.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13762,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":97,\"reasoning_output_tokens\":40}}\n",
+ "finished_at": "2026-09-22T23:08:06+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_4_mean_absolute_deviation",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humaneval_4_mean_absolute_deviation.lean",
+ "candidate_sha256": "d0ac2a2f395ad6257b2cf1803da93e681f0fb4ad6caad0cf6fbd70e147a9763c",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_4_mean_absolute_deviation.lean",
+ "gold_sha256": "95492087fc310784e16b302a12240897941fe37dc38ca1986beed5fdcc5ad611",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "48d56023b8e780a4dccf6a2dc649eba6830db45e5ceb1ff79f9ff9da4fb841c4",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "It defines a plausible standalone MAD function and states generic properties, but it never relates `meanAbsoluteDeviation` to `meanAbsoluteDeviationImp`, which is the sole correctness guarantee of the reference theorem.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 39.56,
+ "usage": {
+  "input_tokens": 13742,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 60,
+  "reasoning_output_tokens": 0
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T23:07:09.356798Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb5f-70b8-7f13-b49f-c3597dbc8ce7\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"It defines a plausible standalone MAD function and states generic properties, but it never relates `meanAbsoluteDeviation` to `meanAbsoluteDeviationImp`, which is the sole correctness guarantee of the reference theorem.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13742,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":60,\"reasoning_output_tokens\":0}}\n",
+ "finished_at": "2026-09-22T23:07:41+00:00"
+}

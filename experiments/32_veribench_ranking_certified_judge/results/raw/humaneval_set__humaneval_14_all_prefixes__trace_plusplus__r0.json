@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_14_all_prefixes",
+ "agent": "trace_plusplus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d24_t18h_57m_03s/allen_run_trace_self_debug_and_self_improve_on_veribench/humaneval_set/humaneval_14_all_prefixes.lean",
+ "candidate_sha256": "165c0bcef08b40e3a585be8d1318098d35a7cd6a4e1bbdb054c392362606ddc2",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_14_all_prefixes.lean",
+ "gold_sha256": "3c051d73585bec6c913b3a26ab5273f300aebe3ed3ad1baef785dbc3dd26ef85",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "954cd0bc58ed0ea6b99f2a4556cfacd126f80c06bf8a25c96f1ea87ec7e396d4",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.2,
+ "reasoning": "The generated results specify properties of a newly defined `all_prefixes` but never relate it to `all_prefixesImp`, so they miss the reference theorem's central equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 31.3,
+ "usage": {
+  "input_tokens": 13585,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 156,
+  "reasoning_output_tokens": 96
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "2026-09-22T22:58:03.146321Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit\n",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb57-19e7-71c0-9f42-7e3ff00dabfd\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.2,\\\"reasoning\\\":\\\"The generated results specify properties of a newly defined `all_prefixes` but never relate it to `all_prefixesImp`, so they miss the reference theorem's central equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13585,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":156,\"reasoning_output_tokens\":96}}\n",
+ "finished_at": "2026-09-22T22:58:29+00:00"
+}

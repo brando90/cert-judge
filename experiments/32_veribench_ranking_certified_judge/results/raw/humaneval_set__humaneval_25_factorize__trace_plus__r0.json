@@ -1,0 +1,42 @@
+{
+ "status": "ok",
+ "item": "humaneval_set/humaneval_25_factorize",
+ "agent": "trace_plus",
+ "split": "humaneval_set",
+ "repeat": 0,
+ "candidate_path": "/Users/brandomiranda/veribench/research_archive/experiments/11_dspy_or_trace_agent_gens_for_evals/latest_runs/trace/2025_m09_d23_t21h_47m_14s/allen_run_trace_self_debug_on_veribench/humaneval_set/humaneval_25_factorize.lean",
+ "candidate_sha256": "b9612e8bd08027711e2f4755af93f6bcac9f06fffa0be94bc58cf3c16220f2f8",
+ "gold_path": "/Users/brandomiranda/cert-judge/data/veribench_dataset/lean_src/veribench/humaneval_set/humaneval_25_factorize.lean",
+ "gold_sha256": "caaf67ed70e641915138133e9abbb51e445acc5581954c20f74641c67ca16154",
+ "prompt_name": "P1_BASELINE",
+ "prompt_sha256": "ff4a29a1c207cbe27349348dc7f252814bc03251566b99936ec650f44637862e",
+ "model_requested": "gpt-5.6-terra",
+ "model_observed_header": null,
+ "models_observed_in_jsonl": [],
+ "reasoning_effort": "low",
+ "score": 0.1,
+ "reasoning": "It states standalone properties of a newly defined `factorize` but never relates it to `factorizeImp`, so it misses the reference theorem’s core equivalence guarantee.",
+ "attempt": 1,
+ "failed_attempts": [],
+ "elapsed_seconds": 32.87,
+ "usage": {
+  "input_tokens": 13633,
+  "cached_input_tokens": 12032,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 235,
+  "reasoning_output_tokens": 178
+ },
+ "benign_warnings": [],
+ "event_types": {
+  "thread.started": 1,
+  "turn.started": 1,
+  "item.completed": 1,
+  "turn.completed": 1
+ },
+ "item_types": {
+  "agent_message": 1
+ },
+ "cli_stderr_tail": "",
+ "cli_stdout_jsonl": "{\"type\":\"thread.started\",\"thread_id\":\"01a0cb57-409e-70a1-a0db-b24f557d0ac7\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"{\\\"score\\\":0.1,\\\"reasoning\\\":\\\"It states standalone properties of a newly defined `factorize` but never relates it to `factorizeImp`, so it misses the reference theorem’s core equivalence guarantee.\\\"}\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":13633,\"cached_input_tokens\":12032,\"cache_write_input_tokens\":0,\"output_tokens\":235,\"reasoning_output_tokens\":178}}\n",
+ "finished_at": "2026-09-22T22:58:39+00:00"
+}
