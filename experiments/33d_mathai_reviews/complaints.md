@@ -6,7 +6,7 @@ Status vocabulary: **Addressed** (paper already handles it), **Disclosed** (stat
 
 | ID | Reviewer | Complaint | Status in ICLR main.tex | Evidence | Action |
 |---|---|---|---|---|---|
-| N25-ivJs-1 | ivJs | Limited generalization: finite perturbations on one benchmark; unclear on novel theorem types or adversarial cases | Disclosed (E6) | §6 `:636`–`:639`: "No finite perturbation suite can rule out every judge failure"; gaming "remains untested" | E6 applied (names the untested classes) |
+| N25-ivJs-1 | ivJs | Limited generalization: finite perturbations on one benchmark; unclear on novel theorem types or adversarial cases | Disclosed (E6) | §6 `:636`–`:639`: "No finite perturbation suite can rule out every judge failure"; gaming "remains untested"; `06_limitations.tex` now also states that all results come from VeriBench and are untested on other Lean 4 benchmarks (Verina, Vero), commit `543c524` by session cert-judge-01 | E6 applied (names the untested classes) |
 | N25-ivJs-2 | ivJs | Single architecture; no comparison with other judges or ensembles | Addressed | §5.3: three families × eight configurations incl. GPT-4o-mini and non-LLM controls; Leanstral in App. | none |
 | N25-ivJs-3 | ivJs | No human validation of the judge | Addressed | §5.1 72-pair validation set; §5.3 judge-level association; §6 validation-not-test caveat | none |
 | N25-36Hd-1 | 36Hd | Judge details missing ("simply Claude 3.5 / 3.7") | Addressed (E7) | §3 judge model θ; App. prompt templates; repeats/aggregation not stated in §5.3 | E7 |
