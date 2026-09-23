@@ -1,26 +1,26 @@
 # results.md — experiments 33a–33e (OpenReview complaints → ICLR 2027 paper); hub 33b
 
-**Status:** DONE for three venues; BLOCKED on the DL4C paste (started 09-22-2026 14:58 PDT)
-**Last updated:** 09-22-2026 15:42 PDT
+**Status:** DONE for all four venues (started 09-22-2026 14:58 PDT; DL4C ingested 09-22-2026 17:55 PDT)
+**Last updated:** 09-22-2026 17:58 PDT
 
 | Phase | Status | Evidence |
 |---|---|---|
 | 1. Locate every OpenReview forum | DONE | `fetch_attempts.md` (4 forums; no NeurIPS 2026 / ICLR 2026 submission found) |
-| 2. Capture reviews verbatim | DONE for 3 venues; BLOCKED for DL4C | venue folders 33a/33c/33d/33e; DL4C skeleton + 13 logged fetch attempts |
-| 3. Ledger (one row per complaint) | DONE | per-venue `complaints.md`: 33d 14 `N25-*`, 33e 3 `T26-*`, 33a 29 `A26-*`, 33c `D26-*` placeholders; open items O1–O3 in `edits_ledger.md` |
+| 2. Capture reviews verbatim | DONE (4 of 4) | venue folders 33a/33c/33d/33e; DL4C text pasted by Brando into chat and stored verbatim in `33c_dl4c_reviews/reviews_gGR1gE7x3a.md` |
+| 3. Ledger (one row per complaint) | DONE | per-venue `complaints.md`: 33d 14 `N25-*`, 33e 3 `T26-*`, 33a 29 `A26-*`, 33c 9 `D26-*`; open items O1–O3 in `edits_ledger.md` |
 | 4. Prompts 01–04 | DONE | `prompts/` |
-| 5. Paper edits E1–E9 | DONE | commit `e0631b6`; 27-page PDF, 0 undefined citations/references, 0 BibTeX warnings |
-| 6. DL4C ingestion + re-audit | PENDING (needs Brando's paste) | `prompts/03_…` |
+| 5. Paper edits E1–E10 | DONE | E1–E9 commit `e0631b6`; E10 commit `5201653`; 0 undefined citations/references, 0 BibTeX warnings |
+| 6. DL4C ingestion + re-audit (prompt 03) | DONE | 9 `D26-*` rows: 1 Addressed (E10), 6 Disclosed, 2 Deferred (readability, appendix formatting → experiment 31); 8 of 9 repeat earlier rounds |
 
-## Ledger counts after the edits (46 rows, DL4C placeholders excluded)
+## Ledger counts after the edits (55 rows across 33a/33c/33d/33e)
 
 | Status | Rows |
 |---|---|
-| Addressed | 24 |
-| Disclosed (stated as a limitation) | 12 |
-| Deferred (named owner: experiment 31 or future work) | 3 |
+| Addressed | 25 |
+| Disclosed (stated as a limitation) | 18 |
+| Deferred (named owner: experiment 31 or future work) | 5 |
 | Superseded (old Fig. 1; §5.4 VeriBench table removed 09-22-2026) | 7 |
-| Unknown (DL4C) | placeholders only |
+| Unknown | 0 |
 
 ## Edits
 
@@ -35,6 +35,7 @@
 | E7 median over repeated calls: three for LLM judges, nine for the two non-LLM controls (corrected from "nine" after cert-judge-57's check) | yes | `e0631b6` |
 | E8 appendix agreement statistics on the 72 overlapping pairs; MAE 0.771 / MSE 1.121 | yes | `e0631b6` |
 | E9 refs.bib hygiene (anonymous entry deleted; Bach, Ding, Bowman entries completed) | yes | `e0631b6` |
+| E10 pass-to-pass swing acknowledged in §5.3 (Qwen3-Coder 0.476 vs 0.905; DL4C birm) | yes | `5201653` |
 
 ## Numbers introduced (paper value ← artifact)
 
@@ -48,7 +49,7 @@
 
 ## Still open
 
-- DL4C reviews (forum `gGR1gE7x3a`): Brando pastes them into `../33c_dl4c_reviews/reviews_gGR1gE7x3a.md`, then prompt 03 runs.
+- DL4C reviews: ingested 09-22-2026 (`../33c_dl4c_reviews/`); nothing pending from that round.
 - O2 (appendix "best Spearman 0.480/0.559" comes from the alpha-ablation panel) and O3 (intro TODO on label reuse) are with experiment 31.
 - §5.4 (VeriBench agent ranking, Table 5) was removed from main.tex on 09-22-2026 by Brando's decision (uncertified Claude 3.7 judge; exp32 stopped at commit d7f37c3), which closes the six VeriBench-judge rows as Superseded.
 
@@ -56,4 +57,4 @@
 
 Commit `57ccf9f` also carries the §5.4 / Table 5 cut of `main.tex` and `main.pdf` (−25 lines) that session "paper writing certjudge" had staged in the shared index; the paper content in that commit is theirs, made on Brando's decision, and the pushed HEAD builds in a scratch copy (26 pages, 0 undefined citations or references). Lesson recorded in memory: commit with explicit pathspecs (`git commit -- <paths>`) when other sessions share the checkout.
 
-**TLDR-end:** [cj: or-complaints] All 46 complaints from the three retrievable OpenReview rounds are ledgered and the nine artifact-traced paper edits landed in commit `e0631b6`; the DL4C reviews remain the one missing input and need Brando's paste before prompt 03 can run.
+**TLDR-end:** [cj: or-complaints] All 55 complaints from the four OpenReview rounds are ledgered in the per-venue folders 33a/33c/33d/33e with no Unknown rows left; ten artifact-traced paper edits landed (E1–E9 in `e0631b6`, E10 in `5201653`), and the only deferred items are readability and appendix formatting, owned by experiment 31.

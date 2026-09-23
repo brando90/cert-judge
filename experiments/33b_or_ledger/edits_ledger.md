@@ -25,7 +25,9 @@
 | E8 | `997_appendix_human_alignment.tex` (ceiling paragraph and table) and `05_experiments.tex` §5.1 | Inter-pass agreement statistics are computed on the 72 overlapping pairs, not 75 | `…/results_final_stat_reliability_suite/exp18_human_label_reliability/summary.json` (`n_overlap_pairs` 72; `n_pass2_only` 3) |
 | E9 | `refs.bib` | Delete the uncited anonymous "NeurIPS (to appear)" self-entry; fix `bach2022trusthci` (first author is Tita Alissa Bach, add DOI/arXiv), `ding2025citations` (full authors, volume/pages, arXiv), `bowman2022scalable` (arXiv URL) | arXiv 2304.08795 / DOI 10.1080/10447318.2022.2138826; AAAI 39(22):23787–23795, arXiv 2501.01303; arXiv 2211.03540 |
 
-All nine edits landed in commit `e0631b6` (main.tex, main.pdf, refs.bib), built in a scratch copy: 27 pages, 0 undefined citations/references, 0 BibTeX warnings, one-sentence-per-line check passed.
+| E10 | `05_experiments.tex`, §5.3 after the "Six of the nine family--pass correlations" sentence | Acknowledge that family-level values move between rating passes (Qwen3-Coder 0.476 on pass1 vs 0.905 on pass2) as expected with eight configurations and only moderate inter-pass agreement (DL4C reviewer birm) | Table 2 (`tab:tivar_cross_model_results`, values already in the paper; Qwen family from `experiments/archive/13_qwen_replication_exp16_exp19/results/exp16_qwen_r3_median/`); inter-pass agreement from `…/exp18_human_label_reliability/summary.json` |
+
+E10 landed in commit `5201653` (05_experiments.tex, main.pdf; scratch build 0 undefined citations/references). All nine edits landed in commit `e0631b6` (main.tex, main.pdf, refs.bib), built in a scratch copy: 27 pages, 0 undefined citations/references, 0 BibTeX warnings, one-sentence-per-line check passed.
 
 ## Open items found while auditing (not reviewer complaints)
 
