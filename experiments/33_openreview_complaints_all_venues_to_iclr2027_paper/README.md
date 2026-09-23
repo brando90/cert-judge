@@ -18,7 +18,7 @@
 ├── results.md                                  ← live status (phase table, counts, TLDR-end)
 ├── complaints_ledger.md                        ← one row per complaint; edit list E1–E9 with number sources
 ├── openreview_form_abstract.txt                ← plain-text abstract for the ICLR OpenReview form (TMLR lesson)
-├── make_openreview_form_abstract.py            ← regenerates the file above from main.tex; warns on leftover LaTeX / internal refs
+├── make_openreview_form_abstract.py            ← regenerates the file above from 00_abstract.tex; warns on leftover LaTeX / internal refs
 ├── reviews/
 │   ├── neurips2025_mathai_9WAWDdwqpC.md        ← verbatim (ivJs 6/10, 36Hd 3/10)
 │   ├── icml2026_ai4math_xmHP3UhGQ8.md          ← verbatim copy of experiments/18_icml_2026_reviews/pre_prompt.md (accept, poster)
@@ -36,7 +36,7 @@
 
 1. Locate every OpenReview forum for the paper with the public search API (`notes/search`); record forum ids, venue tags, submission numbers.
 2. Copy reviews already captured in the repo verbatim; attempt to fetch the rest; log every attempt; leave marked skeletons where fetches fail.
-3. Read `main.tex` end to end and write one ledger row per complaint with status, evidence, and action.
+3. Read the manuscript end to end (since commit `710dda9`, per-section files under `paper_latex/ICLR_2027_submission/`) and write one ledger row per complaint with status, evidence, and action.
 4. Define the edit list E1–E9, each with the artifact that supplies its numbers.
 5. Apply the edits under the concurrent-editing protocol (peer message, clean tree, scratch build, explicit staging), rebuild the PDF, commit and push.
 6. Keep `results.md` live; after the DL4C paste, run prompt 03; run prompt 04 only on request.
