@@ -7,6 +7,7 @@
 - Worktree: `git -C ~/cert-judge worktree add ~/cert-judge-astra -b astra/iclr-mega-rewrite main`
 - Launch: `bash experiments/34_iclr_mega_rewrite_astra/run_astra.sh` (nohup; log `results/astra_run.log`; exit code in `results/astra_exit_code`)
 - Live status: `experiments/34_iclr_mega_rewrite_astra/results.md` on the branch (Astra updates it) and `results/astra_run.log` here.
+- Attempt 1 (2026-09-23 00:45Z) hung: `codex_core::tools::router: timed out negotiating with the code-mode host` before any command ran; relaunched with `--disable code_mode_host -s workspace-write` on a branch fast-forwarded to main (includes E10 5201653 and the DL4C rows d7cbb17). Log of the failed attempt: `results/astra_run.attempt1_codemode_timeout.log`.
 - Stop: `pkill -f 'codex exec.*34_iclr_mega_rewrite'`; the worktree keeps whatever was committed.
 - Review: `git -C ~/cert-judge-astra log --oneline main..astra/iclr-mega-rewrite`; open `~/cert-judge-astra/paper_latex/ICLR_2027_submission/main.pdf`; read `REPORT.md`. Merge is Brando's call (PR from the branch).
 
