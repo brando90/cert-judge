@@ -417,3 +417,10 @@ there are no undefined references and no overfull boxes in the main text, and ev
   to be archived under `experiments/archive/32_...` with outcome "stopped — table removed from paper". Lesson recorded: option 3
   reinforced a table that should have been questioned first; ask "does this belong in the paper?" before spending calls on it.
 - Peers `cert-judge-57` (main-text owner) and `cert-judge-05` (exp 33 complaints ledger) notified (msgs 9fa984bd, 15b5522a).
+
+## 2026-09-22 ~17:30 — stale-content audit of the paper (Brando: "remove outdated shit")
+- Main text (abstract–§7) audited line by line after the peers' rewrite: no VeriBench-era leftovers remain; 75-rated/72-analyzed is explained in §5.1; no dangling refs.
+- Removed (86ebd8c): commented-out inline bibliography (old DSPy/Trace/VeriBench-poster bibitems, 68 lines); stale "verbatim port" header comment; appendix "Vericode", "Future Work (cont.)" (ChatGPT link), "Newest Results (Latest Rerun at Appendix Bottom)" heading + unreferenced v1/v2 table; exp19 failure-mode figures kept under "Failure Modes Found by Certification". OPEN_QUESTIONS.md #1 marked resolved; CHANGES.md marked superseded.
+- Removed (2b5ce26): 55 unused figure files; figures/ now holds the 20 the paper uses.
+- Left in place, flagged for Brando: `% TODO(internal-review)` in the intro (why not reuse labels on the same domain); appendix "Related Work (Cont.)" + "HCI for Solving Scalable Oversight", "Formal verification context and tooling", "Cross-Model Validation Status (Full vs Preliminary)" — unreferenced from the main text but legitimate appendix material, not dead.
+- Exp 32 archived (9f1bb82) and confirmed on origin.
