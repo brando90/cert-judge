@@ -18,17 +18,17 @@ We then ask whether the index orders configurations by that agreement.
 
 \subsection{Property checks on GPT-5.3-Codex}\label{sec:property-results}
 Figure~\ref{fig:judge_sanity_checks} summarizes the 24-problem panel for three Codex prompts.
-Their mean scores decrease as bug-ladder edits accumulate, but averages conceal local reversals.
+Early bug edits lower mean scores, but averages conceal local reversals.
 The strict prompt reverses on four of 24 ladders, whereas the baseline and checklist prompts have no reversals (Table~\ref{tab:codex_configs}).
 The archived alpha probes produce the largest score changes among the four rewrite types, but their generator can produce malformed Lean text.
 The baseline and checklist prompts assign them zero mean score, despite near-maximum scores for the other rewrites.
-The strict prompt gives alpha-renamed artifacts a mean score of $0.179$.
+The strict prompt gives alpha probes a mean score of $0.179$.
 Appendix~\ref{app:failure-diagnostics} retains the per-configuration diagnostics and the corresponding Claude Opus summary.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/codex_property_checks.pdf}
-\caption{Mean scores fall with cumulative bug edits, but malformed alpha probes sharply change the Codex judges' scores.
+\caption{Early bug edits and malformed alpha probes lower the Codex judges' mean scores.
 Each point averages median scores over 24 problems, with three calls per problem and prompt; these are descriptive means, not uncertainty intervals.
 Local reversals remain visible in Table~\ref{tab:codex_configs}.}
 \label{fig:judge_sanity_checks}

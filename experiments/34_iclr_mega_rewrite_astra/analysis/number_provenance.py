@@ -83,7 +83,10 @@ GROUPS = {
     'experiments/34_iclr_mega_rewrite_astra/analysis/results/weight_sensitivity_summary.csv',
     'experiments/34_iclr_mega_rewrite_astra/analysis/results/scatter_coordinates.csv',
     'experiments/34_iclr_mega_rewrite_astra/analysis/results/clean_rewrite_statistics.csv',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/bug_curve_statistics.csv']),
+    'experiments/34_iclr_mega_rewrite_astra/analysis/results/bug_curve_statistics.csv',
+    'experiments/34_iclr_mega_rewrite_astra/analysis/results/all_rewrite_statistics.csv',
+    'experiments/34_iclr_mega_rewrite_astra/analysis/results/reversal_counts.csv',
+    'experiments/34_iclr_mega_rewrite_astra/analysis/results/opus_bug_curve_statistics.csv']),
 }
 
 

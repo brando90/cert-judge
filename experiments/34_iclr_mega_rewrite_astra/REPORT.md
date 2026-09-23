@@ -33,7 +33,8 @@ The original title is unchanged. Main text uses the original template fonts and 
 7. **The competing geometric index is selected, not an untuned baseline.** Its 0.4/0.6 weights came from pass1. The separate six-component fitted variant is clearly labeled and uses the same pairs across passes.
 8. **Implementation details constrain transfer.** The fixed index uses only bug rows, normalizes variances within each family panel, omits undefined constant ladders, and floors components at 1e-6. The paper now states these facts.
 9. **Human disagreement is not a demonstrated ceiling.** The unsupported noise-ceiling argument is removed. The original written annotation rubric was not recovered.
-10. **Negative evidence retained.** The short Leanstral paragraph remains. The different-rubric pool and two unsuccessful registered screens remain disclosed. No leave-one-family-out result or normalization-panel sensitivity is invented.
+10. **Stale appendix plots replaced.** The inherited reversal bars disagreed with the frozen CSV (strict and lexical counts). The rewrite breakdown, reversal plot, and Opus curves were regenerated from committed rows; a duplicated Codex curve was archived. All displayed reversal counts now agree with Table 3.
+11. **Negative evidence retained.** The short Leanstral paragraph remains. The different-rubric pool and two unsuccessful registered screens remain disclosed. No leave-one-family-out result or normalization-panel sensitivity is invented.
 
 The requested empirical claim that a validated four-property certificate screens arbitrary new judges is not established by the available artifacts. The manuscript presents a proposed reusable screening protocol, descriptive validation-set association, and concrete diagnostics. No wording change can supply the missing matched-rubric test or validated probes.
 
@@ -53,7 +54,7 @@ The requested empirical claim that a validated four-property certificate screens
 | Why Judge Scores Are Specification-Relative | Archive whole `993` file | None; supported gold-relative limitation appears in §6 |
 | Naive blind baseline, cross-model status, old index prose and redundant plots | Preserve full original `997`, retain only corrected necessary parts | None for archived sections |
 | Original large plot appendix | Preserve full original `996` | None for archived plots |
-| Unreferenced figures | Move 15 inherited files under `archive/figures/`, with original relative paths | None |
+| Unreferenced figures | Move 19 inherited files under `archive/figures/`, with original relative paths | None |
 | Original protocol/results text, bibliography and decision sheet | Preserve copies under `archive/` | Historical record only |
 
 `paper_latex/ICLR_2027_submission/archive/README.md` lists every preserved source and moved figure. The byte-preservation check compares each archived original with commit `8d2e005`; excluded historical prose is not silently edited or included in the new build. No Qwen sanity figure with verified provenance was present in the retained source set; its main family comparison remains in the corrected scatter and table.
@@ -160,7 +161,7 @@ The repository’s legacy anonymized-supplement allowlist describes a different 
 | [x] | N25-36Hd-6 | Answered | Monotonicity should not be defined as a strict ordering | `Ties are allowed; a local score increase is a reversal.` | [04_property_protocol.tex:55](../../paper_latex/ICLR_2027_submission/04_property_protocol.tex#L55). Both ladder properties explicitly use non-increasing scores. |
 | [x] | N25-36Hd-7 | Superseded | Why Claude 3.5 in Sec. 3, 3.7 in Sec. 4, both in App. D | `The primary family model identifiers are \texttt{gpt-5.3-codex}, \texttt{claude-opus-4-7}, and \texttt{Qwen/Qwen3-Coder-30B-A3B-Instruct}.` | [995_appendix_judge_prompts.tex:3](../../paper_latex/ICLR_2027_submission/995_appendix_judge_prompts.tex#L3). Historical Claude 3.5/3.7 downstream results are absent. |
 | [x] | N25-36Hd-8 | Superseded | Figure 1 unreadable | `The lower sequence measures validation-set association and selects protocol choices, so its results are not a held-out test.}` | [04_property_protocol.tex:28](../../paper_latex/ICLR_2027_submission/04_property_protocol.tex#L28). Old Figure 1 is replaced with the protocol diagram; this checklist does not certify visual readability. |
-| [x] | N25-36Hd-9 | Answered | Figure 1: "vs." should be "w.r.t." | `Local increases reveal behavior hidden by the aggregate bug trend.` | [996_appendix_judge_cert_plots.tex:30](../../paper_latex/ICLR_2027_submission/996_appendix_judge_cert_plots.tex#L30). New captions describe scores and cumulative edits in plain words; the criticized wording is absent. |
+| [x] | N25-36Hd-9 | Answered | Figure 1: "vs." should be "w.r.t." | `Local increases reveal behavior hidden by the aggregate bug trend.` | [996_appendix_judge_cert_plots.tex:23](../../paper_latex/ICLR_2027_submission/996_appendix_judge_cert_plots.tex#L23). New captions describe scores and cumulative edits in plain words; the criticized wording is absent. |
 | [x] | N25-36Hd-10 | Answered | Missing references in the Appendix | `Table~\ref{tab:app-human-human-ceiling} reports the frozen agreement statistics on 72 shared analyzed pairs.` | [997_appendix_human_alignment.tex:4](../../paper_latex/ICLR_2027_submission/997_appendix_human_alignment.tex#L4). Representative existing reference; the static target audit below covers all active inputs. |
 | [x] | N25-36Hd-11 | Superseded | Typos: "Lean 4 verus Verus"; stray "**" in App. C | `We record a competing view that we do not adopt.` | [994_appendix_tests_as_ground_theorems.tex:4](../../paper_latex/ICLR_2027_submission/994_appendix_tests_as_ground_theorems.tex#L4). The old tooling discussion was archived; the criticized typo and stray Markdown emphasis are absent. |
 | [x] | T26-EiC-1 | Superseded | "Unlikely to meet TMLR acceptance criteria" under "extremely limited reviewer capacity" (discretionary triage; no reviews) | `No test-set result establishes reliability for a new judge or artifact distribution.` | [06_limitations.tex:6](../../paper_latex/ICLR_2027_submission/06_limitations.tex#L6). The venue-specific decision cannot be overturned by a sentence. Venue changed; evidence limitations remain disclosed, without an acceptance prediction. |
@@ -294,8 +295,11 @@ Every printed numeric source line in main sections 00–07 is indexed below. Pro
 **derived — New zero-inference recomputation: Pearson/Kendall, plots and local weight sensitivity.**
 
 - `experiments/34_iclr_mega_rewrite_astra/analysis/rebuild_paper_evidence.py`
+- `experiments/34_iclr_mega_rewrite_astra/analysis/results/all_rewrite_statistics.csv`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/bug_curve_statistics.csv`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/clean_rewrite_statistics.csv`
+- `experiments/34_iclr_mega_rewrite_astra/analysis/results/opus_bug_curve_statistics.csv`
+- `experiments/34_iclr_mega_rewrite_astra/analysis/results/reversal_counts.csv`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/scatter_coordinates.csv`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/summary.json`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/weight_sensitivity_summary.csv`
@@ -393,4 +397,4 @@ The CSV preserves each full source line; the JSON records exact paths and SHA-25
 | Numeric inventory | 75 main-text source lines, 14 evidence groups |
 | Fixed-index Codex avg | Spearman 0.833, CI [0.24,1.00] |
 | Weight grid | 12 triples; no new judge calls |
-| Archived original figures | 15 files preserved |
+| Archived original figures | 19 files preserved |

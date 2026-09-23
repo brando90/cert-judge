@@ -2,15 +2,15 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/astra/iclr-mega-rewrite/experiments/34_iclr_mega_rewrite_astra/results.md>
 
-**Status:** RUNNING (started 09-22-2026 18:01 PDT)
-**Last updated:** 09-22-2026 21:19 PDT
+**Status:** COMPLETE (started 09-22-2026 18:01 PDT; completed 09-22-2026 21:39 PDT; awaiting Brando’s branch review)
+**Last updated:** 09-22-2026 21:39 PDT
 
 | Phase | Status | Evidence |
 |---|---|---|
 | Audit | DONE | Binding rules, decision ledger, all four complaint files and current manuscript read; baseline PDF has 25 pages, References starts on page 8. |
 | Outline and provenance | DONE | `outline.md`; mandatory corrections below. |
 | Main text | DONE | Eight pages; one protocol proposal, corrected fixed-index evidence and explicit coverage limits. |
-| Appendix archive | DONE | Six cited sections; original source and 15 inherited figures preserved under archive/. |
+| Appendix archive | DONE | Six cited sections; original source and 19 inherited figures preserved under archive/. |
 | Statements and bibliography | DONE | Three statements, nineteen complete cited entries; usage facts await author confirmation. |
 | Verification and report | DONE | Build and visual review complete; main 8/total 17 pages; References 9; zero overfull boxes, undefined references or citations; zero BibTeX warnings; 75 numeric lines and all 55 complaints indexed. |
 
@@ -37,4 +37,8 @@ The existing registration in `experiments/archive/layout.json` is correct; the l
 - A local 12-triple weight grid, using committed vectors only, preserves positive associations. Average-label ranges: Codex 0.738–0.857, Opus 0.643–0.714, Qwen 0.881–0.976.
 - Preserved Leanstral negative evidence; no leave-one-family-out transfer claim is made.
 
-**TLDR-end:** [cj: experiments/34_iclr_mega_rewrite_astra] Audit complete; the rewrite corrects mixed indices, a mislabeled property, and invalid alpha probes. Main text, reduced appendix, statements and report are written; all verification gates pass; the final branch handoff is being committed and pushed.
+**TLDR-end:** [cj: experiments/34_iclr_mega_rewrite_astra] Audit complete; the rewrite corrects mixed indices, a mislabeled property, and invalid alpha probes. Main text, reduced appendix, statements and report are written; the main rewrite is pushed at `23b9773`; the regenerated appendix diagnostics also pass the final build and data checks.
+
+Final visual cross-check found a stale reversal PNG. Its canonical CSV agrees with the corrected main table; the diagnostic images were regenerated from committed rows, with originals preserved.
+
+Final PDF SHA-256: `9c7fe1dd00939294cf37c6ad70cd83c186f5a7f6228f8914ea8eaf3e7a8b2b0a`. All 55 complaint IDs are covered; 75 numeric source lines map to 14 evidence groups. The source/figure milestone is `23b9773`; the final correction and handoff commit follows it. No judge inference, key access, new experiment, main-branch edit, or merge occurred.

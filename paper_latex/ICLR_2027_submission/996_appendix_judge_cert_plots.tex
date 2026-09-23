@@ -11,31 +11,24 @@ These limitations apply to the archived property statistics throughout the paper
 
 \begin{figure}[htbp]
 \centering
-\begin{subfigure}{.48\linewidth}
-\includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_exp19.png}
-\caption{Codex bug-level means.}
-\end{subfigure}\hfill
-\begin{subfigure}{.48\linewidth}
-\includegraphics[width=\linewidth]{figures/fig_failure_alpha_variant_breakdown_exp19.png}
-\caption{Scores by rewrite type.}
-\end{subfigure}
-\caption{The archived Codex diagnostics separate cumulative bug edits from unvalidated rewrite probes.
-The alpha score changes are not evidence of semantic sensitivity because the historical alpha generator can produce malformed text.}
+\includegraphics[width=\linewidth]{figures/codex_rewrite_diagnostics.pdf}
+\caption{Recorded alpha scores differ sharply from the other rewrite scores for the semantic Codex prompts.
+Each marker averages repeat-median scores over 24 problems; these unvalidated transformations do not establish semantic sensitivity.}
 \label{fig:app-exp19-main-and-alpha}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=.8\linewidth]{figures/fig_failure_bug_reversal_rates_exp19.png}
+\includegraphics[width=\linewidth]{figures/codex_reversal_counts.pdf}
 \caption{Local increases reveal behavior hidden by the aggregate bug trend.
-Each rate is the fraction of 24 ladders with at least one increase in the recorded repeat-aggregated score; this figure supplies the reversal counts in Table~\ref{tab:codex_configs}.}
+Bars count ladders with at least one increase in the recorded repeat-aggregated score; all configurations have 24 ladders, matching Table~\ref{tab:codex_configs}.}
 \label{fig:app-exp19-reversals}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.8\linewidth]{figures/fig_main_monotonicity_lowvar_opus47.png}
+\includegraphics[width=\linewidth]{figures/opus_bug_curves.pdf}
 \caption{Claude Opus also assigns lower mean scores as historical bug edits accumulate.
-The plot uses medians over repeats and the same unvalidated string-edit construction; its trend does not establish semantic validity of every ladder.}
+Each point averages repeat-median scores over 24 problems under the same unvalidated string-edit construction; its trend does not establish semantic validity of every ladder.}
 \label{fig:lowvar_mono_codex_opus}
 \end{figure}

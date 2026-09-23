@@ -97,8 +97,11 @@ Every printed numeric source line in main sections 00–07 is indexed below. Pro
 **derived — New zero-inference recomputation: Pearson/Kendall, plots and local weight sensitivity.**
 
 - `experiments/34_iclr_mega_rewrite_astra/analysis/rebuild_paper_evidence.py`
+- `experiments/34_iclr_mega_rewrite_astra/analysis/results/all_rewrite_statistics.csv`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/bug_curve_statistics.csv`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/clean_rewrite_statistics.csv`
+- `experiments/34_iclr_mega_rewrite_astra/analysis/results/opus_bug_curve_statistics.csv`
+- `experiments/34_iclr_mega_rewrite_astra/analysis/results/reversal_counts.csv`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/scatter_coordinates.csv`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/summary.json`
 - `experiments/34_iclr_mega_rewrite_astra/analysis/results/weight_sensitivity_summary.csv`

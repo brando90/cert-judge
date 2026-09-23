@@ -160,6 +160,57 @@ def main():
     dump_csv(OUT/'clean_rewrite_statistics.csv',rewrite_stats)
     dump_csv(OUT/'bug_curve_statistics.csv',bug_curve_stats)
 
+    # Replace inherited raster diagnostics whose reversal bars were stale.
+    codex_ids = []
+    for key in keys:
+        codex_ids.append(next(r['judge_id'] for r in vectors['codex'] if r['judge_id']==key or ('|' not in key and r['judge_id'].endswith('|'+key) and not r['judge_id'].startswith('gpt-4o-mini'))))
+    all_rewrites = []
+    fig, ax = plt.subplots(figsize=(7.1,3.1))
+    for j, variant in enumerate(['RENAME','REORDER','STYLE','ALPHA']):
+        means=[]
+        for jid in codex_ids:
+            vals=grouped[jid,'property_identity',variant]
+            mean=float(np.mean([x[0] for x in vals]));means.append(mean)
+            all_rewrites.append({'judge_id':jid,'rewrite':variant,'n_pairs':len(vals),'mean_median_score':mean})
+        ax.scatter(means,np.arange(8)+(j-1.5)*.13,s=22,marker=['o','s','^','D'][j],label=variant.title(),zorder=3)
+    ax.set(yticks=range(8),yticklabels=labels,xlim=(-.03,1.04),xlabel='Mean recorded score (median over repeats)')
+    ax.invert_yaxis();ax.tick_params(labelsize=9);ax.grid(axis='x',alpha=.18)
+    ax.legend(loc='upper center',bbox_to_anchor=(.5,-.18),ncol=4,frameon=False,fontsize=9)
+    fig.tight_layout(rect=[0,.04,1,1])
+    fig.savefig(FIG/'codex_rewrite_diagnostics.pdf',metadata={'CreationDate':None,'ModDate':None});plt.close(fig)
+    dump_csv(OUT/'all_rewrite_statistics.csv',all_rewrites)
+
+    reversal_rows=load_csv(B+'results_exp19_low_variance_replot/bug_reversal_rates.csv')
+    by_id={r['judge_id']:r for r in reversal_rows}
+    counts=[int(by_id[jid]['n_reversal']) for jid in codex_ids]
+    fig,ax=plt.subplots(figsize=(7.1,2.8))
+    ax.barh(range(8),counts,color=[colors[i] if i<4 else '#777777' for i in range(8)],height=.64)
+    for i,(jid,count) in enumerate(zip(codex_ids,counts)):
+        ax.text(count+.25,i,f"{count}/{by_id[jid]['n_ladders']}",va='center',fontsize=9)
+    ax.set(yticks=range(8),yticklabels=labels,xlim=(0,27.5),xticks=[0,6,12,18,24],xlabel='Ladders with at least one local score increase')
+    ax.invert_yaxis();ax.tick_params(labelsize=9);ax.grid(axis='x',alpha=.18);ax.set_axisbelow(True)
+    fig.tight_layout();fig.savefig(FIG/'codex_reversal_counts.pdf',metadata={'CreationDate':None,'ModDate':None});plt.close(fig)
+    dump_csv(OUT/'reversal_counts.csv',[by_id[jid] for jid in codex_ids])
+
+    opus_detail=load_csv(sources['opus']+'detail_rows.csv')
+    opus_groups=defaultdict(list)
+    for row in opus_detail:
+        if row['row_type']=='property_bug':
+            opus_groups[row['judge_id'],int(row['item_key'].split('::L')[-1])].append(float(np.median(json.loads(row['repeat_scores']))))
+    opus_stats=[]
+    fig,ax=plt.subplots(figsize=(7.1,2.8))
+    for i,prompt in enumerate(['P1_BASELINE','P4_CHECKLIST','P8_STRICT_B']):
+        jid=next(j for j,level in opus_groups if j.endswith('|'+prompt) and not j.startswith('gpt-4o-mini'))
+        means=[]
+        for level in range(5):
+            vals=opus_groups[jid,level];mean=float(np.mean(vals));means.append(mean)
+            opus_stats.append({'judge_id':jid,'level':level,'n_pairs':len(vals),'mean_median_score':mean})
+        ax.plot(range(5),means,marker='o',ms=4,color=colors[i],label=labels[i])
+    ax.set(xticks=range(5),ylim=(-.04,1.06),xlabel='Cumulative bug level',ylabel='Mean recorded score')
+    ax.grid(alpha=.18);ax.legend(frameon=False,fontsize=9);ax.tick_params(labelsize=9)
+    fig.tight_layout();fig.savefig(FIG/'opus_bug_curves.pdf',metadata={'CreationDate':None,'ModDate':None});plt.close(fig)
+    dump_csv(OUT/'opus_bug_curve_statistics.csv',opus_stats)
+
     payload={'input_revision':INPUT_REVISION,
              'inputs':INPUTS,'family_metrics':metrics,'headline_cis':ci,
              'weight_grid':{'step':.1,'minimum':.2,'maximum':.5,'n_triples':len(grid),'includes_equal_weights':False,

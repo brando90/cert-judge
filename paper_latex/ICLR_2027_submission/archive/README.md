@@ -41,3 +41,14 @@ Original paths are preserved below `archive/figures/`. Some archived sources ref
 The complete Leanstral discussion is preserved in `997_appendix_human_alignment.tex`; its negative fixed-index result remains in one active paragraph. Archive figures retain their original bytes.
 
 The local `.gitattributes` preserves pre-existing terminal blank lines in the original TeX sources; all other whitespace checks remain enabled.
+
+## Final diagnostic refresh
+
+The inherited reversal image disagreed with its frozen CSV (strict 5 versus 4, lexical 19 versus 20 reversals). The diagnostic plots below were replaced together from committed rows, making every plotted observation traceable and removing the duplicated Codex bug curve.
+
+| Original figure | Reason | Active citations |
+|---|---|---|
+| `figures/fig_main_monotonicity_lowvar_exp19.png` | Replaced by a figure regenerated from committed scores; original bytes retained. | None |
+| `figures/fig_failure_alpha_variant_breakdown_exp19.png` | Replaced by a figure regenerated from committed scores; original bytes retained. | None |
+| `figures/fig_failure_bug_reversal_rates_exp19.png` | Replaced by a figure regenerated from committed scores; original bytes retained. | None |
+| `figures/fig_main_monotonicity_lowvar_opus47.png` | Replaced by a figure regenerated from committed scores; original bytes retained. | None |

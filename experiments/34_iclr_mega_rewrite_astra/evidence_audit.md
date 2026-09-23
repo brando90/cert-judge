@@ -60,3 +60,9 @@ The historical generators remain the principal scientific limitation: the alpha 
 **TLDR-end:** [cj: evidence-audit] Retained numbers and formulas are consistent with inspected artifacts; five targeted wording/provenance clarifications are listed above. The pool denominator and approximate cross-protocol comparison have distinct, traceable sources.
 
 **Snapshot:** Canonical Qwen pass2 = 0.8571428571; pool = 343 labels / 78 exact-key items / 5 raters; largest-magnitude expanded-screen association = −0.3911, Holm p = 0.2484; weight grid = 12 triples.
+
+## Final rendered-figure correction
+
+The root visual cross-check found that the inherited reversal PNG did not match the canonical CSV even though the main table did. The three appendix diagnostic plots were regenerated from committed detail rows/CSV, and their originals archived. This supersedes the earlier implication that inspecting numeric CSV values also validated the inherited image bytes.
+
+The retained expanded-panel PNG was independently checked against its originating image, all 13 coordinates, the selected-weight formula, both correlations and intervals. No mismatch was found; its SHA-256 is `5bc7e78ec6165763bef54e538c25368971d8691c8b913fe58d929943e22c76ab`.
