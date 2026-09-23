@@ -700,7 +700,6 @@ The Self-Evolving Critic (SCRIT) framework trains LLMs to generate critiques of 
 
 \paragraph{Certifying Judges.}
 Naïve LLM judges are often inconsistent, rewarding stylistic cues over correctness \citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
-% To mitigate this, \citet{anonymous2025formaljudge} propose certifying judges with falsifiable properties. Their Lean-aware theorem judge satisfies both \emph{Identity} (identical inputs yield maximal scores) and \emph{Monotonicity} (scores decrease as bugs or omissions are introduced), with Pearson correlations up to 0.973. This validation enables the judge to serve as a reliable proxy for human evaluation of Lean theorems and specifications.
 
 \paragraph{Validity-Centered Evaluation.}
 Certifying judges requires not only behavioral properties but also principled validity evidence.
@@ -781,7 +780,6 @@ Formal kernels (Lean/Isabelle) already deliver binary checks; HCI contributes th
 % :contentReference[oaicite:3]{index=3}
 
 % \paragraph{Complementarity with a \emph{certified} formal judge.}
-% \citet{anonymous2025formaljudge} propose certifying an LLM theorem/spec judge via falsifiable properties---\emph{identity} and \emph{monotonicity}---and report strong negative correlations between injected error and score (e.g., $|r|\approx 0.973$) on \textsc{VeriBench} \citep{veribench_icml25}. HCI turns this certified signal into usable oversight by: (a) rendering per-clause rubrics and local confidence hints, (b) exposing the judge’s own sanity checks (identity pairs and monotone ladders) so users see \emph{why} scores move, and (c) attaching a concise \emph{judge card} (intended claim, evidence, threats) in the validity-centered sense of \citet{salaudeen2025measurement}. For settings with weak ground truth or adversaries, information-theoretic overseer queries provide robustness beyond rubric scores \citep{robertson2025stepbystep}.%
 % % :contentReference[oaicite:4]{index=4}
 
 % \paragraph{Design takeaways for scalable oversight.}
