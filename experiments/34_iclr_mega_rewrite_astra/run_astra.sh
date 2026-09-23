@@ -7,7 +7,7 @@ if [ ! -d "$WT" ]; then git -C "$REPO" worktree add "$WT" -b astra/iclr-mega-rew
 PROMPT="$(cat "$WT/$EXP/PROMPT.md")"
 # scrub provider keys so the CLI can only use its subscription login
 env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY -u GEMINI_API_KEY -u GOOGLE_API_KEY \
-  nohup codex exec --approve-for-me --disable code_mode_host -s workspace-write --cd "$WT" -m gpt-6-astra -c 'model_reasoning_effort="ultra"' "$PROMPT" \
+  nohup codex exec --approve-for-me --disable code_mode_host --cd "$WT" -m gpt-6-astra -c 'model_reasoning_effort="ultra"' "$PROMPT" \
   > "$REPO/$EXP/results/astra_run.log" 2>&1 < /dev/null &
 echo $! > "$REPO/$EXP/results/astra_pid"
 echo "started codex pid $(cat "$REPO/$EXP/results/astra_pid"); log: $REPO/$EXP/results/astra_run.log"
