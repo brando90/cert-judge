@@ -15,6 +15,8 @@ Reviewers will likely ask "why only VeriBench, not Verina or Vero?".
 The ICML workshop reviews (`experiments/18_icml_reviews/pre_prompt.md`) did not name another benchmark, but raised the neighbouring concern:
 generalization "to new human raters, new Lean domains, or unseen judge families" (line 103), "domain-specific semantic mismatch" (line 135), and "other proof assistants or formal languages beyond Lean 4" (line 229).
 The ICML camera-ready plan deferred this to future work (`experiments/18_icml_reviews/agent_prompt.md:48`).
+NeurIPS 2025 MATH-AI reviewer ivJs did flag "finite perturbations on one benchmark" (`experiments/33_openreview_complaints_all_venues_to_iclr2027_paper/complaints_ledger.md`, row N25-ivJs-1).
+The limitations section (`paper_latex/ICLR_2027_submission/06_limitations.tex`) now states that all results come from VeriBench and that Verina and Vero are untested (added 09-22-2026); this idea covers the experiment, not the disclosure.
 
 ## Candidate benchmarks
 

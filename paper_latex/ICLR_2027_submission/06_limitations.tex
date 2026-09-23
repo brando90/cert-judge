@@ -12,6 +12,7 @@ A locked held-out test therefore needs independent raters under one frozen rubri
 \paragraph{What certification does not cover.}\label{sec:limitations-finite}
 No finite perturbation suite can rule out every judge failure, so \(\mathrm{TI}_{\mathrm{var}}\) is a graded trust signal, not a pass/fail certificate.
 The four probes do not target vacuous, weakened, or over-constrained statements, formatting-only edits beyond the rewrites in Table~\ref{tab:codex_invariance_variants}, or artifacts from proof assistants other than Lean~4.
+All candidates, gold references, and probes come from \textsc{VeriBench}~\citep{miranda2026veribench}, so we have not tested whether the properties or \(\mathrm{TI}_{\mathrm{var}}\) transfer to other Lean~4 verification benchmarks such as \textsc{Verina}~\citep{ye2025verina} or the repository-level Vero~\citep{ye2026vero}.
 Scores are specification-relative: they measure agreement with an audited but necessarily incomplete gold reference, since no algorithm decides specification equivalence in general~\citep{rice1953}.
 Scores are anchored to a gold reference, but we do not evaluate candidates optimized against the judge, so resistance to gaming remains untested.
 Neither the judge prompts nor the validation-set rating protocol explicitly addresses presentation aspects of specification quality, such as redundant theorem statements, oversized implementations, or needless abstraction; only the held-out reviewer pool's rubric deducts for superfluous theorem statements.
