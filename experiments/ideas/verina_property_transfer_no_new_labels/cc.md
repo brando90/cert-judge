@@ -16,7 +16,8 @@ The dollar ceiling above is the budget; SNAP pre-approval does not raise it.
 ## Scientific question
 
 Does the paper's label-free judge-certification signal rank judge configurations the same way on a second Lean 4 benchmark?
-Primary quantity: Spearman ρ between the eight Codex-family configurations' TI_var on Verina and on VeriBench (published values: `experiments/archive/04_veribench_validation/results_exp30_tivar_v3_all_models/judge_trust_vector_*_avg.csv`, column `ti_var_v3`).
+Primary quantity: Spearman ρ between the eight Codex-family configurations' TI_var on Verina and on VeriBench, where TI_var is the paper's definition (`04_property_protocol.tex`: equal-weight geometric mean of the bug-ladder term and the two variance terms; VeriBench values in `experiments/archive/04_veribench_validation/results_exp28_varaware_codex_*`).
+Also compute the six-term weighted `ti_var_v3` that the figure script plots (`make_fig2_tivar_cross_model.py:21`, `results_exp30_tivar_v3_all_models/`), and report both side by side. On 09-22-2026 the two disagreed on VeriBench (Codex average: exp30 ρ = 0.762 against the paper's 0.833), so never mix them.
 Pre-registered reading: ρ ≥ 0.5 with both controls ranked last = "consistent with transfer"; otherwise "not shown". With n = 8 this is descriptive, not a significance test.
 Secondary: each property (identity, bug-ladder Spearman, weak monotonicity, flip rate, the two variance terms) per configuration on both benchmarks, and BAD_STRINGY's bug-ladder reversal count (VeriBench: 20 of 24).
 

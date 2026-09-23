@@ -40,6 +40,8 @@ Verina releases no model-generated solutions, so candidates must be generated.
 In code, the paper's P3 "weak" term is the weak-monotonicity rate over the bug ladder (`experiments/archive/04_veribench_validation/exp17_property_human_analysis.py:99`), while `04_property_protocol.tex` describes P3 as removing theorem statements and unit tests.
 TI_var itself does not use P3, but the v1/v2 baseline indices do.
 
+Second, the TI_var figure script (`experiments/archive/04_veribench_validation/make_fig2_tivar_cross_model.py:21–31`) plots the six-term weighted `ti_var_v3` from `results_exp30_tivar_v3_all_models/` (Codex average ρ = 0.762), while the paper defines TI_var as the three-term equal-weight index and quotes exp28's 0.833 / 0.905 / 0.738.
+
 ## Revisit condition
 
 After the ICLR main text is frozen, or at once if rebuttal reviewers ask for a second benchmark.
