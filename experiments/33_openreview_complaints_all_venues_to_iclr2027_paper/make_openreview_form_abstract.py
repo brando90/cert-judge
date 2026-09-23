@@ -6,13 +6,13 @@ TLDR: OpenReview strips \\(...\\) math and renders only $...$; internal referenc
 was triggered partly by exactly this). This script converts the LaTeX abstract to the plain
 text the form needs and warns about any leftover LaTeX or internal reference.
 
-Usage: python3 make_openreview_form_abstract.py [path/to/main.tex] > openreview_form_abstract.txt
+Usage: python3 make_openreview_form_abstract.py [path/to/00_abstract.tex] > openreview_form_abstract.txt
 """
 import re
 import sys
 from pathlib import Path
 
-TEX = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[2] / 'paper_latex/ICLR_2027_submission/main.tex'
+TEX = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[2] / 'paper_latex/ICLR_2027_submission/00_abstract.tex'
 
 
 def main() -> int:

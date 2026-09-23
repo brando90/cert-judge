@@ -1,0 +1,30 @@
+% !TEX root = main.tex
+\section{Problem Setup: Judging Lean Formal-Specification Quality}\label{sec:problem-setup}
+\paragraph{Task.}
+Each benchmark item contains a natural-language problem statement, a gold Lean~4 artifact $g$, and a candidate artifact $x$ produced by an AI agent.
+We call the informal requirement conveyed by the problem statement the \emph{intent}.
+An artifact is a single Lean file containing an implementation, a \emph{formal specification} of it, and possibly unit tests and proofs.
+Following common formal-methods usage, the formal specification is the set of theorem statements about the implementation, together with the predicates they use.
+Typical examples are pre/postconditions, algebraic properties, \(\mathrm{Pre}\rightarrow\mathrm{Post}\) correctness, and equivalence to a reference implementation.
+Unit tests are not part of it, and proofs only certify that its theorems hold; Appendix~\ref{app:spec-vs-tests} discusses the competing view that a unit test is a ground theorem.
+Hereafter, ``specification'' means formal specification, whether an agent, a human, or a script wrote it.
+Our goal is to assign a score $J(x,g) \in [0,1]$ of \emph{reference-based specification quality}: how completely and correctly the candidate captures the intended formal specification represented by the gold artifact.
+
+\paragraph{Why this is nontrivial.}
+Type-checking does not determine whether $x$ formalizes the same intended property as $g$: a candidate may compile while being under-specified, over-constrained, vacuously true, or semantically shifted.
+In \textsc{VeriBench}, this often appears as a coverage gap, where a candidate captures only part of the behavior the gold reference specifies~\citep{miranda2026veribench}.
+
+\paragraph{Why a gold reference.}
+Without ground truth, direct LLM ratings are vulnerable to strategic manipulation, which motivates information-theoretic alternatives to direct rating queries \citep{robertson2025stepbystep}.
+Our setting has ground truth in the form of an audited gold reference.
+Scoring against it ties each rating to a question with a correct answer in principle: which of the reference's guarantees the candidate states.
+The score therefore targets coverage and correctness relative to $g$, not an unanchored preference.
+
+\paragraph{Judge model.}
+We use an LLM judge parameterized by
+\[
+  \theta = (\text{model}, \text{prompt}, n_{\mathrm{repeats}}, \text{aggregation}),
+\]
+which maps a pair $(x,g)$ to a score $J_\theta(x,g)\in[0,1]$.
+Section~\ref{sec:property-protocol} asks when $J_\theta$ is trustworthy enough to rank systems without new human labels for every $\theta$.
+

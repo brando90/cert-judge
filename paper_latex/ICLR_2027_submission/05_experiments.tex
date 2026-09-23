@@ -1,0 +1,314 @@
+% !TEX root = main.tex
+\section{Experiments}
+\subsection{Data and human panel}\label{sec:data-human-protocol}\label{sec:veribench-overview}
+All experiments use \textsc{VeriBench}~\citep{miranda2026veribench}, whose 857 theorems span five subsets: introductory logic and programming tasks (Easy), classical data structures and algorithms (CS), HumanEval puzzles~\citep{chen2021evaluating}, security labs on real code (Security), and Python standard-library programs (RealCode).
+The validation set contains 75 candidate--gold pairs (25 problems, three agent generations each), each rated on a \(0\)--\(5\) rubric by one annotator under two rubric strictness levels, pass1 and pass2.
+Because one problem's gold file is missing, 72 pairs from 24 problems enter the analyses; we report pass1, pass2, and their average.
+In machine-learning terms this panel is a validation set: we used it to choose the index form, repeat aggregation, threshold, and prompt panel, so correlations on it are optimistic.
+\(\mathrm{TI}_{\mathrm{var}}\) has no fitted weights, so there is no training set, and the paper reports no test-set result (Section~\ref{sec:limitations-test}).
+The two passes agree only moderately (Spearman \(0.249\), quadratic-weighted \(\kappa=0.372\), MAE \(0.771\); Table~\ref{tab:app-human-human-ceiling}), which bounds any judge--human correlation well below \(1\).
+The same panel is reused for every judge, so differences between judges reflect judge behavior, not row selection.
+
+\subsection{Property sanity checks on GPT-5.3-Codex}
+Figure~\ref{fig:judge_sanity_checks} shows the intended qualitative behavior: scores fall as bugs accumulate and as theorem statements and unit tests are removed.
+Specification monotonicity is the cleaner signal (\(\rho=-0.899\)); bug monotonicity is directionally correct but noisier (\(\rho=-0.808\)), with local reversals.
+Claude Opus judges show the same pattern (Appendix Figures~\ref{fig:fig3_style_opus_codex} and~\ref{fig:lowvar_mono_codex_opus}).
+Table~\ref{tab:codex_invariance_variants} exposes the main failure mode: scores barely move under renaming, reordering, and style edits, but drop to \(0.399\) under \textsc{Alpha}-renaming, which leaves Lean semantics unchanged (see also Appendix Figure~\ref{fig:app-exp19-main-and-alpha}).
+
+\paragraph{Why \textsc{Alpha}-renaming is hard.}
+\textsc{Alpha}-renaming is the hardest rewrite for our judges even though it leaves Lean semantics unchanged.
+Renamed binders move an artifact away from both the gold reference and typical training text, so lexical cues and naming conventions can shift scores even when equivalence is obvious to an expert.
+The perturbation supplies no certificate of \(\alpha\)-equivalence, so the judge must infer invariance from surface patterns, which current models do only partly.
+Canonicalizing binders or giving the judge kernel-derived structure are natural fixes.
+Alpha-renaming accounts for most of the dispersion in identity-probe scores: replacing each judge's alpha-renamed scores with its median score under style edits, a post-hoc proxy for canonicalization, lowers the mean per-judge standard deviation from \(0.250\) to \(0.070\) across the eight Codex-family configurations.
+A real fix must rescore the canonicalized text.
+
+\begin{table}[t]
+  \centering
+  \scriptsize
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Rewrite} & \textbf{Mean Score} & \textbf{Mean Within-Item Std} \\
+    \midrule
+    RENAME           & 0.936               & 0.005                         \\
+    REORDER          & 0.849               & 0.029                         \\
+    STYLE            & 0.982               & 0.001                         \\
+    ALPHA            & 0.399               & 0.096                         \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{P4 semantic invariance for the Codex judge.} Scores under semantics-preserving rewrites; \textsc{Alpha}-renaming is the weakest mode.}
+  \label{tab:codex_invariance_variants}
+\end{table}
+
+\subsection{\texorpdfstring{\(\mathrm{TI}_{\mathrm{var}}\)}{TI-var} tracks judge-level human agreement on the validation set}
+\label{sec:tivar_cross_model_results}
+\label{sec:validation-human-alignment}
+Each judge family (Codex, Claude Opus, Qwen3-Coder) has eight configurations: three prompts (P1, P4, P8), two GPT-4o-mini configurations, a text-similarity grader (BAD\_STRINGY), an edit-distance scorer, and a random control.
+Each Codex-panel score is the median over repeated calls per pair: three for the LLM judges and nine for the edit-distance and random controls.
+Figure~\ref{fig:tivar_cross_model_avg} plots each configuration's \(\mathrm{TI}_{\mathrm{var}}\) against its Spearman agreement with averaged human labels.
+The judge-level association between \(\mathrm{TI}_{\mathrm{var}}\) and human agreement is positive in every family (Table~\ref{tab:tivar_cross_model_results}).
+Six of the nine family--pass correlations exceed \(0.7\), and Claude Opus, the weakest family, stays positive on every pass.
+For Codex, Pearson correlation shows the same pattern (avg \(r=0.774\)), while Kendall's \(\tau\) is noisier at \(n=8\) (avg \(\tau=0.571\)).
+Bootstrap 95\% intervals for the Codex correlations are wide at \(n=8\): \([0.24, 1.00]\) on averaged labels, \([0.41, 1.00]\) on pass1, and \([0.11, 1.00]\) on pass2, with permutation \(p\) of \(0.017\), \(0.005\), and \(0.045\) (10{,}000 resamples and permutations, seed 42).
+
+\begin{figure}[t]
+  \centering
+  \definecolor{jP8}{HTML}{1F77B4}%
+  \definecolor{jP4}{HTML}{2CA02C}%
+  \definecolor{jP1}{HTML}{FF7F0E}%
+  \definecolor{jBAD}{HTML}{D62728}%
+  \definecolor{jIVP8}{HTML}{9467BD}%
+  \definecolor{jIVP4}{HTML}{8C564B}%
+  \definecolor{jedit}{HTML}{7F7F7F}%
+  \definecolor{jrand}{HTML}{BCBD22}%
+  \noindent
+  \centering
+  \begin{subfigure}[t]{0.323\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=\linewidth,
+        height=4.55cm,
+        clip=false,
+        xmin=0, xmax=1.0,
+        ymin=-0.1, ymax=0.62,
+        xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
+        ylabel={Human Spearman (avg)},
+        title={Codex $\rho=0.833$},
+        title style={font=\small},
+        grid=major,
+        grid style={draw=gray!20},
+        tick label style={font=\scriptsize},
+        label style={font=\scriptsize},
+        legend pos=north west,
+        legend columns=2,
+        legend cell align=left,
+        legend style={
+            font=\fontsize{7}{8}\selectfont,
+            draw=gray!50,
+            fill=white,
+            fill opacity=0.94,
+            text opacity=1,
+            inner sep=2pt,
+            column sep=3.5pt,
+            row sep=1.5pt,
+          },
+        ]
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.0083,-0.0008) +- (0,0.0684)};
+        \addlegendentry{rand}
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.0595,0.1987) +- (0,0.0769)};
+        \addlegendentry{edit}
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.1141,0.0916) +- (0,0.0697)};
+        \addlegendentry{4o-P4}
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.4709,-0.0142) +- (0,0.0702)};
+        \addlegendentry{4o-P8}
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.6964,0.4348) +- (0,0.0635)};
+        \addlegendentry{BAD}
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.9208,0.4664) +- (0,0.0588)};
+        \addlegendentry{P1}
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.9199,0.4193) +- (0,0.0614)};
+        \addlegendentry{P4}
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.8919,0.3652) +- (0,0.0683)};
+        \addlegendentry{P8}
+        \addplot+[domain=0.0083:0.9208, samples=2, dashed, color=red!65!black, thick, forget plot] {0.5080*x - 0.0128};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.323\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=\linewidth,
+        height=4.55cm,
+        clip=false,
+        xmin=0, xmax=1.0,
+        ymin=-0.1, ymax=0.62,
+        xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
+        title={Claude Opus $\rho=0.643$},
+        title style={font=\small},
+        grid=major,
+        grid style={draw=gray!20},
+        tick label style={font=\scriptsize},
+        label style={font=\scriptsize},
+        ]
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.0083,-0.0008) +- (0,0.0672)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.0595,0.1987) +- (0,0.0772)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.1134,0.1910) +- (0,0.0668)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.5585,0.0888) +- (0,0.0738)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.7458,0.3243) +- (0,0.0604)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.9284,0.3153) +- (0,0.0702)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.9270,0.4514) +- (0,0.0614)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.9474,0.1453) +- (0,0.0730)};
+        \addplot+[domain=0.0083:0.9474, samples=2, dashed, color=red!65!black, thick, forget plot] {0.2776*x + 0.0571};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.323\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=\linewidth,
+        height=4.55cm,
+        clip=false,
+        xmin=0, xmax=1.0,
+        ymin=-0.1, ymax=0.62,
+        xlabel={\(\mathrm{TI}_{\mathrm{var}}\)},
+        title={Qwen3-Coder $\rho=0.905$},
+        title style={font=\small},
+        grid=major,
+        grid style={draw=gray!20},
+        tick label style={font=\scriptsize},
+        label style={font=\scriptsize},
+        ]
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jrand,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.0083,-0.0008) +- (0,0.0672)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jedit,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.0595,0.1987) +- (0,0.0772)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP4,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.1267,0.0759) +- (0,0.0722)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jIVP8,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.7059,0.0789) +- (0,0.0703)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP1,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.8860,0.1742) +- (0,0.0756)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP4,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.8869,0.3603) +- (0,0.0585)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jP8,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.9396,0.1207) +- (0,0.0724)};
+        \addplot+[only marks, mark=*, mark size=1.65pt, color=jBAD,
+          error bars/.cd, y dir=both, y explicit]
+        coordinates {(0.9420,0.3705) +- (0,0.0649)};
+        \addplot+[domain=0.0083:0.9420, samples=2, dashed, color=red!65!black, thick, forget plot] {0.2337*x + 0.0687};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}
+  \caption{\textbf{\(\mathrm{TI}_{\mathrm{var}}\) vs.\ judge-level human agreement (averaged labels).} One panel per judge family and one point per configuration; the \(y\)-axis is Spearman agreement with averaged human labels on the validation set, with approximate standard errors.
+  Panel titles give the judge-level Spearman \(\rho\) reported in Table~\ref{tab:tivar_cross_model_results}; dashed lines are OLS guides only.
+  An expanded 13-judge panel is shown in Appendix Figure~\ref{fig:app-exp25-13judge}.}
+  \label{fig:tivar_cross_model_avg}
+  \vspace{-2mm}
+\end{figure}
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lcccccc}
+    \toprule
+                          & \multicolumn{4}{c}{\textbf{Averaged labels}} & \multicolumn{2}{c}{\textbf{\(\mathrm{TI}_{\mathrm{var}}\) by pass}} \\
+    \cmidrule(lr){2-5}\cmidrule(lr){6-7}
+    \textbf{Judge family} & \(v1\) & \(v2\) & GM    & \(\mathrm{TI}_{\mathrm{var}}\) & pass1 & pass2 \\
+    \midrule
+    Codex                 & 0.762  & 0.476  & 0.857 & 0.833                          & 0.905 & 0.738 \\
+    Claude Opus           & 0.429  & 0.143  & 0.714 & 0.643                          & 0.810 & 0.595 \\
+    Qwen3-Coder           & 0.524  & 0.500  & 0.786 & 0.905                          & 0.476 & 0.905 \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{Judge-level association between trust indices and human agreement} (validation set, eight configurations per family).
+  Each entry is the Spearman correlation between an index and the configurations' Spearman agreement with human labels.
+  \(v1\), \(v2\): arithmetic indices; GM: geometric index; \(\mathrm{TI}_{\mathrm{var}}\): variance-aware index.}
+  \label{tab:tivar_cross_model_results}\label{tab:cross_model_index_compare_avg}
+\end{table}
+
+\paragraph{Human agreement alone can miss a bad judge.}
+BAD\_STRINGY is a deliberately lexical grader.
+On the Codex panel it agrees with humans about as well as the three prompted judges (Table~\ref{tab:codex_configs}), consistent with the panel labels partly tracking surface similarity to the gold reference: edit distance alone reaches \(0.20\).
+Yet its scores reverse on 20 of 24 bug ladders, and \(\mathrm{TI}_{\mathrm{var}}\) ranks it below all three prompted judges.
+Screening on human agreement alone would have kept this judge; the property suite exposes it.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Codex-family configuration} & \textbf{Human \(\rho\) (avg)} & \(\mathrm{TI}_{\mathrm{var}}\) & \textbf{Bug-ladder reversal rate} \\
+    \midrule
+    P1 prompt                          & 0.47                         & 0.92                          & 0.00                              \\
+    P4 prompt                          & 0.42                         & 0.92                          & 0.00                              \\
+    P8 prompt                          & 0.37                         & 0.89                          & 0.17                              \\
+    BAD\_STRINGY (lexical)             & 0.43                         & 0.70                          & 0.83                              \\
+    GPT-4o-mini, P8 prompt             & \(-0.01\)                    & 0.47                          & 0.75                              \\
+    GPT-4o-mini, P4 prompt             & 0.09                         & 0.11                          & 0.67                              \\
+    Edit distance                      & 0.20                         & 0.06                          & 1.00                              \\
+    Random                             & 0.00                         & 0.01                          & 1.00                              \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{Codex-family configurations.} Human agreement and \(\mathrm{TI}_{\mathrm{var}}\) are the values plotted in Figure~\ref{fig:tivar_cross_model_avg}; the reversal rate is the fraction of 24 bug ladders with at least one local score increase (Appendix~\ref{app:exp16-exp17}).
+  The lexical grader matches the prompted judges on human agreement but not on the properties.}
+  \label{tab:codex_configs}
+\end{table}
+
+\paragraph{Choice of index.}
+\(\mathrm{TI}_{\mathrm{var}}\) improves over the arithmetic \(v2\) in every family (Codex \(0.476\!\rightarrow\!0.833\), Claude Opus \(0.143\!\rightarrow\!0.643\), Qwen3-Coder \(0.500\!\rightarrow\!0.905\); Table~\ref{tab:tivar_cross_model_results}).
+The plain geometric index is competitive for Codex and Claude Opus (\(0.857\) and \(0.714\)); we adopt \(\mathrm{TI}_{\mathrm{var}}\) because its variance penalties target instability directly and it is positive for every family and pass.
+A separate weight-tuned geometric variant, fit on one label pass, keeps Spearman \(0.786\)--\(0.810\) on the other pass over the same pairs (Appendix Table~\ref{tab:cross_pass_generalization}).
+On an expanded 13-configuration panel, its pass1-fit form (\(\text{mono}^{0.4}\,\text{stab}^{0.6}\)) reaches \(\rho=0.769\) with a bootstrap 95\% interval of \([0.34, 0.95]\) (Appendix Figure~\ref{fig:app-exp25-13judge}).
+Intervals this wide mean that, with eight to thirteen configurations, these correlations establish direction and rough strength rather than precise effect sizes.
+Because the index form was chosen with these labels in view, all of these numbers are validation-set associations, not held-out estimates.
+
+\paragraph{Which properties matter.}
+Table~\ref{tab:property_assoc} correlates each property with human agreement across the eight Codex-family configurations.
+Specification monotonicity (P3) has the strongest association on every label view (Spearman \(0.63\)--\(0.78\)), followed by bug monotonicity (P2; \(0.60\)--\(0.71\)).
+Identity (P1) and stability (P4) are weak or inconsistent standalone signals.
+With eight configurations, only P3 on pass2 and on averaged labels reaches permutation \(p<0.05\).
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Property}                    & \textbf{pass1}          & \textbf{pass2}          & \textbf{avg}            \\
+    \midrule
+    P1 identity                          & \(-0.21\) (0.62)        & \(0.02\) (0.98)         & \(-0.02\) (0.98)        \\
+    P2 bug monotonicity                  & \(0.60\) (0.13)         & \(0.67\) (0.08)         & \(0.71\) (0.06)         \\
+    P3 specification monotonicity        & \(\mathbf{0.63}\) (0.11) & \(\mathbf{0.78}\) (0.03) & \(\mathbf{0.75}\) (0.04) \\
+    P4 stability                         & \(0.47\) (0.24)         & \(-0.23\) (0.57)        & \(0.14\) (0.76)         \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{Per-property association with human agreement} (eight Codex-family configurations).
+  Spearman correlation between each property score and the configurations' human agreement; permutation \(p\)-values in parentheses.}
+  \label{tab:property_assoc}
+\end{table}
+
+\paragraph{Decision threshold.}
+To turn scores into accept/reject decisions, we sweep thresholds \(t\in\{0.60,0.65,\dots,0.85\}\).
+Bug-ladder ranking is unchanged (\(\rho_{\text{bug}}=-0.790\) at every \(t\)), while stricter thresholds slightly lower the rate at which repeated calls flip a decision (\(0.058\) at \(t=0.60\) to \(0.046\) at \(t=0.85\)) and lower the pass rate (\(0.583\) to \(0.536\); Appendix Table~\ref{tab:exp13_threshold_sweep}).
+We select \(t=0.85\), which has the lowest observed flip rate.
+

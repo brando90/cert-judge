@@ -1,0 +1,23 @@
+% !TEX root = main.tex
+\section{Why Judge Scores Are Specification-Relative}
+
+It is tempting to interpret a perfect score from our LLM judge as a guarantee of absolute program correctness.
+However, this is fundamentally impossible due to established limits from computability theory.
+The obstacle is not a lack of ingenuity in our benchmark design or judge prompting, but an established negative result.
+
+\paragraph{Rice’s Theorem.}
+The core limitation stems from Rice’s theorem, which states that any non-trivial, semantic property of programs in a Turing-complete language is undecidable.
+
+\begin{quote}
+  \textbf{Rice's Theorem (Informal):} Let $\mathcal{S}$ be any property of a program's input-output behavior (e.g., "the program always terminates" or "the output is always sorted").
+  If $\mathcal{S}$ is non-trivial (meaning some programs have it and some don't), then no algorithm can exist that decides for \emph{every} program whether it satisfies $\mathcal{S}$.
+\end{quote}
+
+\paragraph{Impact on the Gold Standard and the Judge.}
+Rice's theorem directly implies that the gold reference files used by our judge are necessarily incomplete.
+If a recursively enumerable gold standard could capture \emph{every} true semantic property of a program, one could use it to build a decision procedure that contradicts the theorem.
+Therefore, our gold standards, while rigorous, represent a curated but fundamentally finite set of important specifications.
+
+This leads to a critical limitation for interpreting our artifact scores: evaluations are \textbf{specification-relative}.
+A maximal score denotes close agreement with \emph{our} audited gold formalization and rubric-conditioned human ratings, not a universal guarantee beyond that reference.
+

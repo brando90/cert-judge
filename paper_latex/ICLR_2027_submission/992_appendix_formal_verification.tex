@@ -1,0 +1,69 @@
+% !TEX root = main.tex
+\section{Formal verification context and tooling}
+\textbf{Formal methods as scalable oversight.} A central concern with LLM-assisted research is that models produce text faster than humans can audit, so trust in the output can erode even when the surface looks correct.
+The concern treats verification as a single unstructured activity: one human eye against a wall of generated tokens.
+With a proof assistant, the activity decomposes.
+The Lean kernel deterministically checks every step of a proof, so what the human must verify is not the proof but a much smaller artifact---the formal statement, its definitions, and its assumptions---and whether they faithfully express the informal claim.
+This is the structural move that makes oversight scalable: the verifier checks the answer, while the human checks the question.
+The premise is timely: autoformalization is improving, language-model-assisted proof search has become usable rather than a demonstration, and the surrounding tooling (\texttt{mathlib4}, Lean's metaprogramming layer, Pantograph, Aesop) has matured to the point where formal verification of nontrivial claims is no longer a niche enterprise.
+This view sharpens, rather than dissolves, the concerns motivating human oversight: shallow reading and unjustified confidence remain failure modes, but the target of human understanding shifts from hundreds of lines of generated argument to a Lean statement together with its definitions and assumptions---a much smaller object, but the one that actually encodes intent.
+Theoretical limits remain---Rice's theorem, the halting problem, and G\"odelian incompleteness bound what any countable formal system can decide---but they constrain what the verifier can settle, not the central oversight claim that humans are best deployed on \emph{asking the right question}.
+For complementary perspectives on verifier-present oversight and HCI patterns for exposing judge evidence, see the discussion in Section~\ref{sec:related-work-cont}.
+
+\textbf{Why Lean 4?} Lean 4 is a fully-fledged programming language and lets VeriBench contain full runnable code and machine-checked proofs in the same dependently-typed language.
+% \leni{The following sentence should be eliminated. Coq and Isabelle are not inherently less trustworthy}
+% This eliminates the extraction gap that separates proof from execution in systems like Coq to OCaml or Isabelle to SML/Scala -- making Lean 4 more trustworthy.
+Ahead-of-time compilation with the Lake toolchain produces fast native binaries, while first-class \texttt{Task} primitives, async I/O, and a thread-pool scheduler enable genuine concurrent programs inside the prover.
+Lean’s C-level foreign-function interface (FFI) lets those binaries call out to high-performance libraries when needed.
+On the proof side, Lean ships a powerful metaprogramming system written in Lean itself, giving researchers a programming interface to access its internals.
+This led to the creation of tools such as Pantograph and Aesop.
+% ([lean-lang.org][5], [leanprover-community.github.io][6])
+Finally, the community-maintained \texttt{mathlib4} and \texttt{std4} libraries supply thousands of reusable theorems and data structures, and they are expanding quickly thanks to an active Zulip and GitHub ecosystem.
+Lean also has a work-in-progress program verification library, CSLib, which has recently seen rapid growth.
+Lean 4 is backed by an unusually vibrant open-source community: hundreds of contributors refine \texttt{mathlib4} on GitHub each week, the public Zulip sees expert discussion around the clock, and even Fields-Medalist Terence Tao has chosen Lean to formalize portions of his current research—clear testimony to the ecosystem’s accessibility and intellectual depth.
+% ([github.com][7], [leanprover-community.github.io][8])
+Unlike the unit tests, fuzzers, and code sanitation pipelines common in industry—tools that sample inputs or rely on heuristics—Lean 4 supplies machine-checked proofs that a property holds for \emph{all} executions.
+Its dependent type system can encode deep invariants (e.g., length-indexed arrays, bounded integers), so programs that violate them fail to compile, eliminating whole classes of bugs such as buffer overflows or integer wrap-around.
+Code, specification, and proof reside in the same file and are compiled by Lake into the shipped native binary, preventing the drift that arises when verification artifacts live outside the build.
+% Tactic automation accelerates proof construction while keeping each step inspectable, and Lean’s FFI plus ahead-of-time compilation allow verified components to link with existing C/C++ libraries and run at production speed—even for concurrent tasks handled through built-in async primitives.
+In short, Lean turns informal “best-effort” checks into formal, end-to-end guarantees without sacrificing performance or interoperability.
+
+\textbf{Lean 4’s limitations.} Lean’s toolchain is still younger than Coq’s or Isabelle’s, making its standard libraries and automation smaller, and thus some formalizations demand extra groundwork.
+Lean’s runtime has not been stress-tested at the scale of mainstream systems languages, meaning large-scale or safety-critical deployments may require additional vetting.
+Lean tactics could contain bugs and fail to typecheck on different environments.
+Acknowledging these gaps clarifies that VeriBench chooses Lean 4 for its unique unified programming-plus-proving model and modern automation hooks, not because it already matches the decades-old industrial maturity of older theorem provers.
+\noindent\textit{Static vs.\ runtime caveat:} Lean’s guarantees are \emph{static} and specification‑relative: they certify the Lean program meets the stated properties, but they do not by themselves detect emergent runtime faults outside the model (e.g., I/O (Input/Output) failures, environment misconfiguration, FFI (Foreign Function Interface) unsoundness, resource exhaustion, or undefined behavior in linked C code).
+Such behaviors must either be modeled and proved, or mitigated with production safeguards (monitoring, sandboxing, input validation).
+
+% [1]: https://lean-lang.org/doc/reference/latest/IO/Tasks-and-Threads/?utm_source=chatgpt.com "15.11. Tasks and Threads - Lean"
+% [2]: https://lean-lang.org/doc/reference/4.19.0/Build-Tools-and-Distribution/Lake/?utm_source=chatgpt.com "Lake - Lean"
+% [3]: https://docs.lean-lang.org/lean4/doc/dev/ffi.html?utm_source=chatgpt.com "Foreign Function Interface - Lean Documentation Overview"
+% [4]: https://proofassistants.stackexchange.com/questions/4445/lean-4-foreign-function-interface-for-matrix-multiplication?utm_source=chatgpt.com "lean 4 foreign function interface for matrix multiplication?"
+% [5]: https://lean-lang.org/doc/reference/latest/Notations-and-Macros/Macros/?utm_source=chatgpt.com "19.5. Macros - Lean"
+% [6]: https://leanprover-community.github.io/lean4-metaprogramming-book/main/06_macros.html?utm_source=chatgpt.com "Macros - Metaprogramming in Lean 4"
+% [7]: https://github.com/leanprover-community/mathlib4?utm_source=chatgpt.com "leanprover-community/mathlib4: The math library of Lean 4 - GitHub"
+% [8]: https://leanprover-community.github.io/mathlib4_docs/index.html?utm_source=chatgpt.com "Mathlib Documentation - Lean community"
+
+\textbf{Lean 4 versus Dafny.} Unlike Dafny, whose verifier translates each program into the Boogie intermediate language and then discharges first-order verification conditions with an SMT solver such as Z3, Lean 4 reasons natively in a dependently-typed calculus.
+% ([leino.science][1], [dafny.org][2])
+Because Lean 4’s types can mention run-time data and the very same source code is ahead-of-time compiled to a native binary via Lake, we can both state and prove value-indexed, higher-order properties (e.g., length-indexed vectorsand run the verified program itself—an end-to-end, fidelity that Dafny’s SMT-centred, Boogie-to-Z3 workflow cannot natively match.
+This gives Lean the expressive power to specify and prove higher-order, data-dependent properties—precisely the kind of semantic guarantees VeriBench seeks to test—while still yielding runnable binaries compiled by the same toolchain.
+Dafny’s SMT-centric workflow offers impressive push-button automation for imperative code but cannot natively encode the richer specifications (e.g., length-indexed vectors, algebraic invariants) that Lean handles directly.
+% ([lean-lang.org][3])
+
+% [1]: https://leino.science/papers/krml221.pdf?utm_source=chatgpt.com "[PDF] Using Dafny, an Automatic Program Verifier - Rustan Leino"
+% [2]: https://dafny.org/dafny/DafnyRef/DafnyRef.html?utm_source=chatgpt.com "Dafny Documentation"
+% [3]: https://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html?utm_source=chatgpt.com "Dependent Type Theory - Theorem Proving in Lean 4"
+
+\textbf{Lean 4 versus TLA+.}
+TLA+ excels at high-level specification of concurrent and distributed protocols, with correctness checked by the TLC model-checker and the TLAPS proof system that dispatches first-order obligations to external provers. % ([lamport.azurewebsites.net][1], [proofs.tlapl.us][2], [lamport.azurewebsites.net][3])
+However, TLA+ specifications are not executable programs; a separate implementation step is required, and state-space explosion can limit model-checking scalability.
+VeriBench instead needs a prover where the specification, proof, and runnable code live in the same language.
+Lean 4’s dependently-typed core lets us capture fine-grained, data-dependent invariants and then compile the very same artifacts to fast native binaries—capabilities outside TLA+’s scope.
+
+\textbf{Lean 4 versus Verus.} Verus is a verification framework for Rust programs using SMT solvers.
+A user state intermediate goals and an SMT backend fills in the intermediate steps.
+Compared to Verus, users have the option to use or not use SMT Solver-based tactics in Lean.
+This enables more fine-grained control and steering of the proof process.
+Verus also has a much larger kernel compared to Lean, and is more susceptible to soundness problem than Lean whose kernel is small.
+
