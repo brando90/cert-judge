@@ -9,7 +9,7 @@ Follow `~/agents-config/INDEX_RULES.md` (Hard Rules 1, 4, 9, 10, 11; Trigger Rul
 Repository `/Users/brandomiranda/cert-judge`. The active manuscript is `paper_latex/ICLR_2027_submission/main.tex`, a reformatting of the accepted ICML 2026 DL4C paper. Known prior rounds and where their text already lives:
 
 - NeurIPS 2025 MATH-AI, "Trusting the Formal Judge…", forum `9WAWDdwqpC`: `experiments/archive/02_neurips_reviews/or_neurips_2025_math_ai_workshop/or_reviews.md`.
-- ICML 2026 AI4Math, "CertJudge…", forum `xmHP3UhGQ8`: `experiments/18_icml_reviews/pre_prompt.md` (do not duplicate the analysis in `18_icml_reviews/agent_prompt.md`; cross-reference it).
+- ICML 2026 AI4Math, "CertJudge…", forum `xmHP3UhGQ8`: `experiments/18_icml_2026_reviews/pre_prompt.md` (do not duplicate the analysis in `18_icml_2026_reviews/agent_prompt.md`; cross-reference it).
 - ICML 2026 DL4C, "Certifying the Judge…", forum `gGR1gE7x3a`: not captured anywhere.
 - TMLR 2026 desk reject, forum `WKVtlskjeQ`: `experiments/archive/21_tmlr_submission/`.
 

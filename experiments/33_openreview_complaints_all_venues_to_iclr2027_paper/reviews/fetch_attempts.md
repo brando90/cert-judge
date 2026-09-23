@@ -16,12 +16,12 @@
 | 10 | 15:04 | Gmail search `openreview DL4C ("Certifying the Judge" OR review OR decision OR metareview)` | Gmail MCP (brandojazz@gmail.com) | 0 threads |
 | 11 | 15:04 | Gmail search `from:openreview.net (… titles …)` and `from:openreview.net newer_than:400d` | Gmail MCP | 0 threads: this mailbox receives no OpenReview notifications (they go to another address) |
 | 12 | 15:06 | Local disk: `~/cert-judge-autojudge-human-corr-val-test`, `~/Downloads`, `~/Desktop`, `find ~ -maxdepth 3 -iname '*openreview*' -o -iname '*dl4c*'` | shell | Only the submitted PDFs (`105_Certifying_the_Judge_Falsi.pdf`, `109_CertJudge_Evaluating_Lean_.pdf`) and the VeriBench paper's own DL4C folders; no cert-judge DL4C review text anywhere |
-| 13 | 15:05 | git history: `git log --all -i --grep=review`, `git grep DL4C` | shell | No commit or file carries DL4C review text; `18_icml_reviews/pre_prompt.md` is the only ICML capture (AI4Math) |
+| 13 | 15:05 | git history: `git log --all -i --grep=review`, `git grep DL4C` | shell | No commit or file carries DL4C review text; `18_icml_2026_reviews/pre_prompt.md` is the only ICML capture (AI4Math) |
 
 ## Captured without fetching (already in the repo)
 
 - NeurIPS 2025 MATH-AI (`9WAWDdwqpC`): `experiments/archive/02_neurips_reviews/or_neurips_2025_math_ai_workshop/or_reviews.md` → copied to `neurips2025_mathai_9WAWDdwqpC.md`.
-- ICML 2026 AI4Math (`xmHP3UhGQ8`): `experiments/18_icml_reviews/pre_prompt.md` → copied to `icml2026_ai4math_xmHP3UhGQ8.md`.
+- ICML 2026 AI4Math (`xmHP3UhGQ8`): `experiments/18_icml_2026_reviews/pre_prompt.md` → copied to `icml2026_ai4math_xmHP3UhGQ8.md`.
 - TMLR desk reject (`WKVtlskjeQ`): paraphrase and quoted fragments in `experiments/archive/21_tmlr_submission/` → `tmlr2026_desk_reject_WKVtlskjeQ.md`.
 
 ## Not found (searched, absent)

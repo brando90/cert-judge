@@ -47,7 +47,7 @@ All nine edits landed in commit `e0631b6` (main.tex, main.pdf, refs.bib), built 
 | T26-self-1 | authors' postmortem | OpenReview form abstract rendered "trust index, ," (`\(...\)` stripped) and carried internal appendix references | Addressed (form abstract file) | ICLR form abstract not yet prepared | `openreview_form_abstract.txt` written (plain text, `$…$` only, no internal refs); regenerate from the final abstract before submission |
 | T26-self-2 | authors' postmortem | Abstract skim-read as "n=8 correlations + held-out test failed" | Addressed | Current abstract leads with the protocol and its evidence; the held-out caveat sits in §6 | none |
 
-## ICML 2026 AI4Math (forum `xmHP3UhGQ8`; Accept (Poster); source of truth `experiments/18_icml_reviews/pre_prompt.md`)
+## ICML 2026 AI4Math (forum `xmHP3UhGQ8`; Accept (Poster); source of truth `experiments/18_icml_2026_reviews/pre_prompt.md`)
 
 | ID | Reviewer | Complaint | Status in ICLR main.tex | Evidence | Action |
 |---|---|---|---|---|---|

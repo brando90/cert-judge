@@ -5,7 +5,7 @@ Only currently pursued experiments belong directly in this directory.
 |---|---|
 | [31_final_iclr_paper_writing](31_final_iclr_paper_writing/notes.md) | Targeted main-text rewrite of the ICLR 2027 submission: replace development-set "predicts"/"fit" framing for the fixed-weight TI_var, label the exp23 tuned-weight cross-pass table as a separate variant, reconcile the 0.881 quote, cut to 9 pages. Started 2026-09-22. |
 | [33_openreview_complaints_all_venues_to_iclr2027_paper](33_openreview_complaints_all_venues_to_iclr2027_paper/README.md) | Every OpenReview complaint (NeurIPS 2025 MATH-AI, ICML 2026 AI4Math, ICML 2026 DL4C, TMLR 2026 desk reject) captured verbatim and tracked one row each against the ICLR 2027 main.tex; edits E1–E9 applied from archived artifacts. DL4C reviews await Brando's paste. Started 2026-09-22. |
-| [18_icml_reviews](18_icml_reviews/pre_prompt.md) | Reference packet: ICML 2026 AI4Math OpenReview capture and action prompt, re-activated from the archive on 2026-09-22 (commit ff22793); complaint tracking lives in 33. |
+| [18_icml_2026_reviews](18_icml_2026_reviews/pre_prompt.md) | Reference packet: ICML 2026 AI4Math OpenReview capture and action prompt, re-activated from the archive on 2026-09-22 (commit ff22793) and renamed from `18_icml_reviews`; complaint tracking lives in 33. |
 
 The completed proxy studies are archived; the suggested new-family follow-up
 has not started and is not an active run. This is a repository classification,

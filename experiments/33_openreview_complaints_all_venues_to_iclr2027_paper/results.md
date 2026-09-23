@@ -52,4 +52,8 @@
 - O2 (appendix "best Spearman 0.480/0.559" comes from the alpha-ablation panel) and O3 (intro TODO on label reuse) are with experiment 31.
 - §5.4 (VeriBench agent ranking, Table 5) was removed from main.tex on 09-22-2026 by Brando's decision (uncertified Claude 3.7 judge; exp32 stopped at commit d7f37c3), which closes the six VeriBench-judge rows as Superseded.
 
+## Provenance note (09-22-2026 15:45)
+
+Commit `57ccf9f` also carries the §5.4 / Table 5 cut of `main.tex` and `main.pdf` (−25 lines) that session "paper writing certjudge" had staged in the shared index; the paper content in that commit is theirs, made on Brando's decision, and the pushed HEAD builds in a scratch copy (26 pages, 0 undefined citations or references). Lesson recorded in memory: commit with explicit pathspecs (`git commit -- <paths>`) when other sessions share the checkout.
+
 **TLDR-end:** [cj: or-complaints] All 46 complaints from the three retrievable OpenReview rounds are ledgered and the nine artifact-traced paper edits landed in commit `e0631b6`; the DL4C reviews remain the one missing input and need Brando's paste before prompt 03 can run.

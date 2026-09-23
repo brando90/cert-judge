@@ -1,6 +1,6 @@
 # ICML 2026 AI4Math workshop — OpenReview reviews (verbatim copy of the 18_ capture)
 
-**TLDR:** Copy of `experiments/18_icml_reviews/pre_prompt.md`, the author-console capture of submission #109, "CertJudge: Evaluating Lean Formal-Code With Falsifiable Properties" (OpenReview forum `xmHP3UhGQ8`): decision Accept (Poster); Area Chair v5zC meta-review; Reviewers uMVy (4, weak accept), c7ev (4, weak accept), DeJF (5, accept). The source of truth stays in `18_icml_reviews/`; this copy exists so the ledger in this folder is self-contained if `18_` moves again. Complaint IDs `A26-*` in `../complaints_ledger.md`.
+**TLDR:** Copy of `experiments/18_icml_2026_reviews/pre_prompt.md`, the author-console capture of submission #109, "CertJudge: Evaluating Lean Formal-Code With Falsifiable Properties" (OpenReview forum `xmHP3UhGQ8`): decision Accept (Poster); Area Chair v5zC meta-review; Reviewers uMVy (4, weak accept), c7ev (4, weak accept), DeJF (5, accept). The source of truth stays in `18_icml_2026_reviews/`; this copy exists so the ledger in this folder is self-contained if `18_` moves again. Complaint IDs `A26-*` in `../complaints_ledger.md`.
 
 ---
 
@@ -8,7 +8,7 @@
 
 ref: https://claude.ai/chat/8926ea68-8d59-4988-98f3-8401c9b383bd
 ref: https://openreview.net/forum?id=xmHP3UhGQ8&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICML.cc%2F2026%2FWorkshop%2FAI4Math%2FAuthors%23your-submissions)
-ref: /Users/brandomiranda/cert-judge/experiments/18_icml_reviews/pre_prompt.md
+ref: /Users/brandomiranda/cert-judge/experiments/18_icml_2026_reviews/pre_prompt.md
 
 OpenReview (OR) feedback:
 ```

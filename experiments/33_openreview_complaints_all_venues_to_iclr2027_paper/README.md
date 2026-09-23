@@ -21,7 +21,7 @@
 ├── make_openreview_form_abstract.py            ← regenerates the file above from main.tex; warns on leftover LaTeX / internal refs
 ├── reviews/
 │   ├── neurips2025_mathai_9WAWDdwqpC.md        ← verbatim (ivJs 6/10, 36Hd 3/10)
-│   ├── icml2026_ai4math_xmHP3UhGQ8.md          ← verbatim copy of experiments/18_icml_reviews/pre_prompt.md (accept, poster)
+│   ├── icml2026_ai4math_xmHP3UhGQ8.md          ← verbatim copy of experiments/18_icml_2026_reviews/pre_prompt.md (accept, poster)
 │   ├── icml2026_dl4c_gGR1gE7x3a.md             ← SKELETON, empty until Brando pastes the reviews (accept, poster)
 │   ├── tmlr2026_desk_reject_WKVtlskjeQ.md      ← desk-reject record and self-diagnosed causes
 │   └── fetch_attempts.md                       ← every fetch attempt and its failure mode
@@ -43,7 +43,7 @@
 
 ## Dependencies
 
-- `experiments/18_icml_reviews/pre_prompt.md` (AI4Math capture; source of truth for `A26-*`).
+- `experiments/18_icml_2026_reviews/pre_prompt.md` (AI4Math capture; source of truth for `A26-*`).
 - `experiments/archive/02_neurips_reviews/or_neurips_2025_math_ai_workshop/or_reviews.md` (MATH-AI capture).
 - `experiments/archive/21_tmlr_submission/` (desk-reject record, headline CI provenance).
 - Artifacts for the edits: `experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/`, `…/results_exp24_alpha_canonicalized_identity/`, `…/results_final_stat_reliability_suite/exp18_human_label_reliability/`, `experiments/archive/23_reanchored_calibration/`, `experiments/archive/24_expanded_panel_cli/results/pass2_full_screen_results.json`.

@@ -96,3 +96,9 @@ Verification on 09-17-2026: all tracked files accounted for after relocation; fr
 result/configuration/table/figure contents unchanged. The mutable runner relocation
 record was refreshed after checking that its scientific configuration is identical.
 144 local leftover entries were relocated without overwriting destination files.
+
+## Rename record — 09-22-2026
+
+| Old root | Current home | Reason |
+|---|---|---|
+| `18_icml_reviews` | `experiments/18_icml_2026_reviews` | Re-activated from `archive/18_icml_reviews` on 2026-09-22 (commit ff22793) and renamed; live reference packet for the ICML 2026 AI4Math reviews. |
