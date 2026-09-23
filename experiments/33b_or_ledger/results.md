@@ -1,13 +1,13 @@
-# results.md — experiment 33 (OpenReview complaints → ICLR 2027 paper)
+# results.md — experiments 33a–33e (OpenReview complaints → ICLR 2027 paper); hub 33b
 
 **Status:** DONE for three venues; BLOCKED on the DL4C paste (started 09-22-2026 14:58 PDT)
 **Last updated:** 09-22-2026 15:42 PDT
 
 | Phase | Status | Evidence |
 |---|---|---|
-| 1. Locate every OpenReview forum | DONE | `reviews/fetch_attempts.md` (4 forums; no NeurIPS 2026 / ICLR 2026 submission found) |
-| 2. Capture reviews verbatim | DONE for 3 venues; BLOCKED for DL4C | `reviews/*.md`; DL4C skeleton + 13 logged fetch attempts |
-| 3. Ledger (one row per complaint) | DONE | `complaints_ledger.md`: 14 `N25-*`, 3 `T26-*`, 29 `A26-*`, `D26-*` placeholders, open items O1–O3 |
+| 1. Locate every OpenReview forum | DONE | `fetch_attempts.md` (4 forums; no NeurIPS 2026 / ICLR 2026 submission found) |
+| 2. Capture reviews verbatim | DONE for 3 venues; BLOCKED for DL4C | venue folders 33a/33c/33d/33e; DL4C skeleton + 13 logged fetch attempts |
+| 3. Ledger (one row per complaint) | DONE | per-venue `complaints.md`: 33d 14 `N25-*`, 33e 3 `T26-*`, 33a 29 `A26-*`, 33c `D26-*` placeholders; open items O1–O3 in `edits_ledger.md` |
 | 4. Prompts 01–04 | DONE | `prompts/` |
 | 5. Paper edits E1–E9 | DONE | commit `e0631b6`; 27-page PDF, 0 undefined citations/references, 0 BibTeX warnings |
 | 6. DL4C ingestion + re-audit | PENDING (needs Brando's paste) | `prompts/03_…` |
@@ -48,7 +48,7 @@
 
 ## Still open
 
-- DL4C reviews (forum `gGR1gE7x3a`): Brando pastes them into `reviews/icml2026_dl4c_gGR1gE7x3a.md`, then prompt 03 runs.
+- DL4C reviews (forum `gGR1gE7x3a`): Brando pastes them into `../33c_dl4c_reviews/reviews_gGR1gE7x3a.md`, then prompt 03 runs.
 - O2 (appendix "best Spearman 0.480/0.559" comes from the alpha-ablation panel) and O3 (intro TODO on label reuse) are with experiment 31.
 - §5.4 (VeriBench agent ranking, Table 5) was removed from main.tex on 09-22-2026 by Brando's decision (uncertified Claude 3.7 judge; exp32 stopped at commit d7f37c3), which closes the six VeriBench-judge rows as Superseded.
 

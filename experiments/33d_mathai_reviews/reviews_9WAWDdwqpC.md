@@ -4,7 +4,7 @@
 
 - Forum: https://openreview.net/forum?id=9WAWDdwqpC
 - Paper version: NeurIPS 2025 draft (`paper_latex/archive/…`), the ancestor of the ICML 2026 workshop papers.
-- Copied 09-22-2026 by the collection pass of experiment 33; complaints extracted into `../complaints_ledger.md` (IDs `N25-*`).
+- Copied 09-22-2026 by the collection pass of experiment 33; complaints extracted into `complaints.md` (IDs `N25-*`).
 
 ---
 

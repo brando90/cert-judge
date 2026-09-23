@@ -1,6 +1,6 @@
 # ICML 2026 DL4C workshop — OpenReview reviews (SKELETON — NOT YET POPULATED)
 
-**TLDR:** The ICLR 2027 manuscript is the accepted ICML 2026 DL4C paper "Certifying the Judge: Falsifiable Properties for LLM-Based Evaluation of Formal Code" (OpenReview forum `gGR1gE7x3a`, DL4C submission 105, venue tag "ICML 2026 Workshop DL4C Poster"). Its reviews are visible only to logged-in authors; every unauthenticated fetch on 09-22-2026 hit OpenReview's browser-verification wall (see `fetch_attempts.md`). **Nothing below the placeholders is fabricated: the review bodies are empty until Brando pastes them.** Populate with `../prompts/03_cc_populate_dl4c_reviews_and_reaudit.md`.
+**TLDR:** The ICLR 2027 manuscript is the accepted ICML 2026 DL4C paper "Certifying the Judge: Falsifiable Properties for LLM-Based Evaluation of Formal Code" (OpenReview forum `gGR1gE7x3a`, DL4C submission 105, venue tag "ICML 2026 Workshop DL4C Poster"). Its reviews are visible only to logged-in authors; every unauthenticated fetch on 09-22-2026 hit OpenReview's browser-verification wall (see `../33b_or_ledger/fetch_attempts.md`). **Nothing below the placeholders is fabricated: the review bodies are empty until Brando pastes them.** Populate with `../33b_or_ledger/prompts/03_cc_populate_dl4c_reviews_and_reaudit.md`.
 
 ## Reachable metadata (verified 09-22-2026 via the OpenReview search API)
 
@@ -18,7 +18,7 @@
 
 1. Open the forum link above while logged in (Author Console → DL4C 2026 → submission 105).
 2. Select all text from "Paper Decision" down to the last "Official Review" and paste it verbatim between the markers below, replacing the `[[PASTE …]]` lines. Keep reviewer IDs, ratings, and confidences.
-3. Run `../prompts/03_cc_populate_dl4c_reviews_and_reaudit.md` in a fresh agent session (or tell an agent "DL4C reviews are in place; run prompt 03").
+3. Run `../33b_or_ledger/prompts/03_cc_populate_dl4c_reviews_and_reaudit.md` in a fresh agent session (or tell an agent "DL4C reviews are in place; run prompt 03").
 
 ## Reviews (verbatim paste area)
 
@@ -34,4 +34,4 @@
 [[PASTE: Official Review 3 (and any further reviews) — same fields]]
 ```
 
-**Status: EMPTY. Complaint IDs `D26-*` in `../complaints_ledger.md` are reserved placeholders until this section is filled.**
+**Status: EMPTY. Complaint IDs `D26-*` in `complaints.md` are reserved placeholders until this section is filled.**

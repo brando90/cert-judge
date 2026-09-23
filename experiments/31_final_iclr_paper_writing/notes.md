@@ -403,7 +403,7 @@ there are no undefined references and no overfull boxes in the main text, and ev
 
 ## 09-22-2026 — experiment 33 (OpenReview complaints, all venues) — cross-reference
 
-- `experiments/33_openreview_complaints_all_venues_to_iclr2027_paper/complaints_ledger.md` holds one row per reviewer complaint from NeurIPS 2025 MATH-AI, ICML 2026 AI4Math (`18_`), ICML 2026 DL4C (reviews not yet retrieved; skeleton), and the TMLR desk reject, each with its status against `main.tex`.
+- `experiments/33b_or_ledger/edits_ledger.md` holds one row per reviewer complaint from NeurIPS 2025 MATH-AI, ICML 2026 AI4Math (`18_`), ICML 2026 DL4C (reviews not yet retrieved; skeleton), and the TMLR desk reject, each with its status against `main.tex`.
 - Edits E1–E9 from that ledger were applied by session cert-judge-05 (P2/P3 weak-monotonicity wording; Fig. 1 "w.r.t."; Codex headline bootstrap CIs; exp24 canonicalization proxy; disclosure of the pre-registered n=14/n=32 screens in §6; untested failure classes; nine-repeat median; appendix agreement stats on the 72 overlapping pairs with MAE 0.771 / MSE 1.121; refs.bib hygiene). §5.4, the abstract, and the intro were left to experiments 31/32.
 - Open non-reviewer items found during the audit are listed at the bottom of the ledger (O1–O3: histogram still on 75-pair files; appendix "best Spearman 0.480/0.559" comes from the alpha-ablation panel; intro TODO on label reuse).
 

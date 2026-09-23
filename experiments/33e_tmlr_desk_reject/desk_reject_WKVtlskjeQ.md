@@ -6,7 +6,7 @@
 
 > EiC discretionary triage ("unlikely to meet TMLR acceptance criteria... extremely limited reviewer capacity"), 31 Jul 2026. NOT anonymity / stylefile / length / overlap / quota (all verified compliant).
 
-The verbatim EiC note was never captured into the repo; the fragments above are the only quoted text. The forum itself is behind OpenReview's login wall (see `fetch_attempts.md`).
+The verbatim EiC note was never captured into the repo; the fragments above are the only quoted text. The forum itself is behind OpenReview's login wall (see `../33b_or_ledger/fetch_attempts.md`).
 
 ## Self-diagnosed causes (authors, 08-01-2026)
 
@@ -15,5 +15,5 @@ The verbatim EiC note was never captured into the repo; the fragments above are 
 
 ## Carry-over for ICLR 2027
 
-- The ICLR 2027 OpenReview form abstract must be plain text with `$...$` math only and no internal section or appendix references; a ready-to-paste version is `../openreview_form_abstract.txt` (regenerate it from the final `main.tex` abstract before submission).
-- Deferred reviewer asks from the ICML 2026 AI4Math round that the TMLR packet listed as revision material are folded into `../complaints_ledger.md` (they carry `A26-*` IDs), so nothing in `TMLR_REVISION_BACKLOG.md` is lost.
+- The ICLR 2027 OpenReview form abstract must be plain text with `$...$` math only and no internal section or appendix references; a ready-to-paste version is `../33b_or_ledger/openreview_form_abstract.txt` (regenerate it from the final `main.tex` abstract before submission).
+- Deferred reviewer asks from the ICML 2026 AI4Math round that the TMLR packet listed as revision material are folded into `../33a_ai4math_reviews/complaints.md` (they carry `A26-*` IDs), so nothing in `TMLR_REVISION_BACKLOG.md` is lost.

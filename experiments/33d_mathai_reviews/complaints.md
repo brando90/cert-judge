@@ -1,0 +1,22 @@
+# Complaints — NeurIPS 2025 MATH-AI (forum `9WAWDdwqpC`)
+
+**TLDR:** 14 rows (`N25-*`) from reviewers ivJs (6/10) and 36Hd (3/10) on the 2025 draft "Trusting the Formal Judge"; verbatim reviews in `reviews_9WAWDdwqpC.md`. After the 09-22-2026 edits: 10 Addressed, 2 Disclosed, 1 Superseded (old Fig. 1), 1 Superseded by the §5.4 cut.
+
+Status vocabulary: **Addressed** (paper already handles it), **Disclosed** (stated as a limitation, no new evidence), **Partial → E#** (edit in flight), **Deferred (owner)**, **Superseded** (the criticized artifact no longer exists), **Unknown** (review text missing). Edit IDs `E#` are defined, with their artifact sources and landed commits, in `../33b_or_ledger/edits_ledger.md`. Line numbers (`:NNN`) refer to the monolithic `main.tex` at HEAD `35df712`; since commit `710dda9` the prose lives in per-section files under `paper_latex/ICLR_2027_submission/`, so locate text by section name.
+
+| ID | Reviewer | Complaint | Status in ICLR main.tex | Evidence | Action |
+|---|---|---|---|---|---|
+| N25-ivJs-1 | ivJs | Limited generalization: finite perturbations on one benchmark; unclear on novel theorem types or adversarial cases | Disclosed (E6) | §6 `:636`–`:639`: "No finite perturbation suite can rule out every judge failure"; gaming "remains untested" | E6 applied (names the untested classes) |
+| N25-ivJs-2 | ivJs | Single architecture; no comparison with other judges or ensembles | Addressed | §5.3: three families × eight configurations incl. GPT-4o-mini and non-LLM controls; Leanstral in App. | none |
+| N25-ivJs-3 | ivJs | No human validation of the judge | Addressed | §5.1 72-pair validation set; §5.3 judge-level association; §6 validation-not-test caveat | none |
+| N25-36Hd-1 | 36Hd | Judge details missing ("simply Claude 3.5 / 3.7") | Addressed (E7) | §3 judge model θ; App. prompt templates; repeats/aggregation not stated in §5.3 | E7 |
+| N25-36Hd-2 | 36Hd | Identity/monotonicity looks like edit distance over strings, not the real problem | Addressed | §5.3 Table 3: edit-distance scorer (human ρ 0.20, TI_var 0.06) and lexical BAD_STRINGY exposed by the properties; alpha-renaming isolates lexical sensitivity | none |
+| N25-36Hd-3 | 36Hd | Monotonicity experiment ignores severity of changes | Addressed (E1) | §4 says bugs are introduced "cumulatively" but does not say why that neutralizes severity | E1 |
+| N25-36Hd-4 | 36Hd | Section 4 agentic setup unclear (inputs, DSPy/Trace, how Lean is used) | Superseded (§5.4 and Table 5 removed by Brando on 09-22-2026: a VeriBench result carried over from the workshop version with an uncertified Claude 3.7 judge; exp32 stopped, commit d7f37c3; main.tex removal committed by session "paper writing certjudge") | §5.4 names the agents and cites DSPy/Trace; framed as a sanity check | none (section deleted) |
+| N25-36Hd-5 | 36Hd | LLM-as-judge is not novel | Addressed | §1 contributions: the protocol, not the judge, is the contribution; §2 positioning | none |
+| N25-36Hd-6 | 36Hd | Monotonicity should not be defined as a strict ordering | Addressed (E1) | §4 P2/P3 read "scores decrease"; metrics are rank correlations and weak-monotonicity rates | E1 |
+| N25-36Hd-7 | 36Hd | Why Claude 3.5 in Sec. 3, 3.7 in Sec. 4, both in App. D | Superseded (§5.4 and Table 5 removed by Brando on 09-22-2026: a VeriBench result carried over from the workshop version with an uncertified Claude 3.7 judge; exp32 stopped, commit d7f37c3; main.tex removal committed by session "paper writing certjudge") | App. "Cross-Model Validation Status": Claude 3.x plots were prompt-iteration runs, not headline statistics; §5.4 says the Claude 3.7 judge is not a certified configuration | none (section deleted) |
+| N25-36Hd-8 | 36Hd | Figure 1 unreadable | Superseded | Fig. 1 is now a three-panel figure with error bars | none |
+| N25-36Hd-9 | 36Hd | Figure 1: "vs." should be "w.r.t." | Addressed (E2) | main Fig. 1(b),(c) captions still say "vs."; appendix captions say "w.r.t." | E2 |
+| N25-36Hd-10 | 36Hd | Missing references in the Appendix | Addressed | 09-22 build log: 0 undefined citations, 0 undefined references | re-check on every build |
+| N25-36Hd-11 | 36Hd | Typos: "Lean 4 verus Verus"; stray "**" in App. C | Addressed | App. reads "Lean 4 versus Verus"; no `**` in `main.tex` | none |

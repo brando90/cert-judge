@@ -4,8 +4,11 @@ Only currently pursued experiments belong directly in this directory.
 | Active experiment | Current task |
 |---|---|
 | [31_final_iclr_paper_writing](31_final_iclr_paper_writing/notes.md) | Targeted main-text rewrite of the ICLR 2027 submission: replace development-set "predicts"/"fit" framing for the fixed-weight TI_var, label the exp23 tuned-weight cross-pass table as a separate variant, reconcile the 0.881 quote, cut to 9 pages. Started 2026-09-22. |
-| [33_openreview_complaints_all_venues_to_iclr2027_paper](33_openreview_complaints_all_venues_to_iclr2027_paper/README.md) | Every OpenReview complaint (NeurIPS 2025 MATH-AI, ICML 2026 AI4Math, ICML 2026 DL4C, TMLR 2026 desk reject) captured verbatim and tracked one row each against the ICLR 2027 main.tex; edits E1–E9 applied from archived artifacts. DL4C reviews await Brando's paste. Started 2026-09-22. |
-| [18_icml_2026_reviews](18_icml_2026_reviews/pre_prompt.md) | Reference packet: ICML 2026 AI4Math OpenReview capture and action prompt, re-activated from the archive on 2026-09-22 (commit ff22793) and renamed from `18_icml_reviews`; complaint tracking lives in 33. |
+| [33a_ai4math_reviews](33a_ai4math_reviews/README.md) | ICML 2026 AI4Math reviews (verbatim) and their 29 complaint rows against the ICLR paper; formerly 18_icml_reviews. Moved 2026-09-22. |
+| [33b_or_ledger](33b_or_ledger/README.md) | Hub: edits ledger E1–E9 (artifact-traced, landed), live results, prompts 01–04, fetch log, OpenReview form abstract. Split from the former 33_ folder 2026-09-22. |
+| [33c_dl4c_reviews](33c_dl4c_reviews/README.md) | ICML 2026 DL4C reviews: skeleton awaiting Brando's paste, then D26 complaint rows via prompt 03. Started 2026-09-22. |
+| [33d_mathai_reviews](33d_mathai_reviews/README.md) | NeurIPS 2025 MATH-AI reviews (verbatim) and their 14 complaint rows. Started 2026-09-22. |
+| [33e_tmlr_desk_reject](33e_tmlr_desk_reject/README.md) | TMLR 2026 desk-reject record and its 3 rows; form-abstract lesson applied. Started 2026-09-22. |
 
 The completed proxy studies are archived; the suggested new-family follow-up
 has not started and is not an active run. This is a repository classification,
