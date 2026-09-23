@@ -1,7 +1,7 @@
 # results.md — experiment 34 (ICLR mega-rewrite by GPT-6 Astra)
 
-**Status:** NOT STARTED on `main`; the run lives on branch `astra/iclr-mega-rewrite` (worktree `~/cert-judge-astra`), where Astra keeps its own copy of this file live.
-**Last updated:** 2026-09-22 (creation)
+**Status:** COMPLETE on branch `astra/iclr-mega-rewrite` (pushed at `b9ee320`, 2026-09-22 21:39 PDT; 223 min; gpt-6-astra ultra; $0 API). Independent scratch build by the coordinator: latexmk exit 0, 0 errors / undefined / overfull / BibTeX warnings, 17 pages, References p. 9. Awaiting Brando's branch review; `REPORT.md` and this file's live copy are on the branch.
+**Last updated:** 2026-09-22 21:50 PDT (run complete)
 
 | Phase | Status | Evidence |
 |---|---|---|
