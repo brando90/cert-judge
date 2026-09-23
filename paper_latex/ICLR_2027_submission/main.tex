@@ -1,11 +1,6 @@
-% TLDR: ICLR 2027 submission = the ICML 2026 DL4C accepted paper, reformatted for ICLR.
-% Content source of truth: paper_latex/ICML_2026_DL4C/main.tex (accepted at the 5th Deep
-% Learning for Code workshop, ICML 2026). The main text, abstract, tables, figures, and
-% appendix are carried over verbatim; only the venue wrapper differs (ICML two-column
-% \icmltitle/\twocolumn block -> ICLR 2027 single-column double-blind \maketitle, and
-% icml2025.bst -> iclr2027_conference.bst).
-% The previous "Surrogate Gap" ICLR draft is preserved byte-for-byte at
-% paper_latex/archive/ICLR_2027_submission_old_09162026/.
+% ICLR 2027 submission. Started 2026-09-17 as a port of the accepted ICML 2026 DL4C paper
+% (paper_latex/ICML_2026_DL4C/main.tex) and since rewritten for ICLR: see git log and
+% experiments/31_final_iclr_paper_writing/notes.md for the decisions. Prose is one sentence per line.
 \documentclass{article}
 
 % ICLR 2027 style file: single column; prints "Anonymous authors / Paper under
@@ -626,80 +621,10 @@ On a 72-pair validation set, a variance-aware trust index built from bug monoton
 Specification monotonicity carries the strongest signal.
 The key next step is a locked held-out test with independent annotators under one frozen rubric.
 
-% -------------------------------
-% References (inline for portability)
-% -------------------------------
+% References
 \bibliographystyle{iclr2027_conference}
 \bibliography{refs} % expects refs.bib in the same directory
 
-% \begin{thebibliography}{99}
-% \bibitem[Chan et al.(2024)]{Chan2024ChatEval}
-% Zheng~Cheng Chan, et al.
-% \newblock ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate.
-% \newblock \emph{arXiv:2308.07201}, 2024.
-
-% \bibitem[Chen et al.(2021)]{chen2021evaluating}
-% Mark Chen, et al.
-% \newblock Evaluating Large Language Models Trained on Code.
-% \newblock \emph{arXiv:2107.03374}, 2021.
-
-% \bibitem[Kocmi et al.(2024)]{Kocmi2024HumanVsLLM}
-% Tom Kocmi, et al.
-% \newblock LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks.
-% \newblock \emph{arXiv:2406.18403}, 2024.
-
-% \bibitem[Li et al.(2024)]{Li2024TrustLLMJudgments}
-% Shulei Li, et al.
-% \newblock Can You Trust LLM Judgments? Reliability of LLM-as-a-Judge.
-% \newblock \emph{arXiv:2412.12509}, 2024.
-
-% \bibitem[Liu et al.(2023)]{Liu2023GEval}
-% Yang Liu, et al.
-% \newblock G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment.
-% \newblock \emph{arXiv:2303.16634}, 2023.
-
-% \bibitem[Tong \& Zhang(2024)]{TongZhang2024CodeJudge}
-% Yanfei Tong and Chiyuan Zhang.
-% \newblock CodeJudge: Evaluating Code Generation with Large Language Models.
-% \newblock \emph{arXiv:2410.02184}, 2024.
-
-% \bibitem[Zheng et al.(2023)]{Zheng2023MTBench}
-% Lianmin Zheng, et al.
-% \newblock Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.
-% \newblock \emph{arXiv:2306.05685}, 2023.
-
-% \bibitem[Zhuo(2024)]{Zhuo2024ICEScore}
-% Tianyi Zhuo.
-% \newblock ICE-Score: LLM-as-a-Judge for Code without Ground Truth Outputs.
-% \newblock \emph{arXiv preprint}, 2024.
-
-% \bibitem[Zhou et al.(2025)]{zhou2025graders}
-% Jin Peng Zhou, Sébastien M.~R.~Arnold, Nan Ding, Kilian Q.~Weinberger, Nan Hua, and Fei Sha.
-% \newblock Graders should cheat: privileged information enables expert-level automated evaluations.
-% \newblock \emph{arXiv:2502.10961}, 2025.
-
-% \bibitem[Khattab et al.(2024)]{khattab2024dspy}
-% Omar Khattab, Arnav Singhvi, Paridhi Maheshwari, Zhiyuan Zhang, Keshav Santhanam, Sri Vardhamanan, Saiful Haq, Ashutosh Sharma, Thomas T.~Joshi, Hanna Moazam, Heather Miller, Matei Zaharia, and Christopher Potts.
-% \newblock DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines.
-% \newblock In \emph{The Twelfth International Conference on Learning Representations (ICLR)}, 2024.
-
-% \bibitem[Cheng et al.(2024)]{cheng2024trace}
-% Ching-An Cheng, Allen Nie, and Adith Swaminathan.
-% \newblock Trace is the next autodiff: Generative optimization with rich feedback, execution traces, and LLMs.
-% \newblock \emph{arXiv:2406.16218}, 2024.
-
-% \bibitem[VeriBench ICML AI4Math (2025)]{veribench_icml25}
-% \newblock VeriBench: End-to-End Formal Verification Benchmark for AI Code Generation in Lean~4 (Poster, AI4Math @ ICML 2025).
-% \newblock \url{https://icml.cc/virtual/2025/52376}
-
-% \bibitem[Rice (1953)]{rice1953}
-% H.~G.~Rice.
-% \newblock Classes of Recursively Enumerable Sets and Their Decision Problems.
-% \newblock \emph{Transactions of the American Mathematical Society}, \textbf{74}(2):358--366, 1953.
-% \newblock \url{https://doi.org/10.2307/1990888}
-
-% \end{thebibliography}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \appendix
 \section{Additional Validation-Set Results}\label{app:moved-results}
@@ -737,9 +662,6 @@ The key next step is a locked held-out test with independent annotators under on
   \caption{\textbf{Threshold selection.} Stricter thresholds slightly reduce decision flips across repeated calls at a moderate cost in pass rate; bug-ladder ranking is unchanged (\(\rho_{\text{bug}}=-0.790\) at every threshold).}
   \label{tab:exp13_threshold_sweep}
 \end{table}
-
-% \section{Technical Appendices and Supplementary Material}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Related Work (Cont.)}\label{sec:related-work-cont}
 
@@ -866,17 +788,6 @@ Formal kernels (Lean/Isabelle) already deliver binary checks; HCI contributes th
 % \emph{Expose process}, not just outputs (\citealp{wu2022promptchainer}); \emph{facilitate incremental verification} (\citealp{naik2024ticoder,shen2024symgen}); \emph{empower corrective feedback} (\citealp{yan2024intelliexplain}); and \emph{communicate uncertainty honestly} (\citealp{wang2024trustcode,ding2025citations}). These HCI patterns consistently reduce cognitive load, improve objective accuracy, and---critically---align user trust with actual reliability across code/spec/theorem tasks.%
 % % :contentReference[oaicite:5]{index=5}
 
-\subsection{Vericode}
-\citet{bursuc2025benchmarkvericodingformallyverified} presumes well-formed formal specifications and evaluates end-to-end verification under those specs (in Dafny, Verus/Rust, or Lean) reporting verified pass rates.
-In practice, impactful problems often lack both complete specifications and ground-truth answers.
-Our \textsc{VeriBench} program targets this gap by challenging the \emph{generation} of specifications (from code, tests and documentation) and then \emph{grading} their quality prior to proof search using a Lean-aware LLM judge that we validate via falsifiable principles/properties (Identity, Monotonicity, and Prompt Stability/Invariance), addressing known pitfalls of LLM-as-a-judge such as bias and prompt sensitivity \citep{Zheng2023MTBench,Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
-However, our framework has only been tested with a judge with gold references files with specifications but we will explore metrics/methods that don't require this like TVD-MI in \citep{robertson2025stepbystep}.
-
-Beyond spec-first settings, the Unsolved Questions (UQ) paradigm evaluates models on difficult, real-world problems that have neither ground-truth answers nor formal specifications; instead, it relies on validator pipelines and community verification to track progress without oracles \cite{nie2025uqassessinglanguagemodels}.
-Taken together, these lines of work shift evaluation from “solve what is already specified” to “specify, validate, then solve”: vericoding provides end-to-end rigor under given specs, \textsc{VeriBench} adds specification synthesis with a property-checked semantic judge, and UQ extends evaluation to specless, answerless settings that require validator-assisted screening.
-Our contribution is a property-checked, semantics-sensitive judge that enables scalable oversight when the specification must be proposed rather than merely proved.
-Because specification generation often lacks a unique ground truth, we will extend our oracle-free property-assessment protocol with UQ-style validators, adding cycle-consistency tests (spec to code/docs) alongside our bug and ablation ladders, and enabling abstention when validators disagree to prioritize precision over coverage.
-
 \section{Formal verification context and tooling}
 \textbf{Formal methods as scalable oversight.} A central concern with LLM-assisted research is that models produce text faster than humans can audit, so trust in the output can erode even when the surface looks correct.
 The concern treats verification as a single unstructured activity: one human eye against a wall of generated tokens.
@@ -944,15 +855,6 @@ A user state intermediate goals and an SMT backend fills in the intermediate ste
 Compared to Verus, users have the option to use or not use SMT Solver-based tactics in Lean.
 This enables more fine-grained control and steering of the proof process.
 Verus also has a much larger kernel compared to Lean, and is more susceptible to soundness problem than Lean whose kernel is small.
-
-\section{Future Work (cont.)}
-
-% https://chatgpt.com/c/68dc38a5-93f4-8322-bf91-c2802fe73f6f
-While \citep{robertson2025stepbystep} study demonstrates that total-variation-based mutual information (TVD-MI) provides robust, gaming-resistant evaluation without ground truth, many settings —such as VeriBench— do provide gold specifications in Lean 4.
-A promising direction is to develop hybrid protocols that combine TVD-MI’s black-box robustness with supervised ground-truth checks (compile success, unit tests, post-condition proofs, and equivalence theorems).
-By fitting mappings from MI scores to known gold outcomes, we can create composite metrics that preserve gaming-resistance while offering probabilities of correctness whose predictions match observed frequencies where supervision exists.
-This opens the door to semi-supervised label propagation, active selection of items to prove, and cross-system experiments in domains with heterogeneous supervision.
-Such an integration would extend Robertson’s information-theoretic framework into a practical, specification-aware oversight system that leverages the best of both unsupervised robustness and supervised precision.
 
 \section{Why Judge Scores Are Specification-Relative}
 
@@ -1388,33 +1290,12 @@ Thus \(C_f\) is the mean per-file bug-ladder monotonicity term before the varian
   \label{tab:app-leanstral-index-reagg}
 \end{table}
 
-\subsection{Failure Modes Found by Certification (Not Hidden)}
+\subsection{Failure Modes Found by Certification}
 The certification framework is useful precisely because it identifies failures: \textbf{(i) alpha-renaming sensitivity} is the dominant identity/invariance gap, and \textbf{(ii) local bug-ladder reversals} occur despite overall negative monotone trends.
 We therefore report both strengths and weaknesses, and include alpha-ablation diagnostics.
 On trend-v1 Spearman (TI \(\rightarrow\) validation-set human Spearman), excluding alpha variants changes pass1 \(0.810\rightarrow0.690\), pass2 \(0.810\rightarrow0.714\), avg \(0.881\rightarrow0.786\), showing that alpha cases materially affect measured robustness.
 
-\subsection{Newest Results (Latest Rerun at Appendix Bottom)}
-To reduce judge-call noise, we reran the multi-judge validation-set trend with higher repeats and robust repeat aggregation: \texttt{JUDGE\_REPEATS=9 REPEAT\_AGG=median BOOTSTRAP\_ITERS=10000 PERM\_ITERS=20000}.
-This run writes to \texttt{results\_exp16\_final\_robust\_r9\_median}.
-
-\begin{table}[t]
-  \centering
-  \small
-  \resizebox{\linewidth}{!}{%
-    \begin{tabular}{lcc}
-      \toprule
-      \textbf{Label Set} & \textbf{v1 Spearman}                             & \textbf{v2 Spearman}                             \\
-      \midrule
-      pass1              & \(0.762\) (\(p=0.0372\), CI \([-0.139, 1.000]\)) & \(0.524\) (\(p=0.1959\), CI \([-0.400, 0.975]\)) \\
-      pass2              & \(0.810\) (\(p=0.0222\), CI \([0.291, 1.000]\))  & \(0.571\) (\(p=0.1477\), CI \([-0.231, 0.975]\)) \\
-      avg                & \(0.762\) (\(p=0.0402\), CI \([0.103, 1.000]\))  & \(0.476\) (\(p=0.2426\), CI \([-0.425, 1.000]\)) \\
-      \bottomrule
-    \end{tabular}
-  } \caption{\textbf{Latest rerun (R9 + median aggregation).} Increasing repeats and using median aggregation preserves the v1 trend signal while v2 remains more sensitive at this \(n_\text{judges}=8\) scale.}
-  \label{tab:app-latest-r9-median}
-\end{table}
-
-We also generated a low-variance replot package from the same detail rows (\texttt{results\_exp19\_low\_variance\_replot}): a cleaner main monotonicity curve for core judges plus separate failure-mode plots for alpha sensitivity and local bug reversals.
+Figures~\ref{fig:app-exp19-main-and-alpha} and~\ref{fig:app-exp19-reversals} replot the same detail rows with lower visual variance and isolate the two failure modes.
 Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167\), BAD\_STRINGY \(=0.833\), GPT-4o variants \(=0.667\)--\(0.750\), edit-distance/random \(=1.00\).
 
 \begin{figure}[t]
@@ -1442,5 +1323,4 @@ Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167
   \label{fig:app-exp19-reversals}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}

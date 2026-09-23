@@ -6,6 +6,10 @@ ICLR statements, the title, and whether to fold in the newer 343-label annotatio
 question list — which concerned the superseded *Surrogate Gap* / PTI-v0 draft — is preserved at
 `paper_latex/archive/ICLR_2027_submission_old_09162026/OPEN_QUESTIONS.md`.
 
+> **Status 2026-09-22:** item 1 (page budget) is resolved — the main text is now ~7 pages after the rewrite and the
+> removal of §5.4/Table 5 (the carried-over VeriBench agent ranking). The paper is no longer a verbatim port; see git log
+> and `experiments/31_final_iclr_paper_writing/notes.md`. Items 2–5 remain open.
+
 1. **Main-text page budget (blocking for submission).** Main text runs pages 1–11; ICLR counts main
    text only and allows 9. Two pages must come out, and that is a content call. Cheapest candidates,
    in order of least scientific loss:

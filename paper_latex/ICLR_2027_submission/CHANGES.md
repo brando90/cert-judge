@@ -1,3 +1,7 @@
+> **Superseded 2026-09-22:** this file describes the 09-17 verbatim port. The paper has since been rewritten for ICLR
+> (abstract, intro, §4–§6, §5.4 removed); consult `git log -- paper_latex/ICLR_2027_submission/` and
+> `experiments/31_final_iclr_paper_writing/notes.md` instead.
+
 # CHANGES — ICLR 2027 submission = the accepted ICML 2026 DL4C paper, reformatted
 
 **TLDR:** `paper_latex/ICLR_2027_submission/main.tex` is now a verbatim content port of the accepted
