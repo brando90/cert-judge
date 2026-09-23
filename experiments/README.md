@@ -5,6 +5,8 @@ Only currently pursued experiments belong directly in this directory.
 |---|---|
 | [31_final_iclr_paper_writing](31_final_iclr_paper_writing/notes.md) | Targeted main-text rewrite of the ICLR 2027 submission: replace development-set "predicts"/"fit" framing for the fixed-weight TI_var, label the exp23 tuned-weight cross-pass table as a separate variant, reconcile the 0.881 quote, cut to 9 pages. Started 2026-09-22. |
 | [33a_ai4math_reviews](33a_ai4math_reviews/README.md) | ICML 2026 AI4Math reviews (verbatim) and their 29 complaint rows against the ICLR paper; formerly 18_icml_reviews. Moved 2026-09-22. |
+| [34_iclr_mega_rewrite_astra](34_iclr_mega_rewrite_astra/PROMPT.md) | Core-only ICLR rewrite by Codex GPT-6 Astra (ultra) on branch `astra/iclr-mega-rewrite`; runbook + live results. Started 2026-09-22. |
+| [35_missing_experiments_from_reviews](35_missing_experiments_from_reviews/EXPERIMENTS.md) | Reviewer-driven missing experiments with ready CLI-only prompts (zero-inference / subscription / human-label tiers). Started 2026-09-22. |
 | [33b_or_ledger](33b_or_ledger/README.md) | Hub: edits ledger E1–E9 (artifact-traced, landed), live results, prompts 01–04, fetch log, OpenReview form abstract. Split from the former 33_ folder 2026-09-22. |
 | [33c_dl4c_reviews](33c_dl4c_reviews/README.md) | ICML 2026 DL4C reviews: skeleton awaiting Brando's paste, then D26 complaint rows via prompt 03. Started 2026-09-22. |
 | [33d_mathai_reviews](33d_mathai_reviews/README.md) | NeurIPS 2025 MATH-AI reviews (verbatim) and their 14 complaint rows. Started 2026-09-22. |

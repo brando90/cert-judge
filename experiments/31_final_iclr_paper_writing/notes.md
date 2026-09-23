@@ -424,3 +424,12 @@ there are no undefined references and no overfull boxes in the main text, and ev
 - Removed (2b5ce26): 55 unused figure files; figures/ now holds the 20 the paper uses.
 - Left in place, flagged for Brando: `% TODO(internal-review)` in the intro (why not reuse labels on the same domain); appendix "Related Work (Cont.)" + "HCI for Solving Scalable Oversight", "Formal verification context and tooling", "Cross-Model Validation Status (Full vs Preliminary)" — unreferenced from the main text but legitimate appendix material, not dead.
 - Exp 32 archived (9f1bb82) and confirmed on origin.
+
+## 2026-09-22 ~18:15 — experiments 34 and 35 (Brando: mega rewrite by GPT-6 Astra; missing-experiment list)
+- Brando: "I don't like your writing" → the full rewrite is dispatched to Codex GPT-6 Astra (ultra) with a detailed brief
+  (`experiments/34_iclr_mega_rewrite_astra/PROMPT.md`) that encodes today's decisions, the writing guide, the terminology
+  rules, the reviewer complaints (33a/33d/33e; 33c pending Brando's paste), and the target shape: core-only main text ≤9 pp,
+  appendix reduced to what the main text cites, everything else moved to `paper_latex/ICLR_2027_submission/archive/`.
+  Runs on branch `astra/iclr-mega-rewrite` in worktree `~/cert-judge-astra`; no edits to `main`.
+- `experiments/35_missing_experiments_from_reviews/EXPERIMENTS.md`: 12 gaps with prompts (4 zero-inference, 5 subscription-CLI, 3 human-label).
+- `~/.codex/config.toml` effort pinned to `ultra` (was `low`; Hard Rule 8). Backup `config.toml.bak-20260922`.
