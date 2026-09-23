@@ -99,11 +99,15 @@ Historical P1–P5 fixtures retained for compatibility:
 
 ## LaTeX Paper Sources
 
-The active manuscript is `paper_latex/ICLR_2027_submission/main.tex`. Older ICML/NeurIPS trees are historical. Populate PTI-v0 claims only from committed machine-readable PTI-v0 outputs.
+The active manuscript is `paper_latex/ICLR_2027_submission/`. Older ICML/NeurIPS trees are historical. Populate PTI-v0 claims only from committed machine-readable PTI-v0 outputs.
 
-Build with: `latexmk -pdf <main_file.tex>`
+**One file per section (since 2026-09-22, commit 710dda9).** `main.tex` holds only the preamble and the `\input` list. Prose lives in `00_abstract`, `01_introduction`, `02_related_work`, `03_problem_setup`, `04_property_protocol`, `05_experiments`, `06_limitations`, `07_conclusion`, and `990`–`997_appendix_*` (`.tex`). Several agents share this checkout and its index, so:
 
-Prose in `.tex` files is **one sentence per line**: a newline after every full sentence and no wraps mid-sentence (rule: `~/agents-config/writing/ml_research/ml_research_writing.md` § LaTeX Source Layout). Check with `python3 ~/agents-config/scripts/latex_sentence_lines.py --check paper_latex/ICLR_2027_submission/main.tex`.
+- Edit the section file for your change, never a monolithic copy. Touch `main.tex` only to add or reorder an `\input`, and keep the `% !TEX root = main.tex` first line in every section file.
+- Build in a scratch copy (`latexmk -pdf -interaction=nonstopmode main.tex`), not in the paper directory: concurrent `latexmk` runs there have truncated `main.aux`. Copy the built `main.pdf` back only for semantic changes.
+- Commit with explicit pathspecs (`git commit -- <files>`), never `git add -A`, because another agent's staged files would ride along.
+
+Prose in `.tex` files is **one sentence per line**: a newline after every full sentence and no wraps mid-sentence (rule: `~/agents-config/writing/ml_research/ml_research_writing.md` § LaTeX Source Layout). Check from the paper directory with `python3 ~/agents-config/scripts/latex_sentence_lines.py --check main.tex 0*.tex 99*.tex`.
 
 ## Experiment lifecycle (required)
 
