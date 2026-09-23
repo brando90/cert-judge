@@ -48,6 +48,7 @@ Each Codex-panel score is the median over repeated calls per pair: three for the
 Figure~\ref{fig:tivar_cross_model_avg} plots each configuration's \(\mathrm{TI}_{\mathrm{var}}\) against its Spearman agreement with averaged human labels.
 The judge-level association between \(\mathrm{TI}_{\mathrm{var}}\) and human agreement is positive in every family (Table~\ref{tab:tivar_cross_model_results}).
 Six of the nine family--pass correlations exceed \(0.7\), and Claude Opus, the weakest family, stays positive on every pass.
+Family-level values also move between passes (Qwen3-Coder: \(0.476\) on pass1 versus \(0.905\) on pass2), which is expected with eight configurations and only moderate agreement between the two passes (Section~\ref{sec:data-human-protocol}).
 For Codex, Pearson correlation shows the same pattern (avg \(r=0.774\)), while Kendall's \(\tau\) is noisier at \(n=8\) (avg \(\tau=0.571\)).
 Bootstrap 95\% intervals for the Codex correlations are wide at \(n=8\): \([0.24, 1.00]\) on averaged labels, \([0.41, 1.00]\) on pass1, and \([0.11, 1.00]\) on pass2, with permutation \(p\) of \(0.017\), \(0.005\), and \(0.045\) (10{,}000 resamples and permutations, seed 42).
 
