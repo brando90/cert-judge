@@ -71,7 +71,7 @@ All nine edits landed in commit `e0631b6` (main.tex, main.pdf, refs.bib), built 
 | A26-c7ev-8 | c7ev | Reference list has anonymous, future-dated, or workshop-only entries | Addressed (E9) | `refs.bib`: `anonymous2025formaljudge` ("NeurIPS (to appear)", uncited); `bach2022trusthci` wrong first author, no DOI; `ding2025citations` truncated | E9 |
 | A26-c7ev-9 | c7ev | Add CIs, bootstrap, or other uncertainty for judge-level correlations | Addressed (E3) | only the 13-configuration interval `:568` | E3 |
 | A26-c7ev-10 | c7ev | Clarify labeling protocol (annotators, pass1/pass2 meaning, disagreements) | Addressed | §5.1 | E8 |
-| A26-c7ev-11 | c7ev | Open: reference-free property suite; number of annotators for stable targets; rubric ambiguity vs Lean misunderstanding | Deferred | App. Vericode paragraph mentions a reference-free extension | Deferred (future work) |
+| A26-c7ev-11 | c7ev | Open: reference-free property suite; number of annotators for stable targets; rubric ambiguity vs Lean misunderstanding | Deferred | future work only; the appendix paragraph that mentioned a reference-free extension (old "Vericode" subsection) was removed in the 09-22-2026 cleanup (commit 86ebd8c), so no paper text now promises it | Deferred (future work) |
 | A26-c7ev-12 | c7ev | Failure analysis should include formatting-only perturbations | Disclosed (E6) | Table 1 covers RENAME/REORDER/STYLE/ALPHA only | E6 names the gap |
 | A26-DeJF-1 | DeJF | Trust index calibrated and tested on the same 75-pair panel | Disclosed | §5.1, §6 | E5 |
 | A26-DeJF-2 | DeJF | Only eight judge configurations; correlations may be unstable | Addressed (E3) | §5.3 `:569` "Intervals this wide…" | E3 |
