@@ -5,11 +5,13 @@
 **TLDR:** Audit and first rewrite complete; build in progress.
 
 Created: 09-22-2026 18:01 PDT
-Last updated: 09-22-2026 20:48 PDT
+Last updated: 09-22-2026 21:14 PDT
 
 - Branch: astra/iclr-mega-rewrite; checkout: /Users/brandomiranda/cert-judge-astra.
 - Root owns writing, build and commits. Read-only subagents: artifact_lookup completed; citation_lookup finishing author metadata.
 - Read rules, writing guide, manuscript, all four reviewer-complaint files and decision ledger.
 - Baseline: 25 pages; References and conclusion start on page 8.
-- Next: finish bibliography metadata; inspect build /tmp/cj-astra-build.log (latexmk session 18024), fit main text to nine pages; create archive README, exhaustive provenance report and deterministic verification.
-- No inference, no keys, no new experiments, no main changes. Keep requested experiment path on completion for Brando's pending branch review.
+- Next: finish latexmk session 84286; run analysis/verify_submission.py and number_provenance.py; update final reports; explicit-file commit and push branch, then pull agents-config.
+- Rendered main pages 1–9 and appendix 12–17 inspected; last change keeps final definition note after the Opus float. Main8 pages, total 17; References 9.
+- All 55 complaint IDs mapped in reviewer_checklist.md. Reanalysis outputs hash committed inputs at 8d2e005. No manuscript wording changes pending.
+- No inference, no keys, no new experiments, no main changes. Keep requested experiment path for Brando's branch review.

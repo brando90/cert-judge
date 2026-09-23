@@ -1,0 +1,94 @@
+% !TEX root = main.tex
+\section{Judge Prompt Templates}\label{app:judge-prompts}
+For reproducibility, we include the main judge prompt templates used in the paper's principal judge panels.
+The primary Codex / Opus / Qwen comparisons use the prompt variants \texttt{P1\_BASELINE}, \texttt{P4\_CHECKLIST}, and \texttt{P8\_STRICT\_B}; the BAD\_STRINGY lexical baseline is included as a negative control.
+
+\noindent\textbf{\texttt{P1\_BASELINE}}\par
+\vspace{0.25em}\begin{lstlisting}[style=promptstyle]
+You are an expert in Lean 4 formal verification.
+Score how well the GENERATED THEOREM captures the correctness properties
+of the REFERENCE IMPLEMENTATION. Score from 0.0 to 1.0.
+
+- 1.0: Semantically equivalent to what the reference guarantees
+- 0.7-0.9: Captures most properties, misses minor ones
+- 0.4-0.6: Captures some properties, has meaningful gaps
+- 0.1-0.3: Technically valid Lean but misses core properties
+- 0.0: Trivially true (e.g., `True`) or incorrect
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Respond ONLY with valid JSON, no markdown:
+{"score": <float 0.0-1.0>,
+ "reasoning": "<one sentence max>"}
+\end{lstlisting}
+
+\noindent\textbf{\texttt{P4\_CHECKLIST}}\par
+\vspace{0.25em}
+\begin{lstlisting}[style=promptstyle]
+Evaluate this in order:
+1) What properties does REFERENCE IMPLEMENTATION guarantee?
+2) Which are preserved by GENERATED THEOREM?
+3) Are there missing core guarantees or trivialization?
+4) Map to score in [0.0, 1.0]:
+   1.0 equivalent; 0.7-0.9 minor gaps;
+   0.4-0.6 meaningful gaps; 0.1-0.3 weak;
+   0.0 trivial/incorrect.
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return JSON only:
+{"score": <float 0.0-1.0>,
+ "reasoning": "<one sentence>"}
+\end{lstlisting}
+
+\noindent\textbf{\texttt{P8\_STRICT\_B}}\par
+\vspace{0.25em}
+\begin{lstlisting}[style=promptstyle]
+Evaluate conservatively. If uncertain, choose the lower score.
+Use [0.0,1.0]:
+1.0 equivalent semantics
+0.7-0.9 mostly right, minor misses
+0.4-0.6 substantial omissions
+0.1-0.3 weak relation
+0.0 trivial/incorrect
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Return valid JSON only:
+{"score": <float>,
+ "reasoning": "<one sentence>"}
+\end{lstlisting}
+
+\noindent\textbf{\texttt{BAD\_STRINGY negative control}}\par
+\vspace{0.25em}
+\begin{lstlisting}[style=promptstyle]
+You are a text similarity grader.
+Compare generated theorem text to the reference implementation text.
+Do NOT evaluate semantic correctness or theorem meaning.
+Score ONLY based on superficial lexical/format overlap:
+- high score if tokens/phrases look similar
+- low score if wording/structure differs
+Reference implementation:
+{reference_impl}
+
+Generated theorem:
+{generated_theorem}
+
+Return ONLY a JSON object:
+{"score": <float 0.0 to 1.0>,
+ "reasoning": "<short reason>"}
+\end{lstlisting}
+
+

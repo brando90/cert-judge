@@ -1,0 +1,21 @@
+% !TEX root = main.tex
+\clearpage
+\section*{Reproducibility Statement}
+The accompanying repository preserves frozen scores and summaries under \path{experiments/archive/}.
+Appendix~\ref{app:judge-prompts} gives the prompt templates, exact model identifiers, input extraction, and repeat aggregation used for the main panels.
+Appendix~\ref{app:index-definitions} specifies the indices, including normalization and numerical edge cases.
+The manuscript evidence script, \path{experiments/34_iclr_mega_rewrite_astra/analysis/rebuild_paper_evidence.py}, reads committed artifacts, verifies their hashes, and regenerates the corrected figures and sensitivity summaries without inference.
+Its output manifest maps every input to a repository path and content hash.
+The adjacent report maps every reported table to the archived script and machine-readable output that produced it.
+The original human-panel rubric text was not recovered, which limits exact replication of the annotation process.
+We describe repository paths without an identifying repository URL for anonymous review.
+
+\section*{Ethics Statement}
+An author supplied the human ratings used for the headline validation analysis.
+The study evaluates generated Lean code and formal statements, without personal data in the judged artifacts.
+It makes no deployment claim and does not establish that screened judges can replace expert review in consequential settings.
+
+\section*{LLM Usage Statement}
+% TODO(Brando): confirm the factual scope of writing/editing assistance and author supervision before submission.
+LLMs served as the judges under study and assisted with writing and editing under author supervision.
+The authors are responsible for the manuscript's claims, citations, and interpretation of the recorded results.

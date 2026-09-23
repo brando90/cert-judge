@@ -1,0 +1,41 @@
+% !TEX root = main.tex
+\section{Index Definitions and Implementation}\label{app:index-definitions}
+\paragraph{Fixed equal-weight index.}
+For each file $f$ and bug level $\ell$, let $s_{f\ell}$ be the median recorded repeat score and $v_{f\ell}$ its population variance.
+Let $\rho_f$ be Spearman's correlation between level and $s_{f\ell}$, and set $c_f=\mathrm{clip}((1-\rho_f)/2,0,1)$.
+Writing $\mathcal F$ for the included ladders, the archived implementation uses
+\[
+ C_f=\frac1{|\mathcal F|}\sum_{f\in\mathcal F}c_f,\qquad
+ V_c=\mathrm{Var}_{f\in\mathcal F}(c_f),\qquad
+ V_s=\frac{\sum_{f\in\mathcal F}\sum_\ell v_{f\ell}}{\sum_{f\in\mathcal F}L_f},
+\]
+where $L_f$ is the number of levels in ladder $f$.
+It skips ladders with fewer than three levels or an undefined Spearman correlation, including constant-score ladders.
+All primary committed vectors report 24 included ladders per configuration.
+If none remain, the code substitutes $C_f=0$, $V_c=1$, and $V_s=1$.
+It min--max normalizes each variance across the current family panel; a constant variance column maps to zero.
+Equation~\ref{eq:tivar} then applies weights $1/3$ to $C_f$, $1-\widetilde V_c$, and $1-\widetilde V_s$, after clipping each to $[10^{-6},1]$.
+Thus an extreme variance does not produce an exact zero index, and adding a judge can change other judges' normalized scores.
+The analysis preserves these choices rather than changing the frozen index after observing results.
+
+\paragraph{Arithmetic comparisons.}
+The recorded $v1$ and $v2$ are
+\[
+ v1=0.30\,\mathrm{ident}+0.30\,\mathrm{mono}+0.25\,\mathrm{weak}+0.15\,\mathrm{stab},
+\]
+\[
+ v2=0.20\,\mathrm{ident}+0.20\,\mathrm{mono}+0.15\,\mathrm{weak}+0.10\,\mathrm{stab}+0.20\,\mathrm{anti}+0.15\,\mathrm{subtle}.
+\]
+Here $\mathrm{ident}$ is mean score over identity-rewrite probes, $\mathrm{mono}=(1-\rho_{\mathrm{bug}})/2$ uses the pooled bug-level Spearman correlation, and $\mathrm{weak}$ is the weak-monotonicity fraction on bug ladders.
+The latter is the historical field \texttt{P3\_weak\_mono}; it contains no missing-specification measurement.
+$\mathrm{stab}$ is one minus the fraction of scored pairs whose repeated scores cross the artifact-score threshold.
+$\mathrm{anti}$ is the complement of the absolute score correlation with normalized edit distance, clipped to $[0,1]$, and $\mathrm{subtle}$ is the clipped mean first-level score drop divided by $0.25$.
+The implementation clips these components to $[0,1]$.
+These arithmetic indices combine different summaries from $\mathrm{TI}_{\mathrm{var}}$ and do not isolate the effect of changing only the aggregation function.
+
+\paragraph{Geometric comparisons.}
+The two-component comparison in Table~\ref{tab:tivar_cross_model_results} is $\mathrm{GM}_{.4,.6}=\mathrm{mono}^{0.4}\mathrm{stab}^{0.6}$, with the same $10^{-6}$ component floor.
+Its weights originate in the pass1 search over six components; it is not a fixed equal-weight baseline.
+The separate cross-pass analysis searches nonnegative weights summing to one over $\mathrm{ident}$, $\mathrm{mono}$, $\mathrm{weak}$, $\mathrm{stab}$, $\mathrm{anti}$, and $\mathrm{subtle}$.
+Table~\ref{tab:cross_pass_generalization} identifies which pass supplies those fitted weights.
+Neither procedure fits the weights of $\mathrm{TI}_{\mathrm{var}}$.

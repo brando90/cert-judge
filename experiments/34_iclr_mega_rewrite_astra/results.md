@@ -3,16 +3,16 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/astra/iclr-mega-rewrite/experiments/34_iclr_mega_rewrite_astra/results.md>
 
 **Status:** RUNNING (started 09-22-2026 18:01 PDT)
-**Last updated:** 09-22-2026 20:48 PDT
+**Last updated:** 09-22-2026 21:19 PDT
 
 | Phase | Status | Evidence |
 |---|---|---|
 | Audit | DONE | Binding rules, decision ledger, all four complaint files and current manuscript read; baseline PDF has 25 pages, References starts on page 8. |
 | Outline and provenance | DONE | `outline.md`; mandatory corrections below. |
-| Main text | IN PROGRESS | Target 8–9 pages, with one protocol claim. |
-| Appendix archive | IN PROGRESS | Preserve removed source and unreferenced figures. |
-| Statements and bibliography | IN PROGRESS | Anonymous reproducibility, ethics and provisional usage statements. |
-| Verification and report | PENDING | Build, sentence layout, reference checks, provenance and rendered pages. |
+| Main text | DONE | Eight pages; one protocol proposal, corrected fixed-index evidence and explicit coverage limits. |
+| Appendix archive | DONE | Six cited sections; original source and 15 inherited figures preserved under archive/. |
+| Statements and bibliography | DONE | Three statements, nineteen complete cited entries; usage facts await author confirmation. |
+| Verification and report | DONE | Build and visual review complete; main 8/total 17 pages; References 9; zero overfull boxes, undefined references or citations; zero BibTeX warnings; 75 numeric lines and all 55 complaints indexed. |
 
 ## Scope and ownership
 
@@ -37,4 +37,4 @@ The existing registration in `experiments/archive/layout.json` is correct; the l
 - A local 12-triple weight grid, using committed vectors only, preserves positive associations. Average-label ranges: Codex 0.738–0.857, Opus 0.643–0.714, Qwen 0.881–0.976.
 - Preserved Leanstral negative evidence; no leave-one-family-out transfer claim is made.
 
-**TLDR-end:** [cj: experiments/34_iclr_mega_rewrite_astra] Audit complete; the rewrite corrects mixed indices, a mislabeled property, and invalid alpha probes. Main text and reduced appendix are drafted; build and provenance verification remain in progress.
+**TLDR-end:** [cj: experiments/34_iclr_mega_rewrite_astra] Audit complete; the rewrite corrects mixed indices, a mislabeled property, and invalid alpha probes. Main text, reduced appendix, statements and report are written; all verification gates pass; the final branch handoff is being committed and pushed.

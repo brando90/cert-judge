@@ -1,275 +1,46 @@
 % !TEX root = main.tex
-\section{Validation-Set Human Alignment Appendix}\label{app:exp16-exp17}
-This appendix reports full visual diagnostics for the final robust validation-set human-alignment analyses under three label views: pass1, pass2, and avg.
+\section{Human Agreement and Additional Judge Panels}\label{app:exp16-exp17}
+\subsection{Agreement between annotation passes}\label{app:human-agreement}
+Table~\ref{tab:app-human-human-ceiling} reports the frozen agreement statistics on 72 shared analyzed pairs.
+The passes reflect different rubric strictness levels from the same annotator, rather than independent draws from a rater population.
+Their disagreement cannot identify a numerical ceiling on model agreement.
+The original rubric text remains unavailable.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png}
-  \caption{\textbf{Expanded 13-judge panel trend (avg validation-set labels).} Geometric trust index retains strong alignment with human correlation at larger judge-panel size (\(\rho=0.769\)); pass-specific values are pass1 \(\rho=0.764\), pass2 \(\rho=0.753\).}
-  \label{fig:app-exp25-13judge}
-\end{figure}
-
-\begin{figure}[t]
-  \centering
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_pass1.png}
-    \caption{Judge-level trend (pass1)}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_pass2.png}
-    \caption{Judge-level trend (pass2)}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_cert_vs_human_scatter_avg.png}
-    \caption{Judge-level trend (avg)}
-  \end{subfigure}
-  \caption{\textbf{Judge-level \(\mathrm{TI}_{\mathrm{var}}\)-to-human trend across validation-set label sets.} Across pass1, pass2, and averaged labels, higher certification strength is associated with stronger human agreement.}
-  \label{fig:app-exp16-all}
-\end{figure}
-
-\begin{figure}[t]
-  \centering
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_pass1.png}
-    \caption{Per-property trend (pass1)}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_pass2.png}
-    \caption{Per-property trend (pass2)}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/exp17_final_robust/fig_property_vs_human_bars_avg.png}
-    \caption{Per-property trend (avg)}
-  \end{subfigure}
-  \caption{\textbf{Property-wise validation-set human-alignment diagnostics.} P3 weak monotonicity has the strongest association across label sets; P2 is second; P1/P4 are weaker standalone signals at this scale.}
-  \label{fig:app-exp17-all}
-\end{figure}
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{figures/exp16_final_robust/fig_human_corr_by_judge_and_labelset.png}
-  \caption{\textbf{Judge-wise human alignment across label passes.} Validation-set human Spearman across pass1, pass2, and averaged labels.
-  GPT-5.3-Codex variants remain above weaker baselines on most label sets; pass-to-pass variation is visible and motivates reporting all three label sets.}
-  \label{fig:app-judge-labelset-bars}
-\end{figure}
-
-\subsection{Naive Codex-Style Blind Baseline}
-To contextualize TI-ranked judge performance, we evaluate a naive blind baseline on the same pair set (\(n=5\) overlap), using a single-pass, surface-form-oriented Codex-style rubric without property-based tuning constraints (no tuning for monotonicity/stability).
-The baseline tracks pass2 labels somewhat but remains substantially weaker and less consistent than the top TI-ranked judges, especially on pass1 and in absolute error.
-
-\begin{table}[t]
-  \centering
-  \small
-  \resizebox{\linewidth}{!}{%
-    \begin{tabular}{lcccc}
-      \toprule
-      \textbf{Label Set} & \(\rho_s\)                      & \(r\)                           & \(\tau\)                        & \textbf{MAE} \\
-      \midrule
-      pass1              & 0.171 (\(p=0.151\))             & 0.218 (\(p=0.0656\))            & 0.155 (\(p=0.144\))             & 1.049        \\
-      pass2              & 0.388 (\(p=7.58\times10^{-4}\)) & 0.427 (\(p=1.87\times10^{-4}\)) & 0.343 (\(p=9.40\times10^{-4}\)) & 1.333        \\
-      \bottomrule
-    \end{tabular}
-  } \caption{\textbf{Naive blind baseline vs.\ validation-set labels (0--5 scale).} \(\rho_s\): Spearman, \(r\): Pearson, \(\tau\): Kendall; MAE is absolute error on the 0--5 scale.
-  This baseline is included as a sanity-check negative control and is not used for final ranking claims.}
-  \label{tab:app-naive-blind-baseline}
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lrc@{}}
+\toprule
+Statistic & Estimate & 95\% bootstrap interval \\
+\midrule
+Spearman correlation & 0.249 & $[-0.015,0.489]$ \\
+Pearson correlation & 0.375 & $[0.076,0.604]$ \\
+Kendall correlation & 0.221 & $[-0.016,0.442]$ \\
+Quadratic-weighted $\kappa$ & 0.372 & $[0.073,0.581]$ \\
+Mean absolute error & 0.771 & Not reported \\
+\bottomrule
+\end{tabular}
+\caption{The two human passes disagree on the same artifacts, making the choice of label view consequential.
+Mean absolute error uses the original $0$--$5$ rating scale; all estimates use 72 overlapping pairs.}
+\label{tab:app-human-human-ceiling}
 \end{table}
 
-\subsection{Human-Human Agreement Ceiling Context}
-Validation-set judge-human Spearman values should be interpreted relative to the reliability of human labels themselves.
-Across the two human annotation passes on the \(72\) pairs that both passes rated, inter-pass agreement is moderate (Spearman \(0.249\), Pearson \(0.375\), Kendall \(0.221\), QWK \(0.372\)).
-Thus, validation-set judge-human Spearman values in the \(0.48\)--\(0.56\) range are non-trivial and should be interpreted as approaching the available annotation ceiling in this dataset rather than as ``low absolute'' values.
+\subsection{Expanded configuration panel}\label{app:expanded-panel}
+The expanded panel compares the arithmetic $v2$ with the pass1-selected geometric form $\mathrm{mono}^{0.4}\mathrm{stab}^{0.6}$.
+Its averaged-label association is $0.769$, with bootstrap interval $[0.34,0.95]$ (Figure~\ref{fig:app-exp25-13judge}).
+The result concerns 13 configurations on reused validation labels, not 13 independent model families or unseen data.
+The plotted geometric index is not $\mathrm{TI}_{\mathrm{var}}$.
 
-\begin{table}[t]
-  \centering
-  \small
-  \begin{tabular}{@{}p{0.46\linewidth}p{0.14\linewidth}p{0.30\linewidth}@{}}
-    \toprule
-    \textbf{Quantity}                           & \textbf{Value} & \textbf{Notes}                      \\
-    \midrule
-    Human-human Spearman (pass1 vs pass2)       & 0.249          & \(95\%\ \text{CI}=[-0.015, 0.489]\) \\
-    Human-human Pearson (pass1 vs pass2)        & 0.375          & \(95\%\ \text{CI}=[0.076, 0.604]\)  \\
-    Human-human QWK (pass1 vs pass2)            & 0.372          & \(95\%\ \text{CI}=[0.073, 0.581]\)  \\
-    Human-human MAE (pass1 vs pass2)            & 0.771          & On the 72 overlapping pairs, 0--5 rubric \\
-    Human-human MSE (pass1 vs pass2)            & 1.121          & On the 72 overlapping pairs, 0--5 rubric \\
-    JS divergence (pass1 vs pass2)              & 0.081 bits     & Symmetric histogram divergence      \\
-    KL\((\text{pass1}\Vert\text{pass2})\)       & 0.415 bits     & Asymmetric divergence               \\
-    Best validation-set Spearman (avg labels)   & 0.480          & Best single judge on avg labels     \\
-    Best validation-set Spearman (pass1 labels) & 0.559          & Best single judge on pass1 labels   \\
-    \bottomrule
-  \end{tabular}
-  \caption{\textbf{Human-human agreement ceiling context.} Inter-pass human agreement is moderate, and inter-pass dispersion (MAE/divergence) is non-zero, so validation-set judge-human values near \(0.5\) are meaningful on this benchmark and should be interpreted with label-noise context.}
-  \label{tab:app-human-human-ceiling}
-\end{table}
-
-\begin{figure}[t]
-  \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-        width=\linewidth,
-        height=0.62\linewidth,
-        ybar,
-        bar width=7pt,
-        ymin=0,
-        ymax=48,
-        ylabel={Count},
-        xlabel={Human score (0--5)},
-        symbolic x coords={1,1.5,2,3,4,5},
-        xtick=data,
-        x tick label style={font=\scriptsize},
-        y tick label style={font=\scriptsize},
-        label style={font=\scriptsize},
-        legend style={font=\scriptsize, draw=none, at={(0.02,0.98)}, anchor=north west},
-        enlarge x limits=0.12,
-        axis line style={black!60},
-        tick style={black!60},
-      ]
-      \addplot+[fill=blue!55, draw=blue!70!black] coordinates {
-          (1,1) (1.5,0) (2,7) (3,18) (4,44) (5,5)
-        };
-      \addplot+[fill=red!55, draw=red!70!black] coordinates {
-          (1,0) (1.5,3) (2,6) (3,10) (4,33) (5,23)
-        };
-      \legend{Stricter pass,Lenient pass}
-    \end{axis}
-  \end{tikzpicture}
-  \caption{\textbf{Human-score dispersion across passes (aligned \(n=75\), 0--5 scale).} Score counts are computed on the full set of \(75\) aligned candidate--gold pairs shared across both passes.
-  The lenient pass includes three \(1.5\) scores because duplicated legacy entries for one problem were averaged before plotting.
-  The visible distribution shift is consistent with the non-zero MAE/MSE and divergence statistics in Table~\ref{tab:app-human-human-ceiling}.}
-  \label{fig:app-human-pass-hist}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png}
+\caption{The tuned geometric comparison has a positive association on the expanded validation panel.
+The two panels compare arithmetic $v2$ with $\mathrm{mono}^{0.4}\mathrm{stab}^{0.6}$ across 13 configurations; the figure retains the archived estimates and intervals.}
+\label{fig:app-exp25-13judge}
 \end{figure}
 
-\subsection{Cross-Model Validation Status (Full vs Preliminary)}
-To avoid over-claiming, we separate full-scale cross-model regressions (\(n{=}8\) judge tuples on the \(\sim\!\!72\)–\(75\) overlapping aligned rows for each labeling view) from narrower exploratory protocol plots.
-\textbf{Anthropic Claude Opus (4.x)} \(\mathrm{TI}_{\mathrm{var}}\) vs.\ validation-set human Spearman is a full-panel run of the same form as GPT-5.3-Codex and Qwen3-Coder in Figure~\ref{fig:tivar_cross_model_avg}: eight judge configurations (four Opus \(\times\) prompts plus cross-family \(\texttt{gpt-4o-mini}\)\(\times\)two prompts plus edit/random controls), repeated-judge aggregation, identical label sets.
-
-Early \textbf{Claude 3.x Sonnet} scatterplots reported in Appendix~\ref{app:judge-cert} were small-file protocol iterations used mainly to stabilize prompts and ladders; those plots illustrate qualitative monotonic behavior but are \emph{not} the statistic behind Table~\ref{tab:tivar_cross_model_results}.
-
-\begin{table}[t]
-  \centering
-  \scriptsize
-  \setlength{\tabcolsep}{3pt}%
-  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.52\linewidth}
-    >{\centering\arraybackslash}p{0.09\linewidth}
-    >{\centering\arraybackslash}p{0.07\linewidth}
-    >{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
-    \toprule
-    \textbf{Judge setup}                 &
-    \textbf{Scale}                       &
-    \textbf{Main?}                       &
-    \textbf{Role}                                                                     \\
-    \midrule
-    GPT-5.3-Codex prompts (P8/P4/P1)     & \(n{=}8\) & Yes & Primary judges           \\
-    GPT-5.3-Codex BAD\_STRINGY           & \(n{=}8\) & Yes & Same-model stress        \\
-    Qwen3-Coder prompts                  & \(n{=}8\) & Yes & Open-weights             \\
-    Qwen3-Coder BAD\_STRINGY             & \(n{=}8\) & Yes & Open-weights stress      \\
-    Claude Opus 4.x + controls           & \(n{=}8\) & Yes & Third cross-model family \\
-    GPT-4o-mini prompts                  & \(n{=}8\) & Yes & Lightweight baseline     \\
-    Edit-distance + random               & \(n{=}8\) & Yes & Non-LLM controls         \\
-    Claude 3 Sonnet (narrow App.\ slice) & Small     & No  & Prompt diagnostics       \\
-    \bottomrule
-  \end{tabular}
-  \caption{\textbf{Cross-model validation status.} Main \(\mathrm{TI}_{\mathrm{var}}\) claims use full eight-configuration panels on overlapping human-aligned rows; Sonnet exploratory figures are withheld from headline statistics.}
-  \label{tab:app-cross-model-status}
-\end{table}
-
-\subsection{Leanstral Negative-Control Reaggregation (AM/GM/Variance-Aware)}
-To stress-test whether index choice alone can ``rescue'' a weak judge family, we re-aggregate the same Leanstral judge outputs under three indices:
-\[
-  \mathrm{AM}=\text{cert\_index\_v2}
-  \qquad \text{(arithmetic baseline)}
-\]
-\[
-  \mathrm{GM}=\mathrm{mono}^{0.4}\cdot \mathrm{stab}^{0.6}
-\]
-\[
-  \begin{aligned}
-    \mathrm{TI}_{\mathrm{var}}
-    ={} & \exp\!\Big(
-    \tfrac{1}{3}\log C_f
-    + \tfrac{1}{3}\log(1-\widetilde{\mathrm{VarCorr}}) \\
-        & \qquad\quad
-    + \tfrac{1}{3}\log(1-\widetilde{\mathrm{VarScore}})
-    \Big)
-  \end{aligned}
-\]
-where \(C_f\) is the mean per-file property-correlation term, and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (lower is better before \(1-\cdot\)).
-We report Spearman between index score and validation-set human Spearman across judges.
-
-\subsection{Index Definitions}\label{app:index-definitions}
-For reference, the simple arithmetic baselines in the main text are
-\[
-  v1 = 0.30\,\text{ident} + 0.30\,\text{mono\_rank} + 0.25\,\text{weak} + 0.15\,\text{stab},
-\]
-\[
-  \begin{aligned}
-    v2 ={} & 0.20\,\text{ident} + 0.20\,\text{mono\_rank} + 0.15\,\text{weak} \\
-           & + 0.10\,\text{stab} + 0.20\,\text{anti} + 0.15\,\text{subtle},
-  \end{aligned}
-\]
-where \(\text{mono\_rank}=(1-\rho_{\text{bug}})/2\) rescales bug-ladder Spearman so that larger is better, and \(\text{stab}=1-\text{flip\_rate}\).
-
-For the variance-aware index, the monotonicity term is
-\[
-  C_f = \frac{1}{|\mathcal{F}|}\sum_{f \in \mathcal{F}} \mathrm{clip}\!\left(\frac{1-\rho_f}{2},\,0,\,1\right),
-\]
-where \(\rho_f\) is the Spearman correlation between bug level and judge score for file \(f\).
-Thus \(C_f\) is the mean per-file bug-ladder monotonicity term before the variance penalties are applied.
-
-\begin{table}[t]
-  \centering
-  \small
-  \resizebox{\linewidth}{!}{%
-    \begin{tabular}{lccc}
-      \toprule
-      \textbf{Label Set} & \textbf{AM (v2)} & \textbf{GM} & \textbf{Variance-Aware \(\mathrm{TI}_{\mathrm{var}}\)} \\
-      \midrule
-      val (pass1)        & -0.5952          & -0.1429     & -0.1190                                                \\
-      test (pass2)       & -0.1905          & -0.2619     & -0.0476                                                \\
-      avg                & -0.4286          & -0.2143     & -0.0952                                                \\
-      \bottomrule
-    \end{tabular}
-  } \caption{\textbf{Leanstral remains low-alignment under multiple index constructions.} Re-aggregation improves over the arithmetic baseline in some splits, but all three settings remain near-zero or negative.
-  This suggests the bottleneck is likely the underlying judge behavior for this ranking task (human-preference alignment), not only index form.
-  One plausible hypothesis is that Leanstral is stronger for Lean proof editing/generation than for pairwise judging assessed against human ratings under this rubric; we treat this as a testable conjecture, not a final causal claim.}
-  \label{tab:app-leanstral-index-reagg}
-\end{table}
-
-\subsection{Failure Modes Found by Certification}
-The certification framework is useful precisely because it identifies failures: \textbf{(i) alpha-renaming sensitivity} is the dominant identity/invariance gap, and \textbf{(ii) local bug-ladder reversals} occur despite overall negative monotone trends.
-We therefore report both strengths and weaknesses, and include alpha-ablation diagnostics.
-On trend-v1 Spearman (TI \(\rightarrow\) validation-set human Spearman), excluding alpha variants changes pass1 \(0.810\rightarrow0.690\), pass2 \(0.810\rightarrow0.714\), avg \(0.881\rightarrow0.786\), showing that alpha cases materially affect measured robustness.
-
-Figures~\ref{fig:app-exp19-main-and-alpha} and~\ref{fig:app-exp19-reversals} replot the same detail rows with lower visual variance and isolate the two failure modes.
-Reversal rates in this package are: GPT-5.3 P4/P1 \(=0.00\), GPT-5.3 P8 \(=0.167\), BAD\_STRINGY \(=0.833\), GPT-4o variants \(=0.667\)--\(0.750\), edit-distance/random \(=1.00\).
-
-\begin{figure}[t]
-  \centering
-  \begin{subfigure}[t]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_exp19.png}
-    \caption{Main low-variance monotonicity curves (core GPT-5.3 judges, robust repeat aggregation).}
-    \label{fig:app-exp19-main-lowvar}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/fig_failure_alpha_variant_breakdown_exp19.png}
-    \caption{Failure-mode isolation: identity variant breakdown with ALPHA shown separately.}
-    \label{fig:app-exp19-alpha-failure}
-  \end{subfigure}
-  \caption{\textbf{Low-variance replot package: cleaner main trend + explicit failure separation.} The left panel is the ``main story'' plot with lower visual variance; the right panel isolates alpha-renaming sensitivity rather than mixing it into the primary monotonicity figure.}
-  \label{fig:app-exp19-main-and-alpha}
-\end{figure}
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{figures/fig_failure_bug_reversal_rates_exp19.png}
-  \caption{\textbf{Failure-mode plot: local bug-ladder reversal rates by judge.} This explicitly surfaces where monotonicity fails locally, separating robustness diagnostics from the primary trend plot.}
-  \label{fig:app-exp19-reversals}
-\end{figure}
-
+\subsection{Negative results}\label{app:negative-results}
+A separate Leanstral panel yields $\mathrm{TI}_{\mathrm{var}}$ associations of $-0.1190$, $-0.0476$, and $-0.0952$ on pass1, pass2, and averaged labels.
+These recorded results contradict a claim that the fixed index works for every family.
+They do not establish why the association fails.
+The different-rubric human pool described in Section~\ref{sec:limitations-test} also produced no qualifying index in either registered screen.
+The 32-configuration screen's largest absolute association is negative, so its sign does not support the proposed direction of the screen even before accounting for multiple comparisons.

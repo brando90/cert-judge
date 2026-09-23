@@ -1,18 +1,18 @@
 % !TEX root = main.tex
 \section{Related Work}
-\paragraph{LLM-as-a-judge.}
-LLM judges are validated mainly by agreement with people: \textsc{G-Eval} reports Spearman correlation with human scores~\citep{Liu2023GEval}, MT-Bench reports agreement with human preferences~\citep{Zheng2023MTBench}, and Judge-Bench tests whether LLMs replicate human annotations across 20 NLP datasets~\citep{Kocmi2024HumanVsLLM}.
-These audits find that agreement varies by task and setup, and that judges show position and verbosity biases and sensitivity to prompt phrasing~\citep{Kocmi2024HumanVsLLM,Li2024TrustLLMJudgments}.
-Multi-agent debate~\citep{Chan2024ChatEval}, rubric-driven prompting~\citep{Liu2023GEval}, and internal-consistency measures over repeated scorings~\citep{Li2024TrustLLMJudgments} improve or quantify reliability, and simple comparative prompting can grade more consistently than long reasoning chains~\citep{chen2026rethinking}.
-We keep human agreement as the validation target but measure it once, then screen later judges with falsifiable properties.
+\paragraph{LLM-as-a-judge validation.}
+\textsc{G-Eval}~\citep{Liu2023GEval} and \textsc{MT-Bench}~\citep{Zheng2023MTBench} compare judges with human ratings, leaving reliability dependent on the evaluated tasks and configurations.
+Bavaresco et al.~\citep{Kocmi2024HumanVsLLM} document this dependence across tasks rather than establishing a universal judge.
+Schroeder and Wood-Doughty~\citep{Li2024TrustLLMJudgments} measure consistency across repeated judgments, which does not by itself establish correctness.
+Our protocol retains human agreement as a validation criterion and adds tests with specified directions of response.
 
 \paragraph{Judges for code.}
-For code, pass@k is unavailable when tests are missing and misleading when they are weak; \textsc{ICE-Score} and \textsc{CodeJudge} instead prompt LLMs to judge functional correctness~\citep{Zhuo2024ICEScore,TongZhang2024CodeJudge}.
-Our properties resemble metamorphic testing: each perturbation has a known effect on the correct score, so a judge's response to it can be checked without new labels.
+\textsc{ICE-Score}~\citep{Zhuo2024ICEScore} and \textsc{CodeJudge}~\citep{TongZhang2024CodeJudge} use models to assess generated code where execution tests provide incomplete evidence, but their human-agreement results do not certify later judge configurations.
+\textsc{SWT-Bench} validates generated tests against developers' fixes~\citep{mundler2024swtbench}, requiring a reference behavior rather than treating test execution as proof of test validity.
+Our controlled perturbations serve a related purpose for judges: they specify how a score should change without labeling each perturbed artifact.
 
 \paragraph{Judging formal statements.}
-Autoformalization work usually supplies the target theorem and scores proof success, whereas agentic verification systems must also propose the specification~\citep{miranda2026veribench,bursuc2025benchmarkvericodingformallyverified}.
-Checking that a proposed statement is faithful increasingly relies on models: \textsc{FormalAlign} scores the alignment between informal and formal statements~\citep{lu2024formalalign}, and open theorem-prover pipelines filter autoformalized statements with LLM judges~\citep{lin2025goedelprover,wang2025kiminaprover}.
-ReForm validates such judges once, against 859 expert-annotated items, and finds that even experts make semantic errors in up to 38.5\% of cases~\citep{chen2026reform}.
-Debate can help weaker judges supervise stronger models~\citep{kenton2024oversight}; our setting instead has gold references, which the properties exploit to test new judges without new labels.
-
+\textsc{FormalAlign} learns alignment between informal and formal statements~\citep{lu2024formalalign}, whereas our target is the behavior of a judge comparing candidate and gold specifications.
+\textsc{ReForm} validates formal-statement judges against expert annotations~\citep{chen2026reform}, without establishing that later configurations satisfy our behavioral properties.
+\textsc{VeriBench} evaluates agent-generated Lean artifacts~\citep{miranda2026veribench}; we study the judges used to score their formal specifications.
+These tasks require checking what a statement means, beyond whether a proof checker accepts it.
