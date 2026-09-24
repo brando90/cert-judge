@@ -1,0 +1,41 @@
+{
+  "schema": "cert-judge-vals-smoke-v1",
+  "created_date": "09-24-2026",
+  "source_commit": "b468a00221ee1e3e9cb6fdb0a416b31de484358d",
+  "source_file": "data/veribench_dataset/gold_examples/lean_src/my_add.lean",
+  "source_sha256": "d8ae0df5a209b2ddf1a4d856a41cf2f783bffc3853cb1df133ccff1e6d6ec846",
+  "prompt_source": "experiments/archive/02_neurips_reviews/utils/sensitivity_sweep.py",
+  "prompt_source_sha256": "6f9a20a26c4ccf94c2ffb7a1eb68d9a5ff6924544ee4e63f4fbf688c223da973",
+  "prompt_name": "P1_BASELINE + prospective completion reminder",
+  "reference_extraction": "Frozen exp32 last theorem/lemma regex",
+  "expected_cells": 1,
+  "cells": [
+    {
+      "cell_id": "my_add_identity_r1",
+      "task": "my_add",
+      "condition": "identity pair",
+      "split": "infrastructure smoke fixture; no statistical train/validation/test estimate",
+      "repeat": 1,
+      "prompt": "data/prompt.txt",
+      "prompt_sha256": "9452d806d7a6c73072cafb780472c0a678fb40b2bf6651e874edfe5a3a6f5321",
+      "prompt_bytes": 7801
+    }
+  ],
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "max_tokens": 4096,
+  "max_client_inference_calls": 1,
+  "client_retries": 0,
+  "provider_fallback_allowed": false,
+  "client_timeout_seconds": 3600,
+  "controller_timeout_seconds": 3900,
+  "admission_cost_ceiling_usd": 1.0,
+  "cost_bound_basis": "Input UTF-8 byte count + 1024 framing tokens at current registry input rate, max_tokens at output rate; server retry costs are not independently exposed.",
+  "temperature": "omitted; model does not support temperature",
+  "tools": [],
+  "output_contract": {
+    "score": "finite real in [0,1]",
+    "reasoning": "nonempty string"
+  },
+  "scientific_scope": "Transport, declared routing, response parsing and positive identity sanity only; no judge validity/correlation or paper claim."
+}
