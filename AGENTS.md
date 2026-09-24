@@ -101,7 +101,7 @@ Historical P1–P5 fixtures retained for compatibility:
 
 The active manuscript is `paper_latex/ICLR_2027_submission/`. Older ICML/NeurIPS trees are historical. Populate PTI-v0 claims only from committed machine-readable PTI-v0 outputs.
 
-**One file per section (since 2026-09-22, commit 710dda9).** `main.tex` holds only the preamble and the `\input` list. Prose lives in `00_abstract`, `01_introduction`, `02_related_work`, `03_problem_setup`, `04_property_protocol`, `05_experiments`, `06_limitations`, `07_conclusion`, and `990`–`997_appendix_*` (`.tex`). Several agents share this checkout and its index, so:
+**One file per section (since 2026-09-22, commit 710dda9).** `main.tex` holds only the preamble and the `\input` list. Prose lives in `00_abstract`, `01_introduction`, `02_related_work`, `03_problem_setup`, `04_property_protocol`, `05_experiments`, `06_limitations`, `07_conclusion`, `08_statements` (ICLR statements), and the appendix files `990`, `994`–`998` (`.tex`); `991`–`993` were retired on 2026-09-24 and live under `paper_latex/ICLR_2027_submission/archive/` (not built). Several agents share this checkout and its index, so:
 
 - Edit the section file for your change, never a monolithic copy. Touch `main.tex` only to add or reorder an `\input`, and keep the `% !TEX root = main.tex` first line in every section file.
 - Build in a scratch copy (`latexmk -pdf -interaction=nonstopmode main.tex`), not in the paper directory: concurrent `latexmk` runs there have truncated `main.aux`. Copy the built `main.pdf` back only for semantic changes.
