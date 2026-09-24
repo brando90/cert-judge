@@ -1,7 +1,7 @@
 # results.md — experiments 33a–33e (OpenReview complaints → ICLR 2027 paper); hub 33b
 
 **Status:** DONE for all four venues (started 09-22-2026 14:58 PDT; DL4C ingested 09-22-2026 17:55 PDT)
-**Last updated:** 09-22-2026 17:58 PDT
+**Last updated:** 09-24-2026 (re-anchored after the experiment-34 rewrite merge `63fb935`)
 
 | Phase | Status | Evidence |
 |---|---|---|
@@ -10,6 +10,7 @@
 | 3. Ledger (one row per complaint) | DONE | per-venue `complaints.md`: 33d 14 `N25-*`, 33e 3 `T26-*`, 33a 29 `A26-*`, 33c 9 `D26-*`; open items O1–O3 in `edits_ledger.md` |
 | 4. Prompts 01–04 | DONE | `prompts/` |
 | 5. Paper edits E1–E10 | DONE | E1–E9 commit `e0631b6`; E10 commit `5201653`; 0 undefined citations/references, 0 BibTeX warnings |
+| 7. Re-anchor after the experiment-34 rewrite | DONE 09-24-2026 | banners in all five ledgers; authoritative per-row statuses now in `experiments/34_iclr_mega_rewrite_astra/REPORT.md` § "Complete reviewer-complaint checklist"; E1–E10 map in `edits_ledger.md`; corrections: Qwen pass2 0.857, no P3 result in the retained panel |
 | 6. DL4C ingestion + re-audit (prompt 03) | DONE | 9 `D26-*` rows: 1 Addressed (E10), 6 Disclosed, 2 Deferred (readability, appendix formatting → experiment 31); 8 of 9 repeat earlier rounds |
 
 ## Ledger counts after the edits (55 rows across 33a/33c/33d/33e)
@@ -35,7 +36,7 @@
 | E7 median over repeated calls: three for LLM judges, nine for the two non-LLM controls (corrected from "nine" after cert-judge-57's check) | yes | `e0631b6` |
 | E8 appendix agreement statistics on the 72 overlapping pairs; MAE 0.771 / MSE 1.121 | yes | `e0631b6` |
 | E9 refs.bib hygiene (anonymous entry deleted; Bach, Ding, Bowman entries completed) | yes | `e0631b6` |
-| E10 pass-to-pass swing acknowledged in §5.3 (Qwen3-Coder 0.476 vs 0.905; DL4C birm) | yes | `5201653` |
+| E10 pass-to-pass swing acknowledged in §5.3 (Qwen3-Coder 0.476 vs 0.905 as then tabulated; DL4C birm) | yes | `5201653`; re-expressed with the corrected pass2 value 0.857 in the rewrite (merge `63fb935`) |
 
 ## Numbers introduced (paper value ← artifact)
 
@@ -57,4 +58,4 @@
 
 Commit `57ccf9f` also carries the §5.4 / Table 5 cut of `main.tex` and `main.pdf` (−25 lines) that session "paper writing certjudge" had staged in the shared index; the paper content in that commit is theirs, made on Brando's decision, and the pushed HEAD builds in a scratch copy (26 pages, 0 undefined citations or references). Lesson recorded in memory: commit with explicit pathspecs (`git commit -- <paths>`) when other sessions share the checkout.
 
-**TLDR-end:** [cj: or-complaints] All 55 complaints from the four OpenReview rounds are ledgered in the per-venue folders 33a/33c/33d/33e with no Unknown rows left; ten artifact-traced paper edits landed (E1–E9 in `e0631b6`, E10 in `5201653`), and the only deferred items are readability and appendix formatting, owned by experiment 31.
+**TLDR-end:** [cj: or-complaints] All 55 complaints from the four OpenReview rounds are ledgered in 33a/33c/33d/33e; the ten edits E1–E10 landed on 09-22-2026 and survive, re-expressed, in the 09-24-2026 rewrite (merge `63fb935`), whose REPORT checklist is now the authoritative per-row status; two rewrite corrections (Qwen pass2 0.857; no P3 result in the retained panel) are recorded here.
