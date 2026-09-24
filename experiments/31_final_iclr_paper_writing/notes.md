@@ -472,3 +472,7 @@ artifacts. The paper is fixed (merge 63fb935); this note is so the entries above
 - **"Why Alpha-renaming is hard":** the historical alpha probes are malformed (duplicated `:=`, renamed signatures),
   so score drops don't show failure under valid alpha-renaming.
 - **GM:** GM's 0.4/0.6 weights were selected on pass1. It is not an untuned baseline.
+
+## 2026-09-24 — merge, retitle, Fable QA of the Astra rewrite
+- Merged `astra/iclr-mega-rewrite` into main (63fb935); title → "Checking the Checks: Behavioral Screens for LLM Judges of Formal Specifications" (1cac976); CLAUDE.md/AGENTS.md section-file list updated (0f09e77).
+- QA (Claude Fable, Brando-requested): all 11 of Astra's interpretation-changing corrections re-derived from artifacts and confirmed; report `experiments/34_iclr_mega_rewrite_astra/QA_claude_fable.md`. Key provenance: old Figure 2 plotted exp30's six-term `ti_var_v3` (P1 0.9208, BAD_STRINGY 0.6964) under exp28 equal-weight titles (P1 0.9578, BAD_STRINGY 0.9403); `P3_weak_mono` = bug weak-monotonicity (exp17:99); alpha probes malformed per exp29 preflight (184/184 `:=:=`).
