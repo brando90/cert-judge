@@ -1,0 +1,1311 @@
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+000
+001
+      C ERTIFYING THE J UDGE : FALSIFIABLE P ROPERTIES
+002   FOR LLM-BASED E VALUATION OF F ORMAL C ODE
+003
+004
+005    Anonymous authors
+006    Paper under double-blind review
+007
+008
+009                                               A BSTRACT
+010
+011            Large language models judge whether AI-written formal specifications express
+012            the right guarantees, a question that running tests or checking proofs cannot settle.
+013            Reliability is usually assessed through agreement with human ratings, leaving each
+014            new judge configuration dependent on human validation. We propose collecting
+015            labels once, then screening new judges with falsifiable properties that specify
+016            how scores should respond to controlled edits. Four properties target identity,
+017            bug monotonicity, missing-specification monotonicity, and stability for Lean 4
+018            specifications. A fixed equal-weight index, TIvar , summarizes bug monotonicity
+019
+               and variance. We compare three judge families with eight configurations each
+               on a 72-pair, single-annotator validation set that also informed protocol selection.
+020
+               For Codex, index–human-agreement Spearman correlations are 0.833 on averaged
+021
+               labels and 0.905 and 0.738 on the two rating passes. Bug-ladder reversals expose a
+022            lexical grader that human agreement alone would favor, although the scalar index
+023            still scores it highly. Judge validation thus moves toward a one-time human panel
+024            plus automated, falsifiable checks that each new judge must face.
+025
+026
+027   1    I NTRODUCTION
+028
+029
+      AI agents write both programs and the checks intended to establish their correctness, including
+030   tests (Haque et al., 2026) and formal specifications (Yang et al., 2024). Running a generated test
+031   reveals whether the program and test agree, not whether either expresses the intended behavior. This
+032   is an instance of the test-oracle problem: deciding which behavior should count as correct (Barr et al.,
+033   2015). A formal specification states the guarantees a program should satisfy, such as returning a
+034   sorted permutation of its input. Its role resembles that of a grading test, but a universally quantified
+035   theorem covers every input rather than sampled cases (Claessen & Hughes, 2000). Lean can check a
+036   proof of that theorem; it cannot establish that the author chose the right theorem (Lahiri, 2024).
+037   Large language models (LLMs) already help replace the human oracle, filtering autoformalized
+038   statements in theorem-proving pipelines (Lin et al., 2025; Wang et al., 2025). Human agreement is a
+039   common criterion for validating these judges (Liu et al., 2023; Zheng et al., 2023). Agreement varies
+040   across models, tasks, and evaluated properties, so evidence for one configuration does not establish
+041   another’s reliability (Bavaresco et al., 2025). Existing labels can assess another judge on the same
+042   examples without fresh annotation. However, repeatedly selecting judges against those labels risks
+043   adaptive overfitting (Dwork et al., 2015). New artifact distributions also raise a separate question
+044
+      about whether those labels remain representative.
+045   We propose using one human panel to assess a property suite, then screening subsequent judge
+046   configurations without consulting those labels. The screen asks whether a judge responds appropri-
+047   ately when a controlled edit preserves or damages a reference artifact. A failed property identifies a
+048   concrete behavior that human agreement alone can hide. Passing the screen supplies evidence about
+049   the tested behaviors, without guaranteeing agreement on unseen artifacts.
+050   We instantiate this protocol for Lean 4 formal specifications judged against gold references (Figure 1).
+051   Four properties test identity, responses to cumulative bugs, responses to removed theorem statements
+052   and unit tests, and score stability. A fixed equal-weight index, TIvar , summarizes bug monotonicity
+053   and two variance penalties. The full diagnostic suite remains necessary because this scalar omits
+      some properties.
+
+
+                                                         1
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+054
+      On a 72-pair validation set, the index tracks judge-level human agreement across three families, each
+055   containing eight configurations. The Codex association is Spearman 0.833, with a 95% bootstrap
+056   interval of [0.24, 1.00]. These estimates are optimistic because the same labels informed the index
+057   form, prompts, aggregation, and threshold. A deliberately lexical judge agrees with humans yet
+058   reverses its scores on most bug ladders.
+059
+      The aim is to amortize annotation through reusable checks, with transfer to new judges and domains
+060
+      assessed separately. Our contributions are:
+061
+062          • A protocol that combines a one-time human validation set with four falsifiable properties for
+063            screening judge configurations without new labels (Section 4).
+064          • An evaluation linking committed scores to validation-set association, lexical failures, and
+065            the limits of reducing the property suite to one index (Section 5.3).
+066
+067
+      2    R ELATED W ORK
+068
+069   LLM-as-a-judge validation. G-E VAL (Liu et al., 2023) and MT-B ENCH (Zheng et al., 2023)
+070   compare judges with human ratings, leaving reliability dependent on the evaluated tasks and configu-
+071   rations. Bavaresco et al. (Bavaresco et al., 2025) document this dependence across tasks rather than
+072   establishing a universal judge. Schroeder and Wood-Doughty (Schroeder & Wood-Doughty, 2024)
+073   measure consistency across repeated judgments, which does not by itself establish correctness. Our
+074   protocol retains human agreement as a validation criterion and adds tests with specified directions of
+075   response.
+076
+077   Judges for code. ICE-S CORE (Zhuo, 2024) and C ODE J UDGE (Tong & Zhang, 2024) use models to
+078
+      assess generated code where execution tests provide incomplete evidence, but their human-agreement
+      results do not certify later judge configurations. SWT-B ENCH validates generated tests against
+079
+      developers’ fixes (Mündler et al., 2024), requiring a reference behavior rather than treating test
+080
+      execution as proof of test validity. Our controlled perturbations serve a related purpose for judges:
+081   they specify how a score should change without labeling each perturbed artifact.
+082
+083   Judging formal statements. F ORMAL A LIGN learns alignment between informal and formal state-
+084   ments (Lu et al., 2025), whereas our target is the behavior of a judge comparing candidate and gold
+085   specifications. R E F ORM validates formal-statement judges against expert annotations (Chen et al.,
+086   2026), without establishing that later configurations satisfy our behavioral properties. V ERI B ENCH
+087   evaluates agent-generated Lean artifacts (Miranda et al., 2026); we study the judges used to score
+088   their formal specifications. These tasks require checking what a statement means, beyond whether a
+089   proof checker accepts it.
+090
+091   3    P ROBLEM S ETUP
+092
+093   Intent, specification, and artifact. An item contains an informal problem statement, a gold Lean 4
+094   artifact g, and a candidate artifact x generated by an agent. We call the informal requirement the intent.
+095   An artifact is a Lean source file containing an implementation and, potentially, theorem statements,
+096   predicates, unit tests, and proofs. Its formal specification consists of the theorem statements about
+097   the implementation together with the predicates they use. For example, a sorting specification can
+098
+      require both ordered output and preservation of the input elements. A proof certifies a theorem under
+      its stated assumptions; it does not determine whether those requirements capture the intent. A unit
+099
+      test checks a concrete case and is not part of the specification under our terminology (Appendix F).
+100
+      We use “specification” in this sense regardless of who wrote it.
+101
+102   Reference-based specification quality. The target is how completely and correctly the candidate
+103   specification captures the gold reference. A candidate can type-check yet omit a requirement, impose
+104   an unintended assumption, or assert a vacuous property. The judge prompts ask which reference
+105   guarantees the candidate captures and assign a score of zero to trivial statements such as True
+106   (Appendix A). This scoring instruction does not establish that judges detect every such failure. A
+107   gold reference supplies a concrete comparison target; it does not make the judge immune to strategic
+      manipulation (Robertson & Koyejo, 2025).
+
+
+                                                          2
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+108
+                                      Judge configuration
+109         Gold artifacts                                        Property checks            Index and
+                                        model, prompt,
+110       and scripted edits                                          P1–P4                failure report
+                                            repeats
+111
+112
+113
+114
+115                                 One-time validation set
+                                                                             Assess association; select protocol
+116
+                                       human ratings of
+                                                                             then freeze before testing transfer
+                                     candidate–gold pairs
+117
+118
+119
+      Figure 1: The human panel informs the protocol once; later judges face the upper sequence of
+      automated checks. The lower sequence measures validation-set association and selects protocol
+120
+      choices, so its results are not a held-out test.
+121
+122
+123   Stage                    Human labels                               Judge computation
+124   Establish protocol       Rate candidate–gold pairs                  Measure human agreement and property be-
+125                                                                       havior
+126   Select protocol          Use validation ratings                     Choose index form, prompts, aggregation,
+                                                                          threshold
+127
+      Screen new judge         Do not consult labels                      Run frozen probes; inspect index and fail-
+128                                                                       ures
+129   Test transfer            Collect independent ratings                Evaluate frozen choices on untouched items
+130
+131   Table 1: Screening a new judge requires inference but no new labels; establishing transfer requires a
+132   separate test.
+133
+134
+135   Judge configuration. We define θ = (model, prompt, nrepeats , aggregation) and write its score as
+136   Jθ (x, g) ∈ [0, 1]. The headline panel uses a median over repeated calls. Despite the prompt label
+137
+      “REFERENCE IMPLEMENTATION,” its reference field contains the gold file’s final theorem block;
+      its candidate field contains the full candidate file. Thus the measured task depends on this extraction
+138
+      rule, not only on the nominal rubric. A change to that rule requires a new assessment. We distinguish
+139
+      a judge’s agreement with artifact ratings from the association, across judge configurations, between
+140   that agreement and a property index.
+141
+142
+143   4     P ROPERTY C ERTIFICATION P ROTOCOL
+144
+145   A one-time panel and reusable checks. Human ratings link judge behavior to the intended scoring
+146   task on a fixed validation set. For each configuration, we measure agreement with those ratings and
+147   evaluate scripted perturbations of gold artifacts. The perturbations require judge calls but no additional
+148   human labels. We use the validation set to select the index form, prompts, repeat aggregation, and
+149
+      decision threshold. After freezing these choices, subsequent configurations can face the same property
+      checks without accessing the labels (Figure 1). This is a screening protocol; the present evidence
+150
+      does not establish transfer to an unseen configuration or distribution.
+151
+152
+153
+      Four falsifiable properties. P1 (identity) requires the maximum score when an artifact is compared
+      with itself, Jθ (g, g) = 1. P2 (bug monotonicity) requires non-increasing scores as errors accumulate.
+154
+      The historical bug ladder used here alters the candidate text, including theorem statements; it is not
+155
+      restricted to implementation bugs. P3 (missing-specification monotonicity) requires non-increasing
+156   scores as theorem statements and unit tests are removed. We retain this historical property name
+157   although unit tests are not specifications under Section 3. Each ladder extends the preceding level, so
+158   its expected ordering concerns cumulative damage rather than equal severity of individual edits. Ties
+159   are allowed; a local score increase is a reversal. P4 (stability) requires stable scores across repeated
+160   calls and meaning-preserving rewrites. These include alpha-renaming, which consistently changes
+161   bound-variable names without changing their meaning. The properties are targets for the probes; they
+      are not theorems establishing the validity of every scripted transformation.
+
+
+                                                              3
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+162
+      A fixed equal-weight summary. The protocol retains individual diagnostics because different
+163   failures need different checks. Our primary scalar, TIvar , uses only bug-ladder scores, combining
+164   their average monotonicity with two variance penalties:
+165                                    h                                              i
+166                        TIvar = exp 13 log Cf + 13 log(1 − Vec ) + 31 log(1 − Ves ) .              (1)
+167   Here Cf is the mean transformed per-file Spearman correlation between bug level and score. Vc is
+168   the variance of these per-file monotonicity values, and Vs is the mean within-level variance across
+169   repeated calls. The tildes denote min–max normalization across the configurations in the same
+170   family panel. The implementation floors each logarithm’s argument at 10−6 . Appendix B specifies
+171   aggregation, normalization, and undefined-correlation handling.
+172   Multiplication prevents a strong component from fully offsetting a weak one; equal weights avoid
+173   fitting component weights to the human ratings. The scalar nevertheless omits P1, P3, rewrite
+174   invariance, and a direct penalty for local reversals. It therefore summarizes selected behavior rather
+175   than replacing the property report. Moreover, panel-dependent normalization means that its absolute
+176   value can change when the comparison panel changes. Using it prospectively requires a frozen
+177   normalization reference, whose transfer we have not tested.
+178
+179   5     E XPERIMENTS
+180
+181   5.1   DATA AND HUMAN PANEL
+182
+183   We evaluate candidate–gold pairs from V ERI B ENCH (Miranda et al., 2026). One annotator supplied
+184   holistic ratings on a 0–5 scale in two passes, pass1 with a stricter rubric and pass2 with a more
+185   lenient rubric. The collection covered 75 pairs from 25 problems with three agent generations per
+186
+      problem. One gold filename could not be resolved, leaving 72 analyzed pairs from 24 problems. We
+      report each pass and the archived averaged-label view; they are two judgments by one person, not
+187
+      independent annotators. Inter-pass agreement is Spearman 0.249, quadratic-weighted κ = 0.372,
+188
+      and mean absolute error 0.771 on the shared pairs (Appendix D). These statistics describe label
+189   disagreement; they do not establish an upper bound on judge agreement. The original written rubric
+190   was not recovered, so we cannot reconstruct every annotation instruction.
+191
+192
+      This panel is the validation set: it informed index-form selection, repeat aggregation, the threshold,
+      and the prompt panel, so correlations on it are optimistic. The fixed equal-weight TIvar has no
+193
+      training set. A separate weight-tuned comparison uses these same pairs, and no analysis constitutes
+194
+      a test-set result. For each judge, artifact-level agreement is the Spearman correlation between its
+195   scores and the human ratings on the same analyzed pairs. We then ask whether the index orders
+196   configurations by that agreement.
+197
+198   5.2   P ROPERTY CHECKS ON GPT-5.3-C ODEX
+199
+200   Figure 2 summarizes the 24-problem panel for three Codex prompts. Early bug edits lower mean
+201   scores, but averages conceal local reversals. The strict prompt reverses on four of 24 ladders, whereas
+202   the baseline and checklist prompts have no reversals (Table 3). The archived alpha probes produce
+203   the largest score changes among the four rewrite types, but their generator can produce malformed
+204
+      Lean text. The baseline and checklist prompts assign them zero mean score, despite near-maximum
+      scores for the other rewrites. The strict prompt gives alpha probes a mean score of 0.179. Appendix E
+205
+      retains the per-configuration diagnostics and the corresponding Claude Opus summary.
+206
+207
+      Alpha-renaming and a canonicalization proxy. The historical alpha routine can duplicate the
+208   assignment marker and rename signature variables without updating the proof body. Its score drops
+209   therefore cannot establish a failure of invariance under valid alpha-renaming. A post-hoc proxy
+210   replaces each judge’s alpha scores with its median score under style edits. Across the eight Codex-
+211   panel configurations, this lowers the mean per-judge standard deviation across identity-probe scores
+212   from 0.250 to 0.070. This manipulation changes recorded scores rather than the judge’s inputs. A
+213   real fix must rescore canonicalized text and verify that the transformation preserves meaning.
+214
+215   Coverage of P3. The eight-configuration panel contains identity rewrites and bug ladders but
+      no missing-specification ladders. Consequently, it cannot establish which association P3 has with
+
+
+                                                        4
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+216
+217                                                             Bug ladder                                                             Unvalidated rewrite probes
+218                             1.0                                                                                     1.0
+
+
+
+
+          Mean judge score                                                                           Mean judge score
+219                             0.8                                                                                     0.8
+220
+                                0.6                                                                                     0.6
+221
+222                             0.4                                                                                     0.4
+223                             0.2                                                                                     0.2
+224                             0.0                                                                                     0.0
+225                                         0            1              2          3          4                               Rename       Reorder          Style       Alpha
+226                                                  Cumulative bug level
+227
+                                                                                Baseline             Checklist                          Strict
+228
+229
+230
+      Figure 2: Early bug edits and malformed alpha probes lower the Codex judges’ mean scores. Each
+      point averages median scores over 24 problems, with three calls per problem and prompt; these are
+231
+      descriptive means, not uncertainty intervals. Local reversals remain visible in Table 3.
+232
+233
+234
+                                                  GPT-5.3-Codex                               Claude Opus 4.7                                         Qwen3-Coder
+
+
+      Agreement with human ratings
+235                                                   = 0.833                                      = 0.643                                              = 0.905
+236
+237                                  0.4
+
+
+
+
+       (Spearman, averaged labels)
+238
+239                                  0.2
+240
+241                                  0.0
+242
+                                           0.00   0.25       0.50      0.75     1.00 0.00     0.25              0.50          0.75     1.00 0.00     0.25     0.50   0.75   1.00
+243
+                                                             TIvar                                            TIvar                                          TIvar
+244                                                                 Baseline        Strict           4o-mini strict                        Edit distance
+245                                                                 Checklist       Lexical          4o-mini checklist                     Random
+246
+247   Figure 3: The fixed equal-weight index has a positive association with human agreement in each
+248   primary family, but high index values do not rule out lexical judges. Each point is one configuration;
+249   the vertical axis is its Spearman agreement with averaged human labels on 72 pairs. Panel titles report
+250   the correlation across eight configurations; Table 2 gives Codex uncertainty.
+251
+252
+253   human agreement. We retain P3 as a proposed part of the protocol, without attributing the bug-ladder
+254   statistics below to it.
+255
+256
+       5.3                           T HE INDEX TRACKS JUDGE - LEVEL HUMAN AGREEMENT ON THE VALIDATION SET
+257
+258   The three primary families are GPT-5.3-Codex, Claude Opus 4.7, and Qwen3-Coder. Each eight-
+259   configuration panel contains three semantic prompts, a deliberately lexical prompt on the same
+260   model, two GPT-4o-mini prompts, edit distance, and a random control. These are family panels
+261   with shared controls, not eight independent models per family. The frozen model identifiers and
+262   complete main-panel prompts appear in Appendix A. Scores are medians over three repeated calls
+263   for language-model judges; Codex-panel controls use nine repeats, and the other panels use three.
+264   Figure 3 uses the fixed equal-weight index in Equation 1. Its judge-level Spearman association is
+265   positive for each primary family and label view (Table 2). For Codex, averaged-label Pearson and
+266   Kendall associations are 0.868 and 0.643, respectively. The Codex bootstrap intervals are wide,
+267   and the resampling does not correct for the earlier protocol selection. Pass-to-pass differences also
+268   matter: Qwen’s Spearman association changes from 0.476 on pass1 to 0.857 on pass2. With eight
+269   configurations and disagreeing label passes, these estimates support a descriptive association rather
+      than a precise or portable effect size.
+
+
+                                                                                                  5
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+270
+                                               Averaged labels                       TIvar by pass
+271
+272             Family             v1        v2    GM.4,.6             TIvar          pass1          pass2
+273             Codex           0.762    0.476        0.857            0.833          0.905          0.738
+274             Claude Opus     0.429    0.143        0.714            0.643          0.810          0.595
+275
+                Qwen3-Coder     0.524    0.500        0.786            0.905          0.476          0.857
+276              Codex TIvar : 95% interval                      [0.24, 1.00]   [0.41, 1.00]   [0.11, 1.00]
+277              Codex TIvar : permutation p                           0.017          0.005          0.045
+278
+279   Table 2: The fixed index is competitive with a two-component geometric comparison whose weights
+280
+      were selected on pass1. Entries are Spearman correlations between each index and judge-level human
+      agreement on the validation set, with eight configurations per family. Codex intervals and permutation
+281
+      probabilities use 10,000 resamples and permutations, seed 42; corresponding intervals for the other
+282
+      families are not reported. Appendix B defines all indices.
+283
+284
+                    Codex-panel configuration     Human ρ (avg)       TIvar     Ladders with reversals
+285
+286                 Baseline prompt                       0.466       0.958                      0/24
+287                 Checklist prompt                      0.419       0.958                      0/24
+                    Strict prompt                         0.365       0.950                      4/24
+288
+                    Lexical prompt                        0.435       0.940                     20/24
+289                 GPT-4o-mini, strict                  −0.014       0.324                     18/24
+290                 GPT-4o-mini, checklist                0.092       0.007                     16/24
+291                 Edit distance                         0.199       0.928                     24/24
+292                 Random                               −0.001       0.008                     24/24
+293
+294
+      Table 3: The lexical judge agrees with humans despite frequent bug-ladder reversals, and the scalar
+      index penalizes it only slightly. A reversal is any local score increase as cumulative edits are added;
+295
+      the diagnostic uses the recorded repeat-aggregated scores.
+296
+297
+298   Human agreement alone can miss a bad judge. The lexical prompt, BAD_STRINGY, explicitly
+299   instructs the model to ignore theorem meaning and grade textual overlap. On the Codex panel, its
+300   human agreement of 0.435 lies among the semantic prompts’ values, 0.365–0.466. Yet it reverses on
+301   20 of 24 bug ladders (Table 3). The index ranks it below the three semantic prompts, but its value
+302   remains 0.940; edit distance also scores highly at 0.928. In the Qwen panel, the lexical configuration
+303   has the highest index value, 0.982. The failure report therefore carries information that both human
+304   agreement and the scalar can miss. No validated cutoff on TIvar establishes that a judge is acceptable.
+305
+306   Choice of index. The two-component geometric comparison is numerically higher than TIvar for
+307   Codex and Opus on averaged labels (Table 2). It uses bug monotonicity and decision stability with
+308   weights 0.4 and 0.6, selected on pass1, rather than fixed equal weights. We retain TIvar for its explicit
+309
+      variance penalties and positive associations across the primary families and passes, not because
+      these data establish its superiority. A separate search over six component weights gives cross-pass
+310
+      associations of 0.810 and 0.786 on the same pairs (Appendix C). The pass1-selected geometric
+311
+      form reaches 0.769 on an expanded 13-configuration panel, with a 95% interval of [0.34, 0.95]
+312   (Appendix D.2). Neither comparison provides a held-out estimate. A separate Leanstral panel has
+313   averaged-label association −0.095 for the fixed index (Appendix D.3), so the positive result does not
+314   hold for every recorded family.
+315
+316   Weight and normalization sensitivity. Recomputing the fixed index on a local grid of weight
+317   triples gives averaged-label Spearman ranges of 0.738–0.857 for Codex, 0.643–0.714 for Opus,
+318   and 0.881–0.976 for Qwen. This analysis uses only committed component vectors and keeps their
+319   normalization fixed (Appendix C.3). It does not assess sensitivity to changing the normalization panel.
+320   We do not report leave-one-family-out transfer: the panels share controls and normalize separately,
+321   so pooling their scores would not constitute an independent family test.
+322
+323   Which measured statistics matter. Among the recorded diagnostics, weak monotonicity on bug
+      ladders has the largest association with human agreement on each label view (Table 4). It measures
+
+
+                                                             6
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+324
+                     Measured diagnostic                   pass1          pass2             avg
+325
+326                  Mean identity-rewrite score   −0.21 (0.62)     0.02 (0.98)    −0.02 (0.98)
+                     Bug-rank monotonicity          0.60 (0.13)     0.67 (0.08)     0.71 (0.06)
+327
+                     Bug weak monotonicity          0.63 (0.11)     0.78 (0.03)     0.75 (0.04)
+328                  Repeat decision stability      0.47 (0.24)    −0.23 (0.57)     0.14 (0.76)
+329
+330   Table 4: Bug weak monotonicity has the largest observed association among the measured diagnostics;
+331   this table contains no P3 missing-specification result. Entries are Spearman correlations with human
+332   agreement across eight Codex-panel configurations; unadjusted permutation probabilities appear in
+333   parentheses.
+334
+335
+336   the absence of local increases; bug-rank correlation measures the overall direction. The archived
+337   field name P3_weak_mono refers to this bug statistic, not to the P3 missing-specification property.
+338
+      Identity-rewrite scores and repeat decision stability have weaker or inconsistent associations. Only the
+      weak-monotonicity statistic on pass2 and averaged labels has an unadjusted permutation p < 0.05;
+339
+      these component comparisons are exploratory.
+340
+341
+342
+      Artifact-score threshold. A historical sweep of the artifact-score threshold from 0.60 to 0.85 lowers
+      the observed decision-flip rate from 0.058 to 0.046 and pass rate from 0.583 to 0.536 (Appendix
+343
+      Table 6). The selected threshold is 0.85, which has the lowest observed flip rate in that sweep. This
+344
+      thresholds Jθ (x, g), not the judge-level index, and measures repeatability rather than correctness of
+345   the accepted artifacts.
+346
+347
+348   6    L IMITATIONS AND H ELD -O UT T EST P ROTOCOL
+349
+350   Validation evidence and a different human criterion. The same labels informed the index form,
+351   repeat aggregation, threshold, and prompt panel, so the reported correlations are optimistic validation-
+352   set estimates. They involve one annotator and eight configurations per family, with shared controls
+353
+      rather than independent samples of eight models. No test-set result establishes reliability for a new
+      judge or artifact distribution. We also collected 343 labels from five raters over 78 candidate–gold
+354
+      pairs. That pool uses statement coverage with a theorem-spam deduction, a different rubric from the
+355
+      panel’s holistic ratings. Its Spearman agreement with panel labels is approximately 0.13 on 63 shared
+356   pairs.
+357
+358   Two pre-registered screens asked whether property indices tracked agreement with that pool. The
+359
+      screen of 14 configurations was underpowered; the expanded screen of 32 found no index meeting
+      its registered criterion. Its largest absolute Spearman association was −0.39 with Holm-adjusted
+360
+      permutation p = 0.25; leave-one-out selection transfer yielded ρ = 0.24, p = 0.49. These negative
+361
+      results do not demonstrate transfer under the original criterion, nor can the pool serve as a test set for
+362   that criterion. Appendix D.3 records the corresponding negative-control evidence.
+363
+364
+      Coverage of the screen. The probes do not establish sensitivity to vacuity, subtle weakening,
+365
+      over-constraint, or formatting-only edits beyond the four rewrites studied here. Constructing probes
+366   with known directions for these failures is the next methodological step; we claim no result for
+367   them. The historical alpha generator can produce malformed text, so its low scores do not establish
+368   sensitivity to valid alpha-renaming. Other scripted rewrites and the intended ordering of bug edits
+369   also lack semantic validation. We cannot separate rubric ambiguity from misunderstanding Lean
+370   semantics with the current annotations. Presentation, including redundant theorems, implementation
+371   bloat, and unnecessary abstraction, is unassessed; holistic human ratings may reflect it implicitly. We
+372   did not optimize candidates against the judge, so resistance to gaming is untested.
+373   All candidates and probes come from V ERI B ENCH in Lean 4. The protocol could be instantiated for
+374   another proof assistant, but neither cross-assistant nor cross-benchmark transfer has been tested. A
+375   score is relative to the supplied gold reference and extraction rule, not a guarantee that all intended
+376   requirements are present. Reference-free screening and the number of annotators needed for a stable
+377   criterion remain open. The index also depends on its comparison panel and omits constant ladders
+      with undefined correlations; these implementation choices limit portable screening.
+
+
+                                                          7
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+378
+      A locked test. A decisive test would first freeze the rubric, property generators, score extraction,
+379   aggregation, index, normalization reference, and any rejection rule. Independent raters would
+380   then label new candidate–gold pairs under that rubric, with new judge configurations fixed before
+381   their labels are examined. The analysis would report both artifact-level agreement and judge-level
+382   association, including uncertainty and property-specific failures. A separate distribution-shift test
+383   would be needed for new domains. Because the original rubric text is unavailable, recovering it or
+384   validating an explicitly reconstructed criterion is a prerequisite to claiming a matched-rubric test.
+385
+386   7   C ONCLUSION
+387
+388   A one-time human panel can support a protocol that screens new judges through falsifiable behavioral
+389   checks without collecting labels for each configuration. On the present validation set, the fixed
+390   equal-weight index is associated with human agreement, but its high scores can coexist with lexical
+391   failures. Individual property diagnostics therefore remain essential, and a locked test must establish
+392   transfer beyond the labels used to select the protocol. The goal is to make human judgment a reusable
+393   foundation for checking new judges, with each judge accountable to explicit tests of its behavior.
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+
+
+
+                                                        8
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+432
+      R EPRODUCIBILITY S TATEMENT
+433
+434
+      The accompanying repository preserves frozen scores and summaries under experiments/
+435   archive/. Appendix A gives the prompt templates, exact model identifiers, input extraction,
+436   and repeat aggregation used for the main panels. Appendix B specifies the indices, including
+437   normalization and numerical edge cases. The manuscript evidence script, experiments/34_
+438   iclr_mega_rewrite_astra/analysis/rebuild_paper_evidence.py, reads com-
+439   mitted artifacts, verifies their hashes, and regenerates the corrected figures and sensitivity summaries
+440   without inference. Its output manifest maps every input to a repository path and content hash. The
+441   adjacent report maps every reported table to the archived script and machine-readable output that
+442   produced it. The original human-panel rubric text was not recovered, which limits exact replication
+443
+      of the annotation process. We describe repository paths without an identifying repository URL for
+      anonymous review.
+444
+445
+446   E THICS S TATEMENT
+447
+448   An author supplied the human ratings used for the headline validation analysis. The study evaluates
+449   generated Lean code and formal statements, without personal data in the judged artifacts. It makes
+450   no deployment claim and does not establish that screened judges can replace expert review in
+451   consequential settings.
+452
+453   LLM U SAGE S TATEMENT
+454
+455   LLMs served as the judges under study and assisted with writing and editing under author supervision.
+456   The authors are responsible for the manuscript’s claims, citations, and interpretation of the recorded
+457   results.
+458
+459
+460
+      R EFERENCES
+461   Earl T. Barr, Mark Harman, Phil McMinn, Muzammil Shahbaz, and Shin Yoo. The oracle problem in
+462     software testing: A survey. IEEE Transactions on Software Engineering, 41(5):507–525, 2015.
+463     doi: 10.1109/TSE.2014.2372785.
+464
+      Anna Bavaresco, Raffaella Bernardi, Leonardo Bertolazzi, Desmond Elliott, Raquel Fernández,
+465
+       Albert Gatt, Esam Ghaleb, Mario Giulianelli, Michael Hanna, Alexander Koller, André F. T.
+466     Martins, Philipp Mondorf, Vera Neplenbroek, Sandro Pezzelle, Barbara Plank, David Schlangen,
+467    Alessandro Suglia, Aditya K. Surikuchi, Ece Takmaz, and Alberto Testoni. Llms instead of human
+468     judges? a large scale empirical study across 20 nlp evaluation tasks. In Proceedings of the 63rd
+469    Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), pp.
+470     238–255. Association for Computational Linguistics, 2025. doi: 10.18653/v1/2025.acl-short.20.
+471     URL https://aclanthology.org/2025.acl-short.20/.
+472
+      Guoxin Chen, Jing Wu, Xinjie Chen, Wayne Xin Zhao, Ruihua Song, Chengxi Li, Kai Fan,
+473
+        Dayiheng Liu, and Minpeng Liao. ReForm: Reflective autoformalization with prospective
+474
+        bounded sequence optimization. In International Conference on Learning Representations (ICLR),
+475     2026. URL https://proceedings.iclr.cc/paper_files/paper/2026/hash/
+476    419bd6a89ab56e9c09ededb560b06192-Abstract-Conference.html.
+477
+478   Koen Claessen and John Hughes. QuickCheck: A lightweight tool for random testing of Haskell
+479     programs. In Proceedings of the Fifth ACM SIGPLAN International Conference on Functional
+480     Programming (ICFP), pp. 268–279, 2000. doi: 10.1145/351240.351266.
+481
+      Cynthia Dwork, Vitaly Feldman, Moritz Hardt, Toniann Pitassi, Omer Reingold, and Aaron Roth. The
+482     reusable holdout: Preserving validity in adaptive data analysis. Science, 349(6248):636–638, 2015.
+483     doi: 10.1126/science.aaa9375. URL https://doi.org/10.1126/science.aaa9375.
+484
+485   Sabrina Haque, Sarvesh Ingale, and Christoph Csallner. Do autonomous agents contribute test code? a
+        study of tests in agentic pull requests, 2026. URL https://arxiv.org/abs/2601.03556.
+
+
+                                                         9
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+486
+      Shuvendu K. Lahiri. Evaluating LLM-driven user-intent formalization for verification-aware
+487     languages. In Proceedings of the 24th Conference on Formal Methods in Computer-Aided
+488     Design (FMCAD), pp. 142–147. TU Wien Academic Press, 2024. doi: 10.34727/2024/isbn.
+489     978-3-85448-065-5_19. URL https://arxiv.org/abs/2406.09757.
+490
+491   Yong Lin, Shange Tang, Bohan Lyu, Jiayun Wu, Hongzhou Lin, Kaiyu Yang, Jia Li, Mengzhou
+492
+        Xia, Danqi Chen, Sanjeev Arora, and Chi Jin. Goedel-prover: A frontier model for open-source
+        automated theorem proving, 2025. URL https://arxiv.org/abs/2502.07640.
+493
+494   Yang Liu, Dan Iter, Yichong Xu, Shuohang Wang, Ruochen Xu, and Chenguang Zhu. G-
+495     eval: Nlg evaluation using gpt-4 with better human alignment. In Proceedings of the 2023
+496     Conference on Empirical Methods in Natural Language Processing, pp. 2511–2522. Associ-
+497     ation for Computational Linguistics, 2023. doi: 10.18653/v1/2023.emnlp-main.153. URL
+498     https://arxiv.org/abs/2303.16634.
+499
+      Jianqiao Lu, Yingjia Wan, Yinya Huang, Jing Xiong, Zhengying Liu, and Zhi-
+500
+         jiang Guo.     FormalAlign:    Automated alignment evaluation for autoformaliza-
+501      tion.   In International Conference on Learning Representations, 2025.    URL
+502      https://proceedings.iclr.cc/paper_files/paper/2025/hash/
+503      fceedf8c9c0ff51f41b9fe0294ef0070-Abstract-Conference.html.
+504
+505   Brando Miranda, Srivatsava Daruru, Ethan S Hersch, Zhanke Zhou, Allen Nie, Daneshvar Amrollahi,
+506
+        Leni Aniva, Iddah Mlauzi, Kirill Acharya, Elyas Obbad, Dilara Soylu, Weston Kirk, Zixiao Jolene
+        Wang, Kai Fronsdal, Ying Li, Donald Poindexter Jr, Rakshit Kaushik, Shurui Liu, Yegor Denisov-
+507
+        Blanch, Steven Dillmann, Simon Obstbaum, Santiago Cuellar, John Sarracino, Rylan Schaeffer,
+508
+        Mo Tiwari, Donghyun Lee, Bo Han, and Sanmi Koyejo. Veribench: An end-to-end formal verifica-
+509     tion benchmark for AI coding agents in lean 4. In 3rd AI for Math Workshop: Toward Self-Evolving
+510     Scientific Agents, 2026. URL https://openreview.net/forum?id=lkL0qnUv3p.
+511
+512   Niels Mündler, Mark Niklas Müller, Jingxuan He, and Martin Vechev. SWT-bench: Testing and
+513     validating real-world bug-fixes with code agents. In Advances in Neural Information Processing
+514
+        Systems (NeurIPS), 2024. URL https://arxiv.org/abs/2406.12952.
+515   Zachary Robertson and Sanmi Koyejo. Let’s measure information step-by-step: AI-based evaluation
+516     beyond vibes, 2025. URL https://arxiv.org/abs/2508.05469.
+517
+518   Kayla Schroeder and Zach Wood-Doughty. Can you trust llm judgments? reliability of llm-as-a-judge,
+519     2024. URL https://arxiv.org/abs/2412.12509.
+520   Weixi Tong and Tianyi Zhang. Codejudge: Evaluating code generation with large language models.
+521    In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing
+522    (EMNLP), pp. 20032–20051. Association for Computational Linguistics, 2024. doi: 10.18653/v1/
+523    2024.emnlp-main.1118. URL https://arxiv.org/abs/2410.02184.
+524
+525
+      Haiming Wang, Mert Unsal, Xiaohan Lin, Mantas Baksys, Junqi Liu, Marco Dos Santos, Flood
+        Sung, Marina Vinyes, Zhenzhe Ying, Zekai Zhu, Jianqiao Lu, Hugues de Saxcé, Bolton Bailey,
+526
+        Chendong Song, Chenjun Xiao, Dehao Zhang, Ebony Zhang, Frederick Pu, Han Zhu, Jiawei Liu,
+527
+        Jonas Bayer, Julien Michel, Longhui Yu, Léo Dreyfus-Schmidt, Lewis Tunstall, Luigi Pagani,
+528     Moreira Machado, Pauline Bourigault, Ran Wang, Stanislas Polu, Thibaut Barroyer, Wen-Ding Li,
+529    Yazhe Niu, Yann Fleureau, Yangyang Hu, Zhouliang Yu, Zihan Wang, Zhilin Yang, Zhengying Liu,
+530     and Jia Li. Kimina-prover preview: Towards large formal reasoning models with reinforcement
+531     learning, 2025. URL https://arxiv.org/abs/2504.11354.
+532
+533
+      Kaiyu Yang, Gabriel Poesia, Jingxuan He, Wenda Li, Kristin Lauter, Swarat Chaudhuri, and Dawn
+        Song. Formal mathematical reasoning: A new frontier in AI, 2024. URL https://arxiv.
+534
+        org/abs/2412.16075.
+535
+536   Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao Zhuang,
+537     Zi Lin, Zhuohan Li, Dacheng Li, Eric P. Xing, Hao Zhang, Joseph E. Gonzalez, and Ion Stoica.
+538     Judging llm-as-a-judge with mt-bench and chatbot arena. In Advances in Neural Information
+539     Processing Systems, volume 36, pp. 46595–46623. Curran Associates, Inc., 2023. doi: 10.52202/
+        075280-2020. URL https://arxiv.org/abs/2306.05685.
+
+
+                                                     10
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+540
+      Terry Yue Zhuo. ICE-score: Instructing large language models to evaluate code. In Yvette Graham
+541     and Matthew Purver (eds.), Findings of the Association for Computational Linguistics: EACL
+542     2024, pp. 2232–2242, St. Julian’s, Malta, March 2024. Association for Computational Linguis-
+543     tics. doi: 10.18653/v1/2024.findings-eacl.148. URL https://aclanthology.org/2024.
+544     findings-eacl.148/.
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+
+
+
+                                                   11
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+594
+595
+      A    J UDGE P ROMPTS AND S CORING C ONFIGURATION
+596
+597   The primary family model identifiers are gpt-5.3-codex, claude-opus-4-7, and
+598   Qwen/Qwen3-Coder-30B-A3B-Instruct. Each family panel contains the three semantic
+599   prompts below and BAD_STRINGY, plus gpt-4o-mini with the checklist and strict prompts.
+600
+      The other two configurations are the deterministic edit-distance control editdist_e1 and seeded
+      control random_r1. All model prompts request scores in [0, 1], not integers on a 0–10 scale. The
+601
+      human ratings use 0–5; correlations compare their ordering with judge scores without equating the
+602
+      scales.
+603
+604   The reference field retains its historical label “REFERENCE IMPLEMENTATION,” but the code
+605   fills it with the gold’s final theorem block. The candidate field contains the full candidate file for
+606
+      human-agreement scoring; property probes operate on the extracted theorem text. If no theorem
+      block is found, the extractor uses the full file. The Codex panel aggregates three recorded calls for
+607
+      model configurations and nine for controls by the median. The Opus and Qwen panels aggregate
+608
+      three calls for every configuration by the median. These counts come from the saved repeat arrays;
+609   a summary-level repeat setting alone does not describe reused cached rows. The random control is
+610   deterministic for its input and seed, so repeated identical scores do not imply a reliable semantic
+611   judge. Prompt labels P1, P4, and P8 are historical identifiers and do not denote the property numbers
+612   P1–P4.
+613
+      P1_BASELINE
+614
+      You are an expert in Lean 4 formal verification.
+615
+      Score how well the GENERATED THEOREM captures the correctness properties
+616   of the REFERENCE IMPLEMENTATION. Score from 0.0 to 1.0.
+617
+      - 1.0: Semantically equivalent to what the reference guarantees
+618   - 0.7-0.9: Captures most properties, misses minor ones
+      - 0.4-0.6: Captures some properties, has meaningful gaps
+619
+      - 0.1-0.3: Technically valid Lean but misses core properties
+620   - 0.0: Trivially true (e.g., ‘True‘) or incorrect
+621
+      REFERENCE IMPLEMENTATION:
+622   {reference_impl}
+623
+      GENERATED THEOREM:
+624   {generated_theorem}
+625
+      Respond ONLY with valid JSON, no markdown:
+626   {"score": <float 0.0-1.0>,
+       "reasoning": "<one sentence max>"}
+627
+628
+      P4_CHECKLIST
+629
+      Evaluate this in order:
+630   1) What properties does REFERENCE IMPLEMENTATION guarantee?
+631   2) Which are preserved by GENERATED THEOREM?
+      3) Are there missing core guarantees or trivialization?
+632   4) Map to score in [0.0, 1.0]:
+633      1.0 equivalent; 0.7-0.9 minor gaps;
+         0.4-0.6 meaningful gaps; 0.1-0.3 weak;
+634      0.0 trivial/incorrect.
+635
+      REFERENCE IMPLEMENTATION:
+636   {reference_impl}
+637
+      GENERATED THEOREM:
+638   {generated_theorem}
+639
+      Return JSON only:
+640   {"score": <float 0.0-1.0>,
+641    "reasoning": "<one sentence>"}
+642
+643
+      P8_STRICT_B
+644   Evaluate conservatively. If uncertain, choose the lower score.
+      Use [0.0,1.0]:
+645   1.0 equivalent semantics
+646   0.7-0.9 mostly right, minor misses
+      0.4-0.6 substantial omissions
+647   0.1-0.3 weak relation
+      0.0 trivial/incorrect
+
+
+
+                                                       12
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+648
+649   REFERENCE IMPLEMENTATION:
+650   {reference_impl}
+
+651   GENERATED THEOREM:
+652   {generated_theorem}
+
+653   Return valid JSON only:
+654   {"score": <float>,
+       "reasoning": "<one sentence>"}
+655
+656   BAD_STRINGY negative control
+657   You are a text similarity grader.
+658   Compare generated theorem text to the reference implementation text.
+      Do NOT evaluate semantic correctness or theorem meaning.
+659   Score ONLY based on superficial lexical/format overlap:
+660   - high score if tokens/phrases look similar
+      - low score if wording/structure differs
+661   Reference implementation:
+662   {reference_impl}
+663   Generated theorem:
+664   {generated_theorem}
+665   Return ONLY a JSON object:
+666   {"score": <float 0.0 to 1.0>,
+       "reasoning": "<short reason>"}
+667
+668
+669   B    I NDEX D EFINITIONS AND I MPLEMENTATION
+670
+671   Fixed equal-weight index. For each file f and bug level ℓ, let sf ℓ be the median recorded repeat
+672   score and vf ℓ its population variance. Let ρf be Spearman’s correlation between level and sf ℓ , and
+673   set cf = clip((1 − ρf )/2, 0, 1). Writing F for the included ladders, the archived implementation
+674   uses                                                                  P       P
+675                          1 X                                              f ∈F    ℓ vf ℓ
+                      Cf =           cf ,     Vc = Varf ∈F (cf ),    Vs = P                  ,
+676                         |F|                                                  f ∈F Lf
+                                f ∈F
+677
+      where Lf is the number of levels in ladder f . It skips ladders with fewer than three levels or an
+678   undefined Spearman correlation, including constant-score ladders. All primary committed vectors
+679   report 24 included ladders per configuration. If none remain, the code substitutes Cf = 0, Vc = 1,
+680   and Vs = 1. It min–max normalizes each variance across the current family panel; a constant variance
+681   column maps to zero. Equation 1 then applies weights 1/3 to Cf , 1 − Vec , and 1 − Ves , after clipping
+682   each to [10−6 , 1]. Thus an extreme variance does not produce an exact zero index, and adding a
+683   judge can change other judges’ normalized scores. The analysis preserves these choices rather than
+684   changing the frozen index after observing results.
+685
+686   Arithmetic comparisons. The recorded v1 and v2 are
+687                           v1 = 0.30 ident + 0.30 mono + 0.25 weak + 0.15 stab,
+688
+               v2 = 0.20 ident + 0.20 mono + 0.15 weak + 0.10 stab + 0.20 anti + 0.15 subtle.
+689
+690
+      Here ident is mean score over identity-rewrite probes, mono = (1 − ρbug )/2 uses the pooled bug-
+      level Spearman correlation, and weak is the weak-monotonicity fraction on bug ladders. The latter
+691
+      is the historical field P3_weak_mono; it contains no missing-specification measurement. stab is
+692
+      one minus the fraction of scored pairs whose repeated scores cross the artifact-score threshold. anti
+693   is the complement of the absolute score correlation with normalized edit distance, clipped to [0, 1],
+694   and subtle is the clipped mean first-level score drop divided by 0.25. The implementation clips these
+695   components to [0, 1]. These arithmetic indices combine different summaries from TIvar and do not
+696   isolate the effect of changing only the aggregation function.
+697
+698   Geometric comparisons. The two-component comparison in Table 2 is GM.4,.6 =
+699   mono0.4 stab0.6 , with the same 10−6 component floor. Its weights originate in the pass1 search
+700   over six components; it is not a fixed equal-weight baseline. The separate cross-pass analysis searches
+701   nonnegative weights summing to one over ident, mono, weak, stab, anti, and subtle. Table 5
+      identifies which pass supplies those fitted weights. Neither procedure fits the weights of TIvar .
+
+
+                                                        13
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+702
+      C     A DDITIONAL VALIDATION -S ET R ESULTS
+703
+704
+      C.1   A SEPARATELY WEIGHT- TUNED GEOMETRIC VARIANT
+705
+706
+      The cross-pass analysis fits a geometric combination of six available components on one label pass
+707   and evaluates it on the other. The selected pass1 weights are 0.4 for bug monotonicity and 0.6 for
+708   decision stability. Both passes concern the same candidate–gold pairs from one annotator, so the
+709   second pass is not a test set. This analysis uses its own frozen label-alignment output; it is not a
+710   re-estimation of the fixed equal-weight index.
+711
+712
+                    Pass supplying weights     Association on that pass        Association on other pass
+713
+714
+                    pass1                                             0.881                          0.810
+                    pass2                                             0.857                          0.786
+715
+716
+      Table 5: The tuned geometric variant remains positively associated across two rating passes of the
+717
+      same 72 pairs. Entries are judge-level Spearman correlations; the fitted weights are separate from
+718   TIvar .
+719
+720
+721
+      C.2   A RTIFACT- SCORE THRESHOLD
+722
+723
+      The historical threshold sweep uses the strict Codex prompt on 176 files with three repeated scores,
+724   aggregated by the mean rather than the headline panels’ median. It thresholds artifact scores, not
+725   the index used to compare judges. The raw bug-level ranking is independent of this threshold and
+726   remains ρbug = −0.790 throughout the sweep. The intervals in Table 6 describe the recorded sweep;
+727   they do not establish accepted-artifact correctness.
+728
+729
+                             Threshold    Flip rate (95% interval)       Pass rate (95% interval)
+730
+731
+                             0.60          0.058 [0.048, 0.069]            0.583 [0.559, 0.608]
+                             0.70          0.049 [0.040, 0.059]            0.559 [0.537, 0.581]
+732                          0.80          0.051 [0.042, 0.061]            0.544 [0.523, 0.566]
+733                          0.85          0.046 [0.037, 0.057]            0.536 [0.515, 0.557]
+734
+735   Table 6: A stricter artifact-score threshold slightly reduces recorded decision flips and the fraction
+736   accepted. The table shows selected points from the historical sweep; 0.85 has its lowest observed flip
+737   rate.
+738
+739
+740   C.3   L OCAL WEIGHT SENSITIVITY
+741
+742   We recompute the index from committed component vectors on a simplex grid with each weight
+743   in {0.2, 0.3, 0.4, 0.5} and weights summing to one. This yields 12 triples around the equal-weight
+744   choice. The original family-specific normalization and 10−6 floor remain fixed. No judge is rescored
+745   and no replacement weights are selected from this grid. The script and its complete output are named
+746
+      in the Reproducibility Statement.
+747
+748                         Family            pass1 range           pass2 range       avg range
+749                         Codex            [0.810, 0.905]        [0.738, 0.810]   [0.738, 0.857]
+750                         Claude Opus      [0.786, 0.810]        [0.571, 0.690]   [0.643, 0.714]
+751                         Qwen3-Coder      [0.357, 0.762]        [0.738, 0.952]   [0.881, 0.976]
+752
+753   Table 7: The association remains positive on this local weight grid, with the widest pass1 variation
+754   for Qwen. Ranges cover judge-level Spearman correlations across the 12 weight triples; they are
+755   sensitivity ranges, not confidence intervals.
+
+
+
+                                                              14
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+756
+      D     H UMAN AGREEMENT AND A DDITIONAL J UDGE PANELS
+757
+758
+      D.1    AGREEMENT BETWEEN ANNOTATION PASSES
+759
+760   Table 8 reports the frozen agreement statistics on 72 shared analyzed pairs. The passes reflect different
+761   rubric strictness levels from the same annotator, rather than independent draws from a rater population.
+762   Their disagreement cannot identify a numerical ceiling on model agreement. The original rubric text
+763   remains unavailable.
+764
+765                          Statistic               Estimate    95% bootstrap interval
+766                          Spearman correlation       0.249       [−0.015, 0.489]
+767                          Pearson correlation        0.375        [0.076, 0.604]
+768                          Kendall correlation        0.221       [−0.016, 0.442]
+769                          Quadratic-weighted κ       0.372        [0.073, 0.581]
+770
+                             Mean absolute error        0.771         Not reported
+771
+772
+      Table 8: The two human passes disagree on the same artifacts, making the choice of label view
+      consequential. Mean absolute error uses the original 0–5 rating scale; all estimates use 72 overlapping
+773
+      pairs.
+774
+775
+776
+777
+      D.2    E XPANDED CONFIGURATION PANEL
+778
+      The expanded panel compares the arithmetic v2 with the pass1-selected geometric form
+779
+      mono0.4 stab0.6 . Its averaged-label association is 0.769, with bootstrap interval [0.34, 0.95] (Fig-
+780   ure 4). The result concerns 13 configurations on reused validation labels, not 13 independent model
+781   families or unseen data. The plotted geometric index is not TIvar .
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+      Figure 4: The tuned geometric comparison has a positive association on the expanded validation
+799
+      panel. The two panels compare arithmetic v2 with mono0.4 stab0.6 across 13 configurations; the
+800
+      figure retains the archived estimates and intervals.
+801
+802
+803
+      D.3    N EGATIVE RESULTS
+804
+805   A separate Leanstral panel yields TIvar associations of −0.1190, −0.0476, and −0.0952 on pass1,
+806   pass2, and averaged labels. These recorded results contradict a claim that the fixed index works
+807   for every family. They do not establish why the association fails. The different-rubric human
+808   pool described in Section 6 also produced no qualifying index in either registered screen. The
+809   32-configuration screen’s largest absolute association is negative, so its sign does not support the
+      proposed direction of the screen even before accounting for multiple comparisons.
+
+
+                                                        15
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+810
+      E      P ROPERTY D IAGNOSTICS AND P ROBE VALIDITY
+811
+812
+813
+814
+      Historical generator limitations. The recorded experiments use string-edit generators without
+      Lean elaboration checks. The alpha routine rewrites names in the theorem signature, leaves proof-
+815
+      body references unchanged, and can duplicate the := marker. Consequently, its low scores cannot
+816
+      establish failure of invariance under valid alpha-renaming. The renaming and reordering routines also
+817   lack checks against variable capture and dependent-binder errors. The bug ladder changes relations
+818   and connectives, removes a theorem block, and introduces trivial statements; unavailable edits fall
+819   back to comments. Thus cumulative edit level is an intended damage order, not a formally verified
+820   ordering of semantic quality. These limitations apply to the archived property statistics throughout
+821   the paper.
+822
+823
+824
+825
+                  Baseline
+826
+827
+                  Checklist
+828                  Strict
+829                 Lexical
+830          4o-mini strict
+831       4o-mini checklist
+832          Edit distance
+833                Random
+834
+835
+                                  0.0      0.2                0.4             0.6                0.8            1.0
+                                                   Mean recorded score (median over repeats)
+836
+                                               Rename               Reorder         Style          Alpha
+837
+838
+839
+840   Figure 5: Recorded alpha scores differ sharply from the other rewrite scores for the semantic
+841   Codex prompts. Each marker averages repeat-median scores over 24 problems; these unvalidated
+842   transformations do not establish semantic sensitivity.
+843
+844
+845
+846
+847
+848
+849               Baseline 0/24
+850               Checklist 0/24
+851                  Strict             4/24
+852                 Lexical                                                                     20/24
+853
+             4o-mini strict                                                             18/24
+854
+855
+          4o-mini checklist                                                    16/24
+856          Edit distance                                                                                  24/24
+857                Random                                                                                   24/24
+858
+                              0                6                    12                18                   24
+859                                            Ladders with at least one local score increase
+860
+861
+862
+      Figure 6: Local increases reveal behavior hidden by the aggregate bug trend. Bars count ladders
+      with at least one increase in the recorded repeat-aggregated score; all configurations have 24 ladders,
+863
+      matching Table 3.
+
+
+                                                              16
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+864
+865                         1.0                                                                  Baseline
+866                                                                                              Checklist
+
+
+
+
+      Mean recorded score
+867                         0.8                                                                  Strict
+868
+869
+                            0.6
+870                         0.4
+871
+872                         0.2
+873
+874                         0.0
+875                               0             1                2                3                   4
+876                                                    Cumulative bug level
+877
+878   Figure 7: Claude Opus also assigns lower mean scores as historical bug edits accumulate. Each point
+879   averages repeat-median scores over 24 problems under the same unvalidated string-edit construction;
+880   its trend does not establish semantic validity of every ladder.
+881
+882
+883   F                     U NIT T ESTS AS G ROUND T HEOREMS : A D EFINITION W E D O N OT A DOPT
+884
+885   Section 3 follows common formal-methods usage: the formal specification consists of theorem
+886   statements about the implementation, and unit tests are not part of it. We record a competing view that
+887   we do not adopt. In Lean 4, a unit test is often itself a closed theorem. The gold myAdd artifact states
+888
+      its tests as, e.g., example : myAdd 1 2 = 3 := by native_decide, an anonymous
+      theorem with no free variables. On this view, a unit test specifies the implementation at one concrete
+889
+      input, and specifications range from such ground instances to universally quantified properties such
+890
+      as ∀n, myAdd n 0 = n. The choice changes terminology, not our measurements. The P3 ladder
+891   removes theorem statements and unit tests alike; under the adopted definition, only the removed
+892   theorems count as missing specification.
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+
+
+
+                                                            17
+

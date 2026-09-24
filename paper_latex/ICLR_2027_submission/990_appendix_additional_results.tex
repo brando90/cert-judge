@@ -1,37 +1,68 @@
 % !TEX root = main.tex
 \section{Additional Validation-Set Results}\label{app:moved-results}
+\subsection{A separately weight-tuned geometric variant}
+The cross-pass analysis fits a geometric combination of six available components on one label pass and evaluates it on the other.
+The selected pass1 weights are $0.4$ for bug monotonicity and $0.6$ for decision stability.
+Both passes concern the same candidate--gold pairs from one annotator, so the second pass is not a test set.
+This analysis uses its own frozen label-alignment output; it is not a re-estimation of the fixed equal-weight index.
 
 \begin{table}[h]
-  \centering
-  \small
-  \begin{tabular}{lcc}
-    \toprule
-    \textbf{Protocol}           & \textbf{Fit Spearman} & \textbf{Test Spearman} \\
-    \midrule
-    pass1 \(\rightarrow\) pass2 & 0.881                 & 0.810                  \\
-    pass2 \(\rightarrow\) pass1 & 0.857                 & 0.786                  \\
-    \bottomrule
-  \end{tabular}
-  \caption{\textbf{Cross-pass robustness of a weight-tuned geometric variant} (not \(\mathrm{TI}_{\mathrm{var}}\)).
-  Weights over six property scores are tuned on one pass by random search; \emph{Fit Spearman} is the in-sample judge-level Spearman between the tuned index and human agreement on that pass, and \emph{Test Spearman} is the same statistic on the other pass.
-  Both passes are one annotator's ratings of the same 72 pairs at two rubric strictness levels, so the test pass checks robustness to rubric strictness, not generalization to new items or raters.}
-  \label{tab:cross_pass_generalization}
+\centering\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Pass supplying weights & Association on that pass & Association on other pass \\
+\midrule
+pass1 & 0.881 & 0.810 \\
+pass2 & 0.857 & 0.786 \\
+\bottomrule
+\end{tabular}
+\caption{The tuned geometric variant remains positively associated across two rating passes of the same 72 pairs.
+Entries are judge-level Spearman correlations; the fitted weights are separate from $\mathrm{TI}_{\mathrm{var}}$.}
+\label{tab:cross_pass_generalization}
 \end{table}
+
+\subsection{Artifact-score threshold}
+The historical threshold sweep uses the strict Codex prompt on 176 files with three repeated scores, aggregated by the mean rather than the headline panels' median.
+It thresholds artifact scores, not the index used to compare judges.
+The raw bug-level ranking is independent of this threshold and remains $\rho_{\mathrm{bug}}=-0.790$ throughout the sweep.
+The intervals in Table~\ref{tab:exp13_threshold_sweep} describe the recorded sweep; they do not establish accepted-artifact correctness.
 
 \begin{table}[h]
-  \centering
-  \small
-  \begin{tabular}{lcc}
-    \toprule
-    \textbf{Threshold} & \textbf{Flip Rate (95\% CI)}                        & \textbf{Pass Rate (95\% CI)} \\
-    \midrule
-    0.60               & 0.058 \([0.048, 0.069]\)                            & 0.583 \([0.559, 0.608]\)     \\
-    0.70               & 0.049 \([0.040, 0.059]\)                            & 0.559 \([0.537, 0.581]\)     \\
-    0.80               & 0.051 \([0.042, 0.061]\)                            & 0.544 \([0.523, 0.566]\)     \\
-    0.85               & \textbf{0.046} \([\textbf{0.037}, \textbf{0.057}]\) & 0.536 \([0.515, 0.557]\)     \\
-    \bottomrule
-  \end{tabular}
-  \caption{\textbf{Threshold selection.} Stricter thresholds slightly reduce decision flips across repeated calls at a moderate cost in pass rate; bug-ladder ranking is unchanged (\(\rho_{\text{bug}}=-0.790\) at every threshold).}
-  \label{tab:exp13_threshold_sweep}
+\centering\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Threshold & Flip rate (95\% interval) & Pass rate (95\% interval) \\
+\midrule
+0.60 & 0.058 $[0.048,0.069]$ & 0.583 $[0.559,0.608]$ \\
+0.70 & 0.049 $[0.040,0.059]$ & 0.559 $[0.537,0.581]$ \\
+0.80 & 0.051 $[0.042,0.061]$ & 0.544 $[0.523,0.566]$ \\
+0.85 & 0.046 $[0.037,0.057]$ & 0.536 $[0.515,0.557]$ \\
+\bottomrule
+\end{tabular}
+\caption{A stricter artifact-score threshold slightly reduces recorded decision flips and the fraction accepted.
+The table shows selected points from the historical sweep; $0.85$ has its lowest observed flip rate.}
+\label{tab:exp13_threshold_sweep}
 \end{table}
 
+\subsection{Local weight sensitivity}\label{app:weight-sensitivity}
+We recompute the index from committed component vectors on a simplex grid with each weight in $\{0.2,0.3,0.4,0.5\}$ and weights summing to one.
+This yields 12 triples around the equal-weight choice.
+The original family-specific normalization and $10^{-6}$ floor remain fixed.
+No judge is rescored and no replacement weights are selected from this grid.
+The script and its complete output are named in the Reproducibility Statement.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Family & pass1 range & pass2 range & avg range \\
+\midrule
+Codex & $[0.810,0.905]$ & $[0.738,0.810]$ & $[0.738,0.857]$ \\
+Claude Opus & $[0.786,0.810]$ & $[0.571,0.690]$ & $[0.643,0.714]$ \\
+Qwen3-Coder & $[0.357,0.762]$ & $[0.738,0.952]$ & $[0.881,0.976]$ \\
+\bottomrule
+\end{tabular}
+\caption{The association remains positive on this local weight grid, with the widest pass1 variation for Qwen.
+Ranges cover judge-level Spearman correlations across the 12 weight triples; they are sensitivity ranges, not confidence intervals.}
+\label{tab:weight-sensitivity}
+\end{table}

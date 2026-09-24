@@ -1,7 +1,19 @@
 % !TEX root = main.tex
-\section{Judge Prompt Templates}\label{app:judge-prompts}
-For reproducibility, we include the main judge prompt templates used in the paper's principal judge panels.
-The primary Codex / Opus / Qwen comparisons use the prompt variants \texttt{P1\_BASELINE}, \texttt{P4\_CHECKLIST}, and \texttt{P8\_STRICT\_B}; the BAD\_STRINGY lexical baseline is included as a negative control.
+\section{Judge Prompts and Scoring Configuration}\label{app:judge-prompts}
+The primary family model identifiers are \texttt{gpt-5.3-codex}, \texttt{claude-opus-4-7}, and \texttt{Qwen/Qwen3-Coder-30B-A3B-Instruct}.
+Each family panel contains the three semantic prompts below and \texttt{BAD\_STRINGY}, plus \texttt{gpt-4o-mini} with the checklist and strict prompts.
+The other two configurations are the deterministic edit-distance control \texttt{editdist\_e1} and seeded control \texttt{random\_r1}.
+All model prompts request scores in $[0,1]$, not integers on a $0$--$10$ scale.
+The human ratings use $0$--$5$; correlations compare their ordering with judge scores without equating the scales.
+
+The reference field retains its historical label ``REFERENCE IMPLEMENTATION,'' but the code fills it with the gold's final theorem block.
+The candidate field contains the full candidate file for human-agreement scoring; property probes operate on the extracted theorem text.
+If no theorem block is found, the extractor uses the full file.
+The Codex panel aggregates three recorded calls for model configurations and nine for controls by the median.
+The Opus and Qwen panels aggregate three calls for every configuration by the median.
+These counts come from the saved repeat arrays; a summary-level repeat setting alone does not describe reused cached rows.
+The random control is deterministic for its input and seed, so repeated identical scores do not imply a reliable semantic judge.
+Prompt labels P1, P4, and P8 are historical identifiers and do not denote the property numbers P1--P4.
 
 \noindent\textbf{\texttt{P1\_BASELINE}}\par
 \vspace{0.25em}\begin{lstlisting}[style=promptstyle]

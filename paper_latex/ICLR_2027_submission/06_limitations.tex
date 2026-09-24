@@ -1,20 +1,37 @@
 % !TEX root = main.tex
 \section{Limitations and Held-Out Test Protocol}\label{sec:limitations-test}
-\paragraph{Validation set, not a test set.}
-The same human labels informed the index form, repeat aggregation, threshold, and prompt panel, so Section~\ref{sec:validation-human-alignment} reports validation-set associations, not out-of-sample estimates.
-The panel is small (72 analyzed pairs, one annotator, eight configurations per family), and its two rating passes agree only moderately.
-We also collected 343 labels from five raters over 78 candidate--gold pairs, which the validation-set results do not use.
-That pool was rated under a different rubric (statement coverage with a spam deduction) and correlates only weakly with the panel labels (Spearman \(\approx0.13\) on 63 shared pairs), so it measures a different criterion rather than offering a held-out test of the same one.
-Two pre-registered screens nevertheless asked whether any label-free property signal tracks judge alignment with that pool.
-A first pass over 14 configurations was underpowered, and an expanded pass over 32 configurations found no index meeting its registered bar (strongest Spearman \(-0.39\), Holm-adjusted permutation \(p=0.25\); leave-one-out selection transfer \(\rho=0.24\), \(p=0.49\)).
-A locked held-out test therefore needs independent raters under one frozen rubric, with the properties and \(\mathrm{TI}_{\mathrm{var}}\) fixed in advance.
+\paragraph{Validation evidence and a different human criterion.}
+The same labels informed the index form, repeat aggregation, threshold, and prompt panel, so the reported correlations are optimistic validation-set estimates.
+They involve one annotator and eight configurations per family, with shared controls rather than independent samples of eight models.
+No test-set result establishes reliability for a new judge or artifact distribution.
+We also collected 343 labels from five raters over 78 candidate--gold pairs.
+That pool uses statement coverage with a theorem-spam deduction, a different rubric from the panel's holistic ratings.
+Its Spearman agreement with panel labels is approximately $0.13$ on 63 shared pairs.
 
-\paragraph{What certification does not cover.}\label{sec:limitations-finite}
-No finite perturbation suite can rule out every judge failure, so \(\mathrm{TI}_{\mathrm{var}}\) is a graded trust signal, not a pass/fail certificate.
-The four probes do not target vacuous, weakened, or over-constrained statements, formatting-only edits beyond the rewrites in Table~\ref{tab:codex_invariance_variants}, or artifacts from proof assistants other than Lean~4.
-All candidates, gold references, and probes come from \textsc{VeriBench}~\citep{miranda2026veribench}, so we have not tested whether the properties or \(\mathrm{TI}_{\mathrm{var}}\) transfer to other Lean~4 verification benchmarks such as \textsc{Verina}~\citep{ye2025verina} or the repository-level Vero~\citep{ye2026vero}.
-Scores are specification-relative: they measure agreement with an audited but necessarily incomplete gold reference, since no algorithm decides specification equivalence in general~\citep{rice1953}.
-Scores are anchored to a gold reference, but we do not evaluate candidates optimized against the judge, so resistance to gaming remains untested.
-Neither the judge prompts nor the validation-set rating protocol explicitly addresses presentation aspects of specification quality, such as redundant theorem statements, oversized implementations, or needless abstraction; only the held-out reviewer pool's rubric deducts for superfluous theorem statements.
-Holistic panel ratings may reflect these aspects implicitly, but we did not measure this; future rating protocols should make them explicit.
+Two pre-registered screens asked whether property indices tracked agreement with that pool.
+The screen of 14 configurations was underpowered; the expanded screen of 32 found no index meeting its registered criterion.
+Its largest absolute Spearman association was $-0.39$ with Holm-adjusted permutation $p=0.25$; leave-one-out selection transfer yielded $\rho=0.24$, $p=0.49$.
+These negative results do not demonstrate transfer under the original criterion, nor can the pool serve as a test set for that criterion.
+Appendix~\ref{app:negative-results} records the corresponding negative-control evidence.
 
+\paragraph{Coverage of the screen.}\label{sec:limitations-finite}
+The probes do not establish sensitivity to vacuity, subtle weakening, over-constraint, or formatting-only edits beyond the four rewrites studied here.
+Constructing probes with known directions for these failures is the next methodological step; we claim no result for them.
+The historical alpha generator can produce malformed text, so its low scores do not establish sensitivity to valid alpha-renaming.
+Other scripted rewrites and the intended ordering of bug edits also lack semantic validation.
+We cannot separate rubric ambiguity from misunderstanding Lean semantics with the current annotations.
+Presentation, including redundant theorems, implementation bloat, and unnecessary abstraction, is unassessed; holistic human ratings may reflect it implicitly.
+We did not optimize candidates against the judge, so resistance to gaming is untested.
+
+All candidates and probes come from \textsc{VeriBench} in Lean~4.
+The protocol could be instantiated for another proof assistant, but neither cross-assistant nor cross-benchmark transfer has been tested.
+A score is relative to the supplied gold reference and extraction rule, not a guarantee that all intended requirements are present.
+Reference-free screening and the number of annotators needed for a stable criterion remain open.
+The index also depends on its comparison panel and omits constant ladders with undefined correlations; these implementation choices limit portable screening.
+
+\paragraph{A locked test.}
+A decisive test would first freeze the rubric, property generators, score extraction, aggregation, index, normalization reference, and any rejection rule.
+Independent raters would then label new candidate--gold pairs under that rubric, with new judge configurations fixed before their labels are examined.
+The analysis would report both artifact-level agreement and judge-level association, including uncertainty and property-specific failures.
+A separate distribution-shift test would be needed for new domains.
+Because the original rubric text is unavailable, recovering it or validating an explicitly reconstructed criterion is a prerequisite to claiming a matched-rubric test.

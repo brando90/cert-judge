@@ -1,82 +1,77 @@
 % !TEX root = main.tex
 \section{Property Certification Protocol}\label{sec:property-protocol}
-\paragraph{One-time human panel.}
-Humans label a fixed validation set once; in our study, one annotator rated candidate--gold pairs under two rubric strictness levels (Section~\ref{sec:data-human-protocol}).
-For each judge configuration, we then compute property scores on scripted perturbations of Lean artifacts, which requires judge calls but no human labels.
-The panel is used only to measure how strongly property scores track human agreement (Table~\ref{tab:protocol_workflow}).
-
-\begin{table}[t]
-  \centering
-  \small
-  \begin{tabular}{@{}r@{\kern 7pt}>{\raggedright\arraybackslash}p{0.9\linewidth}@{}}
-    \toprule
-    \textbf{Step} & \textbf{Action} \\
-    \midrule
-    1 & Collect human ratings of candidate-vs.-gold Lean artifacts once (the validation set). \\
-    2 & For each judge configuration, score scripted perturbation ladders and compute identity, bug monotonicity, specification monotonicity, and stability; this needs judge calls, not human labels. \\
-    3 & Aggregate the property scores into a trust index such as \(\mathrm{TI}_{\mathrm{var}}\). \\
-    4 & On the panel, measure how well the index tracks human agreement; afterwards, compare new configurations by the index alone. \\
-    \bottomrule
-  \end{tabular}
-  \caption{\textbf{Property-certification workflow.} Human labels enter once (steps 1 and 4); later judge configurations need only steps 2 and 3.}
-  \label{tab:protocol_workflow}
-\end{table}
-
-\paragraph{Properties.}
-A trustworthy judge should satisfy four falsifiable behavioral targets.
-\textbf{P1 (identity):} an artifact compared with itself receives the maximum score, \(J(x,x)=1\).
-\textbf{P2 (bug monotonicity):} scores do not increase as semantic bugs are introduced cumulatively.
-\textbf{P3 (specification monotonicity):} scores do not increase as theorem statements and unit tests are removed; we keep this historical name although, by the definition in Section~\ref{sec:problem-setup}, removed tests are not specification.
-\textbf{P4 (stability):} scores stay stable across repeated calls and under semantics-preserving rewrites such as \textsc{Alpha}-renaming, which renames bound variables and binders without changing what the artifact means.
-We measure monotonicity with Kendall's $\tau$, Spearman's $\rho$, and pairwise ordering accuracy, following prior judge-evaluation work~\citep{TongZhang2024CodeJudge,Zhuo2024ICEScore}.
-Because each ladder level extends the previous one, later levels are more damaged by construction, and the expected ordering does not depend on how severe any single edit is.
-
-\paragraph{Trust indices.}
-The property scores \(\text{ident}\) (P1), \(\text{mono}\) (P2), \(\text{weak}\) (P3), and \(\text{stab}\) (P4) lie in $[0,1]$ and are graded targets, not binary gates.
-As baselines, the arithmetic indices \(v1\) and \(v2\) take fixed weighted averages of them, and GM aggregates monotonicity and stability geometrically (Appendix~\ref{app:index-definitions}).
-Our primary index, \(\mathrm{TI}_{\mathrm{var}}\), is the geometric mean of a bug-monotonicity term and two stability terms, with fixed equal weights:
-\[
-  \begin{aligned}
-    \mathrm{TI}_{\mathrm{var}}
-    ={} & \exp\!\Big(
-    \tfrac{1}{3}\log C_f
-    + \tfrac{1}{3}\log(1-\widetilde{\mathrm{VarCorr}}) \\
-        & \qquad\quad
-    + \tfrac{1}{3}\log(1-\widetilde{\mathrm{VarScore}})
-    \Big),
-  \end{aligned}
-\]
-where \(C_f\) is the mean per-file bug-ladder monotonicity term and \(\widetilde{\mathrm{VarCorr}},\widetilde{\mathrm{VarScore}}\) are normalized variance penalties (Appendix~\ref{app:index-definitions}).
-Because the index is multiplicative, one weak term pulls it down, and the variance penalties favor judges that behave consistently across repeats and prompts.
-Our hypothesis is that judges with higher \(\mathrm{TI}_{\mathrm{var}}\) agree more with humans on the validation set.
+\paragraph{A one-time panel and reusable checks.}
+Human ratings link judge behavior to the intended scoring task on a fixed validation set.
+For each configuration, we measure agreement with those ratings and evaluate scripted perturbations of gold artifacts.
+The perturbations require judge calls but no additional human labels.
+We use the validation set to select the index form, prompts, repeat aggregation, and decision threshold.
+After freezing these choices, subsequent configurations can face the same property checks without accessing the labels (Figure~\ref{fig:protocol}).
+This is a screening protocol; the present evidence does not establish transfer to an unseen configuration or distribution.
 
 \begin{figure}[t]
-  \centering
-  \begin{subfigure}[t]{0.315\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/fig_main_monotonicity_lowvar_exp19.png}
-    \caption{Low-variance monotonicity (main view)}
-    \label{fig:judge_lowvar_main}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.315\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/monotonicity_bugs_lowvar_se_bounds.png}
-    \caption{P2: Monotonicity w.r.t.\ Bugs (Mean \(\pm\) SE)}
-    \label{fig:judge_mono_bugs}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.315\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/codex_api_gpt53_r3_20260418_230027/monotonicity_missing_specs_lowvar_se_bounds.png}
-    \caption{P3: Monotonicity w.r.t.\ Missing Specs (Mean \(\pm\) SE)}
-    \label{fig:judge_mono_specs}
-  \end{subfigure}
-  \vspace{-2mm}
-  \caption{\textbf{Property sanity checks for a GPT-5.3-Codex judge} on \textsc{VeriBench} (\(n_\text{files}=184\), \(n_\text{repeats}=3\)).
-  \textbf{(a)} Low-variance view of scores under controlled degradations.
-  \textbf{(b)} P2: scores fall as bugs accumulate, with local reversals (Spearman \(\rho=-0.808\); weak monotonicity \(52.2\%\)).
-  \textbf{(c)} P3: scores fall more consistently as theorem statements and unit tests are removed (\(\rho=-0.899\); weak monotonicity \(89.1\%\)).
-  Table~\ref{tab:codex_invariance_variants} reports P4 rewrite invariance.}
-  \label{fig:judge_sanity_checks}
-  \vspace{-3mm}
+\centering
+\begin{tikzpicture}[>=Stealth, node distance=5mm,
+ box/.style={draw=darkblue!65,rounded corners=2pt,align=center,inner sep=6pt,font=\small},
+ flow/.style={->,thick,draw=darkblue!75}]
+\node[box,text width=24mm] (gold) {Gold artifacts\\and scripted edits};
+\node[box,text width=26mm,right=of gold] (judge) {Judge configuration\\model, prompt, repeats};
+\node[box,text width=25mm,right=of judge] (checks) {Property checks\\P1--P4};
+\node[box,text width=23mm,right=of checks] (index) {Index and\\failure report};
+\draw[flow] (gold)--(judge); \draw[flow] (judge)--(checks); \draw[flow] (checks)--(index);
+\node[box,text width=45mm,below=12mm of judge,fill=gray!6] (panel) {One-time validation set\\human ratings of candidate--gold pairs};
+\node[box,text width=49mm,right=12mm of panel,fill=gray!6] (select) {Assess association; select protocol\\then freeze before testing transfer};
+\draw[flow] (panel)--(select);
+\draw[flow] (index.south)--(select.north east);
+\draw[flow,dashed] (judge.south)--(panel.north);
+\end{tikzpicture}
+\caption{The human panel informs the protocol once; later judges face the upper sequence of automated checks.
+The lower sequence measures validation-set association and selects protocol choices, so its results are not a held-out test.}
+\label{fig:protocol}
 \end{figure}
 
+\begin{table}[t]
+\centering\small
+\begin{tabularx}{\linewidth}{@{}lXX@{}}
+\toprule
+Stage & Human labels & Judge computation \\
+\midrule
+Establish protocol & Rate candidate--gold pairs & Measure human agreement and property behavior \\
+Select protocol & Use validation ratings & Choose index form, prompts, aggregation, threshold \\
+Screen new judge & Do not consult labels & Run frozen probes; inspect index and failures \\
+Test transfer & Collect independent ratings & Evaluate frozen choices on untouched items \\
+\bottomrule
+\end{tabularx}
+\caption{Screening a new judge requires inference but no new labels; establishing transfer requires a separate test.}
+\label{tab:protocol_workflow}
+\end{table}
+
+\paragraph{Four falsifiable properties.}
+\textbf{P1 (identity)} requires the maximum score when an artifact is compared with itself, $J_\theta(g,g)=1$.
+\textbf{P2 (bug monotonicity)} requires non-increasing scores as errors accumulate.
+The historical bug ladder used here alters the candidate text, including theorem statements; it is not restricted to implementation bugs.
+\textbf{P3 (missing-specification monotonicity)} requires non-increasing scores as theorem statements and unit tests are removed.
+We retain this historical property name although unit tests are not specifications under Section~\ref{sec:problem-setup}.
+Each ladder extends the preceding level, so its expected ordering concerns cumulative damage rather than equal severity of individual edits.
+Ties are allowed; a local score increase is a reversal.
+\textbf{P4 (stability)} requires stable scores across repeated calls and meaning-preserving rewrites.
+These include alpha-renaming, which consistently changes bound-variable names without changing their meaning.
+The properties are targets for the probes; they are not theorems establishing the validity of every scripted transformation.
+
+\paragraph{A fixed equal-weight summary.}
+The protocol retains individual diagnostics because different failures need different checks.
+Our primary scalar, $\mathrm{TI}_{\mathrm{var}}$, uses only bug-ladder scores, combining their average monotonicity with two variance penalties:
+\begin{equation}
+\mathrm{TI}_{\mathrm{var}}=\exp\!\left[\tfrac13\log C_f+\tfrac13\log(1-\widetilde V_c)+\tfrac13\log(1-\widetilde V_s)\right].
+\label{eq:tivar}
+\end{equation}
+Here $C_f$ is the mean transformed per-file Spearman correlation between bug level and score.
+$V_c$ is the variance of these per-file monotonicity values, and $V_s$ is the mean within-level variance across repeated calls.
+The tildes denote min--max normalization across the configurations in the same family panel.
+The implementation floors each logarithm's argument at $10^{-6}$.
+Appendix~\ref{app:index-definitions} specifies aggregation, normalization, and undefined-correlation handling.
+
+Multiplication prevents a strong component from fully offsetting a weak one; equal weights avoid fitting component weights to the human ratings.
+The scalar nevertheless omits P1, P3, rewrite invariance, and a direct penalty for local reversals.
+It therefore summarizes selected behavior rather than replacing the property report.
+Moreover, panel-dependent normalization means that its absolute value can change when the comparison panel changes.
+Using it prospectively requires a frozen normalization reference, whose transfer we have not tested.
