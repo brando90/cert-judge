@@ -455,3 +455,20 @@ reinforced a table that should have been questioned first; ask "does this belong
 - 4 commits, 85 files, 17-page PDF (main text 8 pp, References p. 9), all 55 complaint IDs answered/disclosed/superseded, 73 numeric source lines traced. Launch needed the unsandboxed codex path (code-mode host timeouts).
 - Corrections that change claims (REPORT.md "Corrections that change interpretation"): the retained panel's "P3" field is bug weak-monotonicity (no P3 result → drop "P3 most informative"); Figure 2 / config table used a six-weight index under TI_var titles (fixed); Qwen pass2 0.905 → 0.857; historical alpha probes malformed (0.399 / 0.250→0.070 downgraded to proxy); the scalar index is not a rejection certificate (lexical judge scores 0.94 Codex / 0.98 Qwen); 184-file sanity figure mixed heuristic scores (replaced by the 24-problem panel).
 - Brando decides: merge/PR from the branch; LLM-usage statement text; title (kept); Leanstral kept as a short negative-control paragraph.
+
+## 2026-09-24 — CORRECTION: parts of the 2026-09-22 "9-page cut" are superseded by the experiment-34 rewrite
+
+The experiment-34 audit (`experiments/34_iclr_mega_rewrite_astra/REPORT.md`, "Corrections that change
+interpretation") found that several claims in my 9-page cut were wrong. They relied on inherited, mislabeled
+artifacts. The paper is fixed (merge 63fb935); this note is so the entries above aren't reused:
+- **`tab:codex_configs`:** its "TI_var" column came from the Figure 2 coordinates, which used an *unequal six-weight*
+  index. Under the canonical equal-weight index, the lexical grader scores 0.940 (not 0.70) and edit distance scores
+  0.928. So "TI_var ranks the lexical grader below all prompted judges / flags it" was wrong as a scalar claim; the
+  diagnostic is the bug-ladder reversals.
+- **`tab:property_assoc`:** I labeled exp17's `P3_weak_mono` as "specification monotonicity". It is bug-ladder *weak*
+  monotonicity. There is no P3 (missing-specification) result in the main panel, so "specification monotonicity is
+  the most informative property" was unsupported.
+- **Qwen pass2:** 0.905 → 0.857 (the old value belonged to another index).
+- **"Why Alpha-renaming is hard":** the historical alpha probes are malformed (duplicated `:=`, renamed signatures),
+  so score drops don't show failure under valid alpha-renaming.
+- **GM:** GM's 0.4/0.6 weights were selected on pass1. It is not an untuned baseline.
