@@ -51,3 +51,20 @@ Move 1 remains one sentence: the independently generated formalizations motivate
 - No claim of VeriBench priority or universal inadequacy of supplied interfaces is added. No experiment, numerical result, or scientific setting changes.
 
 Verification for this revision: move 2 has two sentences (14 and 13 words); all other abstract sentences are unchanged. Scratch compilation and sentence-layout checks passed (exit 0); the document has 16 pages, with zero TeX errors, undefined references/citations, or overfull boxes. Rendered pages 1 and 2 were inspected without clipping or overlap. Exact source diff and `git diff --check` passed. The earlier verification block records the preceding move-1 revision.
+
+## Moves 1-2 rewrite: trust artifacts and the flipped validation protocol (09-25-2026, Claude Fable session)
+
+Brando's request (`msgs_sent_to_bots.md`): the motivation must be accurate to the end-to-end setting, punchy, and readable by someone who has never seen VeriBench; the assumption must be the per-judge human-validation protocol that move 3 flips.
+
+> When AI agents write their own trust artifacts, the tests and formal specifications that vouch for their code, those artifacts need checking at scale.
+> In end-to-end autoformalization, agents choose their own interfaces and theorems, so reference tests do not transfer and a language-model judge compares specifications instead.
+> The standard evidence that such a judge can be trusted is agreement with human ratings, a check repeated for every new model, prompt, and task.
+
+- **Move 1 is two sentences on purpose.** The general pattern (agent-written trust artifacts must be checked) is what a reader should take away; the second sentence gives the concrete reason a language-model judge appears in this setting. Brando's earlier one-sentence opening hid three inferences in a participle.
+- **Accuracy boundary kept from the previous revision.** With compatible interfaces, generated specifications can be checked by execution (nl2postcond); the claim is that end-to-end generation breaks that transfer (VeriBench `04_eval_metric.tex`: direct application of reference tests and theorems produced systematic false negatives). The abstract therefore says "reference tests do not transfer", not "tests cannot settle whether a check is right".
+- **VeriBench** is still cited only in the introduction; the abstract describes the task without naming it.
+- **Terminology decision:** *validation* for the human-agreement evidence, *screen* for the property checks, *certification* nowhere in prose. Certification connotes a guarantee that eight configurations per family on a validation set cannot support, and earlier reviews penalized overclaiming. A screen is exactly what a falsifiable property is: it can fail a judge without certifying one. The Section 4 heading "Property Certification Protocol" is the remaining exception and is flagged, not changed here.
+- **Repeat stability** is P4 in our suite, so it is not written into the flipped assumption.
+- **"Trust artifacts"** is new vocabulary; the introduction's move 1 should adopt it so the abstract has no stale echo.
+
+Verification: sentence-layout check exit 0; ten sentences, each at most 25 words, 221 prose words; no CS197 jargon, `certif*`, `\cite`, or `\ref` in prose; OpenReview form abstract regenerated with zero generator warnings (see the commit).
