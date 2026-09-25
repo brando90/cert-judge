@@ -12,7 +12,7 @@
 - Review: `git -C ~/cert-judge-astra log --oneline main..astra/iclr-mega-rewrite`; open `~/cert-judge-astra/paper_latex/ICLR_2027_submission/main.pdf`; read `REPORT.md`. Merge is Brando's call (PR from the branch).
 
 ## Inputs the prompt depends on
-`CLAUDE.md`, `~/agents-config/writing/ml_research/ml_research_writing.md`, `docs/terminology_cleanup_20260913.md`, `experiments/31_final_iclr_paper_writing/notes.md`, `experiments/33{a,b,c,d,e}_*`, the per-section `.tex` files, `refs.bib`, frozen artifacts under `experiments/archive/`.
+`CLAUDE.md`, `~/agents-config/writing/ml_research/ml_research_writing.md`, `docs/terminology_cleanup_20260913.md`, `experiments/archive/31_final_iclr_paper_writing/notes.md`, `experiments/33{a,b,c,d,e}_*`, the per-section `.tex` files, `refs.bib`, frozen artifacts under `experiments/archive/`.
 
 ## Open inputs
 - DL4C reviews (`experiments/33c_dl4c_reviews/reviews_gGR1gE7x3a.md`) are empty until Brando pastes them; rerun the complaint pass afterwards.

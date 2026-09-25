@@ -6,6 +6,7 @@ Archived 2026-09-10 (Trigger Rule 39: `experiments/` holds active work only).
 
 | Folder | What it was | Last commit | Archived |
 |---|---|---|---|
+| [31_final_iclr_paper_writing](31_final_iclr_paper_writing/README.md) | Earlier manuscript wording, terminology, literature research, and page reduction; superseded by Experiment 34's corrected rewrite. All ten existing files retained, including the user's uncommitted message-history additions; only the analysis script's repository-root depth changed. | b468a00; local notes preserved in this archive commit | 09-25-2026 |
 | `36_vals_gateway_cert_judge_smoke` | One real Vals gateway Astra xhigh judgment on SNAP; 1/1 completed, identity score 1.0, reported cost $0.0394425. Former active root `experiments/36_vals_gateway_cert_judge_smoke/`; no scientific validity claim. | Recorded with this archive update | 09-24-2026 |
 | `32_veribench_ranking_certified_judge` | Re-score the VeriBench agent ranking (paper §5.4) with a certified judge prompt via subscription CLI; stopped after repeat layer 0 because §5.4/Table 5 was removed from the ICLR paper (carried-over VeriBench ICML 2025 result, uncertified Claude 3.7 judge) | d7f37c3 | 2026-09-22 |
 | `00_overall_cert_judge_metric_with_properties` | Full P1–P7 Judge Trust Index (JTI) evaluation pipeline; superseded by PTI-v0 and not relabeled as such | 2025-10-31 | 2026-09-10 |

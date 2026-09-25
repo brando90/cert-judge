@@ -3,7 +3,6 @@
 Only currently pursued experiments belong directly in this directory.
 | Active experiment | Current task |
 |---|---|
-| [31_final_iclr_paper_writing](31_final_iclr_paper_writing/notes.md) | Targeted main-text rewrite of the ICLR 2027 submission: replace development-set "predicts"/"fit" framing for the fixed-weight TI_var, label the exp23 tuned-weight cross-pass table as a separate variant, reconcile the 0.881 quote, cut to 9 pages. Started 2026-09-22. |
 | [33a_ai4math_reviews](33a_ai4math_reviews/README.md) | ICML 2026 AI4Math reviews (verbatim) and their 29 complaint rows against the ICLR paper; formerly 18_icml_reviews. Moved 2026-09-22. |
 | [34_iclr_mega_rewrite_astra](34_iclr_mega_rewrite_astra/PROMPT.md) | Core-only ICLR rewrite by Codex GPT-6 Astra (ultra) on branch `astra/iclr-mega-rewrite`; runbook + live results. Started 2026-09-22. |
 | [35_missing_experiments_from_reviews](35_missing_experiments_from_reviews/EXPERIMENTS.md) | Reviewer-driven missing experiments with ready CLI-only prompts (zero-inference / subscription / human-label tiers). Started 2026-09-22. |
@@ -26,6 +25,8 @@ not a claim about processes on remote machines.
 The ignored local `keys/` directory is credential storage, not an experiment.
 
 ## Recent completed work
+
+- [31_final_iclr_paper_writing](archive/31_final_iclr_paper_writing/README.md): archived 09-25-2026 — earlier manuscript writing and research superseded by Experiment 34's corrected rewrite and submission preparation; original notes, research, and exploratory output preserved.
 
 - [36_vals_gateway_cert_judge_smoke](archive/36_vals_gateway_cert_judge_smoke/results.md): completed 09-24-2026 — 1/1 real GPT-6 Astra xhigh identity judgment via Vals gateway on SNAP; score 1.0, reported cost $0.0394425. Infrastructure smoke only.
 

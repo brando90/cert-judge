@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from scipy.stats import spearmanr, rankdata
 
-R = Path(__file__).resolve().parents[2]
+R = Path(__file__).resolve().parents[3]
 V = R / "experiments/archive/04_veribench_validation"
 
 def load_labels(paths):

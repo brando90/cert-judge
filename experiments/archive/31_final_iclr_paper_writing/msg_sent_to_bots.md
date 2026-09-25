@@ -1,0 +1,49 @@
+
+# History of some/most of msgs sent to claude
+
+`super common to cite in the abstract afaik, but if we make such a claim in a research scientific paper for ML conf ICLR, when mentioned in the intro (I assume it has to be mentioned) cuz it's in the abstract lol so the intro better have it + citation/ref. Fix it if it needs fixing.`
+
+`Lean~4 theorem and formal specification quality, where each judge is scored by four automatically testable conditions: how do we define formal spec in the paper? specification is vague. It could be natural language intent from human or formal spec actually written by some entity (ai or human). So for this project we need to make sure the claude.md and agents.md for all my agents know this. So we don't fuck up the scientific writing.`
+`in my conversations with formal methods experts, clark b and santiago cuellar, they don't like tests + theorems being included together as the definitipn of formal specs. I disagree, but my disagreement can be voiced as a scientific position in the appendix (that we don't adpot in the paper, eg a test is a 1 concrete/number thm imho). Let's use their standard formal spec def -- which is thms for the code basically.`
+
+Q: what to do about the word “quality” about formal spec quality? like part of the point of using formal spec writing as the task we use, is cuz it’s less subjective, so quality is less of an “issue”. Like eg the formal specs either contain all the thms/rpoerties of the code or not. I suppose yes we don’t want silly unnecessary over abstraction or super huge code blocks (the reverse either). So idk what to do about that word in the abstract…and paper I guess eg see line 108 in the main.tex abstract. 
+❯ I don't disagree...so you think we should completely remove "quality" -- like what if a model wrote vacuous statements, or huge pieces of code or something silly/terrible. What if a reviewer bring this up? Like it's not a problem that magically disappears...
+❯ scores fidelity only. mainly -- no? I assume if a human saw horrible code in our human judgements it would lower the score...at least intuitively, even if not written in prompt. What is the actual thing we did? we need to be precise in the paper/correct.
+Q: still unsure what to do about the word quality (especially in the abstract), we could do quality (ie fidelity + whatever other property u said about not being dumb/silly). I just don't want to trigger AI reviewers that might flinch at the word quality eg as something that might be gameable (eg see sanmi koyejo's and zach robertson tvd-mi/beyond vibes scalable oversight paper, for example, but idk if it's an actual concern eg did any reviewer even get upset at that word in the 18_icml reviews `/Users/brandomiranda/cert-judge/experiments/18_icml_reviews`? what would a ai reviewer think? Goal is to make the best decision we can such that AI reviewers are happy (+ high quality and honest/scientific of course lol) and paper gets into ICLR 2027. What to do?
+
+Ok this fucking discussion about quality is taking too long. What I need is to make sure we have a counter argument to "gameable" which we do due to gold ref (and cite koyejo robertson in the main body when appropriate) and reference based quality is fine. We just need to be clear that we weren't explicit in the judge or humans for the bloating, etc issues we are discussion in the paper but implicitly we assume humans do do this (or somethign like this? We need to fucking move on and make it clear what the defisiopn was.)
+-> reference-based specification quality, that word/term is fine, if it's clear and say we should have been explicit about the other parts of quality we dind't mention and put it in the limitations, we also might not need to bring too much attention to this anyway...but scientifically accurate of course walways. 
+
+`  LLM judges are increasingly central to evaluating AI-generated code, tests, and formal specifications.` --> is that actually true? Do a deep research and check if this is true or if at least LLM judges are used a lot in practice in AI. My sense in general AI yes, but idk if ai for maths (certainly not pure formal methods, those guys are so slow...not my target audience basically). Like if the AI is writing the trust (tests for example, thms, too) -- then how are people evaluating if AI it's doing it right? That is basically the big motivation for the paper but either we need to introduce it clearly as a new emerging problem or cite/refs that it is a problem to be solved or something. To make this legic, especially cuz it's the first sentence in the abstract. 
+PS: `TLDR-start:` I thought we only have end TLDRS now...I'm confused, are the agents not loading the right ac repo or is there a stable rule in this cert-judge agents claude .md files?
+
+    Q: does it mean the current paper has no results (ti, ti_var, corrs to humans, stds, etc) wrt held out human judgements? (eg at least a dev/val set...)
+    PS: if you call the "train set" development panel it's very very confusing. Like, why do we call it that? in machine learning (the context of this paper), there is a trian, validation, and test set. We "develop" model on the train + val set (Andrew Ng likes the dev set term, personally I don't love it, and clearly it's confusing me, so we can just say train, validation/val, test set for my papers so we can add this in the ac repo rules and for this projects agents claude.md too to make sure the current active agents know.) So we need to make this very clear and transparent in the paper. Do we need some sort of rewrite of the paper to make this clear? As long as we are scientifically accurate I'm happy, at the bare minimum. 
+**
+`What the peer session changed and why it's right to flag: the VeriBench downstream ranking (§5.4, main.tex:601-603) was produced by a Claude 3.7 judge that is not one of the eight certified configurations ` -> what does this mean? like certified configurations...and why should that matter to me? 
+Also I do like **both** your recommendations. Can we do option 3 in parallel by another smart fable max? (since I'm going in a 1.5h meeting) `My recommendation: the corrected first line is honest but weak — "in the expected order" is expected by whom? It's the kind of phrase a reviewer paraphrases as "the ranking matched what we thought," and it now demonstrates nothing about the protocol. Two clean options:
+
+1. Drop the VeriBench line from the abstract and close on the vision sentence alone. The VeriBench sanity check stays in §5.4 where it's properly caveated. (I'd pick this.)
+2. Keep it but make the claim literal: "On \textsc{VeriBench}, an uncertified judge already ranks agents plausibly; the protocol is what would justify trusting such a ranking." — ties the sanity check back to the contribution.
+
+Option 3 — rerun the ranking with a certified Codex/Qwen judge — is the only way to keep "the same property-checked judge," and that's paid inference needing a quote. Say 1, 2, or 3 and I'll coordinate the edit with the peer (it owns main.tex right now and asked that nobody else run latexmk in the paper dir while it builds; I only ever built in a scratch copy).`
+**
+❯ For the writing and the actual paper to be sound, we need to go through any other reviews (besides the one in 18_) and collect each open review (OR) complaints in a new experiment folders to address one by one (weather the paper was accepted or not). Google search and thus do this task. So do this. Write the actual prompts too that would exectue it and then execute the changes needed for the paper. Note I will go in a 1.5h meeting so you can take your time to do things correctly and even serially if needed. There might be other agents working in parallel too so yeah fyi.
+
+--
+
+❯ like what the fuck are you talking about? dspy trace baseline are from ICML 2025 really OLD version of the paper, that isn't relevant for the ICLR submission anymore at all...no? Or am I getting confused? we are doing the cert judge paper right? I'm so confused now. /effort max
+
+`cert-judge-05 checked the result files, and the "nine repeated calls" claim was wrong. The run behind the headline 0.833 / 0.905 / 0.738 stores only three calls per pair for every LLM judge. Nine calls apply only to the edit-distance and random controls; nine was the configured setting, but the cache of earlier judge calls only held three per pair. The sentence now says exactly that, and the correction is recorded in that session's issue list for experiment 33. It's building in a scratch copy and will commit next. Nothing is needed from me.` --> that is a big claim. To say something is wrong in a scientific research paper. What I need you to do is to really verify if it's actually "wrong" -- because we cannot have anything wrong in our research paper. Is there actually wrong? And if yes what is it exactly. How can we fix it?
+
+`Now: judge search on a locked train/validation/test split (10 / 5 / 10 tasks); finalist ρ=0.271 "on
+the test split"
+Evidence: experiments/75_J1_validating_formal_spec_judge_train_val_test/results.md:270` what the fuck? that looks like a veribench path. You should be working on cert-judge in this agent chat...I thought I told you to do veribench edits in a seperate subagent? Anyway, like cert-judge is not about creating trustworthy agents -- it's about scaling the creation of trustworthy agents. Does the distinction make sense?
+
+`disclose the exp23/24 null results in the appendix` --> I'm getting that as my next prompt suggestion, but I don't know what it means tbh. What null result? In fact I'm trying to trim the appendix so we only have things in the appendix we actually need...so I'm hesitant to add more things to the appendix and confuse me. What should we do? I'm confused
+
+`fix the stale "removed specifications" term in the abstract`
+
+--
+# Friday sept 26 2026: Cleanign Up Final ICLR Cert Judge paper details
+

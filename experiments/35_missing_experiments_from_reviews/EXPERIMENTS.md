@@ -2,7 +2,7 @@
 
 **TLDR:** Twelve gaps distilled from four OpenReview rounds (33a AI4Math, 33d MATH-AI, 33e TMLR, DL4C pending) plus today's audit, ranked by how much each would move an ICLR decision per unit of cost. Four are **zero-inference** (recompute from frozen outputs, run today), five need **subscription-CLI judge calls** (quote first; $0 API), three need **new human labels** (Brando decides; the only way to get a real held-out test). Every prompt below is written for a coding agent, is CLI-only (Hard Rule 9), starts with a call quote, records exact model IDs, and registers its own experiment folder. Nothing here edits the paper; results feed experiment 34's successor pass.
 
-Reviewer IDs refer to `experiments/33a_ai4math_reviews/complaints.md` (A26-*), `33d_mathai_reviews/complaints.md` (N25-*), and today's ledger `experiments/31_final_iclr_paper_writing/notes.md`.
+Reviewer IDs refer to `experiments/33a_ai4math_reviews/complaints.md` (A26-*), `33d_mathai_reviews/complaints.md` (N25-*), and the preserved ledger `experiments/archive/31_final_iclr_paper_writing/notes.md`.
 
 Common rules for every prompt (prepend when dispatching): read `CLAUDE.md` and `~/agents-config/INDEX_RULES.md`; register the experiment in `experiments/archive/layout.json` (`active`) and `experiments/README.md`; write `results.md` at launch and keep it live; CLI-only inference (`codex exec` / `claude -p`), scrub `*_API_KEY` from child environments, never read `~/keys/*`; write the exact call quote to `CKPT.md` before the first call; record the CLI-requested model ID in every result file; commit with explicit pathspecs; never touch `paper_latex/` — deliver `REPORT.md` with drafted paper sentences instead.
 
