@@ -1,16 +1,25 @@
 % !TEX root = main.tex
 \section{Introduction}
-% CS197 move 1: problem -- independently generated interfaces and theorem statements require semantic alignment, not exact reference matching.
-End-to-end code autoformalization asks agents to generate implementations, formal specifications, and proofs together.
-VeriBench instantiates this task through Python-to-Lean~4 autoformalization~\citep{miranda2026veribench}.
+% CS197 move 1a: problem motivation (failure mode) -- agents now write the trust artifacts for their own code; trusting an AI-written trust artifact means verifying the artifact and verifying whatever judge verifies it. Why formal specifications first: the proof assistant fixes the meaning, so only intent coverage is left to judge (tests would also qualify). Source: Brando's handwritten note, 09-25-2026, experiments/34_iclr_mega_rewrite_astra/notes/abstract_moves_1_2_handwritten_09-25-2026.jpg.
+AI agents now write the trust artifacts for their own code: the tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning} meant to vouch for it.
 A formal specification states the guarantees a program should satisfy, such as returning a sorted permutation of its input.
-Correct solutions need not share a reference's interfaces, data representations, or decomposition into theorem statements.
-These differences can prevent direct reuse of reference tests and theorem statements without a validated correspondence between representations.
-Lean checks proofs of the stated theorems, but those proofs alone do not establish that the statements cover the intended guarantees~\citep{lahiri2024evaluating}.
+To trust an AI-written trust artifact, one must verify the artifact and verify whatever judge performs that check.
+We start with formal specifications because the proof assistant fixes what a theorem means, so the remaining question is whether it captures the intent.
 
-% CS197 move 2: prior assumption -- each judge needs human-agreement evidence.
-Large language models (LLMs) offer a practical approach to semantic evaluation and already filter autoformalized statements in theorem-proving pipelines~\citep{lin2025goedelprover,wang2025kiminaprover}.
-Human agreement is a common criterion for validating these judges~\citep{Liu2023GEval,Zheng2023MTBench}.
+% CS197 move 1b: problem motivation (why a language-model judge) -- end-to-end autoformalization: the agent chooses interfaces and theorem decomposition, so the reference's tests and theorems fail against the candidate for representation reasons (VeriBench reports systematic false negatives), a proof does not show coverage, and a semantic comparison of candidate and reference specifications remains. Accuracy boundary: with compatible interfaces, execution-based checks of generated specifications exist (nl2postcond), so the obstacle is the mismatch, not tests as such. VeriBench is cited here, not in the abstract.
+In end-to-end autoformalization, an agent receives source code and writes the Lean~4 implementation, tests, theorem statements, and proofs without a scaffold~\citep{miranda2026veribench}.
+Its solution need not share the reference's interfaces, data representations, or decomposition into theorem statements.
+Running the reference's tests and theorems against such a candidate then fails because the representations differ, not because the candidate is wrong.
+Translating code into another language raises the same mismatch whenever the translation chooses its own interfaces.
+Lean checks the candidate's proofs, but a proof does not establish that the candidate's theorems cover the reference's guarantees~\citep{lahiri2024evaluating}.
+What remains is a semantic comparison of the candidate and reference specifications.
+Large language models (LLMs) already serve as that judge~\citep{miranda2026veribench}.
+
+% CS197 move 2: assumption (setup bit) -- prior work handles the first verification with an AI judge and the second with human agreement: a judge counts as trustworthy once it correlates with expert annotations or rubric-based human ratings and, on objective tasks, stays consistent across repeats. That check is repeated per configuration, or one labeled set is reused and risks adaptive overfitting. "Other places like this" beyond VeriBench: Goedel-Prover and Kimina-Prover (statement filtering), ReForm (expert-validated statement judges), FormalAlign, ICE-Score and CodeJudge (Section 2).
+Prior work in AI addresses the first verification with an AI judge and the second with human agreement.
+LLM judges filter autoformalized statements in theorem-proving pipelines~\citep{lin2025goedelprover,wang2025kiminaprover} and score agent-written specifications against references~\citep{miranda2026veribench}.
+A judge counts as trustworthy once its scores agree with expert annotations~\citep{chen2026reform} or with human ratings under a rubric~\citep{Liu2023GEval,Zheng2023MTBench}.
+On objective tasks, consistency across repeated judgments serves as further evidence~\citep{Li2024TrustLLMJudgments}.
 Agreement varies across models, tasks, and evaluated properties, so evidence for one configuration does not establish another's reliability~\citep{Kocmi2024HumanVsLLM}.
 Existing labels can assess another judge on the same examples without fresh annotation.
 However, repeatedly selecting judges against those labels risks adaptive overfitting~\citep{dwork2015reusableholdout}.
