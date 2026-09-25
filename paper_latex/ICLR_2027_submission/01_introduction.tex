@@ -1,15 +1,15 @@
 % !TEX root = main.tex
 \section{Introduction}
-% CS197 move 1: problem -- checking the checks is the test-oracle problem.
-AI agents write both programs and the checks intended to establish their correctness, including tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning}.
-Running a generated test reveals whether the program and test agree, not whether either expresses the intended behavior.
-This is an instance of the test-oracle problem: deciding which behavior should count as correct~\citep{barr2015oracle}.
+% CS197 move 1: problem -- independently generated interfaces and theorem statements require semantic alignment, not exact reference matching.
+End-to-end code autoformalization asks agents to generate implementations, formal specifications, and proofs together.
+VeriBench instantiates this task through Python-to-Lean~4 autoformalization~\citep{miranda2026veribench}.
 A formal specification states the guarantees a program should satisfy, such as returning a sorted permutation of its input.
-Its role resembles that of a grading test, but a universally quantified theorem covers every input rather than sampled cases~\citep{claessen2000quickcheck}.
-Lean can check a proof of that theorem; it cannot establish that the author chose the right theorem~\citep{lahiri2024evaluating}.
+Correct solutions need not share a reference's interfaces, data representations, or decomposition into theorem statements.
+These differences can prevent direct reuse of reference tests and theorem statements without a validated correspondence between representations.
+Lean checks proofs of the stated theorems, but those proofs alone do not establish that the statements cover the intended guarantees~\citep{lahiri2024evaluating}.
 
 % CS197 move 2: prior assumption -- each judge needs human-agreement evidence.
-Large language models (LLMs) already help replace the human oracle, filtering autoformalized statements in theorem-proving pipelines~\citep{lin2025goedelprover,wang2025kiminaprover}.
+Large language models (LLMs) offer a practical approach to semantic evaluation and already filter autoformalized statements in theorem-proving pipelines~\citep{lin2025goedelprover,wang2025kiminaprover}.
 Human agreement is a common criterion for validating these judges~\citep{Liu2023GEval,Zheng2023MTBench}.
 Agreement varies across models, tasks, and evaluated properties, so evidence for one configuration does not establish another's reliability~\citep{Kocmi2024HumanVsLLM}.
 Existing labels can assess another judge on the same examples without fresh annotation.

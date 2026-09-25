@@ -1,7 +1,7 @@
 % !TEX root = main.tex
 \begin{abstract}
-% CS197 move 1: problem motivation (failure mode) -- AI-written formal specifications still need a human oracle; running tests or checking proofs cannot settle whether the specification is right.
-Large language models judge whether AI-written formal specifications express the right guarantees, a question that running tests or checking proofs cannot settle.
+% CS197 move 1: problem motivation (failure mode) -- correct end-to-end artifacts need not share reference interfaces or theorem statements; semantic comparison motivates validated language-model judges, not their logical necessity. The supporting VeriBench citation belongs in the introduction, not the abstract.
+Correct end-to-end code autoformalizations need not share a reference's interfaces or theorem statements, motivating validated language-model judges to assess their guarantees.
 % CS197 move 2: assumption (setup bit) -- reliability means agreement with human ratings, and that check is repeated for every new model, prompt, and domain.
 Practitioners establish each judge's reliability through agreement with human ratings and repeat that check for every new model, prompt, and domain.
 % CS197 move 3: contribution (bit flip) -- collect labels once; screen every later judge with falsifiable properties whose required score response is known by construction.
