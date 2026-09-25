@@ -2,8 +2,10 @@
 \begin{abstract}
 % CS197 move 1: problem motivation (failure mode) -- correct end-to-end artifacts need not share reference interfaces or theorem statements; semantic comparison motivates validated language-model judges, not their logical necessity. The supporting VeriBench citation belongs in the introduction, not the abstract.
 Correct end-to-end code autoformalizations need not share a reference's interfaces or theorem statements, motivating validated language-model judges to assess their guarantees.
-% CS197 move 2: assumption (setup bit) -- reliability means agreement with human ratings, and that check is repeated for every new model, prompt, and domain.
-Practitioners establish each judge's reliability through agreement with human ratings and repeat that check for every new model, prompt, and domain.
+% CS197 move 2a: assumption (setup bit) -- name the human-agreement and repeatability evidence sought for each judge, without equating those measurements with guaranteed trustworthiness.
+Practitioners assess judge reliability through agreement with human ratings and consistency across repeated evaluations.
+% CS197 move 2b: assumption (setup bit) -- expanding validation can require further annotation; existing labels can be reused across configurations, so a new judge does not automatically require new labels.
+Extending this evidence to new judges and tasks can require costly human annotation.
 % CS197 move 3: contribution (bit flip) -- collect labels once; screen every later judge with falsifiable properties whose required score response is known by construction.
 We propose collecting labels once, then screening new judges with falsifiable properties that specify how scores should respond to controlled edits.
 % CS197 move 4a: instantiation (bit flip instantiation) -- Lean 4 specifications judged against gold; the four properties P1-P4. "target", not "test": the headline panels have no missing-specification ladders, so P3 is proposed but unmeasured there (Section 5.2).

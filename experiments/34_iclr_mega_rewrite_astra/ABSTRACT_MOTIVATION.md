@@ -34,3 +34,20 @@ The adopted sentence names the concrete mismatch and the validation requirement 
 - `git diff --check` passed; exact source diff reviewed. No empirical results or judge settings changed.
 
 OpenReview is not updated by this source edit; any earlier upload remains a separate submission artifact.
+
+## Move 2 revision: judge-validation assumption (09-25-2026)
+
+> Practitioners assess judge reliability through agreement with human ratings and consistency across repeated evaluations.
+> Extending this evidence to new judges and tasks can require costly human annotation.
+
+Move 1 remains one sentence: the independently generated formalizations motivate semantic judging. Move 2 now has two sentences: the first names the validation evidence, and the second exposes the annotation dependence that move 3 seeks to reduce. The abstract develops one central contribution for this paper, reusable behavioral screening, rather than presenting VeriBench's task design as a second contribution.
+
+### Terminology and factual boundaries
+
+- Prefer **validation** for empirical evidence about judge scores under a specified task, rubric, and evaluation distribution; **screening** describes the finite property checks. Unqualified **certification** could imply a guarantee that the current evidence does not establish. This is a manuscript-specific recommendation, not an assertion about a coauthor's personal preference. This edit does not rename existing section headings or frozen identifiers elsewhere.
+- Agreement with human ratings and consistency across repetitions are distinct measurements, not a sufficient definition of trustworthiness. A judge can be consistently wrong. The property index remains a behavioral proxy rather than a certificate of semantic correctness.
+- A changed judge configuration needs appropriate evaluation evidence, but not necessarily freshly collected annotations. [G-Eval, Sections 3.1--3.2](https://arxiv.org/html/2303.16634) compares different judge models against the same human-rated benchmarks. The wording therefore says annotation **can** be required when extending evidence; it does not claim that every model or prompt change requires re-annotation.
+- [Schroeder and Wood-Doughty](https://arxiv.org/html/2412.12509) distinguish repeated-output consistency from correctness. Current manuscript Sections 4 and 6 likewise state that the screen does not establish transfer to unseen judges or distributions.
+- No claim of VeriBench priority or universal inadequacy of supplied interfaces is added. No experiment, numerical result, or scientific setting changes.
+
+Verification for this revision: move 2 has two sentences (14 and 13 words); all other abstract sentences are unchanged. Scratch compilation and sentence-layout checks passed (exit 0); the document has 16 pages, with zero TeX errors, undefined references/citations, or overfull boxes. Rendered pages 1 and 2 were inspected without clipping or overlap. Exact source diff and `git diff --check` passed. The earlier verification block records the preceding move-1 revision.
