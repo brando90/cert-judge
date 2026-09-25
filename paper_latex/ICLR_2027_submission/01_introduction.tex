@@ -1,7 +1,7 @@
 % !TEX root = main.tex
 \section{Introduction}
 % CS197 move 1a: problem motivation (failure mode) -- agents now write the trust artifacts for their own code; trusting an AI-written trust artifact means verifying the artifact and verifying whatever judge verifies it. Why formal specifications first: the proof assistant fixes the meaning, so only intent coverage is left to judge (tests would also qualify). Source: Brando's handwritten note, 09-25-2026, experiments/34_iclr_mega_rewrite_astra/notes/abstract_moves_1_2_handwritten_09-25-2026.jpg.
-AI agents now write the trust artifacts for their own code: the tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning} meant to vouch for it.
+AI agents now write the trust artifacts for their own code: the tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning} on which trust in that code rests.
 A formal specification states the guarantees a program should satisfy, such as returning a sorted permutation of its input.
 To trust an AI-written trust artifact, one must verify the artifact and verify whatever judge performs that check.
 We start with formal specifications because the proof assistant fixes what a theorem means, so the remaining question is whether it captures the intent.
