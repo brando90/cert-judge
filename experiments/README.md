@@ -3,6 +3,7 @@
 Only currently pursued experiments belong directly in this directory.
 | Active experiment | Current task |
 |---|---|
+| [37_openreview_feedback_current_iclr_revision](37_openreview_feedback_current_iclr_revision/README.md) | OpenReview automated feedback versus current ICLR manuscript; Claude Fable assessment, then warranted Astra Ultra edits. Started 09-26-2026. |
 | [33a_ai4math_reviews](33a_ai4math_reviews/README.md) | ICML 2026 AI4Math reviews (verbatim) and their 29 complaint rows against the ICLR paper; formerly 18_icml_reviews. Moved 2026-09-22. |
 | [34_iclr_mega_rewrite_astra](34_iclr_mega_rewrite_astra/PROMPT.md) | Core-only ICLR rewrite by Codex GPT-6 Astra (ultra) on branch `astra/iclr-mega-rewrite`; runbook + live results. Started 2026-09-22. |
 | [35_missing_experiments_from_reviews](35_missing_experiments_from_reviews/EXPERIMENTS.md) | Reviewer-driven missing experiments with ready CLI-only prompts (zero-inference / subscription / human-label tiers). Started 2026-09-22. |
