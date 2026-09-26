@@ -1,8 +1,8 @@
 % !TEX root = main.tex
 \section{Experiments}
-\subsection{Data and human panel}\label{sec:data-human-protocol}\label{sec:veribench-overview}
+\subsection{Validation set}\label{sec:data-human-protocol}\label{sec:veribench-overview}
 We evaluate candidate--gold pairs from \textsc{VeriBench}~\citep{miranda2026veribench}.
-One annotator supplied holistic ratings on a $0$--$5$ scale in two passes, pass1 with a stricter rubric and pass2 with a more lenient rubric.
+One annotator supplied holistic ratings on a $0$--$5$ scale in two passes, pass1 under a stricter rubric and pass2 under a more lenient one.
 The collection covered 75 pairs from 25 problems with three agent generations per problem.
 One gold filename could not be resolved, leaving 72 analyzed pairs from 24 problems.
 We report each pass and the archived averaged-label view; they are two judgments by one person, not independent annotators.
@@ -11,19 +11,20 @@ These statistics describe label disagreement; they do not establish an upper bou
 The original written rubric was not recovered, so we cannot reconstruct every annotation instruction.
 
 This panel is the \emph{validation set}: it informed index-form selection, repeat aggregation, the threshold, and the prompt panel, so correlations on it are optimistic.
-The fixed equal-weight $\mathrm{TI}_{\mathrm{var}}$ has no training set.
-A separate weight-tuned comparison uses these same pairs, and no analysis constitutes a test-set result.
-For each judge, artifact-level agreement is the Spearman correlation between its scores and the human ratings on the same analyzed pairs.
+The fixed equal-weight $\mathrm{TI}_{\mathrm{var}}$ has no fitted weights, so there is no training set.
+A separate weight-tuned comparison uses these same pairs, and no analysis in this paper is a test-set result.
+For each judge, artifact-level agreement is the Spearman correlation between its scores and the human ratings on the analyzed pairs.
 We then ask whether the index orders configurations by that agreement.
 
 \subsection{Property checks on GPT-5.3-Codex}\label{sec:property-results}
-Figure~\ref{fig:judge_sanity_checks} summarizes the 24-problem panel for three Codex prompts.
-Early bug edits lower mean scores, but averages conceal local reversals.
-The strict prompt reverses on four of 24 ladders, whereas the baseline and checklist prompts have no reversals (Table~\ref{tab:codex_configs}).
-The archived alpha probes produce the largest score changes among the four rewrite types, but their generator can produce malformed Lean text.
-The baseline and checklist prompts assign them zero mean score, despite near-maximum scores for the other rewrites.
-The strict prompt gives alpha probes a mean score of $0.179$.
-Appendix~\ref{app:failure-diagnostics} retains the per-configuration diagnostics and the corresponding Claude Opus summary.
+Figure~\ref{fig:judge_sanity_checks} summarizes the 24-problem panel for the three semantic Codex prompts.
+Each bug ladder has five levels, the original artifact plus four cumulative edits, and each artifact has four rewrite probes.
+Mean scores fall from $1.0$ at level zero to $0.24$--$0.27$ after the first cumulative edit and to about zero thereafter.
+Averages conceal local reversals: the strict prompt reverses on four of 24 ladders, whereas the baseline and checklist prompts have none (Table~\ref{tab:codex_configs}).
+Renaming, reordering, and style rewrites leave mean scores at or near $1.0$.
+The archived alpha probes are the exception, but their generator can produce malformed Lean text.
+The baseline and checklist prompts assign them a mean score of zero; the strict prompt assigns $0.179$.
+Appendix~\ref{app:failure-diagnostics} keeps the per-configuration diagnostics and the corresponding Claude Opus curves.
 
 \begin{figure}[t]
 \centering
@@ -43,22 +44,26 @@ This manipulation changes recorded scores rather than the judge's inputs.
 A real fix must rescore canonicalized text and verify that the transformation preserves meaning.
 
 \paragraph{Coverage of P3.}
-The eight-configuration panel contains identity rewrites and bug ladders but no missing-specification ladders.
-Consequently, it cannot establish which association P3 has with human agreement.
-We retain P3 as a proposed part of the protocol, without attributing the bug-ladder statistics below to it.
+The eight-configuration panels contain rewrite probes and bug ladders but no missing-specification ladders.
+They therefore cannot say which association P3 has with human agreement.
+P3 remains a proposed part of the screen; none of the bug-ladder statistics below belongs to it.
 
 \subsection{The index tracks judge-level human agreement on the validation set}\label{sec:tivar_cross_model_results}\label{sec:validation-human-alignment}
 The three primary families are GPT-5.3-Codex, Claude Opus 4.7, and Qwen3-Coder.
 Each eight-configuration panel contains three semantic prompts, a deliberately lexical prompt on the same model, two GPT-4o-mini prompts, edit distance, and a random control.
 These are family panels with shared controls, not eight independent models per family.
 The frozen model identifiers and complete main-panel prompts appear in Appendix~\ref{app:judge-prompts}.
-Scores are medians over three repeated calls for language-model judges; Codex-panel controls use nine repeats, and the other panels use three.
+Scores are medians over three repeated calls for language-model judges; the Codex-panel controls use nine repeats, and the other panels use three.
 
-Figure~\ref{fig:tivar_cross_model_avg} uses the fixed equal-weight index in Equation~\ref{eq:tivar}.
+Figure~\ref{fig:tivar_cross_model_avg} uses the fixed equal-weight index of Equation~\ref{eq:tivar}.
 Its judge-level Spearman association is positive for each primary family and label view (Table~\ref{tab:tivar_cross_model_results}).
-For Codex, averaged-label Pearson and Kendall associations are $0.868$ and $0.643$, respectively.
+For Codex, the averaged-label Pearson and Kendall associations are $0.868$ and $0.643$.
 The Codex bootstrap intervals are wide, and the resampling does not correct for the earlier protocol selection.
-Pass-to-pass differences also matter: Qwen's Spearman association changes from $0.476$ on pass1 to $0.857$ on pass2.
+Exact permutation probabilities over all $8!$ orderings are $0.096$, $0.022$, and $0.132$ for Claude Opus and $0.005$, $0.243$, and $0.011$ for Qwen3-Coder on averaged, pass1, and pass2 labels (Appendix~\ref{app:judge-level-diagnostics}).
+Only some cells are individually distinguishable from a random ordering at the $0.05$ level, and the nine tests are unadjusted.
+Pass-to-pass differences also matter: Qwen's association changes from $0.476$ on pass1 to $0.857$ on pass2.
+Removing the two non-LLM controls leaves six configurations per family, with averaged-label associations of $0.771$ for Codex, $0.486$ for Claude Opus, and $0.943$ for Qwen3-Coder.
+Among the four same-model prompts alone, the averaged-label associations are $0.400$, $0.000$, and $0.800$, so the index orders semantic prompts coarsely at best.
 With eight configurations and disagreeing label passes, these estimates support a descriptive association rather than a precise or portable effect size.
 
 \begin{figure}[t]
@@ -88,19 +93,20 @@ Qwen3-Coder & 0.524 & 0.500 & 0.786 & 0.905 & 0.476 & 0.857 \\
 \end{tabular}
 \caption{The fixed index is competitive with a two-component geometric comparison whose weights were selected on pass1.
 Entries are Spearman correlations between each index and judge-level human agreement on the validation set, with eight configurations per family.
-Codex intervals and permutation probabilities use 10{,}000 resamples and permutations, seed 42; corresponding intervals for the other families are not reported.
+Codex intervals and permutation probabilities use 10{,}000 resamples and permutations, seed 42; exact permutation probabilities for every cell are in Appendix~\ref{app:judge-level-diagnostics}.
 Appendix~\ref{app:index-definitions} defines all indices.}
 \label{tab:tivar_cross_model_results}\label{tab:cross_model_index_compare_avg}
 \end{table}
 
-\paragraph{Human agreement alone can miss a bad judge.}
-The lexical prompt, \texttt{BAD\_STRINGY}, explicitly instructs the model to ignore theorem meaning and grade textual overlap.
+\subsection{Human agreement alone can miss a bad judge}\label{sec:lexical-judge}
+The lexical prompt, \texttt{BAD\_STRINGY}, instructs the model to ignore theorem meaning and grade textual overlap.
 On the Codex panel, its human agreement of $0.435$ lies among the semantic prompts' values, $0.365$--$0.466$.
+A validation protocol that stops at human agreement would accept it.
 Yet it reverses on 20 of 24 bug ladders (Table~\ref{tab:codex_configs}).
-The index ranks it below the three semantic prompts, but its value remains $0.940$; edit distance also scores highly at $0.928$.
-In the Qwen panel, the lexical configuration has the highest index value, $0.982$.
+The scalar does not expose it either: its index value is $0.940$, below the three semantic prompts but far above the failing GPT-4o-mini configurations, and edit distance scores $0.928$.
+In the Qwen panel, the lexical configuration even has the highest index value, $0.982$.
 The failure report therefore carries information that both human agreement and the scalar can miss.
-No validated cutoff on $\mathrm{TI}_{\mathrm{var}}$ establishes that a judge is acceptable.
+No validated cutoff on $\mathrm{TI}_{\mathrm{var}}$ establishes that a judge is acceptable; the screen's verdict is the per-property report.
 
 \begin{table}[t]
 \centering\small
@@ -127,6 +133,8 @@ A reversal is any local score increase as cumulative edits are added; the diagno
 The two-component geometric comparison is numerically higher than $\mathrm{TI}_{\mathrm{var}}$ for Codex and Opus on averaged labels (Table~\ref{tab:tivar_cross_model_results}).
 It uses bug monotonicity and decision stability with weights $0.4$ and $0.6$, selected on pass1, rather than fixed equal weights.
 We retain $\mathrm{TI}_{\mathrm{var}}$ for its explicit variance penalties and positive associations across the primary families and passes, not because these data establish its superiority.
+The bug-monotonicity component alone has averaged-label associations of $0.643$, $0.467$, and $0.690$, so the two variance penalties raise the association in eight of the nine family--pass cells (Appendix~\ref{app:judge-level-diagnostics}).
+The exception is Qwen pass2, where the component alone reaches $0.905$ and the full index $0.857$.
 A separate search over six component weights gives cross-pass associations of $0.810$ and $0.786$ on the same pairs (Appendix~\ref{app:moved-results}).
 The pass1-selected geometric form reaches $0.769$ on an expanded 13-configuration panel, with a 95\% interval of $[0.34,0.95]$ (Appendix~\ref{app:expanded-panel}).
 Neither comparison provides a held-out estimate.
@@ -163,6 +171,6 @@ Entries are Spearman correlations with human agreement across eight Codex-panel 
 \end{table}
 
 \paragraph{Artifact-score threshold.}
-A historical sweep of the artifact-score threshold from $0.60$ to $0.85$ lowers the observed decision-flip rate from $0.058$ to $0.046$ and pass rate from $0.583$ to $0.536$ (Appendix Table~\ref{tab:exp13_threshold_sweep}).
-The selected threshold is $0.85$, which has the lowest observed flip rate in that sweep.
+A historical sweep of the artifact-score threshold over six values from $0.60$ to $0.85$ lowers the observed decision-flip rate from $0.058$ to $0.046$ and the pass rate from $0.583$ to $0.536$ (Appendix Table~\ref{tab:exp13_threshold_sweep}).
+The selected threshold is $0.85$, which has the lowest observed flip rate in that sweep, although its interval overlaps those of every other threshold.
 This thresholds $J_\theta(x,g)$, not the judge-level index, and measures repeatability rather than correctness of the accepted artifacts.

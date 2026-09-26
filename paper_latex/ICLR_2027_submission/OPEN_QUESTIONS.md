@@ -10,3 +10,5 @@ The core rewrite is integrated into `main`. See `experiments/34_iclr_mega_rewrit
 6. **Anonymous supplement:** prepared as `experiments/34_iclr_mega_rewrite_astra/submission/anonymous_supplement.zip` on 09-24-2026. It contains 28 frozen score-level inputs and reconstructs eight numerical tables and five figures. Its README states the exclusions; it is not a complete inference or human-annotation reproduction. The source worktree and internal packaging receipts must not be uploaded as supplementary material.
 
 The 343-label pool is analyzed and disclosed as a different criterion, not proposed as an untouched test set. Statements and page-budget issues from the previous question sheet have been addressed.
+
+09-26-2026: the body (sections 1–7) was rewritten to the approved trust-artifact abstract; see `experiments/38_iclr_body_rewrite_to_trust_artifact_abstract/results.md`. The experiment-37 appendix repairs (A5–A7, A9) are still to be merged from the Astra worker.

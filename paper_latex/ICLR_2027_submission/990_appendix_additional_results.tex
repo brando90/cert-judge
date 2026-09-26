@@ -66,3 +66,32 @@ Qwen3-Coder & $[0.357,0.762]$ & $[0.738,0.952]$ & $[0.881,0.976]$ \\
 Ranges cover judge-level Spearman correlations across the 12 weight triples; they are sensitivity ranges, not confidence intervals.}
 \label{tab:weight-sensitivity}
 \end{table}
+
+\subsection{Judge-level diagnostics from the committed index vectors}\label{app:judge-level-diagnostics}
+Table~\ref{tab:judge-level-diagnostics} recomputes three descriptive diagnostics from the committed per-configuration vectors of each family panel, with no new judge calls.
+The exact permutation probability enumerates all $8!$ orderings of the human-agreement values and counts those whose absolute Spearman correlation with the index reaches the observed one; ties receive average ranks.
+The exact Codex values, $0.015$, $0.005$, and $0.046$, agree with the archived resampled values in Table~\ref{tab:tivar_cross_model_results} to within $0.002$.
+The component-only column correlates the bug-monotonicity term $C_f$ with human agreement and matches the archived fields to three decimals.
+The subset columns drop the edit-distance and random controls, then also the two GPT-4o-mini prompts; they are descriptive, keep the original full-panel normalization, and carry no probabilities.
+
+\begin{table}[h]
+\centering\footnotesize
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Family & Labels & \makecell[r]{$\rho$\\($n=8$)} & \makecell[r]{exact\\$p$} & \makecell[r]{$\rho(C_f)$\\($n=8$)} & \makecell[r]{$\rho$ without\\controls ($n=6$)} & \makecell[r]{$\rho$ same-model\\prompts ($n=4$)} \\
+\midrule
+Codex & avg & 0.833 & 0.015 & 0.643 & 0.771 & 0.400 \\
+Codex & pass1 & 0.905 & 0.005 & 0.690 & 0.886 & 0.800 \\
+Codex & pass2 & 0.738 & 0.046 & 0.667 & 0.657 & 0.000 \\
+Claude Opus & avg & 0.643 & 0.096 & 0.467 & 0.486 & 0.000 \\
+Claude Opus & pass1 & 0.810 & 0.022 & 0.527 & 0.829 & 0.600 \\
+Claude Opus & pass2 & 0.595 & 0.132 & 0.575 & 0.486 & 0.000 \\
+Qwen3-Coder & avg & 0.905 & 0.005 & 0.690 & 0.943 & 0.800 \\
+Qwen3-Coder & pass1 & 0.476 & 0.243 & 0.048 & 0.600 & 0.600 \\
+Qwen3-Coder & pass2 & 0.857 & 0.011 & 0.905 & 0.943 & 0.800 \\
+\bottomrule
+\end{tabular}
+\caption{The association stays positive after removing the non-LLM controls but is coarse among same-model prompts.
+Entries are Spearman correlations between the fixed index (or its bug component) and judge-level human agreement, recomputed from committed vectors; the nine exact probabilities are unadjusted.}
+\label{tab:judge-level-diagnostics}
+\end{table}

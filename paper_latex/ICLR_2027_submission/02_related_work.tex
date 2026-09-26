@@ -1,18 +1,23 @@
 % !TEX root = main.tex
 \section{Related Work}
-\paragraph{LLM-as-a-judge validation.}
-\textsc{G-Eval}~\citep{Liu2023GEval} and \textsc{MT-Bench}~\citep{Zheng2023MTBench} compare judges with human ratings, leaving reliability dependent on the evaluated tasks and configurations.
-Bavaresco et al.~\citep{Kocmi2024HumanVsLLM} document this dependence across tasks rather than establishing a universal judge.
-Schroeder and Wood-Doughty~\citep{Li2024TrustLLMJudgments} measure consistency across repeated judgments, which does not by itself establish correctness.
-Our protocol retains human agreement as a validation criterion and adds tests with specified directions of response.
+\paragraph{Validating LLM judges through human agreement.}
+\textsc{G-Eval}~\citep{Liu2023GEval} and \textsc{MT-Bench}~\citep{Zheng2023MTBench} establish a judge's reliability by its agreement with human ratings, so each new judge or task calls for the same comparison.
+\citet{Kocmi2024HumanVsLLM} measure that agreement across 20 tasks and find it task dependent, which is why the comparison cannot be made once for all judges.
+\citet{Li2024TrustLLMJudgments} measure consistency across repeated judgments, which detects instability but not a consistently wrong judge.
+We keep human agreement as the criterion, collect it once, and add checks whose required direction is known without labels.
 
-\paragraph{Judges for code.}
-\textsc{ICE-Score}~\citep{Zhuo2024ICEScore} and \textsc{CodeJudge}~\citep{TongZhang2024CodeJudge} use models to assess generated code where execution tests provide incomplete evidence, but their human-agreement results do not certify later judge configurations.
-\textsc{SWT-Bench} validates generated tests against developers' fixes~\citep{mundler2024swtbench}, requiring a reference behavior rather than treating test execution as proof of test validity.
-Our controlled perturbations serve a related purpose for judges: they specify how a score should change without labeling each perturbed artifact.
+\paragraph{AI judges for AI-written trust artifacts.}
+\textsc{ICE-Score}~\citep{Zhuo2024ICEScore} and \textsc{CodeJudge}~\citep{TongZhang2024CodeJudge} score generated code with a language model where execution gives incomplete evidence, and validate the judge by its agreement with human or execution-based labels on their own tasks.
+\textsc{SWT-Bench} validates agent-written tests by execution against the developers' fix~\citep{mundler2024swtbench}, which requires the test and the reference to share one interface, the condition that end-to-end formalization breaks.
+For formal statements, \textsc{FormalAlign} learns an alignment score between informal and formal statements~\citep{lu2024formalalign}, whereas our target is the behavior of a judge comparing candidate and gold specifications.
+Prover pipelines filter autoformalized statements with an LLM judge~\citep{lin2025goedelprover,wang2025kiminaprover}.
+\textsc{ReForm} validates its statement judge against expert annotations~\citep{chen2026reform}, evidence that does not transfer to the next judge configuration.
+\textsc{VeriBench} scores agent-written Lean specifications with an LLM judge~\citep{miranda2026veribench}; we study when such judges can be trusted.
+Each of these judges answers a question that execution or proof checking cannot settle: whether an artifact means the right thing.
 
-\paragraph{Judging formal statements.}
-\textsc{FormalAlign} learns alignment between informal and formal statements~\citep{lu2024formalalign}, whereas our target is the behavior of a judge comparing candidate and gold specifications.
-\textsc{ReForm} validates formal-statement judges against expert annotations~\citep{chen2026reform}, without establishing that later configurations satisfy our behavioral properties.
-\textsc{VeriBench} evaluates agent-generated Lean artifacts~\citep{miranda2026veribench}; we study the judges used to score their formal specifications.
-These tasks require checking what a statement means, beyond whether a proof checker accepts it.
+\paragraph{Behavioral tests with a known direction.}
+Metamorphic testing checks a program without an oracle by fixing how its output must change under a transformation of its input~\citep{chen1998metamorphic}.
+The test-oracle problem it addresses~\citep{barr2015oracle} is the one an AI-written trust artifact raises: running the artifact cannot tell whether the artifact is right.
+\textsc{CheckList} applies the same idea to NLP models with templated invariance and directional tests, and reveals failures in models with high held-out accuracy~\citep{ribeiro2020checklist}.
+Our properties are metamorphic relations on the judge: identity, ladder monotonicity, and rewrite invariance fix the required response to a scripted edit of a gold artifact.
+The one-time human panel adds what metamorphic testing alone lacks, a measurement of whether the relations track the human criterion across judges.

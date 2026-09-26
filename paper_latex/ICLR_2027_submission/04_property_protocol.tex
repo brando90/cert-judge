@@ -1,12 +1,13 @@
 % !TEX root = main.tex
-\section{Property Certification Protocol}\label{sec:property-protocol}
-\paragraph{A one-time panel and reusable checks.}
-Human ratings link judge behavior to the intended scoring task on a fixed validation set.
-For each configuration, we measure agreement with those ratings and evaluate scripted perturbations of gold artifacts.
-The perturbations require judge calls but no additional human labels.
-We use the validation set to select the index form, prompts, repeat aggregation, and decision threshold.
-After freezing these choices, subsequent configurations can face the same property checks without accessing the labels (Figure~\ref{fig:protocol}).
-This is a screening protocol; the present evidence does not establish transfer to an unseen configuration or distribution.
+\section{Screening Judges with Falsifiable Properties}\label{sec:property-protocol}
+\paragraph{Labels once, checks for every judge.}
+Figure~\ref{fig:protocol} and Table~\ref{tab:protocol_workflow} lay out the protocol.
+A human panel rates candidate--gold pairs once; this validation set links judge behavior to the intended scoring task.
+For each judge configuration, we measure agreement with those ratings and, separately, its responses to scripted edits of gold artifacts.
+The edits require judge calls but no new labels.
+We use the validation set to choose the index form, the prompts, the repeat aggregation, and the decision threshold, then freeze them.
+A later configuration faces the same frozen checks without access to the labels.
+The present evidence supports this as a screen; it does not establish transfer to an unseen configuration or artifact distribution (Section~\ref{sec:limitations-test}).
 
 \begin{figure}[t]
 \centering
@@ -19,13 +20,13 @@ This is a screening protocol; the present evidence does not establish transfer t
 \node[box,text width=23mm,right=of checks] (index) {Index and\\failure report};
 \draw[flow] (gold)--(judge); \draw[flow] (judge)--(checks); \draw[flow] (checks)--(index);
 \node[box,text width=45mm,below=12mm of judge,fill=gray!6] (panel) {One-time validation set\\human ratings of candidate--gold pairs};
-\node[box,text width=49mm,right=12mm of panel,fill=gray!6] (select) {Assess association; select protocol\\then freeze before testing transfer};
+\node[box,text width=49mm,right=12mm of panel,fill=gray!6] (select) {Measure association; select and freeze\\index form, prompts, aggregation, threshold};
 \draw[flow] (panel)--(select);
 \draw[flow] (index.south)--(select.north east);
 \draw[flow,dashed] (judge.south)--(panel.north);
 \end{tikzpicture}
-\caption{The human panel informs the protocol once; later judges face the upper sequence of automated checks.
-The lower sequence measures validation-set association and selects protocol choices, so its results are not a held-out test.}
+\caption{Human labels enter once (bottom); every later judge faces only the automated checks (top).
+The bottom path measures validation-set association and selects protocol choices, so its results are optimistic rather than a held-out test.}
 \label{fig:protocol}
 \end{figure}
 
@@ -35,43 +36,40 @@ The lower sequence measures validation-set association and selects protocol choi
 \toprule
 Stage & Human labels & Judge computation \\
 \midrule
-Establish protocol & Rate candidate--gold pairs & Measure human agreement and property behavior \\
-Select protocol & Use validation ratings & Choose index form, prompts, aggregation, threshold \\
-Screen new judge & Do not consult labels & Run frozen probes; inspect index and failures \\
-Test transfer & Collect independent ratings & Evaluate frozen choices on untouched items \\
+Establish the screen & Rate candidate--gold pairs once & Measure human agreement and property responses \\
+Select and freeze & Use the validation ratings & Choose index form, prompts, aggregation, threshold \\
+Screen a new judge & Do not consult the labels & Run the frozen probes; inspect index and failure report \\
+Test transfer & Collect independent ratings under the frozen rubric & Evaluate the frozen choices on untouched items \\
 \bottomrule
 \end{tabularx}
-\caption{Screening a new judge requires inference but no new labels; establishing transfer requires a separate test.}
+\caption{Screening a new judge costs inference, not labels; establishing transfer needs a separate, locked test.}
 \label{tab:protocol_workflow}
 \end{table}
 
 \paragraph{Four falsifiable properties.}
-\textbf{P1 (identity)} requires the maximum score when an artifact is compared with itself, $J_\theta(g,g)=1$.
-\textbf{P2 (bug monotonicity)} requires non-increasing scores as errors accumulate.
-The historical bug ladder used here alters the candidate text, including theorem statements; it is not restricted to implementation bugs.
+Each property fixes, by construction, how $J_\theta$ must respond to a scripted edit of a gold artifact $g$.
+\textbf{P1 (identity)} requires the maximum score when an artifact is compared with itself or with a meaning-preserving rewrite of itself, $J_\theta(g,g)=1$.
+The rewrites include alpha-renaming, which consistently changes bound-variable names without changing their meaning.
+In the recorded panels, P1 is assessed through four rewrite probes per artifact (renaming, reordering, style, and alpha-renaming); no literal self-comparison was scored.
+\textbf{P2 (bug monotonicity)} requires non-increasing scores as bugs accumulate in the candidate.
+The historical bug ladder used here edits the candidate text, including theorem statements; it is not restricted to implementation bugs.
 \textbf{P3 (missing-specification monotonicity)} requires non-increasing scores as theorem statements and unit tests are removed.
-We retain this historical property name although unit tests are not specifications under Section~\ref{sec:problem-setup}.
-Each ladder extends the preceding level, so its expected ordering concerns cumulative damage rather than equal severity of individual edits.
-Ties are allowed; a local score increase is a reversal.
-\textbf{P4 (stability)} requires stable scores across repeated calls and meaning-preserving rewrites.
-These include alpha-renaming, which consistently changes bound-variable names without changing their meaning.
-The properties are targets for the probes; they are not theorems establishing the validity of every scripted transformation.
+We keep this historical name although unit tests are not specifications under Section~\ref{sec:problem-setup}.
+Each ladder level extends the previous one, so the required ordering concerns cumulative damage, not equal severity of individual edits.
+Ties are allowed; any local score increase is a reversal.
+\textbf{P4 (stability)} requires stable scores across repeated calls on the same input.
+The properties are targets for the probes, not theorems about every scripted transformation; Appendix~\ref{app:failure-diagnostics} records where the historical generators fall short.
 
 \paragraph{A fixed equal-weight summary.}
-The protocol retains individual diagnostics because different failures need different checks.
-Our primary scalar, $\mathrm{TI}_{\mathrm{var}}$, uses only bug-ladder scores, combining their average monotonicity with two variance penalties:
+Different failures need different checks, so the protocol keeps the per-property report.
+For ranking configurations, we also use one scalar, $\mathrm{TI}_{\mathrm{var}}$, computed from bug-ladder scores only:
 \begin{equation}
 \mathrm{TI}_{\mathrm{var}}=\exp\!\left[\tfrac13\log C_f+\tfrac13\log(1-\widetilde V_c)+\tfrac13\log(1-\widetilde V_s)\right].
 \label{eq:tivar}
 \end{equation}
-Here $C_f$ is the mean transformed per-file Spearman correlation between bug level and score.
-$V_c$ is the variance of these per-file monotonicity values, and $V_s$ is the mean within-level variance across repeated calls.
-The tildes denote min--max normalization across the configurations in the same family panel.
-The implementation floors each logarithm's argument at $10^{-6}$.
-Appendix~\ref{app:index-definitions} specifies aggregation, normalization, and undefined-correlation handling.
-
+Here $C_f$ is the mean transformed per-file Spearman correlation between bug level and score, $V_c$ is the variance of these per-file values, and $V_s$ is the mean within-level variance across repeated calls.
+The tildes denote min--max normalization across the configurations of the same family panel, and the implementation floors each logarithm's argument at $10^{-6}$ (Appendix~\ref{app:index-definitions}).
 The geometric mean acts as a smooth conjunction: a strong component cannot fully offset a weak one, and equal weights avoid fitting component weights to the human ratings.
-The scalar nevertheless omits P1, P3, rewrite invariance, and a direct penalty for local reversals.
-It therefore summarizes selected behavior rather than replacing the property report.
-Moreover, panel-dependent normalization means that its absolute value can change when the comparison panel changes.
-Using it prospectively requires a frozen normalization reference, whose transfer we have not tested.
+The scalar omits P1, P3, and a direct penalty for local reversals, so it summarizes selected behavior rather than replacing the report.
+Its panel-dependent normalization also means that its absolute value can change when the comparison panel changes.
+Prospective use therefore needs a frozen normalization reference, whose transfer we have not tested.

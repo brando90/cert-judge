@@ -1,53 +1,59 @@
 % !TEX root = main.tex
 \section{Introduction}
-% CS197 move 1a: problem motivation (failure mode) -- agents now write the trust artifacts for their own code; trusting an AI-written trust artifact means verifying the artifact and verifying whatever judge verifies it. Why formal specifications first: the proof assistant fixes the meaning, so only intent coverage is left to judge (tests would also qualify). Source: Brando's handwritten note, 09-25-2026, experiments/34_iclr_mega_rewrite_astra/notes/abstract_moves_1_2_handwritten_09-25-2026.jpg.
+% CS197 move 1a: problem motivation (failure mode) -- agents now write the trust artifacts for their own code; trusting an AI-written trust artifact means checking the artifact and checking whatever judge checks it. Why formal specifications first: the proof assistant fixes the meaning, so only intent coverage is left to judge (tests would also qualify). Source: Brando's handwritten note, 09-25-2026, experiments/34_iclr_mega_rewrite_astra/notes/abstract_moves_1_2_handwritten_09-25-2026.jpg.
 AI agents now write the trust artifacts for their own code: the tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning} on which trust in that code rests.
 A formal specification states the guarantees a program should satisfy, such as returning a sorted permutation of its input.
-To trust an AI-written trust artifact, one must verify the artifact and verify whatever judge performs that check.
-We start with formal specifications because the proof assistant fixes what a theorem means, so the remaining question is whether it captures the intent.
+To trust an AI-written trust artifact, one must check the artifact and check whatever judge performs that check.
+We start with formal specifications because the proof assistant fixes what each theorem statement means, leaving one question: whether the statements capture the intent.
 
-% CS197 move 1b: problem motivation (why a language-model judge) -- outline the difficulty explicitly (Brando, 09-25-2026: "once agents are given the freedom to output whatever they want and there are many answers, how do we check their code and their tests/thms/f specs match?"): correct solutions take many forms; two questions follow (do the proofs establish the candidate's own theorems; do those theorems express the reference's guarantees); Lean settles the first; rerunning the reference's tests and theorems cannot settle the second because they fail against a different representation regardless of correctness (VeriBench reports systematic false negatives); what remains is a comparison of meaning, and LLMs already serve as that judge. Accuracy boundary: execution-based checking exists when interfaces are compatible (nl2postcond). VeriBench is cited here, not in the abstract.
+% CS197 move 1b: problem motivation (why a language-model judge) -- outline the difficulty explicitly (Brando, 09-25-2026): correct solutions take many forms; two questions follow (do the proofs establish the candidate's own theorems; do those theorems express the reference's guarantees); Lean settles the first; rerunning the reference's tests and theorems cannot settle the second because they fail against a different representation regardless of correctness (VeriBench 04_eval_metric.tex records systematic false negatives); what remains is a comparison of meaning, and LLMs already serve as that judge. Accuracy boundary: execution-based checking exists when interfaces are compatible (Section 3). VeriBench is cited here, not in the abstract. The last sentence carries the abstract's "every evaluation built on it inherits its errors".
 In end-to-end autoformalization, an agent receives source code and writes the Lean~4 implementation, tests, theorem statements, and proofs without a scaffold~\citep{miranda2026veribench}.
-Correct solutions take many forms, since none need share the reference's interfaces, data representations, or decomposition into theorem statements.
-Two questions then arise: whether the candidate's proofs establish its own theorems, and whether those theorems express the reference's guarantees.
-Lean settles the first, but a proof does not establish that the theorems it proves cover the reference's guarantees~\citep{lahiri2024evaluating}.
-Rerunning the reference's tests and theorems cannot settle the second, because they fail against a different representation regardless of correctness.
+Correct solutions take many forms, because none need share the reference's interfaces, data representations, or decomposition into theorem statements.
+Two questions then decide whether a solution is right: do its proofs establish its own theorem statements, and do those statements express the reference's guarantees?
+Lean settles the first.
+It cannot settle the second, because a proof establishes the theorem that was stated, not that the stated theorem covers the intent~\citep{lahiri2024evaluating}.
+Rerunning the reference's tests and theorems cannot settle it either: they fail against a different representation whether or not the solution is correct~\citep{miranda2026veribench}.
 Translating code into another language raises the same mismatch whenever the translation chooses its own interfaces.
 What remains is a comparison of meaning between the candidate's and the reference's specifications.
-Large language models (LLMs) already serve as that judge~\citep{miranda2026veribench}.
+Large language models (LLMs) already make that comparison at scale~\citep{miranda2026veribench,lin2025goedelprover}.
+Every evaluation built on such a judge inherits its errors, so the judge's reliability decides what the benchmark measures.
 
-% CS197 move 2: assumption (setup bit) -- prior work handles the first verification with an AI judge and the second with human agreement: a judge counts as trustworthy once it correlates with expert annotations or rubric-based human ratings and, on objective tasks, stays consistent across repeats. That check is repeated per configuration, or one labeled set is reused and risks adaptive overfitting. "Other places like this" beyond VeriBench: Goedel-Prover and Kimina-Prover (statement filtering), ReForm (expert-validated statement judges), FormalAlign, ICE-Score and CodeJudge (Section 2).
-Prior work in AI addresses the first verification with an AI judge and the second with human agreement.
-LLM judges filter autoformalized statements in theorem-proving pipelines~\citep{lin2025goedelprover,wang2025kiminaprover} and score agent-written specifications against references~\citep{miranda2026veribench}.
-A judge counts as trustworthy once its scores agree with expert annotations~\citep{chen2026reform} or with human ratings under a rubric~\citep{Liu2023GEval,Zheng2023MTBench}.
-On objective tasks, consistency across repeated judgments serves as further evidence~\citep{Li2024TrustLLMJudgments}.
-Agreement varies across models, tasks, and evaluated properties, so evidence for one configuration does not establish another's reliability~\citep{Kocmi2024HumanVsLLM}.
-Existing labels can assess another judge on the same examples without fresh annotation.
-However, repeatedly selecting judges against those labels risks adaptive overfitting~\citep{dwork2015reusableholdout}.
-New artifact distributions also raise a separate question about whether those labels remain representative.
+% CS197 move 2: assumption (setup bit) -- the protocol we flip: a judge counts as trustworthy once it correlates with expert annotations or rubric-based human ratings and, on objective tasks, stays consistent across repeats; agreement is task dependent, so the check is repeated per configuration; reusing one labeled set risks adaptive overfitting. "Other places like this" beyond VeriBench: ReForm (expert-validated statement judges), G-Eval, MT-Bench, Goedel-Prover and Kimina-Prover (Section 2).
+How do we know that such a judge can be trusted?
+The standard evidence is agreement with human ratings: a judge counts as reliable once its scores correlate with expert annotations~\citep{chen2026reform} or rubric-based ratings~\citep{Liu2023GEval,Zheng2023MTBench}.
+On objective tasks, consistency across repeated calls serves as further evidence~\citep{Li2024TrustLLMJudgments}.
+Agreement varies across models, tasks, and rated properties, so evidence for one judge configuration does not carry over to the next~\citep{Kocmi2024HumanVsLLM}.
+The check is therefore repeated for every new model, prompt, and task, and each repetition costs expert annotation.
+Reusing one labeled set is cheaper, but selecting many configurations against the same labels risks adaptive overfitting~\citep{dwork2015reusableholdout}.
+A new artifact distribution also raises the separate question of whether old labels remain representative.
 
-% CS197 move 3: contribution -- test a judge with known-direction perturbations.
-We propose using one human panel to assess a property suite, then screening subsequent judge configurations without consulting those labels.
-The screen asks whether a judge responds appropriately when a controlled edit preserves or damages a reference artifact.
-A failed property identifies a concrete behavior that human agreement alone can hide.
-Passing the screen supplies evidence about the tested behaviors, without guaranteeing agreement on unseen artifacts.
+% CS197 move 3: contribution (bit flip) -- collect labels once; screen every new judge with falsifiable properties whose required score response is fixed by construction; a failed property is a concrete behavior; a pass is evidence about tested behaviors only; the panel links properties to the human criterion once, then the screen is frozen.
+We propose instead to collect labels once and to screen every new judge with falsifiable properties.
+A property fixes, by construction, how a judge's score must respond when a controlled edit preserves or damages a reference artifact.
+A copy of the reference must score the maximum, accumulating bugs must not raise the score, and renaming a bound variable must not change it.
+Checking these responses costs judge calls, not human labels.
+A failed property names a concrete behavior that human agreement can hide; a pass is evidence about the tested behaviors only.
+The one-time panel links properties to the human criterion: we check whether judges with better property behavior agree more with humans, then freeze the screen.
 
-% CS197 move 4: instantiation -- the protocol and scalar have distinct roles.
-We instantiate this protocol for Lean~4 formal specifications judged against gold references (Figure~\ref{fig:protocol}).
-Four properties test identity, responses to cumulative bugs, responses to removed theorem statements and unit tests, and score stability.
-A fixed equal-weight index, $\mathrm{TI}_{\mathrm{var}}$, summarizes bug monotonicity and two variance penalties.
-The full diagnostic suite remains necessary because this scalar omits some properties.
+% CS197 move 4: instantiation -- Lean 4 specifications against a gold reference; P1-P4; the fixed equal-weight index as a smooth conjunction; the per-property report stays.
+We instantiate this screen for Lean~4 formal specifications judged against a gold reference (Figure~\ref{fig:protocol}).
+Four properties target identity, bug monotonicity, missing-specification monotonicity, and stability across repeated calls.
+A fixed equal-weight index, $\mathrm{TI}_{\mathrm{var}}$, summarizes bug monotonicity and two variance penalties as a geometric mean.
+The geometric mean is a smooth conjunction, so no strong component can offset a weak one.
+The per-property report stays alongside the scalar.
 
-% CS197 move 5: evaluation -- association and falsification, with their scope.
-On a 72-pair validation set, the index tracks judge-level human agreement across three families, each containing eight configurations.
-The Codex association is Spearman $0.833$, with a 95\% bootstrap interval of $[0.24,1.00]$.
-These estimates are optimistic because the same labels informed the index form, prompts, aggregation, and threshold.
-A deliberately lexical judge agrees with humans yet reverses its scores on most bug ladders.
+% CS197 move 5: evaluation -- validation-set association with its scope, then the diagnostic finding (the lexical judge).
+On a 72-pair validation set, the index tracks judge-level human agreement across three model families with eight configurations each.
+For the GPT-5.3-Codex family, the Spearman correlation is $0.833$ on averaged labels, with a 95\% bootstrap interval of $[0.24,1.00]$.
+These estimates are optimistic, because the same labels informed the index form, the prompts, the repeat aggregation, and the threshold.
+The screen catches what human agreement misses: a deliberately lexical judge matches the semantic prompts' human agreement yet reverses on 20 of 24 bug ladders.
 
-% CS197 move 6: implications and contributions -- state the two deliverables.
-The aim is to amortize annotation through reusable checks, with transfer to new judges and domains assessed separately.
+% CS197 move 6: implications and contributions -- Brando's approved "from X toward Y" vision, with transfer named as untested; three deliverables.
+Judge validation thus moves from a per-judge annotation cost toward one human panel plus automated checks.
+Transfer to new judges and domains remains to be tested (Section~\ref{sec:limitations-test}).
 Our contributions are:
 \begin{itemize}
-\item A protocol that combines a one-time human validation set with four falsifiable properties for screening judge configurations without new labels (Section~\ref{sec:property-protocol}).
-\item An evaluation linking committed scores to validation-set association, lexical failures, and the limits of reducing the property suite to one index (Section~\ref{sec:validation-human-alignment}).
+\item A screening protocol: one human validation set plus four falsifiable properties that screen later judge configurations without new labels (Section~\ref{sec:property-protocol}).
+\item An instantiation for Lean~4 formal specifications: scripted probes, a fixed equal-weight index, and a per-property failure report (Section~\ref{sec:property-protocol}).
+\item Evidence on three judge families: the index tracks validation-set human agreement, a lexical judge passes human agreement but fails the screen, and the scalar alone is not a rejection rule (Section~\ref{sec:validation-human-alignment}).
 \end{itemize}
