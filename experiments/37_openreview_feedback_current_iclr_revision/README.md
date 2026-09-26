@@ -37,4 +37,4 @@ The uncertainty is whether feedback on an older draft still identifies actionabl
 
 Use authenticated local command-line clients only. The coordinator owns experiment records and landing; the consultation owns only its written assessment; the implementation worker owns the approved manuscript patch and its change report. Do not edit another agent's files or regenerate historical measurements. On completion, archive this experiment and update both experiment indexes under the repository lifecycle rule.
 
-**Status:** Input comparison underway; consultation pending.
+**Status:** Consultation complete (`YES_SELECTIVELY`, 12 apply actions across 41 rows); Astra Ultra implementation running.
