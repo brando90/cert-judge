@@ -4,6 +4,7 @@ Only currently pursued experiments belong directly in this directory.
 | Active experiment | Current task |
 |---|---|
 | [38_iclr_body_rewrite_to_trust_artifact_abstract](38_iclr_body_rewrite_to_trust_artifact_abstract/README.md) | Rewrite the ICLR 2027 body (sections 1–7) to the approved trust-artifact abstract from frozen evidence; Claude Fable 5.1, deterministic checks only. Started 09-26-2026. |
+| [39_best_of_k_judge_selection_bias_validation_set](39_best_of_k_judge_selection_bias_validation_set/README.md) | Measure how much choosing the best of K judge configurations on the 72-pair validation set inflates its apparent human agreement (item 35.3); frozen scores only, no inference. Started 09-26-2026. |
 | [33a_ai4math_reviews](33a_ai4math_reviews/README.md) | ICML 2026 AI4Math reviews (verbatim) and their 29 complaint rows against the ICLR paper; formerly 18_icml_reviews. Moved 2026-09-22. |
 | [34_iclr_mega_rewrite_astra](34_iclr_mega_rewrite_astra/PROMPT.md) | Core-only ICLR rewrite by Codex GPT-6 Astra (ultra) on branch `astra/iclr-mega-rewrite`; runbook + live results. Started 2026-09-22. |
 | [35_missing_experiments_from_reviews](35_missing_experiments_from_reviews/EXPERIMENTS.md) | Reviewer-driven missing experiments with ready CLI-only prompts (zero-inference / subscription / human-label tiers). Started 2026-09-22. |
