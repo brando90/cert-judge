@@ -26,3 +26,7 @@
 - `paper_latex/ICLR_2027_submission/main.pdf`: 19 pages, SHA-256 `7078029fe6eb8f1a60bb405fe19218c9f151f991a0e321f0f8c2fd240a121d41`.
 
 **TLDR-end:** [cj: exp38 body rewrite] The ICLR body now follows the approved abstract end to end, builds clean at 19 pages with the main text ending on page 9, and every new number is a deterministic recomputation from committed vectors.
+
+## Follow-up (09-26-2026, later)
+
+Experiment 37's coordinator integrated the Astra Ultra repairs on top of this rewrite in `a3a5735` (body preserved; its own subset diagnostics replaced the n=6/n=4 sentences with the five-semantic-configuration subset, 0.900/0.600/0.900 on averaged labels; P1 sentence corrected to note that bug-ladder level 0 is an unedited self-comparison; appendix items A5–A7 and the regenerated expanded-panel figure landed). Re-verified on `a3a5735` in a scratch build: 19 pages, conclusion on page 9 with 30 free lines, 0 overfull, 0 undefined, 0 `??`, sentence-layout check passes, banned-word grep clean, no duplicated sentences, abstract byte-identical to `c118d7c`. Nothing further is pending from experiment 37.
