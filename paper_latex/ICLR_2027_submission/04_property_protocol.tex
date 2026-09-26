@@ -50,7 +50,7 @@ Test transfer & Collect independent ratings under the frozen rubric & Evaluate t
 Each property fixes, by construction, how $J_\theta$ must respond to a scripted edit of a gold artifact $g$.
 \textbf{P1 (identity)} requires the maximum score when an artifact is compared with itself or with a meaning-preserving rewrite of itself, $J_\theta(g,g)=1$.
 The rewrites include alpha-renaming, which consistently changes bound-variable names without changing their meaning.
-In the recorded panels, P1 is assessed through four rewrite probes per artifact (renaming, reordering, style, and alpha-renaming); no literal self-comparison was scored.
+In the recorded panels, the identity summary uses four rewrite probes per artifact (renaming, reordering, style, and alpha-renaming); unedited self-comparisons appear at bug-ladder level 0 (Appendix~\ref{app:failure-diagnostics}).
 \textbf{P2 (bug monotonicity)} requires non-increasing scores as bugs accumulate in the candidate.
 The historical bug ladder used here edits the candidate text, including theorem statements; it is not restricted to implementation bugs.
 \textbf{P3 (missing-specification monotonicity)} requires non-increasing scores as theorem statements and unit tests are removed.

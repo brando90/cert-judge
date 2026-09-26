@@ -1,8 +1,10 @@
 """Run the requested local subscription client and preserve private receipts."""
 from pathlib import Path
 import datetime, json, os, subprocess
-repo = Path(__file__).resolve().parents[3]
+repo = next(p for p in Path(__file__).resolve().parents if (p / 'py_src/cert_judge').is_dir())
 root = Path(__file__).resolve().parent
+if "archive" in root.parts:
+    raise SystemExit("This dispatch is archived. Register a new active experiment before new model work.")
 logs = root / "logs"
 logs.mkdir(exist_ok=True)
 env = dict(os.environ)

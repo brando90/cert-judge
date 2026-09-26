@@ -62,8 +62,9 @@ The Codex bootstrap intervals are wide, and the resampling does not correct for 
 Exact permutation probabilities over all $8!$ orderings are $0.096$, $0.022$, and $0.132$ for Claude Opus and $0.005$, $0.243$, and $0.011$ for Qwen3-Coder on averaged, pass1, and pass2 labels (Appendix~\ref{app:judge-level-diagnostics}).
 Only some cells are individually distinguishable from a random ordering at the $0.05$ level, and the nine tests are unadjusted.
 Pass-to-pass differences also matter: Qwen's association changes from $0.476$ on pass1 to $0.857$ on pass2.
-Removing the two non-LLM controls leaves six configurations per family, with averaged-label associations of $0.771$ for Codex, $0.486$ for Claude Opus, and $0.943$ for Qwen3-Coder.
-Among the four same-model prompts alone, the averaged-label associations are $0.400$, $0.000$, and $0.800$, so the index orders semantic prompts coarsely at best.
+Excluding random, edit distance, and the lexical prompt leaves five semantic configurations, with averaged-label associations of $0.900$ for Codex, $0.600$ for Claude Opus, and $0.900$ for Qwen3-Coder.
+These descriptive subsets retain the original eight-configuration normalization.
+Neither five configurations nor the three target-family semantic prompts establish precise discrimination among useful judges; all three label views appear in Appendix~\ref{app:judge-level-diagnostics}.
 With eight configurations and disagreeing label passes, these estimates support a descriptive association rather than a precise or portable effect size.
 
 \begin{figure}[t]
@@ -133,7 +134,8 @@ A reversal is any local score increase as cumulative edits are added; the diagno
 The two-component geometric comparison is numerically higher than $\mathrm{TI}_{\mathrm{var}}$ for Codex and Opus on averaged labels (Table~\ref{tab:tivar_cross_model_results}).
 It uses bug monotonicity and decision stability with weights $0.4$ and $0.6$, selected on pass1, rather than fixed equal weights.
 We retain $\mathrm{TI}_{\mathrm{var}}$ for its explicit variance penalties and positive associations across the primary families and passes, not because these data establish its superiority.
-The bug-monotonicity component alone has averaged-label associations of $0.643$, $0.467$, and $0.690$, so the two variance penalties raise the association in eight of the nine family--pass cells (Appendix~\ref{app:judge-level-diagnostics}).
+The bug-monotonicity component alone has averaged-label associations of $0.643$, $0.467$, and $0.690$.
+The full index has higher point correlations in eight of nine family--pass cells, a descriptive comparison on reused labels rather than independent validation of the penalties (Appendix~\ref{app:judge-level-diagnostics}).
 The exception is Qwen pass2, where the component alone reaches $0.905$ and the full index $0.857$.
 A separate search over six component weights gives cross-pass associations of $0.810$ and $0.786$ on the same pairs (Appendix~\ref{app:moved-results}).
 The pass1-selected geometric form reaches $0.769$ on an expanded 13-configuration panel, with a 95\% interval of $[0.34,0.95]$ (Appendix~\ref{app:expanded-panel}).
@@ -173,4 +175,5 @@ Entries are Spearman correlations with human agreement across eight Codex-panel 
 \paragraph{Artifact-score threshold.}
 A historical sweep of the artifact-score threshold over six values from $0.60$ to $0.85$ lowers the observed decision-flip rate from $0.058$ to $0.046$ and the pass rate from $0.583$ to $0.536$ (Appendix Table~\ref{tab:exp13_threshold_sweep}).
 The selected threshold is $0.85$, which has the lowest observed flip rate in that sweep, although its interval overlaps those of every other threshold.
+No paired difference test or unique optimality has been established.
 This thresholds $J_\theta(x,g)$, not the judge-level index, and measures repeatability rather than correctness of the accepted artifacts.

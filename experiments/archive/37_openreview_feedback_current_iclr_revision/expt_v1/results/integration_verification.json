@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "source_files_checked": 19,
+  "frozen_inputs_checked": 40,
+  "diagnostic_rows": 36,
+  "independent_correlations": 72,
+  "independent_exact_tests": 9,
+  "issues": 41,
+  "repairs": 12,
+  "pages": 19,
+  "main_text_pages": 9,
+  "visual_pages": 19,
+  "pdf_sha256": "acd342f753183e2a03a3b7192004a1fb1ec986b3143c11da4bf36fcb19a2d45f",
+  "checks": [
+    {
+      "command": [
+        "/Users/brandomiranda/uv_envs/no-gold-ref-judge/bin/python3",
+        "py_src/cert_judge/experiment_layout.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "Layout OK: 8 active experiments; no retired directories at the active level.\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "/Users/brandomiranda/uv_envs/no-gold-ref-judge/bin/python3",
+        "/Users/brandomiranda/agents-config/scripts/latex_sentence_lines.py",
+        "--check",
+        "paper_latex/ICLR_2027_submission/00_abstract.tex",
+        "paper_latex/ICLR_2027_submission/01_introduction.tex",
+        "paper_latex/ICLR_2027_submission/02_related_work.tex",
+        "paper_latex/ICLR_2027_submission/03_problem_setup.tex",
+        "paper_latex/ICLR_2027_submission/04_property_protocol.tex",
+        "paper_latex/ICLR_2027_submission/05_experiments.tex",
+        "paper_latex/ICLR_2027_submission/06_limitations.tex",
+        "paper_latex/ICLR_2027_submission/07_conclusion.tex",
+        "paper_latex/ICLR_2027_submission/08_statements.tex",
+        "paper_latex/ICLR_2027_submission/990_appendix_additional_results.tex",
+        "paper_latex/ICLR_2027_submission/994_appendix_tests_as_ground_theorems.tex",
+        "paper_latex/ICLR_2027_submission/995_appendix_judge_prompts.tex",
+        "paper_latex/ICLR_2027_submission/996_appendix_judge_cert_plots.tex",
+        "paper_latex/ICLR_2027_submission/997_appendix_human_alignment.tex",
+        "paper_latex/ICLR_2027_submission/998_appendix_index_definitions.tex",
+        "paper_latex/ICLR_2027_submission/main.tex"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ]
+}

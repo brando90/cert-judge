@@ -1,8 +1,55 @@
 % !TEX root = main.tex
 \section{Additional Validation-Set Results}\label{app:moved-results}
+\subsection{Post-hoc subset and component diagnostics}\label{app:subset-diagnostics}\label{app:judge-level-diagnostics}
+Table~\ref{tab:subset-diagnostics} uses the saved full-precision score vectors, with average ranks for ties and the original eight-configuration normalization fixed.
+The five semantic configurations exclude random, edit distance, and \texttt{BAD\_STRINGY}; they retain the target model's baseline, checklist, and strict prompts plus the two GPT-4o-mini prompts.
+The three-prompt subset retains only those target-model semantic prompts.
+These are descriptive diagnostics on reused validation labels, not independent evidence of fine discrimination among useful judges.
+The component-only column uses $C_f$, the mean transformed per-file bug correlation, and does not isolate a causal effect of adding penalties.
+A four-property comparison is unavailable because these panels contain no missing-specification ladders.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+& & \multicolumn{3}{c}{Full panel ($n=8$)} & \multicolumn{2}{c}{Semantic subsets} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-7}
+Family & Labels & $\mathrm{TI}_{\mathrm{var}}$ & $C_f$ only & Exact $p$ & $n=5$ & $n=3$ \\
+\midrule
+Codex & avg & 0.833 & 0.643 & 0.015 & 0.900 & 1.000 \\
+& pass1 & 0.905 & 0.690 & 0.005 & 0.900 & 1.000 \\
+& pass2 & 0.738 & 0.667 & 0.046 & 0.800 & 0.500 \\
+Claude Opus & avg & 0.643 & 0.467 & 0.096 & 0.600 & 0.500 \\
+& pass1 & 0.810 & 0.527 & 0.022 & 0.800 & 0.500 \\
+& pass2 & 0.595 & 0.575 & 0.132 & 0.600 & 0.500 \\
+Qwen3-Coder & avg & 0.905 & 0.690 & 0.005 & 0.900 & 0.500 \\
+& pass1 & 0.476 & 0.048 & 0.243 & 0.400 & 0.500 \\
+& pass2 & 0.857 & 0.905 & 0.011 & 0.900 & 0.500 \\
+\midrule
+Leanstral & avg & $-0.095$ & $-0.310$ & --- & $-0.900$ & $-0.500$ \\
+& pass1 & $-0.119$ & $-0.524$ & --- & $-0.900$ & $-0.500$ \\
+& pass2 & $-0.048$ & $-0.143$ & --- & $-0.500$ & 0.500 \\
+\bottomrule
+\end{tabular}
+\caption{Subset associations remain positive for the primary families but negative for Leanstral's five semantic configurations.
+All association columns are judge-level Spearman correlations with human agreement; the subset columns use $\mathrm{TI}_{\mathrm{var}}$.
+Exact probabilities are unadjusted across the nine primary-family/pass tests; no additional tests were computed for Leanstral or the subsets.}
+\label{tab:subset-diagnostics}\label{tab:judge-level-diagnostics}
+\end{table}
+
+The exact tests enumerate all $40{,}320$ labeled permutations of human-agreement values, counting $|\rho|$ at least as large as observed.
+They differ from the frozen 10{,}000-permutation Codex procedure in Table~\ref{tab:tivar_cross_model_results}; the corresponding probabilities differ by less than $0.002$.
+The nine probabilities are unadjusted descriptive tests, without correction for protocol selection or reuse of controls.
+Historical bootstrap intervals for Opus and Qwen remain unavailable; permutation probabilities do not replace them.
+
 \subsection{A separately weight-tuned geometric variant}
 The cross-pass analysis fits a geometric combination of six available components on one label pass and evaluates it on the other.
 The selected pass1 weights are $0.4$ for bug monotonicity and $0.6$ for decision stability.
+The source searches for weights maximizing judge-level Spearman association on the fitting pass, using four fixed starting vectors and uniform Dirichlet draws on the six-weight simplex.
+The recorded pass1 solution equals the $(0,0.4,0,0.6,0,0)$ starting vector.
+In the order $(\mathrm{ident},\mathrm{mono},\mathrm{weak},\mathrm{stab},\mathrm{anti},\mathrm{subtle})$, the pass2 weights are approximately $(0.167557,0.037758,0.170807,0.601689,0.007822,0.014366)$, rounded to six decimals.
+The saved full-precision weights reproduce the recorded scores; the rounded display is not their exact numerical replacement.
+The script defaults to seed 42 and 200{,}000 draws, but the saved fit records do not establish the seed or draw count actually used.
 Both passes concern the same candidate--gold pairs from one annotator, so the second pass is not a test set.
 This analysis uses its own frozen label-alignment output; it is not a re-estimation of the fixed equal-weight index.
 
@@ -23,6 +70,7 @@ Entries are judge-level Spearman correlations; the fitted weights are separate f
 
 \subsection{Artifact-score threshold}
 The historical threshold sweep uses the strict Codex prompt on 176 files with three repeated scores, aggregated by the mean rather than the headline panels' median.
+The sweep covers six thresholds from $0.60$ to $0.85$ in steps of $0.05$.
 It thresholds artifact scores, not the index used to compare judges.
 The raw bug-level ranking is independent of this threshold and remains $\rho_{\mathrm{bug}}=-0.790$ throughout the sweep.
 The intervals in Table~\ref{tab:exp13_threshold_sweep} describe the recorded sweep; they do not establish accepted-artifact correctness.
@@ -39,8 +87,8 @@ Threshold & Flip rate (95\% interval) & Pass rate (95\% interval) \\
 0.85 & 0.046 $[0.037,0.057]$ & 0.536 $[0.515,0.557]$ \\
 \bottomrule
 \end{tabular}
-\caption{A stricter artifact-score threshold slightly reduces recorded decision flips and the fraction accepted.
-The table shows selected points from the historical sweep; $0.85$ has its lowest observed flip rate.}
+\caption{Selected points from the historical artifact-score threshold sweep; $0.85$ has the lowest observed flip rate.
+Its interval overlaps those of all other thresholds; this overlap is not a paired test of the difference, and unique optimality has not been established.}
 \label{tab:exp13_threshold_sweep}
 \end{table}
 
@@ -65,33 +113,4 @@ Qwen3-Coder & $[0.357,0.762]$ & $[0.738,0.952]$ & $[0.881,0.976]$ \\
 \caption{The association remains positive on this local weight grid, with the widest pass1 variation for Qwen.
 Ranges cover judge-level Spearman correlations across the 12 weight triples; they are sensitivity ranges, not confidence intervals.}
 \label{tab:weight-sensitivity}
-\end{table}
-
-\subsection{Judge-level diagnostics from the committed index vectors}\label{app:judge-level-diagnostics}
-Table~\ref{tab:judge-level-diagnostics} recomputes three descriptive diagnostics from the committed per-configuration vectors of each family panel, with no new judge calls.
-The exact permutation probability enumerates all $8!$ orderings of the human-agreement values and counts those whose absolute Spearman correlation with the index reaches the observed one; ties receive average ranks.
-The exact Codex values, $0.015$, $0.005$, and $0.046$, agree with the archived resampled values in Table~\ref{tab:tivar_cross_model_results} to within $0.002$.
-The component-only column correlates the bug-monotonicity term $C_f$ with human agreement and matches the archived fields to three decimals.
-The subset columns drop the edit-distance and random controls, then also the two GPT-4o-mini prompts; they are descriptive, keep the original full-panel normalization, and carry no probabilities.
-
-\begin{table}[h]
-\centering\footnotesize
-\begin{tabular}{@{}llrrrrr@{}}
-\toprule
-Family & Labels & \makecell[r]{$\rho$\\($n=8$)} & \makecell[r]{exact\\$p$} & \makecell[r]{$\rho(C_f)$\\($n=8$)} & \makecell[r]{$\rho$ without\\controls ($n=6$)} & \makecell[r]{$\rho$ same-model\\prompts ($n=4$)} \\
-\midrule
-Codex & avg & 0.833 & 0.015 & 0.643 & 0.771 & 0.400 \\
-Codex & pass1 & 0.905 & 0.005 & 0.690 & 0.886 & 0.800 \\
-Codex & pass2 & 0.738 & 0.046 & 0.667 & 0.657 & 0.000 \\
-Claude Opus & avg & 0.643 & 0.096 & 0.467 & 0.486 & 0.000 \\
-Claude Opus & pass1 & 0.810 & 0.022 & 0.527 & 0.829 & 0.600 \\
-Claude Opus & pass2 & 0.595 & 0.132 & 0.575 & 0.486 & 0.000 \\
-Qwen3-Coder & avg & 0.905 & 0.005 & 0.690 & 0.943 & 0.800 \\
-Qwen3-Coder & pass1 & 0.476 & 0.243 & 0.048 & 0.600 & 0.600 \\
-Qwen3-Coder & pass2 & 0.857 & 0.011 & 0.905 & 0.943 & 0.800 \\
-\bottomrule
-\end{tabular}
-\caption{The association stays positive after removing the non-LLM controls but is coarse among same-model prompts.
-Entries are Spearman correlations between the fixed index (or its bug component) and judge-level human agreement, recomputed from committed vectors; the nine exact probabilities are unadjusted.}
-\label{tab:judge-level-diagnostics}
 \end{table}

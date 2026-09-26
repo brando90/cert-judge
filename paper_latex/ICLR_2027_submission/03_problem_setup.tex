@@ -17,7 +17,9 @@ The judge prompts ask which reference guarantees the candidate captures and assi
 This instruction does not establish that judges detect every such failure.
 When a candidate shares the reference's interface, automated proof attempts in both implication directions can sometimes establish equivalence with the reference specification~\citep{lahiri2024evaluating,poiroux2025beq}.
 Such attempts do not decide equivalence in general, and a failed attempt does not show inequivalence.
-Across differing representations they need an explicit correspondence, which end-to-end generation does not supply.
+Across differing representations, these checks need a specified correspondence.
+BEq+ reports both false positives and false negatives relative to human judgments~\citep{poiroux2025beq}.
+We did not benchmark such a tool against the graded reference-coverage judgments studied here.
 A gold reference gives the judge a concrete comparison target, but it does not make the judge immune to strategic manipulation~\citep{robertson2025stepbystep}.
 
 \paragraph{Judge configuration.}

@@ -2,6 +2,10 @@
 
 **TLDR:** Compare the automated feedback on the supplied 28-page submission with the current 16-page International Conference on Learning Representations (ICLR) 2027 manuscript. Ask Claude Fable which concerns still apply, then have Astra Ultra implement the justified repairs and rebuild the paper.
 
+## Final deliverables
+
+Start with [the final report](FINAL_REPORT.md), [feedback summary](FEEDBACK_SUMMARY.md), and [reusable agent prompt](PROMPT_fix_feedback.md).
+
 ## Goal and decision criterion
 
 The uncertainty is whether feedback on an older draft still identifies actionable defects after the manuscript rewrite. The cheapest sufficient test is a source-by-source comparison, followed by one consultation with the requested model. Apply a suggestion only when it remains relevant, is supported by current source or frozen evidence, and improves correctness or clarity without inventing results. Every substantive feedback item needs a disposition; an item can be addressed by an explicit limitation or future experiment when its requested evidence is unavailable.
@@ -37,4 +41,4 @@ The uncertainty is whether feedback on an older draft still identifies actionabl
 
 Use authenticated local command-line clients only. The coordinator owns experiment records and landing; the consultation owns only its written assessment; the implementation worker owns the approved manuscript patch and its change report. Do not edit another agent's files or regenerate historical measurements. On completion, archive this experiment and update both experiment indexes under the repository lifecycle rule.
 
-**Status:** Consultation complete (`YES_SELECTIVELY`, 12 apply actions across 41 rows); Astra Ultra implementation running.
+**Status:** COMPLETE. All 12 repairs are integrated with the newer body rewrite and deterministically verified; [final report](FINAL_REPORT.md). Archived after completion under the repository lifecycle rule.

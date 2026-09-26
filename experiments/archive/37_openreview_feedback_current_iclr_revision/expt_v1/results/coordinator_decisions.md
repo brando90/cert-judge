@@ -10,3 +10,6 @@
 - Preserve the original 28-page PDF locally; the consultation's phrase that it “no longer exists” means it is no longer the active manuscript, not that the historical artifact was deleted.
 - Current active manuscript source initially came from `c118d7c`; the consultation packet commit is `f73228a`. The implementation uses that packet in an isolated checkout.
 - Requested implementation model and effort are verified from runtime context: `gpt-6-astra`, `ultra`; approval policy `never`, sandbox `danger-full-access`.
+- The implementation's raw-data audit corrects consultation item A12: identity-summary rows comprise rewrites, but each configuration also has 24 unedited self-comparisons at bug-ladder level 0. The final manuscript must preserve both facts.
+- A concurrent Experiment 38 body rewrite started from the same paper. Integrate the verified repairs into its newer prose rather than replacing that prose wholesale. Its numerical analysis must use the corrected five- and three-configuration semantic subsets; the consultation's six- and four-configuration subsets still contain the lexical control.
+- Independent coordinator verification reproduces all 72 index/component correlations across the 36 rows and all nine exact primary-family permutation probabilities within absolute tolerance `1e-14`.

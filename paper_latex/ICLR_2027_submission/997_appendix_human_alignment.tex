@@ -6,7 +6,7 @@ The passes reflect different rubric strictness levels from the same annotator, r
 Their disagreement cannot identify a numerical ceiling on model agreement.
 The original rubric text remains unavailable.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering\small
 \begin{tabular}{@{}lrc@{}}
 \toprule
@@ -32,7 +32,7 @@ The plotted geometric index is not $\mathrm{TI}_{\mathrm{var}}$.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{figures/fig7_trend_update_baseline_vs_geom_13judge_avg.png}
+\includegraphics[width=\linewidth]{figures/expanded_panel_v2_vs_geometric.pdf}
 \caption{The tuned geometric comparison has a positive association on the expanded validation panel.
 The two panels compare arithmetic $v2$ with $\mathrm{mono}^{0.4}\mathrm{stab}^{0.6}$ across 13 configurations; the figure retains the archived estimates and intervals.}
 \label{fig:app-exp25-13judge}
@@ -40,6 +40,8 @@ The two panels compare arithmetic $v2$ with $\mathrm{mono}^{0.4}\mathrm{stab}^{0
 
 \subsection{Negative results}\label{app:negative-results}
 A separate Leanstral panel yields $\mathrm{TI}_{\mathrm{var}}$ associations of $-0.1190$, $-0.0476$, and $-0.0952$ on pass1, pass2, and averaged labels.
+It uses \texttt{labs-leanstral-2603} in the same eight-configuration form, with three recorded scores per row for every configuration and median aggregation.
+Its five-configuration semantic subset remains negatively associated on all three label views (Table~\ref{tab:subset-diagnostics}).
 These recorded results contradict a claim that the fixed index works for every family.
 They do not establish why the association fails.
 The different-rubric human pool described in Section~\ref{sec:limitations-test} also produced no qualifying index in either registered screen.

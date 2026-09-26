@@ -1,0 +1,95 @@
+{
+  "objective": "maximize judge-level Spearman association on the fitting pass",
+  "procedure_in_source": "four fixed starting vectors, then Dirichlet(1,1,1,1,1,1) draws; replace best only on strict improvement",
+  "no_search_rerun": true,
+  "fits": [
+    {
+      "source": "experiments/archive/04_veribench_validation/results_exp23_cross_pass_calibration/summary_fit_pass1.json",
+      "fit_on": "pass1",
+      "report_on": "pass2",
+      "component_order": [
+        "ident",
+        "mono",
+        "weak",
+        "stab",
+        "anti",
+        "subtle"
+      ],
+      "weights": {
+        "ident": 0.0,
+        "mono": 0.4,
+        "weak": 0.0,
+        "stab": 0.6,
+        "anti": 0.0,
+        "subtle": 0.0
+      },
+      "display_weights_rounded_6dp": [
+        0.0,
+        0.4,
+        0.0,
+        0.6,
+        0.0,
+        0.0
+      ],
+      "fit_rho": 0.8809523809523809,
+      "other_pass_rho": 0.8095238095238095,
+      "n_configurations": 8,
+      "n_pairs": 72,
+      "exact_saved_weights_reproduce_saved_scores_atol": 1e-12,
+      "rounded_6dp_max_abs_score_error": 0.0,
+      "rounded_6dp_same_ranking": true,
+      "historical_seed": null,
+      "historical_iterations": null,
+      "search_settings_status": "not recorded in saved fit summaries; no run invocation recovered",
+      "script_defaults_not_run_facts": {
+        "seed": 42,
+        "iters": 200000,
+        "eps": 1e-06
+      }
+    },
+    {
+      "source": "experiments/archive/04_veribench_validation/results_exp23_cross_pass_calibration/summary_fit_pass2.json",
+      "fit_on": "pass2",
+      "report_on": "pass1",
+      "component_order": [
+        "ident",
+        "mono",
+        "weak",
+        "stab",
+        "anti",
+        "subtle"
+      ],
+      "weights": {
+        "ident": 0.1675571445814022,
+        "mono": 0.037758386457350135,
+        "weak": 0.17080715295157373,
+        "stab": 0.6016894568050665,
+        "anti": 0.007821515501013468,
+        "subtle": 0.014366343703593994
+      },
+      "display_weights_rounded_6dp": [
+        0.167557,
+        0.037758,
+        0.170807,
+        0.601689,
+        0.007822,
+        0.014366
+      ],
+      "fit_rho": 0.8571428571428571,
+      "other_pass_rho": 0.7857142857142857,
+      "n_configurations": 8,
+      "n_pairs": 72,
+      "exact_saved_weights_reproduce_saved_scores_atol": 1e-12,
+      "rounded_6dp_max_abs_score_error": 4.861485671803223e-07,
+      "rounded_6dp_same_ranking": true,
+      "historical_seed": null,
+      "historical_iterations": null,
+      "search_settings_status": "not recorded in saved fit summaries; no run invocation recovered",
+      "script_defaults_not_run_facts": {
+        "seed": 42,
+        "iters": 200000,
+        "eps": 1e-06
+      }
+    }
+  ]
+}

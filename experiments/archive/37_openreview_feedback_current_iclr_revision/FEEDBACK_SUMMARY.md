@@ -38,7 +38,9 @@ The review supports the central idea: test judge behavior with controlled pertur
 
 ## Implementation decision
 
-The requested Claude consultation determines the actionable scope. Its complete disposition table and the coordinator's final reconciliation will live under `expt_v1/results/`. The revision should preserve the recent rewrite, add targeted missing explanations or inexpensive analyses from frozen data, and state remaining empirical gaps plainly.
+Claude Fable recommends **YES_SELECTIVELY**: 16 already addressed, 8 removed, 12 apply, 3 requiring future evidence, and 2 rejected, across 41 issue rows (including two newly identified current-paper defects). See [the assessment](expt_v1/results/claude_fable_assessment.md) and [coordinator corrections](expt_v1/results/coordinator_decisions.md).
+
+The approved repairs add statistical diagnostics from frozen vectors, clarify the threshold interpretation and search provenance, document probe and model details, clean the remaining figure and citations, and state the formal-baseline and prompt-scope limitations. Astra Ultra implemented these changes and the coordinator integrated them with the newer body rewrite; they do not provide a new independent test set or new benchmark evaluation.
 
 ## Source handling
 

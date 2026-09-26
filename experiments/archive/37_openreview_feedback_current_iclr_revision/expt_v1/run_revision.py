@@ -10,6 +10,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--workspace", type=Path, required=True)
 args = parser.parse_args()
 root = Path(__file__).resolve().parent
+if "archive" in root.parts:
+    raise SystemExit("This dispatch is archived. Register a new active experiment before new model work.")
 logs = root / "logs"
 logs.mkdir(exist_ok=True)
 prompt_path = root / "PROMPT_astra_execution.md"

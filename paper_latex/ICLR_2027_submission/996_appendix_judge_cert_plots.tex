@@ -6,6 +6,10 @@ The alpha routine rewrites names in the theorem signature, leaves proof-body ref
 Consequently, its low scores cannot establish failure of invariance under valid alpha-renaming.
 The renaming and reordering routines also lack checks against variable capture and dependent-binder errors.
 The bug ladder changes relations and connectives, removes a theorem block, and introduces trivial statements; unavailable edits fall back to comments.
+In each of the Codex, Opus, Qwen, and Leanstral panels, every configuration has 24 ladders with five levels: the extracted reference text and four cumulative edits.
+Each configuration also has 96 identity-probe rows, comprising four rewrite types per reference.
+The 24 unedited self-comparisons are recorded at bug-ladder level 0.
+Compilation of the edited text was not checked, so a score drop can reflect malformed text rather than semantic damage.
 Thus cumulative edit level is an intended damage order, not a formally verified ordering of semantic quality.
 These limitations apply to the archived property statistics throughout the paper.
 
@@ -25,7 +29,7 @@ Bars count ladders with at least one increase in the recorded repeat-aggregated 
 \label{fig:app-exp19-reversals}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figures/opus_bug_curves.pdf}
 \caption{Claude Opus also assigns lower mean scores as historical bug edits accumulate.
