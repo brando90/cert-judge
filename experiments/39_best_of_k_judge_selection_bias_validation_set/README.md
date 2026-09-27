@@ -1,8 +1,10 @@
 # Experiment 39: selection bias from choosing the best of K judges on the 72-pair validation set
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_best_of_k_judge_selection_bias_validation_set/README.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/39_best_of_k_judge_selection_bias_validation_set/README.md>
 
 **TLDR:** The introduction says that selecting many judge configurations against the same labels risks adaptive overfitting, but gives no magnitude. This experiment measures that magnitude on the paper's own 72-pair validation set, using only frozen judge scores and labels (no inference): how much the apparent human agreement of the best of K configurations overstates its agreement on unseen problems, and whether choosing by a label-free property statistic avoids the overstatement. It implements item 35.3 of `experiments/35_missing_experiments_from_reviews/EXPERIMENTS.md`.
+
+**Outcome (09-26-2026, complete):** choosing the best of 8 configurations on 12 problems overstates its Spearman agreement on the other 12 by 0.15; a simulation fitted to the panel puts it at about 0.10 on all 72 pairs. With permuted labels, the best of 8 still shows 0.15. Adjusting for the choice among the four reported index forms multiplies the judge-level p-values by 1.9–3.2 (4 of 9 cells below 0.05 instead of 6). Choosing by the label-free v1 index is unbiased but no better than a random pick. Details and drafted paper text: [REPORT.md](REPORT.md).
 
 ## Question and decision
 
@@ -31,6 +33,8 @@ No model calls, no credentials, no network; nothing under `paper_latex/` is edit
 | [results.md](results.md) | Live results and phase status |
 | [CKPT_selection_bias.md](CKPT_selection_bias.md) | Resumable checkpoint |
 | `analysis/best_of_k_selection_bias.py` | The whole analysis (deterministic, seeded) |
+| `analysis/make_figure.py` | Figure from the committed CSVs |
 | `results/` | CSV and JSON outputs with input hashes |
 | `figures/` | Inflation-versus-K figure |
-| `REPORT.md` | Findings and drafted paper sentences (written at the end) |
+| [REPORT.md](REPORT.md) | Findings, drafted paper text and its drop-in build check |
+| `tests/test_best_of_k_selection_bias.py` (repository root) | Unit tests and a reproduction-gate regression test |

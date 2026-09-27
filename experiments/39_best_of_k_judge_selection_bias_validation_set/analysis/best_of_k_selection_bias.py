@@ -100,7 +100,11 @@ PAPER_TABLE2 = {
     ('Claude Opus', 'pass1'): {'tivar': 0.810}, ('Claude Opus', 'pass2'): {'tivar': 0.595},
     ('Qwen3-Coder', 'pass1'): {'tivar': 0.476}, ('Qwen3-Coder', 'pass2'): {'tivar': 0.857},
 }
-EXP38_DIAGNOSTICS = ROOT / 'experiments' / '38_iclr_body_rewrite_to_trust_artifact_abstract' / 'analysis' / 'results' / 'judge_level_diagnostics.csv'
+EXP38_DIAGNOSTICS = next(
+    (base / '38_iclr_body_rewrite_to_trust_artifact_abstract' / 'analysis' / 'results' / 'judge_level_diagnostics.csv'
+     for base in (ROOT / 'experiments', ARCHIVE)
+     if (base / '38_iclr_body_rewrite_to_trust_artifact_abstract').is_dir()),
+    ARCHIVE / '38_iclr_body_rewrite_to_trust_artifact_abstract' / 'analysis' / 'results' / 'judge_level_diagnostics.csv')
 FORMS = ('v1', 'v2', 'gm', 'tivar')
 
 INPUTS: dict[str, str] = {}

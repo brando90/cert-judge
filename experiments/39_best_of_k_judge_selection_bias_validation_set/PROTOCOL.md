@@ -1,6 +1,6 @@
 # Experiment 39 protocol: best-of-K selection bias on the 72-pair validation set
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_best_of_k_judge_selection_bias_validation_set/PROTOCOL.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/39_best_of_k_judge_selection_bias_validation_set/PROTOCOL.md>
 
 **TLDR:** Frozen plan for four zero-inference analyses (A null best-of-K, B split-half selection, C synthetic sweep, D judge-level adjustment over the reported index forms), with the pool rule, parameters, seeds, reproduction gates and decision rules fixed before any analysis output was seen.
 

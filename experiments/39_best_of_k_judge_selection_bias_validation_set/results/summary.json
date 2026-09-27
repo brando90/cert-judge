@@ -1,0 +1,280 @@
+{
+  "experiment": "39_best_of_k_judge_selection_bias_validation_set",
+  "protocol": "PROTOCOL.md (frozen 09-26-2026 16:56 PDT, commit 7548c3a)",
+  "master_seed": 20260926,
+  "draws_per_cell": 4000,
+  "n_items": 72,
+  "n_problems": 24,
+  "pool_size": 109,
+  "k_grid_real": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    109
+  ],
+  "k_grid_synthetic": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+  ],
+  "reproduction_gate": {
+    "scope": "protocol: kept configurations; all scanned configurations are also checked and reported",
+    "tolerance": 0.001,
+    "n_configurations_scanned": 185,
+    "n_checked": 183,
+    "n_kept": 109,
+    "kept_max_abs_deviation": 0.0079105297978872,
+    "kept_n_over_tolerance": 10,
+    "kept_explanations": {
+      "float_tie(numpy.mean)": 8,
+      "float_tie(statistics.mean)": 2,
+      "within_tolerance": 99
+    },
+    "all_max_abs_deviation": 0.06588579372695944,
+    "all_n_over_tolerance": 18,
+    "all_explanations": {
+      "float_tie(numpy.mean)": 8,
+      "float_tie(statistics.mean)": 2,
+      "older_avg_label_file": 7,
+      "older_avg_label_file+float_tie(statistics.mean)": 1,
+      "within_tolerance": 165
+    },
+    "paper_codex_checks": [
+      {
+        "judge_id": "editdist_e1",
+        "recomputed": 0.199,
+        "paper": 0.199
+      },
+      {
+        "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+        "recomputed": 0.092,
+        "paper": 0.092
+      },
+      {
+        "judge_id": "gpt-4o-mini|P8_STRICT_B",
+        "recomputed": -0.014,
+        "paper": -0.014
+      },
+      {
+        "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+        "recomputed": 0.435,
+        "paper": 0.435
+      },
+      {
+        "judge_id": "gpt-5.3-codex|P1_BASELINE",
+        "recomputed": 0.466,
+        "paper": 0.466
+      },
+      {
+        "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+        "recomputed": 0.419,
+        "paper": 0.419
+      },
+      {
+        "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+        "recomputed": 0.365,
+        "paper": 0.365
+      },
+      {
+        "judge_id": "random_r1",
+        "recomputed": -0.001,
+        "paper": -0.001
+      }
+    ],
+    "paper_codex_all_match": true,
+    "amendment": "PROTOCOL.md Deviation 1: a kept configuration over tolerance passes only when its frozen values reproduce within 1e-6 from repeat scores (float_tie); any unexplained deviation fails the gate",
+    "passed": true
+  },
+  "judge_level_gate": {
+    "table2_mismatches": [],
+    "exp38_mismatches": [],
+    "passed": true
+  },
+  "calibration": {
+    "observed": {
+      "interpass_spearman": 0.24861590608946169,
+      "icc_avg": 0.5632047477744808,
+      "within_problem_interpass_pearson": 0.10991300127873231,
+      "problem_mean_interpass_pearson": 0.5314527712576612
+    },
+    "fit_targets": [
+      "interpass_spearman",
+      "icc_avg",
+      "within_problem_interpass_pearson"
+    ],
+    "tau_s_median_judge_icc": 0.3241341781008279,
+    "judge_icc_min": -0.0641696502340954,
+    "judge_icc_max": 0.7763965906028847,
+    "c_pool_median_pairwise_spearman": 0.31548871171530024,
+    "cuts_pass1": [
+      [
+        -2.2004105812100323,
+        -1.22064034884735,
+        -0.35549041783953095,
+        1.59321881802305
+      ],
+      [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0
+      ]
+    ],
+    "cuts_pass2": [
+      [
+        -1.731664396122245,
+        -1.1503493803760079,
+        -0.6314018942397609,
+        0.5894557978497783
+      ],
+      [
+        1.5,
+        2.0,
+        3.0,
+        4.0,
+        5.0
+      ]
+    ],
+    "n_big_problems": 20000,
+    "label_models": {
+      "prereg": {
+        "r": 0.305,
+        "tau": 0.95,
+        "kappa": 0.0,
+        "simulated": {
+          "interpass_spearman": 0.23940686440448403,
+          "icc_avg": 0.38222508556031215,
+          "within_problem_interpass_pearson": 0.00883395544543389,
+          "problem_mean_interpass_pearson": 0.4904032473738932
+        },
+        "tau_at_grid_boundary": true,
+        "fresh_agreement_at_beta_0_99": 0.6098337925805613
+      },
+      "extended": {
+        "r": 0.31,
+        "tau": 0.78,
+        "kappa": 0.5,
+        "simulated": {
+          "interpass_spearman": 0.2527653137163443,
+          "icc_avg": 0.5610540830017238,
+          "within_problem_interpass_pearson": 0.10999844894847431,
+          "problem_mean_interpass_pearson": 0.3281537668045082
+        },
+        "fit_loss": 2.1850243923074148e-05,
+        "fresh_agreement_at_beta_0_99": 0.6141143558784339
+      }
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.2.6",
+    "scipy": "1.17.1"
+  },
+  "inputs_sha256": {
+    "experiments/38_iclr_body_rewrite_to_trust_artifact_abstract/analysis/results/judge_level_diagnostics.csv": "5dd14fbd74f5ba7421068f01e8873bebdc2fde1729a55b831f320735b96eadb4",
+    "experiments/archive/04_veribench_validation/data/ethan_human_scores_20260425.tsv": "1e9e4c3fc72a813cd3998cc7e92eaa5297388746cc5a28ff1037faad9dbd096a",
+    "experiments/archive/04_veribench_validation/data/ethan_human_scores_ORIGINAL.tsv": "98405b0354dc176996725e8739b2fe1829fe2065acbf4ef218992a0669cd891b",
+    "experiments/archive/04_veribench_validation/data/ethan_human_scores_avg_two_passes_20260425.tsv": "4d1103cb057aeeedbcef96def46bee06673550eaf9a7f8d2f8a24e1cbb0e671a",
+    "experiments/archive/04_veribench_validation/experiments/04_veribench_validation/results_exp16_codex_prompt_tuning_r9_med/detail_rows.csv": "c85e65c703a6963b6e41517b6e93a8019f1741bc7190e7aa3de1bc6fccae1773",
+    "experiments/archive/04_veribench_validation/experiments/04_veribench_validation/results_exp16_codex_prompt_tuning_r9_med/judge_rows.csv": "b96bd2ea6c65bfec6c11dfe1d55f547181f61393f747d867117423b4ec54a12e",
+    "experiments/archive/04_veribench_validation/results_exp16_claude_oauth_haiku45_r3_median/detail_rows.csv": "c5ba1d4650adbacfdc23480ea3cb3afc0ef7dbeb209e79e0f34ea107d7758cdd",
+    "experiments/archive/04_veribench_validation/results_exp16_claude_oauth_haiku45_r3_median/judge_rows.csv": "93dce4abcb3a371801c03a5eac9deb972123e753ad20cb3060f65fce5140ea82",
+    "experiments/archive/04_veribench_validation/results_exp16_codex_good_only_r9_med/detail_rows.csv": "e5c759e260bf376220a9d43f77b20e064418a2efb922f8747047a181772bd81b",
+    "experiments/archive/04_veribench_validation/results_exp16_codex_good_only_r9_med/judge_rows.csv": "9522aafc74232198838240d0527a2518595657596bc1c27fe76fe181cbe10faa",
+    "experiments/archive/04_veribench_validation/results_exp16_codex_p14_only_r5_med/detail_rows.csv": "0cfc99cfdd1dd7a99786b520da7548f4d1ea01f67084aab11026cdd0eba6be28",
+    "experiments/archive/04_veribench_validation/results_exp16_codex_p14_only_r5_med/judge_rows.csv": "640d0cf6e9262f3c88c2a69147a3cef8774a3ec6429c359f3f78d4419b15993c",
+    "experiments/archive/04_veribench_validation/results_exp16_consensus5_codex_r5_med/detail_rows.csv": "e8a50aebc3b347cf5971b8cb8e752d5c8832b3a63844d06211f43b980fdb91b3",
+    "experiments/archive/04_veribench_validation/results_exp16_consensus5_codex_r5_med/judge_rows.csv": "2a49793c67934837efff37f0ef7f7b7067669b1f91e4b792105557d74301fcfc",
+    "experiments/archive/04_veribench_validation/results_exp16_errorbars_r9_median/detail_rows.csv": "bae98db50065775e58e29764c41637403fcbb192f2b31f1685feb897471ce25b",
+    "experiments/archive/04_veribench_validation/results_exp16_errorbars_r9_median/judge_rows.csv": "88965b570a1404c387b214367e49e850aac8a2f118884ac343c7351c4e1aed8a",
+    "experiments/archive/04_veribench_validation/results_exp16_final_robust/detail_rows.csv": "60bec4ceb08b9086a1f5d7df7b2dc99e19c320609786a898ee8a2607072ba70b",
+    "experiments/archive/04_veribench_validation/results_exp16_final_robust/judge_rows.csv": "75518e6f04e9910f6feb544f9064157ab585cb4aa7eede43cf23715b83338ec7",
+    "experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/detail_rows.csv": "bae98db50065775e58e29764c41637403fcbb192f2b31f1685feb897471ce25b",
+    "experiments/archive/04_veribench_validation/results_exp16_final_robust_r9_median/judge_rows.csv": "88965b570a1404c387b214367e49e850aac8a2f118884ac343c7351c4e1aed8a",
+    "experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median/detail_rows.csv": "9e17eb64279e9c9a7478e84fa03880644051fc056395928ea287b8614919e138",
+    "experiments/archive/04_veribench_validation/results_exp16_leanstral_r3_median/judge_rows.csv": "d050136877a03bc0a8134dddfe66f8f004aecbf28d6a143a68c567b490996924",
+    "experiments/archive/04_veribench_validation/results_exp16_multi_judge_human_sets/detail_rows.csv": "cb782df74d350afae5c3c65fb851ba344e83ecc9e9c67ec3b0fdde80dc7a9a94",
+    "experiments/archive/04_veribench_validation/results_exp16_multi_judge_human_sets/judge_rows.csv": "48c8c927d917a878cd2002472743f9130ac33a3baace0cfc8065e5164eef7413",
+    "experiments/archive/04_veribench_validation/results_exp16_opus47_r3_median/detail_rows.csv": "c7a114c0245fb39fa01cdd3b4a955cf3d752596fa5d3d2aa6f210f6f22fa7746",
+    "experiments/archive/04_veribench_validation/results_exp16_opus47_r3_median/judge_rows.csv": "e91374e01bb582bf9d56b2d25f3cede518260b2844509d20855d45d411f7a7eb",
+    "experiments/archive/04_veribench_validation/results_exp16_overnight_codex_sweep/detail_rows.csv": "c9d2a549675ae2e14bfe19bf51f7f5273ce594164fc9459562a7dfbd5f49d0c3",
+    "experiments/archive/04_veribench_validation/results_exp16_overnight_codex_sweep/judge_rows.csv": "457146d9827dedb131c375c4a09e3924d546df3decd3feca6d531ef875bf6d60",
+    "experiments/archive/04_veribench_validation/results_exp16_p4_refresh_75/detail_rows.csv": "73a2951d4816e852dd776dc4b995128f752a982be5ac3fbc4e04d84238dbc2c0",
+    "experiments/archive/04_veribench_validation/results_exp16_p4_refresh_75/judge_rows.csv": "1364018fe4b317aa0461454f2503db85e471d40ed81d98600081e623cc3f0ded",
+    "experiments/archive/04_veribench_validation/results_exp16_tc_card_fast/detail_rows.csv": "b7422cfca32fc588d8dbabc4dec85b467508f30ae5d54018b8da0a35e8190a54",
+    "experiments/archive/04_veribench_validation/results_exp16_tc_card_fast/judge_rows.csv": "ba3ee5f9f018b1af3c1110a94df0625a5486b0866d9c576668c004d760098755",
+    "experiments/archive/04_veribench_validation/results_exp22_expanded_judges_stable/exp16/detail_rows.csv": "816840a694d3918250b71b7f393dc7a080df3d7c5e1f2b1a843693bd669482c9",
+    "experiments/archive/04_veribench_validation/results_exp22_expanded_judges_stable/exp16/judge_rows.csv": "9496ed84c7e6dc802f83cce2a0916f36b21214c0d16a0c0cd95e5b837071b55c",
+    "experiments/archive/04_veribench_validation/results_exp22_geometric_trust_index/median_mono_stab_40_60/summary.json": "9727fe5b8cf70639ea912efc986bb2ef19da5578117fe812c656748c723e9f6e",
+    "experiments/archive/04_veribench_validation/results_exp22_geometric_trust_index/opus47_r3_median_mono_stab_40_60_avg/summary.json": "f9b47310292e3916f85cf246596828c9f67059fbf233ac0224346294beca5bc1",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_codex_avg_newindex/judge_trust_vector.csv": "c7cbfe9eec5b0988c060e200812c6386ce3a53c5b8b0d880747b97316bf3c9cd",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_codex_pass1_newindex/judge_trust_vector.csv": "2dac9707d6859f9a1a44399e77ca0cedfbdba815c274d20c56e19a1680c0dbae",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_codex_pass2_newindex/judge_trust_vector.csv": "0dac9ae943ab89eb0f57192dc8a693249182e431ca44e21bb1cda02aae4826c1",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_opus_avg_newindex/judge_trust_vector.csv": "72d81503bd752515b80f5662d9474c39f83601f13733802fa54856e9e841854a",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_opus_pass1_newindex/judge_trust_vector.csv": "7ce2ecbbb64a7e3a0e28241586e90fff645ec997dd16bc744e5e282a0518b7ea",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_opus_pass2_newindex/judge_trust_vector.csv": "f0d3e46486c08fd2970753ad5774887af2426a541cf56314da4bb37db3437e90",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_qwen_avg/judge_trust_vector.csv": "8f39390ecc6055c357e345ea776172de1cd0ccfbab02046d899104a7c7e18861",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_qwen_pass1/judge_trust_vector.csv": "696ff04c4606e69a4a38c67cb606ae59e1cc4b58ab4584f72b445d462b3b0957",
+    "experiments/archive/04_veribench_validation/results_exp28_varaware_qwen_pass2/judge_trust_vector.csv": "191ec8d759362945a30ec000b09f9ee79ff1c1da23554fce7ba26eb1ed91e118",
+    "experiments/archive/06_cert_index_vs_human_judge_corr_and_low_var/full_run/mean/detail_rows.csv": "c75c007447f3711d26c716d42192e4fab9f59f396afc949b8748ad03a07b7265",
+    "experiments/archive/06_cert_index_vs_human_judge_corr_and_low_var/full_run/mean/judge_rows.csv": "7d29aec92aa893d269ac4678a8a8c78f721d3ff68fd33572f3a7134eb7639b10",
+    "experiments/archive/06_cert_index_vs_human_judge_corr_and_low_var/full_run/median/detail_rows.csv": "a5285f5c1f3fc204784383c558ad9fd08d84f3b8bff5dde1f647cdd6dff886d1",
+    "experiments/archive/06_cert_index_vs_human_judge_corr_and_low_var/full_run/median/judge_rows.csv": "6e1e269af492640a83b3685095c3e74eecdc57a8115039ae4746d49a19614455",
+    "experiments/archive/06_cert_index_vs_human_judge_corr_and_low_var/smoke/detail_rows.csv": "883fd8cc2105cac6f0ecc044b4098a50c90c543528158dce7fc726d1e97b30e2",
+    "experiments/archive/06_cert_index_vs_human_judge_corr_and_low_var/smoke/judge_rows.csv": "f20e2ff367ef9075fdd777be0d8c2a278fe84dfcb2fa03f89a929ccbb69742a0",
+    "experiments/archive/13_qwen_replication_exp16_exp19/results/exp16_qwen_r3_median/detail_rows.csv": "25ed6c772322611e6063c033816b480c0c53d22dfa9c3ecbc48ca6602d2671f0",
+    "experiments/archive/13_qwen_replication_exp16_exp19/results/exp16_qwen_r3_median/judge_rows.csv": "2ef64c3770faabd0518b9337538942d0ce68cc66404f0fd412e15d55bc5b9fdd",
+    "experiments/archive/13_qwen_replication_exp16_exp19/results/exp25_geometric_qwen_r3_median_mono_stab_40_60_avg/summary.json": "394537670e0001f652b5bbc0d160b8e21e0b175e0a750384b75d69a0d870bc7c",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P13_HUMAN_ALIGN_STRICT/detail_rows.csv": "3e5a25becd45e3f00d9bcc7d5bb04f6da3ee459946575989aa5c78d3891280fd",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P13_HUMAN_ALIGN_STRICT/judge_rows.csv": "4c201c70a9836908a422e52fcbae524c30a0c7098cf59e49426a3dcd95afdcc8",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P14_HUMAN_ALIGN_V2/detail_rows.csv": "a0db0fb3e36cead9097f8d00020307c0132859fa4c12ea37dc806f7a392b9fff",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P14_HUMAN_ALIGN_V2/judge_rows.csv": "11d63da0e9a06303cb99caac40ab0f3ac1d81aac5587d903d02de72402a91530",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P16_ERIC_COMPARATIVE_TRACKED/detail_rows.csv": "400e2fb6a0a97e0cb492f17b6b75dcb2485839f9952416caaafa296aed300f95",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P16_ERIC_COMPARATIVE_TRACKED/judge_rows.csv": "a34b845d43c7a3f092c8657d01e9200d529fa3467d37007530286dd34b39cf95",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P2_FORMAL/detail_rows.csv": "867b7f35baf93c770afe4b767cc8257dd19a75f0f893f8ae8b2714593a807d99",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P2_FORMAL/judge_rows.csv": "d26e99550116de7786cf1ea41d5bf5e2bfe490e94bc6c6995f9182faaf18bfd7",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P3_CONCISE/detail_rows.csv": "0c0e678a527fb6b349c4475763bf422581727082d69276f66f2bd036f32d50bb",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P3_CONCISE/judge_rows.csv": "79a3715abe81b17740c17b159db1acf3af9d950d23394e481440036150dfe42e",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P7_STRICT_A/detail_rows.csv": "597af961fe01971b729e21f70d2708813ded6afc4e3789baf7da9ba71e3cfbbf",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_4omini_P7_STRICT_A/judge_rows.csv": "2d3cd2d8c2ed461edbf3bd9142e783ddb14604413e5ac81ce1867c2969644705",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P13_HUMAN_ALIGN_STRICT/detail_rows.csv": "fe5268aca9fad6e54347a176e73f2c3f3c40b389617594c040f1f5509aeb4bbb",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P13_HUMAN_ALIGN_STRICT/judge_rows.csv": "5ab7146874c65bea01135b533c0fe97a7111c86beb95eda3dcb7ef312aef00ac",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P14_HUMAN_ALIGN_V2/detail_rows.csv": "3f5d0cb161d9836d74587d050cfdf85619663577361004d475854d85e81638a8",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P14_HUMAN_ALIGN_V2/judge_rows.csv": "23326fd650ab4249c7ceeb26b3d0ef96dafd85dcc3479df5d765bbb9d5d7cdfd",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P16_ERIC_COMPARATIVE_TRACKED/detail_rows.csv": "a87888b2240ebc7b0cc216caf32c8b14f7506f1a94484e609fce323a37e87f76",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P16_ERIC_COMPARATIVE_TRACKED/judge_rows.csv": "504aae05526004acf922b261c7953e191df897d9c0de4be8ed4c8f8cfc2e5c20",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P2_FORMAL/detail_rows.csv": "ac7b787026464fed21800483236ad9bc277414dbadcc119359f6fcd5cf1a7327",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P2_FORMAL/judge_rows.csv": "3a91feb779c000bd400cf8853044318af9a19f94875c58b66fdd3667e3fe9da0",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P3_CONCISE/detail_rows.csv": "cdf56b28a7b29cbc6b9740b6b4eddbc65b481a06aa07fee57523fd14ae0b8a6c",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P3_CONCISE/judge_rows.csv": "4ad24396faf72642310325ffa03e8fb343b159e8d2553ad1e4acb7104d70801b",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P7_STRICT_A/detail_rows.csv": "f67ca26c49c56f9d7ad4ed43c81e75a62c20ade781379b316a8c1914242a5839",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_codex_P7_STRICT_A/judge_rows.csv": "cc67593bc31326c9cd7e57c9fb371f728c37f0fc8958f73499a1d8823b9f5ec3",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_fable_P14_HUMAN_ALIGN_V2/detail_rows.csv": "09ec69858d0444094bed8040cf9c1c28daeb5ad22955666d566bd9e3ce06c227",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_fable_P14_HUMAN_ALIGN_V2/judge_rows.csv": "f8b0638f491e4417120325e07cf1f67e5a730ba8c2cddb5eff59ffb66d3b8a62",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_fable_P16_ERIC_COMPARATIVE_TRACKED/detail_rows.csv": "a6da8c0b91771a65584dc1b0f9ccce9236c38f2f5c71dc84d8db2eae769a88dc",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_fable_P16_ERIC_COMPARATIVE_TRACKED/judge_rows.csv": "a5be2f3e0d98628c225771ec332224b91a3bdc5bd12404a31bbc238b7a8698c7",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_smoke_4omini_p2/detail_rows.csv": "5dffba511bbf6816371fe8c5aeab94858ce41a2fc6503f3b7329676bd5ade657",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_smoke_4omini_p2/judge_rows.csv": "0ace04136edcd23b827981399ba2a27791c306f9226bfcebd31d78b05d41d004",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P13_HUMAN_ALIGN_STRICT/detail_rows.csv": "4218d653c613c3460fb10804faeba163321a4a09122be869604e3de4b6914919",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P13_HUMAN_ALIGN_STRICT/judge_rows.csv": "9b1d99059770319c4cfae48c5e5f9838c4a65fd850a9d44e55eb61d5272e63d5",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P14_HUMAN_ALIGN_V2/detail_rows.csv": "0240e38d21faeb7488cffb2020813dfa918bf110cd8bb551e29e18b642a47389",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P14_HUMAN_ALIGN_V2/judge_rows.csv": "3515ce9fcf862eea2ff93a5133dbe5ba185a34ff4a69a8a4417847bb8c1767b6",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P16_ERIC_COMPARATIVE_TRACKED/detail_rows.csv": "414cca6c6fb54bb6a40c9e9baf61cbd5a5cd7bdd85bbc202705cae3d0f84725d",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P16_ERIC_COMPARATIVE_TRACKED/judge_rows.csv": "bd4355b51ae81045d185178fb844077e793ae15f5444e927d15ab6a794d0699d",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P2_FORMAL/detail_rows.csv": "5f6134c5a0f99aefc97f5c7b5a690cd780bc60a31e6b946855a7bcb49b265d18",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P2_FORMAL/judge_rows.csv": "66f9fe8759c89a63cc2f0e78bfb772956079126a17b40d0b5d68a158447e8e2a",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P3_CONCISE/detail_rows.csv": "742e7c52d1934901e9d3670d27e5f6e1598321d2a793cd2e991a6469753b891c",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P3_CONCISE/judge_rows.csv": "3cc006a37d8ff02f827a268f10fff4792f96e8cea4b9bfb14e11fd03086db2dd",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P7_STRICT_A/detail_rows.csv": "edb98a2eb39740dc07a2e3da9949d28ee571d1c54dd7311cca1501a66ea3d411",
+    "experiments/archive/24_expanded_panel_cli/results/cfg_sol_P7_STRICT_A/judge_rows.csv": "b148dd1abbcabf74711e0a7ccc982ebb468d6e8534d85803f739725d9e1b5037"
+  },
+  "runtime_seconds": 136.7
+}
