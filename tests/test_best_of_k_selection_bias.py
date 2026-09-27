@@ -10,7 +10,7 @@ import pytest
 from scipy import stats
 
 ROOT = Path(__file__).resolve().parents[1]
-path = ROOT / "experiments/39_best_of_k_judge_selection_bias_validation_set/analysis/best_of_k_selection_bias.py"
+path = ROOT / "experiments/archive/39_best_of_k_judge_selection_bias_validation_set/analysis/best_of_k_selection_bias.py"
 spec = importlib.util.spec_from_file_location("best_of_k_selection_bias_test", path)
 sb = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sb)

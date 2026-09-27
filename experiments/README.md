@@ -4,7 +4,6 @@ Only currently pursued experiments belong directly in this directory.
 | Active experiment | Current task |
 |---|---|
 | [38_iclr_body_rewrite_to_trust_artifact_abstract](38_iclr_body_rewrite_to_trust_artifact_abstract/README.md) | Rewrite the ICLR 2027 body (sections 1–7) to the approved trust-artifact abstract from frozen evidence; Claude Fable 5.1, deterministic checks only. Started 09-26-2026. |
-| [39_best_of_k_judge_selection_bias_validation_set](39_best_of_k_judge_selection_bias_validation_set/README.md) | Measure how much choosing the best of K judge configurations on the 72-pair validation set inflates its apparent human agreement (item 35.3); frozen scores only, no inference. Started 09-26-2026. |
 | [33a_ai4math_reviews](33a_ai4math_reviews/README.md) | ICML 2026 AI4Math reviews (verbatim) and their 29 complaint rows against the ICLR paper; formerly 18_icml_reviews. Moved 2026-09-22. |
 | [34_iclr_mega_rewrite_astra](34_iclr_mega_rewrite_astra/PROMPT.md) | Core-only ICLR rewrite by Codex GPT-6 Astra (ultra) on branch `astra/iclr-mega-rewrite`; runbook + live results. Started 2026-09-22. |
 | [35_missing_experiments_from_reviews](35_missing_experiments_from_reviews/EXPERIMENTS.md) | Reviewer-driven missing experiments with ready CLI-only prompts (zero-inference / subscription / human-label tiers). Started 2026-09-22. |
@@ -27,6 +26,8 @@ not a claim about processes on remote machines.
 The ignored local `keys/` directory is credential storage, not an experiment.
 
 ## Recent completed work
+
+- [39_best_of_k_judge_selection_bias_validation_set](archive/39_best_of_k_judge_selection_bias_validation_set/REPORT.md): completed 09-26-2026 — choosing the best of 8 judge configurations on half the validation problems overstates its Spearman agreement by 0.15 (about 0.10 on all 72 pairs); adjusting for the index-form choice leaves 4 of 9 judge-level cells below 0.05. Zero inference; drafted paper text awaits the paper owner.
 
 - [37_openreview_feedback_current_iclr_revision](archive/37_openreview_feedback_current_iclr_revision/FINAL_REPORT.md): completed 09-26-2026 — Claude Fable assessed 41 feedback items; Astra Ultra implemented 12 repairs, integrated with the current body rewrite. Verified 19 total pages, 9 main-text pages, and all 72 correlations / 9 exact tests.
 
