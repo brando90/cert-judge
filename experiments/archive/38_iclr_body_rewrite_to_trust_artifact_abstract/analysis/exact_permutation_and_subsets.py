@@ -11,7 +11,7 @@ Ties get average ranks. Output: results/judge_level_diagnostics.csv and .json wi
 import csv, hashlib, itertools, json, math
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[4]
 B = ROOT / 'experiments/archive/04_veribench_validation'
 INPUTS = {
     ('Codex', 'avg'): B / 'results_exp28_varaware_codex_avg_newindex/judge_trust_vector.csv',

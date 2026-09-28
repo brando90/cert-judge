@@ -4,7 +4,7 @@
 # finishes negotiating with codex-code-mode-host (attempts 1-2, 2026-09-23), while the unsandboxed path runs commands fine.
 # The prompt confines the agent to the worktree; the worktree is the isolation.
 set -euo pipefail
-REPO="$HOME/cert-judge"; WT="$HOME/cert-judge-astra"; EXP="experiments/34_iclr_mega_rewrite_astra"
+REPO="$HOME/cert-judge"; WT="$HOME/cert-judge-astra"; EXP="experiments/archive/34_iclr_mega_rewrite_astra"
 mkdir -p "$REPO/$EXP/results"
 if [ ! -d "$WT" ]; then git -C "$REPO" worktree add "$WT" -b astra/iclr-mega-rewrite main; fi
 PROMPT="$(cat "$WT/$EXP/PROMPT.md")"

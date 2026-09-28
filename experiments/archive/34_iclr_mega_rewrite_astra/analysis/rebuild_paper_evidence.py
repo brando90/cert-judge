@@ -2,7 +2,7 @@
 """Reproduce manuscript plots and sensitivity summaries from committed scores only.
 
 No model clients, network operations, credential access, or archived writes.
-Run from any directory: python3 experiments/34_iclr_mega_rewrite_astra/analysis/rebuild_paper_evidence.py
+Run from any directory: python3 experiments/archive/34_iclr_mega_rewrite_astra/analysis/rebuild_paper_evidence.py
 """
 from pathlib import Path
 import csv
@@ -16,7 +16,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[4]
 OUT = Path(__file__).resolve().parent / 'results'
 FIG = ROOT / 'paper_latex/ICLR_2027_submission/figures'
 B = 'experiments/archive/04_veribench_validation/'

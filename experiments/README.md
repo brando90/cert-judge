@@ -1,16 +1,13 @@
 # Experiments
 
 Only currently pursued experiments belong directly in this directory.
+
+**No active experiments as of 09-28-2026.** Experiments 33a–33e, 34, and 38 finished and moved to `archive/`.
+The unstarted catalog of reviewer-requested experiments moved to [ideas/35_missing_experiments_from_reviews](ideas/35_missing_experiments_from_reviews/EXPERIMENTS.md); it is the menu for the next pick, and a picked item gets its own numbered folder here.
+
 | Active experiment | Current task |
 |---|---|
-| [38_iclr_body_rewrite_to_trust_artifact_abstract](38_iclr_body_rewrite_to_trust_artifact_abstract/README.md) | Rewrite the ICLR 2027 body (sections 1–7) to the approved trust-artifact abstract from frozen evidence; Claude Fable 5.1, deterministic checks only. Started 09-26-2026. |
-| [33a_ai4math_reviews](33a_ai4math_reviews/README.md) | ICML 2026 AI4Math reviews (verbatim) and their 29 complaint rows against the ICLR paper; formerly 18_icml_reviews. Moved 2026-09-22. |
-| [34_iclr_mega_rewrite_astra](34_iclr_mega_rewrite_astra/PROMPT.md) | Core-only ICLR rewrite by Codex GPT-6 Astra (ultra) on branch `astra/iclr-mega-rewrite`; runbook + live results. Started 2026-09-22. |
-| [35_missing_experiments_from_reviews](35_missing_experiments_from_reviews/EXPERIMENTS.md) | Reviewer-driven missing experiments with ready CLI-only prompts (zero-inference / subscription / human-label tiers). Started 2026-09-22. |
-| [33b_or_ledger](33b_or_ledger/README.md) | Hub: edits ledger E1–E9 (artifact-traced, landed), live results, prompts 01–04, fetch log, OpenReview form abstract. Split from the former 33_ folder 2026-09-22. |
-| [33c_dl4c_reviews](33c_dl4c_reviews/README.md) | ICML 2026 DL4C reviews: skeleton awaiting Brando's paste, then D26 complaint rows via prompt 03. Started 2026-09-22. |
-| [33d_mathai_reviews](33d_mathai_reviews/README.md) | NeurIPS 2025 MATH-AI reviews (verbatim) and their 14 complaint rows. Started 2026-09-22. |
-| [33e_tmlr_desk_reject](33e_tmlr_desk_reject/README.md) | TMLR 2026 desk-reject record and its 3 rows; form-abstract lesson applied. Started 2026-09-22. |
+| _(none)_ | |
 
 The completed proxy studies are archived; the suggested new-family follow-up
 has not started and is not an active run. This is a repository classification,
@@ -27,11 +24,17 @@ The ignored local `keys/` directory is credential storage, not an experiment.
 
 ## Recent completed work
 
+- [38_iclr_body_rewrite_to_trust_artifact_abstract](archive/38_iclr_body_rewrite_to_trust_artifact_abstract/results.md): completed 09-26-2026 — Claude Fable 5.1 rewrote body sections 1–7 to the approved trust-artifact abstract from frozen evidence, with no inference; the build has 19 pages, the main text ends on page 9, and it has 0 overfull boxes and 0 undefined references.
+
 - [37_openreview_feedback_current_iclr_revision](archive/37_openreview_feedback_current_iclr_revision/FINAL_REPORT.md): completed 09-26-2026 — Claude Fable assessed 41 feedback items; Astra Ultra implemented 12 repairs, integrated with the current body rewrite. Verified 19 total pages, 9 main-text pages, and all 72 correlations / 9 exact tests.
 
 - [31_final_iclr_paper_writing](archive/31_final_iclr_paper_writing/README.md): archived 09-25-2026 — earlier manuscript writing and research superseded by Experiment 34's corrected rewrite and submission preparation; original notes, research, and exploratory output preserved.
 
+- [34_iclr_mega_rewrite_astra](archive/34_iclr_mega_rewrite_astra/results.md): completed 09-24-2026 (merged at `63fb935`) — Codex GPT-6 Astra (ultra) rewrote the paper core-only and answered or disclosed all 55 review complaints; the anonymous PDF and supplement were uploaded into the OpenReview revision form on 09-24-2026, but no final Submit is recorded in the repo ([submission status](archive/34_iclr_mega_rewrite_astra/submission/SUBMISSION_STATUS.md)).
+
 - [36_vals_gateway_cert_judge_smoke](archive/36_vals_gateway_cert_judge_smoke/results.md): completed 09-24-2026 — 1/1 real GPT-6 Astra xhigh identity judgment via Vals gateway on SNAP; score 1.0, reported cost $0.0394425. Infrastructure smoke only.
+
+- OpenReview complaint ledgers [33a_ai4math_reviews](archive/33a_ai4math_reviews/README.md), [33b_or_ledger](archive/33b_or_ledger/results.md), [33c_dl4c_reviews](archive/33c_dl4c_reviews/README.md), [33d_mathai_reviews](archive/33d_mathai_reviews/README.md), and [33e_tmlr_desk_reject](archive/33e_tmlr_desk_reject/README.md): done 09-22-2026, re-anchored 09-24-2026 — 55 complaints from four review rounds: 25 addressed, 18 disclosed, 5 deferred, 7 superseded, 0 unknown; DL4C reviews ingested 09-22-2026.
 
 - [32_veribench_ranking_certified_judge](archive/32_veribench_ranking_certified_judge/REPORT.md): stopped 2026-09-22 — re-ranked VeriBench agents with a certified prompt on gpt-5.6-terra (826 cells, $0 API); superseded when §5.4/Table 5 (a carried-over VeriBench result) was cut from the paper.
 - [29_proxy_validation](archive/29_proxy_validation/README.md): completed behavioral-proxy validation; negative/inconclusive finding.

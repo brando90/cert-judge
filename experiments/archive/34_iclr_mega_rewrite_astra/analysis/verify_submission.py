@@ -6,7 +6,7 @@ import json
 import re
 import subprocess
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[4]
 PAPER = ROOT / 'paper_latex/ICLR_2027_submission'
 OUT = Path(__file__).resolve().parent / 'results'
 
@@ -66,8 +66,8 @@ def main():
     statements_page = page_of(r'R\s*EPRODUCIBILITY\s+S\s*TATEMENT')
     references_page = page_of(r'^\s*R\s*EFERENCES\s*$',)
     conclusion_page = page_of(r'\b7\s+C\s*ONCLUSION')
-    abstract_generated = run(['python3', 'experiments/33b_or_ledger/make_openreview_form_abstract.py'])
-    abstract_saved = (ROOT / 'experiments/33b_or_ledger/openreview_form_abstract.txt').read_text()
+    abstract_generated = run(['python3', 'experiments/archive/33b_or_ledger/make_openreview_form_abstract.py'])
+    abstract_saved = (ROOT / 'experiments/archive/33b_or_ledger/openreview_form_abstract.txt').read_text()
     assert abstract_generated == abstract_saved
     assert '\\(' not in abstract_saved and '\\ref' not in abstract_saved
     # Archived sources and inherited figures preserve the bytes from the pre-rewrite commit.

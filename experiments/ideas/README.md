@@ -1,6 +1,6 @@
 # Optional research ideas
 
-**TLDR:** Index of optional, deferred research ideas. Recording one does not launch it. The current five ideas all answer "why only VeriBench?" (issue #45); each folder has a README and a ready-to-paste `cc.md` prompt, and would become its own numbered experiment if run.
+**TLDR:** Index of optional, deferred research ideas. Recording one does not launch it. Five ideas answer "why only VeriBench?" (issue #45), each with a README and a ready-to-paste `cc.md` prompt; the catalog `35_missing_experiments_from_reviews` holds twelve reviewer-requested experiments with dispatch-ready prompts. Each would become its own numbered experiment if run.
 
 ## Benchmark transfer ([issue #45](https://github.com/brando90/cert-judge/issues/45))
 
@@ -15,3 +15,13 @@ Motivation: the paper's results all come from VeriBench (`05_experiments.tex:4`)
 | 5 | [non_lean_dafny_verus_transfer](non_lean_dafny_verus_transfer/README.md) | DEFERRED — NOT RUN | UNDECIDED | $0 | Probes ported to Verus (VeriContest) and Dafny (DafnyBench). |
 
 Idea 2 depends on idea 1. Ideas 3–5 are independent and make no model calls.
+
+## Reviewer-requested experiments
+
+Moved here from the active list on 09-28-2026: the catalog is complete, and none of its twelve experiments has started.
+
+| Priority | Idea | Execution | Paper inclusion | Judge-call spend | One-line setup |
+|---:|---|---|---|---|---|
+| 1 | [35_missing_experiments_from_reviews](35_missing_experiments_from_reviews/EXPERIMENTS.md) | DEFERRED — NOT RUN | UNDECIDED | Tier 0 (35.1–35.4): $0; Tier 1 (35.5–35.9): subscription CLI, $0 API, quote first; Tier 2 (35.10–35.12): new human labels | Twelve gaps from four OpenReview rounds, ranked by decision impact per unit cost, each with a CLI-only prompt. |
+
+Catalog item 35.10 (locked held-out test) and benchmark-transfer idea 2 both target the first real test set.

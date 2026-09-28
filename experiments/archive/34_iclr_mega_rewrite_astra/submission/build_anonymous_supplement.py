@@ -13,9 +13,10 @@ import sys
 import zipfile
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
-EVIDENCE = ROOT / "experiments/34_iclr_mega_rewrite_astra/analysis"
+ROOT = HERE.parents[3]
+EVIDENCE = ROOT / "experiments/archive/34_iclr_mega_rewrite_astra/analysis"
 PACKAGE = HERE / "anonymous_supplement"
+# The package keeps the pre-archive layout (experiment 34 moved to experiments/archive/ on 09-28-2026).
 ANALYSIS = PACKAGE / "experiments/34_iclr_mega_rewrite_astra/analysis"
 ARCHIVE = HERE / "anonymous_supplement.zip"
 
@@ -53,6 +54,9 @@ def main():
     put("input_manifest.json", (json.dumps(manifest, indent=2) + "\n").encode())
 
     script = (EVIDENCE / "rebuild_paper_evidence.py").read_text()
+    # Map the archived source back to the package layout, one directory shallower.
+    script = script.replace("experiments/archive/34_iclr_mega_rewrite_astra/", "experiments/34_iclr_mega_rewrite_astra/")
+    script = script.replace("Path(__file__).resolve().parents[4]", "Path(__file__).resolve().parents[3]")
     script = script.replace("import subprocess\n", "")
     start = script.index("INPUT_REVISION = ")
     end = script.index("\ndef load_json", start)

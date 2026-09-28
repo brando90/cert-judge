@@ -12,7 +12,7 @@ import json
 import re
 import subprocess
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[4]
 PAPER = ROOT / 'paper_latex/ICLR_2027_submission'
 OUT = Path(__file__).resolve().parent / 'results'
 B = 'experiments/archive/04_veribench_validation/'
@@ -78,15 +78,15 @@ GROUPS = {
     'experiments/archive/23_reanchored_calibration/results/results.json',
     'experiments/archive/24_expanded_panel_cli/results/pass2_full_screen_results.json']),
  'derived': ('New zero-inference recomputation: Pearson/Kendall, plots and local weight sensitivity', [
-    'experiments/34_iclr_mega_rewrite_astra/analysis/rebuild_paper_evidence.py',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/summary.json',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/weight_sensitivity_summary.csv',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/scatter_coordinates.csv',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/clean_rewrite_statistics.csv',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/bug_curve_statistics.csv',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/all_rewrite_statistics.csv',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/reversal_counts.csv',
-    'experiments/34_iclr_mega_rewrite_astra/analysis/results/opus_bug_curve_statistics.csv']),
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/rebuild_paper_evidence.py',
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/results/summary.json',
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/results/weight_sensitivity_summary.csv',
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/results/scatter_coordinates.csv',
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/results/clean_rewrite_statistics.csv',
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/results/bug_curve_statistics.csv',
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/results/all_rewrite_statistics.csv',
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/results/reversal_counts.csv',
+    'experiments/archive/34_iclr_mega_rewrite_astra/analysis/results/opus_bug_curve_statistics.csv']),
 }
 
 
@@ -128,7 +128,7 @@ def main():
         sources = []
         for relative in expand(patterns):
             data = (ROOT / relative).read_bytes()
-            generated = relative.startswith('experiments/34_')
+            generated = relative.startswith('experiments/archive/34_')
             if not generated:
                 frozen = subprocess.check_output(['git', 'show', REV+':'+relative], cwd=ROOT)
                 assert frozen == data, relative
