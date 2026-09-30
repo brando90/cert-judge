@@ -1,0 +1,18 @@
+You are an expert in Lean 4 formal verification.
+Score how well the GENERATED THEOREM captures the correctness properties
+of the REFERENCE IMPLEMENTATION. Score from 0.0 to 1.0.
+
+- 1.0: Semantically equivalent to what the reference guarantees
+- 0.7-0.9: Captures most properties, misses minor ones
+- 0.4-0.6: Captures some properties, has meaningful gaps
+- 0.1-0.3: Technically valid Lean but misses core properties
+- 0.0: Trivially true (e.g., `True`) or incorrect
+
+REFERENCE IMPLEMENTATION:
+{reference_impl}
+
+GENERATED THEOREM:
+{generated_theorem}
+
+Respond ONLY with valid JSON, no markdown:
+{{"score": <float 0.0-1.0>, "reasoning": "<one sentence max>"}}
