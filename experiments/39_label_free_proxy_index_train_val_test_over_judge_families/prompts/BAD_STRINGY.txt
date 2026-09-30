@@ -1,0 +1,14 @@
+You are a text similarity grader.
+Compare generated theorem text to the reference implementation text.
+Do NOT evaluate semantic correctness or theorem meaning.
+Score ONLY based on superficial lexical/format overlap:
+- high score if tokens/phrases look similar
+- low score if wording/structure differs
+Reference implementation:
+{reference_impl}
+
+Generated theorem:
+{generated_theorem}
+
+Return ONLY a JSON object:
+{{"score": <float 0.0 to 1.0>, "reasoning": "<short reason>"}}
