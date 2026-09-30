@@ -1,7 +1,7 @@
 # CKPT: proxy-index search (experiment 39)
 
 Created: 09-30-2026 16:35 UTC
-Last updated: 09-30-2026 13:27 PDT
+Last updated: 09-30-2026 13:49 PDT
 
 Task: run experiments/39_label_free_proxy_index_train_val_test_over_judge_families end to end on SNAP skampere1 per cc.md.
 
@@ -21,7 +21,7 @@ State:
 - VeriBench read-only clone: /lfs/skampere1/0/brando9/veribench_e39 at d7d36c319 (experiments 75, 100, 103, 105 and scripts/scsc present).
 - Health check: `snap_health.sh --node skampere1` -> one FAIL, shared DFS 96% used (3264 GiB free); not relevant, every experiment file lives on node-local /lfs (15 TiB free). WARN rows are dirty shared DFS checkouts this task does not touch.
 - Prerequisites verified: ~/.config/valkyrie/valkyrie.yaml mode 600 (never printed); lake 5.0.0 (Lean 4.22.0); Lean project /lfs/skampere1/0/brando9/vb90_grading/lean_project (toolchain leanprover/lean4:v4.22.0); valk; cloudflared; ports 8990-8998 free; `gh auth status` OK as brando90.
-- Decision (Rule 57): the $2,000 hold rule from cc.md / PROTOCOL.md (APPROVED_SPEND_USD restated by the dispatcher) stays in force even though the repo CLAUDE.md (commit 0be32d7, "Valkyrie runs have no automatic caps") discourages adding caps: it is pre-registered in the locked protocol, no new cap is being added, and the planning estimate ($1,421) is under it.
+- Spend rule: PROTOCOL.md Amendment 1 (Brando, PR #49 = c97be81 on main, merged into this branch during the smoke stage before any main admission) removes the automatic $2,000 cap and the charge-based HOLD; charges are still summed from results/harvest/*.json and recorded in results.md after every merge. `private/HOLD_JUDGE_ADMISSIONS` stays the manual / prompt-hash hold only. (The earlier note here that kept the $2,000 hold rule is superseded.)
 - Landing email route: `PYTHONPATH=/dfs/scratch0/brando9/ultimate-utils/py_src /usr/bin/python3 -c 'from uutils.emailing import send_email_smtp'` imports OK (vb103_venv lacks dill); ~/keys/gmail_app_password.txt present (mode 600). numpy is not needed by any script.
 - LANDED (earlier, docs only): 2d5b16a74170b4f03ebc78ebaf3f4e16dcb26506 https://github.com/brando90/cert-judge/pull/48 09-30-2026 17:53 UTC (rebase-merge of PR #48; 19 tests; QA: not requested).
 
