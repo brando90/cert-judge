@@ -1,12 +1,13 @@
 # CKPT: proxy-index search (experiment 39)
 
 Created: 09-30-2026 16:35 UTC
-Last updated: 09-30-2026 12:16 PDT
+Last updated: 09-30-2026 12:32 PDT
 
 Task: run experiments/39_label_free_proxy_index_train_val_test_over_judge_families end to end on SNAP skampere1 per cc.md.
 
 State:
-- Phase: cc.md step 4 (Lean-validated probes) RUNNING; steps 1-3 done. No judge call made. Nothing spent.
+- Phase: cc.md step 4 (Lean-validated probes) REBUILDING against private/lean_mirror (pid 701118, started 09-30-2026 12:31 PDT); steps 1-3 done; step 6's zero-call gates done. No judge call made. Nothing spent.
+- Step 4 finding: first build (vb90_grading project) -> 72/75 candidates and gold 1_MyAdd do not elaborate; 9 candidates fail only at `import VeriBench*`. Fix (Rule 57 decision, recorded in results.md deviations): private mirror project `private/lean_mirror` (same lakefile/manifest/toolchain, symlinked packages) + the three empty prelude modules compiled with cert-judge's LeanCompiler.compile_module (sources byte-identical to the archived PTI-v0 run). `private/env.sh` now sets E39_LAKE_DIR to the mirror. First manifest kept at private/probe_manifest_no_prelude_09-30-2026.json. Shared Lean project untouched.
 - Step 2: `$E39_PYTHON -m pytest scripts/test_e39.py -q` -> 19 passed in 1.22 s (skampere1, vb103_venv Python 3.12.14).
 - Step 3: `scripts/build_panel.py` -> results/panel.json, 60 units (train 18 LLM + 4 controls, val 20, test 18); prompt fingerprints unchanged from the dry run (H2 469a2ac3875c..., D0 c0da49bbe86d...).
 - Step 4: `nohup $E39_PYTHON scripts/build_probes.py --jobs 6 > private/logs/build_probes.log` started 09-30-2026 ~12:20 PDT (pid 40593); `lake env lean` on gold 0_bisect_right: exit 0 in 3.6 s (sorry warnings only). Expect 1-2 h.
@@ -25,7 +26,7 @@ Next command (skampere1, this clone, inside tmux `cj-e39-proxy-index-search`):
   export E39_VERIBENCH_REPO=/lfs/skampere1/0/brando9/veribench_e39 E39_LAKE_DIR=/lfs/skampere1/0/brando9/vb90_grading/lean_project E39_LAKE_BIN=$HOME/.elan/bin/lake E39_PYTHON=/lfs/skampere1/0/brando9/vb103_venv/bin/python PATH=$HOME/.elan/bin:$PATH
   cd /lfs/skampere1/0/brando9/cert-judge_e39/experiments/39_label_free_proxy_index_train_val_test_over_judge_families
   source private/env.sh   # the exports above
-  tail -f private/logs/build_probes.log   # wait for results/probe_manifest.json, then:
+  tail -f private/logs/build_probes.log   # rebuild pid in private/logs/build_probes.pid; wait for results/probe_manifest.json, then:
   $E39_PYTHON scripts/render_cells.py && $E39_PYTHON scripts/quote.py && $E39_PYTHON scripts/pack.py && $E39_PYTHON scripts/local_controls.py
 
 Blockers: none.
