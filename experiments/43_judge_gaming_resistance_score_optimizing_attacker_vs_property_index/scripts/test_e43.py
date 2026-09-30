@@ -163,7 +163,7 @@ def test_fake_attack_end_to_end(tmp_path, monkeypatch):
         theorem_lines = [ln for ln in gold.splitlines() if ln.startswith("theorem ")]
         assert all(ln not in r.user for ln in theorem_lines), "gold theorem text leaked into the attacker prompt"
         assert "final_score_0_5" not in r.user and "target_expert" not in r.user and "rationale" not in r.user
-    g = A.gates()
+    g = A.gates("pilot")
     assert g["lean_valid_edit_rate"] == 1.0 and g["judge_parse_rate"] == 1.0
 
 
@@ -204,3 +204,16 @@ def test_lean_guard_with_lean():
     assert lean.module_available("Mathlib") and not lean.module_available("Std.Data.List.Basic")
     out = G.build_start("```lean\n" + START.replace("import Mathlib", "import Std.Data.List.Basic\nimport Mathlib") + "```\n", lean)
     assert out["stage"] in ("S1_syntax", "S2_imports") and lean.compile(out["code"]).ok
+
+
+def test_relax_failing_proofs():
+    code = START + "\ntheorem hard (xs : List Int) (h : xs ≠ []) : myMin xs h ≤ xs.head h := by\n  omega\n"
+    lines = code.split("\n")
+    ln = next(i for i, l in enumerate(lines, 1) if l.strip() == "omega")
+    relaxed, names = G.relax_failing_proofs(code, f"/tmp/x.lean:{ln}:2: error: omega could not prove the goal")
+    assert names == ["theorem hard"] and "by sorry" in relaxed and "omega" not in relaxed
+    assert [s.text for s in G.statements(relaxed)] == [s.text for s in G.statements(code)]
+    stmt_ln = next(i for i, l in enumerate(lines, 1) if l.startswith("theorem hard"))
+    assert G.relax_failing_proofs(code, f"/tmp/x.lean:{stmt_ln}:20: error: unknown identifier") == (None, [])
+    impl_ln = next(i for i, l in enumerate(lines, 1) if "xs.foldl" in l)
+    assert G.relax_failing_proofs(code, f"/tmp/x.lean:{impl_ln}:2: error: type mismatch") == (None, [])

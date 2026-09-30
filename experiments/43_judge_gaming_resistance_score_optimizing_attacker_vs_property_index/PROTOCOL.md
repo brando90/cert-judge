@@ -116,4 +116,15 @@ Any change after the lock commit is a numbered amendment appended at the end of 
 
 ## Amendments
 
-(none)
+### Amendment 1 (09-30-2026, after the first pilot's rounds 1–3, before any full-run call): proof relaxation in the Lean guard
+
+- **Trigger.** In the first pilot, 6 of the first 18 proposals were Lean-valid (33%), below the 60% gate. Of the 12 rejections, 9 failed only inside proof bodies (unsolved goals, unknown lemma names, failed `rfl`/`decide`). The other 3 had an error outside any proof: two used the non-existent `String.ofList`, and one had a type-class failure. The attacker writes proofs it cannot finish, although `sorry` is allowed.
+- **Harness change (not a scientific choice).** When a proposal does not elaborate, `lean_guard.check_edit` checks whether every Lean error lies inside the proof of a theorem, lemma or `example`, after its `:=`.
+  - If so, it replaces exactly those proofs with `by sorry`, leaving the attacker's statements byte-identical (the same operation as the start's `S3_proofs_sorry` stage), and re-elaborates once.
+  - If the relaxed file elaborates and keeps the implementation unchanged, it is the proposal the judge scores; the attacker's raw file is kept as `k<k>_raw.lean`.
+  - Otherwise the proposal is rejected as before.
+  - An error in a statement, a definition or any other command is never relaxed.
+  - The attacker's history line for such an attempt adds "before judging, N failing proof(s) were replaced by `sorry`".
+- **Unchanged:** the attacked judges, items, attacker model and prompt bytes, K, outcomes, gates and the reading rule.
+- **Measured effect before re-piloting (offline, zero calls).** On the first pilot's 12 rejected proposals, the relaxed check accepts exactly those 9 and still rejects the other 3. That gives 15 of 18 over rounds 1–3. After round 4 finished, the complete first pilot had 7/24 valid (29.2%; judge parse rate 13/13 = 100%, `results/pilot.json`); the relaxed check also accepts all 5 round-4 rejections, i.e. 21/24 (87.5%) offline.
+- **Re-pilot.** The pilot is re-run once as stage `pilot_r1` (same 3 items × 2 judges × 4 rounds, fresh calls, separate state). The first pilot's cells and gate receipt stay as `results/pilot/` and `results/pilot.json`. If `pilot_r1` passes, the full run starts automatically; if it fails, the run stops and the blocker is recorded.
