@@ -5,7 +5,8 @@
 # 09-30-2026: `uv tool install git+https://github.com/vals-ai/Valkyrie@prod` and `valk --help` work through the
 # container proxy; docs.valkyrie.vals.ai and model-gateway.vals.ai are reachable. This makes admit/poll/harvest
 # possible from a cloud session; the pack services (a tunnel that must stay up for the whole campaign) and Lean
-# probe validation still belong on an always-on host such as SNAP.
+# probe validation still belong on an always-on host such as SNAP. A cloudflared quick tunnel also needs outbound
+# TCP 7844, which the container network blocks (443 is open), so the pack service cannot be exposed from here.
 set -euo pipefail
 if ! command -v valk >/dev/null 2>&1; then
   uv tool install --quiet "git+https://github.com/vals-ai/Valkyrie@prod"

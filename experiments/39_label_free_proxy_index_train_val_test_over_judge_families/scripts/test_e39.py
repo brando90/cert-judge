@@ -54,6 +54,17 @@ def test_theorem_decls_and_statements():
     assert all(":=" not in s for s in stmts)
 
 
+def test_theorem_decls_sees_same_line_attributes_and_modifiers():
+    src = LEAN.replace("@[simp]\ntheorem add_zero'", "@[simp] theorem add_zero'") + "\nprivate theorem hidden' : True := trivial\n"
+    names = P.theorem_names(src)
+    assert names == ["add_comm'", "add_zero'", "mul_one'", "hidden'"]
+    decl = P.theorem_decls(src)[1]
+    assert src[decl.start:decl.start + 15] == "@[simp] theorem"
+    ladder = P.delete_theorems_ladder(src, 4)
+    assert [a.level for a in ladder] == [0, 1, 2, 3, 4]
+    assert "add_zero'" not in ladder[3].code and "@[simp]" not in ladder[3].code
+
+
 def test_cut_points():
     assert P.cut_points(1, 4) == [1]
     assert P.cut_points(3, 4) == [1, 2, 3]
