@@ -1,0 +1,36 @@
+{
+ "task": "selection_sort",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__selection_sort__L1": {
+   "label": "redundant",
+   "dropped": "permutation_prop conjunct of Post_prop",
+   "restated_by": "permutation_thm (unchanged)",
+   "why": "Only the Post conjunct is removed; permutation_thm still states List.Perm (selectionSort xs) xs."
+  },
+  "overc__selection_sort__L1": {
+   "label": "redundant",
+   "dropped": "main_correctness_thm made vacuous by xs.length < 0",
+   "restated_by": "sorted_thm, permutation_thm, minimum_front_thm, membership_preservation_thm",
+   "why": "Every Post_prop conjunct is still stated by its own unchanged theorem."
+  },
+  "overc__selection_sort__L2": {
+   "label": "strict",
+   "dropped": "selectionSort_equivalence_thm (selectionSort xs = selectionSortImp xs) made vacuous, plus main_correctness_thm",
+   "restated_by": "component theorems restate Post_prop; nothing restates the equivalence",
+   "why": "selectionSortImp is an uninterpreted definition mentioned by no other statement, so the equivalence guarantee is lost."
+  },
+  "weak__selection_sort__L2": {
+   "label": "redundant",
+   "dropped": "reverse direction of membership_preservation, plus the permutation Post conjunct",
+   "restated_by": "permutation_thm and private selectionSort_perm (both unchanged)",
+   "why": "Perm (selectionSort xs) xs is still stated and implies membership equivalence."
+  },
+  "weak__selection_sort__L3": {
+   "label": "redundant",
+   "dropped": "main_correctness_thm gains escape ∨ xs.length ≤ 1; membership reverse direction; permutation Post conjunct",
+   "restated_by": "sorted_thm, permutation_thm, minimum_front_thm, membership_preservation_thm (forward) + permutation_thm/selectionSort_perm (reverse), selectionSort_sorted",
+   "why": "Every guarantee of Post_prop is still stated unconditionally by standalone theorems, so the correctness disjunction loses nothing."
+  }
+ }
+}

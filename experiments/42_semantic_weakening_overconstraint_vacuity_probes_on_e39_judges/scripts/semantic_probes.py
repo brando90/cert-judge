@@ -92,6 +92,8 @@ def auto_tactic(text: str, unfold: list[str], intro: str = "intro H; intros") ->
     alts = [f"({intro}; trivial)", f"({intro}; simp_all{simp_set})", f"({intro}; omega)",
             f"({intro}; apply H <;> assumption)", f"({intro}; left; apply H <;> assumption)",
             f"({intro}; right; apply H <;> assumption)", f"({intro}; exact H ‹_›)"]
+    if unfold:
+        alts.append(f"({intro}; simp only{simp_set} at *; omega)")
     if uses_mathlib(text):
         alts += [f"({intro}; tauto)", f"({intro}; aesop)"]
     return "first\n  | " + "\n  | ".join(alts)
@@ -166,6 +168,8 @@ def check_base(text: str) -> tuple[str, list[str], list[str]]:
             bounds = _proof_bounds(text, d)
             if bounds is not None:
                 edits.append((bounds[0], bounds[1], (" sorry" if d.assign is not None else " := sorry")))
+            if "@[" in text[d.start:d.kw_start]:     # a sorry-proved @[simp] lemma must not feed automation
+                edits.append(_strip_attrs(text, d))
         elif _axiomatizable(text, d):
             helpers = _where_helpers(text, masked, d, end)
             if helpers is None:
@@ -496,13 +500,15 @@ def build_checks(ref: str, probe: str, *, tag: str, proofs: dict[str, str] | Non
             continue
         binders = L.binder_texts(probe, pd)
         args = " ".join(a for b in binders for a in _explicit_args(b))
+        before = sorted(n for n in closure if n in probe_ds and probe_ds[n].start <= pd.start)
+        local_unfold = before + [renames[n] for n in before]
         app_new, app_old = f"{name} {args}".strip(), f"{renames[name]} {args}".strip()
         idx = len(checks)
         checks.append(Check(f"{CHECK_PREFIX}_{tag}_dfwd_{idx}", "forward", name, name, "",
                             forall_text(binders, f"{app_old} → {app_new}"),
-                            proofs.get(name) or auto_tactic(ref, unfold, intro="intros; rename_i H"), True))
+                            proofs.get(name) or auto_tactic(ref, local_unfold, intro="intros; rename_i H"), True))
         checks.append(Check(f"{CHECK_PREFIX}_{tag}_drev_{idx}", "reverse", name, name, "",
-                            forall_text(binders, f"{app_new} → {app_old}"), auto_tactic(ref, unfold, intro="intros; rename_i H"), False))
+                            forall_text(binders, f"{app_new} → {app_old}"), auto_tactic(ref, local_unfold, intro="intros; rename_i H"), False))
     for u in unsat or []:
         rd = ref_th.get(u["theorem"])
         binders = L.binder_texts(ref, rd) if rd else []

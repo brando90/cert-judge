@@ -1,0 +1,59 @@
+{
+ "task": "humaneval_47_median",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the singleton-value conjunct (the only guarantee about median's value on nonempty lists)",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  (∀ x, singleton_prop x) ∧\n",
+     "new": ""
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H l hPre\nhave h := H l hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nexact ⟨h.1, h.2.2⟩"
+   }
+  },
+  {
+   "level": 2,
+   "op": "relax_eq",
+   "description": "sort_length_prop relaxes length equality to ≤",
+   "edits": [
+    {
+     "decl": "sort_length_prop",
+     "old": "(insertionSort l).length = l.length",
+     "new": "(insertionSort l).length ≤ l.length"
+    }
+   ],
+   "proofs": {
+    "sort_length_prop": "intro l h\nsimp only [sort_length_prop, sort_length_prop_e42o] at h ⊢\nomega",
+    "sort_length_thm": "intro H l\nhave h := H l\nsimp only [sort_length_prop, sort_length_prop_e42o] at h ⊢\nomega",
+    "Post_prop": "intro l h\nsimp only [Post_prop, Post_prop_e42o, sort_length_prop, sort_length_prop_e42o] at h ⊢\nrefine ⟨h.1, ?_⟩\nhave h2 := h.2.2\nomega",
+    "correctness_thm": "intro H l hPre\nhave h := H l hPre\nsimp only [Post_prop, Post_prop_e42o, sort_length_prop, sort_length_prop_e42o] at h ⊢\nrefine ⟨h.1, ?_⟩\nhave h2 := h.2.2\nomega"
+   }
+  },
+  {
+   "level": 3,
+   "op": "disjunctive_escape",
+   "description": "singleton_prop gains an escape for negative elements",
+   "edits": [
+    {
+     "decl": "singleton_prop",
+     "old": "median [x] = Float.ofInt x",
+     "new": "median [x] = Float.ofInt x ∨ x < 0"
+    }
+   ],
+   "proofs": {
+    "singleton_prop": "intro x h\nsimp only [singleton_prop, singleton_prop_e42o] at h ⊢\nexact Or.inl h",
+    "singleton_thm": "intro H x\nhave h := H x\nsimp only [singleton_prop, singleton_prop_e42o] at h ⊢\nexact Or.inl h",
+    "sort_length_prop": "intro l h\nsimp only [sort_length_prop, sort_length_prop_e42o] at h ⊢\nomega",
+    "sort_length_thm": "intro H l\nhave h := H l\nsimp only [sort_length_prop, sort_length_prop_e42o] at h ⊢\nomega",
+    "Post_prop": "intro l h\nsimp only [Post_prop, Post_prop_e42o, sort_length_prop, sort_length_prop_e42o] at h ⊢\nrefine ⟨h.1, ?_⟩\nhave h2 := h.2.2\nomega",
+    "correctness_thm": "intro H l hPre\nhave h := H l hPre\nsimp only [Post_prop, Post_prop_e42o, sort_length_prop, sort_length_prop_e42o] at h ⊢\nrefine ⟨h.1, ?_⟩\nhave h2 := h.2.2\nomega"
+   }
+  }
+ ]
+}

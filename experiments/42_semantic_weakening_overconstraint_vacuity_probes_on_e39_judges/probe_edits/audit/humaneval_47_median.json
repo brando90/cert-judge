@@ -1,0 +1,36 @@
+{
+ "task": "humaneval_47_median",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__humaneval_47_median__L1": {
+   "label": "redundant",
+   "dropped": "singleton_prop conjunct of Post_prop",
+   "restated_by": "singleton_thm (unchanged)",
+   "why": "The standalone singleton_thm still states ∀ x, median [x] = Float.ofInt x."
+  },
+  "weak__humaneval_47_median__L2": {
+   "label": "strict",
+   "dropped": "sort_length equality (insertionSort l).length = l.length, weakened to ≤ in sort_length_thm and Post_prop",
+   "restated_by": "none (singleton conjunct restated by singleton_thm)",
+   "why": "The shared sort_length_prop now only gives ≤; insertionSort is uninterpreted and no other theorem states length preservation."
+  },
+  "weak__humaneval_47_median__L3": {
+   "label": "strict",
+   "dropped": "sort_length equality and median [x] = Float.ofInt x for x < 0",
+   "restated_by": "none",
+   "why": "sort_length_prop is weakened as in L2 and singleton_prop gains the escape ∨ x < 0 in both singleton_thm and Post_prop; nothing restates either."
+  },
+  "overc__humaneval_47_median__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm made vacuous by l.length < 0",
+   "restated_by": "empty_list_thm, singleton_thm, sort_length_thm",
+   "why": "Post_prop is the conjunction of three props each still stated by its own unchanged theorem."
+  },
+  "overc__humaneval_47_median__L2": {
+   "label": "strict",
+   "dropped": "singleton_thm (x < x), sort_length_thm, correctness_thm and median_equivalence_thm made vacuous",
+   "restated_by": "none (only empty_list_thm remains)",
+   "why": "Singleton, length-preservation and median = medianImp guarantees are only stated under unsatisfiable hypotheses."
+  }
+ }
+}

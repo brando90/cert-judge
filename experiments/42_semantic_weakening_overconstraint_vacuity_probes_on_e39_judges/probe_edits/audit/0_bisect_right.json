@@ -1,0 +1,36 @@
+{
+ "task": "0_bisect_right",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__0_bisect_right__L1": {
+   "label": "redundant",
+   "dropped": "Post's right_partition_prop conjunct",
+   "restated_by": "bisect_right_partition_thm (unchanged, same Pre hypothesis)",
+   "why": "correctness_thm still gives the bounds and left partition; bisect_right_partition_thm states right_partition_prop for the same result under the same Pre, so the file's conjunction equals the reference's."
+  },
+  "weak__0_bisect_right__L2": {
+   "label": "strict",
+   "dropped": "upper bound idx ≤ hi (plus right partition, restated)",
+   "restated_by": "right partition: bisect_right_partition_thm; idx ≤ hi: none",
+   "why": "No theorem bounds the result above: the partition props are vacuous or satisfiable for idx > hi and bisect_equiv_thm only relates the two uninterpreted implementations."
+  },
+  "weak__0_bisect_right__L3": {
+   "label": "strict",
+   "dropped": "idx ≤ hi; right partition for arrays of size ≤ 1",
+   "restated_by": "none",
+   "why": "Post lost idx ≤ hi and the only theorem stating the right partition now has the escape ∨ a.size ≤ 1, so neither guarantee is implied for small arrays / out-of-range results."
+  },
+  "overc__0_bisect_right__L1": {
+   "label": "strict",
+   "dropped": "correctness_thm (vacuous via lo < 0 on Nat): lo ≤ idx ∧ idx ≤ hi",
+   "restated_by": "left/right partition: bisect_left_partition_thm, bisect_right_partition_thm; bounds: none",
+   "why": "The partition conjuncts are restated by the two partition theorems, but the index bounds lo ≤ idx ≤ hi appear only in Post, which is now reached only under an unsatisfiable hypothesis."
+  },
+  "overc__0_bisect_right__L2": {
+   "label": "strict",
+   "dropped": "all four theorems vacuous (lo < 0): bounds, both partitions, functional/imperative equivalence",
+   "restated_by": "none",
+   "why": "Every theorem carries the unsatisfiable hypothesis lo < 0, so the file guarantees nothing."
+  }
+ }
+}

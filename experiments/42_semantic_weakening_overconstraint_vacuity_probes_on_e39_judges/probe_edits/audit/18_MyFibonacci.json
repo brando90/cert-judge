@@ -1,0 +1,36 @@
+{
+ "task": "18_MyFibonacci",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__18_MyFibonacci__L1": {
+   "label": "redundant",
+   "dropped": "Post_prop's recurrence conjunct F(n+2) = F(n) + F(n+1)",
+   "restated_by": "fibonacci_rec_thm (unchanged)",
+   "why": "fibonacci_rec_thm states the recurrence for every n, so the dropped conjunct is still guaranteed (no appeal to inconsistency needed)."
+  },
+  "weak__18_MyFibonacci__L2": {
+   "label": "unclear",
+   "dropped": "F(1) = 1 (relaxed to F(1) ≥ 1 in fibonacci_one_thm and Post); recurrence in Post (restated)",
+   "restated_by": "recurrence: fibonacci_rec_thm; F(1) = 1: only ex falso",
+   "why": "Caveat: the reference is inconsistent (fibonacci_increasing_thm at n = 1 needs F(2) > F(1), but F(0) = 0 and the recurrence give F(2) = F(1)); the probe keeps those theorems, so it is formally redundant by ex falso, but no theorem substantively restates F(1) = 1, so it is strict under a non-vacuous reading."
+  },
+  "weak__18_MyFibonacci__L3": {
+   "label": "strict",
+   "dropped": "F(0) = 0 (now F(0) = 0 ∨ F(0) = 1); F(1) = 1 (now ≥ 1)",
+   "restated_by": "none",
+   "why": "Unlike the inconsistent reference, the probe is satisfiable (F = 1, 1, 2, 3, 5, ... meets every probe theorem and forces F(0) = 1), so the reference's F(0) = 0 is not implied."
+  },
+  "overc__18_MyFibonacci__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm (vacuous via n < 0)",
+   "restated_by": "fibonacci_zero_thm, fibonacci_one_thm, fibonacci_rec_thm, fibonacci_nonneg_thm, fibonacci_increasing_thm",
+   "why": "Each Post_prop conjunct is stated by its own unchanged property theorem."
+  },
+  "overc__18_MyFibonacci__L2": {
+   "label": "unclear",
+   "dropped": "correctness_thm (restated) and myFibonacci_equivalence_thm (functional = imperative), both vacuous via n < 0",
+   "restated_by": "Post content: the five property theorems; equivalence: only ex falso",
+   "why": "The equivalence to the uninterpreted myFibonacciImp is stated nowhere else, so it is strict under a non-vacuous reading; formally it is redundant because the unchanged zero/rec/increasing theorems are jointly unsatisfiable (F(2) = F(1) vs F(2) > F(1)), exactly as in the reference."
+  }
+ }
+}

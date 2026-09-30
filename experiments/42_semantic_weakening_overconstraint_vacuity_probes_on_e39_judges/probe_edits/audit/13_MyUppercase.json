@@ -1,0 +1,36 @@
+{
+ "task": "13_MyUppercase",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__13_MyUppercase__L1": {
+   "label": "redundant",
+   "dropped": "Post_prop's append-distributivity conjunct",
+   "restated_by": "append_distributive_thm (unchanged, ∀ s₁ s₂)",
+   "why": "append_distributive_thm states append_distributive_prop for all strings, so the dropped conjunct is still guaranteed."
+  },
+  "weak__13_MyUppercase__L2": {
+   "label": "redundant",
+   "dropped": "append distributivity (in Post); exact length preservation (relaxed to ≤ in both length_preservation_thm and Post)",
+   "restated_by": "append: append_distributive_thm; length equality: derived from empty_string_thm + single_char_thm + append_distributive_thm",
+   "why": "empty_string_thm, single_char_thm (unchanged here) and append_distributive_thm determine myUppercase s = String.mk (s.data.map toUpper) by induction on s.data (String.mk (c::cs) = String.mk [c] ++ String.mk cs), which has length s.length whatever toUpper is; idempotence and equivalence are still stated directly."
+  },
+  "weak__13_MyUppercase__L3": {
+   "label": "strict",
+   "dropped": "single-character exactness for non-alphabetic chars; exact length preservation",
+   "restated_by": "none",
+   "why": "single_char_thm now allows any output for non-alpha c, so the L2 derivation fails: e.g. a homomorphism deleting digits satisfies empty, ≤-length, idempotence, weakened single-char and append theorems, violating the reference's single_char and length equality."
+  },
+  "overc__13_MyUppercase__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm (vacuous via s.length < 0)",
+   "restated_by": "empty_string_thm, length_preservation_thm, idempotent_thm, single_char_thm, append_distributive_thm",
+   "why": "Every conjunct of Post_prop is stated by its own unchanged property theorem, so losing correctness_thm loses nothing."
+  },
+  "overc__13_MyUppercase__L2": {
+   "label": "strict",
+   "dropped": "length_preservation_thm, idempotent_thm, correctness_thm, myUppercase_equivalence_thm (all vacuous)",
+   "restated_by": "length: derivable from empty/single_char/append theorems; idempotence and functional = imperative equivalence: none",
+   "why": "The equivalence myUppercase s = myUppercaseImp s is stated nowhere else (myUppercaseImp is uninterpreted), and idempotence needs toUpper ∘ toUpper = toUpper, which is not implied with toUpper uninterpreted."
+  }
+ }
+}

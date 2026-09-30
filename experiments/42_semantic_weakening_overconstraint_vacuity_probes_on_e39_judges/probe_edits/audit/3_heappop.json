@@ -1,0 +1,36 @@
+{
+ "task": "3_heappop",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__3_heappop__L1": {
+   "label": "strict",
+   "dropped": "prop_multiset (List.Perm heap.toList (res.1 :: res.2.toList)) from Post, hence from correctness_thm",
+   "restated_by": "none",
+   "why": "prop_multiset appears only in Post; heappop_invariant_thm states only the heap invariant and heappop_equiv_thm only links the two uninterpreted implementations, so the permutation guarantee is lost."
+  },
+  "weak__3_heappop__L2": {
+   "label": "strict",
+   "dropped": "prop_multiset (from L1) plus the exact size decrease res.2.size = heap.size - 1 (relaxed to ≤)",
+   "restated_by": "none",
+   "why": "prop_size is used only in Post and is now an inequality; no other theorem states the exact size or the permutation."
+  },
+  "weak__3_heappop__L3": {
+   "label": "strict",
+   "dropped": "prop_multiset, exact size, and the unconditional heap invariant of the result (now 'invariant ∨ res.1 ∈ res.2.toList')",
+   "restated_by": "none",
+   "why": "prop_invariant is shared by heappop_invariant_thm and Post, so both are weakened; nothing restates the invariant, exact size or permutation."
+  },
+  "overc__3_heappop__L1": {
+   "label": "strict",
+   "dropped": "prop_size and prop_multiset (correctness_thm now needs heap.size < 0)",
+   "restated_by": "prop_invariant only, by heappop_invariant_thm",
+   "why": "heappop_invariant_thm still gives the invariant under Pre, but no hypothesis-free theorem states the size or permutation conjuncts of Post."
+  },
+  "overc__3_heappop__L2": {
+   "label": "strict",
+   "dropped": "all guarantees: invariant, size, permutation (heappop_invariant_thm, correctness_thm) and heappop_imp = heappop_functional (heappop_equiv_thm)",
+   "restated_by": "none",
+   "why": "Every theorem now carries the unsatisfiable heap.size < 0, so the probe file guarantees nothing."
+  }
+ }
+}

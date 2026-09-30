@@ -1,0 +1,61 @@
+{
+ "task": "humaneval_31_is_prime",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "prime_def_prop drops the no-divisor conjunct, keeping only n ≥ 2",
+   "edits": [
+    {
+     "decl": "prime_def_prop",
+     "old": "isPrime n = true → n ≥ 2 ∧ ∀ d, 2 ≤ d → d < n → n % d ≠ 0",
+     "new": "isPrime n = true → n ≥ 2"
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H n h\nhave h0 := H n h\nsimp only [Post_prop, Post_prop_e42o, prime_def_prop, prime_def_prop_e42o] at h0 ⊢\nexact ⟨h0.1, h0.2.1, h0.2.2.1, fun h1 => (h0.2.2.2 h1).1⟩",
+    "prime_def_thm": "intro H n\nhave h0 := H n\nsimp only [prime_def_prop, prime_def_prop_e42o] at h0 ⊢\nexact fun h1 => (h0 h1).1",
+    "prime_def_prop": "intro n h0\nsimp only [prime_def_prop, prime_def_prop_e42o] at h0 ⊢\nexact fun h1 => (h0 h1).1"
+   }
+  },
+  {
+   "level": 2,
+   "op": "disjunctive_escape",
+   "description": "composite_prop gains an escape for perfect squares",
+   "edits": [
+    {
+     "decl": "composite_prop",
+     "old": "→ isPrime n = false",
+     "new": "→ isPrime n = false ∨ ∃ d, d * d = n"
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H n h\nhave h0 := H n h\nsimp only [Post_prop, Post_prop_e42o, prime_def_prop, prime_def_prop_e42o, composite_prop, composite_prop_e42o] at h0 ⊢\nexact ⟨h0.1, h0.2.1, fun h1 h2 => Or.inl (h0.2.2.1 h1 h2), fun h1 => (h0.2.2.2 h1).1⟩",
+    "prime_def_thm": "intro H n\nhave h0 := H n\nsimp only [prime_def_prop, prime_def_prop_e42o] at h0 ⊢\nexact fun h1 => (h0 h1).1",
+    "prime_def_prop": "intro n h0\nsimp only [prime_def_prop, prime_def_prop_e42o] at h0 ⊢\nexact fun h1 => (h0 h1).1",
+    "composite_thm": "intro H n\nhave h0 := H n\nsimp only [composite_prop, composite_prop_e42o] at h0 ⊢\nexact fun h1 h2 => Or.inl (h0 h1 h2)",
+    "composite_prop": "intro n h0\nsimp only [composite_prop, composite_prop_e42o] at h0 ⊢\nexact fun h1 h2 => Or.inl (h0 h1 h2)"
+   }
+  },
+  {
+   "level": 3,
+   "op": "disjunctive_escape",
+   "description": "small_numbers_prop gains an escape for n = 1",
+   "edits": [
+    {
+     "decl": "small_numbers_prop",
+     "old": "n < 2 → isPrime n = false",
+     "new": "n < 2 → isPrime n = false ∨ n = 1"
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H n h\nhave h0 := H n h\nsimp only [Post_prop, Post_prop_e42o, prime_def_prop, prime_def_prop_e42o, composite_prop, composite_prop_e42o, small_numbers_prop, small_numbers_prop_e42o] at h0 ⊢\nexact ⟨fun h1 => Or.inl (h0.1 h1), h0.2.1, fun h1 h2 => Or.inl (h0.2.2.1 h1 h2), fun h1 => (h0.2.2.2 h1).1⟩",
+    "prime_def_thm": "intro H n\nhave h0 := H n\nsimp only [prime_def_prop, prime_def_prop_e42o] at h0 ⊢\nexact fun h1 => (h0 h1).1",
+    "prime_def_prop": "intro n h0\nsimp only [prime_def_prop, prime_def_prop_e42o] at h0 ⊢\nexact fun h1 => (h0 h1).1",
+    "composite_thm": "intro H n\nhave h0 := H n\nsimp only [composite_prop, composite_prop_e42o] at h0 ⊢\nexact fun h1 h2 => Or.inl (h0 h1 h2)",
+    "composite_prop": "intro n h0\nsimp only [composite_prop, composite_prop_e42o] at h0 ⊢\nexact fun h1 h2 => Or.inl (h0 h1 h2)"
+   }
+  }
+ ]
+}

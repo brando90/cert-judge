@@ -1,0 +1,73 @@
+{
+ "task": "binary_search",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops found_element_prop (returned index holds the target)",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  found_element_prop arr target ∧\n",
+     "new": ""
+    },
+    {
+     "decl": "main_correctness_thm",
+     "old": "    found_element_thm arr target,\n",
+     "new": ""
+    }
+   ],
+   "proofs": {
+    "main_correctness_thm": "intro H arr target hPre\nhave h := H arr target hPre\nunfold Post_prop_e42o at h\nunfold Post_prop\nexact h.2",
+    "Post_prop": "intro arr target h\nunfold Post_prop_e42o at h\nunfold Post_prop\nexact h.2"
+   }
+  },
+  {
+   "level": 2,
+   "op": "drop_conjunct",
+   "description": "exact_foundness_prop keeps only the found-implies-present direction of the iff",
+   "edits": [
+    {
+     "decl": "exact_foundness_prop",
+     "old": "((binarySearch arr target).isSome ↔ ∃ (idx : Nat), arr[idx]? = some target)",
+     "new": "((binarySearch arr target).isSome → ∃ (idx : Nat), arr[idx]? = some target)"
+    },
+    {
+     "decl": "exact_foundness_thm",
+     "old": "  constructor\n  · intro hsome\n    cases hsearch : binarySearch arr target with\n    | none =>\n        simp [hsearch] at hsome\n    | some idx =>\n        exact ⟨idx, found_element_thm arr target idx hsearch⟩\n  · intro hfound\n    rcases hfound with ⟨idx, hidx⟩\n    cases hsearch : binarySearch arr target with\n    | none =>\n        exact False.elim ((not_found_by_get_thm arr target hPre hsearch idx) hidx)\n    | some _idx' =>\n        simp",
+     "new": "  intro hsome\n  cases hsearch : binarySearch arr target with\n  | none =>\n      simp [hsearch] at hsome\n  | some idx =>\n      exact ⟨idx, found_element_thm arr target idx hsearch⟩"
+    }
+   ],
+   "proofs": {
+    "exact_foundness_thm": "intro H arr target\nhave h := H arr target\nunfold exact_foundness_prop_e42o at h\nunfold exact_foundness_prop\nexact fun hP => (h hP).1",
+    "main_correctness_thm": "intro H arr target hPre\nhave h := H arr target hPre\nunfold Post_prop_e42o exact_foundness_prop_e42o at h\nunfold Post_prop exact_foundness_prop\nexact ⟨h.2.1, h.2.2.1, fun hP => (h.2.2.2.1 hP).1, h.2.2.2.2⟩",
+    "Post_prop": "intro arr target h\nunfold Post_prop_e42o exact_foundness_prop_e42o at h\nunfold Post_prop exact_foundness_prop\nexact ⟨h.2.1, h.2.2.1, fun hP => (h.2.2.2.1 hP).1, h.2.2.2.2⟩",
+    "exact_foundness_prop": "intro arr target h\nunfold exact_foundness_prop_e42o at h\nunfold exact_foundness_prop\nexact fun hP => (h hP).1"
+   }
+  },
+  {
+   "level": 3,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops not_found_by_get_prop (none implies target absent)",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  not_found_by_get_prop arr target ∧\n",
+     "new": ""
+    },
+    {
+     "decl": "main_correctness_thm",
+     "old": "    not_found_by_get_thm arr target,\n",
+     "new": ""
+    }
+   ],
+   "proofs": {
+    "exact_foundness_thm": "intro H arr target\nhave h := H arr target\nunfold exact_foundness_prop_e42o at h\nunfold exact_foundness_prop\nexact fun hP => (h hP).1",
+    "main_correctness_thm": "intro H arr target hPre\nhave h := H arr target hPre\nunfold Post_prop_e42o exact_foundness_prop_e42o at h\nunfold Post_prop exact_foundness_prop\nexact ⟨h.2.1, fun hP => (h.2.2.2.1 hP).1, h.2.2.2.2⟩",
+    "Post_prop": "intro arr target h\nunfold Post_prop_e42o exact_foundness_prop_e42o at h\nunfold Post_prop exact_foundness_prop\nexact ⟨h.2.1, fun hP => (h.2.2.2.1 hP).1, h.2.2.2.2⟩",
+    "exact_foundness_prop": "intro arr target h\nunfold exact_foundness_prop_e42o at h\nunfold exact_foundness_prop\nexact fun hP => (h hP).1"
+   }
+  }
+ ]
+}
