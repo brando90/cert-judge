@@ -65,10 +65,22 @@ LANDED da61634b2fd32185423059b7753de3f7d622f131 https://github.com/brando90/cert
   da61634). Rebase diff review (`git diff e41-backup-09-30-2026-1458 HEAD`) showed zero content
   loss -- only main's new unrelated file appeared. Remote task branch confirmed deleted
   (`git ls-remote --exit-code --heads origin refs/heads/e41-provenance-audit` -> exit 2). Local
-  `main` fast-forwarded to da61634. Email receipt + `private/DONE`: next.
+  `main` fast-forwarded to da61634. Email receipt sent via SMTP (`brandojazz@gmail.com` ->
+  `brando.science@gmail.com`, no CC) by loading `uutils/emailing.py` directly with `importlib`
+  (bypassing `uutils/__init__.py`, which pulls in `dill`/`networkx`/other heavy deps unrelated to
+  email sending; `emailing.py` itself is stdlib-only). `private/DONE` touched.
+
+**ALL STEPS COMPLETE.**
 
 ## Notes / deviations
-(none yet)
+- pass1/pass2 rater-seen dates could not be distinguished (both TSVs added in the same VeriBench
+  commit); documented in REPORT.md rather than resolved further.
+- S2's exact old-prompt vs. corrected-prompt instruction-text diff was not extracted (unmeasured,
+  disclosed in REPORT.md) -- would require locating the instruction/prompt file's own git history
+  in VeriBench, which was out of scope given the rest of the runbook's completion requirement.
+- Initial `rescore.py` used scipy's `stats.spearmanr` per-judge-per-bootstrap-draw (1.2M calls)
+  and was still running after 13 minutes; killed and rewritten with a numpy-only
+  `_fast_spearman` (cross-checked against scipy in the test suite), which completed in 6.5 min.
 
 ## Resume instructions
 If interrupted, re-read this file and `results.md`, then continue from the first unchecked step above.

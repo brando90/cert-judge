@@ -19,7 +19,7 @@
 | S3 (label-agreement matrix) | DONE | `results/label_agreement_matrix.csv` |
 | S4 (label-free bug-ladder reversal) | DONE by citation — confirmed unaffected, no recomputation needed | `experiments/archive/04_veribench_validation/results_exp19_low_variance_replot/bug_reversal_rates.csv` |
 | Report | DONE | `REPORT.md` |
-| Landing (PR + merge + email receipt) | IN PROGRESS | this section, updated on completion |
+| Landing (PR + merge + email receipt) | **DONE** — PR #50 merged (da61634), email receipt sent to brando.science@gmail.com, `private/DONE` touched | https://github.com/brando90/cert-judge/pull/50 |
 
 ## Headline numbers
 
