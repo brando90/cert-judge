@@ -1,0 +1,9 @@
+{"task": "3_heappop", "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {"level": 1, "op": "drop_conjunct", "description": "Post drops the multiset-preservation (permutation) conjunct",
+   "edits": [{"decl": "Post", "old": "  prop_size heap ∧\n  prop_multiset heap", "new": "  prop_size heap"}]},
+  {"level": 2, "op": "relax_eq", "description": "prop_size relaxes the exact size decrease to an upper bound",
+   "edits": [{"decl": "prop_size", "old": "res.2.size = heap.size - 1", "new": "res.2.size ≤ heap.size - 1"}]},
+  {"level": 3, "op": "disjunctive_escape", "description": "prop_invariant gains an escape when the popped item still occurs in the remaining heap",
+   "edits": [{"decl": "prop_invariant", "old": "  checkInvariant res.2 = true", "new": "  checkInvariant res.2 = true ∨ res.1 ∈ res.2.toList"}]}
+ ]}

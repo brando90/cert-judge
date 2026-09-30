@@ -1,0 +1,30 @@
+{
+ "task": "4_json_decoder",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__4_json_decoder__L1": {
+   "label": "strict",
+   "dropped": "loads_imp s = loads_func s on inputs where loads_func s = none (loads_equiv_thm gains '∨ loads_func s = none')",
+   "restated_by": "none",
+   "why": "Only loads_equiv_thm relates loads_imp and loads_func; sound_true/sound_null/correctness_thm mention only loads_func, so equivalence on rejected inputs is lost."
+  },
+  "weak__4_json_decoder__L2": {
+   "label": "strict",
+   "dropped": "the L1 equivalence escape (the Post escape itself drops nothing because no theorem uses Post)",
+   "restated_by": "none",
+   "why": "Post is never referenced by any theorem in the reference, so the L2 edit changes no theorem statement; the L1 loss remains."
+  },
+  "weak__4_json_decoder__L3": {
+   "label": "strict",
+   "dropped": "the L1 equivalence escape; correctness_thm now allows loads_func \"true\" = none",
+   "restated_by": "correctness_thm content restated by the unchanged sound_true",
+   "why": "The L3 drop is redundant (sound_true states loads_func \"true\" = some (.bool true)), but the weakened equivalence is not restated."
+  },
+  "overc__4_json_decoder__L1": {
+   "label": "strict",
+   "dropped": "loads_imp s = loads_func s for all s (loads_equiv_thm now needs s.length < 0)",
+   "restated_by": "none",
+   "why": "loads_equiv_thm is the only theorem mentioning loads_imp, so the whole imperative/functional equivalence is lost."
+  }
+ }
+}

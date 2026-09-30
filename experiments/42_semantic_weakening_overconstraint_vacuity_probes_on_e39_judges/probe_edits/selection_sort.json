@@ -1,0 +1,68 @@
+{
+ "task": "selection_sort",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the permutation conjunct",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  sorted_prop xs ∧\n  permutation_prop xs ∧\n",
+     "new": "  sorted_prop xs ∧\n"
+    },
+    {
+     "decl": "main_correctness_thm",
+     "old": "    sorted_thm xs,\n    permutation_thm xs,\n",
+     "new": "    sorted_thm xs,\n"
+    }
+   ],
+   "proofs": {
+    "main_correctness_thm": "intro H xs h\nhave := H xs h\nsimp only [Post_prop, Post_prop_e42o] at this ⊢\nexact ⟨this.1, this.2.2⟩",
+    "Post_prop": "intro xs h\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nexact ⟨h.1, h.2.2⟩"
+   }
+  },
+  {
+   "level": 2,
+   "op": "drop_conjunct",
+   "description": "membership preservation keeps only output-to-input membership (drops the input-to-output half of the iff)",
+   "edits": [
+    {
+     "decl": "membership_preservation_prop",
+     "old": "y ∈ selectionSort xs ↔ y ∈ xs",
+     "new": "y ∈ selectionSort xs → y ∈ xs"
+    },
+    {
+     "decl": "membership_preservation_thm",
+     "old": "(selectionSort_perm xs).mem_iff",
+     "new": "(selectionSort_perm xs).mem_iff.mp"
+    }
+   ],
+   "proofs": {
+    "membership_preservation_thm": "intro H xs\nsimp only [membership_preservation_prop, membership_preservation_prop_e42o] at H ⊢\nintro y hy\nexact (H xs y).mp hy",
+    "main_correctness_thm": "intro H xs h\nhave := H xs h\nsimp only [Post_prop, Post_prop_e42o, membership_preservation_prop, membership_preservation_prop_e42o] at this ⊢\nexact ⟨this.1, this.2.2.1, fun y hy => (this.2.2.2 y).mp hy⟩",
+    "Post_prop": "intro xs h\nsimp only [Post_prop, Post_prop_e42o, membership_preservation_prop, membership_preservation_prop_e42o] at h ⊢\nexact ⟨h.1, h.2.2.1, fun y hy => (h.2.2.2 y).mp hy⟩",
+    "membership_preservation_prop": "intro xs h\nsimp only [membership_preservation_prop, membership_preservation_prop_e42o] at h ⊢\nintro y hy\nexact (h y).mp hy"
+   }
+  },
+  {
+   "level": 3,
+   "op": "disjunctive_escape",
+   "description": "the correctness theorem gains an escape for inputs of length at most 1",
+   "edits": [
+    {
+     "decl": "main_correctness_thm",
+     "old": ": Post_prop xs :=\n  ⟨",
+     "new": ": Post_prop xs ∨ xs.length ≤ 1 :=\n  Or.inl ⟨"
+    }
+   ],
+   "proofs": {
+    "membership_preservation_thm": "intro H xs\nsimp only [membership_preservation_prop, membership_preservation_prop_e42o] at H ⊢\nintro y hy\nexact (H xs y).mp hy",
+    "main_correctness_thm": "intro H xs h\nhave := H xs h\nsimp only [Post_prop, Post_prop_e42o, membership_preservation_prop, membership_preservation_prop_e42o] at this ⊢\nexact Or.inl ⟨this.1, this.2.2.1, fun y hy => (this.2.2.2 y).mp hy⟩",
+    "Post_prop": "intro xs h\nsimp only [Post_prop, Post_prop_e42o, membership_preservation_prop, membership_preservation_prop_e42o] at h ⊢\nexact ⟨h.1, h.2.2.1, fun y hy => (h.2.2.2 y).mp hy⟩",
+    "membership_preservation_prop": "intro xs h\nsimp only [membership_preservation_prop, membership_preservation_prop_e42o] at h ⊢\nintro y hy\nexact (h y).mp hy"
+   }
+  }
+ ]
+}

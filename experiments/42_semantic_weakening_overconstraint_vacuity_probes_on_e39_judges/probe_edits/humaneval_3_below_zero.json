@@ -1,0 +1,72 @@
+{
+ "task": "humaneval_3_below_zero",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the single-negative conjunct (the only guarantee that belowZero ever returns true)",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  (∀ x, single_negative_prop x) ∧                        -- single_negative_prop\n",
+     "new": ""
+    },
+    {
+     "decl": "correctness_thm",
+     "old": "single_positive_thm, single_negative_thm, monotonicity_thm",
+     "new": "single_positive_thm, monotonicity_thm"
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H operations hPre\nhave h := H operations hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nexact ⟨h.1, h.2.1, h.2.2.2⟩"
+   }
+  },
+  {
+   "level": 2,
+   "op": "disjunctive_escape",
+   "description": "monotonicity_prop gains an escape when the appended operation is zero",
+   "edits": [
+    {
+     "decl": "monotonicity_prop",
+     "old": "belowZero (ops ++ [x]) = false",
+     "new": "belowZero (ops ++ [x]) = false ∨ x = 0"
+    },
+    {
+     "decl": "monotonicity_thm",
+     "old": "  intro ⟨hf, hx⟩\n",
+     "new": "  intro ⟨hf, hx⟩\n  left\n"
+    }
+   ],
+   "proofs": {
+    "monotonicity_prop": "intro ops x h\nsimp only [monotonicity_prop, monotonicity_prop_e42o] at h ⊢\nintro h1\nexact Or.inl (h h1)",
+    "monotonicity_thm": "intro H ops x\nhave h := H ops x\nsimp only [monotonicity_prop, monotonicity_prop_e42o] at h ⊢\nintro h1\nexact Or.inl (h h1)",
+    "Post_prop": "intro operations h\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.1, h.2.1, ?_, h.2.2.2.2⟩\nintro ops x\nhave hm := h.2.2.2.1 ops x\nsimp only [monotonicity_prop, monotonicity_prop_e42o] at hm ⊢\nintro h1\nexact Or.inl (hm h1)",
+    "correctness_thm": "intro H operations hPre\nhave h := H operations hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.1, h.2.1, ?_, h.2.2.2.2⟩\nintro ops x\nhave hm := h.2.2.2.1 ops x\nsimp only [monotonicity_prop, monotonicity_prop_e42o] at hm ⊢\nintro h1\nexact Or.inl (hm h1)"
+   }
+  },
+  {
+   "level": 3,
+   "op": "drop_conjunct",
+   "description": "Post_prop also drops the empty-list conjunct",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  (empty_list_prop) ∧                                    -- empty_list_prop\n",
+     "new": ""
+    },
+    {
+     "decl": "correctness_thm",
+     "old": "⟨empty_list_thm, single_positive_thm",
+     "new": "⟨single_positive_thm"
+    }
+   ],
+   "proofs": {
+    "monotonicity_prop": "intro ops x h\nsimp only [monotonicity_prop, monotonicity_prop_e42o] at h ⊢\nintro h1\nexact Or.inl (h h1)",
+    "monotonicity_thm": "intro H ops x\nhave h := H ops x\nsimp only [monotonicity_prop, monotonicity_prop_e42o] at h ⊢\nintro h1\nexact Or.inl (h h1)",
+    "Post_prop": "intro operations h\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.2.1, ?_, h.2.2.2.2⟩\nintro ops x\nhave hm := h.2.2.2.1 ops x\nsimp only [monotonicity_prop, monotonicity_prop_e42o] at hm ⊢\nintro h1\nexact Or.inl (hm h1)",
+    "correctness_thm": "intro H operations hPre\nhave h := H operations hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.2.1, ?_, h.2.2.2.2⟩\nintro ops x\nhave hm := h.2.2.2.1 ops x\nsimp only [monotonicity_prop, monotonicity_prop_e42o] at hm ⊢\nintro h1\nexact Or.inl (hm h1)"
+   }
+  }
+ ]
+}

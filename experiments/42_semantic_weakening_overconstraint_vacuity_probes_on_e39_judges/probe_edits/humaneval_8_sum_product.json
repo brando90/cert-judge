@@ -1,0 +1,76 @@
+{
+ "task": "humaneval_8_sum_product",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "cons_prop keeps only the sum component (drops the product half of the pair equation)",
+   "edits": [
+    {
+     "decl": "cons_prop",
+     "old": "  let (s, p) := sumProduct xs\n  sumProduct (x::xs) = (x + s, x * p)",
+     "new": "  let (s, _) := sumProduct xs\n  (sumProduct (x::xs)).1 = x + s"
+    },
+    {
+     "decl": "cons_thm",
+     "old": "  simp only [Prod.mk.injEq]; constructor <;> ring",
+     "new": "  simp only []; ring"
+    }
+   ],
+   "proofs": {
+    "cons_prop": "intro x xs hc\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]",
+    "cons_thm": "intro H x xs\nhave hc := H x xs\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]",
+    "correctness_thm": "intro H numbers hPre\nhave h := H numbers hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.1, h.2.1, ?_, h.2.2.2⟩\nintro x xs\nhave hc := h.2.2.1 x xs\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]"
+   }
+  },
+  {
+   "level": 2,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the append conjunct, leaving products of longer lists unconstrained",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  (zero_product_prop numbers) ∧                              -- zero_product_prop\n  (∀ xs ys, append_prop xs ys)                               -- append_prop",
+     "new": "  (zero_product_prop numbers)                                -- zero_product_prop"
+    },
+    {
+     "decl": "correctness_thm",
+     "old": "zero_product_thm numbers, append_thm⟩",
+     "new": "zero_product_thm numbers⟩"
+    }
+   ],
+   "proofs": {
+    "cons_prop": "intro x xs hc\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]",
+    "cons_thm": "intro H x xs\nhave hc := H x xs\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]",
+    "Post_prop": "intro numbers h\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.1, h.2.1, ?_, h.2.2.2.1⟩\nintro x xs\nhave hc := h.2.2.1 x xs\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]",
+    "correctness_thm": "intro H numbers hPre\nhave h := H numbers hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.1, h.2.1, ?_, h.2.2.2.1⟩\nintro x xs\nhave hc := h.2.2.1 x xs\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]"
+   }
+  },
+  {
+   "level": 3,
+   "op": "disjunctive_escape",
+   "description": "singleton_prop gains an escape for negative elements",
+   "edits": [
+    {
+     "decl": "singleton_prop",
+     "old": "sumProduct [n] = (n, n)",
+     "new": "sumProduct [n] = (n, n) ∨ n < 0"
+    },
+    {
+     "decl": "singleton_thm",
+     "old": "  ext <;> simp",
+     "new": "  left\n  ext <;> simp"
+    }
+   ],
+   "proofs": {
+    "singleton_prop": "intro n h\nsimp only [singleton_prop, singleton_prop_e42o] at h ⊢\nexact Or.inl h",
+    "singleton_thm": "intro H n\nhave h := H n\nsimp only [singleton_prop, singleton_prop_e42o] at h ⊢\nexact Or.inl h",
+    "cons_prop": "intro x xs hc\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]",
+    "cons_thm": "intro H x xs\nhave hc := H x xs\nrevert hc\nunfold cons_prop cons_prop_e42o\nrcases sumProduct xs with ⟨s, p⟩\nintro hc\ntry dsimp only at hc ⊢\nrw [hc]",
+    "Post_prop": "intro numbers h\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.1, ?_, ?_, h.2.2.2.1⟩\n· intro n\n  have h1 := h.2.1 n\n  simp only [singleton_prop, singleton_prop_e42o] at h1 ⊢\n  exact Or.inl h1\n· intro x xs\n  have hc := h.2.2.1 x xs\n  revert hc\n  unfold cons_prop cons_prop_e42o\n  rcases sumProduct xs with ⟨s, p⟩\n  intro hc\n  try dsimp only at hc ⊢\n  rw [hc]",
+    "correctness_thm": "intro H numbers hPre\nhave h := H numbers hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nrefine ⟨h.1, ?_, ?_, h.2.2.2.1⟩\n· intro n\n  have h1 := h.2.1 n\n  simp only [singleton_prop, singleton_prop_e42o] at h1 ⊢\n  exact Or.inl h1\n· intro x xs\n  have hc := h.2.2.1 x xs\n  revert hc\n  unfold cons_prop cons_prop_e42o\n  rcases sumProduct xs with ⟨s, p⟩\n  intro hc\n  try dsimp only at hc ⊢\n  rw [hc]"
+   }
+  }
+ ]
+}

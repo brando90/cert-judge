@@ -1,0 +1,36 @@
+{
+ "task": "43_replace_spaces",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__43_replace_spaces__L1": {
+   "label": "strict",
+   "dropped": "'_' ∈ (replaceSpaces s).data whenever s contains a space (from space_replacement_thm and correctness_thm)",
+   "restated_by": "none",
+   "why": "no_spaces, length_preserved and non_space_preservation do not force an underscore (e.g. output 'x' for input ' ' satisfies them); the equivalence theorem only links two uninterpreted implementations."
+  },
+  "weak__43_replace_spaces__L2": {
+   "label": "strict",
+   "dropped": "the underscore conjunct (L1) and exact length preservation (relaxed to ≤ in length_preserved_thm and correctness_thm)",
+   "restated_by": "none",
+   "why": "length_preserved_prop is the only statement of output length and is now ≤; membership-based properties cannot recover equal length."
+  },
+  "weak__43_replace_spaces__L3": {
+   "label": "strict",
+   "dropped": "underscore conjunct and exact length (L1, L2); non_space_preservation dropped from Post_prop",
+   "restated_by": "non_space_preservation only, by the unchanged non_space_preservation_thm (Pre is True)",
+   "why": "The L3 drop is restated by non_space_preservation_thm, but the underscore and exact-length guarantees from L1/L2 remain unrestated."
+  },
+  "overc__43_replace_spaces__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm (Pre → Post_prop) now needs s.length < 0",
+   "restated_by": "empty_string_thm, no_spaces_thm, length_preserved_thm, space_replacement_thm, non_space_preservation_thm (all hypothesis-free; Pre is True)",
+   "why": "Each conjunct of Post_prop is stated unconditionally by its own unchanged theorem, so the file guarantee is unchanged."
+  },
+  "overc__43_replace_spaces__L2": {
+   "label": "strict",
+   "dropped": "no_spaces, length, space replacement, non-space preservation and replaceSpaces = replaceSpacesImp",
+   "restated_by": "empty_string_prop only, by empty_string_thm",
+   "why": "All theorems except empty_string_thm now carry the unsatisfiable s.length < 0, so every per-input guarantee and the equivalence are lost."
+  }
+ }
+}

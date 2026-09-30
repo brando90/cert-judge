@@ -1,0 +1,36 @@
+{
+ "task": "humaneval_3_below_zero",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__humaneval_3_below_zero__L1": {
+   "label": "redundant",
+   "dropped": "single_negative_prop conjunct of Post_prop (correctness_thm)",
+   "restated_by": "single_negative_thm (unchanged)",
+   "why": "Only the Post_prop conjunct is removed; the standalone single_negative_thm still states ∀ x, x < 0 → belowZero [x] = true."
+  },
+  "weak__humaneval_3_below_zero__L2": {
+   "label": "strict",
+   "dropped": "monotonicity for x = 0 (belowZero ops = false → belowZero (ops ++ [0]) = false), plus the Post single_negative conjunct",
+   "restated_by": "single_negative_thm restates the Post conjunct; nothing restates monotonicity at x = 0",
+   "why": "monotonicity_prop gains the escape ∨ x = 0 in both monotonicity_thm and Post_prop; e.g. belowZero [1, 0] = true is consistent with all probe statements (the go_* lemmas are about the uninterpreted belowZero.go and no lemma links it to belowZero; belowZeroImp is uninterpreted)."
+  },
+  "weak__humaneval_3_below_zero__L3": {
+   "label": "strict",
+   "dropped": "monotonicity at x = 0, plus the Post conjuncts empty_list and single_negative",
+   "restated_by": "empty_list_thm and single_negative_thm restate the removed Post conjuncts; monotonicity at x = 0 is not restated",
+   "why": "The Post-conjunct deletions are covered by standalone theorems, but the monotonicity escape (as in L2) is not restated anywhere."
+  },
+  "overc__humaneval_3_below_zero__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm made vacuous by operations.length < 0",
+   "restated_by": "empty_list_thm, single_positive_thm, single_negative_thm, monotonicity_thm, boolean_result_thm",
+   "why": "Each Post_prop conjunct is still stated by its own unchanged theorem without the hypothesis."
+  },
+  "overc__humaneval_3_below_zero__L2": {
+   "label": "strict",
+   "dropped": "belowZero_equivalence_thm (belowZero = belowZeroImp) made vacuous, plus correctness_thm",
+   "restated_by": "component theorems restate Post_prop; nothing restates the equivalence",
+   "why": "No other statement mentions belowZeroImp, so the functional/imperative equivalence guarantee is lost."
+  }
+ }
+}

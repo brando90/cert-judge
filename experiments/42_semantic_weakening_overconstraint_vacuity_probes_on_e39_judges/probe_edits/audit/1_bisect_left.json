@@ -1,0 +1,36 @@
+{
+ "task": "1_bisect_left",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__1_bisect_left__L1": {
+   "label": "redundant",
+   "dropped": "Post's right_partition_prop_ge conjunct",
+   "restated_by": "bisect_left_right_partition_thm (unchanged, same Pre hypothesis)",
+   "why": "bisect_left_right_partition_thm states right_partition_prop_ge for the same result under the same Pre; with correctness_thm's remaining conjuncts the reference guarantee is recovered."
+  },
+  "weak__1_bisect_left__L2": {
+   "label": "strict",
+   "dropped": "upper bound idx ≤ hi (plus right partition, restated)",
+   "restated_by": "right partition: bisect_left_right_partition_thm; idx ≤ hi: none",
+   "why": "No other theorem bounds the result above (partition props are satisfiable for idx > hi; bisect_equiv_thm only relates uninterpreted implementations)."
+  },
+  "weak__1_bisect_left__L3": {
+   "label": "strict",
+   "dropped": "idx ≤ hi; right partition for arrays of size ≤ 1",
+   "restated_by": "none",
+   "why": "Post lost idx ≤ hi and the only theorem stating right_partition_prop_ge now has the ∨ a.size ≤ 1 escape."
+  },
+  "overc__1_bisect_left__L1": {
+   "label": "strict",
+   "dropped": "correctness_thm (vacuous via lo < 0): lo ≤ idx ∧ idx ≤ hi",
+   "restated_by": "partitions: bisect_left_left_partition_thm, bisect_left_right_partition_thm; bounds: none",
+   "why": "Both partition conjuncts are restated, but the index bounds are stated only in Post, now behind an unsatisfiable hypothesis."
+  },
+  "overc__1_bisect_left__L2": {
+   "label": "strict",
+   "dropped": "all four theorems vacuous (lo < 0): bounds, both partitions, equivalence",
+   "restated_by": "none",
+   "why": "Every theorem carries the unsatisfiable hypothesis lo < 0, so the file guarantees nothing."
+  }
+ }
+}

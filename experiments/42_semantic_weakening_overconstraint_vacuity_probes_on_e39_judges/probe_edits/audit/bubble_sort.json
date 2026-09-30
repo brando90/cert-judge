@@ -1,0 +1,36 @@
+{
+ "task": "bubble_sort",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__bubble_sort__L1": {
+   "label": "redundant",
+   "dropped": "permutation_prop removed from Post_prop (main_correctness_thm)",
+   "restated_by": "permutation_thm (and private bubbleSort_perm), both unchanged",
+   "why": "The permutation guarantee is still stated unconditionally."
+  },
+  "weak__bubble_sort__L2": {
+   "label": "redundant",
+   "dropped": "permutation from Post (L1) and the input-to-output half of membership_preservation (y ∈ xs → y ∈ bubbleSort xs)",
+   "restated_by": "permutation_thm / bubbleSort_perm (List.Perm implies membership iff)",
+   "why": "The dropped membership direction is a direct consequence of the unchanged permutation theorem."
+  },
+  "weak__bubble_sort__L3": {
+   "label": "redundant",
+   "dropped": "L1, L2 drops plus minimum_front_prop removed from Post_prop",
+   "restated_by": "permutation_thm / bubbleSort_perm; minimum_front_thm (unchanged, hypothesis-free)",
+   "why": "Every dropped piece is restated by an unchanged theorem."
+  },
+  "overc__bubble_sort__L1": {
+   "label": "redundant",
+   "dropped": "main_correctness_thm (Pre → Post_prop) now needs xs.length < 0",
+   "restated_by": "sorted_thm, permutation_thm, minimum_front_thm, membership_preservation_thm (all hypothesis-free; Pre is True)",
+   "why": "Each Post_prop conjunct is stated by its own unchanged theorem."
+  },
+  "overc__bubble_sort__L2": {
+   "label": "strict",
+   "dropped": "bubbleSort xs = bubbleSortImp xs (bubbleSort_equivalence_thm now needs xs.length < 0)",
+   "restated_by": "none (private bubbleSortAcc_eq and bubbleSortLoop_eq_acc give bubbleSortLoop xs xs [] = bubbleSort xs, but linking that to bubbleSortImp requires unfolding the implementation definition)",
+   "why": "With implementation definitions uninterpreted, no remaining theorem mentions bubbleSortImp, so the equivalence is lost."
+  }
+ }
+}

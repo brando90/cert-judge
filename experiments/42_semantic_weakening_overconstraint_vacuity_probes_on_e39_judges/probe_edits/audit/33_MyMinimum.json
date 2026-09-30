@@ -1,0 +1,36 @@
+{
+ "task": "33_MyMinimum",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__33_MyMinimum__L1": {
+   "label": "redundant",
+   "dropped": "minimality ∀ z ∈ xs, myMinList xs ≤ z (dropped from minimum_prop)",
+   "restated_by": "private theorem myMinList_le (unchanged); also myMinList_eq_foldl + empty_list_thm pin myMinList exactly",
+   "why": "myMinList_le states minimality for non-empty lists, and myMinList_eq_foldl (myMinList (x :: xs) = List.foldl min x xs) determines the function on every non-empty list."
+  },
+  "weak__33_MyMinimum__L2": {
+   "label": "redundant",
+   "dropped": "minimality; myMinList [x, y] = min x y (now ∨ = x)",
+   "restated_by": "minimality: myMinList_le; two-element: myMinList_eq_foldl (gives myMinList [x, y] = foldl min x [y] = min x y)",
+   "why": "The unchanged private lemmas myMinList_le and myMinList_eq_foldl imply both dropped guarantees."
+  },
+  "weak__33_MyMinimum__L3": {
+   "label": "redundant",
+   "dropped": "minimality; two-element exactness; myMinList [x] = x (now ≤ x)",
+   "restated_by": "myMinList_le; myMinList_eq_foldl (gives myMinList [x] = foldl min x [] = x and the two-element case)",
+   "why": "myMinList_eq_foldl fixes myMinList on all non-empty lists and empty_list_thm fixes []; every reference property follows."
+  },
+  "overc__33_MyMinimum__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm (vacuous via xs.length < 0)",
+   "restated_by": "empty_list_thm, single_element_thm, minimum_thm, membership_thm, two_elements_thm",
+   "why": "Each Post_prop conjunct is stated by its own unchanged property theorem."
+  },
+  "overc__33_MyMinimum__L2": {
+   "label": "strict",
+   "dropped": "myMinList_equivalence_thm (myMinList = myMinListImperative), plus correctness_thm (restated)",
+   "restated_by": "Post content: property theorems; equivalence: none",
+   "why": "myMinListImperative is an uninterpreted implementation definition mentioned by no other theorem, so the functional = imperative guarantee is lost."
+  }
+ }
+}

@@ -1,0 +1,9 @@
+{"task": "4_json_decoder", "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {"level": 1, "op": "disjunctive_escape", "description": "the equivalence theorem gains an escape for inputs the functional spec rejects",
+   "edits": [{"decl": "loads_equiv_thm", "old": "  loads_imp s = loads_func s := by", "new": "  loads_imp s = loads_func s ∨ loads_func s = none := by"}]},
+  {"level": 2, "op": "disjunctive_escape", "description": "Post gains the same escape for inputs the functional spec rejects",
+   "edits": [{"decl": "Post", "old": "  loads_func s = loads_imp s", "new": "  loads_func s = loads_imp s ∨ loads_func s = none"}]},
+  {"level": 3, "op": "disjunctive_escape", "description": "correctness theorem allows loads_func to reject \"true\"",
+   "edits": [{"decl": "correctness_thm", "old": "loads_func \"true\" = some (.bool true) := by rfl", "new": "loads_func \"true\" = some (.bool true) ∨ loads_func \"true\" = none := by\n  left; rfl"}]}
+ ]}

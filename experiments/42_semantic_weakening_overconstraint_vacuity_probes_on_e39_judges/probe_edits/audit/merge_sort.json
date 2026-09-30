@@ -1,0 +1,36 @@
+{
+ "task": "merge_sort",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__merge_sort__L1": {
+   "label": "redundant",
+   "dropped": "permutation_prop conjunct of Post_prop",
+   "restated_by": "permutation_thm (unchanged)",
+   "why": "Only the Post conjunct is removed; permutation_thm still states List.Perm (mergeSort xs) xs."
+  },
+  "overc__merge_sort__L1": {
+   "label": "redundant",
+   "dropped": "main_correctness_thm made vacuous by xs.length < 0",
+   "restated_by": "sorted_thm, permutation_thm, minimum_front_thm, membership_preservation_thm",
+   "why": "Every Post_prop conjunct is still stated by its own unchanged theorem."
+  },
+  "overc__merge_sort__L2": {
+   "label": "strict",
+   "dropped": "mergeSort_equivalence_thm (mergeSort xs = mergeSortImp xs) made vacuous, plus main_correctness_thm",
+   "restated_by": "component theorems restate Post_prop; nothing restates the equivalence",
+   "why": "mergeSortImp is an uninterpreted definition mentioned by no other statement, so the equivalence guarantee is lost."
+  },
+  "weak__merge_sort__L2": {
+   "label": "redundant",
+   "dropped": "reverse direction of membership_preservation, plus the permutation Post conjunct",
+   "restated_by": "permutation_thm (unchanged; Perm gives mem_iff)",
+   "why": "permutation_thm still states List.Perm (mergeSort xs) xs, which implies membership equivalence."
+  },
+  "weak__merge_sort__L3": {
+   "label": "strict",
+   "dropped": "sortedness of mergeSort xs for inputs with duplicates (sorted_prop gains ∨ ¬ xs.Nodup in sorted_thm and Post_prop)",
+   "restated_by": "membership and permutation restated by permutation_thm; sortedness for non-Nodup inputs restated by none",
+   "why": "mergeSortFuel_sorted is about the uninterpreted mergeSortFuel and no statement links mergeSort to it; minimum_front only bounds the head, so e.g. mergeSort [2, 1, 1] = [1, 2, 1] is consistent."
+  }
+ }
+}

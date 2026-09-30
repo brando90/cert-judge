@@ -1,0 +1,68 @@
+{
+ "task": "33_MyMinimum",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "minimum_prop drops the minimality conjunct (result ≤ every element), keeping only membership",
+   "edits": [
+    {
+     "decl": "minimum_prop",
+     "old": "xs ≠ [] → (myMinList xs ∈ xs ∧ ∀ z ∈ xs, myMinList xs ≤ z)",
+     "new": "xs ≠ [] → myMinList xs ∈ xs"
+    },
+    {
+     "decl": "minimum_thm",
+     "old": "  exact ⟨myMinList_mem xs hne, fun z hz => myMinList_le xs hne z hz⟩",
+     "new": "  exact myMinList_mem xs hne"
+    }
+   ],
+   "proofs": {
+    "minimum_thm": "intro H xs\nhave h := H xs\nunfold minimum_prop_e42o at h\nunfold minimum_prop\nexact fun hne => (h hne).1",
+    "correctness_thm": "intro H xs hPre\nhave h := H xs hPre\nunfold Post_prop_e42o minimum_prop_e42o at h\nunfold Post_prop minimum_prop\nexact ⟨h.1, h.2.1, fun hne => (h.2.2.1 hne).1, h.2.2.2⟩",
+    "minimum_prop": "intro xs h\nunfold minimum_prop_e42o at h\nunfold minimum_prop\nexact fun hne => (h hne).1"
+   }
+  },
+  {
+   "level": 2,
+   "op": "disjunctive_escape",
+   "description": "two_elements_prop allows returning the first element instead of the min",
+   "edits": [
+    {
+     "decl": "two_elements_prop",
+     "old": "myMinList [x, y] = min x y",
+     "new": "myMinList [x, y] = min x y ∨ myMinList [x, y] = x"
+    }
+   ],
+   "proofs": {
+    "minimum_thm": "intro H xs\nhave h := H xs\nunfold minimum_prop_e42o at h\nunfold minimum_prop\nexact fun hne => (h hne).1",
+    "two_elements_thm": "intro H x y\nhave h := H x y\nunfold two_elements_prop_e42o at h\nunfold two_elements_prop\nexact Or.inl h",
+    "correctness_thm": "intro H xs hPre\nhave h := H xs hPre\nunfold Post_prop_e42o minimum_prop_e42o two_elements_prop_e42o at h\nunfold Post_prop minimum_prop two_elements_prop\nexact ⟨h.1, h.2.1, fun hne => (h.2.2.1 hne).1, h.2.2.2.1, fun x y => Or.inl (h.2.2.2.2 x y)⟩",
+    "minimum_prop": "intro xs h\nunfold minimum_prop_e42o at h\nunfold minimum_prop\nexact fun hne => (h hne).1",
+    "two_elements_prop": "intro x y h\nunfold two_elements_prop_e42o at h\nunfold two_elements_prop\nexact Or.inl h"
+   }
+  },
+  {
+   "level": 3,
+   "op": "relax_eq",
+   "description": "single_element_prop relaxes myMinList [x] = x to ≤ x",
+   "edits": [
+    {
+     "decl": "single_element_prop",
+     "old": "myMinList [x] = x",
+     "new": "myMinList [x] ≤ x"
+    }
+   ],
+   "proofs": {
+    "minimum_thm": "intro H xs\nhave h := H xs\nunfold minimum_prop_e42o at h\nunfold minimum_prop\nexact fun hne => (h hne).1",
+    "two_elements_thm": "intro H x y\nhave h := H x y\nunfold two_elements_prop_e42o at h\nunfold two_elements_prop\nexact Or.inl h",
+    "single_element_thm": "intro H x\nhave h := H x\nunfold single_element_prop_e42o at h\nunfold single_element_prop\nexact le_of_eq h",
+    "correctness_thm": "intro H xs hPre\nhave h := H xs hPre\nunfold Post_prop_e42o minimum_prop_e42o two_elements_prop_e42o single_element_prop_e42o at h\nunfold Post_prop minimum_prop two_elements_prop single_element_prop\nexact ⟨h.1, fun x => le_of_eq (h.2.1 x), fun hne => (h.2.2.1 hne).1, h.2.2.2.1, fun x y => Or.inl (h.2.2.2.2 x y)⟩",
+    "minimum_prop": "intro xs h\nunfold minimum_prop_e42o at h\nunfold minimum_prop\nexact fun hne => (h hne).1",
+    "two_elements_prop": "intro x y h\nunfold two_elements_prop_e42o at h\nunfold two_elements_prop\nexact Or.inl h",
+    "single_element_prop": "intro x h\nunfold single_element_prop_e42o at h\nunfold single_element_prop\nexact le_of_eq h"
+   }
+  }
+ ]
+}

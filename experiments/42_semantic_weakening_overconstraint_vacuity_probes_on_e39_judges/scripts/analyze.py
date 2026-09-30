@@ -117,7 +117,16 @@ def weakening_tau(scores: dict, rows: list[dict]) -> dict[str, float | None]:
     return out
 
 
-def screen_one(harvest: dict, rows: list[dict], draws: int) -> dict:
+def audit_labels() -> dict[str, str]:
+    """probe_id -> strict / redundant / unclear from probe_edits/audit/<task>.json (file-level audit, pre-registered)."""
+    out = {}
+    for path in sorted((e42.E / "probe_edits/audit").glob("*.json")):
+        for pid, lab in e42.read_json(path).get("labels", {}).items():
+            out[pid] = lab.get("label")
+    return out
+
+
+def screen_one(harvest: dict, rows: list[dict], draws: int, labels: dict[str, str] | None = None) -> dict:
     scores = probe_scores(harvest)
     comps = comparisons(scores, rows)
     metrics, computable = {}, True
@@ -134,6 +143,12 @@ def screen_one(harvest: dict, rows: list[dict], draws: int) -> dict:
     tau_pairs = [(t, v) for t, v in taus.items() if v is not None]
     metrics["weakening_kendall_tau"] = cluster_mean_ci(tau_pairs, draws, e42.SEED)
     metrics["directional_accuracy_ties_half"] = ties_half(scores, rows)
+    # Sensitivity (pre-registered): weakening and over-constraint restricted to probes the file-level audit labels strict.
+    if labels:
+        strict_rows = [r for r in rows if r["family"] not in ("weakening", "overconstraint") or labels.get(r["probe_id"]) == "strict"]
+        strict = comparisons(scores, strict_rows)
+        metrics["file_level_strict_only"] = {fam: cluster_mean_ci([(t, v) for t, v in strict[fam] if v is not None], draws, e42.SEED)
+                                             for fam in ("weakening", "overconstraint")}
     ident_vals = [v for (k, _, _), v in scores.items() if k == "ident" and v is not None]
     metrics["identity_mean_score"] = sum(ident_vals) / len(ident_vals) if ident_vals else None
     if not computable:
@@ -153,9 +168,10 @@ def screen_one(harvest: dict, rows: list[dict], draws: int) -> dict:
 def cmd_screen(args) -> int:
     manifest = e42.read_json(e42.RESULTS / "semantic_probe_manifest.json")
     rows = valid_rows(manifest)
+    labels = audit_labels()
     units = []
     for path in sorted((e42.RESULTS / "harvest").glob("*.json")):
-        units.append(screen_one(e42.read_json(path), rows, args.draws))
+        units.append(screen_one(e42.read_json(path), rows, args.draws, labels))
     summary = {v: sum(u["verdict"] == v for u in units) for v in ("PASS", "FAIL", "NOT_COMPUTABLE")}
     e42.write_json(e42.RESULTS / "semantic_screen.json", {
         "written_utc": e42.stamp(), "rule": f"PASS iff directional accuracy >= {e42.PASS_DIRECTIONAL} on each of vacuity, weakening "

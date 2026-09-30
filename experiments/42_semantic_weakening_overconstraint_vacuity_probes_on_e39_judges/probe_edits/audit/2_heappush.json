@@ -1,0 +1,36 @@
+{
+ "task": "2_heappush",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__2_heappush__L1": {
+   "label": "strict",
+   "dropped": "prop_multiset (result is a permutation of item :: heap)",
+   "restated_by": "none",
+   "why": "Only correctness_thm's Post stated the permutation property; heappush_invariant_thm states only the heap invariant and heappush_equiv_thm only relates uninterpreted implementations."
+  },
+  "weak__2_heappush__L2": {
+   "label": "strict",
+   "dropped": "prop_multiset; exact size res.size = heap.size + 1 (now ≥)",
+   "restated_by": "none",
+   "why": "Permutation is dropped as in L1 and the exact size increase is relaxed to a lower bound in the only definition that states it; nothing else fixes the size."
+  },
+  "weak__2_heappush__L3": {
+   "label": "strict",
+   "dropped": "prop_multiset; exact size; heap invariant when item ∈ heap",
+   "restated_by": "none",
+   "why": "prop_invariant is weakened in both heappush_invariant_thm and Post (escape item ∈ heap.toList), plus the L1/L2 losses; no theorem restates them."
+  },
+  "overc__2_heappush__L1": {
+   "label": "strict",
+   "dropped": "correctness_thm (vacuous via heap.size < 0): prop_size and prop_multiset",
+   "restated_by": "prop_invariant: heappush_invariant_thm; size and multiset: none",
+   "why": "The invariant is restated by heappush_invariant_thm, but size and permutation are stated only in Post, now behind an unsatisfiable hypothesis."
+  },
+  "overc__2_heappush__L2": {
+   "label": "strict",
+   "dropped": "all three theorems vacuous (heap.size < 0): invariant, size, multiset, equivalence",
+   "restated_by": "none",
+   "why": "Every theorem carries the unsatisfiable hypothesis, so the file guarantees nothing."
+  }
+ }
+}

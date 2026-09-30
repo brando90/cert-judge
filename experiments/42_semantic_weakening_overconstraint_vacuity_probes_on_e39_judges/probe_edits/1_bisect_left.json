@@ -1,0 +1,42 @@
+{
+ "task": "1_bisect_left",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post drops the right-partition conjunct (elements from idx to hi are ≥ x)",
+   "edits": [
+    {
+     "decl": "Post",
+     "old": "  left_partition_prop_lt a x idx lo key? ∧\n  right_partition_prop_ge a x idx hi key?",
+     "new": "  left_partition_prop_lt a x idx lo key?"
+    }
+   ]
+  },
+  {
+   "level": 2,
+   "op": "drop_conjunct",
+   "description": "Post also drops the upper bound idx ≤ hi",
+   "edits": [
+    {
+     "decl": "Post",
+     "old": "lo ≤ idx ∧ idx ≤ hi ∧\n",
+     "new": "lo ≤ idx ∧\n"
+    }
+   ]
+  },
+  {
+   "level": 3,
+   "op": "disjunctive_escape",
+   "description": "the right-partition theorem gains an escape for arrays of size at most 1",
+   "edits": [
+    {
+     "decl": "bisect_left_right_partition_thm",
+     "old": "hi key? := sorry",
+     "new": "hi key? ∨ a.size ≤ 1 := sorry"
+    }
+   ]
+  }
+ ]
+}

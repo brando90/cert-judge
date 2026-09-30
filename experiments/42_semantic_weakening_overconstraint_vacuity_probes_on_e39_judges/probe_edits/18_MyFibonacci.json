@@ -1,0 +1,70 @@
+{
+ "task": "18_MyFibonacci",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the recurrence conjunct F(n+2) = F(n) + F(n+1)",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  (fibonacci_rec_prop n) ∧                                -- fibonacci_rec_prop\n",
+     "new": ""
+    },
+    {
+     "decl": "correctness_thm",
+     "old": "fibonacci_one_thm, fibonacci_rec_thm n, ",
+     "new": "fibonacci_one_thm, "
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H n hPre\nhave h := H n hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, h1, h3, h4⟩",
+    "Post_prop": "intro n h\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, h1, h3, h4⟩"
+   }
+  },
+  {
+   "level": 2,
+   "op": "relax_eq",
+   "description": "base case one relaxed from F(1) = 1 to F(1) ≥ 1",
+   "edits": [
+    {
+     "decl": "fibonacci_one_prop",
+     "old": "myFibonacci 1 = 1",
+     "new": "myFibonacci 1 ≥ 1"
+    }
+   ],
+   "proofs": {
+    "fibonacci_one_thm": "intro H\nsimp only [fibonacci_one_prop, fibonacci_one_prop_e42o] at H ⊢\nomega",
+    "correctness_thm": "intro H n hPre\nhave h := H n hPre\nsimp only [Post_prop, Post_prop_e42o, fibonacci_one_prop, fibonacci_one_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, by omega, h3, h4⟩",
+    "Post_prop": "intro n h\nsimp only [Post_prop, Post_prop_e42o, fibonacci_one_prop, fibonacci_one_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, by omega, h3, h4⟩",
+    "fibonacci_one_prop": "intro H\nsimp only [fibonacci_one_prop, fibonacci_one_prop_e42o] at H ⊢\nomega"
+   }
+  },
+  {
+   "level": 3,
+   "op": "disjunctive_escape",
+   "description": "base case zero also admits the 1-indexed convention F(0) = 1",
+   "edits": [
+    {
+     "decl": "fibonacci_zero_prop",
+     "old": "myFibonacci 0 = 0",
+     "new": "myFibonacci 0 = 0 ∨ myFibonacci 0 = 1"
+    },
+    {
+     "decl": "fibonacci_zero_thm",
+     "old": "unfold fibonacci_zero_prop myFibonacci; rfl",
+     "new": "unfold fibonacci_zero_prop myFibonacci; left; rfl"
+    }
+   ],
+   "proofs": {
+    "fibonacci_one_thm": "intro H\nsimp only [fibonacci_one_prop, fibonacci_one_prop_e42o] at H ⊢\nomega",
+    "fibonacci_zero_thm": "intro H\nsimp only [fibonacci_zero_prop, fibonacci_zero_prop_e42o] at H ⊢\nexact Or.inl H",
+    "correctness_thm": "intro H n hPre\nhave h := H n hPre\nsimp only [Post_prop, Post_prop_e42o, fibonacci_zero_prop, fibonacci_zero_prop_e42o, fibonacci_one_prop, fibonacci_one_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨Or.inl h0, by omega, h3, h4⟩",
+    "Post_prop": "intro n h\nsimp only [Post_prop, Post_prop_e42o, fibonacci_zero_prop, fibonacci_zero_prop_e42o, fibonacci_one_prop, fibonacci_one_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨Or.inl h0, by omega, h3, h4⟩",
+    "fibonacci_one_prop": "intro H\nsimp only [fibonacci_one_prop, fibonacci_one_prop_e42o] at H ⊢\nomega",
+    "fibonacci_zero_prop": "intro H\nsimp only [fibonacci_zero_prop, fibonacci_zero_prop_e42o] at H ⊢\nexact Or.inl H"
+   }
+  }
+ ]
+}

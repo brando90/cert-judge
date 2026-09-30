@@ -1,0 +1,70 @@
+{
+ "task": "humaneval_13__gcd",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the maximality conjunct",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  (divisibility_prop a b) ∧                              -- divisibility_prop\n  (maximality_prop a b)                                  -- maximality_prop",
+     "new": "  (divisibility_prop a b)                                -- divisibility_prop"
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H a b h\nhave h0 := H a b h\nsimp only [Post_prop, Post_prop_e42o] at h0 ⊢\nexact ⟨h0.1, h0.2.1, h0.2.2.1, h0.2.2.2.1⟩",
+    "Post_prop": "intro a b h0\nsimp only [Post_prop, Post_prop_e42o] at h0 ⊢\nexact ⟨h0.1, h0.2.1, h0.2.2.1, h0.2.2.2.1⟩"
+   }
+  },
+  {
+   "level": 2,
+   "op": "relax_eq",
+   "description": "gcd_self_prop relaxes gcd a a = a to gcd a a ≤ a",
+   "edits": [
+    {
+     "decl": "gcd_self_prop",
+     "old": "gcd a a = a",
+     "new": "gcd a a ≤ a"
+    },
+    {
+     "decl": "gcd_self_thm",
+     "old": "simp only [gcd_self_prop, gcd_eq_nat_gcd, Nat.gcd_self]",
+     "new": "simp only [gcd_self_prop, gcd_eq_nat_gcd, Nat.gcd_self, le_refl]"
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H a b h\nhave h0 := H a b h\nsimp only [Post_prop, Post_prop_e42o, gcd_self_prop, gcd_self_prop_e42o] at h0 ⊢\nexact ⟨le_of_eq h0.1, h0.2.1, h0.2.2.1, h0.2.2.2.1⟩",
+    "Post_prop": "intro a b h0\nsimp only [Post_prop, Post_prop_e42o, gcd_self_prop, gcd_self_prop_e42o] at h0 ⊢\nexact ⟨le_of_eq h0.1, h0.2.1, h0.2.2.1, h0.2.2.2.1⟩",
+    "gcd_self_thm": "intro H a\nhave h0 := H a\nsimp only [gcd_self_prop, gcd_self_prop_e42o] at h0 ⊢\nexact le_of_eq h0",
+    "gcd_self_prop": "intro a h0\nsimp only [gcd_self_prop, gcd_self_prop_e42o] at h0 ⊢\nexact le_of_eq h0"
+   }
+  },
+  {
+   "level": 3,
+   "op": "drop_conjunct",
+   "description": "divisibility_prop drops the b % g = 0 conjunct",
+   "edits": [
+    {
+     "decl": "divisibility_prop",
+     "old": "  (a % g = 0) ∧ (b % g = 0)",
+     "new": "  (a % g = 0)"
+    },
+    {
+     "decl": "divisibility_thm",
+     "old": "  exact ⟨Nat.mod_eq_zero_of_dvd (Nat.gcd_dvd_left a b),\n         Nat.mod_eq_zero_of_dvd (Nat.gcd_dvd_right a b)⟩",
+     "new": "  exact Nat.mod_eq_zero_of_dvd (Nat.gcd_dvd_left a b)"
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H a b h\nhave h0 := H a b h\nsimp only [Post_prop, Post_prop_e42o, gcd_self_prop, gcd_self_prop_e42o, divisibility_prop, divisibility_prop_e42o] at h0 ⊢\nexact ⟨le_of_eq h0.1, h0.2.1, h0.2.2.1, h0.2.2.2.1.1⟩",
+    "Post_prop": "intro a b h0\nsimp only [Post_prop, Post_prop_e42o, gcd_self_prop, gcd_self_prop_e42o, divisibility_prop, divisibility_prop_e42o] at h0 ⊢\nexact ⟨le_of_eq h0.1, h0.2.1, h0.2.2.1, h0.2.2.2.1.1⟩",
+    "gcd_self_thm": "intro H a\nhave h0 := H a\nsimp only [gcd_self_prop, gcd_self_prop_e42o] at h0 ⊢\nexact le_of_eq h0",
+    "gcd_self_prop": "intro a h0\nsimp only [gcd_self_prop, gcd_self_prop_e42o] at h0 ⊢\nexact le_of_eq h0",
+    "divisibility_thm": "intro H a b\nhave h0 := H a b\nsimp only [divisibility_prop, divisibility_prop_e42o] at h0 ⊢\nexact h0.1",
+    "divisibility_prop": "intro a b h0\nsimp only [divisibility_prop, divisibility_prop_e42o] at h0 ⊢\nexact h0.1"
+   }
+  }
+ ]
+}

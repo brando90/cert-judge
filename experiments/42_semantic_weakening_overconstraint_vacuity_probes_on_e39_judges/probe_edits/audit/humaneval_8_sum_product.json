@@ -1,0 +1,36 @@
+{
+ "task": "humaneval_8_sum_product",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__humaneval_8_sum_product__L1": {
+   "label": "redundant",
+   "dropped": "product component of cons_prop ((sumProduct (x::xs)).2 = x * (sumProduct xs).2)",
+   "restated_by": "append_thm with xs := [x] plus singleton_thm (also the unchanged equivalence/lemma chain: sumProduct_equivalence_thm + sumProductImp_eq_loop + sumProdLoop_eq_helper + helper_eq_foldl (sumProduct l = List.foldl (fun acc n => (acc.1 + n, acc.2 * n)) (0, 1) l))",
+   "why": "append_thm gives sumProduct ([x] ++ xs) = (x + s, x * p) using sumProduct [x] = (x, x); the lemma chain additionally pins sumProduct to a List.foldl, so nothing is lost."
+  },
+  "weak__humaneval_8_sum_product__L2": {
+   "label": "redundant",
+   "dropped": "product component of cons_prop, and the append conjunct of Post_prop",
+   "restated_by": "append_thm (unchanged standalone) + singleton_thm; also sumProduct_equivalence_thm + sumProductImp_eq_loop + sumProdLoop_eq_helper + helper_eq_foldl (sumProduct l = List.foldl (fun acc n => (acc.1 + n, acc.2 * n)) (0, 1) l)",
+   "why": "append_prop is only dropped from Post_prop; append_thm still states it and together with singleton_thm restores the cons product clause."
+  },
+  "weak__humaneval_8_sum_product__L3": {
+   "label": "redundant",
+   "dropped": "cons product clause, append Post conjunct, and singleton_prop for n < 0 (sumProduct [n] = (n, n))",
+   "restated_by": "sumProduct_equivalence_thm + sumProductImp_eq_loop + sumProdLoop_eq_helper + helper_eq_foldl (sumProduct l = List.foldl (fun acc n => (acc.1 + n, acc.2 * n)) (0, 1) l); append_thm restates the append conjunct",
+   "why": "The unchanged private lemmas plus the unchanged equivalence theorem state sumProduct l = List.foldl (fun acc n => (acc.1 + n, acc.2 * n)) (0, 1) l, which implies every reference property, including sumProduct [n] = (n, n) for negative n."
+  },
+  "overc__humaneval_8_sum_product__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm made vacuous by numbers.length < 0",
+   "restated_by": "empty_list_thm, singleton_thm, cons_thm, zero_product_thm, append_thm",
+   "why": "Every Post_prop conjunct is still stated by its own unchanged theorem."
+  },
+  "overc__humaneval_8_sum_product__L2": {
+   "label": "redundant",
+   "dropped": "sumProduct_equivalence_thm (sumProduct = sumProductImp) made vacuous, plus correctness_thm",
+   "restated_by": "empty_list_thm + cons_thm determine sumProduct l = (sum l, prod l); sumProductImp_eq_loop + sumProdLoop_eq_helper + helper_eq_foldl give sumProductImp l = List.foldl (fun acc n => (acc.1 + n, acc.2 * n)) (0, 1) l = (sum l, prod l)",
+   "why": "Both sides are pinned to the same value by unchanged statements, so sumProduct = sumProductImp still follows; component theorems restate Post_prop. (Relies on the private lemma statements; would be strict if those were ignored.)"
+  }
+ }
+}

@@ -1,0 +1,78 @@
+{
+ "task": "merge_sort",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the permutation conjunct",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  sorted_prop xs ∧\n  permutation_prop xs ∧\n",
+     "new": "  sorted_prop xs ∧\n"
+    },
+    {
+     "decl": "main_correctness_thm",
+     "old": "    sorted_thm xs,\n    permutation_thm xs,\n",
+     "new": "    sorted_thm xs,\n"
+    }
+   ],
+   "proofs": {
+    "main_correctness_thm": "intro H xs h\nhave h0 := H xs h\nsimp only [Post_prop, Post_prop_e42o] at h0 ⊢\nexact ⟨h0.1, h0.2.2.1, h0.2.2.2⟩",
+    "Post_prop": "intro xs h0\nsimp only [Post_prop, Post_prop_e42o] at h0 ⊢\nexact ⟨h0.1, h0.2.2.1, h0.2.2.2⟩"
+   }
+  },
+  {
+   "level": 2,
+   "op": "drop_conjunct",
+   "description": "membership preservation keeps only the output-to-input direction of the iff (every input element need no longer appear)",
+   "edits": [
+    {
+     "decl": "membership_preservation_prop",
+     "old": "∀ y, y ∈ mergeSort xs ↔ y ∈ xs",
+     "new": "∀ y, y ∈ mergeSort xs → y ∈ xs"
+    },
+    {
+     "decl": "membership_preservation_thm",
+     "old": "exact (permutation_thm xs).mem_iff",
+     "new": "exact (permutation_thm xs).mem_iff.mp"
+    }
+   ],
+   "proofs": {
+    "main_correctness_thm": "intro H xs h\nhave h0 := H xs h\nsimp only [Post_prop, Post_prop_e42o, membership_preservation_prop, membership_preservation_prop_e42o] at h0 ⊢\nexact ⟨h0.1, h0.2.2.1, fun y => (h0.2.2.2 y).mp⟩",
+    "Post_prop": "intro xs h0\nsimp only [Post_prop, Post_prop_e42o, membership_preservation_prop, membership_preservation_prop_e42o] at h0 ⊢\nexact ⟨h0.1, h0.2.2.1, fun y => (h0.2.2.2 y).mp⟩",
+    "membership_preservation_thm": "intro H xs\nhave h0 := H xs\nsimp only [membership_preservation_prop, membership_preservation_prop_e42o] at h0 ⊢\nexact fun y => (h0 y).mp",
+    "membership_preservation_prop": "intro xs h0\nsimp only [membership_preservation_prop, membership_preservation_prop_e42o] at h0 ⊢\nexact fun y => (h0 y).mp"
+   }
+  },
+  {
+   "level": 3,
+   "op": "disjunctive_escape",
+   "description": "sortedness gains an escape for inputs containing duplicates",
+   "edits": [
+    {
+     "decl": "sorted_prop",
+     "old": "SortedNat (mergeSort xs)",
+     "new": "SortedNat (mergeSort xs) ∨ ¬ xs.Nodup"
+    },
+    {
+     "decl": "sorted_thm",
+     "old": "exact mergeSortFuel_sorted xs.length xs (le_rfl)",
+     "new": "exact Or.inl (mergeSortFuel_sorted xs.length xs (le_rfl))"
+    },
+    {
+     "decl": "minimum_front_thm",
+     "old": "have hs : SortedNat (mergeSort xs) := sorted_thm xs",
+     "new": "have hs : SortedNat (mergeSort xs) := mergeSortFuel_sorted xs.length xs (le_rfl)"
+    }
+   ],
+   "proofs": {
+    "main_correctness_thm": "intro H xs h\nhave h0 := H xs h\nsimp only [Post_prop, Post_prop_e42o, membership_preservation_prop, membership_preservation_prop_e42o, sorted_prop, sorted_prop_e42o] at h0 ⊢\nexact ⟨Or.inl h0.1, h0.2.2.1, fun y => (h0.2.2.2 y).mp⟩",
+    "Post_prop": "intro xs h0\nsimp only [Post_prop, Post_prop_e42o, membership_preservation_prop, membership_preservation_prop_e42o, sorted_prop, sorted_prop_e42o] at h0 ⊢\nexact ⟨Or.inl h0.1, h0.2.2.1, fun y => (h0.2.2.2 y).mp⟩",
+    "membership_preservation_thm": "intro H xs\nhave h0 := H xs\nsimp only [membership_preservation_prop, membership_preservation_prop_e42o] at h0 ⊢\nexact fun y => (h0 y).mp",
+    "membership_preservation_prop": "intro xs h0\nsimp only [membership_preservation_prop, membership_preservation_prop_e42o] at h0 ⊢\nexact fun y => (h0 y).mp"
+   }
+  }
+ ]
+}

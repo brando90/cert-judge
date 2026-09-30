@@ -1,0 +1,36 @@
+{
+ "task": "humaneval_31_is_prime",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__humaneval_31_is_prime__L1": {
+   "label": "redundant",
+   "dropped": "prime_def_prop's no-divisor conjunct (isPrime n = true → ∀ d, 2 ≤ d → d < n → n % d ≠ 0), in both prime_def_thm and Post_prop",
+   "restated_by": "composite_thm (contrapositive) together with the weakened prime_def_thm (isPrime n = true → n ≥ 2)",
+   "why": "If isPrime n = true then n ≥ 2 (weakened prime_def_thm); any divisor d with 2 ≤ d < n would make composite_thm give isPrime n = false, so the no-divisor conjunct still follows."
+  },
+  "weak__humaneval_31_is_prime__L2": {
+   "label": "strict",
+   "dropped": "composite_prop for perfect squares (e.g. isPrime 4 = false) and prime_def's no-divisor conjunct for them",
+   "restated_by": "none",
+   "why": "composite_prop now allows the escape ∃ d, d*d = n and prime_def only gives n ≥ 2, so isPrime 4 = true satisfies every probe statement; no other theorem (small_numbers, two_is_prime, equivalence to the uninterpreted isPrimeImp) rules it out."
+  },
+  "weak__humaneval_31_is_prime__L3": {
+   "label": "strict",
+   "dropped": "composite_prop for perfect squares, prime_def's no-divisor conjunct, and small_numbers_prop at n = 1 (isPrime 1 = false)",
+   "restated_by": "none",
+   "why": "Same loss as L2 (isPrime 4 = true is consistent) plus small_numbers_prop now permits isPrime 1 = true; no unchanged theorem restates either."
+  },
+  "overc__humaneval_31_is_prime__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm (Post_prop n) made vacuous by hrange : n < 0",
+   "restated_by": "small_numbers_thm, two_is_prime_thm, composite_thm, prime_def_thm",
+   "why": "Post_prop is exactly the conjunction of the four component props, each still stated by its own theorem without the added hypothesis."
+  },
+  "overc__humaneval_31_is_prime__L2": {
+   "label": "strict",
+   "dropped": "small_numbers_thm, composite_thm, prime_def_thm, correctness_thm and isPrime_equivalence_thm all made vacuous (n < 0)",
+   "restated_by": "none (only two_is_prime_thm remains unconstrained)",
+   "why": "Small-number, composite, prime-definition and isPrime = isPrimeImp guarantees are each only stated under the unsatisfiable hypothesis; nothing else restates them."
+  }
+ }
+}

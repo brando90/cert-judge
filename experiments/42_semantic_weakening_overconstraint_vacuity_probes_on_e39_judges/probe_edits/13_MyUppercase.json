@@ -1,0 +1,60 @@
+{
+ "task": "13_MyUppercase",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the append-distributivity conjunct",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  (∀ c, single_char_prop c) ∧                             -- single_char_prop\n  (∀ s₂, append_distributive_prop s s₂)                   -- append_distributive_prop",
+     "new": "  (∀ c, single_char_prop c)                               -- single_char_prop"
+    }
+   ],
+   "proofs": {
+    "correctness_thm": "intro H s hPre\nhave h := H s hPre\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, h1, h2, h3⟩",
+    "Post_prop": "intro s h\nsimp only [Post_prop, Post_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, h1, h2, h3⟩"
+   }
+  },
+  {
+   "level": 2,
+   "op": "relax_eq",
+   "description": "length preservation relaxed from = to ≤ (output may be shorter than input)",
+   "edits": [
+    {
+     "decl": "length_preservation_prop",
+     "old": "(myUppercase s).length = s.length",
+     "new": "(myUppercase s).length ≤ s.length"
+    }
+   ],
+   "proofs": {
+    "length_preservation_thm": "intro H s\nhave h := H s\nsimp only [length_preservation_prop, length_preservation_prop_e42o] at h ⊢\nomega",
+    "correctness_thm": "intro H s hPre\nhave h := H s hPre\nsimp only [Post_prop, Post_prop_e42o, length_preservation_prop, length_preservation_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, by omega, h2, h3⟩",
+    "Post_prop": "intro s h\nsimp only [Post_prop, Post_prop_e42o, length_preservation_prop, length_preservation_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, by omega, h2, h3⟩",
+    "length_preservation_prop": "intro s h\nsimp only [length_preservation_prop, length_preservation_prop_e42o] at h ⊢\nomega"
+   }
+  },
+  {
+   "level": 3,
+   "op": "disjunctive_escape",
+   "description": "single-character property gains an escape for non-alphabetic characters",
+   "edits": [
+    {
+     "decl": "single_char_prop",
+     "old": "myUppercase (String.mk [c]) = String.mk [toUpper c]",
+     "new": "myUppercase (String.mk [c]) = String.mk [toUpper c] ∨ ¬ c.isAlpha"
+    }
+   ],
+   "proofs": {
+    "length_preservation_thm": "intro H s\nhave h := H s\nsimp only [length_preservation_prop, length_preservation_prop_e42o] at h ⊢\nomega",
+    "single_char_thm": "intro H c\nhave h := H c\nsimp only [single_char_prop, single_char_prop_e42o] at h ⊢\nexact Or.inl h",
+    "correctness_thm": "intro H s hPre\nhave h := H s hPre\nsimp only [Post_prop, Post_prop_e42o, length_preservation_prop, length_preservation_prop_e42o, single_char_prop, single_char_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, by omega, h2, fun c => Or.inl (h3 c)⟩",
+    "Post_prop": "intro s h\nsimp only [Post_prop, Post_prop_e42o, length_preservation_prop, length_preservation_prop_e42o, single_char_prop, single_char_prop_e42o] at h ⊢\nobtain ⟨h0, h1, h2, h3, h4⟩ := h\nexact ⟨h0, by omega, h2, fun c => Or.inl (h3 c)⟩",
+    "length_preservation_prop": "intro s h\nsimp only [length_preservation_prop, length_preservation_prop_e42o] at h ⊢\nomega",
+    "single_char_prop": "intro c h\nsimp only [single_char_prop, single_char_prop_e42o] at h ⊢\nexact Or.inl h"
+   }
+  }
+ ]
+}

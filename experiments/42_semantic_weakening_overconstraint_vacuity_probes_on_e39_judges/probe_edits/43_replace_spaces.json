@@ -1,0 +1,62 @@
+{
+ "task": "43_replace_spaces",
+ "proposer": "claude-opus-5-5 (Claude Code subagent of the experiment 42 worker; subscription)",
+ "levels": [
+  {
+   "level": 1,
+   "op": "drop_conjunct",
+   "description": "space_replacement_prop drops the conjunct that underscores appear in the output",
+   "edits": [
+    {
+     "decl": "space_replacement_prop",
+     "old": "c ∉ (replaceSpaces s).data ∧ '_' ∈ (replaceSpaces s).data",
+     "new": "c ∉ (replaceSpaces s).data"
+    }
+   ],
+   "proofs": {
+    "space_replacement_thm": "intro H s\nhave h := H s\nunfold space_replacement_prop_e42o at h\nunfold space_replacement_prop\nexact fun c hc hsp => (h c hc hsp).1",
+    "correctness_thm": "intro H s hPre\nhave h := H s hPre\nunfold Post_prop_e42o space_replacement_prop_e42o at h\nunfold Post_prop space_replacement_prop\nexact ⟨h.1, h.2.1, h.2.2.1, fun c hc hsp => (h.2.2.2.1 c hc hsp).1, h.2.2.2.2⟩",
+    "space_replacement_prop": "intro s h\nunfold space_replacement_prop_e42o at h\nunfold space_replacement_prop\nexact fun c hc hsp => (h c hc hsp).1"
+   }
+  },
+  {
+   "level": 2,
+   "op": "relax_eq",
+   "description": "length_preserved_prop relaxes output length = input length to ≤",
+   "edits": [
+    {
+     "decl": "length_preserved_prop",
+     "old": "(replaceSpaces s).length = s.length",
+     "new": "(replaceSpaces s).length ≤ s.length"
+    }
+   ],
+   "proofs": {
+    "space_replacement_thm": "intro H s\nhave h := H s\nunfold space_replacement_prop_e42o at h\nunfold space_replacement_prop\nexact fun c hc hsp => (h c hc hsp).1",
+    "length_preserved_thm": "intro H s\nhave h := H s\nunfold length_preserved_prop_e42o at h\nunfold length_preserved_prop\nexact le_of_eq h",
+    "correctness_thm": "intro H s hPre\nhave h := H s hPre\nunfold Post_prop_e42o space_replacement_prop_e42o length_preserved_prop_e42o at h\nunfold Post_prop space_replacement_prop length_preserved_prop\nexact ⟨h.1, h.2.1, le_of_eq h.2.2.1, fun c hc hsp => (h.2.2.2.1 c hc hsp).1, h.2.2.2.2⟩",
+    "space_replacement_prop": "intro s h\nunfold space_replacement_prop_e42o at h\nunfold space_replacement_prop\nexact fun c hc hsp => (h c hc hsp).1",
+    "length_preserved_prop": "intro s h\nunfold length_preserved_prop_e42o at h\nunfold length_preserved_prop\nexact le_of_eq h"
+   }
+  },
+  {
+   "level": 3,
+   "op": "drop_conjunct",
+   "description": "Post_prop drops the non-space preservation conjunct",
+   "edits": [
+    {
+     "decl": "Post_prop",
+     "old": "  (space_replacement_prop s) ∧                           -- space_replacement_prop\n  (non_space_preservation_prop s)                        -- non_space_preservation_prop",
+     "new": "  (space_replacement_prop s)                             -- space_replacement_prop"
+    }
+   ],
+   "proofs": {
+    "space_replacement_thm": "intro H s\nhave h := H s\nunfold space_replacement_prop_e42o at h\nunfold space_replacement_prop\nexact fun c hc hsp => (h c hc hsp).1",
+    "length_preserved_thm": "intro H s\nhave h := H s\nunfold length_preserved_prop_e42o at h\nunfold length_preserved_prop\nexact le_of_eq h",
+    "correctness_thm": "intro H s hPre\nhave h := H s hPre\nunfold Post_prop_e42o space_replacement_prop_e42o length_preserved_prop_e42o at h\nunfold Post_prop space_replacement_prop length_preserved_prop\nexact ⟨h.1, h.2.1, le_of_eq h.2.2.1, fun c hc hsp => (h.2.2.2.1 c hc hsp).1⟩",
+    "space_replacement_prop": "intro s h\nunfold space_replacement_prop_e42o at h\nunfold space_replacement_prop\nexact fun c hc hsp => (h c hc hsp).1",
+    "length_preserved_prop": "intro s h\nunfold length_preserved_prop_e42o at h\nunfold length_preserved_prop\nexact le_of_eq h",
+    "Post_prop": "intro s h\nunfold Post_prop_e42o space_replacement_prop_e42o length_preserved_prop_e42o at h\nunfold Post_prop space_replacement_prop length_preserved_prop\nexact ⟨h.1, h.2.1, le_of_eq h.2.2.1, fun c hc hsp => (h.2.2.2.1 c hc hsp).1⟩"
+   }
+  }
+ ]
+}

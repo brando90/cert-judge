@@ -1,0 +1,36 @@
+{
+ "task": "binary_search",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__binary_search__L1": {
+   "label": "redundant",
+   "dropped": "found_element_prop removed from Post_prop (main_correctness_thm)",
+   "restated_by": "found_element_thm (unchanged, hypothesis-free)",
+   "why": "found_element_thm still states that a returned index holds the target, so the file guarantee is unchanged."
+  },
+  "weak__binary_search__L2": {
+   "label": "redundant",
+   "dropped": "found_element_prop from Post (L1) and the ← direction of exact_foundness (∃ idx, arr[idx]? = some target → isSome) under Pre",
+   "restated_by": "found_element_thm; not_found_by_get_thm (Pre → result = none → ∀ idx, arr[idx]? ≠ some target), whose contrapositive is the dropped ← direction",
+   "why": "Both dropped pieces follow from unchanged hypothesis-free theorems."
+  },
+  "weak__binary_search__L3": {
+   "label": "redundant",
+   "dropped": "L1 and L2 drops plus not_found_by_get_prop removed from Post_prop",
+   "restated_by": "found_element_thm; not_found_by_get_thm (restates both the dropped Post conjunct and the ← direction of exact_foundness)",
+   "why": "not_found_by_get_thm is itself unchanged and already contains Pre as an antecedent, so every dropped piece is still stated."
+  },
+  "overc__binary_search__L1": {
+   "label": "redundant",
+   "dropped": "main_correctness_thm (Pre → Post_prop) now needs target < 0",
+   "restated_by": "found_element_thm, index_bounds_thm, not_found_by_get_thm, exact_foundness_thm, empty_none_thm (all hypothesis-free)",
+   "why": "Each Post_prop conjunct is stated by its own unchanged theorem."
+  },
+  "overc__binary_search__L2": {
+   "label": "redundant",
+   "dropped": "main_correctness_thm and binarySearch_equivalence_thm now need target < 0",
+   "restated_by": "the five property theorems for Post_prop; the unchanged private theorem binarySearchImp_eq (binarySearchImp arr target = binarySearch arr target) for the equivalence",
+   "why": "The private helper theorem restates the equivalence verbatim (reversed), so no reference guarantee is lost; if private helper theorems were excluded from the file guarantee this would be strict."
+  }
+ }
+}

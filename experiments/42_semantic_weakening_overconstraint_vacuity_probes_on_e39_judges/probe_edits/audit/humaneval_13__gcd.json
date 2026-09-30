@@ -1,0 +1,36 @@
+{
+ "task": "humaneval_13__gcd",
+ "auditor": "claude-opus-5-5 (Claude Code subagent; subscription)",
+ "labels": {
+  "weak__humaneval_13__gcd__L1": {
+   "label": "redundant",
+   "dropped": "maximality_prop removed from Post_prop (correctness_thm)",
+   "restated_by": "maximality_thm (unchanged, hypothesis-free)",
+   "why": "maximality is still stated unconditionally; the other Post conjuncts are unchanged. Note: the reference maximality_thm is unsatisfiable at a = b = 0 (it demands d ≤ gcd 0 0 for every d), so the reference guarantee is inconsistent; the label does not depend on this."
+  },
+  "weak__humaneval_13__gcd__L2": {
+   "label": "redundant",
+   "dropped": "maximality from Post (L1) and gcd a a = a (relaxed to ≤ in gcd_self_thm and Post)",
+   "restated_by": "maximality_thm; private gcd_eq_nat_gcd (gcd a b = Nat.gcd a b) with Nat.gcd_self",
+   "why": "The unchanged bridge theorem pins gcd to Nat.gcd, which implies gcd a a = a. Note: the reference maximality_thm is unsatisfiable at a = b = 0 (it demands d ≤ gcd 0 0 for every d), so the reference guarantee is inconsistent; the label does not depend on this."
+  },
+  "weak__humaneval_13__gcd__L3": {
+   "label": "redundant",
+   "dropped": "L1, L2 drops plus b % gcd a b = 0 (dropped from divisibility_prop)",
+   "restated_by": "maximality_thm; gcd_eq_nat_gcd (Nat.gcd_dvd_right gives b % gcd a b = 0; Nat.gcd_self gives gcd a a = a)",
+   "why": "Every dropped piece follows from the unchanged private bridge theorem or maximality_thm. Note: the reference maximality_thm is unsatisfiable at a = b = 0 (it demands d ≤ gcd 0 0 for every d), so the reference guarantee is inconsistent; the label does not depend on this."
+  },
+  "overc__humaneval_13__gcd__L1": {
+   "label": "redundant",
+   "dropped": "correctness_thm (Pre → Post_prop) now needs a < 0",
+   "restated_by": "gcd_self_thm, gcd_zero_thm, commutativity_thm, divisibility_thm, maximality_thm (all hypothesis-free; Pre is True)",
+   "why": "Each Post_prop conjunct is stated by its own unchanged theorem. Note: the reference maximality_thm is unsatisfiable at a = b = 0 (it demands d ≤ gcd 0 0 for every d), so the reference guarantee is inconsistent; the label does not depend on this."
+  },
+  "overc__humaneval_13__gcd__L2": {
+   "label": "strict",
+   "dropped": "gcd a b = gcdImp a b (gcd_equivalence_thm) and maximality (maximality_thm), both now need a < 0",
+   "restated_by": "gcd_self, gcd_zero, commutativity and divisibility via the unchanged private gcd_eq_nat_gcd; nothing for the equivalence or maximality",
+   "why": "No remaining theorem mentions gcdImp, so the equivalence is lost (maximality is also no longer stated). Note: the reference maximality_thm is unsatisfiable at a = b = 0 (it demands d ≤ gcd 0 0 for every d), so the reference guarantee is inconsistent; the label does not depend on this."
+  }
+ }
+}
