@@ -35,8 +35,20 @@
   2026-04-12 vendor freeze, is the mismatch mechanism there). This is a DIFFERENT, stricter
   comparison than experiment 100's provenance.json (which compares its own 2026-09 snapshot to
   the 2026-04-20 window start and finds 9/25 differ) -- report both, do not conflate.
-- [ ] Step 5: Gate G0 (`results/G0_reproduction.json`)
-- [ ] Step 6: Views V1-V5, S1-S4 (`scripts/rescore.py`, `scripts/test_rescore.py`)
+- [x] Step 5: Gate G0 (`results/G0_reproduction.json`, `scripts/gate_g0.py`) -- **PASS**. Codex
+  avg/pass1/pass2 rho_ti_vs_human = 0.833333/0.904762/0.738095, matching the paper's quoted
+  0.833/0.905/0.738 to 3dp exactly. Also recorded (not paper-quoted, for reference): Claude Opus
+  0.643/0.810/0.595, Qwen3-Coder 0.905/0.476/0.857.
+- [IN PROGRESS] Step 6: Views V1-V5, S1, S3 (`scripts/rescore.py`, running -- task-clustered
+  bootstrap with N_BOOT=10000 x 3 families x 5 views in pure Python is slow, ~5+ min).
+  `scripts/test_rescore.py` written (6 tests: spearman/kendall/pearson vs scipy, constant-input
+  NaN, exact permutation p on a known case + brute-force cross-check, bootstrap seed
+  reproducibility) -- not yet run pending rescore.py module import working.
+  S4 needs no new computation: `results_exp19_low_variance_replot/bug_reversal_rates.csv`
+  (already frozen, archived) shows BAD_STRINGY (the lexical judge) reverses on 20/24 bug ladders,
+  matching README's S4 claim exactly; bug ladders are built directly from the frozen gold file
+  and scored with no human label or cross-file reference involved, so this check is
+  architecturally unaffected by reference provenance -- will cite, not recompute.
 - [ ] Step 7: REPORT.md
 - [ ] Step 8: land (PR, merge, email receipt, `private/DONE`)
 
