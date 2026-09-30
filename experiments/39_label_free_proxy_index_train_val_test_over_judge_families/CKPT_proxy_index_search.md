@@ -1,12 +1,13 @@
 # CKPT: proxy-index search (experiment 39)
 
 Created: 09-30-2026 16:35 UTC
-Last updated: 09-30-2026 14:20 PDT
+Last updated: 09-30-2026 15:02 PDT
 
 Task: run experiments/39_label_free_proxy_index_train_val_test_over_judge_families end to end on SNAP skampere1 per cc.md.
 
 State:
 - 09-30-2026 14:20 PDT: smokes measured for gem31h (second selector), qwen36 (second selector), t2_luna, t2_sonnet5; t2_qwen smokes running. judge_controller.harvest patched: agent costs from atif/trajectory.json final_metrics.total_cost_usd + served instruction_sha256 check. Val mains admitted for luna6h and gem31h.
+- 09-30-2026 15:02 PDT: all 56 smokes measured; all 56 main runs admitted (train/val/test); first merges landed (sol6h D0/H1/H2/LEX/P1/P8 fully measured, $2-6 each); recovery_1 admitted for sol6h|P4 (1 cell). `scripts/campaign_table.py` rewrites the per-configuration table in results.md from results/harvest (run after merges, then commit results/harvest + results.md).
 - Smoke stage status 09-30-2026 14:01 PDT: 32/56 smokes measured first try ($0.76); 24 retired at $0 and re-admitted after (a) agent-judge services redeployed on python@sha256:1aaa65a8… (E39_AGENT_BASE_IMAGE in private/env.sh; the default Ubuntu image has no python3 for the service's verify phase) and (b) results/selectors.json overrides gem31h -> google/gemini-3.1-pro-preview, qwen36 & t2_qwen -> alibaba/qwen3.6-27b (first selectors absent from the gateway registry). Train main runs admitted: 18 (sol6h|D0@main, sol6h|H0@main, sol6h|H1@main, sol6h|H2@main, sol6h|LEX@main, sol6h|P1@main, sol6h|P4@main, sol6h|P8@main, sol6h|R4@main, sonnet5m|D0@main, sonnet5m|H0@main, sonnet5m|H1@main, sonnet5m|H...). Worker loop relaunched 21:00Z (window worker). To retire a $0 admission again: write private/STOP, wait for 'worker exiting' in private/logs/worker.log, edit private/judge/state.json (move the key to retired_admissions, delete its private/judge/harvests file), remove STOP, relaunch the window (command below).
 - Phase (earlier): cc.md step 6 DONE (nine services up: ports 8990-8998, benchmarks certjudge39-{sol6h,sonnet5m,luna6h,gem31h,opus55x,qwen36,t2-luna,t2-sonnet5,t2-qwen}; agent-judge names use hyphens because Valkyrie rejects underscores); step 8 worker loop LAUNCHED 09-30-2026 13:27 PDT in tmux window `cj-e39-proxy-index-search:worker` (`E39_CONCURRENCY=20 bash scripts/worker_loop.sh`, runs `scripts/driver.py --once` every minute; log private/logs/worker.log; state private/judge/state.json; progress results/judge_progress.json). Judge calls begin with the 56 smoke cells.
 - Services: pids in private/service_<key>.pid and private/tunnel_<key>.pid; receipts private/deployment_<key>.json (tunnel URL) and results/deployment_<key>.json (public); `deploy_service.py --model <key> --status` re-checks. Never redeploy a model with a live run (the tunnel URL would change).

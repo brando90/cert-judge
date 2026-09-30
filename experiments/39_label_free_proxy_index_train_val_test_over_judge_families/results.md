@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results.md>
 
 **Status:** RUNNING (started 09-30-2026 12:09 PDT; worker tmux `cj-e39-proxy-index-search` on skampere1, branch `e39-proxy-index-search`; no judge call made yet)
-**Last updated:** 09-30-2026 14:20 PDT
+**Last updated:** 09-30-2026 15:02 PDT
 
 Experiment 39: 56 judge configurations (50 single-call: six judge models × the VeriBench and cert-judge prompt families; 6 agent judges: Terminus2 + GPT-6 Luna / Claude Sonnet 5 / Qwen3.6-27B on the H2 and D0 rubrics) plus 4 controls, judged on Lean-validated probes through Valkyrie; a label-free index is selected on the train judge models (GPT-6 Sol, Claude Sonnet 5), checked on val (GPT-6 Luna, Gemini 3.1 Pro, Terminus2 + Luna) and tested once on held-out judges (Claude Opus 5.5, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen) against agreement with the expert coverage ratings on 45 held-out VeriBench items; results pending.
 
@@ -19,7 +19,7 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 | Probes elaborated with Lean 4.22 + Mathlib | DONE 09-30-2026 12:41 PDT (mirror project with the VeriBench prelude; see deviations): valid/invalid per kind — ident 24/1, blank 25/0, ms_gold 76/4, bm_gold 37/60, crit 75/0, ms_cand 3/72, alpha 3/72, reorder 0/75, sorry 3/72, spam 3/72 | `results/probe_manifest.json` |
 | Exact quote (no automatic cap, Amendment 1) | DONE 09-30-2026: 28,591 calls over 56 configurations, expected $790.59 (train $129.49, val $127.01, test $534.13), worst-case admission bound $11,945 (no automatic spend cap: PROTOCOL.md Amendment 1; regenerated under the amended `quote.py`) | `results/QUOTE.json`, `results/cells_summary.json` |
 | Bundle, agent-harness and pack checks | bundle PASS (served `vb103_judge` byte-identical to experiment 103's validated bundle); harness PASS (`brando_terminus_gateway`: kwargs `max_turns` 20, `reasoning_effort` high; its contract maps the gateway secret itself); packs PASS (nine packs, 0 round-trip failures: 4,633 tasks per nine-prompt model, 2,545 for Claude Opus 5.5, 979 per agent judge, each including one smoke cell per configuration) | `results/agent_bundle_check.json`, `results/agent_harness.json`, `results/packs.json` |
-| Smoke per configuration; main admission train → val → test; recovery pass; merge | IN PROGRESS since 09-30-2026 13:27 PDT: 56 smoke runs admitted, 32 measured on the first attempt (GPT-6 Sol 9/9, Claude Sonnet 5 9/9, GPT-6 Luna 9/9, Claude Opus 5.5 5/5; $0.76 in smoke charges), 24 retired at $0 and re-admitted after two fixes (see deviations); the 18 train main runs are admitted (concurrency 20 each) | `results/judge_progress.json`, `results/harvest/` |
+| Smoke per configuration; main admission train → val → test; recovery pass; merge | IN PROGRESS since 09-30-2026 13:27 PDT: 56 smoke runs admitted, 32 measured on the first attempt (GPT-6 Sol 9/9, Claude Sonnet 5 9/9, GPT-6 Luna 9/9, Claude Opus 5.5 5/5; $0.76 in smoke charges), 24 retired at $0 and re-admitted after two fixes (see deviations); all 56 main runs admitted by 21:23Z (concurrency 20 each; every smoke measured, including the six Terminus2 agent judges); train configurations are being harvested, recovered and merged, see the live table below | `results/judge_progress.json`, `results/harvest/` |
 | Criterion, components, indices (train + val rows open; test rows sealed) | PENDING | `results/units_train_val.json` |
 | Selection committed | PENDING | `results/FINALISTS.json`, `results/SELECTION.json` |
 | One-shot test | PENDING | `results/TEST_RECEIPT.json` |
@@ -36,6 +36,71 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 | Valid probes (Lean 4.22 + Mathlib) | golds with ladders 24/25; candidates elaborating 3/75 (ms_cand 3, alpha 3, reorder 0, sorry 3, spam 3 valid probes) | `results/probe_manifest.json` |
 | Human ceiling on the criterion items | 0.747 (mean leave-one-expert-out Spearman, 45 items) | VeriBench experiment 100 |
 | Criterion correlations, component values, index correlations | not measured | — |
+
+## Judge campaign (live, per configuration)
+
+<!-- campaign-table:begin -->
+_Merged configurations as of 09-30-2026 22:02 UTC: 6/56; measured cells 3,061 of 3,126 merged cells; Vals-reported charges $23.32 on merged main + recovery runs, plus $1.21 on the 56 smoke cells._
+
+| Configuration | Split | Selector | Cells | Measured | Deterministic | Missing (class) | Recovered | Charges (USD) |
+|---|---|---|---:|---:|---:|---|---:|---:|
+| `sol6h|D0` | train | `openai/gpt-6-sol-high` | 521 | 456 | 56 | unmeasured_extraction 9 | 0 | 4.35 |
+| `sol6h|H0` | train | — | — | — | — | not merged yet | — | — |
+| `sol6h|H1` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 6.24 |
+| `sol6h|H2` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 6.04 |
+| `sol6h|LEX` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 2.14 |
+| `sol6h|P1` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 2.38 |
+| `sol6h|P4` | train | — | — | — | — | not merged yet | — | — |
+| `sol6h|P8` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 2.18 |
+| `sol6h|R4` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|D0` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|H0` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|H1` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|H2` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|LEX` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|P1` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|P4` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|P8` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|R4` | train | — | — | — | — | not merged yet | — | — |
+| `gem31h|D0` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|H0` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|H1` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|H2` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|LEX` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|P1` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|P4` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|P8` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|R4` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|D0` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|H0` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|H1` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|H2` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|LEX` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|P1` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|P4` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|P8` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|R4` | val | — | — | — | — | not merged yet | — | — |
+| `t2_luna|D0` | val | — | — | — | — | not merged yet | — | — |
+| `t2_luna|H2` | val | — | — | — | — | not merged yet | — | — |
+| `opus55x|D0` | test | — | — | — | — | not merged yet | — | — |
+| `opus55x|H0` | test | — | — | — | — | not merged yet | — | — |
+| `opus55x|H2` | test | — | — | — | — | not merged yet | — | — |
+| `opus55x|LEX` | test | — | — | — | — | not merged yet | — | — |
+| `opus55x|P4` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|D0` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|H0` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|H1` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|H2` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|LEX` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|P1` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|P4` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|P8` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|R4` | test | — | — | — | — | not merged yet | — | — |
+| `t2_qwen|D0` | test | — | — | — | — | not merged yet | — | — |
+| `t2_qwen|H2` | test | — | — | — | — | not merged yet | — | — |
+| `t2_sonnet5|D0` | test | — | — | — | — | not merged yet | — | — |
+| `t2_sonnet5|H2` | test | — | — | — | — | not merged yet | — | — |
+<!-- campaign-table:end -->
 
 ## Deviations and open questions for Brando
 
