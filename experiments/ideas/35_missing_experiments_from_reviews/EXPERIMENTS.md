@@ -23,6 +23,7 @@ Common rules for every prompt (prepend when dispatching): read `CLAUDE.md` and `
 - **Inputs:** same as 35.1.
 - **Unlocks:** one sentence in §5.3; closes uMVy-6/DeJF-2 beyond the existing CIs.
 - **Prompt:** "Experiment 35.2. From the frozen per-configuration `TI_var` and human-agreement values of the three families, compute pooled, leave-one-family-out, and leave-one-configuration-out Spearman associations with 10k bootstrap CIs. Reproduce the per-family headline values first. Output `results/lofo.csv`, `results/loco.csv`, `REPORT.md`, and one drafted sentence for §5.3."
+- **Status (09-30-2026):** folded into `experiments/41_paper_panel_provenance_audit_and_vb_expert_label_rescore/` (secondary analysis S1, under both the paper labels and VeriBench's expert labels).
 
 ### 35.3 Adaptive-overfitting bound for reusing one labeled panel — the intro `TODO(internal-review)` (O3)
 - **Gap:** "why can't a new judge on the same domain reuse the labels?" The honest answer needs a number: how fast does selection on one fixed 72-pair panel inflate the apparent judge–human correlation?
@@ -38,6 +39,7 @@ Common rules for every prompt (prepend when dispatching): read `CLAUDE.md` and `
 - **Inputs:** the 24 validation-panel golds and the VeriBench golds under `data/veribench_dataset/lean_src/veribench`; the Lean toolchain pinned in the repo.
 - **Unlocks:** 35.6 (scoring); until then, §6 can say the probes exist and are unscored.
 - **Prompt:** "Experiment 35.4. Extend the probe builder with five new ladders (vacuity, weakening, over-constraint, formatting-only, bloat) following `probe_validation.py`'s fail-closed pattern. Emit a manifest with sha256 per probe, elaboration status, and the expected score direction. No judge calls. Report counts per ladder and per split in `REPORT.md`."
+- **Status (09-30-2026):** deletion, blank, spam, `sorry`, renaming and reordering probes are in `experiments/39_label_free_proxy_index_train_val_test_over_judge_families/`; vacuity, weakening, over-constraint and formatting probes are dispatched as `experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges/`.
 
 ## Tier 1 — subscription-CLI judge calls ($0 API; quote first; regular-tier model `gpt-5.6-terra` unless Brando says otherwise)
 
@@ -53,17 +55,20 @@ Common rules for every prompt (prepend when dispatching): read `CLAUDE.md` and `
 - **Quote shape:** ladders × files × repeats — expect 2–4k calls; run repeat-major so partial layers are complete.
 - **Unlocks:** replaces "untested" in §6 with numbers; a new appendix table; possibly a fifth property.
 - **Prompt:** "Experiment 35.6. Score the probes built in 35.4 with the certified prompt configurations via the subscription CLI (repeat-major order, cached per cell, quote in `CKPT.md` first). Report, per ladder, whether scores move in the expected direction, which judges fail, and how adding each property changes the judge ranking under `TI_var`. Draft the §6 sentences that replace 'untested'."
+- **Status (09-30-2026):** scoring of the new probes is phase 2 of `experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges/`.
 
 ### 35.7 Certify the currently served judges (re-run P1–P4 on today's models) — practical relevance
 - **Gap:** `gpt-5.3-codex` is no longer served; the paper's certified panel is a snapshot. Reviewers will ask whether the protocol still works on current models.
 - **Design:** run the frozen P1–P4 suite (exp16 contract) for `gpt-5.6-terra` and one Claude model via `claude -p`, compute `TI_var`, and the judge–human association on the 72 pairs; the exp32 archive already has a runner and a quote (864 calls per configuration).
 - **Unlocks:** a "protocol applied to a new judge" paragraph — the paper's own use case demonstrated end-to-end.
 - **Prompt:** "Experiment 35.7. Reuse `experiments/archive/32_veribench_ranking_certified_judge/compute_property_suite.py` and the exp16 ladders to certify `gpt-5.6-terra|P1_BASELINE` (and one Claude configuration via `claude -p`): P1–P4, `TI_var`, and Spearman with the 72-pair labels. Quote first (~864 calls per configuration). Report where each new judge lands on the paper's Figure 2 and draft the paragraph."
+- **Status (09-30-2026):** covered by `experiments/39_label_free_proxy_index_train_val_test_over_judge_families/` (six currently served judge models plus agent judges, against VeriBench's expert labels).
 
 ### 35.8 Gaming resistance — E6 disclosure ("resistance to gaming remains untested")
 - **Design:** let a coding agent optimize candidate specifications against the judge's score (score feedback only, no labels) for 24 problems; measure how much the judge score rises versus how the property suite and the human labels react; the question is whether `TI_var` or P1–P4 flag the gamed judge/candidates.
 - **Quote shape:** agent loop ≈ 24 × 10 iterations × 1 judge call + property re-scoring; ~1k calls.
 - **Prompt:** "Experiment 35.8. Build a judge-gaming loop: an agent edits candidate Lean specs to maximize the P1 judge score under elaboration constraints. Report the score gain, whether the gamed candidates score higher than their golds, and whether P2/P3 ladders built from the gamed candidates expose the judge. CLI-only; quote first."
+- **Status (09-30-2026):** dispatched as `experiments/43_judge_gaming_resistance_score_optimizing_attacker_vs_property_index/`.
 
 ### 35.9 Other proof assistants pilot — A26-DeJF-7
 - **Design:** port P1–P3 ladders to Dafny or Verus using the vericoding benchmark's specs (`bursuc2025…`), 20 items, one judge; report whether the same prompts and index transfer.
@@ -84,6 +89,7 @@ Common rules for every prompt (prepend when dispatching): read `CLAUDE.md` and `
 ### 35.12 Recover the panel rubric text and an annotator report — today's audit
 - **Design:** Brando asks Ethan for the two rubric texts he used and whether size/spam were penalized; record verbatim as an annotator report under `experiments/human_labels/`; the paper then states what the rubric instructed instead of inferring it.
 - **Cost:** one email.
+- **Status (09-30-2026):** partly answerable without the email: `experiments/41_paper_panel_provenance_audit_and_vb_expert_label_rescore/` (S2) recovers the old-prompt and corrected-prompt rater instructions from VeriBench's git history.
 
 ## Suggested order
 35.1 → 35.2 → 35.3 (today, zero inference) → 35.4 (build) → 35.5 and 35.7 (quotes to Brando) → 35.6 → 35.8/35.9 (only if time) ; 35.12 now; 35.10/35.11 are Brando's call and are the only way to answer "does it generalize".
