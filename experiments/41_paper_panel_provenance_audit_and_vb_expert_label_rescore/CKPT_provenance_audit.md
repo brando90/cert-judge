@@ -1,6 +1,8 @@
 # Checkpoint: experiment 41 provenance audit
 
-**Last updated:** 09-30-2026 14:58 PDT
+**Last updated:** 09-30-2026 14:42 PDT
+
+LANDED da61634b2fd32185423059b7753de3f7d622f131 https://github.com/brando90/cert-judge/pull/50 09-30-2026 14:42 PDT
 **Worker:** Claude Sonnet 5, effort high, tmux `cj-e41-provenance-audit`, skampere1
 **Branch:** `e41-provenance-audit` (clone: `/lfs/skampere1/0/brando9/cert-judge_e41`)
 **Model calls so far:** 0 (zero-call analysis; this is a text/data audit)
@@ -58,12 +60,12 @@
 - [x] Step 7: REPORT.md written (G0, label identity, provenance table, V1-V5 table, S1/S2/S3/S4,
   drafted §5.1/§6 replacement sentences, unmeasured items disclosed). `results.md` set to DONE,
   experiment README status line added, `experiments/README.md` row updated.
-- [IN PROGRESS] Step 8: land. PR opened: https://github.com/brando90/cert-judge/pull/50 .
-  origin/main advanced by one commit since branching (84e1c0e, adds only
-  `experiments/CKPT_MASTER_tmux1_cc_6043a46f.md` -- no path overlap with this experiment).
-  Merge-base before rebase: 7b10d95. Fetched main tip: 84e1c0e. Backup branch:
-  `e41-backup-09-30-2026-1458` at this commit. Next: rebase onto 84e1c0e, re-run tests,
-  force-with-lease push, `gh pr merge --rebase`.
+- [x] Step 8: landed. PR #50 merged via `gh pr merge --rebase --match-head-commit --delete-branch`,
+  confirmed MERGED via `gh pr view 50 --json state,mergeCommit,url` (state=MERGED, merge commit
+  da61634). Rebase diff review (`git diff e41-backup-09-30-2026-1458 HEAD`) showed zero content
+  loss -- only main's new unrelated file appeared. Remote task branch confirmed deleted
+  (`git ls-remote --exit-code --heads origin refs/heads/e41-provenance-audit` -> exit 2). Local
+  `main` fast-forwarded to da61634. Email receipt + `private/DONE`: next.
 
 ## Notes / deviations
 (none yet)
