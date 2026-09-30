@@ -2,8 +2,8 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results.md>
 
-**Status:** DISPATCH-READY (designed 09-30-2026; no judge call made yet)
-**Last updated:** 09-30-2026 17:35 UTC
+**Status:** DISPATCH-READY, on `main` since 09-30-2026 17:53 UTC (PR #48 merged as 2d5b16a; no judge call made yet)
+**Last updated:** 09-30-2026 17:53 UTC
 
 Experiment 39: 56 judge configurations (50 single-call: six judge models × the VeriBench and cert-judge prompt families; 6 agent judges: Terminus2 + GPT-6 Luna / Claude Sonnet 5 / Qwen3.6-27B on the H2 and D0 rubrics) plus 4 controls, judged on Lean-validated probes through Valkyrie; a label-free index is selected on the train judge models (GPT-6 Sol, Claude Sonnet 5), checked on val (GPT-6 Luna, Gemini 3.1 Pro, Terminus2 + Luna) and tested once on held-out judges (Claude Opus 5.5, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen) against agreement with the expert coverage ratings on 45 held-out VeriBench items; results pending.
 

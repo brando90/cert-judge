@@ -1,12 +1,13 @@
 # CKPT: proxy-index search (experiment 39)
 
 Created: 09-30-2026 16:35 UTC
-Last updated: 09-30-2026 17:35 UTC
+Last updated: 09-30-2026 17:53 UTC
 
 Task: run experiments/39_label_free_proxy_index_train_val_test_over_judge_families end to end on SNAP skampere1 per cc.md.
 
 State:
-- Phase: DESIGNED, not dispatched. No judge call made. Nothing spent.
+- Phase: LANDED ON MAIN, not dispatched. No judge call made. Nothing spent.
+- LANDED 2d5b16a74170b4f03ebc78ebaf3f4e16dcb26506 https://github.com/brando90/cert-judge/pull/48 09-30-2026 17:53 UTC (rebase-merge of PR #48; deterministic checks: 19 tests, layout OK; QA: not requested)
 - Code: scripts/ complete; `python3 -m pytest scripts/test_e39.py -q` -> 19 passed (cloud container, 09-30-2026). Theorem finder widened to same-line `@[attr] theorem` heads after the PR #48 review (181/181 gold theorems found, was 60). Agent-judge family (Terminus2 + Luna val; Terminus2 + Sonnet 5 and + Qwen test; H2, D0) added the same day at Brando's request ("the proxy metric should work for multiple agents").
 - Dry run (cloud container, local VeriBench checkout, no Lean): panel 60 units; probes constructed (unvalidated); 56 configurations rendered; quote 51,500 calls / $1,421 expected (cap $2,000); pack round-trip PASS for opus55x (transport flavor) and t2_luna (agent flavor); controls scored.
 - Coordination: a sibling cloud session ("Sir Judge validation setup") read PR #48 on 09-30-2026 and chose not to duplicate; it is reviewing (noted the legacy prompts' last-theorem reference makes gold-deletion ladders one-step for P1/P4/P8/LEX — recorded in PROTOCOL.md as a known configuration property). No shared checkout; it should post findings on PR #48. Outputs kept under results/planning_dryrun/ (superseded on SNAP).
