@@ -1,0 +1,1415 @@
+{
+ "written_utc": "2026-09-30T21:48:57.221372+00:00",
+ "experiment": "certjudge42-semantic-probes",
+ "source": "experiment 39 scripts/e39.py (read-only import)",
+ "e39_py_sha256": "117ee622eded3e3cc1533cf1d1c4a0ae5b6a9ce90938c45b207eab643f78720d",
+ "n_units": 60,
+ "n_llm": 56,
+ "counts_by_e39_split": {
+  "train": {
+   "llm": 18,
+   "control": 4
+  },
+  "val": {
+   "llm": 20,
+   "control": 0
+  },
+  "test": {
+   "llm": 18,
+   "control": 0
+  }
+ },
+ "prompt_fingerprints": {
+  "D0": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46",
+  "R4": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b",
+  "H0": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114",
+  "H1": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716",
+  "H2": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9",
+  "P1": "0aa088c00bb47cf45c5882ea1c6f1f12a01d48949c0823fdaf10a70622fe96e4",
+  "P4": "22447ac8cf859caadef945bcdfed9f75bba48030bd6784cb15fa3f22e665aae7",
+  "P8": "ddc9557a72536128ffbb72cf64a1663605b57ad0e014ebf666bc3aa5727fb9c9",
+  "LEX": "5fa4c38e322af4ac0f268d0da414927f1e98217237ff9bc02665462fb8d56984"
+ },
+ "units": [
+  {
+   "config": "sol6h|D0",
+   "model_key": "sol6h",
+   "prompt_key": "D0",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sol6h|R4",
+   "model_key": "sol6h",
+   "prompt_key": "R4",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "R4_exp75_human_precondition",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "sol6h|H0",
+   "model_key": "sol6h",
+   "prompt_key": "H0",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H0_human_mirror",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "sol6h|H1",
+   "model_key": "sol6h",
+   "prompt_key": "H1",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H1_human_mirror_rater_conventions",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "sol6h|H2",
+   "model_key": "sol6h",
+   "prompt_key": "H2",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "sol6h|P1",
+   "model_key": "sol6h",
+   "prompt_key": "P1",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P1_BASELINE",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sol6h|P4",
+   "model_key": "sol6h",
+   "prompt_key": "P4",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P4_CHECKLIST",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sol6h|P8",
+   "model_key": "sol6h",
+   "prompt_key": "P8",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P8_STRICT_B",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sol6h|LEX",
+   "model_key": "sol6h",
+   "prompt_key": "LEX",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "label": "GPT-6 Sol (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-sol-high"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "BAD_STRINGY",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sonnet5m|D0",
+   "model_key": "sonnet5m",
+   "prompt_key": "D0",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sonnet5m|R4",
+   "model_key": "sonnet5m",
+   "prompt_key": "R4",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "R4_exp75_human_precondition",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "sonnet5m|H0",
+   "model_key": "sonnet5m",
+   "prompt_key": "H0",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "H0_human_mirror",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "sonnet5m|H1",
+   "model_key": "sonnet5m",
+   "prompt_key": "H1",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "H1_human_mirror_rater_conventions",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "sonnet5m|H2",
+   "model_key": "sonnet5m",
+   "prompt_key": "H2",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "sonnet5m|P1",
+   "model_key": "sonnet5m",
+   "prompt_key": "P1",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "P1_BASELINE",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sonnet5m|P4",
+   "model_key": "sonnet5m",
+   "prompt_key": "P4",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "P4_CHECKLIST",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sonnet5m|P8",
+   "model_key": "sonnet5m",
+   "prompt_key": "P8",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "P8_STRICT_B",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "sonnet5m|LEX",
+   "model_key": "sonnet5m",
+   "prompt_key": "LEX",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "label": "Claude Sonnet 5 (medium), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "medium"
+   },
+   "rubric": "BAD_STRINGY",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "luna6h|D0",
+   "model_key": "luna6h",
+   "prompt_key": "D0",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "luna6h|R4",
+   "model_key": "luna6h",
+   "prompt_key": "R4",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "R4_exp75_human_precondition",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "luna6h|H0",
+   "model_key": "luna6h",
+   "prompt_key": "H0",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H0_human_mirror",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "luna6h|H1",
+   "model_key": "luna6h",
+   "prompt_key": "H1",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H1_human_mirror_rater_conventions",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "luna6h|H2",
+   "model_key": "luna6h",
+   "prompt_key": "H2",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "luna6h|P1",
+   "model_key": "luna6h",
+   "prompt_key": "P1",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P1_BASELINE",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "luna6h|P4",
+   "model_key": "luna6h",
+   "prompt_key": "P4",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P4_CHECKLIST",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "luna6h|P8",
+   "model_key": "luna6h",
+   "prompt_key": "P8",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P8_STRICT_B",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "luna6h|LEX",
+   "model_key": "luna6h",
+   "prompt_key": "LEX",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "label": "GPT-6 Luna (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "BAD_STRINGY",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "gem31h|D0",
+   "model_key": "gem31h",
+   "prompt_key": "D0",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "gem31h|R4",
+   "model_key": "gem31h",
+   "prompt_key": "R4",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "R4_exp75_human_precondition",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "gem31h|H0",
+   "model_key": "gem31h",
+   "prompt_key": "H0",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H0_human_mirror",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "gem31h|H1",
+   "model_key": "gem31h",
+   "prompt_key": "H1",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H1_human_mirror_rater_conventions",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "gem31h|H2",
+   "model_key": "gem31h",
+   "prompt_key": "H2",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "gem31h|P1",
+   "model_key": "gem31h",
+   "prompt_key": "P1",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P1_BASELINE",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "gem31h|P4",
+   "model_key": "gem31h",
+   "prompt_key": "P4",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P4_CHECKLIST",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "gem31h|P8",
+   "model_key": "gem31h",
+   "prompt_key": "P8",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "P8_STRICT_B",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "gem31h|LEX",
+   "model_key": "gem31h",
+   "prompt_key": "LEX",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "label": "Gemini 3.1 Pro (high), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "google/gemini-3.1-pro-preview-high",
+    "google/gemini-3.1-pro-preview"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "BAD_STRINGY",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "opus55x|H2",
+   "model_key": "opus55x",
+   "prompt_key": "H2",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "label": "Claude Opus 5.5 (max), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-opus-5-5-no-fallback"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "max"
+   },
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "opus55x|H0",
+   "model_key": "opus55x",
+   "prompt_key": "H0",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "label": "Claude Opus 5.5 (max), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-opus-5-5-no-fallback"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "max"
+   },
+   "rubric": "H0_human_mirror",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "opus55x|D0",
+   "model_key": "opus55x",
+   "prompt_key": "D0",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "label": "Claude Opus 5.5 (max), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-opus-5-5-no-fallback"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "max"
+   },
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "opus55x|P4",
+   "model_key": "opus55x",
+   "prompt_key": "P4",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "label": "Claude Opus 5.5 (max), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-opus-5-5-no-fallback"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "max"
+   },
+   "rubric": "P4_CHECKLIST",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "opus55x|LEX",
+   "model_key": "opus55x",
+   "prompt_key": "LEX",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "label": "Claude Opus 5.5 (max), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "anthropic/claude-opus-5-5-no-fallback"
+   ],
+   "substitutes": [],
+   "kwargs": {
+    "compute_effort": "max"
+   },
+   "rubric": "BAD_STRINGY",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "qwen36|D0",
+   "model_key": "qwen36",
+   "prompt_key": "D0",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "qwen36|R4",
+   "model_key": "qwen36",
+   "prompt_key": "R4",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "R4_exp75_human_precondition",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "qwen36|H0",
+   "model_key": "qwen36",
+   "prompt_key": "H0",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "H0_human_mirror",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "qwen36|H1",
+   "model_key": "qwen36",
+   "prompt_key": "H1",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "H1_human_mirror_rater_conventions",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "qwen36|H2",
+   "model_key": "qwen36",
+   "prompt_key": "H2",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "qwen36|P1",
+   "model_key": "qwen36",
+   "prompt_key": "P1",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "P1_BASELINE",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "qwen36|P4",
+   "model_key": "qwen36",
+   "prompt_key": "P4",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "P4_CHECKLIST",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "qwen36|P8",
+   "model_key": "qwen36",
+   "prompt_key": "P8",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "P8_STRICT_B",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "qwen36|LEX",
+   "model_key": "qwen36",
+   "prompt_key": "LEX",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "label": "Qwen3.6-27B (thinking), single call",
+   "harness": "vb103_judge",
+   "pack_flavor": "transport",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high",
+    "anthropic/claude-opus-5-no-fallback"
+   ],
+   "kwargs": {},
+   "rubric": "BAD_STRINGY",
+   "prompt_family": "legacy",
+   "scale": 1,
+   "max_tokens": 16384
+  },
+  {
+   "config": "t2_luna|H2",
+   "model_key": "t2_luna",
+   "prompt_key": "H2",
+   "family": "t2_luna",
+   "split": "val",
+   "kind": "llm",
+   "label": "Terminus2 agent + GPT-6 Luna (high)",
+   "harness": "terminus2",
+   "pack_flavor": "agent",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "t2_luna|D0",
+   "model_key": "t2_luna",
+   "prompt_key": "D0",
+   "family": "t2_luna",
+   "split": "val",
+   "kind": "llm",
+   "label": "Terminus2 agent + GPT-6 Luna (high)",
+   "harness": "terminus2",
+   "pack_flavor": "agent",
+   "selectors": [
+    "openai/gpt-6-luna-high",
+    "openai/gpt-5.6-luna-high"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "t2_sonnet5|H2",
+   "model_key": "t2_sonnet5",
+   "prompt_key": "H2",
+   "family": "t2_sonnet5",
+   "split": "test",
+   "kind": "llm",
+   "label": "Terminus2 agent + Claude Sonnet 5 (medium)",
+   "harness": "terminus2",
+   "pack_flavor": "agent",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {},
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "t2_sonnet5|D0",
+   "model_key": "t2_sonnet5",
+   "prompt_key": "D0",
+   "family": "t2_sonnet5",
+   "split": "test",
+   "kind": "llm",
+   "label": "Terminus2 agent + Claude Sonnet 5 (medium)",
+   "harness": "terminus2",
+   "pack_flavor": "agent",
+   "selectors": [
+    "anthropic/claude-sonnet-5-medium"
+   ],
+   "substitutes": [],
+   "kwargs": {},
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "t2_qwen|H2",
+   "model_key": "t2_qwen",
+   "prompt_key": "H2",
+   "family": "t2_qwen",
+   "split": "test",
+   "kind": "llm",
+   "label": "Terminus2 agent + Qwen3.6-27B (thinking)",
+   "harness": "terminus2",
+   "pack_flavor": "agent",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {},
+   "rubric": "H2_human_mirror_conventions_demos",
+   "prompt_family": "veribench",
+   "scale": 5,
+   "max_tokens": 32000
+  },
+  {
+   "config": "t2_qwen|D0",
+   "model_key": "t2_qwen",
+   "prompt_key": "D0",
+   "family": "t2_qwen",
+   "split": "test",
+   "kind": "llm",
+   "label": "Terminus2 agent + Qwen3.6-27B (thinking)",
+   "harness": "terminus2",
+   "pack_flavor": "agent",
+   "selectors": [
+    "alibaba/qwen3.6-27b-thinking",
+    "alibaba/qwen3.6-27b"
+   ],
+   "substitutes": [
+    "openai/gpt-5.6-luna-high"
+   ],
+   "kwargs": {},
+   "rubric": "D0_deployed_tc_v1",
+   "prompt_family": "veribench",
+   "scale": 10,
+   "max_tokens": 16384
+  },
+  {
+   "config": "ctl|editdist",
+   "model_key": "ctl",
+   "prompt_key": "editdist",
+   "family": "control",
+   "split": "train",
+   "kind": "control",
+   "label": "normalized character-Levenshtein similarity between candidate and gold (paper control editdist_e1)",
+   "harness": "none",
+   "pack_flavor": "none",
+   "selectors": [],
+   "substitutes": [],
+   "kwargs": {},
+   "rubric": "ctl|editdist",
+   "prompt_family": "control",
+   "scale": 1,
+   "max_tokens": 0
+  },
+  {
+   "config": "ctl|random",
+   "model_key": "ctl",
+   "prompt_key": "random",
+   "family": "control",
+   "split": "train",
+   "kind": "control",
+   "label": "seed-42 SHA-256 pseudo-random score of the pair (paper control random_r1)",
+   "harness": "none",
+   "pack_flavor": "none",
+   "selectors": [],
+   "substitutes": [],
+   "kwargs": {},
+   "rubric": "ctl|random",
+   "prompt_family": "control",
+   "scale": 1,
+   "max_tokens": 0
+  },
+  {
+   "config": "ctl|count_ratio",
+   "model_key": "ctl",
+   "prompt_key": "count_ratio",
+   "family": "control",
+   "split": "train",
+   "kind": "control",
+   "label": "min(1, candidate theorem-statement count / gold theorem-statement count) (experiment 100's dumb baseline)",
+   "harness": "none",
+   "pack_flavor": "none",
+   "selectors": [],
+   "substitutes": [],
+   "kwargs": {},
+   "rubric": "ctl|count_ratio",
+   "prompt_family": "control",
+   "scale": 1,
+   "max_tokens": 0
+  },
+  {
+   "config": "ctl|name_jaccard",
+   "model_key": "ctl",
+   "prompt_key": "name_jaccard",
+   "family": "control",
+   "split": "train",
+   "kind": "control",
+   "label": "Jaccard overlap of theorem names between candidate and gold",
+   "harness": "none",
+   "pack_flavor": "none",
+   "selectors": [],
+   "substitutes": [],
+   "kwargs": {},
+   "rubric": "ctl|name_jaccard",
+   "prompt_family": "control",
+   "scale": 1,
+   "max_tokens": 0
+  }
+ ]
+}

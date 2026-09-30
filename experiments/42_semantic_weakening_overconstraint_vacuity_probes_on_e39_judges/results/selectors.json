@@ -1,0 +1,21 @@
+{
+ "_meta": {
+  "rule": "experiment 39's recorded selectors (its results/selectors.json at origin/e39-proxy-index-search 9823689), adopted before any experiment 42 admission so every configuration is the same judge experiment 39 runs; only e39.MODELS[key]['selectors'] + e39.SUBSTITUTES[key] are allowed",
+  "adopted_from": "experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results/selectors.json@9823689"
+ },
+ "gem31h": {
+  "selector": "google/gemini-3.1-pro-preview",
+  "source": "adopted from experiment 39: pre-registered selector (second candidate of the same model; e39.MODELS['gem31h']['selectors'][1])",
+  "reason": "experiment 39 registry evidence: smoke run f38096a2-cf67-48bd-93c8-d5346ab5e505 (09-30-2026 20:31Z): the vb103_judge agent raised KeyError 'google/gemini-3.1-pro-preview-high' at the gateway registry lookup before any request; the registry was read inside Valkyrie, never on the host. If this selector is absent too, the next option is the pre-registered substitute openai/gpt-5.6-luna-high."
+ },
+ "qwen36": {
+  "selector": "alibaba/qwen3.6-27b",
+  "source": "adopted from experiment 39: pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])",
+  "reason": "experiment 39 registry evidence: smoke run ba153e59-5c4f-4c54-832f-934a061ec7f5 (09-30-2026 20:33Z): KeyError 'alibaba/qwen3.6-27b-thinking' at the gateway registry lookup before any request. Next options if absent: openai/gpt-5.6-luna-high, then anthropic/claude-opus-5-no-fallback."
+ },
+ "t2_qwen": {
+  "selector": "alibaba/qwen3.6-27b",
+  "source": "adopted from experiment 39: pre-registered selector (second candidate of the same model; e39.MODELS['t2_qwen']['selectors'][1])",
+  "reason": "experiment 39 registry evidence: same selector family as qwen36: 'alibaba/qwen3.6-27b-thinking' is absent from the gateway registry (qwen36 smoke evidence); recorded before this model's first admission that reaches a model (its earlier smokes failed at sandbox provisioning, $0)."
+ }
+}
