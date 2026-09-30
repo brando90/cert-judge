@@ -3,7 +3,7 @@
 **TLDR:** Resumable checkpoint for the skampere1 worker running experiment 42 (Lean-validated semantic probes scored by experiment 39's judges through Valkyrie).
 
 Created: 09-30-2026 14:06 PDT
-Last updated: 09-30-2026 15:39 PDT
+Last updated: 09-30-2026 16:25 PDT
 
 Task: run experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges end to end on SNAP skampere1 per cc.md.
 
@@ -25,6 +25,6 @@ State:
 - Health: `snap_health.sh --node skampere1` -> one FAIL (shared DFS 96% used, 3088 GiB free), not relevant: all files on node-local /lfs; WARN rows are dirty shared DFS checkouts this task does not touch.
 - Experiment 39 status at 14:03 PDT: smoke stage in progress (its results.md: no transport-smoke PASS yet) -> wait gate closed.
 
-Next: watch smokes/main runs; update results.md charges after every merge; then analyze.py screen, wait for experiment 39 units_train_val.json, analyze.py index, REPORT.md, landing.
+Progress 09-30-2026 16:25 PDT: all 56 main runs admitted; 5,418/32,592 cells terminal; 15 ERROR (0.3%). Next: watch main runs; update results.md charges after every merge; then analyze.py screen, wait for experiment 39 units_train_val.json, analyze.py index, REPORT.md, landing.
 
 Blockers: none.
