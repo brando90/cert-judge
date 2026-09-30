@@ -43,7 +43,8 @@ def load_units(allow_unvalidated: bool = False) -> tuple[list[dict], dict]:
                 "all_items": A.criterion(sc, items, ("train", "val", "test"))}
         comps = A.components(sc, probes)
         frozen_pti = A.pti_v0_frozen(sc, probes)
-        units.append({"config": sc.config, "family": sc.family, "split": sc.split, "kind": sc.kind, "status_counts": sc.status_counts,
+        units.append({"config": sc.config, "family": sc.family, "split": sc.split, "kind": sc.kind, "harness": sc.harness,
+                      "status_counts": sc.status_counts,
                       "criteria": crit, "components": comps, "pti_v0": frozen_pti, "ti_var_raw": A.ti_var_raw(sc, probes),
                       "indices": {"PTI_v0_frozen": frozen_pti["value"]}})
     # TI_var normalization is frozen from the TRAIN LLM units only, then applied to every unit.
@@ -144,6 +145,14 @@ def cmd_test(args) -> int:
         results[name] = {"test": A.association(test, name), "val": A.association(val, name, with_uncertainty=False),
                          "train": A.association(train, name, with_uncertainty=False)}
     secondary = {name: A.association(test, name, with_uncertainty=False) for name in A.CANDIDATES if name not in reported}
+    # Harness views (descriptive, not gated): single-call test units alone, and every agent-judge unit's own pair.
+    single = [u for u in test if u.get("harness", "vb103_judge") == "vb103_judge"]
+    agents = [u for u in test if u.get("harness", "vb103_judge") != "vb103_judge"]
+    by_harness = {"single_call_only": {name: A.association(single, name, with_uncertainty=False) for name in reported},
+                  "agent_units": [{"config": u["config"], "harness": u["harness"],
+                                   "criterion_heldout": (u["criteria"]["heldout"] or {}).get("spearman"),
+                                   "indices": {name: u["indices"].get(name) for name in reported}} for u in agents],
+                  "n_single_call": len(single), "n_agent": len(agents)}
     sel = results.get(fin["selected"]) if fin["selected"] else None
     gate = None
     if sel and sel["test"]["spearman"] is not None:
@@ -155,7 +164,7 @@ def cmd_test(args) -> int:
                 "correlations_match": None if gap is None else bool(gap <= MATCH_TOLERANCE)}
     receipt = {"written_utc": e39.stamp(), "finalists_commit": args.finalists_commit, "finalists_sha256": e39.sha_file(FINALISTS),
                "n_test_units": len(test), "test_units": [u["config"] for u in test], "reported": results, "secondary_test_only": secondary,
-               "gate": gate, "sealed_units_sha256": e39.sha_file(UNITS_SEALED)}
+               "by_harness": by_harness, "gate": gate, "sealed_units_sha256": e39.sha_file(UNITS_SEALED)}
     e39.write_json(TEST_RECEIPT, receipt)
     e39.write_json(e39.RESULTS / "units_test.json", {"written_utc": e39.stamp(), "units": sealed, "unlocked_by": receipt["finalists_commit"]})
     print(json.dumps({"gate": gate, "reported": {k: {s: v[s]["spearman"] for s in ("train", "val", "test")} for k, v in results.items()}}, indent=1))
@@ -216,6 +225,12 @@ def cmd_report(args) -> int:
                       f"{fmt(g['permutation_p'], 4)} (gate < {g['gate_p']}) → **{'PASS' if g['PASS'] else 'FAIL'}**; train−test gap {fmt(g['train_test_gap'])} "
                       f"(match tolerance {g['match_tolerance']}) → correlations {'match' if g['correlations_match'] else 'do not match'}."]
         lines += ["", "Secondary (test only, not pre-registered): " + ", ".join(f"{k} {fmt(v['spearman'])} (n={v['n_units']})" for k, v in rec["secondary_test_only"].items())]
+        bh = rec.get("by_harness")
+        if bh:
+            lines += ["", f"Single-call test units only ({bh['n_single_call']}): " + ", ".join(f"{k} {fmt(v['spearman'])}" for k, v in bh["single_call_only"].items()),
+                      "", "| Agent-judge unit | Harness | Criterion ρ | " + " | ".join(rec["reported"]) + " |", "|---|---|---|" + "---|" * len(rec["reported"])]
+            for u in bh["agent_units"]:
+                lines.append(f"| `{u['config']}` | {u['harness']} | {fmt(u['criterion_heldout'])} | " + " | ".join(fmt(u["indices"].get(n)) for n in rec["reported"]) + " |")
     out = e39.RESULTS / "RESULTS_proxy_index_train_val_test.md"
     out.write_text("\n".join(lines) + "\n")
     print(str(out))

@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -28,6 +29,29 @@ TEST_SH = ('#!/usr/bin/env bash\n'
            'echo "experiment 39 judge transport: the verdict is parsed on the host" >&2\n'
            'exit 0\n')
 SMOKE_ITEM_INDEX = 0          # the first crit cell (sorted) of every config is duplicated as the spare smoke cell
+AGENT_STAMP_LINE = "<!-- VeriBench agent-spec v6: experiment 39 agent-judge task; the agent writes one verdict file -->"
+AGENT_PREAMBLE = (
+    "# Judging task\n\n"
+    "You are acting as the judge described in the JUDGE INSTRUCTIONS below. Read the instructions and the MATERIAL TO JUDGE, "
+    "then produce the verdict exactly in the format the instructions require (one JSON object, no markdown fences).\n\n"
+    f"Write that JSON object, and nothing else, to the file `{OUTPUT_PATH}` (create the parent directories if they do not "
+    "exist). Do not create, modify or delete any other file. Do not try to install software, reach the network, or compile "
+    "anything; everything you need is in this task. When the file is written, you are done.\n\n"
+)
+
+
+def agent_task_file(cell: str, item: str | None, repeat: int, kind: str, rubric: str, system: str, user: str) -> str:
+    """The agent-judge flavor: the same header and the same frozen prompt bytes between the same markers, wrapped in a
+    plain task statement telling the agent to write the verdict file (its harness delivers this whole file as the task)."""
+    for text, what in ((system, "system"), (user, "user")):
+        for marker in MARKERS:
+            assert marker not in text, f"{cell}: the {what} prompt contains the marker {marker!r}"
+    header = {"cell": cell, "item": item, "repeat": repeat, "kind": kind, "rubric": rubric, "output_path": OUTPUT_PATH,
+              "flavor": "agent", "system_sha256": e39.sha(system.encode()), "user_sha256": e39.sha(user.encode()),
+              "prompt_sha256": e39.sha((system + "\n\n" + user).encode())}
+    return (AGENT_STAMP_LINE + "\n" + "<!-- vb103-judge-cell: " + json.dumps(header, sort_keys=True) + " -->\n"
+            + AGENT_PREAMBLE + "## JUDGE INSTRUCTIONS\n\n" + SYS_BEGIN + "\n" + system + "\n" + SYS_END + "\n\n"
+            + "## MATERIAL TO JUDGE\n\n" + USER_BEGIN + "\n" + user + "\n" + USER_END + "\n")
 
 
 def task_id_of(prefix: str, prompt_key: str, cell: str) -> str:
@@ -45,8 +69,9 @@ def task_file(cell: str, item: str | None, repeat: int, kind: str, rubric: str, 
             + SYS_BEGIN + "\n" + system + "\n" + SYS_END + "\n" + USER_BEGIN + "\n" + user + "\n" + USER_END + "\n")
 
 
-def emit(pack: Path, task_id: str, cell: dict, rubric: str, blob: dict) -> dict:
-    body = task_file(cell["cell"], cell.get("item") or cell.get("key"), cell["repeat"], cell["kind"], rubric, blob["system"], blob["user"])
+def emit(pack: Path, task_id: str, cell: dict, rubric: str, blob: dict, flavor: str = "transport") -> dict:
+    maker = agent_task_file if flavor == "agent" else task_file
+    body = maker(cell["cell"], cell.get("item") or cell.get("key"), cell["repeat"], cell["kind"], rubric, blob["system"], blob["user"])
     directory = pack / task_id
     (directory / "tests").mkdir(parents=True, exist_ok=True)
     (directory / "instruction.md").write_text(body)
@@ -73,27 +98,50 @@ def build_model_pack(model_key: str, units: list[dict], seed: int) -> dict:
             blob = e39.read_json(cell_dir / f"{cell['cell']}.json")
             if e39.sha((blob["system"] + "\n\n" + blob["user"]).encode()) != cell["prompt_sha256"]:
                 raise AssertionError(f"{unit['config']}/{cell['cell']}: rendered bytes do not match the manifest hash")
-            row = emit(pack, task_id_of("cj39", unit["prompt_key"], f"q{queue_index:05d}__{cell['cell']}"), cell, unit["rubric"], blob)
+            row = emit(pack, task_id_of("cj39", unit["prompt_key"], f"q{queue_index:05d}__{cell['cell']}"), cell, unit["rubric"], blob,
+                       unit["pack_flavor"])
             main_rows.append({**row, "queue_index": queue_index})
         smoke_rows = []
         crit_cells = sorted((c for c in rendered if c["kind"] == "crit" and c["repeat"] == 1), key=lambda c: c["cell"])
         if crit_cells:
             cell = crit_cells[SMOKE_ITEM_INDEX]
             blob = e39.read_json(cell_dir / f"{cell['cell']}.json")
-            smoke_rows.append(emit(pack, task_id_of("smoke", unit["prompt_key"], cell["cell"]), dict(cell, repeat=1), unit["rubric"], blob))
-        per_config[unit["config"]] = {"rubric": unit["rubric"], "prompt_key": unit["prompt_key"], "n_tasks": len(main_rows),
+            smoke_rows.append(emit(pack, task_id_of("smoke", unit["prompt_key"], cell["cell"]), dict(cell, repeat=1), unit["rubric"], blob,
+                                   unit["pack_flavor"]))
+        per_config[unit["config"]] = {"rubric": unit["rubric"], "prompt_key": unit["prompt_key"], "flavor": unit["pack_flavor"],
+                                      "harness": unit["harness"], "n_tasks": len(main_rows),
                                       "n_smoke_tasks": len(smoke_rows), "cells": main_rows, "smoke_cells": smoke_rows,
                                       "max_instruction_bytes": max((r["instruction_bytes"] for r in main_rows), default=0)}
     return {"model_key": model_key, "pack": str(pack), "benchmark": f"certjudge39-{model_key}", "per_config": per_config,
             "n_tasks_total": sum(v["n_tasks"] + v["n_smoke_tasks"] for v in per_config.values())}
 
 
-def round_trip(pack_dir: Path, rows: list[dict]) -> list[str]:
-    _, judge_call = e39.x103_judge_pack()
+def parse_agent_task_file(text: str) -> tuple[dict, str, str]:
+    """Recover header and prompt bytes from an agent-flavor task file (same markers as the transport flavor)."""
+    match = re.search(r"^<!-- vb103-judge-cell: (?P<json>\{.*\}) -->$", text, re.M)
+    assert match, "no vb103-judge-cell header"
+    header = json.loads(match.group("json"))
+
+    def between(begin: str, end: str) -> str:
+        open_marker, close_marker = begin + "\n", "\n" + end
+        assert text.count(open_marker) == 1 and text.count(close_marker) == 1
+        start = text.index(open_marker) + len(open_marker)
+        stop = text.index(close_marker)
+        assert stop > start
+        return text[start:stop]
+    return header, between(SYS_BEGIN, SYS_END), between(USER_BEGIN, USER_END)
+
+
+def round_trip(pack_dir: Path, rows: list[dict], flavor: str = "transport") -> list[str]:
+    if flavor == "agent":
+        parse = parse_agent_task_file
+    else:
+        _, judge_call = e39.x103_judge_pack()
+        parse = judge_call.parse_task_file
     failures = []
     for row in rows:
         body = (pack_dir / row["task_id"] / "instruction.md").read_text()
-        header, system, user = judge_call.parse_task_file(body)
+        header, system, user = parse(body)
         if (e39.sha(system.encode()) != header["system_sha256"] or e39.sha(user.encode()) != header["user_sha256"]
                 or e39.sha((system + "\n\n" + user).encode()) != row["prompt_sha256"] or header["output_path"] != OUTPUT_PATH):
             failures.append(row["task_id"])
@@ -116,7 +164,7 @@ def main() -> int:
         blob = build_model_pack(model_key, [u for u in units if u["model_key"] == model_key], e39.SEED)
         if not args.skip_round_trip:
             for cfg, info in blob["per_config"].items():
-                info["round_trip_failures"] = round_trip(Path(blob["pack"]), info["cells"] + info["smoke_cells"])
+                info["round_trip_failures"] = round_trip(Path(blob["pack"]), info["cells"] + info["smoke_cells"], info["flavor"])
         receipt["packs"][model_key] = blob
     receipt["verdict"] = "PASS" if all(not info.get("round_trip_failures") for p in receipt["packs"].values() for info in p["per_config"].values()) else "FAIL"
     e39.write_json(e39.RESULTS / "packs.json", receipt)

@@ -117,15 +117,30 @@ def admit(config: str, part: str, concurrency: int, only: list[str] | None = Non
     ids_file.parent.mkdir(parents=True, exist_ok=True)
     ids_file.write_text("".join(i + "\n" for i in ids))
     selector, source = selector_for(unit)
-    kwargs = {"judge_config": config, "max_tokens": str(unit["max_tokens"]), "benchmark": benchmark}
-    kwargs.update({k: str(v) for k, v in unit["kwargs"].items()})
-    args = ["run", "start", "--agent", e39.AGENT, "--benchmark", benchmark, "--dataset", "default", "--model", selector,
+    if unit["pack_flavor"] == "agent":
+        # Agent judge: the Terminus2 bundle recorded by the harness check (results/agent_harness.json), its own kwargs,
+        # and the gateway secret NAME mapped by Valkyrie server-side (never read on the host).
+        harness = e39.read_json(e39.RESULTS / "agent_harness.json")
+        assert harness["verdict"] == "PASS", "agent harness check has not passed"
+        agent = harness["agent"]
+        kwargs = {k: str(v) for k, v in harness.get("kwargs", {}).items()}
+        kwargs.update({k: str(v) for k, v in unit["kwargs"].items() if k in harness.get("supported_kwargs", [])})
+        secret_args = ["-s", harness["secret_env"], e39.GATEWAY_SECRET] if harness.get("secret_env") else []
+        agent_sha = harness.get("contract_sha256")
+    else:
+        agent = e39.AGENT
+        kwargs = {"judge_config": config, "max_tokens": str(unit["max_tokens"]), "benchmark": benchmark}
+        kwargs.update({k: str(v) for k, v in unit["kwargs"].items()})
+        secret_args = []                            # vb103_judge's contract declares its own secret mapping
+        agent_sha = bundle["downloaded_now_sha256"].get("judge_call.py")
+    args = ["run", "start", "--agent", agent, "--benchmark", benchmark, "--dataset", "default", "--model", selector,
             "--concurrency", str(concurrency), "--task-ids-file", str(ids_file), "--label", f"cj39-{part}{suffix}-{fs(config)}"[:96]]
+    args += secret_args
     for kwarg, value in kwargs.items():
         args += ["-k", kwarg, value]
-    entry = {"config": config, "selector": selector, "selector_source": source, "kwargs": kwargs, "concurrency": concurrency,
-             "expected_cells": len(ids), "part": part, "suffix": suffix, "benchmark": benchmark,
-             "judge_agent_sha256": bundle["downloaded_now_sha256"].get("judge_call.py"), "service_pid": deployment["service_pid"],
+    entry = {"config": config, "agent": agent, "harness": unit["harness"], "selector": selector, "selector_source": source,
+             "kwargs": kwargs, "concurrency": concurrency, "expected_cells": len(ids), "part": part, "suffix": suffix,
+             "benchmark": benchmark, "judge_agent_sha256": agent_sha, "service_pid": deployment["service_pid"],
              "admitted_at": e39.stamp(), "task_ids_file": str(ids_file), "task_ids": ids if only is not None else None,
              "phase": "admitting", "command": args}
     state["runs"][key] = entry
@@ -327,7 +342,8 @@ def merge(config: str) -> int:
         counts[cell["status"]] = counts.get(cell["status"], 0) + 1
     charges = round((main["charges_usd"] or 0.0) + ((recovery or {}).get("charges_usd") or 0.0), 6)
     out = {"written_utc": e39.stamp(), "config": config, "family": unit["family"], "split": unit["split"], "kind": unit["kind"],
-           "rubric": unit["rubric"], "scale": unit["scale"], "selector": main["selector"], "selector_source": main.get("selector_source"),
+           "harness": unit["harness"], "rubric": unit["rubric"], "scale": unit["scale"], "selector": main["selector"],
+           "selector_source": main.get("selector_source"),
            "kwargs": main["kwargs"], "run_ids": {"main": main["run_id"], "recovery_1": (recovery or {}).get("run_id")},
            "n_cells": len(cells), "status_counts": counts, "recovered_cells": recovered, "charges_usd": charges, "cells": cells}
     e39.write_json(e39.RESULTS / "harvest" / (fs(config) + ".json"), out)

@@ -1,9 +1,9 @@
 {
- "written_utc": "2026-09-30T16:31:04.962838+00:00",
- "cap_usd": 1600.0,
- "total_calls": 45136,
- "expected_usd": 1084.28,
- "worst_case_usd": 20021.69,
+ "written_utc": "2026-09-30T17:05:48.455717+00:00",
+ "cap_usd": 2000.0,
+ "total_calls": 50224,
+ "expected_usd": 1387.36,
+ "worst_case_usd": 21013.12,
  "expected_within_cap": true,
  "prices_usd_per_million": {
   "sol6h": [
@@ -29,6 +29,18 @@
   "qwen36": [
    0.6,
    3.6
+  ],
+  "t2_luna": [
+   0.1,
+   0.5
+  ],
+  "t2_sonnet5": [
+   3.0,
+   15.0
+  ],
+  "t2_qwen": [
+   0.6,
+   3.6
   ]
  },
  "by_split": {
@@ -38,14 +50,14 @@
    "worst_case_usd": 7665.21
   },
   "val": {
-   "calls": 16272,
-   "expected_usd": 215.33,
-   "worst_case_usd": 2681.07
+   "calls": 17968,
+   "expected_usd": 223.46,
+   "worst_case_usd": 2707.18
   },
   "test": {
-   "calls": 12592,
-   "expected_usd": 641.15,
-   "worst_case_usd": 9675.38
+   "calls": 15984,
+   "expected_usd": 936.08,
+   "worst_case_usd": 10640.71
   }
  },
  "by_model": {
@@ -78,6 +90,21 @@
    "calls": 8136,
    "expected_usd": 61.87,
    "worst_case_usd": 771.49
+  },
+  "t2_luna": {
+   "calls": 1696,
+   "expected_usd": 8.13,
+   "worst_case_usd": 26.11
+  },
+  "t2_sonnet5": {
+   "calls": 1696,
+   "expected_usd": 244.08,
+   "worst_case_usd": 783.36
+  },
+  "t2_qwen": {
+   "calls": 1696,
+   "expected_usd": 50.85,
+   "worst_case_usd": 181.97
   }
  },
  "rows": [
@@ -830,6 +857,96 @@
    "worst_case_usd": 58.55,
    "expected_usd": 5.79,
    "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "t2_luna|H2",
+   "split": "val",
+   "calls": 920,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 27382499,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 18.26,
+   "expected_usd": 5.15,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_luna|D0",
+   "split": "val",
+   "calls": 776,
+   "deterministic": 112,
+   "unmeasured": 32,
+   "prompt_bytes": 11160872,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 7.85,
+   "expected_usd": 2.98,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_sonnet5|H2",
+   "split": "test",
+   "calls": 920,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 27382499,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 547.82,
+   "expected_usd": 154.6,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_sonnet5|D0",
+   "split": "test",
+   "calls": 776,
+   "deterministic": 112,
+   "unmeasured": 32,
+   "prompt_bytes": 11160872,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 235.54,
+   "expected_usd": 89.48,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_qwen|H2",
+   "split": "test",
+   "calls": 920,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 27382499,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 127.23,
+   "expected_usd": 32.02,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_qwen|D0",
+   "split": "test",
+   "calls": 776,
+   "deterministic": 112,
+   "unmeasured": 32,
+   "prompt_bytes": 11160872,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 54.74,
+   "expected_usd": 18.83,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
   }
  ],
  "note": "worst case bills max_tokens output on every call (experiment 100's reservation rule); the expected figure is the planning estimate; Vals-reported charges are the record"

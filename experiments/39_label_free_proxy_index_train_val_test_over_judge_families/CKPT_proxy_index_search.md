@@ -1,14 +1,15 @@
 # CKPT: proxy-index search (experiment 39)
 
 Created: 09-30-2026 16:35 UTC
-Last updated: 09-30-2026 16:35 UTC
+Last updated: 09-30-2026 17:13 UTC
 
 Task: run experiments/39_label_free_proxy_index_train_val_test_over_judge_families end to end on SNAP skampere1 per cc.md.
 
 State:
 - Phase: DESIGNED, not dispatched. No judge call made. Nothing spent.
-- Code: scripts/ complete; `python3 -m pytest scripts/test_e39.py -q` -> 16 passed (cloud container, 09-30-2026).
-- Dry run (cloud container, local VeriBench checkout, no Lean): panel 54 units; probes constructed (unvalidated); 50 configurations rendered; quote 45,136 calls / $1,084 expected; pack round-trip PASS for opus55x; controls scored. Outputs kept under results/planning_dryrun/ (superseded on SNAP).
+- Code: scripts/ complete; `python3 -m pytest scripts/test_e39.py -q` -> 18 passed (cloud container, 09-30-2026). Agent-judge family (Terminus2 + Luna val; Terminus2 + Sonnet 5 and + Qwen test; H2, D0) added the same day at Brando's request ("the proxy metric should work for multiple agents").
+- Dry run (cloud container, local VeriBench checkout, no Lean): panel 60 units; probes constructed (unvalidated); 56 configurations rendered; quote 50,224 calls / $1,387 expected (cap $2,000); pack round-trip PASS for opus55x (transport flavor) and t2_luna (agent flavor); controls scored.
+- Coordination: a sibling cloud session ("Sir Judge validation setup") read PR #48 on 09-30-2026 and chose not to duplicate; it is reviewing (noted the legacy prompts' last-theorem reference makes gold-deletion ladders one-step for P1/P4/P8/LEX — recorded in PROTOCOL.md as a known configuration property). No shared checkout; it should post findings on PR #48. Outputs kept under results/planning_dryrun/ (superseded on SNAP).
 - Branch: ccr-a2f6f115-a9zq3m (cert-judge). Worker branch on SNAP: e39-proxy-index-search.
 
 Next command (on skampere1, in the node-local clone, inside tmux `cj-e39-proxy-index-search`):

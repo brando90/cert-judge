@@ -31,31 +31,50 @@ LAKE_BIN = Path(os.environ.get("E39_LAKE_BIN", str(Path.home() / ".elan/bin/lake
 VALK = Path(os.environ.get("E39_VALK", "/lfs/skampere1/0/brando9/.local/share/valkyrie-host-bootstrap/tools/valkyrie/bin/valk"))
 AGENT = "vb103_judge"                       # experiment 103's validated judge transport agent (prompt bytes in, one call)
 BENCHMARK = "certjudge39-proxy-index"
-CAP_USD = 1600.0                            # PROTOCOL.md hard cap on Vals-reported charges for this experiment
+CAP_USD = 2000.0                            # PROTOCOL.md hard cap on Vals-reported charges for this experiment
+GATEWAY_SECRET = "fellows/brandoModelGatewayApiKey"   # secret NAME resolved by Valkyrie server-side; never read on the host
+# Agent-judge harness: a Terminus2 bundle already in the account, tried in this order at the smoke gate. It is the
+# only agent harness VeriBench has run through Valkyrie (experiments 95, 97); the native Claude Code / Codex bundles
+# of experiment 90 are unadmitted and are not used.
+AGENT_HARNESS_CANDIDATES = ("brando_terminus_gateway", "terminus2", "brando_terminus_astra_smoke")
 
 # ---------------------------------------------------------------------------------------------------------
-# Judge panel. A unit is one configuration = judge model x prompt. The split is over judge MODELS, fixed here
-# before any score exists (PROTOCOL.md section 3). Efforts copy experiment 100's configs where they exist.
+# Judge panel. A unit is one configuration = judge (model, harness) x prompt. The split is over judge models
+# and harnesses, fixed here before any score exists (PROTOCOL.md). Efforts copy experiment 100's configs where
+# they exist. `harness` "vb103_judge" = one gateway call carrying the frozen prompt bytes (single-call judge);
+# "terminus2" = the model inside the Terminus2 agent harness, given the same prompt bytes as its task and asked
+# to write the verdict file (agent judge).
 # ---------------------------------------------------------------------------------------------------------
 MODELS = {
-    # key: (selector candidates best first, effort kwargs, split, label)
+    # key: (selector candidates best first, effort kwargs, split, label, harness)
     "sol6h": {"selectors": ["openai/gpt-6-sol-high"], "kwargs": {"reasoning_effort": "high"},
-              "split": "train", "label": "GPT-6 Sol (high)", "max_tokens": 32000},
+              "split": "train", "label": "GPT-6 Sol (high), single call", "max_tokens": 32000, "harness": "vb103_judge"},
     "sonnet5m": {"selectors": ["anthropic/claude-sonnet-5-medium"], "kwargs": {"compute_effort": "medium"},
-                 "split": "train", "label": "Claude Sonnet 5 (medium)", "max_tokens": 32000},
+                 "split": "train", "label": "Claude Sonnet 5 (medium), single call", "max_tokens": 32000, "harness": "vb103_judge"},
     "luna6h": {"selectors": ["openai/gpt-6-luna-high", "openai/gpt-5.6-luna-high"], "kwargs": {"reasoning_effort": "high"},
-               "split": "val", "label": "GPT-6 Luna (high)", "max_tokens": 32000},
+               "split": "val", "label": "GPT-6 Luna (high), single call", "max_tokens": 32000, "harness": "vb103_judge"},
     "gem31h": {"selectors": ["google/gemini-3.1-pro-preview-high", "google/gemini-3.1-pro-preview"],
-               "kwargs": {"reasoning_effort": "high"}, "split": "val", "label": "Gemini 3.1 Pro (high)", "max_tokens": 32000},
+               "kwargs": {"reasoning_effort": "high"}, "split": "val", "label": "Gemini 3.1 Pro (high), single call",
+               "max_tokens": 32000, "harness": "vb103_judge"},
     "opus55x": {"selectors": ["anthropic/claude-opus-5-5-no-fallback"], "kwargs": {"compute_effort": "max"},
-                "split": "test", "label": "Claude Opus 5.5 (max)", "max_tokens": 32000},
+                "split": "test", "label": "Claude Opus 5.5 (max), single call", "max_tokens": 32000, "harness": "vb103_judge"},
     "qwen36": {"selectors": ["alibaba/qwen3.6-27b-thinking", "alibaba/qwen3.6-27b"], "kwargs": {},
-               "split": "test", "label": "Qwen3.6-27B (thinking)", "max_tokens": 32000},
+               "split": "test", "label": "Qwen3.6-27B (thinking), single call", "max_tokens": 32000, "harness": "vb103_judge"},
+    # Agent judges: the same rubric text delivered as a Terminus2 task; the agent reads it in its sandbox and writes the
+    # verdict file. One in val (cheap), two in test (a held-out harness on a train model, and a held-out harness on a
+    # held-out model).
+    "t2_luna": {"selectors": ["openai/gpt-6-luna-high", "openai/gpt-5.6-luna-high"], "kwargs": {"reasoning_effort": "high"},
+                "split": "val", "label": "Terminus2 agent + GPT-6 Luna (high)", "max_tokens": 32000, "harness": "terminus2"},
+    "t2_sonnet5": {"selectors": ["anthropic/claude-sonnet-5-medium"], "kwargs": {},
+                   "split": "test", "label": "Terminus2 agent + Claude Sonnet 5 (medium)", "max_tokens": 32000, "harness": "terminus2"},
+    "t2_qwen": {"selectors": ["alibaba/qwen3.6-27b-thinking", "alibaba/qwen3.6-27b"], "kwargs": {},
+                "split": "test", "label": "Terminus2 agent + Qwen3.6-27B (thinking)", "max_tokens": 32000, "harness": "terminus2"},
 }
 # Pre-registered substitutes if a selector is absent from the live registry at admission time (recorded, never
 # chosen after seeing scores). A substitute keeps the split of the model it replaces.
 SUBSTITUTES = {"luna6h": ["openai/gpt-5.6-luna-high"], "gem31h": ["openai/gpt-5.6-luna-high"],
-               "qwen36": ["openai/gpt-5.6-luna-high", "anthropic/claude-opus-5-no-fallback"]}
+               "qwen36": ["openai/gpt-5.6-luna-high", "anthropic/claude-opus-5-no-fallback"],
+               "t2_luna": ["openai/gpt-5.6-luna-high"], "t2_qwen": ["openai/gpt-5.6-luna-high"]}
 
 # Prompt families. VeriBench prompts render through experiment 100's frozen `prompts.render`; the paper's
 # legacy prompts render through `legacy.render` (reference = the gold's last theorem block, as in the paper).
@@ -80,9 +99,13 @@ PROMPTS = {
             "doc": "cert-judge paper BAD_STRINGY deliberately lexical judge, verbatim (a designed-bad control that is still an LLM configuration)"},
 }
 PROMPT_ORDER = ("D0", "R4", "H0", "H1", "H2", "P1", "P4", "P8", "LEX")
-# The flagship is judged on a five-prompt subset spanning the expected quality range (cost, PROTOCOL.md).
+# The flagship is judged on a five-prompt subset spanning the expected quality range; agent judges on the two
+# VeriBench extremes (the validated H2 prompt and the deployed D0 rubric) (cost, PROTOCOL.md).
 PROMPTS_BY_MODEL = {key: PROMPT_ORDER for key in MODELS}
 PROMPTS_BY_MODEL["opus55x"] = ("H2", "H0", "D0", "P4", "LEX")
+for _key, _model in MODELS.items():
+    if _model["harness"] == "terminus2":
+        PROMPTS_BY_MODEL[_key] = ("H2", "D0")
 
 # Non-LLM controls: deterministic, zero calls, train split only (PROTOCOL.md section 3).
 CONTROLS = {
@@ -147,13 +170,15 @@ def panel_units() -> list[dict]:
             prompt = PROMPTS[prompt_key]
             units.append({"config": config_id(model_key, prompt_key), "model_key": model_key, "prompt_key": prompt_key,
                           "family": model_key, "split": model["split"], "kind": "llm", "label": model["label"],
+                          "harness": model["harness"], "pack_flavor": "agent" if model["harness"] != "vb103_judge" else "transport",
                           "selectors": list(model["selectors"]), "substitutes": list(SUBSTITUTES.get(model_key, [])),
                           "kwargs": dict(model["kwargs"]), "rubric": prompt["rubric"], "prompt_family": prompt["family"],
                           "scale": prompt["scale"], "max_tokens": min(model["max_tokens"], prompt["max_tokens"])})
     for name, doc in CONTROLS.items():
         units.append({"config": name, "model_key": "ctl", "prompt_key": name.split("|", 1)[1], "family": "control",
-                      "split": "train", "kind": "control", "label": doc, "selectors": [], "substitutes": [], "kwargs": {},
-                      "rubric": name, "prompt_family": "control", "scale": 1, "max_tokens": 0})
+                      "split": "train", "kind": "control", "label": doc, "harness": "none", "pack_flavor": "none",
+                      "selectors": [], "substitutes": [], "kwargs": {}, "rubric": name, "prompt_family": "control",
+                      "scale": 1, "max_tokens": 0})
     return units
 
 

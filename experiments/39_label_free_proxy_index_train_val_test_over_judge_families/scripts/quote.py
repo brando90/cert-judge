@@ -18,7 +18,8 @@ import e39                                                    # noqa: E402
 FALLBACK_PRICES = {
     "sol6h": (4.0, 20.0), "sonnet5m": (3.0, 15.0), "luna6h": (0.1, 0.5), "gem31h": (2.0, 12.0),
     "opus55x": (15.0, 75.0), "qwen36": (0.6, 3.6),
-}
+    "t2_luna": (0.1, 0.5), "t2_sonnet5": (3.0, 15.0), "t2_qwen": (0.6, 3.6),
+}  # Sonnet 5 and Opus 5.5 prices are not committed anywhere; these two are assumptions (their expected cost uses measured means)
 # Mean cost per COMPLETE call measured in experiment 100's receipts (same prompts, same models):
 # p5_test_H2_sol_high $0.0118 (n=126); ab_R4_sonnet5 $0.0154 (n=135); p5_test_H2_opus55_max $0.1064 (n=126),
 # p3_i3_H2_opus55_max $0.1307 (n=116), ab_H0_opus $0.1658 (n=135); ab_D0_sol $0.0088 (n=126).
@@ -26,6 +27,11 @@ MEASURED_PER_CALL = {"sol6h": 0.012, "sonnet5m": 0.016, "opus55x": 0.13}
 # Output tokens (answer plus reasoning) assumed for models without a measured mean, from the same receipts:
 # Sol ~500, Opus ~4,000. Conservative middle value.
 ASSUMED_OUTPUT_TOKENS = 1500
+# Agent judges (Terminus2): the task is re-sent on every turn; assume 4 turns of the full prompt plus the harness's own
+# system prompt, and 2,000 output tokens in total. No measured mean exists for a Terminus2 judge.
+AGENT_TURNS = 4
+AGENT_OUTPUT_TOKENS = 2000
+AGENT_OVERHEAD_TOKENS = 3000          # Terminus2 system prompt and tool chatter per turn
 
 
 def prices(panel: dict, registry: Path | None) -> dict[str, tuple[float, float]]:
@@ -68,7 +74,11 @@ def main() -> int:
         calls = blob["n_calls"]
         bytes_total = blob["prompt_bytes_total"]
         worst = ((bytes_total + 1024 * calls) * in_rate * 1.25 + calls * unit["max_tokens"] * out_rate) / 1e6
-        if unit["model_key"] in MEASURED_PER_CALL:
+        if unit["pack_flavor"] == "agent":
+            per_turn = bytes_total / 3.5 + calls * AGENT_OVERHEAD_TOKENS
+            expected = (AGENT_TURNS * per_turn * in_rate + calls * AGENT_OUTPUT_TOKENS * out_rate) / 1e6
+            basis = f"agent judge: {AGENT_TURNS} turns x (bytes/3.5 + {AGENT_OVERHEAD_TOKENS}) input tokens + {AGENT_OUTPUT_TOKENS} output tokens per cell (assumption, no measured mean)"
+        elif unit["model_key"] in MEASURED_PER_CALL:
             expected = calls * MEASURED_PER_CALL[unit["model_key"]]
             basis = "measured per-call mean (experiment 100 receipts)"
         else:
