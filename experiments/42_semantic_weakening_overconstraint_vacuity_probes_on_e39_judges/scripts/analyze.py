@@ -143,6 +143,18 @@ def screen_one(harvest: dict, rows: list[dict], draws: int, labels: dict[str, st
     tau_pairs = [(t, v) for t, v in taus.items() if v is not None]
     metrics["weakening_kendall_tau"] = cluster_mean_ci(tau_pairs, draws, e42.SEED)
     metrics["directional_accuracy_ties_half"] = ties_half(scores, rows)
+    # PROTOCOL.md Amendment 1 (secondary; the pass rule is unchanged): formatting false-alarm rate = share of formatting
+    # probes scored strictly below the identity score; discrimination = mean semantic directional accuracy - that rate.
+    fa_pairs = []
+    for r in rows:
+        if r["family"] == "formatting":
+            ident, sp = scores.get(("ident", r["task"], 1)), scores.get((r["kind"], r["task"], r["level"]))
+            if ident is not None and sp is not None:
+                fa_pairs.append((r["task"], 1.0 if sp < ident else 0.0))
+    metrics["formatting_false_alarm"] = cluster_mean_ci(fa_pairs, draws, e42.SEED)
+    sem = [metrics[f]["value"] for f in SEMANTIC]
+    fa = metrics["formatting_false_alarm"]["value"]
+    metrics["discrimination"] = None if fa is None or any(v is None for v in sem) else sum(sem) / 3 - fa
     # Sensitivity (pre-registered): weakening and over-constraint restricted to probes the file-level audit labels strict.
     if labels:
         strict_rows = [r for r in rows if r["family"] not in ("weakening", "overconstraint") or labels.get(r["probe_id"]) == "strict"]
