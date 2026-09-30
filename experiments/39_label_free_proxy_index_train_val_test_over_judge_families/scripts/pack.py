@@ -112,7 +112,9 @@ def build_model_pack(model_key: str, units: list[dict], seed: int) -> dict:
                                       "harness": unit["harness"], "n_tasks": len(main_rows),
                                       "n_smoke_tasks": len(smoke_rows), "cells": main_rows, "smoke_cells": smoke_rows,
                                       "max_instruction_bytes": max((r["instruction_bytes"] for r in main_rows), default=0)}
-    return {"model_key": model_key, "pack": str(pack), "benchmark": f"certjudge39-{model_key}", "per_config": per_config,
+    # Informational: the benchmark name Valkyrie will see (hyphen-only, so an agent-judge key's underscore is folded;
+    # the authoritative name is the deployment receipt written by scripts/deploy_service.py).
+    return {"model_key": model_key, "pack": str(pack), "benchmark": f"certjudge39-{model_key.replace('_', '-')}", "per_config": per_config,
             "n_tasks_total": sum(v["n_tasks"] + v["n_smoke_tasks"] for v in per_config.values())}
 
 

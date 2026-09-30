@@ -1,12 +1,13 @@
 # CKPT: proxy-index search (experiment 39)
 
 Created: 09-30-2026 16:35 UTC
-Last updated: 09-30-2026 12:49 PDT
+Last updated: 09-30-2026 13:27 PDT
 
 Task: run experiments/39_label_free_proxy_index_train_val_test_over_judge_families end to end on SNAP skampere1 per cc.md.
 
 State:
-- Phase: cc.md step 6 (deploy nine pack services) IN PROGRESS; steps 1-5 done. No judge call made. Nothing spent.
+- Phase: cc.md step 6 DONE (nine services up: ports 8990-8998, benchmarks certjudge39-{sol6h,sonnet5m,luna6h,gem31h,opus55x,qwen36,t2-luna,t2-sonnet5,t2-qwen}; agent-judge names use hyphens because Valkyrie rejects underscores); next: step 8 worker loop. No judge call made. Nothing spent.
+- Services: pids in private/service_<key>.pid and private/tunnel_<key>.pid; receipts private/deployment_<key>.json (tunnel URL) and results/deployment_<key>.json (public); `deploy_service.py --model <key> --status` re-checks. Never redeploy a model with a live run (the tunnel URL would change).
 - Step 4 final: results/probe_manifest.json (mirror project, 677 rows): ident 24/1, ms_gold 76/4, bm_gold 37/60, crit 75, ms_cand 3/72, alpha 3/72, reorder 0/75, sorry 3/72, spam 3/72 valid/invalid.
 - Step 5: render 56 configs -> 28,591 calls (+504 deterministic, 81 unmeasured extraction); QUOTE 28,591 calls, expected $790.59 (train 129.49, val 127.01, test 534.13), worst case $11,945, within cap; packs PASS (9 packs under private/packs, 793 MB); controls -> results/harvest/ctl__*.json (521 cells each, editdist = exact Levenshtein.ratio).
 - Step 4 finding: first build (vb90_grading project) -> 72/75 candidates and gold 1_MyAdd do not elaborate; 9 candidates fail only at `import VeriBench*`. Fix (Rule 57 decision, recorded in results.md deviations): private mirror project `private/lean_mirror` (same lakefile/manifest/toolchain, symlinked packages) + the three empty prelude modules compiled with cert-judge's LeanCompiler.compile_module (sources byte-identical to the archived PTI-v0 run). `private/env.sh` now sets E39_LAKE_DIR to the mirror. First manifest kept at private/probe_manifest_no_prelude_09-30-2026.json. Shared Lean project untouched.

@@ -76,7 +76,9 @@ def main() -> int:
     args = ap.parse_args()
     if args.status:
         return report_status(args.model)
-    benchmark = f"certjudge39-{args.model}"
+    # Valkyrie accepts hyphen-only benchmark names (experiment 103: "every deployed benchmark uses hyphens only");
+    # the agent-judge keys carry an underscore, so it is folded to a hyphen here and nowhere else.
+    benchmark = f"certjudge39-{args.model.replace('_', '-')}"
     port = port_of(args.model)
     pack = e39.PRIVATE / "packs" / args.model
 
