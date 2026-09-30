@@ -82,4 +82,4 @@ Probe build: about 5 minutes at 12 jobs. Rendering and packs: minutes. Judging: 
 
 ## Amendments
 
-_(none)_
+- **Amendment 1 (09-30-2026, after the 56 smoke cells and before any main-run verdict was harvested; secondary metric only, the pass rule is unchanged).** Running the analysis on the four deterministic controls (zero calls) showed that the edit-distance control passes the locked screen (directional accuracy 1.00 on vacuity, weakening and over-constraint; formatting gap 0.044 ≤ 0.05): any change detector lowers its score for every edit, and formatting edits are small. So the screen is necessary but not sufficient evidence of semantic sensitivity. Added per configuration: the **formatting false-alarm rate** (share of formatting probes scored strictly below the identity score, task-clustered bootstrap interval) and **discrimination** = mean of the three semantic directional accuracies − false-alarm rate (a pure change detector scores about 0). Both are reported beside the locked verdict and do not change it.
