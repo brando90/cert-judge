@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_label_free_proxy_index_train_val_test_over_judge_families/COST_QUOTE.md>
 
-**TLDR:** 51,500 judge calls over 56 LLM configurations — 46,316 single-call cells plus 5,184 Terminus2 agent-judge cells (upper bound: the dry run could not elaborate probes, so no probe was excluded) — expected about **$1,421** on Vals-reported charges, of which the test split costs $958 (Claude Opus 5.5 at max effort $594, the Terminus2 + Sonnet 5 agent judge $249). Hard cap $2,000 (`scripts/e39.py` `CAP_USD`). Every call, single or agent, goes through Valkyrie. The exact quote is regenerated on SNAP by `scripts/quote.py` after Lean validation and lands in `results/QUOTE.json`.
+**TLDR:** 51,500 judge calls over 56 LLM configurations — 46,316 single-call cells plus 5,184 Terminus2 agent-judge cells (upper bound: the dry run could not elaborate probes, so no probe was excluded) — expected about **$1,421** on Vals-reported charges, of which the test split costs $958 (Claude Opus 5.5 at max effort $594, the Terminus2 + Sonnet 5 agent judge $249). No automatic spend cap (PROTOCOL.md Amendment 1; `scripts/e39.py` `CAP_USD = None`). Every call, single or agent, goes through Valkyrie. The exact quote is regenerated on SNAP by `scripts/quote.py` after Lean validation and lands in `results/QUOTE.json`.
 
 **Status:** PLANNING ESTIMATE, nothing spent · **Date:** 09-30-2026 · **Source:** `results/planning_dryrun/QUOTE.json` (dry run in the cloud container against the local VeriBench checkout, `--no-lean`, `--allow-unvalidated`)
 
@@ -37,7 +37,7 @@
 | Terminus2 agent + Qwen3.6-27B (test) | 2 | 1,728 | 51.90 | same agent assumption at $0.6 / $3.6 per M tokens |
 | **Total** | **56** | **51,500** | **1,421.43** | train $233.81 · val $229.49 · test $958.17 |
 
-Worst-case admission bound (every call billed at `max_tokens` output, experiment 100's reservation rule): $21,566. It is not an estimate of spend; actual output is 300–4,000 tokens per call. Vals-reported charges are the record; the cap applies to them.
+Worst-case admission bound (every call billed at `max_tokens` output, experiment 100's reservation rule): $21,566. It is not an estimate of spend; actual output is 300–4,000 tokens per call. Vals-reported charges are the record.
 
 ## What could move the number
 
@@ -48,4 +48,4 @@ Worst-case admission bound (every call billed at `max_tokens` output, experiment
 
 ## Route and approval
 
-Every call goes through Valkyrie (`valk run start --agent vb103_judge ...` for single-call judges, `--agent <recorded Terminus2 bundle>` for agent judges), Vals-funded; no personal or provider key. The cap $2,000 is the approved spend for this experiment; the worker writes `private/HOLD_JUDGE_ADMISSIONS` when reported charges reach it.
+Every call goes through Valkyrie (`valk run start --agent vb103_judge ...` for single-call judges, `--agent <recorded Terminus2 bundle>` for agent judges), Vals-funded; no personal or provider key. There is no automatic spend cap (PROTOCOL.md Amendment 1, 09-30-2026): charges never hold admissions; the worker records Vals-reported charges in `results.md` after every merge.
