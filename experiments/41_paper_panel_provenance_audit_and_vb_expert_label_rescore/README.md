@@ -2,6 +2,8 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/41_paper_panel_provenance_audit_and_vb_expert_label_rescore/README.md>
 
+**Status:** DONE (09-30-2026). Gate G0 PASS; re-score against reference-matched items and VeriBench's corrected expert labels is inconclusive under the pre-registered rule. Full results: [results.md](results.md), [REPORT.md](REPORT.md).
+
 **TLDR:** The paper's headline association (the index `TI_var` tracks judge–human agreement; Codex Spearman 0.833 on averaged labels, 0.905 and 0.738 on the two passes) rests on one annotator's two rating passes, and two facts found on 09-30-2026 leave it unverified. First, the paper's `pass1` / `pass2` label files have the same scores as VeriBench participant 1's two *old-prompt* passes (75/75 and 72/75 items identical, pass names swapped); VeriBench later replaced those with a corrected-prompt re-rating plus two more experts. Second, VeriBench experiment 100 found that its judges were given different reference files than the raters saw for 9 of 25 tasks (5 were `True` placeholders at rating time). With zero model calls, this experiment establishes which reference bytes the paper's judges saw, and recomputes the paper's judge-level results on reference-matched items and against VeriBench's three-expert labels.
 
 ## Goal, uncertainty and decision

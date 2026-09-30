@@ -1,6 +1,6 @@
 # Checkpoint: experiment 41 provenance audit
 
-**Last updated:** 09-30-2026 14:35 PDT
+**Last updated:** 09-30-2026 14:58 PDT
 **Worker:** Claude Sonnet 5, effort high, tmux `cj-e41-provenance-audit`, skampere1
 **Branch:** `e41-provenance-audit` (clone: `/lfs/skampere1/0/brando9/cert-judge_e41`)
 **Model calls so far:** 0 (zero-call analysis; this is a text/data audit)
@@ -49,8 +49,16 @@
   matching README's S4 claim exactly; bug ladders are built directly from the frozen gold file
   and scored with no human label or cross-file reference involved, so this check is
   architecturally unaffected by reference provenance -- will cite, not recompute.
-- [ ] Step 7: REPORT.md
-- [ ] Step 8: land (PR, merge, email receipt, `private/DONE`)
+- [x] Step 6 (rest): views V1-V5, S1, S3 computed via `scripts/rescore.py` (vectorized after an
+  initial pure-Python version was too slow (killed after 13min still running); rewrote the
+  bootstrap's per-judge Spearman with a numpy-only `_fast_spearman`, cross-checked against scipy
+  in `test_rescore.py::test_fast_spearman_matches_scipy`; second run completed in 6.5 min).
+  8/8 offline tests pass. Reading: INCONCLUSIVE (V3: Codex +0.333, Qwen +0.667, Opus -0.381 --
+  one family negative, not two; not all three positive).
+- [x] Step 7: REPORT.md written (G0, label identity, provenance table, V1-V5 table, S1/S2/S3/S4,
+  drafted §5.1/§6 replacement sentences, unmeasured items disclosed). `results.md` set to DONE,
+  experiment README status line added, `experiments/README.md` row updated.
+- [ ] Step 8: land (PR, merge, email receipt, `private/DONE`) -- NEXT STEP if resuming.
 
 ## Notes / deviations
 (none yet)
