@@ -5,14 +5,14 @@
 **TLDR:** Running on skampere1: 194 Lean-validated probes (24 identity anchors, 38 vacuity, 57 weakening, 37 over-constraint, 38 formatting over 24 tasks) are built and the protocol is locked; judging (56 configurations × 582 cells = 32,592 Valkyrie calls) is running; all 56 smoke cells measured.
 
 **Status:** RUNNING (started 09-30-2026 14:06 PDT; skampere1 tmux `cj-e42-semantic-probes`, branch `e42-semantic-probes`; no judge call made yet)
-**Last updated:** 09-30-2026 16:00 PDT
+**Last updated:** 09-30-2026 16:25 PDT
 
 | Step | Status | Evidence |
 |---|---|---|
 | Probe construction and Lean validation (zero judge calls) | DONE 09-30-2026: 194 valid of 250 declared (ident 24/25, vac_true 19/25, vac_hyp 19/25, weak 57/75, overc 37/50, fmt_comments 19/25, fmt_layout 19/25) | `results/semantic_probe_manifest.json`, `probe_edits/` |
 | Protocol lock | DONE 09-30-2026 (commit noted in `CKPT_semantic_probes.md`) | `PROTOCOL.md` |
 | Wait gate: experiment 39 transport smoke passed | DONE 09-30-2026 (experiment 39 `origin/e39-proxy-index-search` 4ad11de: all 56 smokes measured, all 56 main runs admitted) | `private/GATE_OPEN` |
-| Scoring through Valkyrie | RUNNING: smoke 56/56 configurations measured ($1.01 Vals-reported); main runs admitting (train → val → test order) | `results/judge_progress.json`, `results/harvest/` |
+| Scoring through Valkyrie | RUNNING (09-30-2026 16:25 PDT): smoke 56/56 measured ($1.01); all 56 main runs admitted; 5,418 / 32,592 cells terminal (15 Valkyrie ERROR states, 0.3%, left for the single recovery_1 pass) | `results/judge_progress.json`, `results/harvest/` |
 | Analysis, report, landing | PENDING | `REPORT.md`, PR |
 
 ## Probe construction (step 2, zero judge calls)
