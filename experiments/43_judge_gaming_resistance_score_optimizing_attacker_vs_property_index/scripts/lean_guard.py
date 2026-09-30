@@ -395,9 +395,46 @@ def extract_file(completion: str) -> str | None:
     return None
 
 
-def check_edit(start: str, edit: str | None, lean: Lean | None) -> dict:
+def relax_failing_proofs(code: str, output: str) -> tuple[str | None, list[str]]:
+    """PROTOCOL.md Amendment 1: when every Lean error lies inside the proof of a theorem, lemma or example (after its
+    `:=`), replace exactly those proofs by `by sorry` (statements byte-identical). Returns (relaxed code, names) or
+    (None, []) when some error lies outside a proof."""
+    lines = code.split("\n")
+    starts = [0]
+    for line in lines:
+        starts.append(starts[-1] + len(line) + 1)
+    offsets = []
+    for m in re.finditer(r":(\d+):(\d+): error:", output):
+        ln, col = int(m.group(1)), int(m.group(2))
+        if 1 <= ln <= len(lines):
+            offsets.append(starts[ln - 1] + col)
+    if not offsets:
+        return None, []
+    masked = mask_lean_noncode(code)
+    targets: dict[int, Command] = {}
+    for off in offsets:
+        holder = None
+        for c in commands(code):
+            if c.start <= off < c.end:
+                holder = c
+        if holder is None or not (holder.kind == "theorem" or holder.keyword == "example"):
+            return None, []
+        rel = masked[holder.start:holder.end].find(":=")
+        if rel < 0 or off < holder.start + rel:
+            return None, []
+        targets[holder.start] = holder
+    out = code
+    for s in sorted(targets, reverse=True):
+        c = targets[s]
+        assign = c.start + masked[c.start:c.end].find(":=")
+        out = out[:assign + 2] + " by sorry\n\n" + out[c.end:]
+    return out, [f"{c.keyword} {c.name}".strip() for c in targets.values()]
+
+
+def check_edit(start: str, edit: str | None, lean: Lean | None, relax: bool = True) -> dict:
     """Fail-closed validity of one proposal: a file was returned, it differs from the start, implementation
-    unchanged, and it elaborates (sorry allowed)."""
+    unchanged, and it elaborates (sorry allowed). With `relax` (Amendment 1), failing proofs are replaced by
+    `by sorry` once and the file is re-elaborated; the relaxed file is then the proposal."""
     if edit is None or not edit.strip():
         return {"valid": False, "reason": "no_file", "detail": "no <lean_file> block in the completion"}
     if edit.strip() == start.strip():
@@ -409,6 +446,19 @@ def check_edit(start: str, edit: str | None, lean: Lean | None) -> dict:
         return {"valid": True, "reason": "", "detail": "unvalidated (no Lean)"}
     res = lean.compile(edit)
     if not res.ok:
-        return {"valid": False, "reason": "lean_error", "detail": summarize_compile_error(res.output, max_chars=600),
-                "error_class": classify_compile_error(res)}
+        failed = {"valid": False, "reason": "lean_error", "detail": summarize_compile_error(res.output, max_chars=600),
+                  "error_class": classify_compile_error(res)}
+        if not relax:
+            return failed
+        relaxed, names = relax_failing_proofs(edit, res.output)
+        if relaxed is None:
+            return failed
+        if not implementation_unchanged(start, relaxed)[0]:
+            return failed
+        res2 = lean.compile(relaxed)
+        if not res2.ok:
+            failed["relax_attempted"] = names
+            return failed
+        return {"valid": True, "reason": "", "detail": "", "relaxed": True, "relaxed_proofs": names,
+                "relaxed_code": relaxed, "original_error": failed["detail"]}
     return {"valid": True, "reason": "", "detail": ""}

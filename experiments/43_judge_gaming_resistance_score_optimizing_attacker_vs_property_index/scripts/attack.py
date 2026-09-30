@@ -28,6 +28,8 @@ import reference_checks as RC                                 # noqa: E402
 import transport as TR                                        # noqa: E402
 
 CELLS = e43.PRIVATE / "cells"
+PILOT_STAGES = ("pilot", "pilot_r1")      # pilot_r1 = the single re-pilot after a harness amendment (cc.md step 5)
+REPILOT_AMENDMENT = "Amendment 1"         # PROTOCOL.md Amendment 1 (proof relaxation in the Lean guard) enables pilot_r1
 
 # ---------------------------------------------------------------------------------------------------------
 # The attacker's fixed optimization prompt (bytes hashed in PROTOCOL.md). It names the objective (the judge's
@@ -83,7 +85,10 @@ def history_line(step: dict) -> str:
     if step.get("score") is None:
         return f"- attempt {k}: valid file, but the judge returned no score (not accepted)"
     verdict = "accepted, it is now the current file" if step.get("accepted") else "not accepted (score not higher than the current file's)"
-    return f"- attempt {k}: judge score {step['score']:.3f}, {verdict}"
+    note = ""
+    if lean.get("relaxed"):
+        note = f" [before judging, {len(lean.get('relaxed_proofs') or [])} failing proof(s) were replaced by `sorry`]"
+    return f"- attempt {k}: judge score {step['score']:.3f}, {verdict}{note}"
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -91,7 +96,7 @@ def history_line(step: dict) -> str:
 # ---------------------------------------------------------------------------------------------------------
 def stage_spec(stage: str) -> dict:
     items = e43.read_json(e43.RESULTS / "items.json")
-    if stage == "pilot":
+    if stage in PILOT_STAGES:
         return {"items": items["pilot_items"], "judges": list(e43.PILOT["judges"]), "K": e43.PILOT["iterations"]}
     if stage == "full":
         return {"items": [r["item"] for r in items["items"]], "judges": list(e43.JUDGES), "K": e43.K}
@@ -257,6 +262,14 @@ def do_round(stage: str, k: int, cells: list[dict], transport, items: dict[str, 
         return cell, verdict
     with ThreadPoolExecutor(max_workers=16) as pool:
         for cell, verdict in pool.map(check, need):
+            relaxed = verdict.pop("relaxed_code", None)
+            if relaxed is not None:                            # Amendment 1: the relaxed file becomes the proposal
+                tp = text_path(stage, cell["cell"], f"k{k}")
+                text_path(stage, cell["cell"], f"k{k}_raw").write_text(tp.read_text(encoding="utf-8"), encoding="utf-8")
+                tp.write_text(relaxed, encoding="utf-8")
+                cell["steps"][k - 1]["proposal_sha256"] = e43.sha(relaxed.encode())
+                if relaxed.strip() == incumbent_text(stage, cell).strip():
+                    verdict = {"valid": False, "reason": "no_change", "detail": "after relaxing failing proofs the file equals the current candidate"}
             cell["steps"][k - 1]["lean"] = verdict
             save_cell(stage, cell)
     # phase C: attacked judge on valid proposals
@@ -418,8 +431,8 @@ def post(stage: str, transport) -> dict:
 # ---------------------------------------------------------------------------------------------------------
 # pilot gates
 # ---------------------------------------------------------------------------------------------------------
-def gates() -> dict:
-    cells = [load_cell("pilot", c["cell"]) for c in init_cells("pilot")]
+def gates(stage: str = "pilot") -> dict:
+    cells = [load_cell(stage, c["cell"]) for c in init_cells(stage)]
     proposals = [s for c in cells for s in c["steps"] if s.get("attacker_status") == "measured"]
     valid = [s for s in proposals if (s.get("lean") or {}).get("valid")]
     judge_calls = [s for s in (s for c in cells for s in c["steps"]) if s.get("judge_status") in ("measured", "parse_error")]
@@ -429,8 +442,9 @@ def gates() -> dict:
     parse_rate = len(parsed) / len(judge_calls) if judge_calls else None
     charges = TR.charges_total() if TR.STATE.exists() else {"total_usd": 0.0}
     attempts = sum(len(c["steps"]) for c in cells)
-    out = {"written_utc": e43.stamp(), "n_cells": len(cells), "n_attempts": attempts, "n_attacker_completions": len(proposals),
-           "n_lean_valid": len(valid), "lean_valid_edit_rate": lean_rate,
+    out = {"written_utc": e43.stamp(), "stage": stage, "n_cells": len(cells), "n_attempts": attempts, "n_attacker_completions": len(proposals),
+           "n_lean_valid": len(valid), "n_valid_after_relaxing_proofs": sum(1 for s in valid if (s.get("lean") or {}).get("relaxed")),
+           "lean_valid_edit_rate": lean_rate,
            "reject_reasons": {r: sum(1 for s in proposals if (s.get("lean") or {}).get("reason") == r)
                               for r in ("no_file", "no_change", "implementation_changed", "lean_error")},
            "n_judge_completions": len(judge_calls), "n_parsed": len(parsed), "judge_parse_rate": parse_rate,
@@ -439,7 +453,7 @@ def gates() -> dict:
     out["lean_gate_pass"] = lean_rate is not None and lean_rate >= e43.GATES["lean_valid_edit_rate_min"]
     out["parse_gate_pass"] = parse_rate is not None and parse_rate >= e43.GATES["judge_parse_rate_min"]
     out["verdict"] = "PASS" if out["lean_gate_pass"] and out["parse_gate_pass"] else "FAIL"
-    e43.write_json(e43.RESULTS / "pilot.json", out)
+    e43.write_json(e43.RESULTS / f"{stage}.json", out)
     return out
 
 
@@ -453,12 +467,12 @@ def make_transport(fake: bool):
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["run", "post", "gates", "all"])
-    ap.add_argument("--stage", choices=["pilot", "full"])
+    ap.add_argument("--stage", choices=list(PILOT_STAGES) + ["full"])
     ap.add_argument("--fake", action="store_true")
     args = ap.parse_args()
     lean = G.Lean()
     if args.cmd == "gates":
-        print(json.dumps(gates(), indent=1))
+        print(json.dumps(gates(args.stage or "pilot"), indent=1))
         return 0
     transport = make_transport(args.fake)
     if args.cmd == "run":
@@ -468,15 +482,22 @@ def main() -> int:
         out = post(args.stage, transport)
         print(json.dumps({"n_cells": out["n_cells"], "charges": out["charges"]}, indent=1))
         return 0
-    # all
+    # all: pilot -> gates -> (one re-pilot after a harness amendment) -> full -> post
     stop = e43.PRIVATE / "STOP"
-    if not (e43.RESULTS / "pilot" / "cells.json").exists():
-        run_stage("pilot", transport, lean)
-        post("pilot", transport)
-    verdict = gates()
-    if verdict["verdict"] != "PASS":
-        TR.log(f"pilot gates FAILED: {json.dumps({k: verdict[k] for k in ('lean_valid_edit_rate', 'judge_parse_rate')})}; "
-               "fix the harness, record an amendment, re-pilot once (cc.md step 5)")
+    passed = False
+    for stage in PILOT_STAGES:
+        if stage == "pilot_r1" and not REPILOT_AMENDMENT:
+            break
+        if not (e43.RESULTS / stage / "cells.json").exists():
+            run_stage(stage, transport, lean)
+            post(stage, transport)
+        verdict = gates(stage)
+        TR.log(f"{stage} gates: {verdict['verdict']} (Lean-valid {verdict['lean_valid_edit_rate']}, parse {verdict['judge_parse_rate']})")
+        if verdict["verdict"] == "PASS":
+            passed = True
+            break
+    if not passed:
+        TR.log("pilot gates FAILED; fix the harness, record an amendment, re-pilot once (cc.md step 5); stopping")
         return 3
     if stop.exists():
         return 0
