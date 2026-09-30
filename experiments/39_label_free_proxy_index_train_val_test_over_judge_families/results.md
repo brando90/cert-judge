@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results.md>
 
 **Status:** RUNNING (started 09-30-2026 12:09 PDT; worker tmux `cj-e39-proxy-index-search` on skampere1, branch `e39-proxy-index-search`; no judge call made yet)
-**Last updated:** 09-30-2026 12:09 PDT
+**Last updated:** 09-30-2026 12:16 PDT
 
 Experiment 39: 56 judge configurations (50 single-call: six judge models × the VeriBench and cert-judge prompt families; 6 agent judges: Terminus2 + GPT-6 Luna / Claude Sonnet 5 / Qwen3.6-27B on the H2 and D0 rubrics) plus 4 controls, judged on Lean-validated probes through Valkyrie; a label-free index is selected on the train judge models (GPT-6 Sol, Claude Sonnet 5), checked on val (GPT-6 Luna, Gemini 3.1 Pro, Terminus2 + Luna) and tested once on held-out judges (Claude Opus 5.5, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen) against agreement with the expert coverage ratings on 45 held-out VeriBench items; results pending.
 
@@ -15,10 +15,10 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 |---|---|---|
 | Design, code, 19 offline tests, dry run (56 configurations rendered, 51,500 calls, $1,421 expected) | DONE 09-30-2026 | `scripts/`, `results/panel.json`, `results/planning_dryrun/` |
 | Protocol locked | DONE 09-30-2026 | `PROTOCOL.md` |
-| Dispatch on SNAP skampere1 (tmux `cj-e39-proxy-index-search`) | IN PROGRESS (worker started, clone + branch + checkpoint landed) | `CKPT_proxy_index_search.md` |
-| Probes elaborated with Lean 4.22 + Mathlib | PENDING | `results/probe_manifest.json` |
+| Dispatch on SNAP skampere1 (tmux `cj-e39-proxy-index-search`) | DONE 09-30-2026 (19 offline tests pass on the node; panel receipt rebuilt) | `CKPT_proxy_index_search.md`, `results/panel.json` |
+| Probes elaborated with Lean 4.22 + Mathlib | IN PROGRESS (started 09-30-2026 12:11 PDT, 6 Lean jobs) | `results/probe_manifest.json` |
 | Exact quote within cap | PENDING | `results/QUOTE.json` |
-| Bundle, agent-harness and pack checks | PENDING | `results/agent_bundle_check.json`, `results/agent_harness.json`, `results/packs.json` |
+| Bundle, agent-harness and pack checks | bundle PASS (served `vb103_judge` byte-identical to experiment 103's validated bundle); harness PASS (`brando_terminus_gateway`: kwargs `max_turns` 20, `reasoning_effort` high; its contract maps the gateway secret itself); packs PENDING | `results/agent_bundle_check.json`, `results/agent_harness.json`, `results/packs.json` |
 | Smoke per configuration; main admission train → val → test; recovery pass; merge | PENDING | `results/judge_progress.json`, `results/harvest/` |
 | Criterion, components, indices (train + val rows open; test rows sealed) | PENDING | `results/units_train_val.json` |
 | Selection committed | PENDING | `results/FINALISTS.json`, `results/SELECTION.json` |
