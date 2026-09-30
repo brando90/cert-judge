@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results.md>
 
 **Status:** RUNNING (started 09-30-2026 12:09 PDT; worker tmux `cj-e39-proxy-index-search` on skampere1, branch `e39-proxy-index-search`; no judge call made yet)
-**Last updated:** 09-30-2026 15:52 PDT
+**Last updated:** 09-30-2026 16:33 PDT
 
 Experiment 39: 56 judge configurations (50 single-call: six judge models × the VeriBench and cert-judge prompt families; 6 agent judges: Terminus2 + GPT-6 Luna / Claude Sonnet 5 / Qwen3.6-27B on the H2 and D0 rubrics) plus 4 controls, judged on Lean-validated probes through Valkyrie; a label-free index is selected on the train judge models (GPT-6 Sol, Claude Sonnet 5), checked on val (GPT-6 Luna, Gemini 3.1 Pro, Terminus2 + Luna) and tested once on held-out judges (Claude Opus 5.5, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen) against agreement with the expert coverage ratings on 45 held-out VeriBench items; results pending.
 
@@ -40,7 +40,7 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 ## Judge campaign (live, per configuration)
 
 <!-- campaign-table:begin -->
-_Merged configurations as of 09-30-2026 22:52 UTC: 15/56; measured cells 7,679 of 7,815 merged cells; Vals-reported charges $84.38 on merged main + recovery runs, plus $1.21 on the 56 smoke cells._
+_Merged configurations as of 09-30-2026 23:33 UTC: 26/56; measured cells 13,190 of 13,546 merged cells; Vals-reported charges $141.32 on merged main + recovery runs, plus $1.21 on the 56 smoke cells._
 
 | Configuration | Split | Selector | Cells | Measured | Deterministic | Missing (class) | Recovered | Charges (USD) |
 |---|---|---|---:|---:|---:|---|---:|---:|
@@ -72,33 +72,33 @@ _Merged configurations as of 09-30-2026 22:52 UTC: 15/56; measured cells 7,679 o
 | `gem31h|P8` | val | — | — | — | — | not merged yet | — | — |
 | `gem31h|R4` | val | — | — | — | — | not merged yet | — | — |
 | `luna6h|D0` | val | — | — | — | — | not merged yet | — | — |
-| `luna6h|H0` | val | — | — | — | — | not merged yet | — | — |
-| `luna6h|H1` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|H0` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 0 | 0.50 |
+| `luna6h|H1` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 0 | 0.40 |
 | `luna6h|H2` | val | — | — | — | — | not merged yet | — | — |
 | `luna6h|LEX` | val | — | — | — | — | not merged yet | — | — |
 | `luna6h|P1` | val | — | — | — | — | not merged yet | — | — |
 | `luna6h|P4` | val | — | — | — | — | not merged yet | — | — |
-| `luna6h|P8` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|P8` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 0 | 0.12 |
 | `luna6h|R4` | val | — | — | — | — | not merged yet | — | — |
 | `t2_luna|D0` | val | — | — | — | — | not merged yet | — | — |
 | `t2_luna|H2` | val | — | — | — | — | not merged yet | — | — |
 | `opus55x|D0` | test | — | — | — | — | not merged yet | — | — |
 | `opus55x|H0` | test | — | — | — | — | not merged yet | — | — |
 | `opus55x|H2` | test | — | — | — | — | not merged yet | — | — |
-| `opus55x|LEX` | test | — | — | — | — | not merged yet | — | — |
+| `opus55x|LEX` | test | `anthropic/claude-opus-5-5-no-fallback` | 521 | 521 | 0 | 0 | 0 | 12.96 |
 | `opus55x|P4` | test | — | — | — | — | not merged yet | — | — |
-| `qwen36|D0` | test | — | — | — | — | not merged yet | — | — |
-| `qwen36|H0` | test | — | — | — | — | not merged yet | — | — |
-| `qwen36|H1` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|D0` | test | `alibaba/qwen3.6-27b` | 521 | 449 | 56 | parse_error 7, unmeasured_extraction 9 | 0 | 4.15 |
+| `qwen36|H0` | test | `alibaba/qwen3.6-27b` | 521 | 501 | 0 | parse_error 20 | 0 | 4.66 |
+| `qwen36|H1` | test | `alibaba/qwen3.6-27b` | 521 | 506 | 0 | parse_error 15 | 0 | 4.87 |
 | `qwen36|H2` | test | — | — | — | — | not merged yet | — | — |
 | `qwen36|LEX` | test | — | — | — | — | not merged yet | — | — |
-| `qwen36|P1` | test | — | — | — | — | not merged yet | — | — |
-| `qwen36|P4` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|P1` | test | `alibaba/qwen3.6-27b` | 521 | 500 | 0 | parse_error 21 | 0 | 2.98 |
+| `qwen36|P4` | test | `alibaba/qwen3.6-27b` | 521 | 511 | 0 | parse_error 10 | 0 | 3.23 |
 | `qwen36|P8` | test | — | — | — | — | not merged yet | — | — |
-| `qwen36|R4` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|R4` | test | `alibaba/qwen3.6-27b` | 521 | 504 | 0 | parse_error 17 | 0 | 5.07 |
 | `t2_qwen|D0` | test | — | — | — | — | not merged yet | — | — |
 | `t2_qwen|H2` | test | — | — | — | — | not merged yet | — | — |
-| `t2_sonnet5|D0` | test | — | — | — | — | not merged yet | — | — |
+| `t2_sonnet5|D0` | test | `anthropic/claude-sonnet-5-medium` | 521 | 456 | 56 | unmeasured_extraction 9 | 0 | 17.99 |
 | `t2_sonnet5|H2` | test | — | — | — | — | not merged yet | — | — |
 <!-- campaign-table:end -->
 
