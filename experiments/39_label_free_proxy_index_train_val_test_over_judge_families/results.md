@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results.md>
 
 **Status:** RUNNING (started 09-30-2026 12:09 PDT; worker tmux `cj-e39-proxy-index-search` on skampere1, branch `e39-proxy-index-search`; no judge call made yet)
-**Last updated:** 09-30-2026 15:02 PDT
+**Last updated:** 09-30-2026 15:52 PDT
 
 Experiment 39: 56 judge configurations (50 single-call: six judge models × the VeriBench and cert-judge prompt families; 6 agent judges: Terminus2 + GPT-6 Luna / Claude Sonnet 5 / Qwen3.6-27B on the H2 and D0 rubrics) plus 4 controls, judged on Lean-validated probes through Valkyrie; a label-free index is selected on the train judge models (GPT-6 Sol, Claude Sonnet 5), checked on val (GPT-6 Luna, Gemini 3.1 Pro, Terminus2 + Luna) and tested once on held-out judges (Claude Opus 5.5, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen) against agreement with the expert coverage ratings on 45 held-out VeriBench items; results pending.
 
@@ -40,7 +40,7 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 ## Judge campaign (live, per configuration)
 
 <!-- campaign-table:begin -->
-_Merged configurations as of 09-30-2026 22:02 UTC: 6/56; measured cells 3,061 of 3,126 merged cells; Vals-reported charges $23.32 on merged main + recovery runs, plus $1.21 on the 56 smoke cells._
+_Merged configurations as of 09-30-2026 22:52 UTC: 15/56; measured cells 7,679 of 7,815 merged cells; Vals-reported charges $84.38 on merged main + recovery runs, plus $1.21 on the 56 smoke cells._
 
 | Configuration | Split | Selector | Cells | Measured | Deterministic | Missing (class) | Recovered | Charges (USD) |
 |---|---|---|---:|---:|---:|---|---:|---:|
@@ -50,18 +50,18 @@ _Merged configurations as of 09-30-2026 22:02 UTC: 6/56; measured cells 3,061 of
 | `sol6h|H2` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 6.04 |
 | `sol6h|LEX` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 2.14 |
 | `sol6h|P1` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 2.38 |
-| `sol6h|P4` | train | — | — | — | — | not merged yet | — | — |
+| `sol6h|P4` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 1 | 2.59 |
 | `sol6h|P8` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 2.18 |
-| `sol6h|R4` | train | — | — | — | — | not merged yet | — | — |
-| `sonnet5m|D0` | train | — | — | — | — | not merged yet | — | — |
-| `sonnet5m|H0` | train | — | — | — | — | not merged yet | — | — |
-| `sonnet5m|H1` | train | — | — | — | — | not merged yet | — | — |
+| `sol6h|R4` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 7.34 |
+| `sonnet5m|D0` | train | `anthropic/claude-sonnet-5-medium` | 521 | 456 | 56 | unmeasured_extraction 9 | 0 | 9.53 |
+| `sonnet5m|H0` | train | `anthropic/claude-sonnet-5-medium` | 521 | 518 | 0 | parse_error 3 | 0 | 11.12 |
+| `sonnet5m|H1` | train | `anthropic/claude-sonnet-5-medium` | 521 | 520 | 0 | parse_error 1 | 0 | 9.62 |
 | `sonnet5m|H2` | train | — | — | — | — | not merged yet | — | — |
-| `sonnet5m|LEX` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|LEX` | train | `anthropic/claude-sonnet-5-medium` | 521 | 520 | 0 | parse_error 1 | 0 | 3.23 |
 | `sonnet5m|P1` | train | — | — | — | — | not merged yet | — | — |
-| `sonnet5m|P4` | train | — | — | — | — | not merged yet | — | — |
-| `sonnet5m|P8` | train | — | — | — | — | not merged yet | — | — |
-| `sonnet5m|R4` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|P4` | train | `anthropic/claude-sonnet-5-medium` | 521 | 521 | 0 | 0 | 0 | 3.45 |
+| `sonnet5m|P8` | train | `anthropic/claude-sonnet-5-medium` | 521 | 521 | 0 | 0 | 0 | 3.22 |
+| `sonnet5m|R4` | train | `anthropic/claude-sonnet-5-medium` | 521 | 520 | 0 | parse_error 1 | 0 | 10.96 |
 | `gem31h|D0` | val | — | — | — | — | not merged yet | — | — |
 | `gem31h|H0` | val | — | — | — | — | not merged yet | — | — |
 | `gem31h|H1` | val | — | — | — | — | not merged yet | — | — |
