@@ -58,7 +58,12 @@
 - [x] Step 7: REPORT.md written (G0, label identity, provenance table, V1-V5 table, S1/S2/S3/S4,
   drafted §5.1/§6 replacement sentences, unmeasured items disclosed). `results.md` set to DONE,
   experiment README status line added, `experiments/README.md` row updated.
-- [ ] Step 8: land (PR, merge, email receipt, `private/DONE`) -- NEXT STEP if resuming.
+- [IN PROGRESS] Step 8: land. PR opened: https://github.com/brando90/cert-judge/pull/50 .
+  origin/main advanced by one commit since branching (84e1c0e, adds only
+  `experiments/CKPT_MASTER_tmux1_cc_6043a46f.md` -- no path overlap with this experiment).
+  Merge-base before rebase: 7b10d95. Fetched main tip: 84e1c0e. Backup branch:
+  `e41-backup-09-30-2026-1458` at this commit. Next: rebase onto 84e1c0e, re-run tests,
+  force-with-lease push, `gh pr merge --rebase`.
 
 ## Notes / deviations
 (none yet)
