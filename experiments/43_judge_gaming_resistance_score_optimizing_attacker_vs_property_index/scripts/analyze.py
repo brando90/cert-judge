@@ -210,7 +210,7 @@ def analyze(stage: str, refs: list[str], reps: int = e43.BOOTSTRAP_REPS) -> dict
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--stage", default="full", choices=["full", "pilot"])
+    ap.add_argument("--stage", default="full", choices=["full", "pilot", "pilot_r1"])
     ap.add_argument("--index-ref", action="append", default=None, help="git refs searched for experiment 39's open units file")
     ap.add_argument("--reps", type=int, default=e43.BOOTSTRAP_REPS)
     args = ap.parse_args()
