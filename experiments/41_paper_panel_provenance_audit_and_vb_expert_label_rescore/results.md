@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/41_paper_panel_provenance_audit_and_vb_expert_label_rescore/results.md>
 
-**TLDR:** Dispatched; no results yet.
+**TLDR:** Running; environment set up, working through label identity and provenance steps.
 
-**Status:** DISPATCHED (09-30-2026, skampere1 tmux `cj-e41-provenance-audit`; zero model calls)
-**Last updated:** 09-30-2026 13:55 PDT
+**Status:** RUNNING (started 09-30-2026 14:02 PDT, skampere1 tmux `cj-e41-provenance-audit`; zero model calls)
+**Last updated:** 09-30-2026 14:02 PDT
 
 | Step | Status | Evidence |
 |---|---|---|
