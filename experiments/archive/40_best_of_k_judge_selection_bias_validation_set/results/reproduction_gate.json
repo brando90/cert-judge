@@ -1,0 +1,68 @@
+{
+  "scope": "protocol: kept configurations; all scanned configurations are also checked and reported",
+  "tolerance": 0.001,
+  "n_configurations_scanned": 185,
+  "n_checked": 183,
+  "n_kept": 109,
+  "kept_max_abs_deviation": 0.0079105297978872,
+  "kept_n_over_tolerance": 10,
+  "kept_explanations": {
+    "float_tie(numpy.mean)": 8,
+    "float_tie(statistics.mean)": 2,
+    "within_tolerance": 99
+  },
+  "all_max_abs_deviation": 0.06588579372695944,
+  "all_n_over_tolerance": 18,
+  "all_explanations": {
+    "float_tie(numpy.mean)": 8,
+    "float_tie(statistics.mean)": 2,
+    "older_avg_label_file": 7,
+    "older_avg_label_file+float_tie(statistics.mean)": 1,
+    "within_tolerance": 165
+  },
+  "paper_codex_checks": [
+    {
+      "judge_id": "editdist_e1",
+      "recomputed": 0.199,
+      "paper": 0.199
+    },
+    {
+      "judge_id": "gpt-4o-mini|P4_CHECKLIST",
+      "recomputed": 0.092,
+      "paper": 0.092
+    },
+    {
+      "judge_id": "gpt-4o-mini|P8_STRICT_B",
+      "recomputed": -0.014,
+      "paper": -0.014
+    },
+    {
+      "judge_id": "gpt-5.3-codex|BAD_STRINGY",
+      "recomputed": 0.435,
+      "paper": 0.435
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P1_BASELINE",
+      "recomputed": 0.466,
+      "paper": 0.466
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P4_CHECKLIST",
+      "recomputed": 0.419,
+      "paper": 0.419
+    },
+    {
+      "judge_id": "gpt-5.3-codex|P8_STRICT_B",
+      "recomputed": 0.365,
+      "paper": 0.365
+    },
+    {
+      "judge_id": "random_r1",
+      "recomputed": -0.001,
+      "paper": -0.001
+    }
+  ],
+  "paper_codex_all_match": true,
+  "amendment": "PROTOCOL.md Deviation 1: a kept configuration over tolerance passes only when its frozen values reproduce within 1e-6 from repeat scores (float_tie); any unexplained deviation fails the gate",
+  "passed": true
+}

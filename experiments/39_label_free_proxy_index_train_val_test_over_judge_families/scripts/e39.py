@@ -31,7 +31,7 @@ LAKE_BIN = Path(os.environ.get("E39_LAKE_BIN", str(Path.home() / ".elan/bin/lake
 VALK = Path(os.environ.get("E39_VALK", "/lfs/skampere1/0/brando9/.local/share/valkyrie-host-bootstrap/tools/valkyrie/bin/valk"))
 AGENT = "vb103_judge"                       # experiment 103's validated judge transport agent (prompt bytes in, one call)
 BENCHMARK = "certjudge39-proxy-index"
-CAP_USD = 2000.0                            # PROTOCOL.md hard cap on Vals-reported charges for this experiment
+CAP_USD = None                              # no automatic spend cap on Valkyrie runs (PROTOCOL.md Amendment 1)
 GATEWAY_SECRET = "fellows/brandoModelGatewayApiKey"   # secret NAME resolved by Valkyrie server-side; never read on the host
 # Agent-judge harness: a Terminus2 bundle already in the account, tried in this order at the smoke gate. It is the
 # only agent harness VeriBench has run through Valkyrie (experiments 95, 97); the native Claude Code / Codex bundles

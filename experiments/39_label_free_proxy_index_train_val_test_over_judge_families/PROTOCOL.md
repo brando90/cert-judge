@@ -91,3 +91,7 @@ Judge scores are normalized to [0, 1] at parse time: H0/H1/H2/R4 integer 0–5 �
 - Notification email: `brando.science@gmail.com`, no CC (Trigger Rule 26).
 - Valkyrie configuration: `~/.config/valkyrie/valkyrie.yaml` on the host; never copied into prompts, logs, results or git.
 - Model routes: Vals-hosted gateway through Valkyrie; no personal Anthropic/OpenAI/Google keys; Allen's Gemini key is not used (it is scoped to VeriBench 91c/92c).
+
+## Amendments
+
+- **Amendment 1 (09-30-2026, before any judge call; Brando): no automatic spend cap.** Valkyrie (Vals-funded) runs carry no automatic spend cap. The Budget row's "cap $2,000" and the first STOP rule (reported charges reach the cap → `private/HOLD_JUDGE_ADMISSIONS`) no longer apply: charges never hold admissions or stop the run. The planning estimate ($1,421 for 51,500 calls) and the exact pre-run quote (`results/QUOTE.json`) are still produced, and Vals-reported charges are still summed per configuration and recorded in `results.md` after every merge. The prompt-hash STOP rule and every other rule are unchanged; `private/HOLD_JUDGE_ADMISSIONS` remains the manual and prompt-hash hold.
