@@ -66,7 +66,9 @@ The frozen PTI-v0 numerical specification is `docs/spec/PTI_V0.md`. Its zero-spe
 python experiments/archive/04_veribench_validation/run_pti_v0.py --help
 ```
 
-That CLI has no inference client and cannot load credentials. Paid judge inference requires a separate exact call/cost quote and explicit approval. Historical JTI evaluations remain under `experiments/archive/00_overall_cert_judge_metric_with_properties/`.
+That CLI has no inference client and cannot load credentials. Paid judge inference requires a separate exact call/cost quote and explicit approval.
+
+**Valkyrie: no automatic spend caps** (Brando, 09-30-2026). Valkyrie (Vals-funded) runs carry no automatic cap, and Valkyrie itself imposes none. Do not add dollar caps, `APPROVED_SPEND_USD` stop values, or cap-triggered admission holds to Valkyrie experiments, and never stop or hold a Valkyrie run because of spend. Still write the pre-run call/cost quote and record Vals-reported charges in the experiment's `results.md`. Historical JTI evaluations remain under `experiments/archive/00_overall_cert_judge_metric_with_properties/`.
 
 ## Architecture
 

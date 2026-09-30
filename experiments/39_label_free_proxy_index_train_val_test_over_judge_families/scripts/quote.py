@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """TLDR: Exact call count and cost quote for experiment 39 from the rendered cells: a worst-case admission
 bound per configuration (experiment 100's reservation formula: every output token billed at max_tokens) and an
-expected cost from per-call means measured in experiment 100's receipts, both against the protocol cap.
+expected cost from per-call means measured in experiment 100's receipts, recorded for Brando (no automatic cap: PROTOCOL.md Amendment 1).
 Zero model calls; prices come from a saved registry body or the pre-filled fallback table."""
 from __future__ import annotations
 
@@ -101,12 +101,12 @@ def main() -> int:
             b["worst_case_usd"] = round(b["worst_case_usd"] + r["worst_case_usd"], 2)
     quote = {"written_utc": e39.stamp(), "cap_usd": e39.CAP_USD, "total_calls": total_calls,
              "expected_usd": round(total_expected, 2), "worst_case_usd": round(total_worst, 2),
-             "expected_within_cap": total_expected <= e39.CAP_USD, "prices_usd_per_million": price,
+             "prices_usd_per_million": price,
              "by_split": by_split, "by_model": by_model, "rows": rows,
              "note": ("worst case bills max_tokens output on every call (experiment 100's reservation rule); "
                       "the expected figure is the planning estimate; Vals-reported charges are the record")}
     e39.write_json(args.out, quote)
-    print(json.dumps({k: quote[k] for k in ("total_calls", "expected_usd", "worst_case_usd", "expected_within_cap", "by_split", "by_model")}, indent=1))
+    print(json.dumps({k: quote[k] for k in ("total_calls", "expected_usd", "worst_case_usd", "by_split", "by_model")}, indent=1))
     return 0
 
 

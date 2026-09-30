@@ -17,7 +17,7 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 | Protocol locked | DONE 09-30-2026 | `PROTOCOL.md` |
 | Dispatch on SNAP skampere1 (tmux `cj-e39-proxy-index-search`) | PENDING | — |
 | Probes elaborated with Lean 4.22 + Mathlib | PENDING | `results/probe_manifest.json` |
-| Exact quote within cap | PENDING | `results/QUOTE.json` |
+| Exact quote (no automatic cap, Amendment 1) | PENDING | `results/QUOTE.json` |
 | Bundle, agent-harness and pack checks | PENDING | `results/agent_bundle_check.json`, `results/agent_harness.json`, `results/packs.json` |
 | Smoke per configuration; main admission train → val → test; recovery pass; merge | PENDING | `results/judge_progress.json`, `results/harvest/` |
 | Criterion, components, indices (train + val rows open; test rows sealed) | PENDING | `results/units_train_val.json` |
@@ -32,13 +32,14 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 | Units | 60 (train 18 LLM + 4 controls; val 20 incl. 2 agent judges; test 18 incl. 4 agent judges) | `results/panel.json` |
 | Calls per configuration (upper bound, before Lean exclusions) | 946 (D0: 782 + 132 deterministic + 32 unmeasured) | `results/planning_dryrun/cells_summary.json` |
 | Total calls (upper bound) | 51,500 (46,316 single-call + 5,184 agent-judge cells) | `results/planning_dryrun/QUOTE.json` |
-| Expected charges | $1,421 (train $234, val $229, test $958); cap $2,000 | same |
+| Expected charges | $1,421 (train $234, val $229, test $958); no automatic cap (PROTOCOL.md Amendment 1) | same |
 | Human ceiling on the criterion items | 0.747 (mean leave-one-expert-out Spearman, 45 items) | VeriBench experiment 100 |
 | Criterion correlations, component values, index correlations | not measured | — |
 
 ## Deviations and open questions for Brando
 
 - 09-30-2026, before any call (PR #48 review by the sibling session): the probe theorem finder missed same-line `@[attr] theorem` heads (60 of 181 gold theorems found); widened to 181/181, `ms_gold` levels 57 → 83, quote 50,224 → 51,500 calls. Core `declarations()` (PTI-v0 numerics, bug-ladder targets) unchanged.
+- 09-30-2026, before any call (Brando): PROTOCOL.md Amendment 1 removes the automatic $2,000 spend cap; Valkyrie runs are not auto-capped, and charges are recorded, never used to hold admissions.
 - Every later amendment, substitute selector and missing-cell class will be listed here with counts.
 
-**TLDR-end:** [cert-judge: e39-proxy-index] The experiment is designed, coded, tested and quoted ($1,421 expected for 51,500 Valkyrie calls including six Terminus2 agent-judge configurations, cap $2,000) but nothing has been judged; the worker runbook `cc.md` runs it end to end on SNAP and the test-model rows stay sealed until the selection is committed.
+**TLDR-end:** [cert-judge: e39-proxy-index] The experiment is designed, coded, tested and quoted ($1,421 expected for 51,500 Valkyrie calls including six Terminus2 agent-judge configurations, no automatic spend cap) but nothing has been judged; the worker runbook `cc.md` runs it end to end on SNAP and the test-model rows stay sealed until the selection is committed.
