@@ -5,7 +5,8 @@
 set -u
 cd "$(dirname "$0")/.."
 PY=${E43_PYTHON:-/lfs/skampere1/0/brando9/vb103_venv/bin/python}
-export PYTHONDONTWRITEBYTECODE=1 PATH="$HOME/.elan/bin:$PATH"
+mkdir -p private/tmp
+export PYTHONDONTWRITEBYTECODE=1 PATH="$HOME/.elan/bin:$PATH" TMPDIR="$PWD/private/tmp"   # the shared root disk (/tmp) can fill up
 mkdir -p private/logs
 while [ ! -e private/STOP ] && [ ! -e private/ATTACK_DONE ]; do
   echo "$(date -u +%FT%TZ) worker: attack.py all" >> private/logs/worker.log

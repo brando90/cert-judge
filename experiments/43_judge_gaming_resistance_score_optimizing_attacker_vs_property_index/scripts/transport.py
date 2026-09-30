@@ -596,13 +596,17 @@ class FakeTransport:
         return out
 
 
-def charges_total() -> dict:
+def charges_total(prefix: str | None = None) -> dict:
+    """Vals-reported charges summed over harvested runs (optionally only runs whose key starts with `prefix`)."""
     state = load_state()
     by_role: dict[str, float] = {}
-    for entry in state["runs"].values():
+    for key, entry in state["runs"].items():
+        if prefix is not None and not key.startswith(prefix):
+            continue
         by_role[entry.get("role", "?")] = by_role.get(entry.get("role", "?"), 0.0) + (entry.get("charges_usd") or 0.0)
+    n_runs = sum(1 for key in state["runs"] if prefix is None or key.startswith(prefix))
     return {"total_usd": round(sum(by_role.values()), 4), "by_role_usd": {k: round(v, 4) for k, v in by_role.items()},
-            "n_runs": len(state["runs"])}
+            "n_runs": n_runs, "prefix": prefix}
 
 
 def main() -> int:

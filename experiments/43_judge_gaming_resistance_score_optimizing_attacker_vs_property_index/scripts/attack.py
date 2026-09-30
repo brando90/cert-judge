@@ -422,7 +422,8 @@ def post(stage: str, transport) -> dict:
                    gaming_gap=None if attacked_gain is None or reference_gain is None else attacked_gain - reference_gain,
                    checks=checks)
         summaries.append(row)
-    out = {"written_utc": e43.stamp(), "stage": stage, "n_cells": len(summaries), "charges": TR.charges_total() if TR.STATE.exists() else None,
+    out = {"written_utc": e43.stamp(), "stage": stage, "n_cells": len(summaries),
+           "charges": TR.charges_total(prefix=f"{stage}__") if TR.STATE.exists() else None,
            "cells": summaries}
     e43.write_json(e43.RESULTS / stage / "cells.json", out)
     return out
@@ -440,7 +441,7 @@ def gates(stage: str = "pilot") -> dict:
     parsed = [s for s in judge_calls if s["judge_status"] == "measured"]
     lean_rate = len(valid) / len(proposals) if proposals else None
     parse_rate = len(parsed) / len(judge_calls) if judge_calls else None
-    charges = TR.charges_total() if TR.STATE.exists() else {"total_usd": 0.0}
+    charges = TR.charges_total(prefix=f"{stage}__") if TR.STATE.exists() else {"total_usd": 0.0}
     attempts = sum(len(c["steps"]) for c in cells)
     out = {"written_utc": e43.stamp(), "stage": stage, "n_cells": len(cells), "n_attempts": attempts, "n_attacker_completions": len(proposals),
            "n_lean_valid": len(valid), "n_valid_after_relaxing_proofs": sum(1 for s in valid if (s.get("lean") or {}).get("relaxed")),
