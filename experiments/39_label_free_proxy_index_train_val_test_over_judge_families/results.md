@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results.md>
 
 **Status:** RUNNING (started 09-30-2026 12:09 PDT; worker tmux `cj-e39-proxy-index-search` on skampere1, branch `e39-proxy-index-search`; no judge call made yet)
-**Last updated:** 09-30-2026 12:32 PDT
+**Last updated:** 09-30-2026 12:49 PDT
 
 Experiment 39: 56 judge configurations (50 single-call: six judge models × the VeriBench and cert-judge prompt families; 6 agent judges: Terminus2 + GPT-6 Luna / Claude Sonnet 5 / Qwen3.6-27B on the H2 and D0 rubrics) plus 4 controls, judged on Lean-validated probes through Valkyrie; a label-free index is selected on the train judge models (GPT-6 Sol, Claude Sonnet 5), checked on val (GPT-6 Luna, Gemini 3.1 Pro, Terminus2 + Luna) and tested once on held-out judges (Claude Opus 5.5, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen) against agreement with the expert coverage ratings on 45 held-out VeriBench items; results pending.
 
@@ -16,9 +16,9 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 | Design, code, 19 offline tests, dry run (56 configurations rendered, 51,500 calls, $1,421 expected) | DONE 09-30-2026 | `scripts/`, `results/panel.json`, `results/planning_dryrun/` |
 | Protocol locked | DONE 09-30-2026 | `PROTOCOL.md` |
 | Dispatch on SNAP skampere1 (tmux `cj-e39-proxy-index-search`) | DONE 09-30-2026 (19 offline tests pass on the node; panel receipt rebuilt) | `CKPT_proxy_index_search.md`, `results/panel.json` |
-| Probes elaborated with Lean 4.22 + Mathlib | IN PROGRESS: first build (12:11–12:24 PDT) superseded, see deviation 2; rebuild against the mirror project started 12:31 PDT | `results/probe_manifest.json` |
-| Exact quote within cap | PENDING | `results/QUOTE.json` |
-| Bundle, agent-harness and pack checks | bundle PASS (served `vb103_judge` byte-identical to experiment 103's validated bundle); harness PASS (`brando_terminus_gateway`: kwargs `max_turns` 20, `reasoning_effort` high; its contract maps the gateway secret itself); packs PENDING | `results/agent_bundle_check.json`, `results/agent_harness.json`, `results/packs.json` |
+| Probes elaborated with Lean 4.22 + Mathlib | DONE 09-30-2026 12:41 PDT (mirror project with the VeriBench prelude; see deviations): valid/invalid per kind — ident 24/1, blank 25/0, ms_gold 76/4, bm_gold 37/60, crit 75/0, ms_cand 3/72, alpha 3/72, reorder 0/75, sorry 3/72, spam 3/72 | `results/probe_manifest.json` |
+| Exact quote within cap | DONE 09-30-2026: 28,591 calls over 56 configurations, expected $790.59 (train $129.49, val $127.01, test $534.13), worst-case admission bound $11,945, `expected_within_cap` true (cap $2,000) | `results/QUOTE.json`, `results/cells_summary.json` |
+| Bundle, agent-harness and pack checks | bundle PASS (served `vb103_judge` byte-identical to experiment 103's validated bundle); harness PASS (`brando_terminus_gateway`: kwargs `max_turns` 20, `reasoning_effort` high; its contract maps the gateway secret itself); packs PASS (nine packs, 0 round-trip failures: 4,633 tasks per nine-prompt model, 2,545 for Claude Opus 5.5, 979 per agent judge, each including one smoke cell per configuration) | `results/agent_bundle_check.json`, `results/agent_harness.json`, `results/packs.json` |
 | Smoke per configuration; main admission train → val → test; recovery pass; merge | PENDING | `results/judge_progress.json`, `results/harvest/` |
 | Criterion, components, indices (train + val rows open; test rows sealed) | PENDING | `results/units_train_val.json` |
 | Selection committed | PENDING | `results/FINALISTS.json`, `results/SELECTION.json` |
@@ -30,9 +30,10 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 | Quantity | Value | Source |
 |---|---|---|
 | Units | 60 (train 18 LLM + 4 controls; val 20 incl. 2 agent judges; test 18 incl. 4 agent judges) | `results/panel.json` |
-| Calls per configuration (upper bound, before Lean exclusions) | 946 (D0: 782 + 132 deterministic + 32 unmeasured) | `results/planning_dryrun/cells_summary.json` |
-| Total calls (upper bound) | 51,500 (46,316 single-call + 5,184 agent-judge cells) | `results/planning_dryrun/QUOTE.json` |
-| Expected charges | $1,421 (train $234, val $229, test $958); cap $2,000 | same |
+| Calls per configuration (after Lean exclusions) | 521 (D0 configurations: 456 + 56 deterministic + 9 unmeasured extraction) | `results/cells_summary.json` |
+| Total calls (exact, after Lean exclusions) | 28,591 (single-call 25,660 + agent-judge 2,931; dry-run upper bound was 51,500) | `results/QUOTE.json` |
+| Expected charges | $790.59 (train $129.49, val $127.01, test $534.13); cap $2,000; dry-run estimate was $1,421 | same |
+| Valid probes (Lean 4.22 + Mathlib) | golds with ladders 24/25; candidates elaborating 3/75 (ms_cand 3, alpha 3, reorder 0, sorry 3, spam 3 valid probes) | `results/probe_manifest.json` |
 | Human ceiling on the criterion items | 0.747 (mean leave-one-expert-out Spearman, 45 items) | VeriBench experiment 100 |
 | Criterion correlations, component values, index correlations | not measured | — |
 
