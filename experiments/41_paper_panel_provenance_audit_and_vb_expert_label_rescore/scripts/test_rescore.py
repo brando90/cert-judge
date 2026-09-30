@@ -80,6 +80,21 @@ def test_exact_permutation_p_matches_brute_force():
     assert math.isclose(got, cnt / tot, abs_tol=1e-9)
 
 
+def test_fast_spearman_matches_scipy():
+    rng = np.random.default_rng(4)
+    for _ in range(50):
+        n = rng.integers(3, 30)
+        a = rng.normal(size=n)
+        b = rng.normal(size=n)
+        got = rescore._fast_spearman(a, b)
+        want = stats.spearmanr(a, b).statistic
+        assert math.isclose(got, want, abs_tol=1e-9), (got, want)
+    # with ties
+    a = np.array([1.0, 1.0, 2.0, 3.0, 3.0, 3.0, 4.0])
+    b = np.array([2.0, 1.0, 2.0, 3.0, 3.0, 5.0, 4.0])
+    assert math.isclose(rescore._fast_spearman(a, b), stats.spearmanr(a, b).statistic, abs_tol=1e-9)
+
+
 def test_bootstrap_reproducible_with_seed():
     # Build a tiny synthetic family_scores / label_map / item_filter and confirm that two
     # independent RNGs seeded identically give identical bootstrap distributions.

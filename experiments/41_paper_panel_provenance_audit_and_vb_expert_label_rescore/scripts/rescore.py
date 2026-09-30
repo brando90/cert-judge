@@ -174,35 +174,79 @@ def human_agreement_per_judge(family_scores, label_map, item_filter):
     return out
 
 
+def _np_rank(a):
+    """Average-tie ranks, pure numpy (no scipy call overhead) -- used only in hot loops."""
+    a = np.asarray(a, dtype=float)
+    n = len(a)
+    order = np.argsort(a, kind="mergesort")
+    ranks = np.empty(n, dtype=float)
+    sorted_a = a[order]
+    i = 0
+    while i < n:
+        j = i
+        while j + 1 < n and sorted_a[j + 1] == sorted_a[i]:
+            j += 1
+        ranks[order[i : j + 1]] = (i + j) / 2.0 + 1.0
+        i = j + 1
+    return ranks
+
+
+def _fast_spearman(a, b):
+    """Numerically equivalent to spearman() (Spearman = Pearson on average ranks) but skips
+    scipy's per-call validation/hypothesis-test overhead; used only inside the hot bootstrap
+    loop. Cross-checked against spearman()/scipy in test_rescore.py."""
+    n = len(a)
+    if n < 3:
+        return float("nan")
+    a = np.asarray(a, dtype=float)
+    b = np.asarray(b, dtype=float)
+    if np.all(a == a[0]) or np.all(b == b[0]):
+        return float("nan")
+    ra, rb = _np_rank(a), _np_rank(b)
+    ma, mb = ra.mean(), rb.mean()
+    sa = math.sqrt(((ra - ma) ** 2).sum())
+    sb = math.sqrt(((rb - mb) ** 2).sum())
+    if sa == 0 or sb == 0:
+        return float("nan")
+    return float(((ra - ma) * (rb - mb)).sum() / (sa * sb))
+
+
 def task_clustered_bootstrap(family_scores, judge_ids, label_map, item_filter, ti_vector, rng):
     """Resample TASKS (gold_file) with replacement; recompute per-judge human_spearman on the
     resulting (possibly-repeated) item multiset, then the top-level Spearman(TI, human_spearman)
-    for that replicate. Returns array of N_BOOT top-level rho values (NaNs dropped)."""
-    tasks = sorted({g for (g, c) in item_filter})
-    items_by_task = {}
-    for (g, c) in item_filter:
-        items_by_task.setdefault(g, []).append((g, c))
-    n_tasks = len(tasks)
+    for that replicate. Returns array of N_BOOT top-level rho values (NaNs dropped).
+
+    Vectorized: precompute a (judges x items) score matrix and label vector once, then each draw
+    is numpy fancy-indexing + _fast_spearman (no scipy call, no per-item dict lookups)."""
+    items = sorted({it for it in item_filter if it in label_map})
+    label_vec = np.array([label_map[it] for it in items])
+    tasks_of_item = np.array([it[0] for it in items])
+    unique_tasks = sorted(set(tasks_of_item))
+    task_item_idx = {t: np.where(tasks_of_item == t)[0] for t in unique_tasks}
+
+    score_matrix = np.full((len(judge_ids), len(items)), np.nan)
+    for j, jid in enumerate(judge_ids):
+        scores = family_scores[jid]
+        for k, it in enumerate(items):
+            if it in scores:
+                score_matrix[j, k] = scores[it]
+
+    n_tasks = len(unique_tasks)
     out = []
     for _ in range(N_BOOT):
-        sampled_tasks = rng.choice(tasks, size=n_tasks, replace=True)
-        resampled_items = []
-        for t in sampled_tasks:
-            resampled_items.extend(items_by_task[t])
-        judge_rhos = []
-        for jid in judge_ids:
-            scores = family_scores[jid]
-            xs, ys = [], []
-            for item in resampled_items:
-                if item in scores and item in label_map:
-                    xs.append(scores[item])
-                    ys.append(label_map[item])
-            judge_rhos.append(spearman(xs, ys))
-        judge_rhos = np.array(judge_rhos)
+        sampled_tasks = rng.choice(unique_tasks, size=n_tasks, replace=True)
+        idx = np.concatenate([task_item_idx[t] for t in sampled_tasks])
+        sub_labels = label_vec[idx]
+        judge_rhos = np.full(len(judge_ids), np.nan)
+        for j in range(len(judge_ids)):
+            sub_scores = score_matrix[j, idx]
+            mask = ~np.isnan(sub_scores)
+            if mask.sum() >= 3:
+                judge_rhos[j] = _fast_spearman(sub_scores[mask], sub_labels[mask])
         mask = ~np.isnan(judge_rhos)
         if mask.sum() < 3:
             continue
-        r = spearman(ti_vector[mask], judge_rhos[mask])
+        r = _fast_spearman(ti_vector[mask], judge_rhos[mask])
         if not math.isnan(r):
             out.append(r)
     return np.array(out)
