@@ -13,8 +13,8 @@ from pathlib import Path
 
 sys.path[:0] = [str(Path(__file__).resolve().parents[3] / "py_src")]
 from cert_judge.probe_validation import (  # noqa: E402
-    Declaration, LeanCompiler, alpha_rename_bound_identifier, build_bug_ladder, declarations,
-    mask_lean_noncode, sha256_text,
+    _TOP_LEVEL_BOUNDARY_RE, _find_assignment, Declaration, LeanCompiler, alpha_rename_bound_identifier,
+    build_bug_ladder, mask_lean_noncode, sha256_text,
 )
 
 THEOREM_KEYWORDS = {"theorem", "lemma"}
@@ -34,8 +34,27 @@ class Artifact:
     note: str
 
 
+# A theorem head at column zero, optionally preceded ON THE SAME LINE by attributes (`@[simp] theorem foo`) and a
+# `private`/`protected` modifier. cert-judge's core `declarations()` matches the keyword only at line start and so
+# misses same-line attributes, which 13 of the 25 annotation-era golds use (PR #48 review, 09-30-2026); the core
+# finder is left untouched so the frozen PTI-v0 pipeline stays reproducible, and this one is used for every probe.
+_THEOREM_HEAD_RE = re.compile(
+    r"(?m)^(?P<prefix>(?:@\[[^\]\n]*\][ \t]*)*(?:(?:private|protected)[ \t]+)?)"
+    r"(?P<keyword>theorem|lemma)\b[ \t]+(?P<name>[A-Za-z_][A-Za-z0-9_'.]*)"
+)
+
+
 def theorem_decls(text: str) -> list[Declaration]:
-    return [d for d in declarations(text) if d.keyword in THEOREM_KEYWORDS]
+    """Theorem/lemma declarations at column zero, including `@[attr] theorem` and `private theorem` heads."""
+    masked = mask_lean_noncode(text)
+    boundaries = [m.start() for m in _TOP_LEVEL_BOUNDARY_RE.finditer(masked)]
+    out = []
+    for m in _THEOREM_HEAD_RE.finditer(masked):
+        start = m.start()
+        end = next((b for b in boundaries if b > start), len(text))
+        out.append(Declaration(keyword=m.group("keyword"), name=m.group("name"), start=start, end=end,
+                               assign=_find_assignment(masked, start, end)))
+    return out
 
 
 def _extend_start(text: str, masked: str, start: int) -> int:

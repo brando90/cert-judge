@@ -80,7 +80,9 @@ def render_unit(unit: dict, probe_rows: list[dict], prompts_mod, force: bool) ->
             if status == "render":
                 blob = {"system": system, "user": user}
                 path = out_dir / f"{cid}.json"
-                if force or not path.exists():
+                # Always rewrite unless the stored bytes already match: a probe can change under the same cell id
+                # (a rebuilt manifest), and a stale blob would fail the pack's hash check.
+                if force or not path.exists() or e39.read_json(path) != blob:
                     e39.write_json(path, blob)
                 cell["prompt_sha256"] = e39.sha((system + "\n\n" + user).encode())
                 cell["prompt_bytes"] = len((system + "\n\n" + user).encode())
