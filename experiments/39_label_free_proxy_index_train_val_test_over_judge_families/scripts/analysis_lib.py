@@ -133,6 +133,7 @@ class Scores:
         self.split = harvest["split"]
         self.family = harvest["family"]
         self.kind = harvest["kind"]
+        self.harness = harvest.get("harness", "vb103_judge" if harvest["kind"] == "llm" else "none")
         self.cells: dict[tuple, list[float]] = {}
         self.status_counts = harvest.get("status_counts", {})
         for c in harvest["cells"]:

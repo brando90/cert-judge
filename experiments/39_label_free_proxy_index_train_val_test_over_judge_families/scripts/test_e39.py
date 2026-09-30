@@ -135,6 +135,33 @@ def test_legacy_render_uses_last_theorem_block_and_parses_score():
     assert legacy.template("BAD_STRINGY").startswith("You are a text similarity grader.")
 
 
+# ------------------------------------------------------------------ panel and packs
+def test_panel_units_split_and_harness():
+    import e39
+    units = e39.panel_units()
+    counts = {}
+    for u in units:
+        counts.setdefault((u["split"], u["kind"], u["harness"]), 0)
+        counts[(u["split"], u["kind"], u["harness"])] += 1
+    assert counts[("train", "llm", "vb103_judge")] == 18 and counts[("train", "control", "none")] == 4
+    assert counts[("val", "llm", "vb103_judge")] == 18 and counts[("val", "llm", "terminus2")] == 2
+    assert counts[("test", "llm", "vb103_judge")] == 14 and counts[("test", "llm", "terminus2")] == 4
+    assert all(u["pack_flavor"] == ("agent" if u["harness"] == "terminus2" else "transport") for u in units if u["kind"] == "llm")
+    assert len({u["config"] for u in units}) == len(units)
+
+
+def test_agent_task_file_round_trips_and_keeps_prompt_bytes():
+    import pack
+    system, user = "SYS line 1\nline 2", "USER material\n```lean\ntheorem t : True := trivial\n```"
+    body = pack.agent_task_file("crit__x__L0__r1", "x", 1, "crit", "H2_human_mirror_conventions_demos", system, user)
+    header, s, u = pack.parse_agent_task_file(body)
+    assert (s, u) == (system, user) and header["flavor"] == "agent" and header["rubric"] == "H2_human_mirror_conventions_demos"
+    assert header["output_path"] == pack.OUTPUT_PATH and pack.OUTPUT_PATH in body and body.startswith(pack.AGENT_STAMP_LINE)
+    transport = pack.task_file("crit__x__L0__r1", "x", 1, "crit", "H2_human_mirror_conventions_demos", system, user)
+    assert json.loads(body.split("<!-- vb103-judge-cell: ", 1)[1].split(" -->", 1)[0])["prompt_sha256"] == \
+        json.loads(transport.split("<!-- vb103-judge-cell: ", 1)[1].split(" -->", 1)[0])["prompt_sha256"]
+
+
 # ------------------------------------------------------------------ statistics
 def test_rank_statistics():
     assert A.spearman([1, 2, 3, 4], [1, 2, 3, 4]) == pytest.approx(1.0)
