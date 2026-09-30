@@ -2,12 +2,12 @@
 
 Only currently pursued experiments belong directly in this directory.
 
-**No active experiments as of 09-28-2026.** Experiments 33a–33e, 34, and 38 finished and moved to `archive/`.
+Experiments 33a–33e, 34, and 38 finished and moved to `archive/` on 09-28-2026.
 The unstarted catalog of reviewer-requested experiments moved to [ideas/35_missing_experiments_from_reviews](ideas/35_missing_experiments_from_reviews/EXPERIMENTS.md); it is the menu for the next pick, and a picked item gets its own numbered folder here.
 
 | Active experiment | Current task |
 |---|---|
-| _(none)_ | |
+| [39_label_free_proxy_index_train_val_test_over_judge_families](39_label_free_proxy_index_train_val_test_over_judge_families/README.md) | **DISPATCH-READY 09-30-2026 — the paper's index redone with a real train / val / test split.** A label-free proxy index is searched over a pre-registered family on the train judge models (GPT-6 Sol, Claude Sonnet 5, plus controls), checked on val (GPT-6 Luna, Gemini 3.1 Pro) and tested once on held-out judge models (Claude Opus 5.5, Qwen3.6-27B), against each configuration's agreement with the three-expert coverage ratings on the 45 held-out VeriBench items (human ceiling 0.747). 54 units, Lean-validated probes, about 45,000 Valkyrie judge calls, $1,084 expected, cap $1,600. Next: dispatch [cc.md](39_label_free_proxy_index_train_val_test_over_judge_families/cc.md) on SNAP; live state in [results.md](39_label_free_proxy_index_train_val_test_over_judge_families/results.md). |
 
 The completed proxy studies are archived; the suggested new-family follow-up
 has not started and is not an active run. This is a repository classification,
