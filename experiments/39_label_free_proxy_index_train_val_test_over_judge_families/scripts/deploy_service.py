@@ -27,6 +27,12 @@ VENV = Path(os.environ.get("E39_VENV", "/lfs/skampere1/0/brando9/vb103_venv"))
 CLOUDFLARED = Path(os.environ.get("E39_CLOUDFLARED", "/lfs/skampere1/0/brando9/vb-e2-service-20260916/bin/cloudflared"))
 KERNEL_AXIOMS = e39.VB_REPO / "scripts/scsc/kernel_axioms.py"
 VALKYRIE_SOURCE = Path(os.environ.get("E39_VALKYRIE_SOURCE", "/dfs/scratch0/brando9/.config/valkyrie/valkyrie.yaml"))
+# Sandbox base image for the AGENT-judge services only. The service's default (a bare Ubuntu 24.04 digest) has no system
+# python3; its Lean-less `verify` phase requires one, which the vb103_judge bundle's setup happens to install (apt) before
+# that phase runs, while the Terminus2 bundle's setup installs uv + a private CPython venv only, so every agent-judge
+# sandbox failed provisioning with `python3 missing` (09-30-2026 smoke). A digest-pinned public image that ships python3
+# (and no Lean) satisfies the same phase; the single-call services keep the service default. Recorded in the receipt.
+AGENT_BASE_IMAGE = os.environ.get("E39_AGENT_BASE_IMAGE", "")
 # Experiment 103 allocated 8923-8962, experiment 105 took 8975; 8990-8995 are free (one port per judge model).
 BASE_PORT = 8990
 MODEL_KEYS = list(e39.MODELS)
@@ -108,6 +114,11 @@ def main() -> int:
     for key in ("AUTH_DISABLED", "PYTHONPATH", "PYTHONHOME", "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY",
                 "GOOGLE_API_KEY", "CLAUDE_CODE_OAUTH_TOKEN"):
         env.pop(key, None)
+    agent_flavor = e39.MODELS[args.model]["harness"] != "vb103_judge"
+    if agent_flavor:
+        if not AGENT_BASE_IMAGE:
+            raise SystemExit("E39_AGENT_BASE_IMAGE (digest-pinned public image with python3) is required for an agent-judge service")
+        env["VB_BASE_IMAGE"] = AGENT_BASE_IMAGE
     env.update(VB_SERVICE_KEY_FILE=str(bearer_path), VB_TASK_PACK=str(pack), VB_CONTROL_PACK="1", VB_NO_COMPILER="1",
                VB_COLLECT_ONLY="1", VB_LAKE_DIR=str(e39.LAKE_DIR), VB_KERNEL_AXIOMS=str(KERNEL_AXIOMS),
                VB_GRADE_SCRATCH=str(e39.PRIVATE / "grade_scratch"), VB_GRADE_NETNS="off", VB_IC_PP="offline",
@@ -167,6 +178,7 @@ def main() -> int:
                "service_files_sha256": {p.name: e39.sha_file(p) for p in sorted(SERVICE_DIR.glob("*.py"))},
                "pack_dir": str(pack), "pack_task_count": len([p for p in pack.iterdir() if p.is_dir()]),
                "control_pack": True, "grade_mode": "collect_only", "sandbox_lean": "none", "valkyrie_config": str(target),
+               "base_image": env.get("VB_BASE_IMAGE", "service default (ubuntu 24.04 digest)"), "harness": e39.MODELS[args.model]["harness"],
                "inference_calls": 0}
     tmp = receipt_path.with_suffix(".tmp")
     tmp.write_text(json.dumps(receipt, indent=2) + "\n")
