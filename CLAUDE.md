@@ -66,9 +66,11 @@ The frozen PTI-v0 numerical specification is `docs/spec/PTI_V0.md`. Its zero-spe
 python experiments/archive/04_veribench_validation/run_pti_v0.py --help
 ```
 
-That CLI has no inference client and cannot load credentials. Paid judge inference requires a separate exact call/cost quote and explicit approval.
+That CLI has no inference client and cannot load credentials. Paid judge inference outside Valkyrie (a direct provider or model-gateway API key) requires a separate exact call/cost quote and explicit approval; Valkyrie runs follow the no-automatic-caps rule below. Historical JTI evaluations remain under `experiments/archive/00_overall_cert_judge_metric_with_properties/`.
 
-**Valkyrie runs have no automatic caps** (Brando's rule: VeriBench 09-28-2026, extended to cert-judge 09-30-2026). Valkyrie (`valk run start --benchmark … --agent … --model …`, including custom agents) is Vals-funded with effectively unlimited capacity, using `~/.config/valkyrie/valkyrie.yaml` on the execution host (never copy its contents into prompts, logs, results or Git). Do not add automatic dollar caps, `APPROVED_SPEND_USD` stop values or spend-triggered admission holds to a Valkyrie run, and do not shrink manifests, sample tasks or drop models to save cost. The quote-and-approval requirement above is for non-Valkyrie paid inference; a Valkyrie experiment's quote is a record, not a gate. Still name the route of every call, record the charges Valkyrie reports in `results.md`, and keep runaway guards: declared cells only, no silent retry loops, never re-admit a cell that already has a result, and treat HTTP 429 as an infrastructure failure. Source: VeriBench `docs/agent_rules/experiment_funding_and_valkyrie.md`.
+### Valkyrie runs have no automatic caps
+
+Brando's rule (VeriBench 09-28-2026, extended to cert-judge 09-30-2026): Valkyrie (`valk run start --benchmark … --agent … --model …`, including custom agents such as experiment 103's `vb103_judge`) is Vals-funded with effectively unlimited capacity. Do not add automatic dollar caps or spend-triggered stop rules to a Valkyrie run, and do not shrink manifests, sample tasks, drop models or ask for a spend estimate to save cost. Still name the route of every call, record the charges Valkyrie reports, and keep runaway guards: declared cells only, no silent retry loops, never re-admit a cell that already has a verdict, and treat HTTP 429 as an infrastructure failure. Source: VeriBench `docs/agent_rules/experiment_funding_and_valkyrie.md`.
 
 ## Architecture
 
