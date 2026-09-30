@@ -1,6 +1,6 @@
 # Checkpoint: experiment 43, judge-gaming resistance (score-optimizing attacker vs the label-free property index)
 
-**Last updated:** 09-30-2026 14:25 PDT
+**Last updated:** 09-30-2026 15:13 PDT
 **Worker:** Claude Code (claude-opus-5-5, effort high), tmux `cj-e43-gaming-resistance` on skampere1; clone `/lfs/skampere1/0/brando9/cert-judge_e43`, branch `e43-gaming-resistance`.
 **Model switches:** none so far (fallback per dispatcher: claude-sonnet-5 at high effort; record any switch here).
 
@@ -9,7 +9,7 @@
 2. Harness, zero calls: DONE (scripts/attack.py, lean_guard.py, reference_checks.py, transport.py, analyze.py, build_items.py; 13 offline tests pass incl. real Lean).
 3. Protocol lock: DONE, commit 36476e9 (`PROTOCOL.md`; attacker prompt sha256 b8d83d2e… system / d3b57c44… user template).
 4. Wait gate: PASSED (09-30-2026 14:25 PDT): experiment 39 results.md at origin/e39-proxy-index-search 9823689 shows GPT-6 Sol 9/9, Claude Sonnet 5 9/9, GPT-6 Luna 9/9, Claude Opus 5.5 5/5 smoke cells measured (`results/wait_gate.json`).
-5. Pilot: STARTING via `scripts/worker_loop.sh` (tmux window `cj-e43-gaming-resistance:worker`, log `private/logs/worker.log`).
+5. Pilot: first pilot DONE 09-30-2026 15:12 PDT: Lean-valid 7/24 = 29.2% (gate 60%) FAIL; judge parse 13/13 = 100% PASS; charges $2.36 (reference $1.83). Amendment 1 (proof relaxation in the Lean guard; offline it accepts 21/24) committed 69292aa. Re-pilot `pilot_r1` RUNNING since 09-30-2026 15:13 PDT (tmux window `worker2`, log `private/logs/worker.log`); on PASS the full run starts automatically.
 
 ## Environment facts (recorded as found)
 - VeriBench clone (read-only): `/lfs/skampere1/0/brando9/veribench_e43`.
