@@ -121,14 +121,23 @@ def main() -> int:
     harvest_ok = stage_harvest(units, args.concurrency)
     status = {"smoke_ok": smoke_ok, "main_admitted": main_ok, "harvest_done": harvest_ok, "ts": e39.stamp()}
     if harvest_ok:
-        for step in (["local_controls.py"], ["analyze.py", "units"]):
-            done = sh(step)
-            status[step[0] + ":" + ("".join(step[1:]) or "run")] = done.returncode
-        if not (e39.RESULTS / "FINALISTS.json").exists():
+        sealed = (e39.RESULTS / "FINALISTS.json").exists()
+        if not sealed:
+            # The open rows are frozen at selection: controls and the unit analysis run only until the seal exists.
+            for step in (["local_controls.py"], ["analyze.py", "units"]):
+                done = sh(step)
+                status[step[0] + ":" + ("".join(step[1:]) or "run")] = done.returncode
             done = sh(["analyze.py", "select"])
             status["select"] = done.returncode
             status["next"] = "commit results/FINALISTS.json and results/SELECTION.json, then the driver unlocks the test split"
         else:
+            # A re-run of `analyze.py units` after the seal rewrites results/units_train_val.json (new timestamp, same numbers),
+            # which the test unlock rightly refuses; the committed file is the sealed one, so restore it from git if it drifted.
+            fin = e39.read_json(e39.RESULTS / "FINALISTS.json")
+            units_open = e39.RESULTS / "units_train_val.json"
+            if not units_open.exists() or e39.sha_file(units_open) != fin.get("units_open_sha256"):
+                restored = subprocess.run(["git", "checkout", "--", "results/units_train_val.json"], cwd=str(e39.E), capture_output=True, text=True)
+                status["units_restored_from_git"] = restored.returncode
             commit = subprocess.run(["git", "log", "-1", "--format=%H", "--", "results/FINALISTS.json"], cwd=str(e39.E), capture_output=True, text=True).stdout.strip()
             if commit and not (e39.RESULTS / "TEST_RECEIPT.json").exists():
                 done = sh(["analyze.py", "test", "--finalists-commit", commit])

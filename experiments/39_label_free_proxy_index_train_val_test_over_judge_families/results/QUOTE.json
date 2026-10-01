@@ -1,0 +1,952 @@
+{
+ "written_utc": "2026-09-30T20:49:43.642154+00:00",
+ "cap_usd": null,
+ "total_calls": 28591,
+ "expected_usd": 790.59,
+ "worst_case_usd": 11945.16,
+ "prices_usd_per_million": {
+  "sol6h": [
+   4.0,
+   20.0
+  ],
+  "sonnet5m": [
+   3.0,
+   15.0
+  ],
+  "luna6h": [
+   0.1,
+   0.5
+  ],
+  "gem31h": [
+   2.0,
+   12.0
+  ],
+  "opus55x": [
+   15.0,
+   75.0
+  ],
+  "qwen36": [
+   0.6,
+   3.6
+  ],
+  "t2_luna": [
+   0.1,
+   0.5
+  ],
+  "t2_sonnet5": [
+   3.0,
+   15.0
+  ],
+  "t2_qwen": [
+   0.6,
+   3.6
+  ]
+ },
+ "by_split": {
+  "train": {
+   "calls": 9248,
+   "expected_usd": 129.49,
+   "worst_case_usd": 4351.79
+  },
+  "val": {
+   "calls": 10225,
+   "expected_usd": 127.01,
+   "worst_case_usd": 1537.09
+  },
+  "test": {
+   "calls": 9118,
+   "expected_usd": 534.13,
+   "worst_case_usd": 6056.3
+  }
+ },
+ "by_model": {
+  "sol6h": {
+   "calls": 4624,
+   "expected_usd": 55.47,
+   "worst_case_usd": 2486.73
+  },
+  "sonnet5m": {
+   "calls": 4624,
+   "expected_usd": 74.02,
+   "worst_case_usd": 1865.06
+  },
+  "luna6h": {
+   "calls": 4624,
+   "expected_usd": 5.17,
+   "worst_case_usd": 62.17
+  },
+  "gem31h": {
+   "calls": 4624,
+   "expected_usd": 117.18,
+   "worst_case_usd": 1459.98
+  },
+  "opus55x": {
+   "calls": 2540,
+   "expected_usd": 330.2,
+   "worst_case_usd": 5066.08
+  },
+  "qwen36": {
+   "calls": 4624,
+   "expected_usd": 35.16,
+   "worst_case_usd": 437.98
+  },
+  "t2_luna": {
+   "calls": 977,
+   "expected_usd": 4.66,
+   "worst_case_usd": 14.94
+  },
+  "t2_sonnet5": {
+   "calls": 977,
+   "expected_usd": 139.67,
+   "worst_case_usd": 448.13
+  },
+  "t2_qwen": {
+   "calls": 977,
+   "expected_usd": 29.1,
+   "worst_case_usd": 104.11
+  }
+ },
+ "rows": [
+  {
+   "config": "sol6h|D0",
+   "split": "train",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 184.31,
+   "expected_usd": 5.47,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sol6h|R4",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8507271,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 378.64,
+   "expected_usd": 6.25,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sol6h|H0",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8554063,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 378.88,
+   "expected_usd": 6.25,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sol6h|H1",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 9252203,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 382.37,
+   "expected_usd": 6.25,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sol6h|H2",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 413.2,
+   "expected_usd": 6.25,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sol6h|P1",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2872946,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 187.75,
+   "expected_usd": 6.25,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sol6h|P4",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2780208,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 187.29,
+   "expected_usd": 6.25,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sol6h|P8",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2724461,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 187.01,
+   "expected_usd": 6.25,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sol6h|LEX",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2778124,
+   "usd_per_million": [
+    4.0,
+    20.0
+   ],
+   "worst_case_usd": 187.28,
+   "expected_usd": 6.25,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|D0",
+   "split": "train",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 138.23,
+   "expected_usd": 7.3,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|R4",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8507271,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 283.98,
+   "expected_usd": 8.34,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|H0",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8554063,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 284.16,
+   "expected_usd": 8.34,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|H1",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 9252203,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 286.78,
+   "expected_usd": 8.34,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|H2",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 309.9,
+   "expected_usd": 8.34,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|P1",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2872946,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 140.82,
+   "expected_usd": 8.34,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|P4",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2780208,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 140.47,
+   "expected_usd": 8.34,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|P8",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2724461,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 140.26,
+   "expected_usd": 8.34,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "sonnet5m|LEX",
+   "split": "train",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2778124,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 140.46,
+   "expected_usd": 8.34,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "luna6h|D0",
+   "split": "val",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 4.61,
+   "expected_usd": 0.53,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "luna6h|R4",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8507271,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 9.47,
+   "expected_usd": 0.63,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "luna6h|H0",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8554063,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 9.47,
+   "expected_usd": 0.64,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "luna6h|H1",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 9252203,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 9.56,
+   "expected_usd": 0.66,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "luna6h|H2",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 10.33,
+   "expected_usd": 0.83,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "luna6h|P1",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2872946,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 4.69,
+   "expected_usd": 0.47,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "luna6h|P4",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2780208,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 4.68,
+   "expected_usd": 0.47,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "luna6h|P8",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2724461,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 4.68,
+   "expected_usd": 0.47,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "luna6h|LEX",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2778124,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 4.68,
+   "expected_usd": 0.47,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|D0",
+   "split": "val",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 107.1,
+   "expected_usd": 11.93,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|R4",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8507271,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 222.67,
+   "expected_usd": 14.24,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|H0",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8554063,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 222.78,
+   "expected_usd": 14.27,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|H1",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 9252203,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 224.53,
+   "expected_usd": 14.66,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|H2",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 239.94,
+   "expected_usd": 18.19,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|P1",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2872946,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 110.95,
+   "expected_usd": 11.02,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|P4",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2780208,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 110.72,
+   "expected_usd": 10.97,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|P8",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2724461,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 110.58,
+   "expected_usd": 10.93,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "gem31h|LEX",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2778124,
+   "usd_per_million": [
+    2.0,
+    12.0
+   ],
+   "worst_case_usd": 110.71,
+   "expected_usd": 10.97,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "opus55x|H2",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    15.0,
+    75.0
+   ],
+   "worst_case_usd": 1549.49,
+   "expected_usd": 67.73,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "opus55x|H0",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8554063,
+   "usd_per_million": [
+    15.0,
+    75.0
+   ],
+   "worst_case_usd": 1420.79,
+   "expected_usd": 67.73,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "opus55x|D0",
+   "split": "test",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    15.0,
+    75.0
+   ],
+   "worst_case_usd": 691.16,
+   "expected_usd": 59.28,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "opus55x|P4",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2780208,
+   "usd_per_million": [
+    15.0,
+    75.0
+   ],
+   "worst_case_usd": 702.34,
+   "expected_usd": 67.73,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "opus55x|LEX",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2778124,
+   "usd_per_million": [
+    15.0,
+    75.0
+   ],
+   "worst_case_usd": 702.3,
+   "expected_usd": 67.73,
+   "expected_basis": "measured per-call mean (experiment 100 receipts)"
+  },
+  {
+   "config": "qwen36|D0",
+   "split": "test",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 32.13,
+   "expected_usd": 3.58,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "qwen36|R4",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8507271,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 66.8,
+   "expected_usd": 4.27,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "qwen36|H0",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 8554063,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 66.83,
+   "expected_usd": 4.28,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "qwen36|H1",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 9252203,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 67.36,
+   "expected_usd": 4.4,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "qwen36|H2",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 71.98,
+   "expected_usd": 5.46,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "qwen36|P1",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2872946,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 33.28,
+   "expected_usd": 3.31,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "qwen36|P4",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2780208,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 33.22,
+   "expected_usd": 3.29,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "qwen36|P8",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2724461,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 33.17,
+   "expected_usd": 3.28,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "qwen36|LEX",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 2778124,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 33.21,
+   "expected_usd": 3.29,
+   "expected_basis": "bytes/3.5 input tokens + 1500 output tokens per call"
+  },
+  {
+   "config": "t2_luna|H2",
+   "split": "val",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 10.33,
+   "expected_usd": 2.91,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_luna|D0",
+   "split": "val",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    0.1,
+    0.5
+   ],
+   "worst_case_usd": 4.61,
+   "expected_usd": 1.75,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_sonnet5|H2",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 309.9,
+   "expected_usd": 87.25,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_sonnet5|D0",
+   "split": "test",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    3.0,
+    15.0
+   ],
+   "worst_case_usd": 138.23,
+   "expected_usd": 52.42,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_qwen|H2",
+   "split": "test",
+   "calls": 521,
+   "deterministic": 0,
+   "unmeasured": 0,
+   "prompt_bytes": 15418120,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 71.98,
+   "expected_usd": 18.07,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  },
+  {
+   "config": "t2_qwen|D0",
+   "split": "test",
+   "calls": 456,
+   "deterministic": 56,
+   "unmeasured": 9,
+   "prompt_bytes": 6510243,
+   "usd_per_million": [
+    0.6,
+    3.6
+   ],
+   "worst_case_usd": 32.13,
+   "expected_usd": 11.03,
+   "expected_basis": "agent judge: 4 turns x (bytes/3.5 + 3000) input tokens + 2000 output tokens per cell (assumption, no measured mean)"
+  }
+ ],
+ "note": "worst case bills max_tokens output on every call (experiment 100's reservation rule); the expected figure is the planning estimate; Vals-reported charges are the record"
+}

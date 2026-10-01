@@ -72,10 +72,10 @@
 |---|---|---|
 | Design, code, offline tests | Done (09-30-2026) | 19 tests pass; dry run renders 56 configurations, 51,500 calls, $1,421 expected ([COST_QUOTE.md](COST_QUOTE.md)) |
 | Protocol locked | Done (09-30-2026) | [PROTOCOL.md](PROTOCOL.md) |
-| Dispatch to SNAP | TODO | [cc.md](cc.md); tmux `cj-e39-proxy-index-search` on skampere1 |
-| Probes elaborated (Lean) | TODO | `results/probe_manifest.json` with `valid` true/false per probe |
-| Agent harness check + smoke + main admission (train → val → test) | TODO | one Valkyrie run per configuration and part; `results/agent_harness.json` |
-| Harvest, recovery pass, merge | TODO | `results/harvest/<config>.json` |
-| Selection (train → val) | TODO | `results/FINALISTS.json` committed before the test unlock |
-| One-shot test | TODO | `results/TEST_RECEIPT.json` |
-| Report | TODO | `results/RESULTS_proxy_index_train_val_test.md`, `results.md` |
+| Dispatch to SNAP | Done (09-30-2026) | tmux `cj-e39-proxy-index-search` on skampere1, branch `e39-proxy-index-search` |
+| Probes elaborated (Lean) | Done (09-30-2026) | 24/25 golds, 3/75 candidates elaborate under Lean 4.22 + Mathlib (`results/probe_manifest.json`); see `results.md` deviations |
+| Agent harness check + smoke + main admission (train → val → test) | Done (09-30-2026) | 56 smoke + 56 main runs; `brando_terminus_gateway` on a python3 sandbox image; `results/agent_harness.json`, `results/selectors.json` |
+| Harvest, recovery pass, merge | Done (10-01-2026) | 28,591 cells reconciled one-to-one; 31 recovery runs; $574 Vals-reported |
+| Selection (train → val) | Done (10-01-2026) | selected `C_ms_gold` (train ρ 0.761, val ρ 0.762); seal commit `86ae479` |
+| One-shot test | Done (10-01-2026) | **PASS**: test ρ 0.558 [0.08, 0.76], permutation p 0.0127; `PTI_v0` -0.274, `TI_var` -0.332 on test |
+| Report | Done (10-01-2026) | [results.md](results.md), [results/RESULTS_proxy_index_train_val_test.md](results/RESULTS_proxy_index_train_val_test.md) |

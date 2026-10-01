@@ -255,13 +255,28 @@ def harvest(config: str, part: str, suffix: str = "") -> int:
         except json.JSONDecodeError:
             continue
         receipts[receipt.get("task_id") or path.parent.name] = receipt
+    # Agent-judge episodes (Terminus2) write no receipt.json; their Vals-reported cost and token usage live in the
+    # ATIF trajectory the bundle exports at <task_id>/atif/trajectory.json (final_metrics.total_cost_usd).
+    trajectories = {}
+    for path in sorted(artifacts.rglob("trajectory.json")):
+        try:
+            trajectory = json.loads(path.read_text())
+        except json.JSONDecodeError:
+            continue
+        task_dir = path.parent.parent if path.parent.name == "atif" else path.parent
+        trajectories[task_dir.name] = trajectory.get("final_metrics") or {}
     cells, charges = [], 0.0
     for task_id, meta in sorted(rows_meta.items()):
         row, receipt = served.get(task_id, {}), receipts.get(task_id, {})
         cell = {k: meta[k] for k in ("task_id", "cell", "kind", "key", "task", "item", "level", "repeat", "prompt_sha256")}
+        traj = trajectories.get(task_id, {})
         cell.update(config=config, agent_status=receipt.get("status"), prompt_sha256_delivered=receipt.get("prompt_sha256"),
-                    finish_reason=receipt.get("finish_reason"), cost_usd=receipt.get("cost_usd"),
-                    submission_status=row.get("submission_status"))
+                    finish_reason=receipt.get("finish_reason"),
+                    cost_usd=receipt.get("cost_usd") if receipt else traj.get("total_cost_usd"),
+                    submission_status=row.get("submission_status"), instruction_sha256_served=row.get("instruction_sha256"))
+        if traj:
+            cell.update(agent_steps=traj.get("total_steps"), agent_prompt_tokens=traj.get("total_prompt_tokens"),
+                        agent_completion_tokens=traj.get("total_completion_tokens"), agent_cached_tokens=traj.get("total_cached_tokens"))
         charges += cell["cost_usd"] or 0.0
         blob = row.get("solution_b64")
         if blob:
@@ -282,6 +297,10 @@ def harvest(config: str, part: str, suffix: str = "") -> int:
                         or f"no collected verdict (submission_status={row.get('submission_status')})")
         if cell.get("prompt_sha256_delivered") and cell["prompt_sha256_delivered"] != meta["prompt_sha256"]:
             cell.update(status="unmeasured_infra", reason="delivered prompt hash != frozen prompt hash")
+        # The service records the SHA-256 of the instruction it uploaded; it must be the pack's bytes for every cell
+        # (both flavors), which is the prompt-hash STOP rule's check for agent episodes that carry no receipt.
+        if cell.get("instruction_sha256_served") and meta.get("instruction_sha256") and cell["instruction_sha256_served"] != meta["instruction_sha256"]:
+            cell.update(status="unmeasured_infra", reason="served instruction hash != pack instruction hash")
         cells.append(cell)
     counts: dict[str, int] = {}
     for cell in cells:
