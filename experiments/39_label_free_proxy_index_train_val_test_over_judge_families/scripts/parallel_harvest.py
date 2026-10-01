@@ -19,19 +19,19 @@ import e39                                                    # noqa: E402
 HARVESTS = e39.PRIVATE / "judge" / "harvests"
 
 
-def harvested(config: str) -> bool:
-    return (HARVESTS / f"{config.replace('|', '__')}_main.json").exists()
+def harvested(config: str, part: str = "main", suffix: str = "") -> bool:
+    return (HARVESTS / f"{config.replace('|', '__')}_{part}{suffix.replace('@', '_')}.json").exists()
 
 
-def todo(panel: list[str], part: str) -> list[str]:
+def todo(panel: list[str], part: str, suffix: str = "") -> list[str]:
     state = json.loads((e39.PRIVATE / "judge" / "state.json").read_text())["runs"]
-    return [c for c in panel if state.get(f"{c}@{part}", {}).get("phase") == "terminal" and not harvested(c)]
+    return [c for c in panel if state.get(f"{c}@{part}{suffix}", {}).get("phase") == "terminal" and not harvested(c, part, suffix)]
 
 
-def harvest(config: str, part: str) -> tuple[str, int, str]:
-    if harvested(config):
+def harvest(config: str, part: str, suffix: str = "") -> tuple[str, int, str]:
+    if harvested(config, part, suffix):
         return config, 0, "already harvested"
-    done = subprocess.run([sys.executable, str(e39.E / "scripts/judge_controller.py"), "harvest", "--config", config, "--part", part],
+    done = subprocess.run([sys.executable, str(e39.E / "scripts/judge_controller.py"), "harvest", "--config", config, "--part", part, "--suffix", suffix],
                           capture_output=True, text=True, timeout=7200)
     return config, done.returncode, (done.stdout.strip().splitlines() or [done.stderr.strip()[-200:]])[-1]
 
@@ -41,17 +41,18 @@ def main() -> int:
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--leave", type=int, default=3, help="leave this many of the earliest unharvested runs to the driver")
     ap.add_argument("--part", default="main")
+    ap.add_argument("--suffix", default="", help="run-key suffix, e.g. @recovery_1 for the recovery pass")
     args = ap.parse_args()
     panel = [u["config"] for u in e39.read_json(e39.RESULTS / "panel.json")["units"] if u["kind"] == "llm"]
     taken: set[str] = set()
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         futures = {}
         while True:
-            pending = [c for c in todo(panel, args.part) if c not in taken]
+            pending = [c for c in todo(panel, args.part, args.suffix) if c not in taken]
             while len(pending) > args.leave and len(futures) < args.workers:
                 config = pending.pop()                         # from the END of the driver's order
                 taken.add(config)
-                futures[pool.submit(harvest, config, args.part)] = config
+                futures[pool.submit(harvest, config, args.part, args.suffix)] = config
             if not futures:
                 if len(pending) <= args.leave:
                     print(f"{e39.stamp()} nothing left beyond the {args.leave} runs left to the driver; exiting", flush=True)
