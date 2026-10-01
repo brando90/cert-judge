@@ -5,7 +5,7 @@
 **TLDR:** After Amendment 1 (proof relaxation), the re-pilot passed both gates (Lean-valid 24/24 = 100%, judge parse 30/30 = 100%); the full run (6 judges × 15 items × 8 rounds) is running.
 
 **Status:** RUNNING (started 09-30-2026 14:04 PDT; skampere1 tmux `cj-e43-gaming-resistance`, branch `e43-gaming-resistance`)
-**Last updated:** 09-30-2026 16:05 PDT
+**Last updated:** 09-30-2026 17:21 PDT
 
 | Step | Status | Evidence |
 |---|---|---|
@@ -17,6 +17,15 @@
 | Analysis, report, landing | PENDING | `REPORT.md`, PR |
 
 Checkpoint: [CKPT_gaming_resistance.md](CKPT_gaming_resistance.md).
+
+## Full run, live (updated 09-30-2026 17:21 PDT)
+
+| Round | Attempts | Attacker completions | Lean-valid (after proof relaxation) | Accepted |
+|---|---|---|---|---|
+| 1 | 90 | 90 | 77 (46) | 39 |
+| 2 | 90 | 90 (7 after the one recovery pass) | 81 (39) | 24 |
+
+Round 0 (attacked-judge score of each start): 88 calls measured (5 after the recovery pass) + 2 deterministic `D0` zeros (starts without theorems).
 
 ## Deviations and amendments
 
