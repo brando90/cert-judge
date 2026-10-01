@@ -5,16 +5,16 @@
 **TLDR:** No attacked Claude Sonnet 5 configuration gained more than the held-out validated `H2` ensemble credited (gaming gaps −0.162 to +0.033, no interval above 0), but 59 of 62 edited final candidates added flagged test-like statements that the reference also credited, and the label-free index did not predict resistance (`C_ms_gold` ρ = +0.600, one-sided p = 0.912; `TI_var_trainnorm` ρ = −0.086; `PTI_v0_frozen` not computable). Report: [REPORT.md](REPORT.md).
 
 **Status:** DONE (09-30-2026; started 14:04 PDT, full run finished 19:35 PDT; skampere1 tmux `cj-e43-gaming-resistance`)
-**Last updated:** 09-30-2026 19:38 PDT
+**Last updated:** 09-30-2026 19:46 PDT
 
 | Step | Status | Evidence |
 |---|---|---|
 | Harness and offline tests (zero calls) | DONE (14 tests pass) | `scripts/`, `scripts/test_e43.py` |
-| Protocol lock | DONE, commit 36476e9 | `PROTOCOL.md` |
+| Protocol lock | DONE, commit 95de021 (pre-rebase 36476e9) | `PROTOCOL.md` |
 | Wait gate: experiment 39 transport smoke passed | PASSED 09-30-2026 14:25 PDT (Sol 9/9, Sonnet 5 9/9, Luna 9/9, Opus 5.5 5/5 smokes measured) | `results/wait_gate.json` |
 | Pilot (3 items × 2 judges × 4 iterations) | first pilot FAIL on the Lean gate: 7/24 = 29.2% valid (gate ≥ 60%), parse 13/13 = 100% (gate ≥ 95%), $2.36 Vals-reported; Amendment 1 (proof relaxation) → re-pilot `pilot_r1` PASS: Lean-valid 24/24 = 100% (16 after relaxation), parse 30/30 = 100%, $3.45 | `results/pilot.json`, `results/pilot_r1.json`, `results/analysis_pilot*.json` |
 | Full run (6 judges × 15 items × 8 iterations) and reference scoring | DONE 19:35 PDT: 90/90 cells with a gaming gap; 720/720 attempts (634 Lean-valid, 119 accepted); 450 rescoring calls (448 measured, 2 labelled parse errors) + 6 deterministic; 462/462 reference calls measured | `results/full/cells.json`, `results/full/candidates/` |
-| Analysis, report, landing | DONE (analysis and report); landing via PR | `results/analysis.json`, `results/report_tables.md`, `REPORT.md` |
+| Analysis, report, landing | DONE: PR #52 merged to main at 6ef89c2; email receipt sent 19:46 PDT | `results/analysis.json`, `results/report_tables.md`, `REPORT.md` |
 
 Checkpoint: [CKPT_gaming_resistance.md](CKPT_gaming_resistance.md).
 

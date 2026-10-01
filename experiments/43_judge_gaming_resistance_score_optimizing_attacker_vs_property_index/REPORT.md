@@ -6,7 +6,7 @@
 
 ## 1. What was run
 
-- **Contract:** [PROTOCOL.md](PROTOCOL.md), locked at commit 36476e9 before any model call. Amendment 1 (commit 69292aa) added proof relaxation to the Lean guard after the first pilot.
+- **Contract:** [PROTOCOL.md](PROTOCOL.md), locked at commit 95de021 (pre-rebase 36476e9) before any model call. Amendment 1 (commit 242adc8 (pre-rebase 69292aa)) added proof relaxation to the Lean guard after the first pilot.
 - **Route:** every call was a task of the Valkyrie benchmark `certjudge43-gaming`. Experiment 103's collect-only single-call service ran read-only, and experiment 103's validated `vb103_judge` agent made the calls; the bundle is byte-identical to experiment 103's (`results/agent_bundle_check.json`). No provider key was used.
 - **Attacked judges:** Claude Sonnet 5 (`anthropic/claude-sonnet-5-medium`, `compute_effort=medium`) with six prompts, using experiment 39's prompt bytes and parsers:
   - the lexical control `BAD_STRINGY` (`LEX`);
