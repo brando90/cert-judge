@@ -1,11 +1,13 @@
 # CKPT: proxy-index search (experiment 39)
 
 Created: 09-30-2026 16:35 UTC
-Last updated: 09-30-2026 17:28 PDT
+Last updated: 09-30-2026 17:32 PDT
 
 Task: run experiments/39_label_free_proxy_index_train_val_test_over_judge_families end to end on SNAP skampere1 per cc.md.
 
 State:
+- LANDED 5d4379fe9d87011b0a77a76c8067f6f0c1eaf424 https://github.com/brando90/cert-judge/pull/51 09-30-2026 17:32 PDT (merge commit of PR #51 bound to head a213d2c; merged with a merge commit rather than a rebase-merge so the seal commit 86ae479 cited by results/TEST_RECEIPT.json stays in main's history; deterministic checks: 19 tests, layout OK, diff --check clean, reconciliation PASS; QA: not requested)
+- Phase: LANDED; task complete. Remaining housekeeping only: delete the remote task branch after this record lands; archive the folder once experiment 42 no longer consumes it.
 - Phase: DONE (09-30-2026 17:28 PDT) — every declared cell judged and reconciled (28,591 pack task ids ↔ merged cells), sealed test unlocked at 86ae479: C_ms_gold test Spearman 0.558 [0.08, 0.76], permutation p 0.0127, PASS (train 0.761 / val 0.762 / test 0.558 match within 0.30); PTI_v0_frozen test -0.274 (n=9), TI_var_trainnorm -0.332 (n=18). Charges $573.01 main+recovery + $1.21 smoke = $574.22 (quote $790.59). Receipts committed (f5a3f4a). Worker loop exited on DONE (00:23:52Z); nine services + tunnels stopped 10-01-2026 00:3x UTC (ports 8990-8998 released); re-harvest needs only valk. Remaining: step 10 docs commit, step 11 landing (PR, rebase, tests, force-with-lease, head-matched merge, email, LANDED record). Archiving the folder is deferred: experiment 42 (semantic probes on e39 judges, running on this node) consumes experiment 39's judges/harvests, and the scripts' relative depth (parents[3] -> py_src) would change under archive/.
 - 09-30-2026 14:20 PDT: smokes measured for gem31h (second selector), qwen36 (second selector), t2_luna, t2_sonnet5; t2_qwen smokes running. judge_controller.harvest patched: agent costs from atif/trajectory.json final_metrics.total_cost_usd + served instruction_sha256 check. Val mains admitted for luna6h and gem31h.
 - 09-30-2026 15:02 PDT: all 56 smokes measured; all 56 main runs admitted (train/val/test); first merges landed (sol6h D0/H1/H2/LEX/P1/P8 fully measured, $2-6 each); recovery_1 admitted for sol6h|P4 (1 cell). `scripts/campaign_table.py` rewrites the per-configuration table in results.md from results/harvest (run after merges, then commit results/harvest + results.md).
