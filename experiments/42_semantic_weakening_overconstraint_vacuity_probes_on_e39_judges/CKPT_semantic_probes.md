@@ -3,12 +3,12 @@
 **TLDR:** Resumable checkpoint for the skampere1 worker running experiment 42 (Lean-validated semantic probes scored by experiment 39's judges through Valkyrie).
 
 Created: 09-30-2026 14:06 PDT
-Last updated: 09-30-2026 19:58 PDT
+Last updated: 09-30-2026 20:01 PDT
 
 Task: run experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges end to end on SNAP skampere1 per cc.md.
 
 State:
-- Phase: cc.md step 7 (landing). Analysis DONE: results/semantic_screen.json, results/index_association.json (experiment 39 criterion from origin/main 99e3496; test view post hoc after its TEST_RECEIPT.json), results/RESULTS_semantic_screen.md, REPORT.md; results.md DONE; README + experiments/README.md row + layout.json updated; tests 14 passed; experiment_layout --check OK. Judging totals: 32,592/32,592 reconciled, $656.15 Vals-reported. Next: PR, rebase on origin/main, merge, email, private/DONE.
+- Phase: DONE. LANDED b5fc9611cd01454fb48eb593a9f329f09ffa9c3d https://github.com/brando90/cert-judge/pull/54 09-30-2026 19:58 PDT (rebase-merge after backup branch, `git rebase origin/main` with the experiment folder byte-identical to the pre-rebase tip, 14 tests and the layout check, `--force-with-lease` push of the task branch only, `gh pr merge --rebase --delete-branch --match-head-commit`). Email receipt sent 09-30-2026 20:01 PDT to brando.science@gmail.com (no CC) via uutils.emailing.send_email_smtp from brandojazz@gmail.com (the brando.science login rejected this app password, as experiment 43 also found). Services and tunnels stopped (ports 9460-9468 released); worker and harvest loops stopped; private/DONE touched. Worker model claude-opus-5-5 (effort high) throughout, no switch.
 - Services: nine pack services certjudge42-<key> on ports 9460-9468 behind cloudflared (receipts results/deployment_<key>.json; tunnel URLs private only). `$PY scripts/deploy_service.py --model <key> --status` re-checks. Never redeploy a model with a live run.
 - Probes (final build): 194 valid of 250 declared -> 582 cells per config, 32,592 calls over 56 configs (+56 smoke). File-level audit labels in probe_edits/audit/ (weak 25 strict/31 redundant/1 unclear; overc 20/16/1).
 - Receipts: agent_bundle_check PASS, agent_harness PASS (brando_terminus_gateway), packs PASS, controls written (results/harvest/ctl__*.json).
@@ -27,4 +27,4 @@ State:
 
 Progress 09-30-2026 18:38 PDT: 53/56 main runs terminal; 13 merged ($91.38). Harvest helper: nohup private/harvest_loop.sh (scripts/parallel_harvest.py, 6 workers) beside the driver. Next: watch main runs; update results.md charges after every merge; then analyze.py screen, wait for experiment 39 units_train_val.json, analyze.py index, REPORT.md, landing.
 
-Blockers: none.
+Blockers: none. Experiment 42 complete.
