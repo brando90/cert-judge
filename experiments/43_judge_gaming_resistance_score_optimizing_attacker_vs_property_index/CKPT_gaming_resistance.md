@@ -1,6 +1,6 @@
 # Checkpoint: experiment 43, judge-gaming resistance (score-optimizing attacker vs the label-free property index)
 
-**Last updated:** 09-30-2026 19:12 PDT
+**Last updated:** 09-30-2026 19:39 PDT
 **Worker:** Claude Code (claude-opus-5-5, effort high), tmux `cj-e43-gaming-resistance` on skampere1; clone `/lfs/skampere1/0/brando9/cert-judge_e43`, branch `e43-gaming-resistance`.
 **Model switches:** none so far (fallback per dispatcher: claude-sonnet-5 at high effort; record any switch here).
 
@@ -17,6 +17,9 @@
 - Raw elaboration of the 47 rated candidates with expert-mean coverage ≤ 0.6: 2 elaborate (`13_MyUppercase__agent1`, `33_MyMinimum__agent2`).
 
 6. Full run: loop DONE 09-30-2026 19:10 PDT (720/720 attempts, every attacker call measured after at most one recovery; Lean-valid per round 77/81/78/84/74/79/80/·); post-loop scoring (450 attacked-judge rescoring + 462 reference calls) admitted 19:11 PDT. Worker restarted once at 16:04 PDT onto `TMPDIR=private/tmp`.
+
+7. Post-loop scoring DONE 19:35 PDT (912/912 calls; 2 labelled rescoring parse errors). Analysis DONE (`results/analysis.json`, `results/report_tables.md`; index values from experiment 39's committed open file on origin/main, selection commit 86ae479). `REPORT.md`, `results.md` DONE, README and `experiments/README.md` row and `layout.json` updated (09-30-2026 19:39 PDT).
+8. Landing: IN PROGRESS (PR, rebase on origin/main, merge, email, `private/DONE`).
 
 ## Incidents
 - Transient Valkyrie task ERRORs (agent receipt frozen at start, 0 requests sent): round 0 5/58 and round-2 attacker 7/90; each got its single labelled recovery admission and all 12 were measured. `transport.run_batch` was also changed so a resumed worker never reloads the service while runs are in flight.
