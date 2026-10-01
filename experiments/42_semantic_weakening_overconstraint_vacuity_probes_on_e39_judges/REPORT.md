@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges/REPORT.md>
 
-**TLDR:** All 56 LLM judge configurations of experiment 39 scored 194 Lean-validated probes built from the VeriBench references (3 repeats, 32,592 Valkyrie calls, 99.35% measured, $656.15 Vals-reported). Nearly every configuration lowers its score when theorem statements become `True` (vacuity directional accuracy 0.996 on average). Weakening separates judges: only 15 of 56 configurations pass the locked screen (directional accuracy ≥ 0.8 on vacuity, weakening and over-constraint; formatting gap ≤ 0.05). The judge model matters more than the prompt among the VeriBench rubrics: Claude Sonnet 5 and Qwen3.6-27B catch about 9 in 10 weakenings, GPT-6 Sol and Luna about 4 in 10. The paper's legacy prompts, which show only the reference's last theorem, catch about 6 in 100. {INDEX_TLDR}
+**TLDR:** All 56 LLM judge configurations of experiment 39 scored 194 Lean-validated probes built from the VeriBench references (3 repeats, 32,592 Valkyrie calls, 99.35% measured, $656.15 Vals-reported). Nearly every configuration lowers its score when theorem statements become `True` (vacuity directional accuracy 0.996 on average). Weakening separates judges: only 15 of 56 configurations pass the locked screen (directional accuracy ≥ 0.8 on vacuity, weakening and over-constraint; formatting gap ≤ 0.05). The judge model matters more than the prompt among the VeriBench rubrics: Claude Sonnet 5 and Qwen3.6-27B catch about 9 in 10 weakenings, GPT-6 Sol and Luna about 4 in 10. The paper's legacy prompts, which show only the reference's last theorem, catch about 6 in 100. Against experiment 39's expert criterion (judge–human agreement on 45 held-out items), weakening directional accuracy has Spearman 0.73 [0.55, 0.86] over its 38 train and val units and 0.72 [0.31, 0.92] over its 18 test units (post hoc). Adding the semantic component to experiment 39's selected index does not improve it on train and val (0.78 → 0.72, Δ −0.06 [−0.16, 0.04]); the test-split gain is inconclusive (0.56 → 0.67, Δ +0.11 [−0.13, 0.39]).
 
 ## What was run
 
@@ -74,11 +74,41 @@ The **15 passing LLM configurations** are: Claude Sonnet 5 (D0, H0, H1, H2, R4),
 
 ## Association with experiment 39's criterion
 
-{INDEX_SECTION}
+Criterion: experiment 39's `criteria.heldout.spearman` per configuration (agreement with the three-expert coverage ratings on 45 held-out VeriBench items), read from its committed files on `main` at 99e3496 (selection seal 86ae479, test unlock f5a3f4a). The test view exists because `results/TEST_RECEIPT.json` was committed before this analysis; it is post hoc. Spearman across configurations, with a bootstrap over units (95%) and a one-sided permutation p (10,000, seed 42). Full tables: `results/RESULTS_semantic_screen.md`, `results/index_association.json`.
+
+| Component (per configuration) | Train + val (38 LLM units) | Test, post hoc (18 LLM units) |
+|---|---|---|
+| Directional accuracy, vacuity | 0.30 [0.13, 0.50], p 0.03 | 0.35 [0.26, 0.65], p 0.11 |
+| Directional accuracy, weakening | **0.73 [0.55, 0.86], p < 0.001** | **0.72 [0.31, 0.92], p 0.001** |
+| Directional accuracy, over-constraint | 0.41 [0.11, 0.68], p 0.006 | 0.57 [0.06, 0.80], p 0.008 |
+| 1 − formatting gap | 0.73 [0.57, 0.82], p < 0.001 | 0.47 [0.14, 0.75], p 0.02 |
+| −τ (weakening level) | 0.83 [0.70, 0.90], p < 0.001 | 0.45 [−0.11, 0.74], p 0.03 |
+| S = GM(three accuracies, 1 − gap) | 0.72 [0.55, 0.83], p < 0.001 | 0.65 [0.21, 0.87], p 0.003 |
+
+Does S add to a label-free index? I compared the geometric mean of each index with S against the index alone (paired bootstrap of the Spearman difference over units):
+
+| Index | Split | Index alone | GM(index, S) | Δ [95% CI] |
+|---|---|---|---|---|
+| `C_ms_gold` (experiment 39's selected index) | train + val (n 38) | 0.78 | 0.72 | −0.06 [−0.16, 0.04] |
+| `C_ms_gold` | test, post hoc (n 16) | 0.56 | 0.67 | +0.11 [−0.13, 0.39] |
+| `TI_var_trainnorm` (paper) | train + val (n 38) | −0.09 | 0.06 | +0.15 [0.05, 0.26] |
+| `TI_var_trainnorm` | test, post hoc (n 18) | −0.33 | 0.34 | +0.67 [0.16, 1.16] |
+| `PTI_v0_frozen` (paper) | train + val (n 33) | 0.26 | 0.26 | 0.00 |
+
+Reading:
+
+- The semantic components predict judge–human agreement about as well as experiment 39's selected index does. Weakening accuracy (0.73 / 0.72) and S (0.72 / 0.65) sit beside `C_ms_gold` (0.78 train + val, 0.56 test). Unlike `C_ms_gold`, they were not selected on this criterion.
+- Combined with the selected index, S adds nothing on train and val. Its test gain has an interval that spans zero.
+- The paper's indices behave differently.
+  - **`TI_var`:** the gains come mostly from the exact-zero rule of the geometric mean. A non-positive base value gives 0, so the combination largely re-ranks configurations by S.
+  - **`PTI_v0`:** it is zero or missing for many configurations, so the combination is unchanged.
+- **Caution:** configurations share judge models (six models, several prompts each), so the units are not independent. The bootstrap over units understates uncertainty. Some of the association may be general model capability: the same models (Sonnet 5, Qwen3.6) both agree with experts and catch weakenings.
 
 ## Drafted paper sentences (text only; `paper_latex/` was not edited)
 
 **§5 (experiments).** "To test whether judges notice formal specifications that look right but guarantee less, we built 194 Lean-validated probes from the 25 VeriBench references: vacuous statements, cumulative weakenings with a Lean proof that the reference implies each weakened statement, unsatisfiable added hypotheses, and formatting-only edits. All 56 judge configurations of the proxy-index study scored them through Valkyrie with three repeats each. Vacuity was caught almost universally (mean directional accuracy 0.996), but weakening separated judges: under the VeriBench rubrics, Claude Sonnet 5 and Qwen3.6-27B scored a weakened specification below the reference in about nine of ten cases, GPT-6 Sol and Luna in about four of ten, and the paper's legacy prompts, which show the judge only the reference's last theorem, in about six of one hundred. Fifteen of 56 configurations passed a pre-registered screen (directional accuracy at least 0.8 on vacuity, weakening and over-constraint, formatting gap at most 0.05)."
+
+**§5, index paragraph.** "These semantic components were not used to select any index, yet weakening directional accuracy is associated with judge–human agreement across configurations (Spearman 0.73 over 38 train and validation configurations; 0.72 over the 18 held-out configurations, computed after the test split was unsealed). Combining them with the selected label-free index did not increase its agreement on the train and validation configurations (Δ = −0.06, 95% CI [−0.16, 0.04])."
 
 **§6 (limitations).** "The semantic screen is necessary but not sufficient: a character edit-distance baseline passes it because every edit lowers its score, so we also report a formatting false-alarm rate, on which that baseline fails. About half of our weakening probes weaken one theorem while another theorem of the same reference restates the dropped property, and judges that withhold a penalty in that case look worse on the primary metric than on strictly weaker files. Two references contain mutually inconsistent sorry-proved theorems (MyFibonacci's increasing property at n = 1, and gcd's maximality at a = b = 0), and all probes derive from 24 references."
 
@@ -95,4 +125,4 @@ The **15 passing LLM configurations** are: Claude Sonnet 5 (D0, H0, H1, H2, R4),
 - Every weakening edit was proposed by Claude Code subagents (claude-opus-5-5, subscription) and admitted only through the Lean checks. Every model call was made through Valkyrie.
 - Worker model: claude-opus-5-5 (effort high) throughout; no model switch.
 
-**TLDR-end:** [cj: e42-semantic-probes] Fifteen of 56 judge configurations pass the semantic screen. Vacuity is caught almost universally, but weakening separates judges: Sonnet 5 and Qwen catch about 9 in 10 under VeriBench rubrics, GPT-6 Sol and Luna about 4 in 10, and the paper's legacy prompts about 6 in 100. {INDEX_TLDR_END}
+**TLDR-end:** [cj: e42-semantic-probes] Fifteen of 56 judge configurations pass the semantic screen. Vacuity is caught almost universally, but weakening separates judges: Sonnet 5 and Qwen catch about 9 in 10 under VeriBench rubrics, GPT-6 Sol and Luna about 4 in 10, and the paper's legacy prompts about 6 in 100. Weakening accuracy also tracks experiment 39's expert criterion (Spearman 0.73 train + val, 0.72 test post hoc), but adds nothing to experiment 39's selected index on train + val.

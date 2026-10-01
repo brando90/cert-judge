@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges/results.md>
 
-**TLDR:** Running on skampere1: 194 Lean-validated probes (24 identity anchors, 38 vacuity, 57 weakening, 37 over-constraint, 38 formatting over 24 tasks) are built and the protocol is locked; all 32,592 judge cells are scored ($656.15 Vals-reported); 15 of 56 LLM configurations pass the locked semantic screen; the index association waits for experiment 39's criterion.
+**TLDR:** Experiment 42: 194 Lean-validated vacuity, weakening, over-constraint and formatting probes from the VeriBench references, scored by experiment 39's 56 judge configurations through Valkyrie (3 repeats, 32,592 calls, $656.15). 15 of 56 configurations pass the semantic screen. Weakening directional accuracy tracks experiment 39's expert criterion (Spearman 0.73 train + val, 0.72 test post hoc) but adds nothing to its selected index on train + val (Δ −0.06 [−0.16, 0.04]).
 
-**Status:** RUNNING (started 09-30-2026 14:06 PDT; skampere1 tmux `cj-e42-semantic-probes`, branch `e42-semantic-probes`; no judge call made yet)
-**Last updated:** 09-30-2026 19:53 PDT
+**Status:** DONE (09-30-2026 19:58 PDT; skampere1, branch `e42-semantic-probes`; report [REPORT.md](REPORT.md))
+**Last updated:** 09-30-2026 19:58 PDT
 
 | Step | Status | Evidence |
 |---|---|---|
@@ -14,8 +14,8 @@
 | Wait gate: experiment 39 transport smoke passed | DONE 09-30-2026 (experiment 39 `origin/e39-proxy-index-search` 4ad11de: all 56 smokes measured, all 56 main runs admitted) | `private/GATE_OPEN` |
 | Scoring through Valkyrie | DONE 09-30-2026 19:51 PDT: 56/56 configurations merged; 32,592/32,592 cells reconciled one-to-one (0 missing); measured 32,381 (99.35%), parse_error 209, model_error 2 after the single recovery_1 pass (45 recovery runs); Vals-reported charges $655.14 main + recovery, $1.01 smoke, **$656.15 total** | `results/judge_progress.json`, `results/harvest/` |
 | Semantic screen (locked rule) | DONE: 16/60 configurations pass (15 LLM + the edit-distance control) | `results/semantic_screen.json`, `results/RESULTS_semantic_screen.md` |
-| Index association with experiment 39's criterion | WAITING for experiment 39's committed `results/units_train_val.json` | `results/index_association.json` |
-| Report, landing | PENDING | `REPORT.md`, PR |
+| Index association with experiment 39's criterion | DONE (experiment 39 on `main` 99e3496; test view post hoc after its TEST_RECEIPT.json): weakening DA ρ 0.73 [0.55, 0.86] train + val (38 units), 0.72 [0.31, 0.92] test (18); GM(C_ms_gold, S) vs C_ms_gold Δ −0.06 [−0.16, 0.04] train + val, +0.11 [−0.13, 0.39] test | `results/index_association.json` |
+| Report, landing | DONE: REPORT.md; landing recorded in `CKPT_semantic_probes.md` | `REPORT.md`, PR |
 
 ## Probe construction (step 2, zero judge calls)
 
@@ -99,3 +99,5 @@ Per-configuration metrics with intervals: [results/RESULTS_semantic_screen.md](r
 ## Deviations and open questions for Brando
 
 - 09-30-2026, before any call: the declared weakening check ("original implies weakened") is proved theorem by theorem; the file-level audit shows about half of the weakening and over-constraint probes leave the file's overall guarantee unchanged because the references restate the same property in separate theorems. The primary metrics keep every Lean-valid probe (as the README declares); the strict-only view is reported beside them.
+
+**TLDR-end:** [cj: e42-semantic-probes] All 32,592 judge cells are scored ($656.15 Vals-reported) and 15 of 56 configurations pass the locked semantic screen. Weakening sensitivity tracks experiment 39's expert criterion but does not improve its selected index.

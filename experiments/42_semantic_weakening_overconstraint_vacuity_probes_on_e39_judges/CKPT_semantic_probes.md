@@ -3,12 +3,12 @@
 **TLDR:** Resumable checkpoint for the skampere1 worker running experiment 42 (Lean-validated semantic probes scored by experiment 39's judges through Valkyrie).
 
 Created: 09-30-2026 14:06 PDT
-Last updated: 09-30-2026 19:55 PDT
+Last updated: 09-30-2026 19:58 PDT
 
 Task: run experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges end to end on SNAP skampere1 per cc.md.
 
 State:
-- Phase: cc.md step 6 (analysis). Judging DONE 09-30-2026 19:51 PDT: 56/56 merged, 32,592/32,592 cells reconciled (results/RECONCILIATION.json), measured 32,381, parse_error 209, model_error 2; $656.15 Vals-reported. Services stopped, worker/harvest loops stopped (private/JUDGING_DONE). Screen: results/semantic_screen.json (15/56 LLM PASS + edit-distance control). REPORT.md drafted (e8ece25) with index section pending. WAITING for experiment 39's committed results/units_train_val.json (polled every 20 min with git fetch, no model calls); then `$PY scripts/analyze.py index --e39-ref origin/e39-proxy-index-search` (or origin/main), `scripts/report_tables.py`, fill REPORT.md {INDEX_*}, results.md DONE, README + experiments/README.md row, land (PR, rebase-merge, email), touch private/DONE.
+- Phase: cc.md step 7 (landing). Analysis DONE: results/semantic_screen.json, results/index_association.json (experiment 39 criterion from origin/main 99e3496; test view post hoc after its TEST_RECEIPT.json), results/RESULTS_semantic_screen.md, REPORT.md; results.md DONE; README + experiments/README.md row + layout.json updated; tests 14 passed; experiment_layout --check OK. Judging totals: 32,592/32,592 reconciled, $656.15 Vals-reported. Next: PR, rebase on origin/main, merge, email, private/DONE.
 - Services: nine pack services certjudge42-<key> on ports 9460-9468 behind cloudflared (receipts results/deployment_<key>.json; tunnel URLs private only). `$PY scripts/deploy_service.py --model <key> --status` re-checks. Never redeploy a model with a live run.
 - Probes (final build): 194 valid of 250 declared -> 582 cells per config, 32,592 calls over 56 configs (+56 smoke). File-level audit labels in probe_edits/audit/ (weak 25 strict/31 redundant/1 unclear; overc 20/16/1).
 - Receipts: agent_bundle_check PASS, agent_harness PASS (brando_terminus_gateway), packs PASS, controls written (results/harvest/ctl__*.json).

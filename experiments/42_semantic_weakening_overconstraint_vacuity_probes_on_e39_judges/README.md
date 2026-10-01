@@ -26,6 +26,8 @@ Validity is decided only by Lean, fail-closed, following `py_src/cert_judge/prob
 - Experiment 39's pipeline, used read-only by import from your own clone: Valkyrie transport through experiment 103's `vb103_judge` agent, prompt rendering, the Lean project, and its fix for the missing `VeriBench` module. Judge calls start only after experiment 39's `results.md` shows that its transport smoke passed.
 - Funding: Vals (Valkyrie), with no automatic spend cap (repository `CLAUDE.md`). Vals-reported charges are recorded.
 
+**Status:** DONE 09-30-2026. Report: [REPORT.md](REPORT.md); 15 of 56 judge configurations pass the semantic screen; weakening directional accuracy has Spearman 0.73 with experiment 39's criterion on its train and val units (0.72 on test, post hoc).
+
 Runbook: [cc.md](cc.md). Live ledger: [results.md](results.md). Checkpoint: `CKPT_semantic_probes.md` (written by the worker).
 
 **TLDR-end:** [cj: e42-semantic-probes] Planned: Lean-validated vacuity, weakening, over-constraint and formatting probes, scored by experiment 39's judges through Valkyrie, to test whether judges catch specifications that look right but guarantee less.
