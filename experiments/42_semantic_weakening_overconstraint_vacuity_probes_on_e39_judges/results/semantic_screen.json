@@ -1,0 +1,5798 @@
+{
+ "written_utc": "2026-10-01T02:53:11.065699+00:00",
+ "rule": "PASS iff directional accuracy >= 0.8 on each of vacuity, weakening and over-constraint AND formatting gap <= 0.05 (point estimates; ties count as misses; probe score = median of >= 2 scored repeats; each metric needs >= 80% of valid probes scored)",
+ "bootstrap": {
+  "draws": 10000,
+  "seed": 42,
+  "cluster": "task"
+ },
+ "n_units": 60,
+ "verdicts": {
+  "PASS": 16,
+  "FAIL": 44,
+  "NOT_COMPUTABLE": 0
+ },
+ "total_charges_usd": 655.1382,
+ "units": [
+  {
+   "config": "ctl|count_ratio",
+   "family": "control",
+   "split": "train",
+   "kind": "control",
+   "selector": null,
+   "status_counts": {
+    "deterministic": 582
+   },
+   "charges_usd": 0.0,
+   "metrics": {
+    "vacuity": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 0.5,
+     "weakening": 0.5,
+     "overconstraint": 0.5
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.0,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.0,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "ctl|editdist",
+   "family": "control",
+   "split": "train",
+   "kind": "control",
+   "selector": null,
+   "status_counts": {
+    "deterministic": 582
+   },
+   "charges_usd": 0.0,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.04438052002458844,
+     "lo": 0.036793180182366964,
+     "hi": 0.051854555987460194,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -1.0,
+     "lo": -1.0,
+     "hi": -1.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 1.0,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.0,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9887152858281445,
+   "verdict": "PASS"
+  },
+  {
+   "config": "ctl|name_jaccard",
+   "family": "control",
+   "split": "train",
+   "kind": "control",
+   "selector": null,
+   "status_counts": {
+    "deterministic": 582
+   },
+   "charges_usd": 0.0,
+   "metrics": {
+    "vacuity": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 0.5,
+     "weakening": 0.5,
+     "overconstraint": 0.5
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.0,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.0,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "ctl|random",
+   "family": "control",
+   "split": "train",
+   "kind": "control",
+   "selector": null,
+   "status_counts": {
+    "deterministic": 582
+   },
+   "charges_usd": 0.0,
+   "metrics": {
+    "vacuity": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.14929579551688651,
+     "lo": 0.09667707662288061,
+     "hi": 0.20710982912317294,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 0.5,
+     "weakening": 0.5,
+     "overconstraint": 0.5
+    },
+    "formatting_false_alarm": {
+     "value": 0.3157894736842105,
+     "lo": 0.21052631578947367,
+     "hi": 0.42105263157894735,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": -0.3157894736842105,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.5701122720125797
+   },
+   "semantic_component_S": 0.0,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "gem31h|D0",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 12.123946,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.631578947368421,
+     "lo": 0.45614035087719296,
+     "hi": 0.7894736842105263,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.7135682511628383,
+     "lo": -0.8731211988649058,
+     "hi": -0.5322145896516606,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.8157894736842105,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.8771929824561404,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.8914703664390793,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "gem31h|H0",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 17.284885,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.8596491228070176,
+     "lo": 0.7894736842105263,
+     "hi": 0.9298245614035088,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.972972972972973,
+     "lo": 0.9166666666666666,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.7865843915454988,
+     "lo": -0.8685789740805099,
+     "hi": -0.6748870453982955,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9298245614035088,
+     "overconstraint": 0.9864864864864865
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9442073652599969,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9563249804588494,
+   "verdict": "PASS"
+  },
+  {
+   "config": "gem31h|H1",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 17.199835,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.631578947368421,
+     "lo": 0.47368421052631576,
+     "hi": 0.7719298245614035,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.972972972972973,
+     "lo": 0.9166666666666666,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.7101976436898347,
+     "lo": -0.8387783964433475,
+     "hi": -0.5562607240585852,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.8157894736842105,
+     "overconstraint": 0.9864864864864865
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.8681839734471314,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.8853848888233953,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "gem31h|H2",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 18.655328,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.6140350877192983,
+     "lo": 0.45614035087719296,
+     "hi": 0.7543859649122807,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.9459459459459459,
+     "lo": 0.8648648648648649,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.7101976436898347,
+     "lo": -0.8384331327050742,
+     "hi": -0.5555757002957628,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.8070175438596491,
+     "overconstraint": 0.972972972972973
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.8533270112217481,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.8730012735049983,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "gem31h|LEX",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 6.239688,
+   "metrics": {
+    "vacuity": {
+     "value": 0.868421052631579,
+     "lo": 0.7105263157894737,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.15789473684210525,
+     "lo": 0.017543859649122806,
+     "hi": 0.3157894736842105,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.4594594594594595,
+     "lo": 0.34210526315789475,
+     "hi": 0.5789473684210527,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.1105263157894737,
+     "lo": 0.04736842105263158,
+     "hi": 0.18421052631578946,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.08592977212644232,
+     "lo": -0.04190067252322429,
+     "hi": 0.24662072341909816,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 0.881578947368421,
+     "weakening": 0.49122807017543857,
+     "overconstraint": 0.6486486486486487
+    },
+    "formatting_false_alarm": {
+     "value": 0.21052631578947367,
+     "lo": 0.07894736842105263,
+     "hi": 0.34210526315789475,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.2847321005215742,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.28,
+      "lo": 0.047619047619047616,
+      "hi": 0.5333333333333333,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.6,
+      "lo": 0.4090909090909091,
+      "hi": 0.8,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.8416666666666667
+   },
+   "semantic_component_S": 0.4865411468499406,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "gem31h|P1",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 5.120244,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.03721614637823935,
+     "lo": -0.11164843913471804,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5263157894736842,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.5220483641536273,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.7916666666666666
+   },
+   "semantic_component_S": 0.4054614498387698,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "gem31h|P4",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 5.627088,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.08771929824561403,
+     "lo": 0.0,
+     "hi": 0.22807017543859648,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5405405405405406,
+     "lo": 0.5,
+     "hi": 0.6111111111111112,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.018421052631578946,
+     "lo": 0.0,
+     "hi": 0.055263157894736833,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.01921833535105846,
+     "lo": -0.048045838377646144,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.543859649122807,
+     "overconstraint": 0.7702702702702703
+    },
+    "formatting_false_alarm": {
+     "value": 0.02631578947368421,
+     "lo": 0.0,
+     "hi": 0.07894736842105263,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.5164374901217007,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.16,
+      "lo": 0.0,
+      "hi": 0.39285714285714285,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.7916666666666666
+   },
+   "semantic_component_S": 0.464474807985182,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "gem31h|P8",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 5.02008,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.00960916767552923,
+     "lo": -0.028827503026587688,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5263157894736842,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.5220483641536273,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.4054614498387698,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "gem31h|R4",
+   "family": "gem31h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "google/gemini-3.1-pro-preview",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 15.373357,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.6491228070175439,
+     "lo": 0.5087719298245614,
+     "hi": 0.7894736842105263,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.6756756756756757,
+     "lo": 0.5526315789473685,
+     "hi": 0.8055555555555556,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.718766621799746,
+     "lo": -0.8504987548066048,
+     "hi": -0.565720368532347,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.8245614035087719,
+     "overconstraint": 0.8378378378378378
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.7749328275644065,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.8137973817434668,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|D0",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 0.399878,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.38596491228070173,
+     "lo": 0.22807017543859648,
+     "hi": 0.543859649122807,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.9459459459459459,
+     "lo": 0.8648648648648649,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.05263157894736842,
+     "lo": 0.005263157894736847,
+     "hi": 0.11578947368421054,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.48138255137455105,
+     "lo": -0.665177261533484,
+     "hi": -0.295443149293651,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.6578947368421053,
+     "overconstraint": 0.9459459459459459
+    },
+    "formatting_false_alarm": {
+     "value": 0.18421052631578946,
+     "lo": 0.05263157894736842,
+     "hi": 0.3684210526315789,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.5930930930930931,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.72,
+      "lo": 0.5185185185185185,
+      "hi": 0.92,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.9,
+      "lo": 0.7727272727272727,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.9375
+   },
+   "semantic_component_S": 0.7668903313584572,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|H0",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 0.504264,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.40350877192982454,
+     "lo": 0.22807017543859648,
+     "hi": 0.5964912280701754,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.4864864864864865,
+     "lo": 0.32432432432432434,
+     "hi": 0.6486486486486487,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.46928342803878154,
+     "lo": -0.6459100191699404,
+     "hi": -0.2879297665276037,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.7017543859649122,
+     "overconstraint": 0.7432432432432432
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6299984194721037,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.84,
+      "lo": 0.6,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.85,
+      "lo": 0.6666666666666666,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.6656270157957686,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|H1",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 0.493351,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.43859649122807015,
+     "lo": 0.2631578947368421,
+     "hi": 0.6140350877192983,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5945945945945946,
+     "lo": 0.47368421052631576,
+     "hi": 0.7105263157894737,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.485870477919303,
+     "lo": -0.672296473548773,
+     "hi": -0.29875945852701047,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.7192982456140351,
+     "overconstraint": 0.7972972972972973
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6777303619408883,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.92,
+      "lo": 0.7619047619047619,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.7146140118925197,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|H2",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 0.480436,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.43859649122807015,
+     "lo": 0.2631578947368421,
+     "hi": 0.6140350877192983,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5945945945945946,
+     "lo": 0.47368421052631576,
+     "hi": 0.7105263157894737,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.485870477919303,
+     "lo": -0.672296473548773,
+     "hi": -0.29875945852701047,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.7192982456140351,
+     "overconstraint": 0.7972972972972973
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6777303619408883,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.92,
+      "lo": 0.7619047619047619,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.7146140118925197,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|LEX",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 0.163267,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.17543859649122806,
+     "lo": 0.07017543859649122,
+     "hi": 0.3157894736842105,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.6216216216216216,
+     "lo": 0.5263157894736842,
+     "hi": 0.7222222222222222,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.035526315789473684,
+     "lo": 0.010526315789473687,
+     "hi": 0.07157894736842106,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.027153027324652034,
+     "lo": -0.14673615843296364,
+     "hi": 0.09410457948559522,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5526315789473685,
+     "overconstraint": 0.7837837837837838
+    },
+    "formatting_false_alarm": {
+     "value": 0.5,
+     "lo": 0.34210526315789475,
+     "hi": 0.6578947368421053,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.09902007270428326,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.2,
+      "lo": 0.0,
+      "hi": 0.4230769230769231,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.9591666666666666
+   },
+   "semantic_component_S": 0.5694890915356127,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|P1",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 580,
+    "parse_error": 2
+   },
+   "charges_usd": 0.183228,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0026315789473684206,
+     "lo": 0.0,
+     "hi": 0.007894736842105262,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.03508771929824561,
+     "lo": -0.10526315789473684,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5263157894736842,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.02631578947368421,
+     "lo": 0.0,
+     "hi": 0.07894736842105263,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.49573257467994314,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.7916666666666666
+   },
+   "semantic_component_S": 0.405194435239025,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|P4",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 0.266441,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.07017543859649122,
+     "lo": 0.0,
+     "hi": 0.19298245614035087,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5405405405405406,
+     "lo": 0.5,
+     "hi": 0.6111111111111112,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0618421052631579,
+     "lo": 0.0,
+     "hi": 0.14736842105263157,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.029949241775202588,
+     "lo": -0.07744234319952799,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5350877192982456,
+     "overconstraint": 0.7702702702702703
+    },
+    "formatting_false_alarm": {
+     "value": 0.10526315789473684,
+     "lo": 0.0,
+     "hi": 0.23684210526315788,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.4316421684842737,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.85,
+      "lo": 0.7272727272727273,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.7875
+   },
+   "semantic_component_S": 0.4343325084732928,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|P8",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 579,
+    "parse_error": 3
+   },
+   "charges_usd": 0.157888,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.005263157894736841,
+     "lo": 0.0,
+     "hi": 0.015789473684210523,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.028827503026587688,
+     "lo": -0.08648250907976307,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5263157894736842,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.02631578947368421,
+     "lo": 0.0,
+     "hi": 0.07894736842105263,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.49573257467994314,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.9166666666666666
+   },
+   "semantic_component_S": 0.4049268917222667,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "luna6h|R4",
+   "family": "luna6h",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 0.462208,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.42105263157894735,
+     "lo": 0.22807017543859648,
+     "hi": 0.6140350877192983,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.6756756756756757,
+     "lo": 0.5405405405405406,
+     "hi": 0.8108108108108109,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.4371396157788343,
+     "lo": -0.629322969289419,
+     "hi": -0.24495626226824968,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.7105263157894737,
+     "overconstraint": 0.8378378378378378
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6989094357515411,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.88,
+      "lo": 0.7142857142857143,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.7303292045801434,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "opus55x|D0",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "selector": "anthropic/claude-opus-5-5-no-fallback",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 50.046848,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8694758907352466,
+     "lo": -0.9311538858537363,
+     "hi": -0.8023530468168386,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 1.0,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 1.0,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 1.0,
+   "verdict": "PASS"
+  },
+  {
+   "config": "opus55x|H0",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "selector": "anthropic/claude-opus-5-5-no-fallback",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 74.850564,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.8245614035087719,
+     "lo": 0.7543859649122807,
+     "hi": 0.8947368421052632,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8499478484673036,
+     "lo": -0.8817519007027016,
+     "hi": -0.8167737487062606,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9122807017543859,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9415204678362573,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9529184827199547,
+   "verdict": "PASS"
+  },
+  {
+   "config": "opus55x|H2",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "selector": "anthropic/claude-opus-5-5-no-fallback",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 61.709792,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.7719298245614035,
+     "lo": 0.6842105263157895,
+     "hi": 0.8596491228070176,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8297228247848663,
+     "lo": -0.8870226650352462,
+     "hi": -0.7482972440451493,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.8859649122807017,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9239766081871345,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9373341827832584,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "opus55x|LEX",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "selector": "anthropic/claude-opus-5-5-no-fallback",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 23.557869,
+   "metrics": {
+    "vacuity": {
+     "value": 0.9736842105263158,
+     "lo": 0.9210526315789473,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.3157894736842105,
+     "lo": 0.15789473684210525,
+     "hi": 0.47368421052631576,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.2972972972972973,
+     "lo": 0.13157894736842105,
+     "hi": 0.4864864864864865,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.06763157894736843,
+     "lo": 0.04921052631578946,
+     "hi": 0.08736842105263158,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.01716509467661051,
+     "lo": -0.22341926301441567,
+     "hi": 0.24641690197768662,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 0.9736842105263158,
+     "weakening": 0.42105263157894735,
+     "overconstraint": 0.35135135135135137
+    },
+    "formatting_false_alarm": {
+     "value": 0.4473684210526316,
+     "lo": 0.2631578947368421,
+     "hi": 0.631578947368421,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.08155523944997628,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.44,
+      "lo": 0.23809523809523808,
+      "hi": 0.6153846153846154,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.35,
+      "lo": 0.15789473684210525,
+      "hi": 0.5555555555555556,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.6854166666666667
+   },
+   "semantic_component_S": 0.540316927163526,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "opus55x|P4",
+   "family": "opus55x",
+   "split": "test",
+   "kind": "llm",
+   "selector": "anthropic/claude-opus-5-5-no-fallback",
+   "status_counts": {
+    "measured": 580,
+    "model_error": 2
+   },
+   "charges_usd": 47.528417,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.07017543859649122,
+     "lo": 0.0,
+     "hi": 0.19298245614035087,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.7297297297297297,
+     "lo": 0.6216216216216216,
+     "hi": 0.8421052631578947,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.007894736842105262,
+     "lo": 0.0,
+     "hi": 0.021052631578947364,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.08526198475588549,
+     "lo": -0.21856980788941716,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5350877192982456,
+     "overconstraint": 0.8648648648648649
+    },
+    "formatting_false_alarm": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.13157894736842105,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.5473368104947052,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.16,
+      "lo": 0.0,
+      "hi": 0.39285714285714285,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.85,
+      "lo": 0.7272727272727273,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.8125
+   },
+   "semantic_component_S": 0.4747623078790537,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "qwen36|D0",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 574,
+    "parse_error": 8
+   },
+   "charges_usd": 5.079627,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.8421052631578947,
+     "lo": 0.7719298245614035,
+     "hi": 0.9122807017543859,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.9156081095756899,
+     "lo": -0.9541425943027774,
+     "hi": -0.8630254376408067,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9210526315789473,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9473684210526315,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9579472508871494,
+   "verdict": "PASS"
+  },
+  {
+   "config": "qwen36|H0",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 565,
+    "parse_error": 17
+   },
+   "charges_usd": 5.935174,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.9473684210526315,
+     "lo": 0.8947368421052632,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8159963021456267,
+     "lo": -0.8806780974162794,
+     "hi": -0.7475116040930444,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9736842105263158,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9824561403508771,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9865741364867494,
+   "verdict": "PASS"
+  },
+  {
+   "config": "qwen36|H1",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 569,
+    "parse_error": 13
+   },
+   "charges_usd": 6.195277,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.9824561403508771,
+     "lo": 0.9473684210526315,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.8108108108108109,
+     "lo": 0.6756756756756757,
+     "hi": 0.9210526315789473,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.7226283336586828,
+     "lo": -0.791113031711265,
+     "hi": -0.6422484461983076,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9912280701754386,
+     "overconstraint": 0.9054054054054054
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9310889837205627,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.96,
+      "lo": 0.88,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.95,
+      "lo": 0.8333333333333334,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.944731019910127,
+   "verdict": "PASS"
+  },
+  {
+   "config": "qwen36|H2",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 549,
+    "parse_error": 33
+   },
+   "charges_usd": 6.632307,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.9285714285714286,
+     "lo": 0.8596491228070176,
+     "hi": 0.9824561403508771,
+     "n": 56,
+     "n_tasks": 19,
+     "coverage": 0.9824561403508771,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.9444444444444444,
+     "lo": 0.8611111111111112,
+     "hi": 1.0,
+     "n": 36,
+     "n_tasks": 19,
+     "coverage": 0.972972972972973,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.706082119340144,
+     "lo": -0.8002275343877218,
+     "hi": -0.5932131558815484,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9642857142857143,
+     "overconstraint": 0.9722222222222222
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9576719576719577,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 24,
+      "n_tasks": 11
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9677160258222435,
+   "verdict": "PASS"
+  },
+  {
+   "config": "qwen36|LEX",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 540,
+    "parse_error": 42
+   },
+   "charges_usd": 3.191526,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 34,
+     "n_tasks": 19,
+     "coverage": 0.8947368421052632,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.03571428571428571,
+     "lo": 0.0,
+     "hi": 0.1111111111111111,
+     "n": 56,
+     "n_tasks": 19,
+     "coverage": 0.9824561403508771,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.042973504259354006,
+     "lo": -0.12892051277806202,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5178571428571429,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.5164092664092664,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.08333333333333333,
+      "lo": 0.0,
+      "hi": 0.2608695652173913,
+      "n": 24,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.9989130434782609
+   },
+   "semantic_component_S": 0.36800054460358794,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "qwen36|P1",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 574,
+    "parse_error": 8
+   },
+   "charges_usd": 3.166513,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5,
+     "lo": 0.45714285714285713,
+     "hi": 0.5428571428571428,
+     "n": 36,
+     "n_tasks": 19,
+     "coverage": 0.972972972972973,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.00960916767552923,
+     "lo": -0.028827503026587688,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5263157894736842,
+     "overconstraint": 0.75
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.5175438596491228,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.7894736842105263,
+      "lo": 0.6818181818181818,
+      "hi": 0.9375,
+      "n": 19,
+      "n_tasks": 15
+     }
+    },
+    "identity_mean_score": 0.9583333333333334
+   },
+   "semantic_component_S": 0.4027672046365773,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "qwen36|P4",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 575,
+    "parse_error": 7
+   },
+   "charges_usd": 3.605356,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.010526315789473684,
+     "lo": 0.0,
+     "hi": 0.03157894736842106,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.03721614637823935,
+     "lo": -0.11164843913471804,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5263157894736842,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.02631578947368421,
+     "lo": 0.0,
+     "hi": 0.07894736842105263,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.49573257467994314,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.9083333333333333
+   },
+   "semantic_component_S": 0.4043902081153066,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "qwen36|P8",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 577,
+    "parse_error": 5
+   },
+   "charges_usd": 2.958188,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.4594594594594595,
+     "lo": 0.3684210526315789,
+     "hi": 0.5277777777777778,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.04804583837764615,
+     "lo": -0.14413751513293846,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5263157894736842,
+     "overconstraint": 0.7297297297297297
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.5040303461356093,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.7,
+      "lo": 0.5454545454545454,
+      "hi": 0.8823529411764706,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.3943423308344571,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "qwen36|R4",
+   "family": "qwen36",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 574,
+    "parse_error": 8
+   },
+   "charges_usd": 6.364865,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.8596491228070176,
+     "lo": 0.7719298245614035,
+     "hi": 0.9473684210526315,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.972972972972973,
+     "lo": 0.9166666666666666,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.7899161065571043,
+     "lo": -0.864091047535758,
+     "hi": -0.7025094298792517,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9298245614035088,
+     "overconstraint": 0.9864864864864865
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9442073652599969,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.96,
+      "lo": 0.8571428571428571,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9563249804588494,
+   "verdict": "PASS"
+  },
+  {
+   "config": "sol6h|D0",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 5.319021,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.40350877192982454,
+     "lo": 0.22807017543859648,
+     "hi": 0.5964912280701754,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.8918918918918919,
+     "lo": 0.75,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.013157894736842105,
+     "lo": 0.0,
+     "hi": 0.039473684210526314,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.3776361620429148,
+     "lo": -0.6380078568802936,
+     "hi": -0.10184903463640697,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.6403508771929824,
+     "overconstraint": 0.8918918918918919
+    },
+    "formatting_false_alarm": {
+     "value": 0.02631578947368421,
+     "lo": 0.0,
+     "hi": 0.07894736842105263,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.7388177651335547,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.8,
+      "lo": 0.5555555555555556,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.95,
+      "lo": 0.8333333333333334,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.9375
+   },
+   "semantic_component_S": 0.7719749656031979,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sol6h|H0",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 7.721467,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.38596491228070173,
+     "lo": 0.19298245614035087,
+     "hi": 0.5789473684210527,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.4594594594594595,
+     "lo": 0.2894736842105263,
+     "hi": 0.631578947368421,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.385391490808541,
+     "lo": -0.5721572464625603,
+     "hi": -0.20842513965283285,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.6929824561403509,
+     "overconstraint": 0.7297297297297297
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6151414572467204,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.84,
+      "lo": 0.6,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.5882352941176471,
+      "hi": 0.9545454545454546,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.6489313501473536,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sol6h|H1",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 7.784839,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.3684210526315789,
+     "lo": 0.19298245614035087,
+     "hi": 0.5614035087719298,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.4864864864864865,
+     "lo": 0.32432432432432434,
+     "hi": 0.6486486486486487,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.3948511352823028,
+     "lo": -0.5870344887928874,
+     "hi": -0.20842513965283285,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.6842105263157895,
+     "overconstraint": 0.7432432432432432
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6183025130393551,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.84,
+      "lo": 0.6,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.85,
+      "lo": 0.6666666666666666,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.6506595448091859,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sol6h|H2",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 7.566033,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.38596491228070173,
+     "lo": 0.21052631578947367,
+     "hi": 0.5789473684210527,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.4864864864864865,
+     "lo": 0.32432432432432434,
+     "hi": 0.6486486486486487,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.43206728166054215,
+     "lo": -0.6191783010528347,
+     "hi": -0.24495626226824968,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.6929824561403509,
+     "overconstraint": 0.7432432432432432
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6241504662557295,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.84,
+      "lo": 0.6,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.85,
+      "lo": 0.6666666666666666,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.6582708920672787,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sol6h|LEX",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 3.333613,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.43859649122807015,
+     "lo": 0.2982456140350877,
+     "hi": 0.5789473684210527,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.6216216216216216,
+     "lo": 0.47368421052631576,
+     "hi": 0.7631578947368421,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.07342105263157893,
+     "lo": 0.05815789473684208,
+     "hi": 0.0894736842105263,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.02201454980160902,
+     "lo": -0.1651453766031686,
+     "hi": 0.21431295372942968,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5175438596491229,
+     "overconstraint": 0.6621621621621622
+    },
+    "formatting_false_alarm": {
+     "value": 0.47368421052631576,
+     "lo": 0.3157894736842105,
+     "hi": 0.631578947368421,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.21305516042358147,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.48,
+      "lo": 0.28,
+      "hi": 0.6923076923076923,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.631578947368421,
+      "hi": 0.95,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.8595833333333333
+   },
+   "semantic_component_S": 0.7089545977246424,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sol6h|P1",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 2.792481,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0026315789473684206,
+     "lo": 0.0,
+     "hi": 0.007894736842105262,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.05263157894736842,
+     "lo": -0.15789473684210525,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5263157894736842,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.02631578947368421,
+     "lo": 0.0,
+     "hi": 0.07894736842105263,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.49573257467994314,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.7916666666666666
+   },
+   "semantic_component_S": 0.405194435239025,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sol6h|P4",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 3.361045,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.03508771929824561,
+     "lo": 0.0,
+     "hi": 0.08771929824561403,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.005263157894736842,
+     "lo": 0.0,
+     "hi": 0.01578947368421053,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.029949241775202588,
+     "lo": 0.0,
+     "hi": 0.07744234319952799,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.4635688319898846,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.04,
+      "lo": 0.0,
+      "hi": 0.11538461538461539,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.7208333333333333
+   },
+   "semantic_component_S": 0.3658927506757469,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sol6h|P8",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 3.136952,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.05263157894736842,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.5,
+     "hi": 0.5428571428571428,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0026315789473684206,
+     "lo": 0.0,
+     "hi": 0.007894736842105262,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.007934691973593576,
+     "lo": -0.028827503026587688,
+     "hi": 0.05263157894736842,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5,
+     "overconstraint": 0.7567567567567568
+    },
+    "formatting_false_alarm": {
+     "value": 0.02631578947368421,
+     "lo": 0.0,
+     "hi": 0.07894736842105263,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.49573257467994314,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.85
+   },
+   "semantic_component_S": 0.405194435239025,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sol6h|R4",
+   "family": "sol6h",
+   "split": "train",
+   "kind": "llm",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 7.259042,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.3684210526315789,
+     "lo": 0.19298245614035087,
+     "hi": 0.5614035087719298,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.4594594594594595,
+     "lo": 0.2894736842105263,
+     "hi": 0.631578947368421,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.38977880116401065,
+     "lo": -0.5775748443191256,
+     "hi": -0.20774011589001035,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.6842105263157895,
+     "overconstraint": 0.7297297297297297
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6092935040303461,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.84,
+      "lo": 0.6,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.5882352941176471,
+      "hi": 0.9545454545454546,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.641427992620602,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sonnet5m|D0",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 12.671815,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.8596491228070176,
+     "lo": 0.7894736842105263,
+     "hi": 0.9298245614035088,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.911821471635734,
+     "lo": -0.9618542947965123,
+     "hi": -0.8536309650215036,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9298245614035088,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9532163742690059,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9628980475343849,
+   "verdict": "PASS"
+  },
+  {
+   "config": "sonnet5m|H0",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 579,
+    "parse_error": 3
+   },
+   "charges_usd": 15.903256,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.9824561403508771,
+     "lo": 0.9473684210526315,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8582358756296731,
+     "lo": -0.8998964327673379,
+     "hi": -0.8149171076320458,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9912280701754386,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9941520467836257,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.96,
+      "lo": 0.88,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9955848811461051,
+   "verdict": "PASS"
+  },
+  {
+   "config": "sonnet5m|H1",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 580,
+    "parse_error": 2
+   },
+   "charges_usd": 14.701044,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.9473684210526315,
+     "lo": 0.8596491228070176,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.9459459459459459,
+     "lo": 0.8648648648648649,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8633082097479652,
+     "lo": -0.90496876688563,
+     "hi": -0.8183312308903756,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9736842105263158,
+     "overconstraint": 0.972972972972973
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9644381223328592,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.88,
+      "lo": 0.7272727272727273,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.95,
+      "lo": 0.8333333333333334,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9729629573203703,
+   "verdict": "PASS"
+  },
+  {
+   "config": "sonnet5m|H2",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 561,
+    "parse_error": 21
+   },
+   "charges_usd": 16.449265,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 0.9736842105263158,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.9454545454545454,
+     "lo": 0.8867924528301887,
+     "hi": 1.0,
+     "n": 55,
+     "n_tasks": 19,
+     "coverage": 0.9649122807017544,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.972972972972973,
+     "lo": 0.9166666666666666,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8157747632640049,
+     "lo": -0.873651308198802,
+     "hi": -0.7511418750058373,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9727272727272728,
+     "overconstraint": 0.9864864864864865
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9728091728091729,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.9130434782608695,
+      "lo": 0.8148148148148148,
+      "hi": 1.0,
+      "n": 23,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.95,
+      "lo": 0.85,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9793442046857039,
+   "verdict": "PASS"
+  },
+  {
+   "config": "sonnet5m|LEX",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 577,
+    "parse_error": 5
+   },
+   "charges_usd": 6.240699,
+   "metrics": {
+    "vacuity": {
+     "value": 0.9210526315789473,
+     "lo": 0.8421052631578947,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.22807017543859648,
+     "lo": 0.08771929824561403,
+     "hi": 0.38596491228070173,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5135135135135135,
+     "lo": 0.3783783783783784,
+     "hi": 0.6486486486486487,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.13421052631578947,
+     "lo": 0.05657894736842105,
+     "hi": 0.2210526315789474,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.0983351542525221,
+     "lo": -0.26586533816321717,
+     "hi": 0.07722850720702924,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 0.9342105263157895,
+     "weakening": 0.5701754385964912,
+     "overconstraint": 0.7027027027027027
+    },
+    "formatting_false_alarm": {
+     "value": 0.42105263157894735,
+     "lo": 0.23684210526315788,
+     "hi": 0.631578947368421,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.13315947526473837,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.24,
+      "lo": 0.0,
+      "hi": 0.5,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.75,
+      "lo": 0.5909090909090909,
+      "hi": 0.9047619047619048,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.7854166666666665
+   },
+   "semantic_component_S": 0.5528143152276829,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sonnet5m|P1",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 6.188529,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.14035087719298245,
+     "lo": 0.017543859649122806,
+     "hi": 0.2982456140350877,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.6756756756756757,
+     "lo": 0.5789473684210527,
+     "hi": 0.7878787878787878,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.05789473684210527,
+     "lo": 0.018421052631578946,
+     "hi": 0.1131578947368421,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": 0.003250165828608634,
+     "lo": -0.1412425151071252,
+     "hi": 0.1488645855129574,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5350877192982456,
+     "overconstraint": 0.8378378378378378
+    },
+    "formatting_false_alarm": {
+     "value": 0.2631578947368421,
+     "lo": 0.13157894736842105,
+     "hi": 0.39473684210526316,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.3421842895527106,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.16,
+      "lo": 0.0,
+      "hi": 0.3870967741935484,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.85,
+      "lo": 0.7272727272727273,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.78125
+   },
+   "semantic_component_S": 0.546717797024922,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sonnet5m|P4",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 6.341426,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.07017543859649122,
+     "lo": 0.0,
+     "hi": 0.19298245614035087,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5945945945945946,
+     "lo": 0.5135135135135135,
+     "hi": 0.6857142857142857,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.08684210526315789,
+     "lo": 0.01578947368421053,
+     "hi": 0.17368421052631577,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.04962152850431913,
+     "lo": -0.13645920338687761,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.5350877192982456,
+     "overconstraint": 0.7972972972972973
+    },
+    "formatting_false_alarm": {
+     "value": 0.10526315789473684,
+     "lo": 0.02631578947368421,
+     "hi": 0.21052631578947367,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.4496601865022918,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.16,
+      "lo": 0.0,
+      "hi": 0.4,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.7666666666666666
+   },
+   "semantic_component_S": 0.44181249353072927,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sonnet5m|P8",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 6.207294,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.08771929824561403,
+     "lo": 0.0,
+     "hi": 0.22807017543859648,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5405405405405406,
+     "lo": 0.5,
+     "hi": 0.6111111111111112,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.05789473684210527,
+     "lo": 0.0026315789473684206,
+     "hi": 0.14473684210526316,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.057655006053175376,
+     "lo": -0.16335585048399692,
+     "hi": 0.0,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.543859649122807,
+     "overconstraint": 0.7702702702702703
+    },
+    "formatting_false_alarm": {
+     "value": 0.13157894736842105,
+     "lo": 0.02631578947368421,
+     "hi": 0.2631578947368421,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.41117433222696387,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.12,
+      "lo": 0.0,
+      "hi": 0.34615384615384615,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.8,
+      "lo": 0.6666666666666666,
+      "hi": 0.9411764705882353,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.8166666666666668
+   },
+   "semantic_component_S": 0.45973303567366486,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "sonnet5m|R4",
+   "family": "sonnet5m",
+   "split": "train",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 576,
+    "parse_error": 6
+   },
+   "charges_usd": 15.876358,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 0.9736842105263158,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8857504315345717,
+     "lo": -0.9295556805942037,
+     "hi": -0.8318983282633257,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 1.0,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 1.0,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 1.0,
+   "verdict": "PASS"
+  },
+  {
+   "config": "t2_luna|D0",
+   "family": "t2_luna",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 0.851781,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.38596491228070173,
+     "lo": 0.21052631578947367,
+     "hi": 0.5614035087719298,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.9459459459459459,
+     "lo": 0.8648648648648649,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.06578947368421052,
+     "lo": 0.013157894736842111,
+     "hi": 0.13421052631578947,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.45154836001658455,
+     "lo": -0.6351292341830187,
+     "hi": -0.268405172386235,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.631578947368421,
+     "overconstraint": 0.9459459459459459
+    },
+    "formatting_false_alarm": {
+     "value": 0.07894736842105263,
+     "lo": 0.0,
+     "hi": 0.15789473684210525,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.6983562509878299,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.6,
+      "lo": 0.36,
+      "hi": 0.8333333333333334,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.9,
+      "lo": 0.7727272727272727,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.9125
+   },
+   "semantic_component_S": 0.7642135354394641,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "t2_luna|H2",
+   "family": "t2_luna",
+   "split": "val",
+   "kind": "llm",
+   "selector": "openai/gpt-6-luna-high",
+   "status_counts": {
+    "measured": 580,
+    "parse_error": 2
+   },
+   "charges_usd": 1.377194,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.543859649122807,
+     "lo": 0.38596491228070173,
+     "hi": 0.7017543859649122,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.5675675675675675,
+     "lo": 0.43243243243243246,
+     "hi": 0.696969696969697,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.610789657701183,
+     "lo": -0.7722399600984798,
+     "hi": -0.43519335407111975,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.7719298245614035,
+     "overconstraint": 0.7837837837837838
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.7038090722301248,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 0.96,
+      "lo": 0.8571428571428571,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 0.95,
+      "lo": 0.8333333333333334,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.7453771966019811,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "t2_qwen|D0",
+   "family": "t2_qwen",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 579,
+    "parse_error": 3
+   },
+   "charges_usd": 14.801557,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.7543859649122807,
+     "lo": 0.7017543859649122,
+     "hi": 0.8245614035087719,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8349428514909064,
+     "lo": -0.8874249072365072,
+     "hi": -0.7748305319480023,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.8771929824561403,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9181286549707602,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9319624190332383,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "t2_qwen|H2",
+   "family": "t2_qwen",
+   "split": "test",
+   "kind": "llm",
+   "selector": "alibaba/qwen3.6-27b",
+   "status_counts": {
+    "measured": 561,
+    "parse_error": 21
+   },
+   "charges_usd": 20.558722,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.9649122807017544,
+     "lo": 0.9122807017543859,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 0.972972972972973,
+     "lo": 0.9166666666666666,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 0.9736842105263158,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.7976532273801726,
+     "lo": -0.8678939503176875,
+     "hi": -0.7106270243478836,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.9824561403508771,
+     "overconstraint": 0.9864864864864865
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 37,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9792950845582425,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 0.9666666666666667
+   },
+   "semantic_component_S": 0.984344576166211,
+   "verdict": "PASS"
+  },
+  {
+   "config": "t2_sonnet5|D0",
+   "family": "t2_sonnet5",
+   "split": "test",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 23.348529,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 0.7894736842105263,
+     "lo": 0.7192982456140351,
+     "hi": 0.8596491228070176,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8655752864149118,
+     "lo": -0.9169700761964292,
+     "hi": -0.8033345397920142,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 0.8947368421052632,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 0.9298245614035089,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 0.9426151476815119,
+   "verdict": "FAIL"
+  },
+  {
+   "config": "t2_sonnet5|H2",
+   "family": "t2_sonnet5",
+   "split": "test",
+   "kind": "llm",
+   "selector": "anthropic/claude-sonnet-5-medium",
+   "status_counts": {
+    "measured": 582
+   },
+   "charges_usd": 38.768484,
+   "metrics": {
+    "vacuity": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "weakening": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 57,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 57,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "overconstraint": {
+     "value": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n": 37,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 37,
+     "computable": true,
+     "metric": "directional_accuracy"
+    },
+    "formatting": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19,
+     "coverage": 1.0,
+     "n_declared_valid": 38,
+     "computable": true,
+     "metric": "formatting_gap"
+    },
+    "weakening_kendall_tau": {
+     "value": -0.8316019715375376,
+     "lo": -0.8878951234565386,
+     "hi": -0.7728677709707813,
+     "n": 19,
+     "n_tasks": 19
+    },
+    "directional_accuracy_ties_half": {
+     "vacuity": 1.0,
+     "weakening": 1.0,
+     "overconstraint": 1.0
+    },
+    "formatting_false_alarm": {
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 38,
+     "n_tasks": 19
+    },
+    "discrimination": 1.0,
+    "file_level_strict_only": {
+     "weakening": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 25,
+      "n_tasks": 12
+     },
+     "overconstraint": {
+      "value": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n": 20,
+      "n_tasks": 16
+     }
+    },
+    "identity_mean_score": 1.0
+   },
+   "semantic_component_S": 1.0,
+   "verdict": "PASS"
+  }
+ ]
+}
