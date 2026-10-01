@@ -545,11 +545,19 @@ class ValkyrieTransport:
             for r in todo:
                 write_task(r)
                 assert round_trip(r), f"{r.req_id}: task file does not round-trip"
-            ensure_live()
-            start_service()                                    # reload the pack; no run is in flight between batches
             groups: dict[str, list[Request]] = {}
             for r in todo:
                 groups.setdefault(_group_key(r), []).append(r)
+            planned = [f"{batch}__g{gi}__{attempt}" for gi in range(len(groups))]
+            state = load_state()
+            in_flight = [k for k, e in state["runs"].items() if e.get("phase") == "running"]
+            if any(k not in state["runs"] for k in planned):
+                # reload the pack only when a new admission follows and nothing is in flight (a reload drops the
+                # service's open task sessions); on a resume whose runs are all admitted, the service is left alone
+                if in_flight:
+                    wait_runs(in_flight)
+                ensure_live()
+                start_service()
             keys = []
             for gi, (_, grp) in enumerate(sorted(groups.items())):
                 key = f"{batch}__g{gi}__{attempt}"
