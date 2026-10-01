@@ -1,6 +1,6 @@
 # Checkpoint: experiment 43, judge-gaming resistance (score-optimizing attacker vs the label-free property index)
 
-**Last updated:** 09-30-2026 16:05 PDT
+**Last updated:** 09-30-2026 19:12 PDT
 **Worker:** Claude Code (claude-opus-5-5, effort high), tmux `cj-e43-gaming-resistance` on skampere1; clone `/lfs/skampere1/0/brando9/cert-judge_e43`, branch `e43-gaming-resistance`.
 **Model switches:** none so far (fallback per dispatcher: claude-sonnet-5 at high effort; record any switch here).
 
@@ -16,9 +16,10 @@
 - Lean: experiment 39's grading project `/lfs/skampere1/0/brando9/vb90_grading/lean_project` lacks the `VeriBench` prelude modules; experiment 39 solved this with a private mirror project. Experiment 43 builds its own mirror, the same way, at `/lfs/skampere1/0/brando9/cj_e43_lean_project`: `lakefile.toml`, `lake-manifest.json`, `lean-toolchain` copied from the grading project, `.lake/packages` symlinked to the grading project's built packages (read-only use), and the empty prelude modules `VeriBench`, `VeriBench.Common`, `VeriBench.Prelude` compiled with `cert_judge.probe_validation.LeanCompiler.compile_module` from cert-judge's `data/veribench_dataset/lean_src/{veribench.lean,veribench/Common.lean,veribench/Prelude.lean}` (sha256 d0d1fda6…, 6a3ad70c…, 6a3ad70c…; identical to experiment 39's record). A probe `import VeriBench` + `import Mathlib` file elaborates.
 - Raw elaboration of the 47 rated candidates with expert-mean coverage ≤ 0.6: 2 elaborate (`13_MyUppercase__agent1`, `33_MyMinimum__agent2`).
 
-6. Full run: RUNNING since 09-30-2026 16:03 PDT (90 cells × K = 8; worker restarted at 16:04 PDT onto `TMPDIR=private/tmp` after the node's root disk filled, resuming the recorded round-0 admissions without re-admission).
+6. Full run: loop DONE 09-30-2026 19:10 PDT (720/720 attempts, every attacker call measured after at most one recovery; Lean-valid per round 77/81/78/84/74/79/80/·); post-loop scoring (450 attacked-judge rescoring + 462 reference calls) admitted 19:11 PDT. Worker restarted once at 16:04 PDT onto `TMPDIR=private/tmp`.
 
 ## Incidents
+- Transient Valkyrie task ERRORs (agent receipt frozen at start, 0 requests sent): round 0 5/58 and round-2 attacker 7/90; each got its single labelled recovery admission and all 12 were measured. `transport.run_batch` was also changed so a resumed worker never reloads the service while runs are in flight.
 - 09-30-2026 15:55 PDT: skampere1's shared root filesystem (879 GB, holds `/tmp`) reached 100% (0 B free). 32 GB of it was this user's stale Claude Code cache `/tmp/user/22003/claude-22003/bash-edit-diff`; the 1,095 entries older than 12 h were deleted (root back to 16 GB free); the 9 recent entries were kept. Experiment 43's worker now writes Lean temp files under node-local `private/tmp`.
 - The full-run worker process loaded the pre-fix charges code, so `results/full/cells.json` will carry cumulative charges; the stage-filtered total is recomputed with `transport.charges_total(prefix="full__")` after the post stage.
 

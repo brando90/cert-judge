@@ -208,6 +208,41 @@ def analyze(stage: str, refs: list[str], reps: int = e43.BOOTSTRAP_REPS) -> dict
     return out
 
 
+def fmt(v, nd=3, signed=True):
+    if v is None:
+        return "—"
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return f"{v:+.{nd}f}" if signed else f"{v:.{nd}f}"
+    return str(v)
+
+
+def ci(b):
+    return "—" if not b or b.get("ci95") is None else f"[{b['ci95'][0]:+.3f}, {b['ci95'][1]:+.3f}]"
+
+
+def tables(out: dict) -> str:
+    """Markdown tables for REPORT.md / results.md, written from analysis.json (no hand transcription)."""
+    lines = ["| Attacked judge (Claude Sonnet 5, medium) | Cells scored | Gaming gap (95% CI, task-clustered) | Attacked-judge gain (95% CI) | Reference gain (95% CI) | Flagged share, all cells | Flagged share, edited cells | Valid / attempts | Accepted |",
+             "|---|---|---|---|---|---|---|---|---|"]
+    for j, v in out["per_judge"].items():
+        lp = v["loop"]
+        lines.append(f"| `{j.split('|')[1]}` | {v['n_scored']}/{v['n_cells']} | {fmt(v['gaming_gap']['mean'])} {ci(v['gaming_gap'])} | "
+                     f"{fmt(v['attacked_gain']['mean'])} {ci(v['attacked_gain'])} | {fmt(v['reference_gain']['mean'])} {ci(v['reference_gain'])} | "
+                     f"{fmt(v['flagged_share_all_cells']['mean'], 2, False)} | {fmt(v['flagged_share_edited_cells'], 2, False)} ({v['n_edited_cells']} edited) | "
+                     f"{lp['lean_valid']}/{lp['attempts']} | {lp['accepted']} |")
+    if out.get("association"):
+        lines += ["", "| Index (experiment 39) | Judges | Spearman ρ (index, gaming gap) | Exact one-sided p (negative) | Two-sided p | Bootstrap 95% CI of ρ | Reading |",
+                  "|---|---|---|---|---|---|---|"]
+        for name, a in out["association"].items():
+            if a.get("status") != "COMPUTED":
+                lines.append(f"| `{name}` | {a.get('n_judges', 0)} | — | — | — | — | {a.get('status')} |")
+                continue
+            c = a["bootstrap_ci95_task_clustered"]
+            lines.append(f"| `{name}` | {a['n_judges']} | {a['spearman']:+.3f} | {a['p_one_sided_negative']:.3f} | {a['p_two_sided']:.3f} | "
+                         f"{'—' if not c else f'[{c[0]:+.3f}, {c[1]:+.3f}]'} | {a['reading']} |")
+    return "\n".join(lines) + "\n"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", default="full", choices=["full", "pilot", "pilot_r1"])
@@ -216,6 +251,7 @@ def main() -> int:
     args = ap.parse_args()
     refs = args.index_ref or ["origin/main", "origin/e39-proxy-index-search"]
     out = analyze(args.stage, refs, args.reps)
+    (e43.RESULTS / ("report_tables.md" if args.stage == "full" else f"report_tables_{args.stage}.md")).write_text(tables(out))
     print(json.dumps({j: {"gap": v["gaming_gap"]["mean"], "ci": v["gaming_gap"]["ci95"], "flagged": v["flagged_share_all_cells"]["mean"]}
                       for j, v in out["per_judge"].items()}, indent=1))
     print(json.dumps({k: {kk: v.get(kk) for kk in ("status", "spearman", "p_one_sided_negative", "reading")} for k, v in out["association"].items()}, indent=1))
