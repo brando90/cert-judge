@@ -66,3 +66,40 @@ Rule: PASS iff directional accuracy >= 0.8 on each of vacuity, weakening and ove
 | `ctl|editdist` | train | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | -1.00 [-1.00, -1.00] | 0.044 [0.037, 0.052] | 1.00 | PASS | 1.00 [1.00, 1.00] | 0.00 | 1.00 / 1.00 | 0.00 |
 | `ctl|name_jaccard` | train | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00] | 0.000 [0.000, 0.000] | 1.00 | FAIL | 0.00 [0.00, 0.00] | 0.00 | 0.00 / 0.00 | 0.00 |
 | `ctl|random` | train | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00] | 0.149 [0.097, 0.207] | 0.57 | FAIL | 0.32 [0.21, 0.42] | -0.32 | 0.00 / 0.00 | 0.00 |
+
+## Association with experiment 39's criterion (experiment 39 criteria.heldout.spearman (agreement with the expert coverage ratings on 45 held-out items); ref origin/main = 99e3496af1; test view: post hoc (TEST_RECEIPT.json present))
+
+### train_val (38 LLM units)
+
+| Component | Spearman | 95% CI | Kendall | one-sided perm p | n |
+|---|---|---|---|---|---|
+| DA_vacuity | 0.30 | [0.13, 0.50] | 0.25 | 0.0324 | 38 |
+| DA_weakening | 0.73 | [0.55, 0.86] | 0.54 | 0.0001 | 38 |
+| DA_overconstraint | 0.41 | [0.11, 0.68] | 0.31 | 0.0065 | 38 |
+| one_minus_formatting_gap | 0.73 | [0.57, 0.82] | 0.53 | 0.0001 | 38 |
+| neg_weakening_tau | 0.83 | [0.70, 0.90] | 0.62 | 0.0001 | 38 |
+| S_semantic | 0.72 | [0.55, 0.83] | 0.51 | 0.0001 | 38 |
+
+| Base index | Spearman base | Spearman GM(base, S) | Δ | Δ 95% CI |
+|---|---|---|---|---|
+| C_ms_gold | 0.78 | 0.72 | -0.06 | [-0.16, 0.04] |
+| PTI_v0_frozen | 0.26 | 0.26 | 0.00 | [0.00, 0.00] |
+| TI_var_trainnorm | -0.09 | 0.06 | 0.15 | [0.05, 0.26] |
+
+### test_post_hoc (18 LLM units)
+
+| Component | Spearman | 95% CI | Kendall | one-sided perm p | n |
+|---|---|---|---|---|---|
+| DA_vacuity | 0.35 | [0.26, 0.65] | 0.29 | 0.1099 | 18 |
+| DA_weakening | 0.72 | [0.31, 0.92] | 0.54 | 0.0012 | 18 |
+| DA_overconstraint | 0.57 | [0.06, 0.80] | 0.40 | 0.0078 | 18 |
+| one_minus_formatting_gap | 0.47 | [0.14, 0.75] | 0.40 | 0.0245 | 18 |
+| neg_weakening_tau | 0.45 | [-0.11, 0.74] | 0.25 | 0.0305 | 18 |
+| S_semantic | 0.65 | [0.21, 0.87] | 0.47 | 0.0032 | 18 |
+
+| Base index | Spearman base | Spearman GM(base, S) | Δ | Δ 95% CI |
+|---|---|---|---|---|
+| C_ms_gold | 0.56 | 0.67 | 0.11 | [-0.13, 0.39] |
+| PTI_v0_frozen | -0.27 | -0.27 | 0.00 | [0.00, 0.00] |
+| TI_var_trainnorm | -0.33 | 0.34 | 0.67 | [0.16, 1.16] |
+
