@@ -1,0 +1,771 @@
+{
+ "written_utc": "2026-10-01T00:13:03.536964+00:00",
+ "rule": "rank every pre-registered candidate by Spearman with the held-out criterion over the TRAIN judge models (LLM configurations only; ties -> fewer components -> name); keep the top three; select the finalist with the highest VAL Spearman (same tie-break). Frozen before any test-model row was read.",
+ "n_train_units": 18,
+ "n_train_units_with_controls": 22,
+ "n_val_units": 20,
+ "candidates": {
+  "PTI_v0_frozen": {
+   "aggregation": "frozen",
+   "components": [
+    "ident",
+    "bm_gold",
+    "ms_gold",
+    "alpha"
+   ]
+  },
+  "TI_var_trainnorm": {
+   "aggregation": "frozen",
+   "components": [
+    "bm_gold",
+    "stab"
+   ]
+  },
+  "GM_cov5": {
+   "aggregation": "gm",
+   "components": [
+    "ms_gold",
+    "ms_cand",
+    "alpha",
+    "sorry",
+    "reorder"
+   ]
+  },
+  "GM_cov6": {
+   "aggregation": "gm",
+   "components": [
+    "ms_gold",
+    "ms_cand",
+    "alpha",
+    "sorry",
+    "reorder",
+    "stab"
+   ]
+  },
+  "GM_cov7": {
+   "aggregation": "gm",
+   "components": [
+    "ms_gold",
+    "ms_cand",
+    "alpha",
+    "sorry",
+    "reorder",
+    "stab",
+    "spam"
+   ]
+  },
+  "GM_all10": {
+   "aggregation": "gm",
+   "components": [
+    "ident",
+    "blank",
+    "ms_gold",
+    "ms_cand",
+    "bm_gold",
+    "alpha",
+    "reorder",
+    "sorry",
+    "spam",
+    "stab"
+   ]
+  },
+  "AM_cov7": {
+   "aggregation": "am",
+   "components": [
+    "ms_gold",
+    "ms_cand",
+    "alpha",
+    "sorry",
+    "reorder",
+    "stab",
+    "spam"
+   ]
+  },
+  "MIN_cov7": {
+   "aggregation": "min",
+   "components": [
+    "ms_gold",
+    "ms_cand",
+    "alpha",
+    "sorry",
+    "reorder",
+    "stab",
+    "spam"
+   ]
+  },
+  "GM_mono2": {
+   "aggregation": "gm",
+   "components": [
+    "ms_gold",
+    "ms_cand"
+   ]
+  },
+  "GM_inv3": {
+   "aggregation": "gm",
+   "components": [
+    "alpha",
+    "sorry",
+    "reorder"
+   ]
+  },
+  "GM_bm_ms_inv": {
+   "aggregation": "gm",
+   "components": [
+    "bm_gold",
+    "ms_gold",
+    "ms_cand",
+    "alpha",
+    "sorry",
+    "reorder"
+   ]
+  },
+  "C_ident": {
+   "aggregation": "single",
+   "components": [
+    "ident"
+   ]
+  },
+  "C_blank": {
+   "aggregation": "single",
+   "components": [
+    "blank"
+   ]
+  },
+  "C_ms_gold": {
+   "aggregation": "single",
+   "components": [
+    "ms_gold"
+   ]
+  },
+  "C_ms_cand": {
+   "aggregation": "single",
+   "components": [
+    "ms_cand"
+   ]
+  },
+  "C_bm_gold": {
+   "aggregation": "single",
+   "components": [
+    "bm_gold"
+   ]
+  },
+  "C_alpha": {
+   "aggregation": "single",
+   "components": [
+    "alpha"
+   ]
+  },
+  "C_reorder": {
+   "aggregation": "single",
+   "components": [
+    "reorder"
+   ]
+  },
+  "C_sorry": {
+   "aggregation": "single",
+   "components": [
+    "sorry"
+   ]
+  },
+  "C_spam": {
+   "aggregation": "single",
+   "components": [
+    "spam"
+   ]
+  },
+  "C_stab": {
+   "aggregation": "single",
+   "components": [
+    "stab"
+   ]
+  }
+ },
+ "train_ranking": [
+  {
+   "index": "C_ms_gold",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.760577915376677,
+   "kendall": 0.5686274509803921,
+   "pearson": 0.6425013832457039,
+   "val": {
+    "n_units": 20,
+    "spearman": 0.762406015037594,
+    "kendall": 0.5368421052631579,
+    "pearson": 0.7585259361860461
+   }
+  },
+  {
+   "index": "C_ident",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.7418621489009086,
+   "kendall": 0.5278641140253968,
+   "pearson": 0.7993125495821363,
+   "val": {
+    "n_units": 20,
+    "spearman": 0.7226153887565203,
+    "kendall": 0.5307319598962933,
+    "pearson": 0.6026475935963759
+   }
+  },
+  {
+   "index": "GM_mono2",
+   "n_components": 2,
+   "n_units": 18,
+   "spearman": 0.6463302345144167,
+   "kendall": 0.48847278786849263,
+   "pearson": 0.6065603710713772,
+   "val": {
+    "n_units": 20,
+    "spearman": 0.37984207274379095,
+    "kendall": 0.3113467302068076,
+    "pearson": 0.43536802307823
+   }
+  },
+  {
+   "index": "C_ms_cand",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.4861527084271149,
+   "kendall": 0.36314233681278696,
+   "pearson": 0.5402569644840184
+  },
+  {
+   "index": "PTI_v0_frozen",
+   "n_components": 4,
+   "n_units": 15,
+   "spearman": 0.43301270189221935,
+   "kendall": 0.36514837167011077,
+   "pearson": 0.30705484219371526
+  },
+  {
+   "index": "C_blank",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.2725865102545528,
+   "kendall": 0.2286647801900118,
+   "pearson": 0.26959023409408256
+  },
+  {
+   "index": "C_sorry",
+   "n_components": 1,
+   "n_units": 17,
+   "spearman": 0.19428097703896716,
+   "kendall": 0.11243619908556622,
+   "pearson": 0.07243620933880966
+  },
+  {
+   "index": "C_bm_gold",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.18791948813003262,
+   "kendall": 0.1442630704835162,
+   "pearson": 0.34506837488755215
+  },
+  {
+   "index": "C_spam",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.1820571079638216,
+   "kendall": 0.15691973428978245,
+   "pearson": 0.13243484164722574
+  },
+  {
+   "index": "C_stab",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.09597523219814241,
+   "kendall": 0.08496732026143791,
+   "pearson": 0.02915568419933136
+  },
+  {
+   "index": "TI_var_trainnorm",
+   "n_components": 2,
+   "n_units": 18,
+   "spearman": -0.010325246600551242,
+   "kendall": -0.013114824589410563,
+   "pearson": 0.12779043454272393
+  },
+  {
+   "index": "C_alpha",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": -0.24439516698937186,
+   "kendall": -0.15364717026818725,
+   "pearson": -0.16897394455479897
+  },
+  {
+   "index": "C_reorder",
+   "n_components": 1,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_inv3",
+   "n_components": 3,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_cov5",
+   "n_components": 5,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_bm_ms_inv",
+   "n_components": 6,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_cov6",
+   "n_components": 6,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "AM_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "MIN_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_all10",
+   "n_components": 10,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  }
+ ],
+ "train_ranking_with_controls": [
+  {
+   "index": "C_ident",
+   "n_components": 1,
+   "n_units": 21,
+   "spearman": 0.6253594007970851,
+   "kendall": 0.4673773191347206,
+   "pearson": 0.6763839030404797
+  },
+  {
+   "index": "C_ms_gold",
+   "n_components": 1,
+   "n_units": 21,
+   "spearman": 0.5222475104930099,
+   "kendall": 0.40572907915099854,
+   "pearson": 0.5525543768787281
+  },
+  {
+   "index": "GM_mono2",
+   "n_components": 2,
+   "n_units": 21,
+   "spearman": 0.5146607107877853,
+   "kendall": 0.38651402376829896,
+   "pearson": 0.5734568008820129
+  },
+  {
+   "index": "C_ms_cand",
+   "n_components": 1,
+   "n_units": 21,
+   "spearman": 0.45624146991212444,
+   "kendall": 0.3405156681349608,
+   "pearson": 0.5334054660142311
+  },
+  {
+   "index": "C_blank",
+   "n_components": 1,
+   "n_units": 21,
+   "spearman": 0.32126891556522075,
+   "kendall": 0.2766416675862441,
+   "pearson": 0.3127293997628424
+  },
+  {
+   "index": "C_spam",
+   "n_components": 1,
+   "n_units": 21,
+   "spearman": 0.13827181083751366,
+   "kendall": 0.10249522335511213,
+   "pearson": 0.0003121042536442419
+  },
+  {
+   "index": "C_sorry",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": 0.11859989066577618,
+   "kendall": 0.06409882014228716,
+   "pearson": -0.00845918726810365
+  },
+  {
+   "index": "C_bm_gold",
+   "n_components": 1,
+   "n_units": 21,
+   "spearman": 0.10201431653220032,
+   "kendall": 0.08612538776448218,
+   "pearson": 0.13140090071891963
+  },
+  {
+   "index": "PTI_v0_frozen",
+   "n_components": 4,
+   "n_units": 18,
+   "spearman": 0.0037793680364896208,
+   "kendall": 0.01407334436402497,
+   "pearson": -0.050803243903082815
+  },
+  {
+   "index": "TI_var_trainnorm",
+   "n_components": 2,
+   "n_units": 21,
+   "spearman": -0.04873295375742054,
+   "kendall": -0.02870846258816073,
+   "pearson": -0.06196836542865075
+  },
+  {
+   "index": "C_stab",
+   "n_components": 1,
+   "n_units": 21,
+   "spearman": -0.13784146895172933,
+   "kendall": -0.08153688226810184,
+   "pearson": -0.21858853034232384
+  },
+  {
+   "index": "C_alpha",
+   "n_components": 1,
+   "n_units": 21,
+   "spearman": -0.2738564853952923,
+   "kendall": -0.18414382475299704,
+   "pearson": -0.2278790905343374
+  },
+  {
+   "index": "C_reorder",
+   "n_components": 1,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_inv3",
+   "n_components": 3,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_cov5",
+   "n_components": 5,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_bm_ms_inv",
+   "n_components": 6,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_cov6",
+   "n_components": 6,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "AM_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "MIN_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_all10",
+   "n_components": 10,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  }
+ ],
+ "val_all_candidates": [
+  {
+   "index": "PTI_v0_frozen",
+   "n_components": 4,
+   "n_units": 18,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "TI_var_trainnorm",
+   "n_components": 2,
+   "n_units": 20,
+   "spearman": -0.17675819226691264,
+   "kendall": -0.1319265805961049,
+   "pearson": -0.0420049039550406
+  },
+  {
+   "index": "GM_cov5",
+   "n_components": 5,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_cov6",
+   "n_components": 6,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_all10",
+   "n_components": 10,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "AM_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "MIN_cov7",
+   "n_components": 7,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_mono2",
+   "n_components": 2,
+   "n_units": 20,
+   "spearman": 0.37984207274379095,
+   "kendall": 0.3113467302068076,
+   "pearson": 0.43536802307823
+  },
+  {
+   "index": "GM_inv3",
+   "n_components": 3,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "GM_bm_ms_inv",
+   "n_components": 6,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "C_ident",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": 0.7226153887565203,
+   "kendall": 0.5307319598962933,
+   "pearson": 0.6026475935963759
+  },
+  {
+   "index": "C_blank",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "C_ms_gold",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": 0.762406015037594,
+   "kendall": 0.5368421052631579,
+   "pearson": 0.7585259361860461
+  },
+  {
+   "index": "C_ms_cand",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": 0.2070913381070181,
+   "kendall": 0.20917100910167713,
+   "pearson": 0.2536267735318552
+  },
+  {
+   "index": "C_bm_gold",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": 0.2908824313601591,
+   "kendall": 0.13334518676566623,
+   "pearson": 0.3587811511352471
+  },
+  {
+   "index": "C_alpha",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": 0.32875052445866987,
+   "kendall": 0.26188595099010065,
+   "pearson": -0.01699956325835361
+  },
+  {
+   "index": "C_reorder",
+   "n_components": 1,
+   "n_units": 0,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null
+  },
+  {
+   "index": "C_sorry",
+   "n_components": 1,
+   "n_units": 19,
+   "spearman": 0.16952203189628662,
+   "kendall": 0.11721908053608383,
+   "pearson": -0.04670197573578491
+  },
+  {
+   "index": "C_spam",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": 0.28990866085994055,
+   "kendall": 0.23093095482692072,
+   "pearson": 0.1932389453019769
+  },
+  {
+   "index": "C_stab",
+   "n_components": 1,
+   "n_units": 20,
+   "spearman": 0.4917293233082707,
+   "kendall": 0.35789473684210527,
+   "pearson": 0.42041362828541956
+  }
+ ],
+ "finalists": [
+  {
+   "index": "C_ms_gold",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.760577915376677,
+   "kendall": 0.5686274509803921,
+   "pearson": 0.6425013832457039,
+   "val": {
+    "n_units": 20,
+    "spearman": 0.762406015037594,
+    "kendall": 0.5368421052631579,
+    "pearson": 0.7585259361860461
+   }
+  },
+  {
+   "index": "C_ident",
+   "n_components": 1,
+   "n_units": 18,
+   "spearman": 0.7418621489009086,
+   "kendall": 0.5278641140253968,
+   "pearson": 0.7993125495821363,
+   "val": {
+    "n_units": 20,
+    "spearman": 0.7226153887565203,
+    "kendall": 0.5307319598962933,
+    "pearson": 0.6026475935963759
+   }
+  },
+  {
+   "index": "GM_mono2",
+   "n_components": 2,
+   "n_units": 18,
+   "spearman": 0.6463302345144167,
+   "kendall": 0.48847278786849263,
+   "pearson": 0.6065603710713772,
+   "val": {
+    "n_units": 20,
+    "spearman": 0.37984207274379095,
+    "kendall": 0.3113467302068076,
+    "pearson": 0.43536802307823
+   }
+  }
+ ],
+ "selected": "C_ms_gold",
+ "always_reported": [
+  "PTI_v0_frozen",
+  "TI_var_trainnorm"
+ ],
+ "ti_var_norm": {
+  "V_c": [
+   0.01938502014905501,
+   0.18715029685282752
+  ],
+  "V_s": [
+   7.703719777548943e-34,
+   0.025416666666666667
+  ],
+  "n_train_units": 18
+ }
+}
