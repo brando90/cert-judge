@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results.md>
 
 **Status:** RUNNING (started 09-30-2026 12:09 PDT; worker tmux `cj-e39-proxy-index-search` on skampere1, branch `e39-proxy-index-search`; no judge call made yet)
-**Last updated:** 09-30-2026 16:33 PDT
+**Last updated:** 09-30-2026 17:15 PDT
 
 Experiment 39: 56 judge configurations (50 single-call: six judge models × the VeriBench and cert-judge prompt families; 6 agent judges: Terminus2 + GPT-6 Luna / Claude Sonnet 5 / Qwen3.6-27B on the H2 and D0 rubrics) plus 4 controls, judged on Lean-validated probes through Valkyrie; a label-free index is selected on the train judge models (GPT-6 Sol, Claude Sonnet 5), checked on val (GPT-6 Luna, Gemini 3.1 Pro, Terminus2 + Luna) and tested once on held-out judges (Claude Opus 5.5, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen) against agreement with the expert coverage ratings on 45 held-out VeriBench items; results pending.
 
@@ -19,9 +19,9 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 | Probes elaborated with Lean 4.22 + Mathlib | DONE 09-30-2026 12:41 PDT (mirror project with the VeriBench prelude; see deviations): valid/invalid per kind — ident 24/1, blank 25/0, ms_gold 76/4, bm_gold 37/60, crit 75/0, ms_cand 3/72, alpha 3/72, reorder 0/75, sorry 3/72, spam 3/72 | `results/probe_manifest.json` |
 | Exact quote (no automatic cap, Amendment 1) | DONE 09-30-2026: 28,591 calls over 56 configurations, expected $790.59 (train $129.49, val $127.01, test $534.13), worst-case admission bound $11,945 (no automatic spend cap: PROTOCOL.md Amendment 1; regenerated under the amended `quote.py`) | `results/QUOTE.json`, `results/cells_summary.json` |
 | Bundle, agent-harness and pack checks | bundle PASS (served `vb103_judge` byte-identical to experiment 103's validated bundle); harness PASS (`brando_terminus_gateway`: kwargs `max_turns` 20, `reasoning_effort` high; its contract maps the gateway secret itself); packs PASS (nine packs, 0 round-trip failures: 4,633 tasks per nine-prompt model, 2,545 for Claude Opus 5.5, 979 per agent judge, each including one smoke cell per configuration) | `results/agent_bundle_check.json`, `results/agent_harness.json`, `results/packs.json` |
-| Smoke per configuration; main admission train → val → test; recovery pass; merge | IN PROGRESS since 09-30-2026 13:27 PDT: 56 smoke runs admitted, 32 measured on the first attempt (GPT-6 Sol 9/9, Claude Sonnet 5 9/9, GPT-6 Luna 9/9, Claude Opus 5.5 5/5; $0.76 in smoke charges), 24 retired at $0 and re-admitted after two fixes (see deviations); all 56 main runs admitted by 21:23Z (concurrency 20 each; every smoke measured, including the six Terminus2 agent judges); train configurations are being harvested, recovered and merged, see the live table below | `results/judge_progress.json`, `results/harvest/` |
-| Criterion, components, indices (train + val rows open; test rows sealed) | PENDING | `results/units_train_val.json` |
-| Selection committed | PENDING | `results/FINALISTS.json`, `results/SELECTION.json` |
+| Smoke per configuration; main admission train → val → test; recovery pass; merge | DONE 10-01-2026 00:06 UTC (all 56 configurations merged; one recovery pass over 31 runs / 97 cells); history: 56 smoke runs admitted, 32 measured on the first attempt (GPT-6 Sol 9/9, Claude Sonnet 5 9/9, GPT-6 Luna 9/9, Claude Opus 5.5 5/5; $0.76 in smoke charges), 24 retired at $0 and re-admitted after two fixes (see deviations); all 56 main runs admitted by 21:23Z (concurrency 20 each; every smoke measured, including the six Terminus2 agent judges); train configurations are being harvested, recovered and merged, see the live table below | `results/judge_progress.json`, `results/harvest/` |
+| Criterion, components, indices (train + val rows open; test rows sealed) | DONE 10-01-2026 00:13 UTC (38 open LLM/control units; test rows sealed under `private/`) | `results/units_train_val.json` |
+| Selection committed | DONE 10-01-2026: selected `C_ms_gold` (train ρ 0.761, val ρ 0.762); finalists `C_ms_gold`, `C_ident`, `GM_mono2`; seal commit `86ae479201e5` | `results/FINALISTS.json`, `results/SELECTION.json` |
 | One-shot test | PENDING | `results/TEST_RECEIPT.json` |
 | Report and landing | PENDING | `results/RESULTS_proxy_index_train_val_test.md`, PR |
 
@@ -40,12 +40,12 @@ Contract: [PROTOCOL.md](PROTOCOL.md). Design: [README.md](README.md). Runbook: [
 ## Judge campaign (live, per configuration)
 
 <!-- campaign-table:begin -->
-_Merged configurations as of 09-30-2026 23:33 UTC: 26/56; measured cells 13,190 of 13,546 merged cells; Vals-reported charges $141.32 on merged main + recovery runs, plus $1.21 on the 56 smoke cells._
+_Merged configurations as of 10-01-2026 00:15 UTC: 56/56; measured cells 28,345 of 29,176 merged cells; Vals-reported charges $573.01 on merged main + recovery runs, plus $1.21 on the 56 smoke cells._
 
 | Configuration | Split | Selector | Cells | Measured | Deterministic | Missing (class) | Recovered | Charges (USD) |
 |---|---|---|---:|---:|---:|---|---:|---:|
 | `sol6h|D0` | train | `openai/gpt-6-sol-high` | 521 | 456 | 56 | unmeasured_extraction 9 | 0 | 4.35 |
-| `sol6h|H0` | train | — | — | — | — | not merged yet | — | — |
+| `sol6h|H0` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 1 | 7.22 |
 | `sol6h|H1` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 6.24 |
 | `sol6h|H2` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 6.04 |
 | `sol6h|LEX` | train | `openai/gpt-6-sol-high` | 521 | 521 | 0 | 0 | 0 | 2.14 |
@@ -56,50 +56,50 @@ _Merged configurations as of 09-30-2026 23:33 UTC: 26/56; measured cells 13,190 
 | `sonnet5m|D0` | train | `anthropic/claude-sonnet-5-medium` | 521 | 456 | 56 | unmeasured_extraction 9 | 0 | 9.53 |
 | `sonnet5m|H0` | train | `anthropic/claude-sonnet-5-medium` | 521 | 518 | 0 | parse_error 3 | 0 | 11.12 |
 | `sonnet5m|H1` | train | `anthropic/claude-sonnet-5-medium` | 521 | 520 | 0 | parse_error 1 | 0 | 9.62 |
-| `sonnet5m|H2` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|H2` | train | `anthropic/claude-sonnet-5-medium` | 521 | 505 | 0 | parse_error 16 | 1 | 10.56 |
 | `sonnet5m|LEX` | train | `anthropic/claude-sonnet-5-medium` | 521 | 520 | 0 | parse_error 1 | 0 | 3.23 |
-| `sonnet5m|P1` | train | — | — | — | — | not merged yet | — | — |
+| `sonnet5m|P1` | train | `anthropic/claude-sonnet-5-medium` | 521 | 519 | 0 | parse_error 2 | 1 | 3.26 |
 | `sonnet5m|P4` | train | `anthropic/claude-sonnet-5-medium` | 521 | 521 | 0 | 0 | 0 | 3.45 |
 | `sonnet5m|P8` | train | `anthropic/claude-sonnet-5-medium` | 521 | 521 | 0 | 0 | 0 | 3.22 |
 | `sonnet5m|R4` | train | `anthropic/claude-sonnet-5-medium` | 521 | 520 | 0 | parse_error 1 | 0 | 10.96 |
-| `gem31h|D0` | val | — | — | — | — | not merged yet | — | — |
-| `gem31h|H0` | val | — | — | — | — | not merged yet | — | — |
-| `gem31h|H1` | val | — | — | — | — | not merged yet | — | — |
-| `gem31h|H2` | val | — | — | — | — | not merged yet | — | — |
-| `gem31h|LEX` | val | — | — | — | — | not merged yet | — | — |
-| `gem31h|P1` | val | — | — | — | — | not merged yet | — | — |
-| `gem31h|P4` | val | — | — | — | — | not merged yet | — | — |
-| `gem31h|P8` | val | — | — | — | — | not merged yet | — | — |
-| `gem31h|R4` | val | — | — | — | — | not merged yet | — | — |
-| `luna6h|D0` | val | — | — | — | — | not merged yet | — | — |
+| `gem31h|D0` | val | `google/gemini-3.1-pro-preview` | 521 | 456 | 56 | unmeasured_extraction 9 | 2 | 9.98 |
+| `gem31h|H0` | val | `google/gemini-3.1-pro-preview` | 521 | 521 | 0 | 0 | 4 | 13.70 |
+| `gem31h|H1` | val | `google/gemini-3.1-pro-preview` | 521 | 520 | 0 | parse_error 1 | 4 | 13.48 |
+| `gem31h|H2` | val | `google/gemini-3.1-pro-preview` | 521 | 520 | 0 | parse_error 1 | 8 | 15.46 |
+| `gem31h|LEX` | val | `google/gemini-3.1-pro-preview` | 521 | 521 | 0 | 0 | 4 | 4.26 |
+| `gem31h|P1` | val | `google/gemini-3.1-pro-preview` | 521 | 521 | 0 | 0 | 7 | 4.19 |
+| `gem31h|P4` | val | `google/gemini-3.1-pro-preview` | 521 | 521 | 0 | 0 | 9 | 4.26 |
+| `gem31h|P8` | val | `google/gemini-3.1-pro-preview` | 521 | 521 | 0 | 0 | 6 | 3.64 |
+| `gem31h|R4` | val | `google/gemini-3.1-pro-preview` | 521 | 520 | 0 | parse_error 1 | 2 | 12.72 |
+| `luna6h|D0` | val | `openai/gpt-6-luna-high` | 521 | 455 | 56 | parse_error 1, unmeasured_extraction 9 | 2 | 0.35 |
 | `luna6h|H0` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 0 | 0.50 |
 | `luna6h|H1` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 0 | 0.40 |
-| `luna6h|H2` | val | — | — | — | — | not merged yet | — | — |
-| `luna6h|LEX` | val | — | — | — | — | not merged yet | — | — |
-| `luna6h|P1` | val | — | — | — | — | not merged yet | — | — |
-| `luna6h|P4` | val | — | — | — | — | not merged yet | — | — |
+| `luna6h|H2` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 2 | 0.40 |
+| `luna6h|LEX` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 1 | 0.10 |
+| `luna6h|P1` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 1 | 0.15 |
+| `luna6h|P4` | val | `openai/gpt-6-luna-high` | 521 | 520 | 0 | parse_error 1 | 1 | 0.20 |
 | `luna6h|P8` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 0 | 0.12 |
-| `luna6h|R4` | val | — | — | — | — | not merged yet | — | — |
-| `t2_luna|D0` | val | — | — | — | — | not merged yet | — | — |
-| `t2_luna|H2` | val | — | — | — | — | not merged yet | — | — |
-| `opus55x|D0` | test | — | — | — | — | not merged yet | — | — |
-| `opus55x|H0` | test | — | — | — | — | not merged yet | — | — |
-| `opus55x|H2` | test | — | — | — | — | not merged yet | — | — |
+| `luna6h|R4` | val | `openai/gpt-6-luna-high` | 521 | 521 | 0 | 0 | 1 | 0.49 |
+| `t2_luna|D0` | val | `openai/gpt-6-luna-high` | 521 | 454 | 56 | parse_error 2, unmeasured_extraction 9 | 1 | 0.69 |
+| `t2_luna|H2` | val | `openai/gpt-6-luna-high` | 521 | 519 | 0 | parse_error 2 | 5 | 1.14 |
+| `opus55x|D0` | test | `anthropic/claude-opus-5-5-no-fallback` | 521 | 456 | 56 | unmeasured_extraction 9 | 6 | 58.42 |
+| `opus55x|H0` | test | `anthropic/claude-opus-5-5-no-fallback` | 521 | 520 | 0 | model_error 1 | 11 | 87.83 |
+| `opus55x|H2` | test | `anthropic/claude-opus-5-5-no-fallback` | 521 | 521 | 0 | 0 | 1 | 65.38 |
 | `opus55x|LEX` | test | `anthropic/claude-opus-5-5-no-fallback` | 521 | 521 | 0 | 0 | 0 | 12.96 |
-| `opus55x|P4` | test | — | — | — | — | not merged yet | — | — |
+| `opus55x|P4` | test | `anthropic/claude-opus-5-5-no-fallback` | 521 | 515 | 0 | model_error 6 | 3 | 44.12 |
 | `qwen36|D0` | test | `alibaba/qwen3.6-27b` | 521 | 449 | 56 | parse_error 7, unmeasured_extraction 9 | 0 | 4.15 |
 | `qwen36|H0` | test | `alibaba/qwen3.6-27b` | 521 | 501 | 0 | parse_error 20 | 0 | 4.66 |
 | `qwen36|H1` | test | `alibaba/qwen3.6-27b` | 521 | 506 | 0 | parse_error 15 | 0 | 4.87 |
-| `qwen36|H2` | test | — | — | — | — | not merged yet | — | — |
-| `qwen36|LEX` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|H2` | test | `alibaba/qwen3.6-27b` | 521 | 489 | 0 | parse_error 31, unmeasured_infra 1 | 0 | 5.32 |
+| `qwen36|LEX` | test | `alibaba/qwen3.6-27b` | 521 | 491 | 0 | parse_error 30 | 1 | 2.49 |
 | `qwen36|P1` | test | `alibaba/qwen3.6-27b` | 521 | 500 | 0 | parse_error 21 | 0 | 2.98 |
 | `qwen36|P4` | test | `alibaba/qwen3.6-27b` | 521 | 511 | 0 | parse_error 10 | 0 | 3.23 |
-| `qwen36|P8` | test | — | — | — | — | not merged yet | — | — |
+| `qwen36|P8` | test | `alibaba/qwen3.6-27b` | 521 | 497 | 0 | parse_error 24 | 2 | 2.61 |
 | `qwen36|R4` | test | `alibaba/qwen3.6-27b` | 521 | 504 | 0 | parse_error 17 | 0 | 5.07 |
-| `t2_qwen|D0` | test | — | — | — | — | not merged yet | — | — |
-| `t2_qwen|H2` | test | — | — | — | — | not merged yet | — | — |
+| `t2_qwen|D0` | test | `alibaba/qwen3.6-27b` | 521 | 447 | 56 | parse_error 6, unmeasured_extraction 9, unmeasured_infra 3 | 4 | 11.04 |
+| `t2_qwen|H2` | test | `alibaba/qwen3.6-27b` | 521 | 500 | 0 | parse_error 21 | 6 | 17.79 |
 | `t2_sonnet5|D0` | test | `anthropic/claude-sonnet-5-medium` | 521 | 456 | 56 | unmeasured_extraction 9 | 0 | 17.99 |
-| `t2_sonnet5|H2` | test | — | — | — | — | not merged yet | — | — |
+| `t2_sonnet5|H2` | test | `anthropic/claude-sonnet-5-medium` | 521 | 521 | 0 | 0 | 1 | 30.47 |
 <!-- campaign-table:end -->
 
 ## Deviations and open questions for Brando
