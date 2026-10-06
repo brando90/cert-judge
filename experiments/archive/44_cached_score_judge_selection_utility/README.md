@@ -34,4 +34,4 @@ Existing experiment39 harvests and frozen units; fingerprint-matched VeriBench i
 | Protocol and source inventory | Done |
 | Deterministic implementation | Done — cached scores only; no inference |
 | Verified analysis and report | Done — 9 tests, all-source reconstruction, 10,000 task-cluster draws |
-| Archive | Done — retired to this canonical archive home; publication receipt pending landing |
+| Archive | Done — retired to this canonical archive home; [publication confirmed in pull request #55](https://github.com/brando90/cert-judge/pull/55) |

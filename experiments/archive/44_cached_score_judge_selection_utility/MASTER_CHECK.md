@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/44_cached_score_judge_selection_utility/MASTER_CHECK.md>
 
-**TLDR:** A concrete constant-input defect in optimized Pearson correlation must be fixed before publication.
+**TLDR:** The optimized Pearson constant-input defect is fixed; its regression test and the complete analysis passed before publication.
 
 Status: VERIFIED_FIXED (worker update, 10-05-2026).
 

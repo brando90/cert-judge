@@ -2,18 +2,18 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/44_cached_score_judge_selection_utility/CKPT_selection_utility.md>
 
-**TLDR:** Prepared a zero-inference exploratory selection-utility analysis. Preserve frozen inputs and run through verified publication without changing the manuscript or older studies.
+**TLDR:** Completed, verified and merged the exploratory cached-score selection-utility study; no judge-inference calls or new labels were needed.
 
 Created: 10-05-2026
-Last updated: 10-05-2026 23:11 PDT
+Last updated: 10-05-2026 23:20 PDT
 
 - Master chat: `01a10dc2-f9fb-7d82-bdf2-c0f2c75779a9`; local owned checkout: `/Users/brandomiranda/.codex/worktrees/judge-selection-utility/cert-judge`.
 - Branch: `codex/cj-e44-selection-utility`; planned remote checkout `/lfs/skampere1/0/brando9/cert-judge_e44`; session `cj-e44-selection-utility`.
 - Source revision: `fc73f78696d53551cd57f13094ec6f73fbb1c234`.
-- Current phase: remote preflight and protocol publication.
-- Next command: run full-access worker using cc.md; verify source hash, reconstruct original criteria, implement and execute protocol.
+- Current phase: COMPLETE; results merged and archived.
+- Next command: none; this study is complete.
 - Paid inference budget: zero. Existing saved scores only; processor analysis on skampere1.
-- Codex account usage observed at dispatch preparation: 34% of weekly allowance used, 66% remaining, ordinary use allowed; applies to shared account, not just this worker. One regular execution worker plus master, no model reviewer. Conservative execution estimate 30k–80k tokens with finishing capacity reserved; no purchased credits or new charges.
+- Codex account usage observed at dispatch preparation: 34% of weekly allowance used, 66% remaining, ordinary use allowed; observed on the local desktop account; remote allowance was not established by this reading (see recovery correction below). One regular execution worker plus master, no model reviewer. Conservative execution estimate 30k–80k tokens with finishing capacity reserved; no purchased credits or new charges.
 - Planned execution worker: Codex CLI gpt-5.6-terra/high (supported in target cached catalog), approved ChatGPT login. Scientific interpretation remains with master. Actual model/effort and full-access mode must be recorded from launch receipt.
 - Recovery: master owns supervised bounded recovery, preserving any healthy child. No automatic repeated model dispatch; at most one justified continuation on the same client, then evaluate explicit blocker/eligible fallback. Wrapper records exit and actual output. This is supervised, not a claim of reboot-safe autonomous failover.
 - Permissions: `--dangerously-bypass-approvals-and-sandbox`; preserve task scope and all unrelated owners' work.
@@ -60,3 +60,11 @@ Last updated: 10-05-2026 23:11 PDT
 - Constant-input regression fixed and 9 tests passed. Corrected full analysis completed in named session cj-e44-verify, whose pane is now exited.
 - Verified all 68 source fingerprints before/after; committed source files also match revision fc73f78696d53551cd57f13094ec6f73fbb1c234. The 75-item label file matches the protocol fingerprint.
 - Publication is the only remaining phase. Main remains fc73f78; no rebase is needed. Verified result: proxy-minus-H2 Spearman -0.0859078215130098 with 95% task-bootstrap [-0.307920,0.058196], 10,000 valid paired draws.
+
+
+## Confirmed publication (10-05-2026 23:20 PDT)
+
+LANDED 208b8825db13184e39a4e88103349bc3566c5a02 https://github.com/brando90/cert-judge/pull/55 10-05-2026 23:20 PDT
+
+- GitHub confirmed MERGED, with verified branch head 640e8809d7d73e43cfd3effd73da9c9a1f8648ff. Main publication contains the complete final artifacts, all 9 passing tests and the 10,000-draw run. The deterministic verification session has exited.
+- This docs-only receipt is published by a normal fast-forward push to unprotected main; it changes no scientific artifact. No external messages were sent.
