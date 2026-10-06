@@ -9,6 +9,10 @@ Fetch and follow the global rules from brando90/agents-config before doing anyth
 
 This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
+## Email (Brando, 10-06-2026)
+
+Send from whichever of Brando's accounts you are signed in to (mail connector, else uutils SMTP); his request is the go-ahead. CC `brando.science@gmail.com`, `brandojazz@gmail.com` and `brando@vals.ai`, skipping the sender. Internal notifications follow agents-config Trigger Rule 26.
+
 ## Project Purpose
 
 `cert-judge` studies LLM-based judges for Lean 4 theorem/specification scoring. Keep these scientific objects distinct:
