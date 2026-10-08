@@ -1,9 +1,8 @@
 {
   "base_models": [
-    "opus55x",
-    "qwen36",
-    "t2_qwen",
-    "t2_sonnet5"
+    "Opus",
+    "Qwen",
+    "Sonnet"
   ],
   "cached_verified_configurations": 2,
   "declared_configurations": 12,
@@ -11,7 +10,7 @@
   "missing_declared_configurations": 10,
   "pool": [
     {
-      "base_model": "opus55x",
+      "base_model": "Opus",
       "cached_v5_member": false,
       "config": "opus55x|D0",
       "e47_state": "DECLARED_MISSING",
@@ -29,6 +28,7 @@
         "judge_config": "opus55x|D0",
         "max_tokens": "16384"
       },
+      "model_harness_identity": "opus55x",
       "prompt": "D0",
       "provider_family": "Anthropic",
       "scale": 10,
@@ -36,10 +36,10 @@
       "selector_source": "pre-registered"
     },
     {
-      "base_model": "opus55x",
+      "base_model": "Opus",
       "cached_v5_member": true,
       "config": "opus55x|H0",
-      "e47_state": "CACHED_VERIFIED",
+      "e47_state": "CACHE_CANDIDATE_REQUIRES_FRESH_RENDER_PROOF",
       "harness": "vb103_judge",
       "historical_cells": 521,
       "historical_harvest_sha256": "ebabf16c652cc44f66d8170d77dd5a965d11bec07c6264a343d70608754f4636",
@@ -53,6 +53,7 @@
         "judge_config": "opus55x|H0",
         "max_tokens": "32000"
       },
+      "model_harness_identity": "opus55x",
       "prompt": "H0",
       "provider_family": "Anthropic",
       "scale": 5,
@@ -60,10 +61,10 @@
       "selector_source": "pre-registered"
     },
     {
-      "base_model": "opus55x",
+      "base_model": "Opus",
       "cached_v5_member": true,
       "config": "opus55x|H2",
-      "e47_state": "CACHED_VERIFIED",
+      "e47_state": "CACHE_CANDIDATE_REQUIRES_FRESH_RENDER_PROOF",
       "harness": "vb103_judge",
       "historical_cells": 521,
       "historical_harvest_sha256": "b107049bd517936e2830f66b97431c39a15a8ed04448dbd2425a410e58a9cc84",
@@ -76,6 +77,7 @@
         "judge_config": "opus55x|H2",
         "max_tokens": "32000"
       },
+      "model_harness_identity": "opus55x",
       "prompt": "H2",
       "provider_family": "Anthropic",
       "scale": 5,
@@ -83,7 +85,7 @@
       "selector_source": "pre-registered"
     },
     {
-      "base_model": "qwen36",
+      "base_model": "Qwen",
       "cached_v5_member": false,
       "config": "qwen36|D0",
       "e47_state": "DECLARED_MISSING",
@@ -101,6 +103,7 @@
         "judge_config": "qwen36|D0",
         "max_tokens": "16384"
       },
+      "model_harness_identity": "qwen36",
       "prompt": "D0",
       "provider_family": "Alibaba",
       "scale": 10,
@@ -108,7 +111,7 @@
       "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
     },
     {
-      "base_model": "qwen36",
+      "base_model": "Qwen",
       "cached_v5_member": false,
       "config": "qwen36|H0",
       "e47_state": "DECLARED_MISSING",
@@ -124,6 +127,7 @@
         "judge_config": "qwen36|H0",
         "max_tokens": "32000"
       },
+      "model_harness_identity": "qwen36",
       "prompt": "H0",
       "provider_family": "Alibaba",
       "scale": 5,
@@ -131,7 +135,7 @@
       "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
     },
     {
-      "base_model": "qwen36",
+      "base_model": "Qwen",
       "cached_v5_member": false,
       "config": "qwen36|H1",
       "e47_state": "DECLARED_MISSING",
@@ -147,6 +151,7 @@
         "judge_config": "qwen36|H1",
         "max_tokens": "32000"
       },
+      "model_harness_identity": "qwen36",
       "prompt": "H1",
       "provider_family": "Alibaba",
       "scale": 5,
@@ -154,7 +159,7 @@
       "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
     },
     {
-      "base_model": "qwen36",
+      "base_model": "Qwen",
       "cached_v5_member": false,
       "config": "qwen36|H2",
       "e47_state": "DECLARED_MISSING",
@@ -171,6 +176,7 @@
         "judge_config": "qwen36|H2",
         "max_tokens": "32000"
       },
+      "model_harness_identity": "qwen36",
       "prompt": "H2",
       "provider_family": "Alibaba",
       "scale": 5,
@@ -178,7 +184,7 @@
       "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
     },
     {
-      "base_model": "qwen36",
+      "base_model": "Qwen",
       "cached_v5_member": false,
       "config": "qwen36|R4",
       "e47_state": "DECLARED_MISSING",
@@ -194,6 +200,7 @@
         "judge_config": "qwen36|R4",
         "max_tokens": "32000"
       },
+      "model_harness_identity": "qwen36",
       "prompt": "R4",
       "provider_family": "Alibaba",
       "scale": 5,
@@ -201,7 +208,7 @@
       "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
     },
     {
-      "base_model": "t2_qwen",
+      "base_model": "Qwen",
       "cached_v5_member": false,
       "config": "t2_qwen|D0",
       "e47_state": "DECLARED_MISSING",
@@ -219,6 +226,7 @@
         "max_turns": "20",
         "reasoning_effort": "high"
       },
+      "model_harness_identity": "t2_qwen",
       "prompt": "D0",
       "provider_family": "Alibaba",
       "scale": 10,
@@ -226,7 +234,7 @@
       "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['t2_qwen']['selectors'][1])"
     },
     {
-      "base_model": "t2_qwen",
+      "base_model": "Qwen",
       "cached_v5_member": false,
       "config": "t2_qwen|H2",
       "e47_state": "DECLARED_MISSING",
@@ -241,6 +249,7 @@
         "max_turns": "20",
         "reasoning_effort": "high"
       },
+      "model_harness_identity": "t2_qwen",
       "prompt": "H2",
       "provider_family": "Alibaba",
       "scale": 5,
@@ -248,7 +257,7 @@
       "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['t2_qwen']['selectors'][1])"
     },
     {
-      "base_model": "t2_sonnet5",
+      "base_model": "Sonnet",
       "cached_v5_member": false,
       "config": "t2_sonnet5|D0",
       "e47_state": "DECLARED_MISSING",
@@ -264,6 +273,7 @@
         "max_turns": "20",
         "reasoning_effort": "high"
       },
+      "model_harness_identity": "t2_sonnet5",
       "prompt": "D0",
       "provider_family": "Anthropic",
       "scale": 10,
@@ -271,7 +281,7 @@
       "selector_source": "pre-registered"
     },
     {
-      "base_model": "t2_sonnet5",
+      "base_model": "Sonnet",
       "cached_v5_member": false,
       "config": "t2_sonnet5|H2",
       "e47_state": "DECLARED_MISSING",
@@ -285,6 +295,7 @@
         "max_turns": "20",
         "reasoning_effort": "high"
       },
+      "model_harness_identity": "t2_sonnet5",
       "prompt": "H2",
       "provider_family": "Anthropic",
       "scale": 5,

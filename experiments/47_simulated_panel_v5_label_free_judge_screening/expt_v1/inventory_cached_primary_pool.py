@@ -7,7 +7,8 @@ import hashlib
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
-from statistics import median
+from statistics import median, stdev
+from receipt_validation import accepted, unique_repeats
 
 
 ROOT = Path(__file__).resolve().parent
@@ -43,6 +44,8 @@ def declared_cells() -> tuple[dict[str, dict], dict[str, dict]]:
 def verify_and_aggregate(fresh: dict[str, dict], expected: dict[str, dict]) -> tuple[dict, dict]:
     rows, hashes, seen = defaultdict(list), {}, set()
     problems = []
+    proof_path=OUT/'fresh_prompt_proof.json'
+    proof={(r['prompt'],r['item']):r for r in json.loads(proof_path.read_text())['rows']} if proof_path.exists() else {}
     for run, (_, member, config) in CONFIGS.items():
         path = RAW / run / "cells.jsonl"
         if not path.exists():
@@ -66,20 +69,26 @@ def verify_and_aggregate(fresh: dict[str, dict], expected: dict[str, dict]) -> t
             if cell in seen:
                 problems.append({"cell": cell, "problem": "DUPLICATE_RECEIPT"})
             seen.add(cell)
-            rows[(config, e["item"])].append(r)
+            ok,reason=accepted(r,e['prompt_sha256'])
+            match=proof.get((config.split('|')[1],e['item']),{})
+            if match.get('status')!='EXACT' or match.get('rendered')!=e['prompt_sha256']:
+                ok,reason=False,'FRESH_RENDER_NOT_PROVED'
+            rows[(config, e["item"])].append({**r,'accepted':ok,'acceptance_reason':reason,'source_run':run})
     out, coverage = {}, {}
     for config in sorted({x[2] for x in CONFIGS.values()}):
         by_item, statuses = {}, Counter()
         for iid, item in sorted(fresh.items()):
             if item["blank"]:
-                by_item[iid] = {"value": 0.0, "complete_repeats": 0, "structural_blank": True}
+                by_item[iid] = {"value": 0.0, "complete_repeats": 0, "structural_blank": True, "repeats": []}
                 continue
             rs = rows[(config, iid)]
             statuses.update(r.get("category", "MISSING") for r in rs)
-            vals = [r.get("score") for r in rs if r.get("category") == "COMPLETE" and isinstance(r.get("score"), (int, float))]
+            unique_repeats(rs)
+            vals = [r['score'] for r in rs if r['accepted']]
             if any(not 0 <= x <= 1 for x in vals):
                 problems.append({"config": config, "item": iid, "problem": "SCORE_OUT_OF_RANGE"})
-            by_item[iid] = {"value": median(vals) if len(vals) >= 2 else None, "complete_repeats": len(vals), "structural_blank": False}
+            by_item[iid] = {"value": median(vals) if len(vals) >= 2 else None, "complete_repeats": len(vals), "structural_blank": False,
+                           "repeats": [{k:r.get(k) for k in ('repeat','cell','task_id','run_id','source_run','score','score_0_5','category','accepted','acceptance_reason','prompt_sha256','prompt_sha256_delivered','verdict_sha256')} for r in rs]}
         retained = [x for x in by_item.values() if not x["structural_blank"]]
         coverage[config] = {"fresh_items": len(fresh), "nonblank_items": len(retained),
                             "scorable_nonblank_items": sum(x["value"] is not None for x in retained),
@@ -99,7 +108,10 @@ def main() -> int:
     report, scores = verify_and_aggregate(fresh, expected)
     OUT.mkdir(exist_ok=True)
     (OUT / "cached_primary_pool_inventory.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
-    (OUT / "cached_primary_scores.json").write_text(json.dumps(scores, indent=2, sort_keys=True) + "\n")
+    (ROOT/'private/accepted_cached_primary_scores.json').write_text(json.dumps(scores,indent=2,sort_keys=True)+'\n')
+    public={cfg:{iid:{**{k:v for k,v in row.items() if k!='repeats'},'raw_repeats_sha256':hashlib.sha256(json.dumps(row['repeats'],sort_keys=True).encode()).hexdigest(),
+                      'raw_repeat_sample_sd':stdev([r['score'] for r in row['repeats'] if r['accepted']]) if row['complete_repeats']>=2 else None} for iid,row in items.items()} for cfg,items in scores.items()}
+    (OUT / "cached_primary_scores.json").write_text(json.dumps(public, indent=2, sort_keys=True) + "\n")
     if report["problems"] or report["missing_declared_nonblank_cells"]:
         raise SystemExit("cached primary verification failed")
     print(json.dumps(report["coverage"], sort_keys=True))

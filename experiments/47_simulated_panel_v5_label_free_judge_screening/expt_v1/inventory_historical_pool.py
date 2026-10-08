@@ -19,6 +19,7 @@ POOL = (
 )
 CACHE = {"opus55x|H0", "opus55x|H2"}
 FAMILY = {"opus55x": "Anthropic", "qwen36": "Alibaba", "t2_qwen": "Alibaba", "t2_sonnet5": "Anthropic"}
+BASE = {"opus55x": "Opus", "qwen36": "Qwen", "t2_qwen": "Qwen", "t2_sonnet5": "Sonnet"}
 
 
 def sha(path: Path) -> str:
@@ -43,12 +44,12 @@ def main() -> int:
         selected_override = selectors.get(model, {}).get("selector")
         if selected_override is not None and selected_override != selector:
             errors.append({"config": config, "error": "SELECTOR_OVERRIDE_MISMATCH"})
-        rows.append({"config": config, "base_model": model, "provider_family": FAMILY[model],
+        rows.append({"config": config, "base_model": BASE[model], "model_harness_identity":model,"provider_family": FAMILY[model],
                      "prompt": prompt, "selector": selector, "selector_source": h.get("selector_source"),
                      "harness": h.get("harness"), "kwargs": h.get("kwargs"), "scale": h.get("scale"),
                      "historical_harvest_sha256": sha(path), "historical_cells": h.get("n_cells"),
                      "historical_status_counts": h.get("status_counts"), "cached_v5_member": config in CACHE,
-                     "e47_state": "CACHED_VERIFIED" if config in CACHE else "DECLARED_MISSING"})
+                     "e47_state": "CACHE_CANDIDATE_REQUIRES_FRESH_RENDER_PROOF" if config in CACHE else "DECLARED_MISSING"})
     report = {"run_id": RUN_ID, "pool": rows, "declared_configurations": len(POOL),
               "cached_verified_configurations": len(CACHE), "missing_declared_configurations": len(POOL) - len(CACHE),
               "base_models": sorted({r["base_model"] for r in rows}),
