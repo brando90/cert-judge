@@ -8,10 +8,10 @@
 | --- | --- | --- |
 | Frozen source inventory | DONE | 750 declared rows: 691 nonblank, 59 blank; 50 unique fresh references. |
 | Lean provenance | DONE | Lean 4.22.0 / Mathlib grading project verified. |
-| Probe construction and compilation | IN PROGRESS | Verified driver process 325184 has two Lean children and 10 successful cached compile receipts at 10-08-2026 11:04 PDT. No model calls. |
+| Probe construction and compilation | IN PROGRESS | Verified driver process 325184 has two Lean children and 48 cached source-hash receipts at 10-08-2026 11:13 PDT. No model calls. |
 | Manifest validation | PENDING | Awaiting terminal compile receipts. |
 
-The allowed source copy lacks bytes for 50 nonblank G01 candidate declarations; they will remain explicit `missing_source` criterion rows, never recovered by reading outside the source allowlist.
+The initial allowed source copy lacks bytes for 50 nonblank G01 candidate declarations, but the master has identified exact hash-bound blobs in the permitted pinned v5 tree and will deliver them to the owned input copy. Their provisional rows will be rebuilt from those bytes before terminal publication; no broader source traversal is authorized.
 No judge score or criterion statistic has been computed by this worker.
 
 
