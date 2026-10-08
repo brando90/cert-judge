@@ -2,7 +2,7 @@
 
 **Doc link:** [experiment](https://github.com/brando90/cert-judge/tree/codex/cj-e46-tvdmi-properties/experiments/archive/46_tvdmi_inspired_properties_cached_judge_validation).
 **Summary:** Exact definitions are being executed offline from frozen measured caches.
-Last updated: 10-08-2026 10:34 PDT.
+Last updated: 10-08-2026 10:35 PDT.
 
 ## Ownership
 
@@ -26,11 +26,11 @@ Estimated new inference spend: $0. Three historical score functions, all 56 meas
 
 ## Next exact command
 
-Pull request: https://github.com/brando90/cert-judge/pull/58
+Status: DONE.
 
-Pre-merge rebase record: backup branch `backup/cj-e46-before-rebase-20261008`, old merge base `d012e140d7c53f3db4cb7be9db11faf436d3d8e3`, fetched `origin/main` `d012e140d7c53f3db4cb7be9db11faf436d3d8e3`.
+LANDED b8a9eadcd4fddc6b37b58822762c2b7297d850c0 https://github.com/brando90/cert-judge/pull/58 10-08-2026 10:35 PDT
 
-`git branch backup/cj-e46-before-rebase-20261008 HEAD && git rebase origin/main && PYTHONPATH=py_src python3 -m unittest tests/test_information_properties.py -v`
+The pre-merge record used backup branch `backup/cj-e46-before-rebase-20261008`, old merge base `d012e140d7c53f3db4cb7be9db11faf436d3d8e3`, and fetched `origin/main` `d012e140d7c53f3db4cb7be9db11faf436d3d8e3`.
 
 ## Execution receipt and current checkpoint
 
