@@ -1,0 +1,24 @@
+{
+  "run_id": "cj-e47-v5-10-08-2026-a1",
+  "recorded_at": "2026-10-08T11:59:07.537328-07:00",
+  "new_judge_calls_at_disclosure": 0,
+  "transport": "unchanged pinned vb103_judge inside Vals-funded Valkyrie",
+  "source_sha256": "9314c8107eef1c940a98a5f0dfba84546bc315aef5637405c97987f34a02b061",
+  "coordinator_retries": 0,
+  "historical_bounded_transport_behavior": {
+    "max_requests_per_single_call_cell": 2,
+    "second_request_only_after_first_http_status": [
+      429,
+      500,
+      502,
+      503,
+      504
+    ],
+    "delay_seconds": 60,
+    "timeout_replay": false
+  },
+  "admission_acceptance": "Any receipt retaining http_status=429 is infrastructure failure even if its historical bounded second request returned a parseable score. Raw receipt, attempt count and hash are retained. Existing verdicts are never readmitted. No transport source/client changes.",
+  "terminus2": "Original max_turns=20 and reasoning_effort=high; trajectory retained; no coordinator retry.",
+  "smoke": "one distinct criterion smoke per config; probe phase reuses this exact original smoke receipt for unchanged harness, with independent pack roundtrip and owned-service health checks",
+  "charges": "Publish reported receipt/trajectory charges; unavailable charges remain explicitly unknown, never invented zero."
+}

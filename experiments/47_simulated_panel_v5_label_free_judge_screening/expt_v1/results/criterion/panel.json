@@ -1,0 +1,287 @@
+{
+  "run_id": "cj-e47-v5-10-08-2026-a1",
+  "units": [
+    {
+      "base_model": "Opus",
+      "config": "opus55x|H2",
+      "family": "opus55x",
+      "harness": "vb103_judge",
+      "kind": "llm",
+      "kwargs": {
+        "compute_effort": "max"
+      },
+      "label": "Claude Opus 5.5 (max), single call",
+      "max_tokens": 32000,
+      "model_key": "opus55x",
+      "pack_flavor": "transport",
+      "prompt_family": "veribench",
+      "prompt_key": "H2",
+      "provider_family": "Anthropic",
+      "rubric": "H2_human_mirror_conventions_demos",
+      "scale": 5,
+      "selectors": [
+        "anthropic/claude-opus-5-5-no-fallback"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Opus",
+      "config": "opus55x|H0",
+      "family": "opus55x",
+      "harness": "vb103_judge",
+      "kind": "llm",
+      "kwargs": {
+        "compute_effort": "max"
+      },
+      "label": "Claude Opus 5.5 (max), single call",
+      "max_tokens": 32000,
+      "model_key": "opus55x",
+      "pack_flavor": "transport",
+      "prompt_family": "veribench",
+      "prompt_key": "H0",
+      "provider_family": "Anthropic",
+      "rubric": "H0_human_mirror",
+      "scale": 5,
+      "selectors": [
+        "anthropic/claude-opus-5-5-no-fallback"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Opus",
+      "config": "opus55x|D0",
+      "family": "opus55x",
+      "harness": "vb103_judge",
+      "kind": "llm",
+      "kwargs": {
+        "compute_effort": "max"
+      },
+      "label": "Claude Opus 5.5 (max), single call",
+      "max_tokens": 16384,
+      "model_key": "opus55x",
+      "pack_flavor": "transport",
+      "prompt_family": "veribench",
+      "prompt_key": "D0",
+      "provider_family": "Anthropic",
+      "rubric": "D0_deployed_tc_v1",
+      "scale": 10,
+      "selectors": [
+        "anthropic/claude-opus-5-5-no-fallback"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Qwen",
+      "config": "qwen36|D0",
+      "family": "qwen36",
+      "harness": "vb103_judge",
+      "kind": "llm",
+      "kwargs": {},
+      "label": "Qwen3.6-27B (thinking), single call",
+      "max_tokens": 16384,
+      "model_key": "qwen36",
+      "pack_flavor": "transport",
+      "prompt_family": "veribench",
+      "prompt_key": "D0",
+      "provider_family": "Alibaba",
+      "rubric": "D0_deployed_tc_v1",
+      "scale": 10,
+      "selectors": [
+        "alibaba/qwen3.6-27b"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Qwen",
+      "config": "qwen36|R4",
+      "family": "qwen36",
+      "harness": "vb103_judge",
+      "kind": "llm",
+      "kwargs": {},
+      "label": "Qwen3.6-27B (thinking), single call",
+      "max_tokens": 32000,
+      "model_key": "qwen36",
+      "pack_flavor": "transport",
+      "prompt_family": "veribench",
+      "prompt_key": "R4",
+      "provider_family": "Alibaba",
+      "rubric": "R4_exp75_human_precondition",
+      "scale": 5,
+      "selectors": [
+        "alibaba/qwen3.6-27b"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Qwen",
+      "config": "qwen36|H0",
+      "family": "qwen36",
+      "harness": "vb103_judge",
+      "kind": "llm",
+      "kwargs": {},
+      "label": "Qwen3.6-27B (thinking), single call",
+      "max_tokens": 32000,
+      "model_key": "qwen36",
+      "pack_flavor": "transport",
+      "prompt_family": "veribench",
+      "prompt_key": "H0",
+      "provider_family": "Alibaba",
+      "rubric": "H0_human_mirror",
+      "scale": 5,
+      "selectors": [
+        "alibaba/qwen3.6-27b"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Qwen",
+      "config": "qwen36|H1",
+      "family": "qwen36",
+      "harness": "vb103_judge",
+      "kind": "llm",
+      "kwargs": {},
+      "label": "Qwen3.6-27B (thinking), single call",
+      "max_tokens": 32000,
+      "model_key": "qwen36",
+      "pack_flavor": "transport",
+      "prompt_family": "veribench",
+      "prompt_key": "H1",
+      "provider_family": "Alibaba",
+      "rubric": "H1_human_mirror_rater_conventions",
+      "scale": 5,
+      "selectors": [
+        "alibaba/qwen3.6-27b"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Qwen",
+      "config": "qwen36|H2",
+      "family": "qwen36",
+      "harness": "vb103_judge",
+      "kind": "llm",
+      "kwargs": {},
+      "label": "Qwen3.6-27B (thinking), single call",
+      "max_tokens": 32000,
+      "model_key": "qwen36",
+      "pack_flavor": "transport",
+      "prompt_family": "veribench",
+      "prompt_key": "H2",
+      "provider_family": "Alibaba",
+      "rubric": "H2_human_mirror_conventions_demos",
+      "scale": 5,
+      "selectors": [
+        "alibaba/qwen3.6-27b"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Sonnet",
+      "config": "t2_sonnet5|H2",
+      "family": "t2_sonnet5",
+      "harness": "terminus2",
+      "kind": "llm",
+      "kwargs": {
+        "max_turns": "20",
+        "reasoning_effort": "high"
+      },
+      "label": "Terminus2 agent + Claude Sonnet 5 (medium)",
+      "max_tokens": 32000,
+      "model_key": "t2_sonnet5",
+      "pack_flavor": "agent",
+      "prompt_family": "veribench",
+      "prompt_key": "H2",
+      "provider_family": "Anthropic",
+      "rubric": "H2_human_mirror_conventions_demos",
+      "scale": 5,
+      "selectors": [
+        "anthropic/claude-sonnet-5-medium"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Sonnet",
+      "config": "t2_sonnet5|D0",
+      "family": "t2_sonnet5",
+      "harness": "terminus2",
+      "kind": "llm",
+      "kwargs": {
+        "max_turns": "20",
+        "reasoning_effort": "high"
+      },
+      "label": "Terminus2 agent + Claude Sonnet 5 (medium)",
+      "max_tokens": 16384,
+      "model_key": "t2_sonnet5",
+      "pack_flavor": "agent",
+      "prompt_family": "veribench",
+      "prompt_key": "D0",
+      "provider_family": "Anthropic",
+      "rubric": "D0_deployed_tc_v1",
+      "scale": 10,
+      "selectors": [
+        "anthropic/claude-sonnet-5-medium"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Qwen",
+      "config": "t2_qwen|H2",
+      "family": "t2_qwen",
+      "harness": "terminus2",
+      "kind": "llm",
+      "kwargs": {
+        "max_turns": "20",
+        "reasoning_effort": "high"
+      },
+      "label": "Terminus2 agent + Qwen3.6-27B (thinking)",
+      "max_tokens": 32000,
+      "model_key": "t2_qwen",
+      "pack_flavor": "agent",
+      "prompt_family": "veribench",
+      "prompt_key": "H2",
+      "provider_family": "Alibaba",
+      "rubric": "H2_human_mirror_conventions_demos",
+      "scale": 5,
+      "selectors": [
+        "alibaba/qwen3.6-27b"
+      ],
+      "split": "test",
+      "substitutes": []
+    },
+    {
+      "base_model": "Qwen",
+      "config": "t2_qwen|D0",
+      "family": "t2_qwen",
+      "harness": "terminus2",
+      "kind": "llm",
+      "kwargs": {
+        "max_turns": "20",
+        "reasoning_effort": "high"
+      },
+      "label": "Terminus2 agent + Qwen3.6-27B (thinking)",
+      "max_tokens": 16384,
+      "model_key": "t2_qwen",
+      "pack_flavor": "agent",
+      "prompt_family": "veribench",
+      "prompt_key": "D0",
+      "provider_family": "Alibaba",
+      "rubric": "D0_deployed_tc_v1",
+      "scale": 10,
+      "selectors": [
+        "alibaba/qwen3.6-27b"
+      ],
+      "split": "test",
+      "substitutes": []
+    }
+  ]
+}

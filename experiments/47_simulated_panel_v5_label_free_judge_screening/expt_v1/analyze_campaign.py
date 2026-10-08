@@ -128,40 +128,49 @@ def cached_analysis(draws):
 
 def full_analysis(manifest,draws):
     targets=read(RESULTS/'targets_reconstructed.json');scores,repeats=accepted_scores();rows=[r for r in targets if not r['blank']]
+    fingerprint=sha(json.dumps({'manifest':sha(Path(manifest).read_bytes()),'targets':targets,'scores':scores,'repeats':repeats,
+                               'code':{p:sha((ROOT/p).read_bytes()) for p in ('analyze_campaign.py','statistics_v5.py')}},sort_keys=True).encode())
+    def job(name,compute):
+        path=RESULTS/'analysis_jobs'/f'{name}.json'
+        if path.exists() and read(path).get('input_sha256')==fingerprint:return read(path)['result']
+        result=clean(compute());write(path,{'run_id':RUN_ID,'input_sha256':fingerprint,'draws':draws,'seed':47,'result':result})
+        print('analysis completed',name,flush=True);return result
     records,details=property_records(repeats,targets,manifest)
     save('per_task_properties.json',{'records':records,'details':details,'semantic_auc':'NOT_COMPUTABLE: no independent strict-weakening/formatting audit'})
     save('repeat_variability.json',repeat_variability(repeats));analyses={}
     for key in ('T_all','T_C0','T_common_excluding_Anthropic_Alibaba'):
-        p=make_panel(rows,scores,key,records);analyses[key]=p.evaluate(draws);save('selection_association.json',analyses)
-        save('criterion_'+key+'.json',p.criterion(draws))
+        p=make_panel(rows,scores,key,records);analyses[key]=job('selection_'+key,lambda:p.evaluate(draws));save('selection_association.json',analyses)
+        save('criterion_'+key+'.json',job('criterion_'+key,lambda:p.criterion(draws)))
         sensitivity={}
         for base in sorted(set(p.base)):
-            sensitivity['exclude_base_'+base]=p.evaluate(draws,columns=np.flatnonzero(p.base!=base))
+            sensitivity['exclude_base_'+base]=job(key+'_exclude_base_'+base,lambda:p.evaluate(draws,columns=np.flatnonzero(p.base!=base)))
         for family in sorted(set(p.family)):
-            sensitivity['exclude_provider_'+family]=p.evaluate(draws,columns=np.flatnonzero(p.family!=family))
+            sensitivity['exclude_provider_'+family]=job(key+'_exclude_provider_'+family,lambda:p.evaluate(draws,columns=np.flatnonzero(p.family!=family)))
         for name,mask in [('original_G01_G13',[r['group'] not in ('G16','G17') for r in rows]),('late_G16_G17',[r['group'] in ('G16','G17') for r in rows])]:
-            sensitivity[name]=p.evaluate(draws,test_indices=np.flatnonzero(mask))
+            sensitivity[name]=job(key+'_'+name,lambda:p.evaluate(draws,test_indices=np.flatnonzero(mask)))
         # Same-eligible-pool sensitivity is additive; full-pool result above stays.
         eligible=[j for j,c in enumerate(POOL) if np.isfinite(p.scores[:,j]).sum()>=math.ceil(.9*len(rows))]
-        sensitivity['same_eligible_pool']=p.evaluate(draws,columns=eligible) if eligible else {'status':'NOT_COMPUTABLE'}
+        sensitivity['same_eligible_pool']=job(key+'_same_eligible_pool',lambda:p.evaluate(draws,columns=eligible)) if eligible else {'status':'NOT_COMPUTABLE'}
         save('sensitivity_'+key+'.json',sensitivity)
-        transfers={};folds=S.task_folds(p.tasks)
+        transfers={};folds=S.task_folds(p.tasks);group_panels={}
         for group in sorted({r['group'] for r in rows}):
             group_records,_=property_records(repeats,targets,manifest,exclude_group=group)
             q=make_panel(rows,scores,key,group_records)
-            transfers['agent_group_'+group]=q.evaluate(draws,test_indices=np.array([i for i,r in enumerate(rows) if r['group']==group]),exclude_group=group)
+            group_panels[group]=q
+            transfers['agent_group_'+group]=job(key+'_group_'+group,lambda:q.evaluate(draws,test_indices=np.array([i for i,r in enumerate(rows) if r['group']==group]),exclude_group=group))
+        transfers['equal_group_mean']=job(key+'_equal_group_mean',lambda:S.equal_group_transfer(group_panels,draws))
         for fold in range(5):
             train=[t for t in p.tasks if folds[t]!=fold];test=np.array([i for i,r in enumerate(rows) if folds[r['task']]==fold])
-            transfers['task_fold_'+str(fold)]=p.evaluate(draws,train_tasks=train,test_indices=test)
+            transfers['task_fold_'+str(fold)]=job(key+'_task_fold_'+str(fold),lambda:p.evaluate(draws,train_tasks=train,test_indices=test))
         save('transfers_'+key+'.json',{'assignment':folds,'results':transfers,'agent_group_interpretation':'conditional on known shared references; not task transfer'})
-        save('planning_'+key+'.json',{prop:S.planning(p,prop,draws) for prop in S.PROPERTIES})
+        save('planning_'+key+'.json',{prop:job(key+'_planning_'+prop,lambda:S.planning(p,prop,draws)) for prop in S.PROPERTIES})
     # Judge-family-specific targets are sensitivities, never a shared comparator.
     for family in ('Anthropic','Alibaba'):
         configs=[c for c in POOL if FAMILY[c.split('|')[0]]==family]
         p=make_panel(rows,scores,'T_excluding_'+family,records,configs)
-        save('criterion_excluding_'+family+'.json',p.criterion(draws))
+        save('criterion_excluding_'+family+'.json',job('criterion_excluding_'+family,lambda:p.criterion(draws)))
     allrows=make_panel(targets,scores,'T_all',records)
-    save('criterion_all_declared_blank_zero.json',allrows.criterion(draws))
+    save('criterion_all_declared_blank_zero.json',job('criterion_all_declared_blank_zero',lambda:allrows.criterion(draws)))
     recommendations={p:S.recommendation(analyses['T_all'],analyses['T_common_excluding_Anthropic_Alibaba'],p) for p in S.PROPERTIES}
     save('recommendations.json',recommendations)
     return analyses

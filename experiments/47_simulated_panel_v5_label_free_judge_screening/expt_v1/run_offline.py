@@ -18,7 +18,9 @@ def update_job(name,job):
         p=rt/'active_jobs.json';state=read(p) if p.exists() else {'run_id':RUN_ID,'jobs':[]}
         state['jobs']=[j for j in state.get('jobs',[]) if j.get('name')!=name]
         if job:state['jobs'].append({'name':name,**job})
-        state['observed_epoch']=time.time();write(p,state)
+        state['observed_epoch']=time.time();state.pop('observed_at',None)
+        state['note']='Run-bound owned jobs; terminal jobs are removed. The isolated probe owner tracks its compiler separately.'
+        write(p,state)
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--name',required=True);ap.add_argument('command',nargs=argparse.REMAINDER);args=ap.parse_args()

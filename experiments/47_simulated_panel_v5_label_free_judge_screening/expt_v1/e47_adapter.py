@@ -29,6 +29,21 @@ def sha(data):
 def read(path):
     return json.loads(Path(path).read_text())
 
+def verify_dependencies():
+    """Verify named frozen dependencies before transport admission or rendering."""
+    checked={}
+    for name,digest in read(RESULTS/'frozen_dependency_hashes.json')['files'].items():
+        path=VENDOR/name
+        if sha(path.read_bytes())!=digest:raise ValueError('frozen dependency changed: '+name)
+        checked[name]=digest
+    for name,record in read(RESULTS/'dependency_allowlist.json')['files'].items():
+        if sha((DEPENDENCIES/name).read_bytes())!=record['sha256']:raise ValueError('source dependency changed: '+name)
+        checked[name]=record['sha256']
+    for name,digest in read(RESULTS/'core_dependency_hashes.json')['files'].items():
+        if sha((REPO/name).read_bytes())!=digest:raise ValueError('core dependency changed: '+name)
+        checked[name]=digest
+    return checked
+
 def write(path, value):
     path=Path(path); path.parent.mkdir(parents=True,exist_ok=True)
     temp=path.with_suffix(path.suffix+'.tmp');temp.write_text(json.dumps(value,indent=2,sort_keys=True,allow_nan=False)+'\n');temp.replace(path)

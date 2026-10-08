@@ -28,3 +28,5 @@ Dependencies: experiment 39 frozen functions and configurations; archived experi
 See [results.md](results.md) for current evidence and [checkpoint](CKPT_v5_sandbox.md) for recovery.
 
 Cached descriptive output: [RESULTS_cached_descriptive.md](RESULTS_cached_descriptive.md). Exact rendering, admission, and statistical implementation lives in `expt_v1/`; the phase remains active until both scoring subcampaigns and all requested analyses finish.
+
+- 10-08-2026 12:15 PDT: [All cached procedures, structural controls and panel diagnostics](RESULTS_existing_and_controls.md) are complete (90 procedures and 90 diagnostic views, 10,000 task draws each). [Raw-repeat uncertainty](expt_v1/results/existing_repeat_variability_intervals.json) preserves task pairing and missingness. The complete criterion manifest is frozen at 27,000 declared cells across twelve configurations; prompt packing is active. Full probe scoring, selection analysis and whole-study publication remain required.
