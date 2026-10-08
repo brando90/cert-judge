@@ -23,7 +23,7 @@ def clean(value):
 
 def save(name,value):write(RESULTS/name,clean(value))
 
-def accepted_scores():
+def accepted_scores(phase=None):
     cache=read(PRIVATE/'accepted_cached_primary_scores.json')
     byconfig={c:{} for c in POOL};repeat_rows=[]
     for cfg,items in cache.items():
@@ -32,7 +32,7 @@ def accepted_scores():
             for raw in r['repeats']:
                 if raw['accepted']:repeat_rows.append({'config':cfg,'kind':'crit','key':iid,'item':iid,'level':0,'repeat':raw['repeat'],'score':raw['score'],'source':'cached','cell':raw['cell']})
     for cfg in POOL:
-        path=PRIVATE/'final_harvest'/f"{cfg.replace('|','__')}.json"
+        path=(PRIVATE/phase if phase else PRIVATE)/'final_harvest'/f"{cfg.replace('|','__')}.json"
         if not path.exists():continue
         # Final harvest is the authoritative merged collection, including cache;
         # replace cached rows for this config instead of counting them twice.
@@ -143,12 +143,14 @@ def cached_analysis(draws):
     return result
 
 def full_analysis(manifest,draws):
+    import analysis_provenance as provenance
+    identity=provenance.capture_inputs('full',manifest)
     targets=read(RESULTS/'targets_reconstructed.json');scores,repeats=accepted_scores();rows=[r for r in targets if not r['blank']]
-    fingerprint=sha(json.dumps({'manifest':sha(Path(manifest).read_bytes()),'targets':targets,'scores':scores,'repeats':repeats,
-                               'code':{p:sha((ROOT/p).read_bytes()) for p in ('analyze_campaign.py','statistics_v5.py')}},sort_keys=True).encode())
+    fingerprint=provenance.fingerprint(identity);jobs=[]
     def job(name,compute):
+        jobs.append(name)
         path=RESULTS/'analysis_jobs'/f'{name}.json'
-        if path.exists() and read(path).get('input_sha256')==fingerprint:return read(path)['result']
+        if path.exists() and provenance.current_job(read(path),fingerprint):return read(path)['result']
         result=clean(compute());write(path,{'run_id':RUN_ID,'input_sha256':fingerprint,'draws':draws,'seed':47,'result':result})
         print('analysis completed',name,flush=True);return result
     records,details=property_records(repeats,targets,manifest)
@@ -168,7 +170,7 @@ def full_analysis(manifest,draws):
             save('criterion_'+key+'_'+name+'.json',job('criterion_'+key+'_'+name,lambda:scoped.criterion(draws)))
         # Same-eligible-pool sensitivity is additive; full-pool result above stays.
         eligible=[j for j,c in enumerate(POOL) if np.isfinite(p.scores[:,j]).sum()>=math.ceil(.9*len(rows))]
-        sensitivity['same_eligible_pool']=job(key+'_same_eligible_pool',lambda:p.evaluate(draws,columns=eligible)) if eligible else {'status':'NOT_COMPUTABLE'}
+        sensitivity['same_eligible_pool']=job(key+'_same_eligible_pool',lambda:p.evaluate(draws,columns=eligible) if eligible else {'status':'NOT_COMPUTABLE','reason':'no configuration meets the frozen criterion coverage requirement'})
         save('sensitivity_'+key+'.json',sensitivity)
         transfers={};folds=S.task_folds(p.tasks);group_panels={}
         for group in sorted({r['group'] for r in rows}):
@@ -193,6 +195,7 @@ def full_analysis(manifest,draws):
         save(filename+'.json',job(filename,lambda:allrows.criterion(draws)))
     recommendations={p:S.recommendation(analyses['T_all'],analyses['T_common_excluding_Anthropic_Alibaba'],p) for p in S.PROPERTIES}
     save('recommendations.json',recommendations)
+    provenance.publish_full_receipt(identity,manifest,jobs)
     return analyses
 
 if __name__=='__main__':

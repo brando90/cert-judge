@@ -1,14 +1,14 @@
 """Complete all criterion/repeat-only analyses while structural compilation runs."""
 from concurrent.futures import ProcessPoolExecutor,as_completed
-import inspect
-import json
 import numpy as np
 from e47_adapter import ROOT,RESULTS,PRIVATE,POOL,FAMILY,RUN_ID,read,write,sha
 from analyze_campaign import accepted_scores,property_records,make_panel,clean,repeat_variability
 import statistics_v5 as S
+import analysis_provenance as P
 
 _ITEMS=None
 _SCORES=None
+_INPUT_DIGEST=None
 
 def criterion_job(spec):
     cfg,target,scope=spec
@@ -17,18 +17,17 @@ def criterion_job(spec):
     if scope=='late_G16_G17':rows=[r for r in rows if r['group'] in ('G16','G17')]
     key='T_excluding_'+FAMILY[cfg.split('|')[0]] if target=='own_family_excluded' else target
     label=cfg+'|'+target+'|'+scope
-    signature=''.join(inspect.getsource(f) for f in (S.Panel.criterion,S.corr,S.metrics,S.interval,S.draw_indices))
-    fingerprint=sha(json.dumps({'spec':spec,'rows':rows,'scores':_SCORES[cfg],'numeric_functions':signature},sort_keys=True).encode())
+    fingerprint=_INPUT_DIGEST
     path=RESULTS/'criterion_descriptive'/f'{sha(label.encode())[:24]}.json'
-    if path.exists() and read(path).get('input_sha256')==fingerprint:return label,str(path.relative_to(ROOT))
+    if path.exists() and P.current_job(read(path),fingerprint):return label,str(path.relative_to(ROOT))
     panel=make_panel(rows,_SCORES,key,[],[cfg]);result=panel.criterion(10000)[cfg]
     write(path,clean({'run_id':RUN_ID,'config':cfg,'target':key,'scope':scope,'input_sha256':fingerprint,'seed':47,'draws':10000,'result':result}))
     return label,str(path.relative_to(ROOT))
 
 def main():
-    global _ITEMS,_SCORES
-    if not (ROOT/'runtime/judge_criterion_RECONCILED.json').exists():raise ValueError('criterion campaign not reconciled')
-    _ITEMS=read(RESULTS/'targets_reconstructed.json');_SCORES,repeats=accepted_scores()
+    global _ITEMS,_SCORES,_INPUT_DIGEST
+    identity=P.capture_inputs('criterion');_INPUT_DIGEST=P.fingerprint(identity)
+    _ITEMS=read(RESULTS/'targets_reconstructed.json');_SCORES,repeats=accepted_scores('criterion')
     for cfg in POOL:
         path=PRIVATE/'criterion/final_harvest'/f"{cfg.replace('|','__')}.json"
         if not path.exists() or len(read(path)['cells'])!=2250:raise ValueError('incomplete declared criterion '+cfg)
@@ -41,10 +40,10 @@ def main():
     records,details=property_records(repeats,_ITEMS)
     write(RESULTS/'repeat_only_task_properties.json',clean({'records':[r for r in records if r['component']=='repeat_tvd'],'details':details}))
     write(RESULTS/'repeat_variability_criterion.json',clean(repeat_variability(repeats,_ITEMS)))
-    fingerprint=sha(json.dumps({'repeats':repeats,'targets':_ITEMS,'statistics_sha256':sha((ROOT/'statistics_v5.py').read_bytes())},sort_keys=True).encode())
+    fingerprint=_INPUT_DIGEST
     def job(label,compute):
         path=RESULTS/'repeat_only_analysis'/f'{label}.json'
-        if path.exists() and read(path).get('input_sha256')==fingerprint:return
+        if path.exists() and P.current_job(read(path),fingerprint):return
         result=compute()
         if isinstance(result,dict) and 'properties' in result:result={**result,'properties':{'repeat_tvd':result['properties']['repeat_tvd']}}
         write(path,clean({'run_id':RUN_ID,'input_sha256':fingerprint,'result':result,'seed':47,'draws':10000,'primary_probe_properties':'pending complete structural/scoring campaign; no shortlist conclusion'}));print('repeat-only analysis completed',label,flush=True)
@@ -64,5 +63,6 @@ def main():
             job(target+'_task_fold_'+str(fold),lambda:panel.evaluate(10000,property_names=('repeat_tvd',),train_tasks=train,test_indices=test))
         job(target+'_planning',lambda:S.planning(panel,'repeat_tvd',10000))
     write(RESULTS/'criterion_only_analysis_complete.json',{'run_id':RUN_ID,'criterion_views':len(jobs),'repeat_property_analyses':'pooled, base/provider exclusions, every agent group, equal-group mean, five task folds and conditional planning for all three shared targets','whole_experiment_complete':False})
+    P.publish_criterion_receipt(identity)
 
 if __name__=='__main__':main()

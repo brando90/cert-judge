@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 from e47_adapter import ROOT,RESULTS,RUN_ID,POOL,read,write,sha
 from statistics_v5 import PROPERTIES,METRICS
+from analysis_provenance import verify_full_receipt,verify_criterion_receipt
 
 E=ROOT.parent
 VIEWS=('T_all','T_C0','T_common_excluding_Anthropic_Alibaba')
@@ -32,6 +33,7 @@ def verified_reconciliation(phase):
 
 def criterion_report():
     verified_reconciliation('criterion')
+    verify_criterion_receipt()
     index=read(RESULTS/'criterion_descriptive_index.json')
     if index['completed']!=192 or index['expected']!=192 or len(index['results'])!=192:raise ValueError('all 192 criterion views are required')
     lines=['# Criterion agreement with the simulated panel','',
@@ -39,7 +41,7 @@ def criterion_report():
            '**TLDR:** These are agreement estimates against simulated ratings, conditional on the existing panel and frozen judge procedures. They do not measure judge–human agreement.','',
            'All intervals are percentile 95% intervals from 10,000 task bootstrap draws with seed 47. Repeated task multiplicity and paired score/target rows are preserved. Finite-draw counts accompany every estimate; undefined draws are excluded from interval quantiles and remain explicitly counted. No hypothesis test is performed (p-val=n/a). A configuration requires at least 90% item coverage in each reported view and bootstrap sample.','',
            'Primary nonblank population: 691 of 750 declared candidates over 50 tasks; the remaining 59 are source-declared blank candidates. The all-declared sensitivity applies only the frozen deterministic blank rule. Own-family exclusions are judge-specific sensitivities and do not provide a common cross-judge target.','']
-    sources=[]
+    sources=[RESULTS/'criterion_analysis_provenance.json']
     for target in (*VIEWS,'own_family_excluded'):
         for scope in ('pooled','original_G01_G13','late_G16_G17','all_declared_blank_zero'):
             lines += ['## '+target+' / '+scope,'',
@@ -109,11 +111,12 @@ def figures(analyses):
 
 def full_report(manifest):
     for phase in ('criterion','probes'):verified_reconciliation(phase)
+    verify_full_receipt(manifest)
     probe=read(manifest);compile_path=Path(manifest).with_name('compile_summary.json');compilation=read(compile_path)
     if compilation['probe_manifest_sha256']!=sha(Path(manifest).read_bytes()):raise ValueError('compiler summary does not bind final structural manifest')
     analyses=read(RESULTS/'selection_association.json');recommendations=read(RESULTS/'recommendations.json')
     if set(analyses)!=set(VIEWS) or set(recommendations)!=set(PROPERTIES):raise ValueError('full required analyses not complete')
-    sources=[Path(manifest),compile_path,RESULTS/'semantic_audit_availability.json',RESULTS/'selection_association.json',RESULTS/'recommendations.json']
+    sources=[Path(manifest),compile_path,RESULTS/'semantic_audit_availability.json',RESULTS/'selection_association.json',RESULTS/'recommendations.json',RESULTS/'full_analysis_provenance.json']
     details=['# Full property, transfer and planning estimates','',
              '**Doc link:** [Main scientific report](RESULTS_full_campaign.md)','',
              'All reported intervals are 95%. Task bootstrap draws use seed 47 and 10,000 draws; task multiplicity and pairings are retained. Association additionally resamples the three observed base-model clusters with all their variants. Conditional fixed-selection intervals answer a narrower question than unconditional selection intervals. No p-value test is performed.','']
