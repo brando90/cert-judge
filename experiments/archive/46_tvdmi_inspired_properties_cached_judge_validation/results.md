@@ -2,7 +2,7 @@
 
 **Doc link:** [experiment](https://github.com/brando90/cert-judge/tree/codex/cj-e46-tvdmi-properties/experiments/archive/46_tvdmi_inspired_properties_cached_judge_validation).
 **Summary:** Corrected offline analysis over allowlisted measured caches completed; no inference was performed.
-Status: COMPLETE and archived pending landing (started 10-08-2026 10:04 PDT; corrected evaluation completed 10-08-2026 10:26 PDT).
+Status: DONE and archived (started 10-08-2026 10:04 PDT; corrected evaluation completed 10-08-2026 10:26 PDT; landed 10-08-2026 10:35 PDT in PR #58).
 Inference budget and route: zero calls, zero new inference charges; approved authenticated Codex command-line worker for implementation only.
 Set N, new rating sheets, private sealed files, simulated v5 pre-runs and manuscript edits are out of scope.
 
@@ -19,12 +19,12 @@ Expected worker: gpt-5.6-terra / high, full access and no routine approvals. Act
 | Selector freeze | DONE | `results/selectors.json` contains train-only weights for 56 configurations and the fixed 12-configuration pool before outcome evaluation. |
 | Offline property calculation and bootstrap | DONE | 56 configuration rows and a 10,000-draw paired task-cluster evaluation were recomputed after the corrections. |
 | Archive | DONE | Moved with `git mv` to `experiments/archive/46_tvdmi_inspired_properties_cached_judge_validation/`; archive layout check passed. |
-| Landing | PENDING | Commit, push, pull request, exact-head rebase merge, and landed receipt. |
+| Landing | DONE | PR #58 rebase-merged at `b8a9eadcd4fddc6b37b58822762c2b7297d850c0`; `CKPT_e46.md` has the durable LANDED receipt. |
 
 Key historical-test result: repeat-TVD selection gives Spearman 0.844 [0.472, 0.951] versus fixed H2 0.826 [0.507, 0.934], paired difference +0.018 [-0.127, +0.186]; it is inconclusive and exploratory.
 Deletion-TVD is unavailable for all 56 configurations because cached `ms_gold` levels intentionally have one accepted repeat where the frozen property requires two; [ERRATA.md](ERRATA.md) corrects the frozen ladder wording without changing `PROTOCOL.md` bytes.
 
-Next command: `git add -- <owned paths>; git diff --cached --check; git commit -- <same-owned-pathspecs>`.
+No further experiment command: the archived study is complete.
 
 **TLDR-end:** [cert-judge: e46 historical measured-cache information properties] The zero-inference study is running from the frozen protocol and allowlist; source hashes are the immediate next artifact.
 
