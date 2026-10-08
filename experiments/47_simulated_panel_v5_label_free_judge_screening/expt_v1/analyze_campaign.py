@@ -148,6 +148,8 @@ def full_analysis(manifest,draws):
             sensitivity['exclude_provider_'+family]=job(key+'_exclude_provider_'+family,lambda:p.evaluate(draws,columns=np.flatnonzero(p.family!=family)))
         for name,mask in [('original_G01_G13',[r['group'] not in ('G16','G17') for r in rows]),('late_G16_G17',[r['group'] in ('G16','G17') for r in rows])]:
             sensitivity[name]=job(key+'_'+name,lambda:p.evaluate(draws,test_indices=np.flatnonzero(mask)))
+            scoped=make_panel([r for r,keep in zip(rows,mask) if keep],scores,key,records)
+            save('criterion_'+key+'_'+name+'.json',job('criterion_'+key+'_'+name,lambda:scoped.criterion(draws)))
         # Same-eligible-pool sensitivity is additive; full-pool result above stays.
         eligible=[j for j,c in enumerate(POOL) if np.isfinite(p.scores[:,j]).sum()>=math.ceil(.9*len(rows))]
         sensitivity['same_eligible_pool']=job(key+'_same_eligible_pool',lambda:p.evaluate(draws,columns=eligible)) if eligible else {'status':'NOT_COMPUTABLE'}
@@ -169,8 +171,10 @@ def full_analysis(manifest,draws):
         configs=[c for c in POOL if FAMILY[c.split('|')[0]]==family]
         p=make_panel(rows,scores,'T_excluding_'+family,records,configs)
         save('criterion_excluding_'+family+'.json',job('criterion_excluding_'+family,lambda:p.criterion(draws)))
-    allrows=make_panel(targets,scores,'T_all',records)
-    save('criterion_all_declared_blank_zero.json',job('criterion_all_declared_blank_zero',lambda:allrows.criterion(draws)))
+    for key in ('T_all','T_C0','T_common_excluding_Anthropic_Alibaba'):
+        allrows=make_panel(targets,scores,key,records)
+        filename='criterion_all_declared_blank_zero'+('' if key=='T_all' else '_'+key)
+        save(filename+'.json',job(filename,lambda:allrows.criterion(draws)))
     recommendations={p:S.recommendation(analyses['T_all'],analyses['T_common_excluding_Anthropic_Alibaba'],p) for p in S.PROPERTIES}
     save('recommendations.json',recommendations)
     return analyses

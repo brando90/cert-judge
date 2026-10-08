@@ -1,0 +1,30 @@
+{
+  "action": "preserve failed startup logs; terminate only the two owned partial-deployment processes; create one new tunnel/service using unchanged frozen deployment code",
+  "condition": "t2_qwen initial tunnel hostname resolves only to IPv6; host has no IPv6 route",
+  "measured_calls_repeated": 0,
+  "prior_deployment_registered": false,
+  "processes": [
+    {
+      "command_sha256": "738329151256b3e0ded2f961d66609673c7439c68db41199dd99e0252a82414a",
+      "identity": {
+        "boot_id": "23f0c018-443e-4c45-9057-b6b9da503f37",
+        "pid": 1880825,
+        "start_ticks": "639177854"
+      },
+      "role": "service"
+    },
+    {
+      "command_sha256": "c73f85c01e48816e8d3355c6bb683b11eae762a40f4321b236ef2032912ad8ce",
+      "identity": {
+        "boot_id": "23f0c018-443e-4c45-9057-b6b9da503f37",
+        "pid": 1887075,
+        "start_ticks": "639180879"
+      },
+      "role": "tunnel"
+    }
+  ],
+  "run_id": "cj-e47-v5-10-08-2026-a1",
+  "stage": "before any E47 judge call",
+  "resolution": "PASS: replacement owned tunnel has authenticated200 and unauthenticated401 health; no scientific setting changed",
+  "resolved_at": "10-08-2026 12:42 PDT"
+}
