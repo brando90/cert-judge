@@ -1,0 +1,80 @@
+oct8: cert-judge simulated-rater sandbox (expt 106 v5). A new helper thread; the "oct 7" Codex thread remains
+cert-judge's owner.
+
+TL;DR: Before VeriBench set N's human ratings arrive (round closes 11-06-2026), screen cert-judge's label-free
+judge properties against VeriBench experiment 106's simulated-rater data: 50 fresh tasks, about 15 agent groups,
+a seven-model-family LLM panel. The goal is to prune weak properties, debug pipelines and estimate how many
+judges and items the real set-N test needs. These numbers are never judge-human agreement.
+
+CONTEXT (read first)
+- Cert-judge repo: ~/cert-judge (github brando90/cert-judge). Read AGENTS.md and experiments/README.md.
+  Then read the results of:
+  - E39 (experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results.md): the deletion
+    proxy C_ms_gold has held-out test Spearman 0.558 [0.08, 0.76] (PASS).
+  - E44 (experiments/archive/44_cached_score_judge_selection_utility/) and E45 (archive/45_...): picking a judge
+    with the proxy has not beaten the fixed human-mirror prompt H2 (-0.086 [-0.308, 0.058]).
+- The real next test is a frozen prospective run on VeriBench set N's human ratings. The "oct 7" Codex thread
+  owns it, and is also designing new TVD-MI-based properties (Robertson & Koyejo, arXiv 2508.05469: label-free,
+  claimed resistant to gaming).
+- Data, read-only. VeriBench repo (github brando90/veribench). Read from origin/main through your own git
+  worktree or `git show origin/main:<path>`; never from the shared ~/veribench checkout, which is often stale.
+  Path: `experiments/106_simulated_expert_raters_icl_from_human_labels_leave_one_agent_out_fsc_judge/expt_v5/`:
+  - 50 tasks in `inputs/tasks/`, disjoint from the May 75-item pool and from set N (verified 10-08-2026).
+  - Agent groups G00-G13 plus G16/G17 (`late/`).
+  - The simulated panel: LLM raters given the human instructions plus in-context examples of real raters' scores.
+  - Judge scores: frozen H2, instructions-only C0, the rebuilt recipe, the all-groups judges.
+  - Results: `results/` (`targets.csv`, `loao_by_group.csv`, `analysis.json`, `pooled.json`, `human_anchor.json`).
+    Manifests: `manifest*.json`, `manifest_cells.json.gz`, `panel.json`.
+    Raw cells: SNAP skampere2 `/lfs/skampere2/0/brando9/veribench_vb106`.
+  - Folds are leave-one-agent-group-out.
+- Simulated raters are not humans. 106's stage 1 failed as a human proxy (panel Spearman 0.624, no gain over
+  instructions-only), and v5's human-anchor check also failed. Call every number here "simulated-panel agreement".
+
+TASK
+1. Inventory, zero model calls. Which judge configurations already scored v5 items? What are the panel
+   targets, per rater and per model family? Which raw cells are committed and which are SNAP-only?
+2. Criterion. Per judge configuration: agreement with the simulated panel on v5 items (Spearman, MAE, mean bias),
+   with task-clustered bootstrap intervals. Also a version that drops the panel raters from that judge's own
+   model family (a circularity guard).
+3. Properties, all label-free:
+   (a) cert-judge's frozen components (C_ms_gold, C_ident, GM_mono2, ...), recomputed on the 50 v5 references.
+       Build the probes, check each one compiles in Lean, and score them with each judge configuration.
+   (b) The TVD-MI properties exactly as the "oct 7" thread defines them. Look for its work in cert-judge first
+       (recent commits, folders and notes mentioning TVD-MI). If none exists yet, finish (a) and (c), leave (b)
+       as a slot, and ask Brando. Never write your own competing TVD-MI definitions.
+   (c) Controls: random, file length, theorem-count ratio.
+4. Judge pool. Reuse experiment 39's configurations (same prompts and models) where possible, at least E44's
+   12-configuration primary pool.
+5. Analysis:
+   - property vs criterion across judge configurations, resampling judges and tasks;
+   - selection utility: pick-by-property vs fixed H2, with regret;
+   - leave-one-agent-group-out: does a property hold on agent groups it never saw?
+   - leave-one-judge-family-out;
+   - power: how many judges and items the set-N test needs to detect a 0.10 selection gain.
+6. Pre-register in PROTOCOL.md before computing anything that touches the criterion: the property list, the
+   criterion, the analysis and the rule for dropping a property. Then compute.
+
+EXECUTION AND GIT
+- Your own git worktree and branch in cert-judge. Land through a pull request, per the repo's rules.
+  Never pull, merge or stash in a shared checkout.
+- Folder: the next free number when you create it (check experiments/ and archive/ at that moment).
+  Register it in experiments/README.md.
+- Heavy steps (probes, Lean checks, judge scoring) run on SNAP through a durable tmux worker; this thread
+  only orchestrates.
+  - The Codex login on skampere2 expired (10-07-2026), so use skampere1 or a Claude Code worker unless Brando
+    logs in again.
+  - Touch only processes you start.
+- Model calls only inside Valkyrie, with Vals-managed credentials (the gateway key mapped by Valkyrie).
+  No direct provider keys. Record a cost estimate in your checkpoint before the first call; no small caps.
+  Zero-call work first.
+
+GUARDRAILS
+- Never touch set N. No set-N files, nothing from 106's condition v6 (`expt_v6/`,
+  `PROTOCOL_v6_setN_panel_vs_humans.md`), no set-B packet predictions. Set N is the clean prospective test,
+  and Brando is rater A1 there.
+- VeriBench is read-only. Copy inputs into your folder with SHA-256 hashes.
+
+DELIVERABLES
+- README with a TLDR, a frozen PROTOCOL, results.md (tables with intervals) and a CKPT.
+- A recommendation, not a decision, for Brando and the oct-7 owner: which 1-3 properties to freeze for the
+  set-N prospective test, and why.
