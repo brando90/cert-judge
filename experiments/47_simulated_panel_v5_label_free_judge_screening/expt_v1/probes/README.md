@@ -8,6 +8,7 @@ It makes no model-scoring call.
 
 The driver copies allowed source bytes into ignored `expt_v1/private/probes_worker/input_bytes/`, stores compile receipts by source hash in ignored `compile_cache.jsonl`, and resumes successful hashes without recompilation.
 Committed manifests expose logical identifiers, source/probe hashes, compilation receipts, and retrieval locations but no private candidate bytes or absolute private paths.
+To reproduce the ignored source-byte cache, use the command below against the declared source manifests; it rechecks every bound SHA-256 digest before copying any bytes and reuses only cache entries whose Lean environment hash matches.
 
 Run from the repository root:
 

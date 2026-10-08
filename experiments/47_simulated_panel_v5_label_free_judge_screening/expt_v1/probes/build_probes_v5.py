@@ -350,7 +350,7 @@ def main() -> int:
                       "rows": rows, "counts": counts(rows), "private_artifacts": artifacts}
     json_write(HERE / "probe_manifest.json", probe_manifest)
     cache_rows = [json.loads(x) for x in (PRIVATE / "compile_cache.jsonl").read_text(encoding="utf-8").splitlines()]
-    summary = {"written_utc": utc(), "toolchain": {"lake": str(args.lake_bin), "lake_sha256": sha_file(args.lake_bin), "lake_version": subprocess.check_output([str(args.lake_bin), "--version"], text=True).strip(), "project": str(args.lake_project), "lean_toolchain": (args.lake_project / "lean-toolchain").read_text().strip(), "lean_toolchain_sha256": sha_file(args.lake_project / "lean-toolchain"), "lake_manifest_sha256": sha_file(args.lake_project / "lake-manifest.json")},
+    summary = {"written_utc": utc(), "toolchain": {"lake": "~/.elan/bin/lake", "lake_sha256": sha_file(args.lake_bin), "lake_version": subprocess.check_output([str(args.lake_bin), "--version"], text=True).strip(), "project": "vb90_grading/lean_project", "lean_toolchain": (args.lake_project / "lean-toolchain").read_text().strip(), "lean_toolchain_sha256": sha_file(args.lake_project / "lean-toolchain"), "lake_manifest_sha256": sha_file(args.lake_project / "lake-manifest.json")},
                "unique_compilations": len(cache_rows), "ok": sum(r["ok"] for r in cache_rows), "failed": sum(not r["ok"] for r in cache_rows), "error_classes": {}, "private_cache_relpath": "private/probes_worker/compile_cache.jsonl", "source_manifest_sha256": sha_file(HERE / "source_manifest.json"), "probe_manifest_sha256": sha_file(HERE / "probe_manifest.json")}
     for receipt in cache_rows:
         cls = compile_reason(receipt)

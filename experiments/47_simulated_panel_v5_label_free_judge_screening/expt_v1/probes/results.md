@@ -2,16 +2,17 @@
 
 **Doc link:** [Runbook](cc.md)
 **Status:** RUNNING (started 10-08-2026 11:01 PDT)
-**Last updated:** 10-08-2026 11:01 PDT
+**Last updated:** 10-08-2026 11:33 PDT
 
 | Phase | State | Evidence |
 | --- | --- | --- |
 | Frozen source inventory | DONE | 750 declared rows: 691 nonblank, 59 blank; 50 unique fresh references. |
 | Lean provenance | DONE | Lean 4.22.0 / Mathlib grading project verified. |
-| Probe construction and compilation | IN PROGRESS | Verified driver process 325184 has two Lean children and 48 cached source-hash receipts at 10-08-2026 11:13 PDT. No model calls. |
+| Probe construction and compilation | IN PROGRESS | Hash-resumable driver process 689488 is running in tmux with exactly two Lean workers; 99 hash-bound receipts are preserved (40 successful, 59 failed, 0 timeouts) and will not be rerun. No model calls. |
 | Manifest validation | PENDING | Awaiting terminal compile receipts. |
 
-The initial allowed source copy lacks bytes for 50 nonblank G01 candidate declarations, but the master has identified exact hash-bound blobs in the permitted pinned v5 tree and will deliver them to the owned input copy. Their provisional rows will be rebuilt from those bytes before terminal publication; no broader source traversal is authorized.
+All 50 initially absent G01 candidate sources have now been delivered through the permitted pinned v5 path and independently verified against their declared SHA-256 hashes. The running cache contains these bytes; terminal publication will include them without broader source traversal.
+The host is deliberately held to two workers under high shared load. With 741 distinct base hashes and up to 3,014 original/deletion proposals before variable frozen bug-mutation searches, completion is expected to take hours; the resumable source-hash cache preserves every completed compilation.
 No judge score or criterion statistic has been computed by this worker.
 
 
