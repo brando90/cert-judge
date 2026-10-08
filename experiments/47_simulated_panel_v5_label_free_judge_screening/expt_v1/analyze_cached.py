@@ -10,6 +10,8 @@ import json
 import math
 from collections import Counter, defaultdict
 from pathlib import Path
+from receipt_validation import transport_evidence
+from statistics_v5 import target_excluding
 
 
 ROOT = Path(__file__).resolve().parent
@@ -76,6 +78,8 @@ def complete_first(rows: dict[str, dict]) -> dict[tuple[str, str, str], dict]:
     out = {}
     for r in rows.values():
         if r.get("repeat") != 1 or r.get("category") != "COMPLETE":
+            continue
+        if not transport_evidence(r,r['prompt_sha256'])[0]:
             continue
         if r.get("score_0_5_parser_v2") is None:
             continue
@@ -171,7 +175,13 @@ def main() -> int:
         assert not mismatches
     OUT.mkdir(exist_ok=True)
     (OUT / "zero_call_inventory.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
-    (OUT / "targets_reconstructed.json").write_text(json.dumps(targets, indent=2, sort_keys=True) + "\n")
+    (ROOT/'private/targets_with_family_values.json').write_text(json.dumps(targets,indent=2,sort_keys=True)+'\n')
+    public=[{**{k:v for k,v in r.items() if k not in ('family_values','c0_values')},
+             'T_excluding_Anthropic':target_excluding(r['family_values'],{'Anthropic'}),
+             'T_excluding_Alibaba':target_excluding(r['family_values'],{'Alibaba'}),
+             'T_excluding_OpenAI':target_excluding(r['family_values'],{'OpenAI'}),
+             'T_excluding_Anthropic_OpenAI':target_excluding(r['family_values'],{'Anthropic','OpenAI'})} for r in targets]
+    (OUT / "targets_reconstructed.json").write_text(json.dumps(public, indent=2, sort_keys=True) + "\n")
     print(json.dumps({"items": len(targets), "slots": len(slots), "missing_runs": missing_runs, "coverage": coverage}, default=dict))
     return 0
 

@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**TLDR:** The zero-call v5 target reconstruction is verified against frozen saved targets after recovery precedence. No judge criterion, new model call, or property recommendation exists yet.
+**TLDR:** The zero-call v5 target reconstruction is verified against frozen saved targets after recovery precedence. Cached descriptive analysis is running; no new experiment-47 model call or full-pool recommendation exists yet.
 
 Status: RUNNING — 10-08-2026.
 
@@ -13,9 +13,15 @@ Status: RUNNING — 10-08-2026.
 - The receipt [zero_call_inventory.json](expt_v1/results/zero_call_inventory.json) records pinned input hashes and 28 raw-cell hashes without provider-private contents; [targets_reconstructed.json](expt_v1/results/targets_reconstructed.json) is the source-hash-bound target table.
 - Cached v5 cells verified every declared nonblank receipt for `opus55x|H0` and `opus55x|H2` (4,146 cells total; 691/691 scorable nonblank items per configuration). They are two members of the declared 12-configuration pool, not the historical ensemble or a rebuilt fold-specific judge; the other ten configurations remain declared missing conditions. Receipt: [cached_primary_pool_inventory.json](expt_v1/results/cached_primary_pool_inventory.json).
 - Primary pool contains 12 historical configurations over three base models and two provider families. This is a limitation on judge-population uncertainty.
-- The exact pool inventory instead resolves four base-model/harness identities (`opus55x`, `qwen36`, `t2_qwen`, `t2_sonnet5`) across the same two provider families; 2/12 are cached and 10/12 remain declared missing until the frozen admission. Receipt: [historical_primary_pool_inventory.json](expt_v1/results/historical_primary_pool_inventory.json).
+- The exact pool inventory resolves four model/harness identities belonging to those three base models (`opus55x`, `qwen36`, `t2_qwen`, `t2_sonnet5`) across the same two provider families; 2/12 are cached and 10/12 remain declared missing until the frozen admission. Receipt: [historical_primary_pool_inventory.json](expt_v1/results/historical_primary_pool_inventory.json).
 - File length and theorem-count ratio are item-level controls, not judge-ranking signals on shared inputs.
-- Stanford Network Analysis Project node skampere1 has a live full-access supervisor and a verified `gpt-5.6-terra` high-reasoning implementation executor. The executor is not a measured judge.
+- Stanford Network Analysis Project node skampere1 has a live full-access supervisor and a verified attempt-4 `gpt-6-astra` ultra-reasoning implementation executor. The executor is not a measured judge.
 - No set-N, v6, set-B prediction or private rating file has been accessed by this helper.
 
 Measured scores, intervals, complete inventory and recommendations: pending remote execution. None should be inferred from this preparation ledger.
+
+- Exact fresh prompt reproduction: 1,382/1,382 full system+user hashes match the source manifests (H0/H2, 691 nonblank candidates each). The stricter cache gate requires equal delivered hashes or explicit alternative transport evidence. Failed receipts remain retained.
+- Historical inventory now distinguishes 60 member procedures and 30 separate ensembles, including every persona/instructions-only learned fold and late all-original-groups procedures. Raw repeat values/IDs remain in ignored storage with aggregate variability and provenance published.
+- Amendment 03 freezes reference-deletion repeat 2 for the owner information property; original primary components still use their historical repeat-1 rule. Amendment 04 permits criterion-first scheduling from a complete frozen submanifest while full probe compilation continues. Both full subcampaigns remain mandatory.
+
+- Cached-only descriptive statistics are complete for 12 target/scope views, with 10,000 task-cluster draws and seed47. See [RESULTS_cached_descriptive.md](RESULTS_cached_descriptive.md); these two fixed configurations cannot establish selection utility over the full pool. Both current transport bundles match their frozen historical hashes.

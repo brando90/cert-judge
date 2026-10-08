@@ -1,0 +1,2498 @@
+{
+  "ensemble_procedures": [
+    "F|H2_opus55_max_plus_sol_high_ENSEMBLE",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=ALL",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G01",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G02",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G03",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G04",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G05",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G06",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G07",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G08",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G09",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G10",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G11",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G12",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=c0|fold=G13",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=ALL",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G01",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G02",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G03",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G04",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G05",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G06",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G07",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G08",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G09",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G10",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G11",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G12",
+    "L|H2_opus55_max_plus_sol_high_ENSEMBLE|world=persona|fold=G13",
+    "Z|H0_opus55_max_plus_sol_high_ENSEMBLE"
+  ],
+  "learned_procedures_are_fold_specific": true,
+  "original_all_groups_fitted_prediction_availability": "No additional all-groups original-group score stream was declared in the inspected main manifest; late ALL procedures are retained separately.",
+  "procedures": [
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "F",
+      "declared_items": 750,
+      "fitting_scope": "fixed historical prompt",
+      "fold": null,
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 691,
+      "observed_nonblank": 691,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": "opus55x|H2",
+      "procedure": "F|H2_opus55_max",
+      "prompt_hash_count": 691,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "434d422c-f740-4b11-991c-fe1f41d0275a",
+        "6b91985a-dfcb-4b58-a8c4-b5e72dc4dff9"
+      ],
+      "status_counts": {
+        "COMPLETE": 2068,
+        "INFRA_ERROR": 1,
+        "MISSING": 178,
+        "PROVIDER_ERROR": 3
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": null
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "F",
+      "declared_items": 750,
+      "fitting_scope": "fixed historical prompt",
+      "fold": null,
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 691,
+      "observed_nonblank": 691,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "F|H2_sol_high",
+      "prompt_hash_count": 691,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "3e8e6d79-ff58-4ccb-8f6d-eed3f5e2a472",
+        "c54ec45c-7414-4281-9994-41b87b01501b"
+      ],
+      "status_counts": {
+        "COMPLETE": 2072,
+        "MISSING": 178
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": null
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": {
+        "checks": {
+          "build_items_equal_committed": true,
+          "conventions_equal_committed": true,
+          "conventions_status": "COMPLETE",
+          "conventions_text_sha256_equal_committed": true,
+          "rule_writer_prompt_sha256_equal_committed": true
+        },
+        "conventions_run_id": "fe6a263d-bca6-4e8b-9a4b-96efd9766d6e",
+        "conventions_text_sha256": "72d0a2c118d594408df11f08921cfd5041d38ec21c4c8d1c1fe1b222e0918127",
+        "fold_dir": "expt_v5/folds/c0/ALL/",
+        "late_items_in_build_set": [],
+        "n_build_items": 666,
+        "rule_writer_prompt_sha256": "7e829145a72637f1522ceca545b31deb7daa4e77c09347f09495e893d47343c5"
+      },
+      "arm": "L",
+      "declared_items": 100,
+      "fitting_scope": "all original groups; late G16/G17 excluded from build",
+      "fold": "ALL",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 100,
+      "observed_nonblank": 100,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=ALL",
+      "prompt_hash_count": 100,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "2b9fcf8a-5f27-4d40-9050-76b79b6795c3"
+      ],
+      "status_counts": {
+        "COMPLETE": 300
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G01",
+      "fold": "G01",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G01",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 148,
+        "MISSING": 2
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G02",
+      "fold": "G02",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 49,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G02",
+      "prompt_hash_count": 49,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 146,
+        "MISSING": 3,
+        "NONCLEAN_FINISH": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G03",
+      "fold": "G03",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G03",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 149,
+        "PROVIDER_ERROR": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G04",
+      "fold": "G04",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 23,
+      "observed_nonblank": 23,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G04",
+      "prompt_hash_count": 23,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 69,
+        "MISSING": 81
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G05",
+      "fold": "G05",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G05",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 147,
+        "MISSING": 3
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G06",
+      "fold": "G06",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 49,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G06",
+      "prompt_hash_count": 49,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 145,
+        "MISSING": 5
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G07",
+      "fold": "G07",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 20,
+      "observed_nonblank": 20,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G07",
+      "prompt_hash_count": 20,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 59,
+        "MISSING": 90,
+        "PROVIDER_ERROR": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G08",
+      "fold": "G08",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G08",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G09",
+      "fold": "G09",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G09",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 149,
+        "MISSING": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G10",
+      "fold": "G10",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G10",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G11",
+      "fold": "G11",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G11",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G12",
+      "fold": "G12",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G12",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G13",
+      "fold": "G13",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=c0|fold=G13",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "cad71fa0-366b-41da-b9cc-3cd543ddd50b"
+      ],
+      "status_counts": {
+        "COMPLETE": 149,
+        "PROVIDER_ERROR": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": {
+        "checks": {
+          "build_items_equal_committed": true,
+          "conventions_equal_committed": true,
+          "conventions_status": "COMPLETE",
+          "conventions_text_sha256_equal_committed": true,
+          "rule_writer_prompt_sha256_equal_committed": true
+        },
+        "conventions_run_id": "fe6a263d-bca6-4e8b-9a4b-96efd9766d6e",
+        "conventions_text_sha256": "9abcdb5bea40db20526e8408d8c88857395a0274fcf3cbcb86c240fd0c224827",
+        "fold_dir": "expt_v5/folds/persona/ALL/",
+        "late_items_in_build_set": [],
+        "n_build_items": 666,
+        "rule_writer_prompt_sha256": "3cf10e798fc016f9078750af5f57e614f382f37feca016430161f870cf85836f"
+      },
+      "arm": "L",
+      "declared_items": 100,
+      "fitting_scope": "all original groups; late G16/G17 excluded from build",
+      "fold": "ALL",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 100,
+      "observed_nonblank": 100,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=ALL",
+      "prompt_hash_count": 100,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "b4a55efa-67e4-4355-8d73-b38a533dce50"
+      ],
+      "status_counts": {
+        "COMPLETE": 300
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G01",
+      "fold": "G01",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G01",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G02",
+      "fold": "G02",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 49,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G02",
+      "prompt_hash_count": 49,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 147,
+        "MISSING": 3
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G03",
+      "fold": "G03",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G03",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G04",
+      "fold": "G04",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 23,
+      "observed_nonblank": 23,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G04",
+      "prompt_hash_count": 23,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 69,
+        "MISSING": 81
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G05",
+      "fold": "G05",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G05",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G06",
+      "fold": "G06",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 49,
+      "observed_nonblank": 48,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G06",
+      "prompt_hash_count": 49,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 144,
+        "MISSING": 6
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G07",
+      "fold": "G07",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 20,
+      "observed_nonblank": 20,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G07",
+      "prompt_hash_count": 20,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 59,
+        "MISSING": 90,
+        "PROVIDER_ERROR": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G08",
+      "fold": "G08",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G08",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G09",
+      "fold": "G09",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G09",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 148,
+        "MISSING": 1,
+        "PROVIDER_ERROR": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G10",
+      "fold": "G10",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G10",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G11",
+      "fold": "G11",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G11",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G12",
+      "fold": "G12",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G12",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G13",
+      "fold": "G13",
+      "harness": "vb103_judge",
+      "member": "H2_opus55_max",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_opus55_max|world=persona|fold=G13",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 12,
+        "max_tokens": 32000,
+        "name": "H2_opus55_max",
+        "note": "Iteration 3: one change from H2_sol_high, the judge model (Claude Opus 5.5 at compute_effort=max, adaptive thinking, no fallback).",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "6165a834-fc2d-4193-abce-31af2954326a"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": {
+        "checks": {
+          "build_items_equal_committed": true,
+          "conventions_equal_committed": true,
+          "conventions_status": "COMPLETE",
+          "conventions_text_sha256_equal_committed": true,
+          "rule_writer_prompt_sha256_equal_committed": true
+        },
+        "conventions_run_id": "fe6a263d-bca6-4e8b-9a4b-96efd9766d6e",
+        "conventions_text_sha256": "72d0a2c118d594408df11f08921cfd5041d38ec21c4c8d1c1fe1b222e0918127",
+        "fold_dir": "expt_v5/folds/c0/ALL/",
+        "late_items_in_build_set": [],
+        "n_build_items": 666,
+        "rule_writer_prompt_sha256": "7e829145a72637f1522ceca545b31deb7daa4e77c09347f09495e893d47343c5"
+      },
+      "arm": "L",
+      "declared_items": 100,
+      "fitting_scope": "all original groups; late G16/G17 excluded from build",
+      "fold": "ALL",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 100,
+      "observed_nonblank": 100,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=ALL",
+      "prompt_hash_count": 100,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "25f349f8-07d9-49f3-8370-ecdbd169fed9"
+      ],
+      "status_counts": {
+        "COMPLETE": 300
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G01",
+      "fold": "G01",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G01",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G02",
+      "fold": "G02",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 49,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G02",
+      "prompt_hash_count": 49,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 147,
+        "MISSING": 3
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G03",
+      "fold": "G03",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G03",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 148,
+        "MISSING": 2
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G04",
+      "fold": "G04",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 23,
+      "observed_nonblank": 23,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G04",
+      "prompt_hash_count": 23,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 69,
+        "MISSING": 81
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G05",
+      "fold": "G05",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G05",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G06",
+      "fold": "G06",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 49,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G06",
+      "prompt_hash_count": 49,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 147,
+        "MISSING": 3
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G07",
+      "fold": "G07",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 20,
+      "observed_nonblank": 20,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G07",
+      "prompt_hash_count": 20,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 60,
+        "MISSING": 90
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G08",
+      "fold": "G08",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G08",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 149,
+        "MISSING": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G09",
+      "fold": "G09",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G09",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G10",
+      "fold": "G10",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G10",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G11",
+      "fold": "G11",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G11",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G12",
+      "fold": "G12",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G12",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 148,
+        "MISSING": 2
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G13",
+      "fold": "G13",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=c0|fold=G13",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "be0725d3-6d67-4bda-b32e-e10a284e2ef9"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "c0"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": {
+        "checks": {
+          "build_items_equal_committed": true,
+          "conventions_equal_committed": true,
+          "conventions_status": "COMPLETE",
+          "conventions_text_sha256_equal_committed": true,
+          "rule_writer_prompt_sha256_equal_committed": true
+        },
+        "conventions_run_id": "fe6a263d-bca6-4e8b-9a4b-96efd9766d6e",
+        "conventions_text_sha256": "9abcdb5bea40db20526e8408d8c88857395a0274fcf3cbcb86c240fd0c224827",
+        "fold_dir": "expt_v5/folds/persona/ALL/",
+        "late_items_in_build_set": [],
+        "n_build_items": 666,
+        "rule_writer_prompt_sha256": "3cf10e798fc016f9078750af5f57e614f382f37feca016430161f870cf85836f"
+      },
+      "arm": "L",
+      "declared_items": 100,
+      "fitting_scope": "all original groups; late G16/G17 excluded from build",
+      "fold": "ALL",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 100,
+      "observed_nonblank": 100,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=ALL",
+      "prompt_hash_count": 100,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "7069d83c-e9b2-47ee-ba87-b796af23f0cb"
+      ],
+      "status_counts": {
+        "COMPLETE": 300
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G01",
+      "fold": "G01",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G01",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G02",
+      "fold": "G02",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 49,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G02",
+      "prompt_hash_count": 49,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 147,
+        "MISSING": 3
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G03",
+      "fold": "G03",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G03",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 146,
+        "MISSING": 4
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G04",
+      "fold": "G04",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 23,
+      "observed_nonblank": 23,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G04",
+      "prompt_hash_count": 23,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 69,
+        "MISSING": 81
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G05",
+      "fold": "G05",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G05",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G06",
+      "fold": "G06",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 49,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G06",
+      "prompt_hash_count": 49,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 147,
+        "MISSING": 3
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G07",
+      "fold": "G07",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 20,
+      "observed_nonblank": 20,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G07",
+      "prompt_hash_count": 20,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 60,
+        "MISSING": 90
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G08",
+      "fold": "G08",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G08",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G09",
+      "fold": "G09",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G09",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 149,
+        "MISSING": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G10",
+      "fold": "G10",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G10",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G11",
+      "fold": "G11",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G11",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G12",
+      "fold": "G12",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 50,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G12",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 150
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "L",
+      "declared_items": 50,
+      "fitting_scope": "rebuilt independently excluding G13",
+      "fold": "G13",
+      "harness": "vb103_judge",
+      "member": "H2_sol_high",
+      "nonblank": 50,
+      "observed_nonblank": 49,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "L|H2_sol_high|world=persona|fold=G13",
+      "prompt_hash_count": 50,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H2_sol_high",
+        "note": "Iteration 2: H1 plus four expert-rated leave-task-out examples from other training tasks (fixed target quantiles 0.1/0.4/0.7/0.95, one per task); GPT-6 Sol high.",
+        "reasoning_effort": "high",
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "95a4f2de-0a7b-4821-bb2e-84818c223bc5"
+      ],
+      "status_counts": {
+        "COMPLETE": 145,
+        "MISSING": 5
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": "persona"
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "Z",
+      "declared_items": 750,
+      "fitting_scope": "fixed historical prompt",
+      "fold": null,
+      "harness": "vb103_judge",
+      "member": "H0_opus55_max",
+      "nonblank": 691,
+      "observed_nonblank": 691,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": "opus55x|H0",
+      "procedure": "Z|H0_opus55_max",
+      "prompt_hash_count": 691,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "compute_effort": "max",
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H0_opus55_max",
+        "note": "Human-mirror judge with Claude Opus 5.5 at compute_effort=max (the no-fallback selector's registry default, sent explicitly); adaptive thinking; no fallback models.",
+        "rubric": "H0_human_mirror",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "source_run_ids": [
+        "4556dd81-7861-4d97-8b62-af877d641d74",
+        "70411c5a-b57a-429d-bff9-7ddf4341c951"
+      ],
+      "status_counts": {
+        "COMPLETE": 2069,
+        "INFRA_ERROR": 1,
+        "MISSING": 179,
+        "PROVIDER_ERROR": 1
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": null
+    },
+    {
+      "aggregation": "median of >=2 accepted of 3 declared repeats",
+      "all_groups_provenance": null,
+      "arm": "Z",
+      "declared_items": 750,
+      "fitting_scope": "fixed historical prompt",
+      "fold": null,
+      "harness": "vb103_judge",
+      "member": "H0_sol_high",
+      "nonblank": 691,
+      "observed_nonblank": 691,
+      "parser": "frozen experiment100 prompts.parse; normalized score_0_5 / 5",
+      "primary_pool_overlap": null,
+      "procedure": "Z|H0_sol_high",
+      "prompt_hash_count": 691,
+      "settings": {
+        "client_timeout_seconds": 1800,
+        "concurrency": 8,
+        "max_tokens": 32000,
+        "name": "H0_sol_high",
+        "note": "Human-mirror judge: the raters' own instructions and the same three files, annotation-era reference; GPT-6 Sol high through the Vals gateway.",
+        "reasoning_effort": "high",
+        "rubric": "H0_human_mirror",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "source_run_ids": [
+        "88d5331e-6f32-4b7a-b956-dc6c11ac4bf2",
+        "f093bc0e-cb46-4edb-9974-3dc5e68407bc"
+      ],
+      "status_counts": {
+        "COMPLETE": 2071,
+        "INFRA_ERROR": 1,
+        "MISSING": 178
+      },
+      "target_views": [
+        "persona",
+        "C0",
+        "common-family-excluded",
+        "own-provider-family-excluded"
+      ],
+      "world": null
+    }
+  ],
+  "raw_hashes": {
+    "F_H2_opus55_max": "0a8ca77797f931fba46f08bb499d63c22ee4f595788584c8c905e2c79f56decd",
+    "F_H2_sol_high": "5f300d37536f28b6a449bccaee8af5e57a2d5c1d84e8ebeca9ba0c2717a7dcda",
+    "LATE_F_H2_opus55_max": "04e9edb6b251dd3471148a7d5bf78c7d5abfbdf3909569254bcab9d5d645d875",
+    "LATE_F_H2_sol_high": "c01e79423567fd8926cce4991cbe3bf23363807a1cd4157ed47d887f63beaf4e",
+    "LATE_L_c0_H2_opus55_max": "15f29883d9a060997b597e4a6ad827b0e8c90d51f70b9757dd8391c07b8c376a",
+    "LATE_L_c0_H2_sol_high": "8270463eb26fb5f1fa618f8ec426489447d57aeba889739352ccd6bcd432dcdf",
+    "LATE_L_persona_H2_opus55_max": "4a1e1ebb3a7046fc2c6b577c2f23181801f5f8fc1bf12e3eb4fe513c40422073",
+    "LATE_L_persona_H2_sol_high": "293f59c621d8f92783ea9cca62daa890f401961df76124db394528d45e436295",
+    "LATE_Z_H0_opus55_max": "0a843c8a3d59e5b3a1eeabe1303b7e510971a04d5e9725d7e481e24c165d1793",
+    "LATE_Z_H0_sol_high": "4ec9aa7888dcab906a340d62cb601df512ef01e6e7ec932a17fb5fa314d7b852",
+    "L_c0_H2_opus55_max": "6e4f21b69d8c98a9fc8751e3aa058d21b927f63856dec0bb5edf4890e46fc236",
+    "L_c0_H2_sol_high": "b9d86dfe29bd91036c4825593d6743071339bc8a08de1e86aaf3bd45f3b8384a",
+    "L_persona_H2_opus55_max": "3d88882d777488581f8729667ca527f02dc50e7c8f6222a73a3d9b3f91ad8d86",
+    "L_persona_H2_sol_high": "fedf7f15f53fc8be9dae51e68a5ea2f5142ca64d32225fced400ca8633121e82",
+    "Z_H0_opus55_max": "818bda120161519344f7f11313d3a055ccbe9605731d96e44c031cd5b3939748",
+    "Z_H0_sol_high": "2b4b44d2f9435a006231f40234002eb40dfb18deccdc2ad6819577232ef2ce3f"
+  },
+  "run_id": "cj-e47-v5-10-08-2026-a1"
+}
