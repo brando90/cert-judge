@@ -71,6 +71,8 @@ def observe():
     toolchain=summary['toolchain']
     if tuple(toolchain[k] for k in ('lean_toolchain_sha256','lake_manifest_sha256','lake_sha256'))!=COMPILER_HASHES:raise ValueError('terminal compiler environment differs from pinned live-worker receipts')
     state['terminal_source_correspondence']=verify_terminal_sources(source,manifest,cache_rows,source_items(),COMPILER_ENVIRONMENT)
+    from verify_probe_artifacts import verify_transformed_artifacts
+    state['transformed_artifact_correspondence']=verify_transformed_artifacts(source,manifest,cache_rows,COMPILER_ENVIRONMENT,probes.parent,probes/'build_probes_v5.py')
     state['compiler_environment_sha256']=sha(COMPILER_ENVIRONMENT.encode())
     state['compile_cache_sha256']=sha(cache_path.read_bytes())
     state['state']='WAITING_PROBE_PUBLICATION'

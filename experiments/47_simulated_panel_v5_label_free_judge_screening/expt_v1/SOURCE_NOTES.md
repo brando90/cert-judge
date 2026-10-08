@@ -12,3 +12,11 @@
 - `results/targets.csv` has rounded six-decimal targets; exact matching needs full-precision raw reconstruction. Do not instantiate v5_analysis.Data only for targets, because it also loads old human labels.
 - Exact primary pool: opus55x D0/H0/H2; qwen36 D0/H0/H1/H2/R4; t2_qwen D0/H2; t2_sonnet5 D0/H2. Historical identity and blank components were constant; new v5 results must be measured rather than assumed.
 - Metadata inventory read no criterion values and computed no criterion statistics. Source revision is ccd86d467fd7577826c4b549df2c532bf43b1892.
+
+## Probe integration schema, 10-08-2026
+
+`probe_builder_schema_snapshot.py.txt` preserves the exact named helper source `expt_v1/probes/build_probes_v5.py` from helper commit `0802beda4c6d85d8005095c22ef5d3dca6e439f5`; its SHA-256 is `abcd091d68d43b09bd274003cea983f4c16263d6bc892e610bc1be4fbaaff738`.
+It is evidence for the integration gate, not an executable second compiler.
+`verify_probe_artifacts.py` checks that digest, evaluates only the five selected pure schema functions, replaces the artifact writer with an in-memory record, and answers every compiler query from existing terminal receipts in the pinned environment.
+It verifies complete expected outcomes, including unavailable placeholders, and every actual transformed file's bytes and compile-to-cache correspondence.
+No source transform, compiler result, owner file or measured cell is changed by verification.
