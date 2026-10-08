@@ -96,7 +96,7 @@ def property_records(repeat_rows,items,manifest=None,exclude_group=None):
         for task in task_items:add('semantic_auc',task,None,eligible=False,reason='no independently audited strict-weakening and formatting probes')
     return result,details
 
-def repeat_variability(rows):
+def repeat_variability(rows,items=None):
     grouped=defaultdict(list)
     for r in rows:grouped[(r['config'],r['kind'],r['key'],r['level'])].append(r['score'])
     result={}
@@ -107,6 +107,22 @@ def repeat_variability(rows):
         result[cfg]={kind:{'units':len(values),'accepted_raw_repeats':sum(map(len,values)),'repeat_count_distribution':dict(Counter(map(len,values))),
                           'mean_within_unit_sample_sd':np.mean([statistics.stdev(v) for v in values if len(v)>=2]) if any(len(v)>=2 for v in values) else None,
                           'aggregate_repeatability':'not estimable from one median-of-repeats aggregate per unit'} for kind,values in d.items()}
+    if items is not None:
+        tasks=sorted({r['task'] for r in items});item_tasks={r['item']:r['task'] for r in items};ti={t:i for i,t in enumerate(tasks)}
+        task_for={(r['config'],r['kind'],r['key'],r['level']):r.get('task') or item_tasks.get(r.get('item')) or r['key'] for r in rows}
+        draws=np.random.default_rng(47).integers(0,len(tasks),(10000,len(tasks)))
+        for cfg,kinds in result.items():
+            for kind,stats in kinds.items():
+                sums=np.zeros(len(tasks));counts=np.zeros(len(tasks))
+                for key,values in grouped.items():
+                    if key[0]!=cfg or key[1]!=kind or len(values)<2:continue
+                    task=task_for[key]
+                    if task not in ti:raise ValueError('raw repeat task identity missing '+str(key))
+                    sums[ti[task]]+=statistics.stdev(values);counts[ti[task]]+=1
+                num=sums[draws].sum(axis=1);den=counts[draws].sum(axis=1)
+                boot=np.divide(num,den,out=np.full(10000,np.nan),where=den>0)
+                stats['mean_within_unit_sample_sd_interval']=S.interval(boot,stats['mean_within_unit_sample_sd'] if stats['mean_within_unit_sample_sd'] is not None else np.nan)
+                stats.update(tasks_with_repeat_variability=int((counts>0).sum()),units_with_repeat_variability=int(counts.sum()),resampling=f'10000 draws over all{len(tasks)} declared tasks, preserving paired units and task multiplicity; conditional on accepted repeats')
     return result
 
 def make_panel(items,scores,target_key,records,configs=POOL):
@@ -137,7 +153,7 @@ def full_analysis(manifest,draws):
         print('analysis completed',name,flush=True);return result
     records,details=property_records(repeats,targets,manifest)
     save('per_task_properties.json',{'records':records,'details':details,'semantic_auc':'NOT_COMPUTABLE: no independent strict-weakening/formatting audit'})
-    save('repeat_variability.json',repeat_variability(repeats));analyses={}
+    save('repeat_variability.json',repeat_variability(repeats,targets));analyses={}
     for key in ('T_all','T_C0','T_common_excluding_Anthropic_Alibaba'):
         p=make_panel(rows,scores,key,records);analyses[key]=job('selection_'+key,lambda:p.evaluate(draws));save('selection_association.json',analyses)
         save('criterion_'+key+'.json',job('criterion_'+key,lambda:p.criterion(draws)))

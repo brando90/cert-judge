@@ -27,3 +27,7 @@ Measured scores, intervals, complete inventory and recommendations: pending remo
 - Cached-only descriptive statistics are complete for 12 target/scope views, with 10,000 task-cluster draws and seed47. See [RESULTS_cached_descriptive.md](RESULTS_cached_descriptive.md); these two fixed configurations cannot establish selection utility over the full pool. Both current transport bundles match their frozen historical hashes.
 
 - 10-08-2026 12:15 PDT: [All cached procedures, structural controls and panel diagnostics](RESULTS_existing_and_controls.md) are complete (90 procedures and 90 diagnostic views, 10,000 task draws each). [Raw-repeat uncertainty](expt_v1/results/existing_repeat_variability_intervals.json) preserves task pairing and missingness. The complete criterion manifest is frozen at 27,000 declared cells across twelve configurations; prompt packing is active. Full probe scoring, selection analysis and whole-study publication remain required.
+
+## 10-08-2026 13:16 PDT — full criterion admission
+
+All20,250 pending criterion cells now have Valkyrie run IDs, following12/12 strictly accepted distinct smokes. This is admission evidence, not final score coverage. [Run receipt](expt_v1/results/criterion/scoring_admission_receipt.json); [preserved artifact-collection recovery](expt_v1/results/criterion/harvest_recovery_1.json); [exact task-query transport recovery](expt_v1/results/criterion/infrastructure_admission_recovery_1.json). Probe compilation, full harvesting, selection/transfer/power analyses and final publication remain required.

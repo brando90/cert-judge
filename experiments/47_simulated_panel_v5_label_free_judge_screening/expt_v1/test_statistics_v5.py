@@ -174,4 +174,25 @@ class StatisticsTests(unittest.TestCase):
         self.assertEqual(classify(receipt,{**ident,'start_ticks':'5'},False),'ADOPT_DEAD_DRIVER')
         self.assertEqual(classify(receipt,None,True),'RECONCILED')
 
+    def test_repeat_variability_weights_units_and_retains_task_pairing(self):
+        from analyze_campaign import repeat_variability
+        items=[{'item':'a1','task':'a'},{'item':'a2','task':'a'},{'item':'b1','task':'b'}]
+        rows=[{'config':'opus55x|H2','kind':'crit','key':item['item'],'item':item['item'],'task':item['task'],'level':0,'repeat':rep,'score':score}
+              for item in items for rep,score in enumerate(([0.,1.] if item['task']=='a' else [0.,0.]),1)]
+        result=repeat_variability(rows,items)['opus55x|H2']['crit'];stat=result['mean_within_unit_sample_sd_interval']
+        self.assertAlmostEqual(stat['estimate'],2/3*(.5**.5));self.assertEqual(stat['finite_draws'],10000)
+        self.assertAlmostEqual(stat['interval_95'][0],0.);self.assertAlmostEqual(stat['interval_95'][1],.5**.5)
+        self.assertEqual(result['units_with_repeat_variability'],3)
+
+    def test_repeat_only_analysis_matches_full_estimator_exactly(self):
+        from analyze_campaign import clean
+        cfgs=['opus55x|H2','qwen36|D0','t2_sonnet5|H2']
+        items=[{'item':str(i),'task':str(i//3)} for i in range(9)]
+        rng=np.random.default_rng(17);scores=rng.random((9,3));target=rng.random(9)
+        records=[{'config':cfg,'component':'repeat_tvd','task':str(t),'value':float(rng.random())} for cfg in cfgs for t in range(3)]
+        p=S.Panel(items,cfgs,scores,target,records)
+        full=clean(p.evaluate(draws=40));focused=clean(p.evaluate(draws=40,property_names=('repeat_tvd',)))
+        self.assertEqual(full['properties']['repeat_tvd'],focused['properties']['repeat_tvd'])
+        self.assertEqual(full['controls'],focused['controls'])
+
 if __name__=='__main__':unittest.main()

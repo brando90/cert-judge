@@ -185,11 +185,14 @@ class Panel:
                       'metrics':{k:interval(samples[:,i],point[i]) for i,k in enumerate(METRICS)}}
         return out
 
-    def evaluate(self,draws=DRAWS,seed=SEED,columns=None,train_tasks=None,test_indices=None,exclude_group=None):
+    def evaluate(self,draws=DRAWS,seed=SEED,columns=None,train_tasks=None,test_indices=None,exclude_group=None,property_names=None):
+        names=PROPERTIES if property_names is None else tuple(property_names)
+        if not names or set(names)-set(PROPERTIES):raise ValueError('unknown analysis property')
         cols=np.arange(len(self.configs)) if columns is None else np.asarray(columns,int)
         train=self.tasks if train_tasks is None else list(train_tasks)
         test=np.arange(len(self.items)) if test_indices is None else np.asarray(test_indices,int)
-        common,support=self.support(test,cols);props,_=self.property_values(train,exclude_group)
+        common,support=self.support(test,cols);props,component_coverage=self.property_values(train,exclude_group)
+        props={p:props[p] for p in names}
         qualities=self.qualities(common,cols) if support['status']=='COMPUTED' else np.full(len(cols),np.nan)
         fixed={p:select_weights(v[cols],1e-12 if p in ('repeat_tvd','deletion_tvd','semantic_auc') else 0.) for p,v in props.items()}
         assoc_point={p:[corr(v[cols],qualities,k) if (np.isfinite(v[cols])&np.isfinite(qualities)).sum()>=3 else np.nan for k in ('spearman','pearson','kendall')] for p,v in props.items()}
@@ -199,7 +202,7 @@ class Panel:
             return [expected(np.ones(len(cols))/len(cols),q),expected(hw,q),float(np.max(q)) if np.isfinite(q).all() else np.nan]
         control_point=control_values(qualities);control_samples=np.full((draws,3),np.nan);random_draws=np.full((draws,2),np.nan)
         control_rng=np.random.default_rng(np.random.SeedSequence(seed,spawn_key=(1,)))
-        samples={p:np.full((draws,4),np.nan) for p in PROPERTIES};conditional={p:np.full((draws,4),np.nan) for p in PROPERTIES};assoc={p:np.full((draws,3),np.nan) for p in PROPERTIES}
+        samples={p:np.full((draws,4),np.nan) for p in names};conditional={p:np.full((draws,4),np.nan) for p in names};assoc={p:np.full((draws,3),np.nan) for p in names}
         rng=np.random.default_rng(seed);test_tasks=sorted(set(self.task_ids[test]));bases=sorted(set(self.base[cols]))
         paired_universe=sorted(set(train)|set(test_tasks));overlap=bool(set(train)&set(test_tasks))
         for b in range(draws):
@@ -221,17 +224,19 @@ class Panel:
             pv,_=self.property_values(tr,exclude_group)
             cluster_draw=rng.choice(bases,len(bases),replace=True)
             clustered=np.concatenate([np.flatnonzero(self.base[cols]==base) for base in cluster_draw])
-            for p,v in pv.items():
+            for p in names:
+                v=pv[p]
                 tolerance=1e-12 if p in ('repeat_tvd','deletion_tvd','semantic_auc') else 0.
                 samples[p][b]=selection_statistics(v[cols],q,self.h2[cols],tolerance=tolerance)[0]
                 conditional[p][b]=selection_statistics(v[cols],q,self.h2[cols],fixed[p])[0]
                 x,y=v[cols][clustered],q[clustered]
                 if (np.isfinite(x)&np.isfinite(y)).sum()>=3:assoc[p][b]=[corr(x,y,k) for k in ('spearman','pearson','kendall')]
         result={'support':support,'configs':[self.configs[j] for j in cols],'base_models':bases,'base_model_count':len(bases),'provider_family_count':len(set(self.family[cols])),'properties':{}}
+        result['component_coverage']=[{'config':cfg,'component':comp,'observed':observed,'structurally_eligible':eligible,'threshold':.8} for (cfg,comp),(observed,eligible) in component_coverage.items() if cfg in result['configs']]
         result['controls']={'exact_expectations':{k:interval(control_samples[:,i],control_point[i]) for i,k in enumerate(('uniform_random','uniform_H2','hindsight_oracle'))},
                             'seeded_single_judge_variability':{k:{**interval(random_draws[:,i],control_point[i]),'interpretation':'95% distribution interval combining task resampling and one uniformly sampled judge; not a confidence interval for the exact expectation','test':'none; seeded selector variability'} for i,k in enumerate(('uniform_random','uniform_H2'))},
                             'declared_pool_size':len(cols),'declared_H2_count':int(self.h2[cols].sum()),'seed':seed}
-        for p in PROPERTIES:
+        for p in names:
             finite=np.isfinite(props[p][cols])&np.isfinite(qualities)
             result['properties'][p]={'values':props[p][cols].tolist(),'weights':fixed[p].tolist(),'eligible_configurations':int(np.isfinite(props[p][cols]).sum()),
                 'finite_association_configurations':int(finite.sum()),'finite_association_base_models':len(set(self.base[cols][finite])),'finite_association_provider_families':len(set(self.family[cols][finite])),
@@ -277,40 +282,41 @@ def planning(panel,property_name,draws=DRAWS,seed=SEED,subset_draws=100):
             result.append(row)
     return result
 
-def equal_group_transfer(panels,draws=DRAWS,seed=SEED):
+def equal_group_transfer(panels,draws=DRAWS,seed=SEED,property_names=None):
     """Equal weight per held-out group, paired across a common task bootstrap.
 
     Each panel's property records must already exclude its held-out candidates.
     Missing group statistics stay missing in the equal-group average.
     """
+    names=PROPERTIES if property_names is None else tuple(property_names)
     groups=sorted(panels);tasks=sorted(set.intersection(*(set(p.tasks) for p in panels.values())))
     if not groups or not tasks:raise ValueError('groups and shared tasks required')
-    fixed={};indices={};point_rows={p:[] for p in PROPERTIES}
+    fixed={};indices={};point_rows={p:[] for p in names}
     for group,panel in panels.items():
         indices[group]=np.array([i for i,r in enumerate(panel.items) if r['group']==group])
         props,_=panel.property_values(tasks,group);common,support=panel.support(indices[group])
         q=panel.qualities(common,np.arange(len(panel.configs))) if support['status']=='COMPUTED' else np.full(len(panel.configs),np.nan)
         fixed[group]={}
-        for prop in PROPERTIES:
+        for prop in names:
             tol=1e-12 if prop not in PRIMARY else 0.
             value,weights=selection_statistics(props[prop],q,panel.h2,tolerance=tol)
             fixed[group][prop]=weights;point_rows[prop].append(value)
-    samples={p:np.full((draws,4),np.nan) for p in PROPERTIES};conditional={p:a.copy() for p,a in samples.items()}
+    samples={p:np.full((draws,4),np.nan) for p in names};conditional={p:a.copy() for p,a in samples.items()}
     rng=np.random.default_rng(seed)
     for b in range(draws):
-        td=rng.choice(tasks,len(tasks),replace=True);values={p:[] for p in PROPERTIES};cond={p:[] for p in PROPERTIES}
+        td=rng.choice(tasks,len(tasks),replace=True);values={p:[] for p in names};cond={p:[] for p in names}
         for group,panel in panels.items():
             original=indices[group];ix=original[draw_indices(panel.task_ids[original],td)]
             common,support=panel.support(ix);q=panel.qualities(common,np.arange(len(panel.configs))) if support['status']=='COMPUTED' else np.full(len(panel.configs),np.nan)
             props,_=panel.property_values(td,group)
-            for prop in PROPERTIES:
+            for prop in names:
                 values[prop].append(selection_statistics(props[prop],q,panel.h2,tolerance=1e-12 if prop not in PRIMARY else 0.)[0])
                 cond[prop].append(selection_statistics(props[prop],q,panel.h2,fixed[group][prop])[0])
-        for prop in PROPERTIES:
+        for prop in names:
             samples[prop][b]=np.mean(values[prop],axis=0);conditional[prop][b]=np.mean(cond[prop],axis=0)
     return {'groups':groups,'group_count':len(groups),'tasks':len(tasks),'resampling':'same task draw across every group; group selectors recomputed; equal weights; any undefined group makes its mean undefined',
             'properties':{p:{'unconditional_selection':{k:interval(samples[p][:,i],np.mean(point_rows[p],axis=0)[i]) for i,k in enumerate(SELECTION_METRICS)},
-                             'conditional_fixed_selection':{k:interval(conditional[p][:,i],np.mean(point_rows[p],axis=0)[i]) for i,k in enumerate(SELECTION_METRICS)}} for p in PROPERTIES}}
+                             'conditional_fixed_selection':{k:interval(conditional[p][:,i],np.mean(point_rows[p],axis=0)[i]) for i,k in enumerate(SELECTION_METRICS)}} for p in names}}
 
 def recommendation(primary,common,prop,declared=12):
     a=primary['properties'][prop];b=common['properties'][prop]
