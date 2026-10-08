@@ -89,6 +89,15 @@ def main() -> int:
             state.update(state='child_alive_adoption_required')
             atomic_json(state_path, state)
             return 75
+        for marker in ('COMPLETE.json', 'BLOCKED.json'):
+            path = runtime / marker
+            if path.exists():
+                receipt = json.loads(path.read_text())
+                if receipt.get('run_id') == cfg['run_id']:
+                    state.update(state='worker_terminal_receipt', marker=marker,
+                                 receipt=receipt, heartbeat_epoch=time.time())
+                    atomic_json(state_path, state)
+                    return 0
         tail = log_path.read_text(errors='replace')[-20000:].lower()
         if any(s in tail for s in ('refresh_token_reused', 'token_expired',
                                    'usage limit', 'quota exceeded',
