@@ -1,0 +1,354 @@
+{
+ "tldr": "Frozen simulated-rater panel of experiment 106 condition v5: seven frontier families, one flagship each, every member playing personas P1, P2, P3 and the instructions-only frame C0 with stage 1's frame text and k = 6.",
+ "frozen_utc": "2026-10-05T18:52:30.512382+00:00",
+ "registry_snapshot_sha256": "ddbb6331c00904d2b45388e6ef253075873a56d3f20acb7ca145fc9a8b6bbfb5",
+ "registry_run_id": "647fa01a-26a1-4277-9291-25645d4c033f",
+ "families": 7,
+ "members": [
+  {
+   "key": "argon",
+   "family": "Google",
+   "selector": "google/gemini-4-argon",
+   "reasoning_effort": "high",
+   "compute_effort": "",
+   "setting": "reasoning_effort high (the registry default), after its smoke test (D8 addendum 3)",
+   "label": "Gemini 4 Argon",
+   "company": "Google",
+   "provider_name": "google",
+   "provider_endpoint": "models/barium-bb",
+   "release_date": "2026-09-30",
+   "context_window": 1048576,
+   "max_output_tokens": 262144,
+   "reasoning_model": true,
+   "supports_temperature": true,
+   "registry_default_parameters": {
+    "temperature": 1.0,
+    "reasoning_effort": "high"
+   },
+   "registry_entry_sha256": "3af3245de6141bb1a5390c5b2de2384131bf21e1e52b1f637e4766acf26cef83",
+   "max_tokens_sent": 65536,
+   "temperature_sent": 1.0,
+   "registry_metadata": {
+    "available_for_everyone": false,
+    "internal_only": true,
+    "deprecated": false
+   },
+   "agent": "vb106_rater_v2",
+   "note": "Web check 10-05-2026 (repeated 18:50 UTC after the coordinator's D8 addendum 3): Google released Gemini 4 Argon on 09-30-2026 as its most powerful model; the first web check looked only for 'Gemini 3.5 Pro' and missed it. Public access is limited (Fairwind partners first), and the registry marks the selector internal-only and not available to everyone, but the gateway served it to this account: smoke test run 3f1a0bdd (PROTOCOL_v5 § Identity checks 2b, 10-05-2026 18:51 UTC) returned oracle 5 and blank 0, both COMPLETE, delivered request matching the registry entry. Gemini 3.1 Pro high (stage 1's rater) becomes S1's descriptive comparator from its stage-1 cells, with no new call.",
+   "web_sources_10-05-2026": [
+    "https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/",
+    "https://tech-insider.org/google-gemini-4-argon-fairwind-cybersecurity-2026/",
+    "https://llmgateway.io/timeline"
+   ]
+  },
+  {
+   "key": "astra",
+   "family": "OpenAI",
+   "selector": "openai/gpt-6-astra-high",
+   "reasoning_effort": "high",
+   "compute_effort": "",
+   "setting": "reasoning_effort high",
+   "label": "GPT-6 Astra (High)",
+   "company": "OpenAI",
+   "provider_name": "openai",
+   "provider_endpoint": "gpt-6-astra",
+   "release_date": "2026-09-03",
+   "context_window": 1050000,
+   "max_output_tokens": 128000,
+   "reasoning_model": true,
+   "supports_temperature": false,
+   "registry_default_parameters": {
+    "reasoning_effort": "high"
+   },
+   "registry_entry_sha256": "4331c9174a6bfb0c2cbc9b343224d124ed73012b8578df2d3d02d27414fbcded",
+   "max_tokens_sent": 65536,
+   "temperature_sent": null,
+   "registry_metadata": {
+    "available_for_everyone": true,
+    "internal_only": false,
+    "deprecated": false
+   },
+   "agent": "vb106_rater_v2",
+   "note": "Web check 10-05-2026: GPT-6 Astra (09-03) is OpenAI's flagship and leads BenchLM's October 2026 frontier ranking; GPT-6 Sol and Luna (09-22) and GPT-6.1 Sol (09-29, served as openai/gpt-6.1-sol*) are newer, but they are the Sol line of the judge's own member and decision 5 makes the OpenAI rater the family flagship, not the judge's own model line. Registry: supports.temperature is false, so the agent omits temperature (the provider's fixed default) instead of sending stage 1's 1.0.",
+   "web_sources_10-05-2026": [
+    "https://en.wikipedia.org/wiki/GPT-6_Astra",
+    "https://www.cnbc.com/2026/09/03/open-ai-astra-gpt-6-cyber.html",
+    "https://llmgateway.io/timeline",
+    "https://benchlm.ai/frontier-ai-models"
+   ]
+  },
+  {
+   "key": "fable51",
+   "family": "Anthropic",
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "reasoning_effort": "",
+   "compute_effort": "high",
+   "setting": "compute_effort high, adaptive thinking, no fallback models",
+   "label": "Claude Fable 5.1 (No Fallback)",
+   "company": "Anthropic",
+   "provider_name": "anthropic",
+   "provider_endpoint": "claude-fable-5-1",
+   "release_date": "2026-09-01",
+   "context_window": 1000000,
+   "max_output_tokens": 128000,
+   "reasoning_model": true,
+   "supports_temperature": true,
+   "registry_default_parameters": {
+    "max_tokens": 128000,
+    "temperature": 1.0,
+    "compute_effort": "max"
+   },
+   "registry_entry_sha256": "ab6dfc0e78119346bc1561b8fbb740db7a969a61fa0584f3442ff73b89e7f165",
+   "max_tokens_sent": 65536,
+   "temperature_sent": 1.0,
+   "registry_metadata": {
+    "available_for_everyone": true,
+    "internal_only": false,
+    "deprecated": false
+   },
+   "agent": "vb106_rater_v2",
+   "note": "Web check 10-05-2026: Claude Fable 5.1 (09-01) is the current Fable; Fable 5.5 is unconfirmed rumour; Claude Opus 5.5 (09-22) is newer but is the judge's member and decision 5 excludes it. The plain and -high Fable selectors carry fallback models (claude-opus-5, claude-opus-4-8), so the no-fallback selector is used with compute_effort high sent explicitly.",
+   "web_sources_10-05-2026": [
+    "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+    "https://benchlm.ai/best/anthropic-models",
+    "https://kingy.ai/blog/claude-fable-5-5/"
+   ]
+  },
+  {
+   "key": "grok47",
+   "family": "xAI",
+   "selector": "grok/grok-4.7-high",
+   "reasoning_effort": "high",
+   "compute_effort": "",
+   "setting": "reasoning mode, reasoning_effort high",
+   "label": "Grok 4.7 (High)",
+   "company": "xAI",
+   "provider_name": "grok",
+   "provider_endpoint": "grok-4.7",
+   "release_date": "2026-09-21",
+   "context_window": 500000,
+   "max_output_tokens": 500000,
+   "reasoning_model": true,
+   "supports_temperature": true,
+   "registry_default_parameters": {
+    "max_tokens": null,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "reasoning_effort": "high"
+   },
+   "registry_entry_sha256": "81d97f67a579fcb8ece6f3eb09987ca917037bc41969c4d3869664f28a961ea5",
+   "max_tokens_sent": 65536,
+   "temperature_sent": 1.0,
+   "registry_metadata": {
+    "available_for_everyone": true,
+    "internal_only": false,
+    "deprecated": false
+   },
+   "agent": "vb106_rater_v2",
+   "note": "Web check 10-05-2026: Grok 4.7 (09-21) is xAI's newest model; no Grok 5 exists. The -high selector is used so the reasoning setting matches the other panel members (the default selector's effort is xhigh).",
+   "web_sources_10-05-2026": [
+    "https://www.basenor.com/blogs/news/grok-4-7-is-here-what-changed-and-what-to-know",
+    "https://benchlm.ai/best/xai-models",
+    "https://docs.x.ai/developers/models"
+   ]
+  },
+  {
+   "key": "mimo26pro",
+   "family": "Xiaomi",
+   "selector": "xiaomi/mimo-v2.6-pro",
+   "reasoning_effort": "",
+   "compute_effort": "",
+   "setting": "the model's thinking mode (reasoning model; the registry exposes no effort parameter)",
+   "label": "MiMo V2.6 Pro",
+   "company": "Xiaomi",
+   "provider_name": "xiaomi",
+   "provider_endpoint": "mimo-v2.6-pro",
+   "release_date": "2026-09-21",
+   "context_window": 1000000,
+   "max_output_tokens": 128000,
+   "reasoning_model": true,
+   "supports_temperature": true,
+   "registry_default_parameters": {
+    "temperature": 1.0,
+    "top_p": 0.95
+   },
+   "registry_entry_sha256": "fc41e8a6a20b98d00bc84b8a551b7b887c5eee5ed4d77c5d449ba737ce9b075a",
+   "max_tokens_sent": 65536,
+   "temperature_sent": 1.0,
+   "registry_metadata": {
+    "available_for_everyone": true,
+    "internal_only": false,
+    "deprecated": false
+   },
+   "agent": "vb106_rater_v2",
+   "note": "BenchLM October 2026 Chinese ranking #1 (MiMo-V2.6-Pro, 75.5); served as xiaomi/mimo-v2.6-pro.",
+   "web_sources_10-05-2026": [
+    "https://benchlm.ai/best/chinese-models"
+   ]
+  },
+  {
+   "key": "kimik3",
+   "family": "Moonshot",
+   "selector": "kimi/kimi-k3-high",
+   "reasoning_effort": "high",
+   "compute_effort": "",
+   "setting": "thinking mode, reasoning_effort high",
+   "label": "Kimi K3 (High)",
+   "company": "Moonshot AI",
+   "provider_name": "kimi",
+   "provider_endpoint": "kimi-k3",
+   "release_date": "2026-07-16",
+   "context_window": 1048576,
+   "max_output_tokens": 1048576,
+   "reasoning_model": true,
+   "supports_temperature": true,
+   "registry_default_parameters": {
+    "max_tokens": 262144,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "reasoning_effort": "high"
+   },
+   "registry_entry_sha256": "b7e8f2e9b1c67ab86a586b8a757de7039e4d58d4524212ad9f6e4367c09000ff",
+   "max_tokens_sent": 65536,
+   "temperature_sent": 1.0,
+   "registry_metadata": {
+    "available_for_everyone": true,
+    "internal_only": false,
+    "deprecated": false
+   },
+   "agent": "vb106_rater_v2",
+   "note": "BenchLM October 2026 Chinese ranking #2 (Kimi K3, 72.1); served by Moonshot directly as kimi/kimi-k3-high (the internal Vals-endpoint variants are not available to everyone).",
+   "web_sources_10-05-2026": [
+    "https://benchlm.ai/best/chinese-models"
+   ]
+  },
+  {
+   "key": "qwen38max",
+   "family": "Alibaba",
+   "selector": "alibaba/qwen3.8-max",
+   "reasoning_effort": "",
+   "compute_effort": "",
+   "setting": "the model's thinking mode (reasoning model; the registry exposes no effort parameter)",
+   "label": "Qwen 3.8 Max",
+   "company": "Alibaba",
+   "provider_name": "alibaba",
+   "provider_endpoint": "qwen3.8-max",
+   "release_date": "2026-08-03",
+   "context_window": 1000000,
+   "max_output_tokens": 128000,
+   "reasoning_model": true,
+   "supports_temperature": true,
+   "registry_default_parameters": {
+    "temperature": 0.7
+   },
+   "registry_entry_sha256": "b44707b86396399b9a5130171228c3e2c7d8815162c027ab5b5c272bdbf90c1b",
+   "max_tokens_sent": 65536,
+   "temperature_sent": 1.0,
+   "registry_metadata": {
+    "available_for_everyone": true,
+    "internal_only": false,
+    "deprecated": false
+   },
+   "agent": "vb106_rater_v2",
+   "note": "BenchLM October 2026 Chinese ranking #3 (Qwen3.8 Max, 72.1); served as alibaba/qwen3.8-max. The registry default temperature is 0.7; stage 1's 1.0 is sent, as PROTOCOL_v5 § Panel requires for every member.",
+   "web_sources_10-05-2026": [
+    "https://benchlm.ai/best/chinese-models"
+   ]
+  }
+ ],
+ "not_chosen": [
+  {
+   "model": "stepfun/step-5-preview",
+   "reason": "BenchLM's #4 Chinese entry (estimated score) is not in the protocol's ordered list, ranks below the three chosen families, and the registry marks it internal-only and not available to everyone."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro, zai/glm-5.3, minimax/MiniMax-M3",
+   "reason": "served, but the three higher-ranked Chinese families in the protocol's order are served, so these are not needed."
+  },
+  {
+   "model": "anthropic/claude-opus-5-5*, openai/gpt-6-sol*",
+   "reason": "the judge's own models (decision 5)."
+  }
+ ],
+ "refrozen": "10-05-2026 after the Gemini 4 Argon smoke test (run 3f1a0bdd-839d-4e07-b961-40ca36ae71de, PASS); the first freeze (18:33 UTC, Gemini 3.1 Pro as Google's member) was superseded before the lock (D8 addendum 3)",
+ "s1_comparator": {
+  "key": "gemini31pro_stage1",
+  "family": "Google",
+  "selector": "google/gemini-3.1-pro-preview",
+  "reasoning_effort": "high",
+  "source_run_id": "9658b222-fcb6-47c9-b090-7a1f88d8d837",
+  "source_cells": "expt_v1/runs/stage1/cells.jsonl",
+  "arms": {
+   "panel": [
+    "P1",
+    "P2"
+   ],
+   "p3": [
+    "P3"
+   ],
+   "c0": [
+    "C0"
+   ]
+  },
+  "role": "descriptive S1 comparator only: no new call, never in any target"
+ },
+ "smoke_test": "expt_v5/controls/argon_smoke_test.json",
+ "shared_parameters": {
+  "max_tokens": 65536,
+  "temperature": "1.0 where the registry supports temperature",
+  "requests_per_cell": 1,
+  "parser_primary": "v2 (decision D1)",
+  "parser_sensitivity": "locked Score: N",
+  "k": 6,
+  "frames": [
+   "P1",
+   "P2",
+   "P3",
+   "C0"
+  ]
+ },
+ "context_check": {
+  "longest_persona_prompt_bytes": 242959,
+  "longest_persona_prompt_est_tokens": 97184,
+  "token_estimate": "bytes / 2.5 (stage 1's conservative rule)",
+  "rule": "fits if est_tokens <= 0.75 * context_window - max_tokens",
+  "per_model": {
+   "argon": {
+    "context_window": 1048576,
+    "budget_tokens": 720896,
+    "fits": true
+   },
+   "astra": {
+    "context_window": 1050000,
+    "budget_tokens": 721964,
+    "fits": true
+   },
+   "fable51": {
+    "context_window": 1000000,
+    "budget_tokens": 684464,
+    "fits": true
+   },
+   "grok47": {
+    "context_window": 500000,
+    "budget_tokens": 309464,
+    "fits": true
+   },
+   "mimo26pro": {
+    "context_window": 1000000,
+    "budget_tokens": 684464,
+    "fits": true
+   },
+   "kimik3": {
+    "context_window": 1048576,
+    "budget_tokens": 720896,
+    "fits": true
+   },
+   "qwen38max": {
+    "context_window": 1000000,
+    "budget_tokens": 684464,
+    "fits": true
+   }
+  },
+  "all_fit": true
+ }
+}

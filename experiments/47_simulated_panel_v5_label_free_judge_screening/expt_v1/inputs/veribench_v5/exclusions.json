@@ -1,0 +1,112 @@
+{
+ "written_utc": "2026-10-06T03:00:38.598192+00:00",
+ "rule": "PROTOCOL_v5 decision 6: excluded only if live controls fail or >= 20% of the model's S1+S2 cells end in PROVIDER_ERROR, INFRA_ERROR or MISSING; evaluated from receipt categories alone, before any agreement statistic is read",
+ "per_model": {
+  "argon": {
+   "family": "Google",
+   "calls": 4118,
+   "category_counts": {
+    "COMPLETE": 4044,
+    "PARSE_ERROR": 70,
+    "MISSING": 2,
+    "NONCLEAN_FINISH": 1,
+    "INFRA_ERROR": 1
+   },
+   "route_failures": 3,
+   "route_failure_share": 0.000729,
+   "live_controls_pass": true,
+   "excluded": false
+  },
+  "astra": {
+   "family": "OpenAI",
+   "calls": 4118,
+   "category_counts": {
+    "COMPLETE": 4115,
+    "MISSING": 3
+   },
+   "route_failures": 3,
+   "route_failure_share": 0.000729,
+   "live_controls_pass": true,
+   "excluded": false
+  },
+  "fable51": {
+   "family": "Anthropic",
+   "calls": 4118,
+   "category_counts": {
+    "COMPLETE": 4115,
+    "PARSE_ERROR": 2,
+    "MISSING": 1
+   },
+   "route_failures": 1,
+   "route_failure_share": 0.000243,
+   "live_controls_pass": true,
+   "excluded": false
+  },
+  "grok47": {
+   "family": "xAI",
+   "calls": 4118,
+   "category_counts": {
+    "COMPLETE": 4069,
+    "PARSE_ERROR": 19,
+    "MISSING": 29,
+    "INFRA_ERROR": 1
+   },
+   "route_failures": 30,
+   "route_failure_share": 0.007285,
+   "live_controls_pass": true,
+   "excluded": false
+  },
+  "mimo26pro": {
+   "family": "Xiaomi",
+   "calls": 4118,
+   "category_counts": {
+    "COMPLETE": 4116,
+    "MISSING": 2
+   },
+   "route_failures": 2,
+   "route_failure_share": 0.000486,
+   "live_controls_pass": true,
+   "excluded": false
+  },
+  "kimik3": {
+   "family": "Moonshot",
+   "calls": 4118,
+   "category_counts": {
+    "COMPLETE": 4082,
+    "PARSE_ERROR": 32,
+    "MISSING": 2,
+    "INFRA_ERROR": 2
+   },
+   "route_failures": 4,
+   "route_failure_share": 0.000971,
+   "live_controls_pass": true,
+   "excluded": false
+  },
+  "qwen38max": {
+   "family": "Alibaba",
+   "calls": 4118,
+   "category_counts": {
+    "COMPLETE": 3221,
+    "PARSE_ERROR": 848,
+    "MISSING": 27,
+    "PROVIDER_ERROR": 18,
+    "NONCLEAN_FINISH": 4
+   },
+   "route_failures": 45,
+   "route_failure_share": 0.010928,
+   "live_controls_pass": true,
+   "excluded": false
+  }
+ },
+ "excluded": [],
+ "families_remaining": [
+  "Alibaba",
+  "Anthropic",
+  "Google",
+  "Moonshot",
+  "OpenAI",
+  "Xiaomi",
+  "xAI"
+ ],
+ "stop": false
+}
