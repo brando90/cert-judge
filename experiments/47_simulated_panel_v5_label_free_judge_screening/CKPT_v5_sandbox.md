@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 10:50 PDT
+Last updated: 10-08-2026 10:51 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -22,5 +22,6 @@ Last updated: 10-08-2026 10:50 PDT
 - Verified checks: `python3 expt_v1/test_analyze_cached.py`; `python3 expt_v1/analyze_cached.py --check`; `python3 -m py_compile expt_v1/analyze_cached.py`; `git diff --check`.
 - Published zero-call target-reconstruction phase: commit `35a717316ee68d8247bbf395c709f7e80b0f8c52`, existing PR `https://github.com/brando90/cert-judge/pull/57` (OPEN).
 - Cached-pool check: `expt_v1/inventory_cached_primary_pool.py` verified all 4,146 declared nonblank raw cells for reusable `opus55x|H0`/`opus55x|H2`, with 691/691 scorable nonblank items per configuration. The other ten primary configurations remain missing declared conditions, not substitutes.
-- Next: freeze exact historical 12-configuration cache-overlap and missing-cell manifest using copied E39 selectors/harness receipts and the verified v5 H0/H2 cells. Build/validate all reference and candidate-deletion ladders before freezing the scoring manifest.
+- Probe ownership boundary: a separate master-launched worker exclusively owns `expt_v1/probes/` and its ignored artifacts, with zero judge calls. Do not compile/build competing probes; integrate its verified output when supplied.
+- Next: freeze exact historical 12-configuration cache-overlap and missing-cell manifest using copied E39 selectors/harness receipts and the verified v5 H0/H2 cells. After the probe worker supplies validity data, integrate it, build the complete scoring manifest/quote, then admit declared judge cells only through Valkyrie.
 - Completion: all declared outputs reconciled, deterministic checks, pull request merged, landing receipt verified. A finished phase is not whole-task completion.
