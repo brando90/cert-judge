@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 10:51 PDT
+Last updated: 10-08-2026 10:53 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -25,4 +25,5 @@ Last updated: 10-08-2026 10:51 PDT
 - Historical-pool inventory: exact experiment-39 harvest receipts verify 12 declared configurations over four base-model/harness identities and two provider families; only the two cached members are presently reusable. Receipt: `expt_v1/results/historical_primary_pool_inventory.json`.
 - Probe ownership boundary: a separate master-launched worker exclusively owns `expt_v1/probes/` and its ignored artifacts, with zero judge calls. Do not compile/build competing probes; integrate its verified output when supplied.
 - Next: freeze exact historical 12-configuration cache-overlap and missing-cell manifest using copied E39 selectors/harness receipts and the verified v5 H0/H2 cells. After the probe worker supplies validity data, integrate it, build the complete scoring manifest/quote, then admit declared judge cells only through Valkyrie.
+- Current blocker: at 10-08-2026 10:53 PDT no `cj-e47` probe-worker tmux session, process, or `expt_v1/probes/` artifact exists; building it here would violate the master-assigned exclusive ownership boundary. Exact resume command after the worker publishes its output: `find expt_v1/probes -maxdepth 2 -type f -print | sort && git log --oneline --all -- expt_v1/probes`.
 - Completion: all declared outputs reconciled, deterministic checks, pull request merged, landing receipt verified. A finished phase is not whole-task completion.
