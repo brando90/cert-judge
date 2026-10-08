@@ -2,7 +2,7 @@
 
 **Doc link:** [experiment](https://github.com/brando90/cert-judge/tree/codex/cj-e46-tvdmi-properties/experiments/archive/46_tvdmi_inspired_properties_cached_judge_validation).
 **Summary:** Exact definitions are being executed offline from frozen measured caches.
-Last updated: 10-08-2026 10:31 PDT.
+Last updated: 10-08-2026 10:34 PDT.
 
 ## Ownership
 
@@ -26,7 +26,11 @@ Estimated new inference spend: $0. Three historical score functions, all 56 meas
 
 ## Next exact command
 
-`git add -- experiments/README.md experiments/archive/layout.json experiments/archive/46_tvdmi_inspired_properties_cached_judge_validation py_src/cert_judge/information_properties.py tests/test_information_properties.py && git diff --cached --check && git commit -- <same-owned-pathspecs>`
+Pull request: https://github.com/brando90/cert-judge/pull/58
+
+Pre-merge rebase record: backup branch `backup/cj-e46-before-rebase-20261008`, old merge base `d012e140d7c53f3db4cb7be9db11faf436d3d8e3`, fetched `origin/main` `d012e140d7c53f3db4cb7be9db11faf436d3d8e3`.
+
+`git branch backup/cj-e46-before-rebase-20261008 HEAD && git rebase origin/main && PYTHONPATH=py_src python3 -m unittest tests/test_information_properties.py -v`
 
 ## Execution receipt and current checkpoint
 
