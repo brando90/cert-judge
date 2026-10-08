@@ -10,6 +10,10 @@ TARGETS=('T_all','T_C0','T_common_excluding_Anthropic_Alibaba')
 SCOPES=('pooled','original_G01_G13','late_G16_G17','all_declared_blank_zero')
 GROUPS=tuple(f'G{i:02d}' for i in range(1,14))+('G16','G17')
 
+class StaleCriterionProvenance(ValueError):
+    """A valid same-run receipt predates the current bound input revision."""
+    pass
+
 def fingerprint(identity):return sha(json.dumps(identity,sort_keys=True).encode())
 
 def current_job(job,digest):
@@ -214,6 +218,7 @@ def publish_criterion_receipt(identity):
 
 def verify_criterion_receipt():
     receipt=read(RESULTS/'criterion_analysis_provenance.json');identity=capture_inputs('criterion');digest=fingerprint(identity)
-    if receipt.get('run_id')!=RUN_ID or receipt.get('state')!='CRITERION_ANALYSIS_VERIFIED' or receipt.get('inputs')!=identity or receipt.get('input_sha256')!=digest:raise ValueError('stale criterion analysis: current measurements/admissions/code differ')
+    if receipt.get('run_id')!=RUN_ID or receipt.get('state')!='CRITERION_ANALYSIS_VERIFIED':raise ValueError('criterion provenance identity/state differs')
+    if receipt.get('inputs')!=identity or receipt.get('input_sha256')!=digest:raise StaleCriterionProvenance('stale criterion analysis: current measurements/admissions/code differ')
     if criterion_artifact_hashes(digest)!=receipt.get('artifacts'):raise ValueError('criterion artifact changed after derivation')
     return receipt
