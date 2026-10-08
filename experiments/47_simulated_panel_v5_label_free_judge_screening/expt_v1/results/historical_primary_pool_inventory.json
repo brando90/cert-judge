@@ -1,0 +1,305 @@
+{
+  "base_models": [
+    "opus55x",
+    "qwen36",
+    "t2_qwen",
+    "t2_sonnet5"
+  ],
+  "cached_verified_configurations": 2,
+  "declared_configurations": 12,
+  "errors": [],
+  "missing_declared_configurations": 10,
+  "pool": [
+    {
+      "base_model": "opus55x",
+      "cached_v5_member": false,
+      "config": "opus55x|D0",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "vb103_judge",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "3c25329ce9b533e1bf379da62f76197dfe3e42146a45cc94dee98c9e20c5950c",
+      "historical_status_counts": {
+        "deterministic": 56,
+        "measured": 456,
+        "unmeasured_extraction": 9
+      },
+      "kwargs": {
+        "benchmark": "certjudge39-opus55x",
+        "compute_effort": "max",
+        "judge_config": "opus55x|D0",
+        "max_tokens": "16384"
+      },
+      "prompt": "D0",
+      "provider_family": "Anthropic",
+      "scale": 10,
+      "selector": "anthropic/claude-opus-5-5-no-fallback",
+      "selector_source": "pre-registered"
+    },
+    {
+      "base_model": "opus55x",
+      "cached_v5_member": true,
+      "config": "opus55x|H0",
+      "e47_state": "CACHED_VERIFIED",
+      "harness": "vb103_judge",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "ebabf16c652cc44f66d8170d77dd5a965d11bec07c6264a343d70608754f4636",
+      "historical_status_counts": {
+        "measured": 520,
+        "model_error": 1
+      },
+      "kwargs": {
+        "benchmark": "certjudge39-opus55x",
+        "compute_effort": "max",
+        "judge_config": "opus55x|H0",
+        "max_tokens": "32000"
+      },
+      "prompt": "H0",
+      "provider_family": "Anthropic",
+      "scale": 5,
+      "selector": "anthropic/claude-opus-5-5-no-fallback",
+      "selector_source": "pre-registered"
+    },
+    {
+      "base_model": "opus55x",
+      "cached_v5_member": true,
+      "config": "opus55x|H2",
+      "e47_state": "CACHED_VERIFIED",
+      "harness": "vb103_judge",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "b107049bd517936e2830f66b97431c39a15a8ed04448dbd2425a410e58a9cc84",
+      "historical_status_counts": {
+        "measured": 521
+      },
+      "kwargs": {
+        "benchmark": "certjudge39-opus55x",
+        "compute_effort": "max",
+        "judge_config": "opus55x|H2",
+        "max_tokens": "32000"
+      },
+      "prompt": "H2",
+      "provider_family": "Anthropic",
+      "scale": 5,
+      "selector": "anthropic/claude-opus-5-5-no-fallback",
+      "selector_source": "pre-registered"
+    },
+    {
+      "base_model": "qwen36",
+      "cached_v5_member": false,
+      "config": "qwen36|D0",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "vb103_judge",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "ffaec387ce6c918fff1b1960401007ed3603436602a67c5b30a97d2f1f290eab",
+      "historical_status_counts": {
+        "deterministic": 56,
+        "measured": 449,
+        "parse_error": 7,
+        "unmeasured_extraction": 9
+      },
+      "kwargs": {
+        "benchmark": "certjudge39-qwen36",
+        "judge_config": "qwen36|D0",
+        "max_tokens": "16384"
+      },
+      "prompt": "D0",
+      "provider_family": "Alibaba",
+      "scale": 10,
+      "selector": "alibaba/qwen3.6-27b",
+      "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
+    },
+    {
+      "base_model": "qwen36",
+      "cached_v5_member": false,
+      "config": "qwen36|H0",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "vb103_judge",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "39446e88653b665fee5b92f32f93b263a9a77432f5e5be7cd17e41407f55faac",
+      "historical_status_counts": {
+        "measured": 501,
+        "parse_error": 20
+      },
+      "kwargs": {
+        "benchmark": "certjudge39-qwen36",
+        "judge_config": "qwen36|H0",
+        "max_tokens": "32000"
+      },
+      "prompt": "H0",
+      "provider_family": "Alibaba",
+      "scale": 5,
+      "selector": "alibaba/qwen3.6-27b",
+      "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
+    },
+    {
+      "base_model": "qwen36",
+      "cached_v5_member": false,
+      "config": "qwen36|H1",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "vb103_judge",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "5c0f42e1617db013cfb7c608b9ff1d65a045c4c314be032d36ebd1c1c14f15d5",
+      "historical_status_counts": {
+        "measured": 506,
+        "parse_error": 15
+      },
+      "kwargs": {
+        "benchmark": "certjudge39-qwen36",
+        "judge_config": "qwen36|H1",
+        "max_tokens": "32000"
+      },
+      "prompt": "H1",
+      "provider_family": "Alibaba",
+      "scale": 5,
+      "selector": "alibaba/qwen3.6-27b",
+      "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
+    },
+    {
+      "base_model": "qwen36",
+      "cached_v5_member": false,
+      "config": "qwen36|H2",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "vb103_judge",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "3a1740deac05a5682ca70dc4f5ed411d7f131282feab44dd47645a8be6b022b0",
+      "historical_status_counts": {
+        "measured": 489,
+        "parse_error": 31,
+        "unmeasured_infra": 1
+      },
+      "kwargs": {
+        "benchmark": "certjudge39-qwen36",
+        "judge_config": "qwen36|H2",
+        "max_tokens": "32000"
+      },
+      "prompt": "H2",
+      "provider_family": "Alibaba",
+      "scale": 5,
+      "selector": "alibaba/qwen3.6-27b",
+      "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
+    },
+    {
+      "base_model": "qwen36",
+      "cached_v5_member": false,
+      "config": "qwen36|R4",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "vb103_judge",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "798045794c29e452c805de615d983d867d92b0d3e27028f89b0c714ce5abb975",
+      "historical_status_counts": {
+        "measured": 504,
+        "parse_error": 17
+      },
+      "kwargs": {
+        "benchmark": "certjudge39-qwen36",
+        "judge_config": "qwen36|R4",
+        "max_tokens": "32000"
+      },
+      "prompt": "R4",
+      "provider_family": "Alibaba",
+      "scale": 5,
+      "selector": "alibaba/qwen3.6-27b",
+      "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['qwen36']['selectors'][1])"
+    },
+    {
+      "base_model": "t2_qwen",
+      "cached_v5_member": false,
+      "config": "t2_qwen|D0",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "terminus2",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "186a36ba13950e4ac8d8580f91b0795d6b648210c926d14775647361cf4c0192",
+      "historical_status_counts": {
+        "deterministic": 56,
+        "measured": 447,
+        "parse_error": 6,
+        "unmeasured_extraction": 9,
+        "unmeasured_infra": 3
+      },
+      "kwargs": {
+        "max_turns": "20",
+        "reasoning_effort": "high"
+      },
+      "prompt": "D0",
+      "provider_family": "Alibaba",
+      "scale": 10,
+      "selector": "alibaba/qwen3.6-27b",
+      "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['t2_qwen']['selectors'][1])"
+    },
+    {
+      "base_model": "t2_qwen",
+      "cached_v5_member": false,
+      "config": "t2_qwen|H2",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "terminus2",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "e905e9b5b60bfb1756497a1c6d9366eaff03f77a9cf9b5d042af84836ca5e11e",
+      "historical_status_counts": {
+        "measured": 500,
+        "parse_error": 21
+      },
+      "kwargs": {
+        "max_turns": "20",
+        "reasoning_effort": "high"
+      },
+      "prompt": "H2",
+      "provider_family": "Alibaba",
+      "scale": 5,
+      "selector": "alibaba/qwen3.6-27b",
+      "selector_source": "pre-registered selector (second candidate of the same model; e39.MODELS['t2_qwen']['selectors'][1])"
+    },
+    {
+      "base_model": "t2_sonnet5",
+      "cached_v5_member": false,
+      "config": "t2_sonnet5|D0",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "terminus2",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "c2e51dac5eb88e14178023a6e892d0aace99915a71cc472c5943fd16b74ab12a",
+      "historical_status_counts": {
+        "deterministic": 56,
+        "measured": 456,
+        "unmeasured_extraction": 9
+      },
+      "kwargs": {
+        "max_turns": "20",
+        "reasoning_effort": "high"
+      },
+      "prompt": "D0",
+      "provider_family": "Anthropic",
+      "scale": 10,
+      "selector": "anthropic/claude-sonnet-5-medium",
+      "selector_source": "pre-registered"
+    },
+    {
+      "base_model": "t2_sonnet5",
+      "cached_v5_member": false,
+      "config": "t2_sonnet5|H2",
+      "e47_state": "DECLARED_MISSING",
+      "harness": "terminus2",
+      "historical_cells": 521,
+      "historical_harvest_sha256": "c77fb613ffc043082ec91133c217c696e3b1e54c2c03dee6c8c393bbc5ff83bf",
+      "historical_status_counts": {
+        "measured": 521
+      },
+      "kwargs": {
+        "max_turns": "20",
+        "reasoning_effort": "high"
+      },
+      "prompt": "H2",
+      "provider_family": "Anthropic",
+      "scale": 5,
+      "selector": "anthropic/claude-sonnet-5-medium",
+      "selector_source": "pre-registered"
+    }
+  ],
+  "provider_families": [
+    "Alibaba",
+    "Anthropic"
+  ],
+  "rules": [
+    "Historical selector and harness settings are copied from experiment-39 harvest receipts.",
+    "Cached v5 members are not a two-model ensemble or any rebuilt fold-specific judge.",
+    "All unavailable declared conditions remain in the later admission manifest; none is silently substituted."
+  ],
+  "run_id": "cj-e47-v5-10-08-2026-a1"
+}
