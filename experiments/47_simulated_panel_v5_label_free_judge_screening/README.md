@@ -21,7 +21,7 @@ Dependencies: experiment 39 frozen functions and configurations; archived experi
 | Phase | Status | Evidence |
 |---|---|---|
 | Protocol and ownership | In progress | Reserved number 47; owner notified; protocol precedes computations |
-| Source inventory and cached analysis | TODO | Fresh source clone fetched; metadata only inspected |
+| Source inventory and target reconstruction | Verified zero-call phase | 28 raw-cell files, frozen recovery precedence, and 650/650 saved main targets match at six decimals |
 | Reference probes and judge scoring | TODO | Must run remotely after full admission manifest |
 | Recommendations and planning | TODO | No conclusion yet |
 
