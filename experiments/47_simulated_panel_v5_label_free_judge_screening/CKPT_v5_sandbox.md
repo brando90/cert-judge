@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 13:43 PDT
+Last updated: 10-08-2026 14:04 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -68,3 +68,5 @@ Last updated: 10-08-2026 13:43 PDT
 - 10-08-2026 13:42 PDT: semantic-audit dependency resolved by exact owner-commit metadata:0/50 fresh reference hashes match the25 owner audited source hashes; the250-row semantic manifest digest equals its owner input inventory. No historical scores/labels were imported. semantic_auc remains explicit NOT_COMPUTABLE, not an unresolved definition blocker. Planning receipts now partition undefined bootstrap draws (including absent H2 comparators) without changing estimators;40 tests PASS. Read-only current task-error inventory found30 sandbox/build failures in the observed subset, no429-tagged message in that subset; final raw transport receipts remain authoritative. Root13:28 verified the ordinary follow-through and allows a useful result-publication successor after it finishes; no waiting-only restart or whole-study completion is claimed.
 
 - 10-08-2026 13:47 PDT:41 tests PASS. A decisive synthetic80%-coverage case now preserves finite bootstrap-draw counts but suppresses a confidence band when the original estimand is NOT_COMPUTABLE; previously such a row could pair an undefined point with a numeric band. Completed published criterion estimates are unchanged because their undefined rows have no finite draws. Full reports will also show compiler-class counts and explicitly separate timeout nonverification and unobserved backend revision identity. Independent scoring and follow-through jobs continue without replacement.
+
+- 10-08-2026 14:04 PDT: root13:42 provenance finding addressed: full-analysis sidecar binds current run/protocol/amendments, both reconciled admissions, exact structural manifest, all final score bytes and analysis code. Every aggregate view must equal its current-input derivation job; required inventories include all128 full-analysis jobs, three shared targets, all15 groups/five task folds, three base exclusions/two provider exclusions, and every20-cell computable power grid. Criterion-only reporting separately binds192 views and84 repeat analyses to stable criterion-phase inputs, so later probe harvest cannot silently alter it. Explicit unavailable results remain allowed; missing maps, stale same-run scores, substituted manifests and missing derivation jobs fail.47 deterministic tests PASS. No new measured admission or retry; all ten criterion runs and the independent compiler remain healthy.

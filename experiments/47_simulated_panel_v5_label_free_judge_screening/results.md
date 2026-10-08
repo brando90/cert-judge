@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**TLDR:** The zero-call v5 target reconstruction is verified against frozen saved targets after recovery precedence. Cached descriptive analysis is running; no new experiment-47 model call or full-pool recommendation exists yet.
+**TLDR:** All 20,250 fresh criterion tasks are admitted and scoring, alongside the independent structural compiler. Cached descriptive analyses and the existing-procedure report are published; strict harvesting, the complete probe campaign, full analysis and final recommendations remain outstanding.
 
 Status: RUNNING — 10-08-2026.
 
@@ -11,9 +11,9 @@ Status: RUNNING — 10-08-2026.
 - Zero-call target reconstruction retained all 691 nonblank fresh rows: each has the primary equal-family persona target, instructions-only target, and common target excluding the Anthropic and Alibaba judge-pool families. Blank rows are deterministically zero under the frozen source rule, yielding 750/750 defined target rows.
 - The reconstruction matches the 650 fresh G01–G13 saved v5 targets at six-decimal precision (0 mismatches); no saved target file is available for the 100 late G16/G17 rows. This is simulated-panel data only.
 - The receipt [zero_call_inventory.json](expt_v1/results/zero_call_inventory.json) records pinned input hashes and 28 raw-cell hashes without provider-private contents; [targets_reconstructed.json](expt_v1/results/targets_reconstructed.json) is the source-hash-bound target table.
-- Cached v5 cells verified every declared nonblank receipt for `opus55x|H0` and `opus55x|H2` (4,146 cells total; 691/691 scorable nonblank items per configuration). They are two members of the declared 12-configuration pool, not the historical ensemble or a rebuilt fold-specific judge; the other ten configurations remain declared missing conditions. Receipt: [cached_primary_pool_inventory.json](expt_v1/results/cached_primary_pool_inventory.json).
+- Cached v5 cells verified every declared nonblank receipt for `opus55x|H0` and `opus55x|H2` (4,146 cells total; 691/691 scorable nonblank items per configuration). They are two members of the declared 12-configuration pool, not the historical ensemble or a rebuilt fold-specific judge; the other ten configurations are now admitted and awaiting strict final harvest. Receipt: [cached_primary_pool_inventory.json](expt_v1/results/cached_primary_pool_inventory.json).
 - Primary pool contains 12 historical configurations over three base models and two provider families. This is a limitation on judge-population uncertainty.
-- The exact pool inventory resolves four model/harness identities belonging to those three base models (`opus55x`, `qwen36`, `t2_qwen`, `t2_sonnet5`) across the same two provider families; 2/12 are cached and 10/12 remain declared missing until the frozen admission. Receipt: [historical_primary_pool_inventory.json](expt_v1/results/historical_primary_pool_inventory.json).
+- The exact pool inventory resolves four model/harness identities belonging to those three base models (`opus55x`, `qwen36`, `t2_qwen`, `t2_sonnet5`) across the same two provider families; 2/12 reuse exact cached receipts and the remaining 10/12 are admitted under the frozen criterion manifest. Receipt: [historical_primary_pool_inventory.json](expt_v1/results/historical_primary_pool_inventory.json).
 - File length and theorem-count ratio are item-level controls, not judge-ranking signals on shared inputs.
 - Stanford Network Analysis Project node skampere1 has a live full-access supervisor and a verified attempt-4 `gpt-6-astra` ultra-reasoning implementation executor. The executor is not a measured judge.
 - No set-N, v6, set-B prediction or private rating file has been accessed by this helper.
