@@ -53,7 +53,11 @@ def verify_terminal_sources(source,manifest,cache_rows,expected,environment):
 def observe():
     probes=HELPER/REL;state={'run_id':RUN_ID,'dependency_run_id':'cj-e47-probes-10-08-2026-a1','observed_epoch':time.time(),'state':'WAITING_STRUCTURAL_EVIDENCE'}
     active=read(probes/'runtime/active_jobs.json');pid=active.get('driver',{}).get('pid')
+    if active.get('run_id')!=state['dependency_run_id']:raise ValueError('probe dependency run identity differs')
     process=identity(pid) if pid else None
+    if process:
+        if any(active['driver'].get(k)!=process[k] for k in ('pid','boot_id','start_ticks')):raise ValueError('probe process boot/start identity differs')
+        if Path(f'/proc/{pid}/stat').read_text().rsplit(')',1)[1].split()[0]=='Z':process=None
     if process:
         command=Path(f'/proc/{pid}/cmdline').read_bytes()
         if b'/probes/build_probes_v5.py' not in command or Path(f'/proc/{pid}/cwd').resolve()!=HELPER.resolve():raise ValueError('probe process ownership mismatch')
