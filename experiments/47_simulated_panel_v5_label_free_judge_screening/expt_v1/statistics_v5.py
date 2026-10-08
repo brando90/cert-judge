@@ -9,6 +9,7 @@ from itertools import combinations
 import hashlib
 import math
 import warnings
+from functools import lru_cache
 import numpy as np
 from scipy.stats import rankdata, kendalltau
 
@@ -17,6 +18,13 @@ DRAWS=10000
 METRICS=('spearman','pearson','kendall','mae','bias','judge_mean','panel_mean','judge_sd','panel_sd')
 PRIMARY=('C_ms_gold','C_ident','C_bm_gold','C_blank','GM_mono2')
 PROPERTIES=PRIMARY+('repeat_tvd','deletion_tvd','semantic_auc')
+
+@lru_cache(maxsize=1)
+def frozen_candidate_value():
+    import sys
+    from e47_adapter import ROOT,REPO,module
+    sys.path.insert(0,str(REPO/'py_src'))
+    return module('e47_frozen_analysis',ROOT/'vendor/e39/analysis_lib.py').candidate_value
 
 def corr(x,y,kind='spearman'):
     x=np.asarray(x,dtype=float);y=np.asarray(y,dtype=float)
@@ -97,6 +105,7 @@ class Panel:
         self.family=np.array(provider_families if provider_families is not None else ['Alibaba' if b=='Qwen' else 'Anthropic' for b in self.base])
         self.record_index={}
         self.aggregate_cache={}
+        self.weighted_quality_cache={}
         seen=set()
         for r in self.records:
             key=(r['config'],r['component'],r['task'],r.get('item'))
@@ -119,7 +128,8 @@ class Panel:
         sums,obs,den=[a@multiplicity for a in self.aggregate_cache[exclude_group]]
         with np.errstate(invalid='ignore',divide='ignore'):v=np.where((den>0)&(obs>=np.ceil(.8*den)),sums/obs,np.nan)
         result={p:v[k].copy() for p,k in [('C_ident',0),('C_blank',1),('C_ms_gold',2),('C_bm_gold',4),('repeat_tvd',5),('deletion_tvd',6),('semantic_auc',7)]}
-        result['GM_mono2']=np.sqrt(v[2]*v[3])
+        compose=frozen_candidate_value()
+        result['GM_mono2']=np.array([compose('GM_mono2',{'ms_gold':{'value':float(a) if np.isfinite(a) else None},'ms_cand':{'value':float(b) if np.isfinite(b) else None}}, {}) for a,b in zip(v[2],v[3])],float)
         coverage={(cfg,comp):(int(obs[k,j]),int(den[k,j])) for j,cfg in enumerate(self.configs) for k,comp in enumerate(components)}
         return result,coverage
 
@@ -133,6 +143,32 @@ class Panel:
 
     def qualities(self,idx,columns):
         return np.array([corr(self.scores[idx,j],self.targets[idx]) for j in columns])
+
+    def weighted_task_qualities(self,task_draw,columns):
+        """Exactly retain sampled task multiplicity without expanding repeated rows.
+
+        Weighted midranks equal ordinary midranks of the expanded multiset,
+        including ties. This accelerates larger-task-count power simulations.
+        """
+        cols=tuple(int(j) for j in columns)
+        if cols not in self.weighted_quality_cache:
+            mask=np.isfinite(self.targets)&np.isfinite(self.scores[:,cols]).all(axis=1)
+            matrix=np.column_stack((self.scores[mask][:,cols],self.targets[mask]))
+            inverse=[np.unique(matrix[:,j],return_inverse=True)[1] for j in range(matrix.shape[1])]
+            self.weighted_quality_cache[cols]=(mask,inverse)
+        mask,inverse=self.weighted_quality_cache[cols];counts=Counter(task_draw)
+        weights=np.array([counts[t] for t in self.task_ids],float);declared=weights.sum();w=weights[mask];observed=w.sum()
+        support={'declared':int(declared),'observed':int(observed),'status':'COMPUTED' if declared and observed>=math.ceil(.9*declared) else 'NOT_COMPUTABLE'}
+        q=np.full(len(cols),np.nan)
+        if support['status']!='COMPUTED' or observed<2:return q,support
+        ranks=[]
+        for inv in inverse:
+            mass=np.bincount(inv,weights=w);ranks.append((np.cumsum(mass)-(mass-1)/2)[inv])
+        centered=[r-(observed+1)/2 for r in ranks];target=centered[-1];yv=np.dot(w,target*target)
+        for j,x in enumerate(centered[:-1]):
+            xv=np.dot(w,x*x)
+            if xv>0 and yv>0:q[j]=np.dot(w,x*target)/np.sqrt(xv*yv)
+        return q,support
 
     def criterion(self,draws=DRAWS,seed=SEED):
         rng=np.random.default_rng(seed);task_draws=[rng.choice(self.tasks,len(self.tasks),replace=True) for _ in range(draws)]
@@ -158,17 +194,30 @@ class Panel:
         fixed={p:select_weights(v[cols],1e-12 if p in ('repeat_tvd','deletion_tvd','semantic_auc') else 0.) for p,v in props.items()}
         assoc_point={p:[corr(v[cols],qualities,k) if (np.isfinite(v[cols])&np.isfinite(qualities)).sum()>=3 else np.nan for k in ('spearman','pearson','kendall')] for p,v in props.items()}
         select_point={p:selection_statistics(v[cols],qualities,self.h2[cols],fixed[p])[0] for p,v in props.items()}
+        def control_values(q):
+            h=self.h2[cols];hw=h/h.sum() if h.any() else np.zeros(len(cols))
+            return [expected(np.ones(len(cols))/len(cols),q),expected(hw,q),float(np.max(q)) if np.isfinite(q).all() else np.nan]
+        control_point=control_values(qualities);control_samples=np.full((draws,3),np.nan);random_draws=np.full((draws,2),np.nan)
+        control_rng=np.random.default_rng(np.random.SeedSequence(seed,spawn_key=(1,)))
         samples={p:np.full((draws,4),np.nan) for p in PROPERTIES};conditional={p:np.full((draws,4),np.nan) for p in PROPERTIES};assoc={p:np.full((draws,3),np.nan) for p in PROPERTIES}
         rng=np.random.default_rng(seed);test_tasks=sorted(set(self.task_ids[test]));bases=sorted(set(self.base[cols]))
+        paired_universe=sorted(set(train)|set(test_tasks));overlap=bool(set(train)&set(test_tasks))
         for b in range(draws):
             # Pooled/group analyses share exactly the same task draw in both
             # properties and criterion. Disjoint task-fold splits resample each
             # partition separately while retaining pairings within each.
-            td=rng.choice(test_tasks,len(test_tasks),replace=True)
-            tr=td if set(train)==set(test_tasks) else rng.choice(train,len(train),replace=True)
+            if overlap:
+                td=rng.choice(paired_universe,len(paired_universe),replace=True)
+                tr=[t for t in td if t in train]
+            else:
+                td=rng.choice(test_tasks,len(test_tasks),replace=True)
+                tr=rng.choice(train,len(train),replace=True)
             ix=draw_indices(self.task_ids[test],td);indices=test[ix]
             observed,coverage=self.support(indices,cols)
             q=self.qualities(observed,cols) if coverage['status']=='COMPUTED' else np.full(len(cols),np.nan)
+            control_samples[b]=control_values(q);random_draws[b,0]=q[control_rng.integers(len(cols))]
+            h2_positions=np.flatnonzero(self.h2[cols])
+            if len(h2_positions):random_draws[b,1]=q[control_rng.choice(h2_positions)]
             pv,_=self.property_values(tr,exclude_group)
             cluster_draw=rng.choice(bases,len(bases),replace=True)
             clustered=np.concatenate([np.flatnonzero(self.base[cols]==base) for base in cluster_draw])
@@ -179,6 +228,9 @@ class Panel:
                 x,y=v[cols][clustered],q[clustered]
                 if (np.isfinite(x)&np.isfinite(y)).sum()>=3:assoc[p][b]=[corr(x,y,k) for k in ('spearman','pearson','kendall')]
         result={'support':support,'configs':[self.configs[j] for j in cols],'base_models':bases,'base_model_count':len(bases),'provider_family_count':len(set(self.family[cols])),'properties':{}}
+        result['controls']={'exact_expectations':{k:interval(control_samples[:,i],control_point[i]) for i,k in enumerate(('uniform_random','uniform_H2','hindsight_oracle'))},
+                            'seeded_single_judge_variability':{k:{**interval(random_draws[:,i],control_point[i]),'interpretation':'95% distribution interval combining task resampling and one uniformly sampled judge; not a confidence interval for the exact expectation','test':'none; seeded selector variability'} for i,k in enumerate(('uniform_random','uniform_H2'))},
+                            'declared_pool_size':len(cols),'declared_H2_count':int(self.h2[cols].sum()),'seed':seed}
         for p in PROPERTIES:
             finite=np.isfinite(props[p][cols])&np.isfinite(qualities)
             result['properties'][p]={'values':props[p][cols].tolist(),'weights':fixed[p].tolist(),'eligible_configurations':int(np.isfinite(props[p][cols]).sum()),
@@ -195,6 +247,9 @@ def planning(panel,property_name,draws=DRAWS,seed=SEED,subset_draws=100):
     Each task draw reruns selection. No new scores/families are simulated.
     """
     rng=np.random.default_rng(seed);result=[];n=len(panel.configs)
+    component={'C_ms_gold':'ms_gold','C_ident':'ident','C_bm_gold':'bm_gold','C_blank':'blank','GM_mono2':'ms_cand'}.get(property_name,property_name)
+    if not any(r['component']==component and r.get('eligible',True) and r.get('value') is not None and np.isfinite(r['value']) for r in panel.records):
+        return {'status':'NOT_COMPUTABLE','reason':'no accepted eligible property measurement; resampling cannot create one','draws':draws,'finite_draws':0,'new_family_requirement':'NOT_IDENTIFIABLE'}
     for size in (4,6,8,12):
         if size>n:continue
         feasible=list(combinations(range(n),size))
@@ -203,9 +258,9 @@ def planning(panel,property_name,draws=DRAWS,seed=SEED,subset_draws=100):
             gains=[];bases=[];subset_ids=[]
             for b in range(draws):
                 cols=np.array(feasible[b%len(feasible)]);td=rng.choice(panel.tasks,task_count,replace=True)
-                ix=draw_indices(panel.task_ids,td);common,support=panel.support(ix,cols)
+                q,support=panel.weighted_task_qualities(td,cols)
                 if support['status']!='COMPUTED':continue
-                p,_=panel.property_values(td);q=panel.qualities(common,cols)
+                p,_=panel.property_values(td)
                 tolerance=1e-12 if property_name in ('repeat_tvd','deletion_tvd','semantic_auc') else 0.
                 gain=selection_statistics(p[property_name][cols],q,panel.h2[cols],tolerance=tolerance)[0][2]
                 if np.isfinite(gain):gains.append(gain);bases.append(len(set(panel.base[cols])));subset_ids.append(b%len(feasible))
@@ -222,12 +277,47 @@ def planning(panel,property_name,draws=DRAWS,seed=SEED,subset_draws=100):
             result.append(row)
     return result
 
+def equal_group_transfer(panels,draws=DRAWS,seed=SEED):
+    """Equal weight per held-out group, paired across a common task bootstrap.
+
+    Each panel's property records must already exclude its held-out candidates.
+    Missing group statistics stay missing in the equal-group average.
+    """
+    groups=sorted(panels);tasks=sorted(set.intersection(*(set(p.tasks) for p in panels.values())))
+    if not groups or not tasks:raise ValueError('groups and shared tasks required')
+    fixed={};indices={};point_rows={p:[] for p in PROPERTIES}
+    for group,panel in panels.items():
+        indices[group]=np.array([i for i,r in enumerate(panel.items) if r['group']==group])
+        props,_=panel.property_values(tasks,group);common,support=panel.support(indices[group])
+        q=panel.qualities(common,np.arange(len(panel.configs))) if support['status']=='COMPUTED' else np.full(len(panel.configs),np.nan)
+        fixed[group]={}
+        for prop in PROPERTIES:
+            tol=1e-12 if prop not in PRIMARY else 0.
+            value,weights=selection_statistics(props[prop],q,panel.h2,tolerance=tol)
+            fixed[group][prop]=weights;point_rows[prop].append(value)
+    samples={p:np.full((draws,4),np.nan) for p in PROPERTIES};conditional={p:a.copy() for p,a in samples.items()}
+    rng=np.random.default_rng(seed)
+    for b in range(draws):
+        td=rng.choice(tasks,len(tasks),replace=True);values={p:[] for p in PROPERTIES};cond={p:[] for p in PROPERTIES}
+        for group,panel in panels.items():
+            original=indices[group];ix=original[draw_indices(panel.task_ids[original],td)]
+            common,support=panel.support(ix);q=panel.qualities(common,np.arange(len(panel.configs))) if support['status']=='COMPUTED' else np.full(len(panel.configs),np.nan)
+            props,_=panel.property_values(td,group)
+            for prop in PROPERTIES:
+                values[prop].append(selection_statistics(props[prop],q,panel.h2,tolerance=1e-12 if prop not in PRIMARY else 0.)[0])
+                cond[prop].append(selection_statistics(props[prop],q,panel.h2,fixed[group][prop])[0])
+        for prop in PROPERTIES:
+            samples[prop][b]=np.mean(values[prop],axis=0);conditional[prop][b]=np.mean(cond[prop],axis=0)
+    return {'groups':groups,'group_count':len(groups),'tasks':len(tasks),'resampling':'same task draw across every group; group selectors recomputed; equal weights; any undefined group makes its mean undefined',
+            'properties':{p:{'unconditional_selection':{k:interval(samples[p][:,i],np.mean(point_rows[p],axis=0)[i]) for i,k in enumerate(SELECTION_METRICS)},
+                             'conditional_fixed_selection':{k:interval(conditional[p][:,i],np.mean(point_rows[p],axis=0)[i]) for i,k in enumerate(SELECTION_METRICS)}} for p in PROPERTIES}}
+
 def recommendation(primary,common,prop,declared=12):
     a=primary['properties'][prop];b=common['properties'][prop]
     if min(a['eligible_configurations'],b['eligible_configurations'])<math.ceil(.9*declared):return 'DROP_UNCOMPUTABLE'
-    if np.nanstd(a['values'])==0:return 'DROP_CONSTANT'
+    if np.nanstd(np.asarray(a['values'],float))==0:return 'DROP_CONSTANT'
     gains=[x['unconditional_selection']['gain_vs_H2'] for x in (a,b)]
     if any(g['interval_95'] is not None and g['interval_95'][1]<=0 for g in gains):return 'DROP_NONPOSITIVE_GAIN'
-    if all(x['association']['spearman']['estimate']>0 for x in (a,b)) and all(g['estimate']>0 for g in gains):
+    if all(x['association']['spearman']['estimate'] is not None and x['association']['spearman']['estimate']>0 for x in (a,b)) and all(g['estimate'] is not None and g['estimate']>0 for g in gains):
         return 'STRONG_FOLLOWUP' if all(g['interval_95'] is not None and g['interval_95'][0]>0 for g in gains) else 'INCONCLUSIVE_POSITIVE_POINT_ESTIMATE'
     return 'INCONCLUSIVE'

@@ -7,6 +7,67 @@ from e47_adapter import module,ROOT
 I=module('e47_owner_information',ROOT/'vendor/information_properties_addeba2.py')
 
 class StatisticsTests(unittest.TestCase):
+    def test_composition_calls_frozen_candidate_deletion_formula(self):
+        cfg='opus55x|H2';rows=[{'item':'i','task':'t'}]
+        records=[{'config':cfg,'component':comp,'task':'t','value':value} for comp,value in [('ms_gold',.8),('ms_cand',.3),('bm_gold',1.)]]
+        p=S.Panel(rows,[cfg],[[.5]],[.5],records)
+        got=p.property_values()[0]['GM_mono2'][0]
+        self.assertEqual(got,S.frozen_candidate_value()('GM_mono2',{'ms_gold':{'value':.8},'ms_cand':{'value':.3}},{}))
+        self.assertNotEqual(got,np.sqrt(.8))
+
+    def test_weighted_bootstrap_matches_literal_repeated_rows_with_ties(self):
+        rng=np.random.default_rng(47);rows=[{'item':str(i),'task':str(i//4)} for i in range(40)]
+        scores=rng.choice([0.,.2,.7,1.],size=(40,3));scores[0,1]=np.nan;target=rng.choice([0.,.5,1.],size=40)
+        p=S.Panel(rows,['opus55x|H2','qwen36|D0','t2_qwen|H2'],scores,target)
+        for count in (5,10,40):
+            for _ in range(10):
+                td=rng.choice(p.tasks,count,replace=True);cols=np.array([0,1,2]);weighted,support=p.weighted_task_qualities(td,cols)
+                expanded=S.draw_indices(p.task_ids,td);common,reference=p.support(expanded,cols)
+                self.assertEqual(support['observed'],reference['observed']);self.assertEqual(support['status'],reference['status'])
+                expected=p.qualities(common,cols) if reference['status']=='COMPUTED' else np.full(3,np.nan)
+                np.testing.assert_allclose(weighted,expected,atol=1e-14,equal_nan=True)
+
+    def test_group_missing_tasks_preserves_property_criterion_bootstrap_pairing(self):
+        from collections import Counter
+        rows=[{'item':t,'task':t} for t in ('a','b','c')]
+        p=S.Panel(rows,['opus55x|H2','qwen36|D0'],[[0,1],[1,0],[.5,.5]],[0,1,.5])
+        property_draws=[];criterion_draws=[];old_property=p.property_values;old_support=p.support
+        def prop(draw=None,exclude_group=None):
+            property_draws.append(list(draw));return old_property(draw,exclude_group)
+        def support(indices=None,columns=None):
+            criterion_draws.append(list(p.task_ids[indices]));return old_support(indices,columns)
+        p.property_values=prop;p.support=support;p.evaluate(draws=30,test_indices=[0,1])
+        for properties,criterion in zip(property_draws[1:],criterion_draws[1:]):
+            self.assertEqual(Counter(t for t in properties if t in ('a','b')),Counter(criterion))
+
+    def test_random_baseline_uses_expectation_and_separate_draw_variability(self):
+        rows=[{'item':f'{t}{i}','task':t} for t in ('a','b') for i in range(3)]
+        p=S.Panel(rows,['opus55x|H2','qwen36|D0'],[[0,1],[.5,.5],[1,0]]*2,[0,.5,1]*2)
+        controls=p.evaluate(draws=100)['controls']
+        self.assertAlmostEqual(controls['exact_expectations']['uniform_random']['estimate'],0.)
+        self.assertAlmostEqual(controls['exact_expectations']['uniform_H2']['estimate'],1.)
+        self.assertEqual(controls['seeded_single_judge_variability']['uniform_random']['interval_95'],[-1.,1.])
+
+    def test_equal_group_mean_does_not_weight_large_groups_more(self):
+        configs=['opus55x|H2','qwen36|D0'];rows=[];scores=[];targets=[]
+        for group,repetitions in [('small',1),('large',4)]:
+            for t in range(3):
+                for k in range(repetitions):
+                    rows.append({'item':f'{group}{t}{k}','task':str(t),'group':group});targets.append(t/2)
+                    scores.append([t/2,1-t/2])
+        panels={}
+        for group in ['small','large']:
+            records=[{'config':cfg,'component':'ident','task':str(t),'value':int((group=='small')==(j==1))} for j,cfg in enumerate(configs) for t in range(3)]
+            panels[group]=S.Panel(rows,configs,scores,targets,records)
+        result=S.equal_group_transfer(panels,draws=20)['properties']['C_ident']['unconditional_selection']
+        self.assertAlmostEqual(result['selected_spearman']['estimate'],0.)
+        self.assertAlmostEqual(result['gain_vs_H2']['estimate'],-1.)
+
+    def test_unavailable_semantic_planning_does_not_invent_draws(self):
+        p=S.Panel([{'item':'a','task':'a'}],['opus55x|H2'],[[.2]],[.2])
+        result=S.planning(p,'semantic_auc')
+        self.assertEqual(result['status'],'NOT_COMPUTABLE');self.assertEqual(result['finite_draws'],0);self.assertEqual(result['draws'],10000)
+
     def test_task_multiplicity_and_pairing(self):
         self.assertEqual(S.draw_indices(['a','a','b','c'],['b','a','b']).tolist(),[2,0,1,2])
         rows=[{'item':str(i),'task':t} for i,t in enumerate(['a','b'])]

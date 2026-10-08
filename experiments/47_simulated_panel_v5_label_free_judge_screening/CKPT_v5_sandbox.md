@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 11:27 PDT
+Last updated: 10-08-2026 12:08 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -22,7 +22,7 @@ Last updated: 10-08-2026 11:27 PDT
 - Verified checks: `python3 expt_v1/test_analyze_cached.py`; `python3 expt_v1/analyze_cached.py --check`; `python3 -m py_compile expt_v1/analyze_cached.py`; `git diff --check`.
 - Published zero-call target-reconstruction phase: commit `35a717316ee68d8247bbf395c709f7e80b0f8c52`, existing PR `https://github.com/brando90/cert-judge/pull/57` (OPEN).
 - Cached-pool check: `expt_v1/inventory_cached_primary_pool.py` verified all 4,146 declared nonblank raw cells for reusable `opus55x|H0`/`opus55x|H2`, with 691/691 scorable nonblank items per configuration. The other ten primary configurations remain missing declared conditions, not substitutes.
-- Historical-pool inventory: exact experiment-39 harvest receipts verify 12 declared configurations over four base-model/harness identities and two provider families; only the two cached members are presently reusable. Receipt: `expt_v1/results/historical_primary_pool_inventory.json`.
+- Historical-pool inventory: exact experiment-39 harvest receipts verify 12 declared configurations over four model/harness identities, three base-model clusters and two provider families; only the two cached members are presently reusable. Receipt: `expt_v1/results/historical_primary_pool_inventory.json`.
 - Probe ownership boundary: a separate master-launched worker exclusively owns `expt_v1/probes/` and its ignored artifacts, with zero judge calls. Do not compile/build competing probes; integrate its verified output when supplied.
 - Next: freeze exact historical 12-configuration cache-overlap and missing-cell manifest using copied E39 selectors/harness receipts and the verified v5 H0/H2 cells. After the probe worker supplies validity data, integrate it, build the complete scoring manifest/quote, then admit declared judge cells only through Valkyrie.
 - Previous probe dependency resolved: the isolated codex-cj-e47-v5-probes session is verified active, native thread 01a11ca6-6ae9-72b0-a73c-273f8e2fffd5, with full access and no approvals. It owns probe construction; the main worker should implement rendering/admission/statistics concurrently, then integrate its verified commit.
@@ -39,3 +39,10 @@ Last updated: 10-08-2026 11:27 PDT
 - 10-08-2026 11:39 PDT: cached descriptive analysis completed all 12 target/scope views with 10,000 task draws; RESULTS_cached_descriptive.md gives correlation, absolute agreement, bias/both means and repeat variability. Initial offline import failed before computation, fixed by explicit repository package path; deterministic rerun completed. No new judge call.
 - Transport preflight: current vb103_judge bundle exactly matches all three pinned historical files; current brando_terminus_gateway bundle and contract match historical hashes, max_turns=20 / reasoning_effort=high unchanged. Source preservation 15/15 and Git-tree-aware project layout (5 active entries) PASS; master full-checkout pass at79bbfa3 remains referenced.
 - Criterion-first scheduling adopted prospectively in Amendment04 after root11:29 mailbox recommendation; complete criterion rendering still runs, with all12 configurations preserved. Full probe compilation remains active and required.
+
+- 10-08-2026 11:59 PDT: implementation/cached phase published at b1f2932 in draft PR57. Offline renderer and 90-procedure existing analysis remain healthy; structural controls and persona/family diagnostics now run independently. Prompt memoization matches uncached full D0 bytes/errors on minimum/median/maximum-size examples. 23 deterministic tests pass. Native usage at11:53: 8% weekly used, 92% remains; no purchased credits used.
+- Prospective transport disclosure before calls: byte-frozen vb103_judge already contains a bounded second gateway request after HTTP429/500/502/503/504. This existing harness behavior is retained and explicitly recorded in transport_policy.json, not introduced by E47. Strict harvesting now preserves raw attempt/status evidence and excludes every HTTP429 receipt even if a later response parsed. No coordinator retries or repeated verdict admission.
+
+- 10-08-2026 12:08 PDT: 26 deterministic tests pass, including real frozen admission against a fake command-line interface: state precedes admission and duplicate admission never starts again. Lost start receipts use read-only exact-label run inventory to adopt, never replay. Transport acceptance rejects a parseable second response after HTTP429. Full analysis now includes resumable jobs, equal-group task-paired means, all structural controls and persona/family diagnostics. No measured E47 call yet.
+
+- 10-08-2026 12:15 PDT: all 90 historical procedures and 90 control/panel views finished; report inspected and raw-repeat intervals added. Complete criterion freeze verifies all12 x750 x3 cells, 34 named frozen source/core hashes, memo equivalence and fresh-cache identity. Named tmux cj47-pack-criterion is packing with eight ordinary I/O threads and checking every roundtrip; no judge call yet. 27 deterministic tests pass, including exact random-control expectation versus seeded single-judge variability. Next: finish packs, calculate exact-count cost quote, deploy owned ports9040–9043, verify service/transport, publish frozen phase, then launch durable criterion driver and watchdog. Probe compiler remains independently owned.

@@ -2,15 +2,20 @@
 from __future__ import annotations
 import argparse
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 import copy
 import json
 from pathlib import Path
 import random
+import shutil
 from e47_adapter import ROOT,PRIVATE,RESULTS,RUN_ID,POOL,read,write,sha,load_items,panel,frozen,prompts,module,phase_context
 
-def build(probe_manifest=None,probe_root=None,freeze=False):
-    e,renderer,packer,ctl=frozen();p=prompts();items=load_items();byitem={r['item']:r for r in items};bytask={r['task']:r for r in items}
-    units=panel();write(RESULTS/'panel.json',{'run_id':RUN_ID,'units':units})
+def build(probe_manifest=None,probe_root=None,freeze=False,phase='criterion'):
+    units=panel()
+    e,renderer,packer,ctl=phase_context('probes') if phase=='probes' else frozen()
+    out=e.RESULTS;p=prompts();items=load_items();byitem={r['item']:r for r in items};bytask={r['task']:r for r in items}
+    if (out/'admission_manifest.json').exists() and read(out/'admission_manifest.json').get('state')=='FROZEN':raise ValueError('admission already frozen; adopt without rendering again')
+    write(out/'panel.json',{'run_id':RUN_ID,'units':units})
     cache=read(PRIVATE/'accepted_cached_primary_scores.json')
     structural=read(probe_manifest) if probe_manifest else {'rows':[]}
     probe_root=Path(probe_root or ROOT)
@@ -18,7 +23,7 @@ def build(probe_manifest=None,probe_root=None,freeze=False):
     if freeze and any(r.get('valid') is None for r in structural['rows']):raise ValueError('pending structural evidence')
     artifacts={(a['kind'],a['key'],a['level']):a for a in structural.get('private_artifacts',[])}
     probes=[]
-    for item in items:
+    for item in items if phase!='probes' else []:
         probes.append({'probe_id':'crit__'+item['item']+'__L0','kind':'crit','key':item['item'],'task':item['task'],'item':item['item'],'level':0,'sha256':item['cand_sha256'],'valid':True,'path':item['candidate_path_abs']})
     for original in structural['rows']:
         if original['kind']=='crit':continue
@@ -32,7 +37,7 @@ def build(probe_manifest=None,probe_root=None,freeze=False):
         probes.append(r)
     if freeze:
         if len({r['task'] for r in probes if r['kind']=='ident'})!=50:raise ValueError('missing reference tasks')
-        if len({r['item'] for r in probes if r['kind']=='crit'})!=750:raise ValueError('missing criterion items')
+        if len({r['item'] for r in structural['rows'] if r['kind']=='crit'})!=750:raise ValueError('missing structural criterion items')
     manifests={};all_counts={}
     for unit in units:
         cells=[];cfg=unit['config']
@@ -45,7 +50,7 @@ def build(probe_manifest=None,probe_root=None,freeze=False):
             elif r['kind']=='crit' and base['blank']:
                 rendered=[dict(common,repeat=k,cell=renderer.cell_id('crit',r['key'],0,k),status='deterministic',score=0.,reason='source declared blank; excluded from nonblank primary',structural_blank=True) for k in range(1,n+1)]
             else:
-                row={**r,'base_item':base,'candidate_name':base['candidate_file'] if r.get('item') else base['ref_name'].removesuffix('.lean')+'__agent3.lean'}
+                row={**r,'base_item':base,'candidate_name':base['candidate_file'] if r.get('item') else f"{r['task']}__agent3.lean"}
                 # Only the supplement changes repeat construction. No prompt or
                 # scientific selector/harness setting is modified.
                 old=e.KINDS[r['kind']]['repeats'];e.KINDS[r['kind']]['repeats']=n
@@ -63,10 +68,19 @@ def build(probe_manifest=None,probe_root=None,freeze=False):
             cells.extend(rendered)
         if len({c['cell'] for c in cells})!=len(cells):raise ValueError('duplicate E47 cell')
         blob={'run_id':RUN_ID,'config':cfg,'n_cells':len(cells),'n_calls':sum(c['status']=='render' for c in cells),'cells':cells}
-        write(RESULTS/'cells'/f"{cfg.replace('|','__')}.json",blob);manifests[cfg]=blob;all_counts[cfg]=dict(Counter(c['status'] for c in cells))
+        write(out/'cells'/f"{cfg.replace('|','__')}.json",blob);manifests[cfg]=blob;all_counts[cfg]=dict(Counter(c['status'] for c in cells))
     hashes={str(p.relative_to(ROOT.parent)):sha(p.read_bytes()) for p in [ROOT.parent/'PROTOCOL.md',*sorted(ROOT.parent.glob('AMENDMENT_*.md'))]}
-    receipt={'run_id':RUN_ID,'state':'FROZEN' if freeze else 'DRAFT_PENDING_STRUCTURAL_EVIDENCE','configurations':list(POOL),'counts':all_counts,'contract_hashes':hashes,'probe_manifest_sha256':sha(Path(probe_manifest).read_bytes()) if probe_manifest else None,'cells_sha256':{cfg:sha((RESULTS/'cells'/f"{cfg.replace('|','__')}.json").read_bytes()) for cfg in manifests},'route':'Vals-funded Valkyrie only; no host provider keys','recovery':'No automatic retries or re-admission of any cached receipt, including failed receipts.'}
-    target=RESULTS/'admission_manifest.json'
+    receipt={'run_id':RUN_ID,'phase':phase,'state':'FROZEN' if freeze else 'DRAFT_PENDING_STRUCTURAL_EVIDENCE','configurations':list(POOL),'counts':all_counts,'contract_hashes':hashes,'probe_manifest_sha256':sha(Path(probe_manifest).read_bytes()) if probe_manifest else None,'cells_sha256':{cfg:sha((out/'cells'/f"{cfg.replace('|','__')}.json").read_bytes()) for cfg in manifests},'route':'Vals-funded Valkyrie only; no host provider keys','recovery':'No automatic retries or re-admission of any cached receipt, including failed receipts.'}
+    if phase=='probes':
+        for name in ('agent_bundle_check.json','agent_harness.json','transport_policy.json'):
+            if name!='transport_policy.json' and read(RESULTS/name)['verdict']!='PASS':raise ValueError('transport evidence not PASS')
+            shutil.copyfile(RESULTS/name,out/name)
+        conf=e.PRIVATE/'valkyrie.yaml'
+        if not conf.exists():conf.symlink_to(PRIVATE/'valkyrie.yaml')
+        receipt['criterion_manifest_sha256']=sha((RESULTS/'criterion/admission_manifest.json').read_bytes())
+        receipt['transport_policy_sha256']=sha((out/'transport_policy.json').read_bytes())
+        receipt['smoke_conditions']='reuse the distinct criterion smoke condition for the identical configuration/harness; no repeated smoke verdict'
+    target=out/'admission_manifest.json'
     if target.exists() and read(target).get('state')=='FROZEN' and read(target)!=receipt:raise ValueError('refusing to rewrite frozen admission')
     write(target,receipt)
     print(json.dumps({'state':receipt['state'],'counts':all_counts}))
@@ -91,7 +105,12 @@ def build_packs(phase='criterion'):
                 body=(directory/tid/'instruction.md').read_text();h,system,user=(pack.parse_agent_task_file if unit['pack_flavor']=='agent' else parser)(body)
                 if sha((system+'\n\n'+user).encode())!=c['prompt_sha256']:raise ValueError('transport roundtrip')
                 return row
-            for i,c in enumerate(pending):rows.append({**emit(c,pack.task_id_of('cj47',unit['prompt_key'],f'q{i:05d}__'+c['cell'])),'queue_index':i})
+            def emit_indexed(pair):
+                i,c=pair
+                return {**emit(c,pack.task_id_of('cj47',unit['prompt_key'],f'q{i:05d}__'+c['cell'])),'queue_index':i}
+            # Only independent local pack files run concurrently; map preserves
+            # the frozen randomized order and every task gets a byte roundtrip.
+            with ThreadPoolExecutor(max_workers=8) as workers:rows=list(workers.map(emit_indexed,enumerate(pending)))
             smoke=next((c for c in sorted(cells,key=lambda c:c['cell']) if c['kind']=='crit' and c['repeat']==1 and c.get('prompt_sha256') and c['status'] in ('render','cached_measured')),None)
             if smoke:smokes.append(emit(smoke,pack.task_id_of('cj47smoke',unit['prompt_key'],smoke['cell'])))
             per_config[cfg]={'rubric':unit['rubric'],'prompt_key':unit['prompt_key'],'flavor':unit['pack_flavor'],'harness':unit['harness'],'n_tasks':len(rows),'n_smoke_tasks':len(smokes),'cells':rows,'smoke_cells':smokes,'round_trip_failures':[]}
@@ -102,4 +121,4 @@ def build_packs(phase='criterion'):
 if __name__=='__main__':
     ap=argparse.ArgumentParser();ap.add_argument('--probe-manifest',type=Path);ap.add_argument('--probe-root',type=Path);ap.add_argument('--freeze',action='store_true');ap.add_argument('--packs',action='store_true');ap.add_argument('--phase',default='criterion');args=ap.parse_args()
     if args.packs:build_packs(args.phase)
-    else:build(args.probe_manifest,args.probe_root,args.freeze)
+    else:build(args.probe_manifest,args.probe_root,args.freeze,args.phase)
