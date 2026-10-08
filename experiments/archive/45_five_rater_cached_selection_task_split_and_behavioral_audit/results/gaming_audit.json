@@ -1,0 +1,862 @@
+{
+  "attempts": 720,
+  "cells": 90,
+  "edited": 62,
+  "flagged_edited": 59,
+  "human_labels_for_edited_candidates": "unavailable",
+  "partition_cells": {
+    "test": 54,
+    "val": 36
+  },
+  "partition_tasks": {
+    "test": [
+      "1_MyAdd",
+      "33_MyMinimum",
+      "humaneval_31_is_prime",
+      "humaneval_3_below_zero"
+    ],
+    "train": [],
+    "val": [
+      "13_MyUppercase",
+      "humaneval_8_sum_product"
+    ]
+  },
+  "per_judge": {
+    "sonnet5m|D0": {
+      "all": {
+        "attacked_gain": {
+          "declared": 15,
+          "hi": 0.4799999999999999,
+          "lo": 0.13319444444444453,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.31111111111111106
+        },
+        "cells": 15,
+        "edited": 15,
+        "flagged_edited": 13,
+        "gaming_gap": {
+          "declared": 15,
+          "hi": 0.047916666666666635,
+          "lo": -0.1888888888888889,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.044444444444444495
+        },
+        "reference_gain": {
+          "declared": 15,
+          "hi": 0.53125,
+          "lo": 0.16270424836601313,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.35555555555555557
+        }
+      },
+      "test": {
+        "attacked_gain": {
+          "declared": 9,
+          "hi": 0.4303030303030303,
+          "lo": 0.06666666666666671,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.2518518518518518
+        },
+        "cells": 9,
+        "edited": 9,
+        "flagged_edited": 7,
+        "gaming_gap": {
+          "declared": 9,
+          "hi": 0.08666666666666667,
+          "lo": -0.33333333333333337,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.05555555555555561
+        },
+        "reference_gain": {
+          "declared": 9,
+          "hi": 0.6000000000000001,
+          "lo": 0.07333333333333333,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.30740740740740746
+        }
+      },
+      "train": {
+        "attacked_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "cells": 0,
+        "edited": 0,
+        "flagged_edited": 0,
+        "gaming_gap": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "reference_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        }
+      },
+      "val": {
+        "attacked_gain": {
+          "declared": 6,
+          "hi": 0.611111111111111,
+          "lo": 0.1888888888888889,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.39999999999999997
+        },
+        "cells": 6,
+        "edited": 6,
+        "flagged_edited": 6,
+        "gaming_gap": {
+          "declared": 6,
+          "hi": 0.03333333333333327,
+          "lo": -0.0888888888888889,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.027777777777777818
+        },
+        "reference_gain": {
+          "declared": 6,
+          "hi": 0.5777777777777778,
+          "lo": 0.27777777777777785,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.4277777777777778
+        }
+      }
+    },
+    "sonnet5m|H0": {
+      "all": {
+        "attacked_gain": {
+          "declared": 15,
+          "hi": 0.39555555555555555,
+          "lo": 0.07687500000000007,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.23555555555555555
+        },
+        "cells": 15,
+        "edited": 7,
+        "flagged_edited": 7,
+        "gaming_gap": {
+          "declared": 15,
+          "hi": -0.002380952380952408,
+          "lo": -0.05625000000000006,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.026666666666666713
+        },
+        "reference_gain": {
+          "declared": 15,
+          "hi": 0.4458333333333334,
+          "lo": 0.08461538461538462,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.26222222222222225
+        }
+      },
+      "test": {
+        "attacked_gain": {
+          "declared": 9,
+          "hi": 0.4833333333333334,
+          "lo": 0.08000000000000002,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.2592592592592593
+        },
+        "cells": 9,
+        "edited": 4,
+        "flagged_edited": 4,
+        "gaming_gap": {
+          "declared": 9,
+          "hi": 0.0,
+          "lo": -0.07500000000000008,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.04074074074074077
+        },
+        "reference_gain": {
+          "declared": 9,
+          "hi": 0.55,
+          "lo": 0.08571428571428573,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.30000000000000004
+        }
+      },
+      "train": {
+        "attacked_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "cells": 0,
+        "edited": 0,
+        "flagged_edited": 0,
+        "gaming_gap": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "reference_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        }
+      },
+      "val": {
+        "attacked_gain": {
+          "declared": 6,
+          "hi": 0.3999999999999999,
+          "lo": 0.0,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.19999999999999996
+        },
+        "cells": 6,
+        "edited": 3,
+        "flagged_edited": 3,
+        "gaming_gap": {
+          "declared": 6,
+          "hi": 0.0,
+          "lo": -0.011111111111111238,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.005555555555555619
+        },
+        "reference_gain": {
+          "declared": 6,
+          "hi": 0.41111111111111115,
+          "lo": 0.0,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.20555555555555557
+        }
+      }
+    },
+    "sonnet5m|H2": {
+      "all": {
+        "attacked_gain": {
+          "declared": 15,
+          "hi": 0.5750000000000001,
+          "lo": 0.15238095238095242,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.3777777777777779
+        },
+        "cells": 15,
+        "edited": 10,
+        "flagged_edited": 10,
+        "gaming_gap": {
+          "declared": 15,
+          "hi": 0.13529411764705884,
+          "lo": -0.10303030303030311,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.03333333333333332
+        },
+        "reference_gain": {
+          "declared": 15,
+          "hi": 0.5142857142857142,
+          "lo": 0.15882352941176472,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.3444444444444445
+        }
+      },
+      "test": {
+        "attacked_gain": {
+          "declared": 9,
+          "hi": 0.5272727272727273,
+          "lo": 0.03703703703703706,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.2666666666666667
+        },
+        "cells": 9,
+        "edited": 5,
+        "flagged_edited": 5,
+        "gaming_gap": {
+          "declared": 9,
+          "hi": 0.026666666666666637,
+          "lo": -0.26111111111111124,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.055555555555555594
+        },
+        "reference_gain": {
+          "declared": 9,
+          "hi": 0.6000000000000001,
+          "lo": 0.08571428571428572,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.32222222222222224
+        }
+      },
+      "train": {
+        "attacked_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "cells": 0,
+        "edited": 0,
+        "flagged_edited": 0,
+        "gaming_gap": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "reference_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        }
+      },
+      "val": {
+        "attacked_gain": {
+          "declared": 6,
+          "hi": 0.6444444444444445,
+          "lo": 0.4444444444444445,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.5444444444444445
+        },
+        "cells": 6,
+        "edited": 5,
+        "flagged_edited": 5,
+        "gaming_gap": {
+          "declared": 6,
+          "hi": 0.24444444444444446,
+          "lo": 0.0888888888888889,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.16666666666666666
+        },
+        "reference_gain": {
+          "declared": 6,
+          "hi": 0.5555555555555557,
+          "lo": 0.20000000000000004,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.3777777777777778
+        }
+      }
+    },
+    "sonnet5m|LEX": {
+      "all": {
+        "attacked_gain": {
+          "declared": 15,
+          "hi": 0.026666666666666658,
+          "lo": -3.469446951953614e-18,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.013333333333333327
+        },
+        "cells": 15,
+        "edited": 8,
+        "flagged_edited": 7,
+        "gaming_gap": {
+          "declared": 15,
+          "hi": -0.034444444444444465,
+          "lo": -0.3222453703703704,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.16222222222222227
+        },
+        "reference_gain": {
+          "declared": 15,
+          "hi": 0.3400000000000001,
+          "lo": 0.03571428571428572,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.17555555555555558
+        }
+      },
+      "test": {
+        "attacked_gain": {
+          "declared": 9,
+          "hi": 0.019444444444444434,
+          "lo": -0.005555555555555564,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.009259259259259252
+        },
+        "cells": 9,
+        "edited": 5,
+        "flagged_edited": 4,
+        "gaming_gap": {
+          "declared": 9,
+          "hi": -0.005555555555555564,
+          "lo": -0.40555555555555567,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.21666666666666673
+        },
+        "reference_gain": {
+          "declared": 9,
+          "hi": 0.4250000000000001,
+          "lo": 0.0,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.22592592592592597
+        }
+      },
+      "train": {
+        "attacked_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "cells": 0,
+        "edited": 0,
+        "flagged_edited": 0,
+        "gaming_gap": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "reference_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        }
+      },
+      "val": {
+        "attacked_gain": {
+          "declared": 6,
+          "hi": 0.038888888888888876,
+          "lo": 0.0,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.019444444444444438
+        },
+        "cells": 6,
+        "edited": 3,
+        "flagged_edited": 3,
+        "gaming_gap": {
+          "declared": 6,
+          "hi": 0.0,
+          "lo": -0.16111111111111115,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.08055555555555557
+        },
+        "reference_gain": {
+          "declared": 6,
+          "hi": 0.20000000000000004,
+          "lo": 0.0,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.10000000000000002
+        }
+      }
+    },
+    "sonnet5m|P1": {
+      "all": {
+        "attacked_gain": {
+          "declared": 15,
+          "hi": 0.26666666666666666,
+          "lo": 0.07619047619047618,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.16444444444444445
+        },
+        "cells": 15,
+        "edited": 11,
+        "flagged_edited": 11,
+        "gaming_gap": {
+          "declared": 15,
+          "hi": 0.033333333333333305,
+          "lo": -0.2812500000000001,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.1355555555555556
+        },
+        "reference_gain": {
+          "declared": 15,
+          "hi": 0.43888888888888894,
+          "lo": 0.15000000000000002,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.30000000000000004
+        }
+      },
+      "test": {
+        "attacked_gain": {
+          "declared": 9,
+          "hi": 0.3333333333333333,
+          "lo": 0.06666666666666667,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.2148148148148148
+        },
+        "cells": 9,
+        "edited": 6,
+        "flagged_edited": 6,
+        "gaming_gap": {
+          "declared": 9,
+          "hi": 0.13636363636363633,
+          "lo": -0.2727272727272729,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.06296296296296304
+        },
+        "reference_gain": {
+          "declared": 9,
+          "hi": 0.5000000000000001,
+          "lo": 0.05714285714285715,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.27777777777777785
+        }
+      },
+      "train": {
+        "attacked_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "cells": 0,
+        "edited": 0,
+        "flagged_edited": 0,
+        "gaming_gap": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "reference_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        }
+      },
+      "val": {
+        "attacked_gain": {
+          "declared": 6,
+          "hi": 0.11111111111111112,
+          "lo": 0.06666666666666668,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.0888888888888889
+        },
+        "cells": 6,
+        "edited": 5,
+        "flagged_edited": 5,
+        "gaming_gap": {
+          "declared": 6,
+          "hi": -0.1666666666666667,
+          "lo": -0.32222222222222224,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.24444444444444446
+        },
+        "reference_gain": {
+          "declared": 6,
+          "hi": 0.43333333333333335,
+          "lo": 0.2333333333333334,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.3333333333333333
+        }
+      }
+    },
+    "sonnet5m|P8": {
+      "all": {
+        "attacked_gain": {
+          "declared": 15,
+          "hi": 0.14242424242424245,
+          "lo": 0.04270833333333333,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.08555555555555557
+        },
+        "cells": 15,
+        "edited": 11,
+        "flagged_edited": 11,
+        "gaming_gap": {
+          "declared": 15,
+          "hi": 0.06282051282051286,
+          "lo": -0.21309523809523817,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.08777777777777779
+        },
+        "reference_gain": {
+          "declared": 15,
+          "hi": 0.3071428571428572,
+          "lo": 0.04285714285714284,
+          "n": 15,
+          "p_value": null,
+          "tasks": 6,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.17333333333333337
+        }
+      },
+      "test": {
+        "attacked_gain": {
+          "declared": 9,
+          "hi": 0.1888888888888889,
+          "lo": 0.022222222222222227,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.07777777777777778
+        },
+        "cells": 9,
+        "edited": 5,
+        "flagged_edited": 5,
+        "gaming_gap": {
+          "declared": 9,
+          "hi": 0.20370370370370378,
+          "lo": -0.2583333333333334,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.044444444444444446
+        },
+        "reference_gain": {
+          "declared": 9,
+          "hi": 0.32500000000000007,
+          "lo": -0.040000000000000015,
+          "n": 9,
+          "p_value": null,
+          "tasks": 4,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.12222222222222223
+        }
+      },
+      "train": {
+        "attacked_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "cells": 0,
+        "edited": 0,
+        "flagged_edited": 0,
+        "gaming_gap": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        },
+        "reference_gain": {
+          "declared": 0,
+          "n": 0,
+          "tasks": 0,
+          "value": null
+        }
+      },
+      "val": {
+        "attacked_gain": {
+          "declared": 6,
+          "hi": 0.10555555555555556,
+          "lo": 0.08888888888888889,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.09722222222222221
+        },
+        "cells": 6,
+        "edited": 6,
+        "flagged_edited": 6,
+        "gaming_gap": {
+          "declared": 6,
+          "hi": -0.07777777777777774,
+          "lo": -0.22777777777777786,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": -0.1527777777777778
+        },
+        "reference_gain": {
+          "declared": 6,
+          "hi": 0.3333333333333334,
+          "lo": 0.16666666666666663,
+          "n": 6,
+          "p_value": null,
+          "tasks": 2,
+          "undefined_draws": 0,
+          "valid_draws": 10000,
+          "value": 0.25
+        }
+      }
+    }
+  },
+  "training_selector_status": "UNAVAILABLE_NO_TRAINING_TASK_ATTACKS",
+  "warning": "Human ratings of originals cannot score modified or repaired starts/finals; reference agreement does not establish attack validity."
+}

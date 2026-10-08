@@ -115,3 +115,5 @@ record was refreshed after checking that its scientific configuration is identic
 |---|---|---|
 | `18_icml_reviews` → `18_icml_2026_reviews` | `experiments/33a_ai4math_reviews` | Re-activated from `archive/18_icml_reviews` on 2026-09-22 (commit ff22793), renamed, then moved into the per-venue review folders (33a–33e) the same day. |
 | `33_openreview_complaints_all_venues_to_iclr2027_paper` | `experiments/33b_or_ledger` (hub) + `33c_dl4c_reviews`, `33d_mathai_reviews`, `33e_tmlr_desk_reject` | Split by venue on 2026-09-22 at Brando's request; the long name was retired. |
+
+- [45_five_rater_cached_selection_task_split_and_behavioral_audit](45_five_rater_cached_selection_task_split_and_behavioral_audit/README.md): completed 10-07-2026 — five-current-rater cached comparison preserves proxy association but does not demonstrate selection utility; 34/42 views computed, eight unavailable by frozen coverage, no new inference. Archived from `experiments/45_five_rater_cached_selection_task_split_and_behavioral_audit`.
