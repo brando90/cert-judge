@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 10:48 PDT
+Last updated: 10-08-2026 10:50 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -20,5 +20,7 @@ Last updated: 10-08-2026 10:48 PDT
 - Input provenance: all six pinned v5 metadata files were compared on skampere2 with `git show ccd86d...:<allowed-path>` before copy; each working-file SHA-256 equals the pinned object content SHA-256. Raw cells and late candidates are kept ignored under `expt_v1/private/`; their individual SHA-256 values are in the sanitized receipt.
 - Amendment 02: mailbox/source verification established `GM_mono2 = geometric_mean(ms_gold, ms_cand)`, not reference deletion plus bug monotonicity. `AMENDMENT_02_frozen_GM_mono2_erratum.md` was written before property/criterion measurement; candidate deletion ladders and their declared cells are required. It is candidate-dependent for group/task transfer as specified there.
 - Verified checks: `python3 expt_v1/test_analyze_cached.py`; `python3 expt_v1/analyze_cached.py --check`; `python3 -m py_compile expt_v1/analyze_cached.py`; `git diff --check`.
-- Next: implement exact historical 12-configuration cache-overlap parsing and missing-cell manifest using copied E39 selectors, harness receipts, and v5 H0/H2 cells. Build/validate all reference and candidate-deletion ladders before freezing the scoring manifest.
+- Published zero-call target-reconstruction phase: commit `35a717316ee68d8247bbf395c709f7e80b0f8c52`, existing PR `https://github.com/brando90/cert-judge/pull/57` (OPEN).
+- Cached-pool check: `expt_v1/inventory_cached_primary_pool.py` verified all 4,146 declared nonblank raw cells for reusable `opus55x|H0`/`opus55x|H2`, with 691/691 scorable nonblank items per configuration. The other ten primary configurations remain missing declared conditions, not substitutes.
+- Next: freeze exact historical 12-configuration cache-overlap and missing-cell manifest using copied E39 selectors/harness receipts and the verified v5 H0/H2 cells. Build/validate all reference and candidate-deletion ladders before freezing the scoring manifest.
 - Completion: all declared outputs reconciled, deterministic checks, pull request merged, landing receipt verified. A finished phase is not whole-task completion.
