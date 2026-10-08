@@ -109,9 +109,11 @@ def figures(analyses):
 
 def full_report(manifest):
     for phase in ('criterion','probes'):verified_reconciliation(phase)
-    probe=read(manifest);analyses=read(RESULTS/'selection_association.json');recommendations=read(RESULTS/'recommendations.json')
+    probe=read(manifest);compile_path=Path(manifest).with_name('compile_summary.json');compilation=read(compile_path)
+    if compilation['probe_manifest_sha256']!=sha(Path(manifest).read_bytes()):raise ValueError('compiler summary does not bind final structural manifest')
+    analyses=read(RESULTS/'selection_association.json');recommendations=read(RESULTS/'recommendations.json')
     if set(analyses)!=set(VIEWS) or set(recommendations)!=set(PROPERTIES):raise ValueError('full required analyses not complete')
-    sources=[Path(manifest),RESULTS/'selection_association.json',RESULTS/'recommendations.json']
+    sources=[Path(manifest),compile_path,RESULTS/'semantic_audit_availability.json',RESULTS/'selection_association.json',RESULTS/'recommendations.json']
     details=['# Full property, transfer and planning estimates','',
              '**Doc link:** [Main scientific report](RESULTS_full_campaign.md)','',
              'All reported intervals are 95%. Task bootstrap draws use seed 47 and 10,000 draws; task multiplicity and pairings are retained. Association additionally resamples the three observed base-model clusters with all their variants. Conditional fixed-selection intervals answer a narrower question than unconditional selection intervals. No p-value test is performed.','']
@@ -145,9 +147,11 @@ def full_report(manifest):
               'The fixed rule requires at least 11 of 12 computable property configurations, nonconstant values, positive association and positive paired H2 gain in both required targets. Strong follow-up additionally requires both gain interval lower bounds above zero. Constants, uncomputable properties, or a nonpositive gain upper bound in either required target are dropped from this sandbox shortlist. The threshold is an agent-chosen screen, not a universal validated standard.','',
               '## Population, evidence and missingness','',
               'The frozen universe contains 750 candidates over 50 tasks: 691 source-declared nonblank and 59 blank. The 650 original-group target rows reproduce saved targets to six decimals. The 100 late rows have no saved target file; their evidence is the frozen aggregation tests and rating provenance. All six authorized source recovery streams are included. Historical fold-specific learned judges remain separate evaluation procedures; ensembles remain distinct from members.','',
-              '| Probe kind | Declared structural rows | Valid | Invalid |','|---|---:|---:|---:|']
+              '| Probe kind | Declared structural rows | Verified valid | Invalid/unverified |','|---|---:|---:|---:|']
     counts={kind:Counter(r.get('valid') for r in probe['rows'] if r['kind']==kind) for kind in sorted({r['kind'] for r in probe['rows']})}
     for kind,c in counts.items():lines.append(f'| {kind} | {sum(c.values())} | {c[True]} | {c[False]} |')
+    lines += ['', f"Unique compilation receipts: {compilation['unique_compilations']}; successful: {compilation['ok']}; failed or unverified: {compilation['failed']}. These counts concern unique source hashes, not independent tasks. Evidence: "+link(compile_path)+'.','', '| Compiler receipt class | Count |','|---|---:|']
+    lines += [f'| {key} | {value} |' for key,value in sorted(compilation['error_classes'].items())]
     lines += ['', 'Criterion rows remain declared even when the candidate fails Lean compilation. Structural validity is determined independently of judge outcomes. Complete invalidity and compiler diagnostics are retained in '+link(Path(manifest))+'.',
               'Per-judge coverage and all nine criterion metrics, including original/late and explicit blank-zero sensitivities, appear in [the criterion report](RESULTS_criterion_campaign.md). Full common-support counts, component coverage, selectors, tied weights, paired regret and gains, and conditional/unconditional intervals are in '+link(detail_path)+' and their linked machine-readable sources.','',
               '## What the properties and uncertainty mean','',
@@ -160,7 +164,7 @@ def full_report(manifest):
     for phase in ('criterion','probes'):
         path=RESULTS/phase/'charges.json';charges=read(path);sources.append(path)
         lines += [f"{phase}: reported total USD {num(charges.get('reported_total_usd'))}; known reported sum USD {num(charges.get('known_reported_sum_usd'))}; {charges.get('unknown_charge_cells',0)} cells with unknown charges. Evidence: "+link(path)+'.']
-    lines += ['', 'All measured inference used Vals-funded Valkyrie with frozen models, prompts, parsers and harnesses. Failed transport/admission conditions and original run identifiers remain preserved. Collection recovery reads original artifacts and does not repeat measured verdicts. Missing charges are unavailable, never interpreted as zero. No provider keys or purchased subscription credits were used.','',
+    lines += ['', 'All measured inference used Vals-funded Valkyrie with frozen named model selectors, prompts, parsers and harnesses. Provider backend revision identity was not established. Failed transport/admission conditions and original run identifiers remain preserved. Collection recovery reads original artifacts and does not repeat measured verdicts. Missing charges are unavailable, never interpreted as zero. No provider keys or purchased subscription credits were used.','',
               'Cached and structural controls: [existing procedure report](RESULTS_existing_and_controls.md). Conditional power planning, all transfers and all unfavorable/undefined results: '+link(detail_path)+'. Raw provider-private outputs remain in ignored owned storage; published evidence is sanitized.']
     figure_paths=figures(analyses);lines += ['', '![Selection gains](figures/selection_gain.png)']
     main=text_file('RESULTS_full_campaign.md',lines)

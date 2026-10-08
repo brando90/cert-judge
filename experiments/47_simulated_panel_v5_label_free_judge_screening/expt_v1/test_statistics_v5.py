@@ -206,4 +206,15 @@ class StatisticsTests(unittest.TestCase):
             self.assertEqual(row['undefined_draw_reasons'],{'no_H2_comparator_in_subpool':20})
             self.assertEqual(row['status'],'NOT_COMPUTABLE')
 
+    def test_undefined_original_estimand_has_no_confidence_band(self):
+        items=[{'item':str(i),'task':str(i)} for i in range(10)]
+        scores=np.column_stack([np.arange(10)/10,np.arange(10)/10]);scores[:2,1]=np.nan
+        records=[{'config':cfg,'component':'ident','task':str(i),'value':v} for cfg,v in [('opus55x|H2',1.),('qwen36|D0',.5)] for i in range(10)]
+        p=S.Panel(items,['opus55x|H2','qwen36|D0'],scores,np.arange(10)/10,records)
+        result=p.evaluate(draws=100,property_names=('C_ident',))
+        self.assertEqual(result['support']['status'],'NOT_COMPUTABLE')
+        estimate=result['properties']['C_ident']['unconditional_selection']['selected_spearman']
+        self.assertTrue(np.isnan(estimate['estimate']));self.assertIsNone(estimate['interval_95'])
+        self.assertGreater(estimate['finite_draws'],0)
+
 if __name__=='__main__':unittest.main()
