@@ -1,21 +1,19 @@
-# CertJudge five-rater cached recovery checkpoint
+# CertJudge five-rater cached comparison checkpoint
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/codex-cj-five-rater-recovery/CKPT_codex-cj-five-rater-recovery.md>
-
-**TLDR:** Audit five current rating series, then complete bounded cached comparisons and stronger behavioral protocol without new inference. Owned branch only; old writer ownership is unresolved.
+**Doc link:** [Canonical report](experiments/archive/45_five_rater_cached_selection_task_split_and_behavioral_audit/RESULTS_five_rater_comparison.md)
 
 Created: 10-07-2026 20:30:51 PDT
-Last updated: 10-07-2026 20:34:58 PDT
+Last updated: 10-07-2026 21:14:46 PDT
 
-- Deployment: `deploy_e05454ce3c8d42409bebf9420dc324ee`; session `codex-cj-five-rater-recovery`; process 44657.
-- Actual runtime: `gpt-6-astra`, `ultra`, full access, approval policy never; ChatGPT authenticated, allowance unknown; one executor, no fan-out.
-- Phase: source inventory and protocol freeze; full runbook, rules and parser read.
-- Inputs: cert-judge `14b4263c9f27c06e2c4ed4c77f82cf64c02d9cdb`; VeriBench `3169b2fd15e3d42338f09b2e5999ef66faac6019`; policy `be009ce589227b1c864c5d8baa9bfc7c5119eec0`.
-- Completed: exact runtime verified from session metadata and process; first successful read recorded in `research_notes/recovery_10-07-2026/receipt.json`.
-- Next: implement bounded inventory with audited parser, verify task assignments without displaying held-out outcomes; freeze comparison rules, then cached computation.
-- Limits: no new inference, provider keys, manuscript edits, benchmark edits or main merge; all source artifacts read-only.
-- Remote: runbook reports five timeouts; bounded current health check pending. No remote job claimed running.
-- Resume: `cat research_notes/recovery_10-07-2026/runbook.md research_notes/recovery_10-07-2026/results.md CKPT_codex-cj-five-rater-recovery.md`.
-- Reporting fallback: update `research_notes/recovery_10-07-2026/final-response.txt`; coordinator thread tool unavailable.
+- Owner: chat `01a11978-4127-7343-96d8-af2196d4ef27`; branch `codex-cj-five-rater-recovery`; checkout `/Users/sanmikoyejo-mba-1/cert-judge-wt-five-rater-recovery`.
+- Effective model/effort: `gpt-6-astra` / `ultra`; `danger-full-access`, approval policy `never`, verified in latest turn_context. Original replacement runtime receipt remains frozen under research_notes/recovery_10-07-2026/receipt.json.
+- Recovery: replacement model process 47471 stalled on a model response; terminated and confirmed gone before adopting its files. No concurrent writer. One bounded read-only citation/prose helper finished without edits. Subscription allowance unknown; no new measured inference.
+- Science COMPLETE: main cached job, historical fixed-score job, and descriptive proxy/rater job all finished exit 0 on skampere2. No scientific job remains active. Ordinary processor work only; no graphics processors assigned.
+- Remote inputs/runtime: `/tmp/brando9-cj-recovery-1007/{cert-judge,veribench}`; VeriBench revision `3169b2fd15e3d42338f09b2e5999ef66faac6019`. Frozen source hashes and protocol preserved. Portable artifacts now under `experiments/archive/45_five_rater_cached_selection_task_split_and_behavioral_audit`.
+- Coverage: 345 current observations, 75 outputs, 25 tasks, split 10/5/10 tasks. Main grid 34 computed and eight unavailable of 42. New selector unavailable at 13/15 validation outputs, required 14; no relaxation.
+- Verification: four numerical/coverage tests, 2,408 independent point checks, 177 manifest hashes; archived-path verification and all four tests passed; publication pending.
+- Reports: canonical RESULTS_five_rater_comparison.md, PROSPECTIVE_PLAN.md, PROPOSED_METHODS.md, SUPPLEMENT.md; no manuscript changes. Planned inference remains unlaunched/unquoted.
+- Next exact action: inspect owned staged diff and secret scan; commit/push branch, create and merge pull request after exact-revision checks; synchronize clean main and write landing receipt.
+- Coordinator tool failed with execution-config-loading; durable hand-back is research_notes/recovery_10-07-2026/final-response.txt.
 
-- Inventory complete: 345 current ratings, 75 candidate matches, 177 manifest hashes verified. Protocol frozen in `experiments/45_five_rater_cached_selection_task_split_and_behavioral_audit/PROTOCOL.md`; next implement and run training/validation selection, save receipt, then test comparison.
+**TLDR-end:** [cert-judge: 45_five_rater_cached_selection_task_split_and_behavioral_audit] Five-rater cached science and the stronger behavioral design are complete; final publication checks remain. No new inference or manuscript edit occurred.
