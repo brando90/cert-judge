@@ -1,6 +1,11 @@
 """Reject false structural completion independently of probe valid=True."""
 import copy
+import json
+from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
+import dependency_wait as wait
 from dependency_wait import verify_terminal_sources
 
 class ReadinessTests(unittest.TestCase):
@@ -36,5 +41,20 @@ class ReadinessTests(unittest.TestCase):
     def test_identical_receipt_from_different_toolchain_cannot_establish_readiness(self):
         source,manifest,cache,expected=self.fixture();cache[0]['environment']='different-toolchain'
         with self.assertRaisesRegex(ValueError,'matching preserved compilation'):verify_terminal_sources(source,manifest,cache,expected,'pinned')
+
+    def test_dependency_cannot_wait_on_reused_pid_or_another_run(self):
+        with tempfile.TemporaryDirectory() as directory:
+            helper=Path(directory);runtime=helper/wait.REL/'runtime';runtime.mkdir(parents=True)
+            driver={'pid':99999999,'boot_id':'old-boot','start_ticks':'10'}
+            active={'run_id':'cj-e47-probes-10-08-2026-a1','driver':driver}
+            path=runtime/'active_jobs.json';path.write_text(json.dumps(active))
+            with patch.object(wait,'HELPER',helper),patch.object(wait,'identity',return_value={**driver,'boot_id':'new-boot'}):
+                with self.assertRaisesRegex(ValueError,'boot/start identity'):wait.observe()
+            active['run_id']='different-study';path.write_text(json.dumps(active))
+            with patch.object(wait,'HELPER',helper):
+                with self.assertRaisesRegex(ValueError,'run identity'):wait.observe()
+            active['run_id']='cj-e47-probes-10-08-2026-a1';path.write_text(json.dumps(active))
+            with patch.object(wait,'HELPER',helper),patch.object(wait,'identity',return_value=None):
+                self.assertEqual(wait.observe()['state'],'ACTIONABLE_DEPENDENCY_FAILURE')
 
 if __name__=='__main__':unittest.main()

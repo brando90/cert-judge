@@ -6,7 +6,7 @@ from pathlib import Path
 import re
 from e47_adapter import ROOT,RESULTS,RUN_ID,POOL,read,write,sha
 from statistics_v5 import PROPERTIES,METRICS
-from analysis_provenance import verify_full_receipt,verify_criterion_receipt
+from analysis_provenance import verify_full_receipt,verify_criterion_receipt,repeat_job_names
 
 E=ROOT.parent
 VIEWS=('T_all','T_C0','T_common_excluding_Anthropic_Alibaba')
@@ -24,7 +24,7 @@ def link(path):
     path=Path(path);return f'[{path.name}]({path.relative_to(E).as_posix()})'
 
 def text_file(name,lines):
-    path=E/name;path.write_text('\n'.join(lines)+'\n');return path
+    path=E/name;path.write_text('\n'.join(lines).rstrip()+'\n');return path
 
 def verified_reconciliation(phase):
     receipt=read(ROOT/'runtime'/f'judge_{phase}_RECONCILED.json')
@@ -40,8 +40,18 @@ def criterion_report():
            '**Doc link:** [Frozen protocol](PROTOCOL.md)',
            '**TLDR:** These are agreement estimates against simulated ratings, conditional on the existing panel and frozen judge procedures. They do not measure judge–human agreement.','',
            'All intervals are percentile 95% intervals from 10,000 task bootstrap draws with seed 47. Repeated task multiplicity and paired score/target rows are preserved. Finite-draw counts accompany every estimate; undefined draws are excluded from interval quantiles and remain explicitly counted. No hypothesis test is performed (p-val=n/a). A configuration requires at least 90% item coverage in each reported view and bootstrap sample.','',
+           'Judge and panel scores lie on [0, 1]. Signed bias is judge minus simulated panel; positive values mean more lenient scoring. T_all is the primary persona target, T_C0 is the instructions-only target, and T_common_excluding_Anthropic_Alibaba removes both judge-pool provider families from the target. Frozen configuration labels are defined in the protocol.', '',
            'Primary nonblank population: 691 of 750 declared candidates over 50 tasks; the remaining 59 are source-declared blank candidates. The all-declared sensitivity applies only the frozen deterministic blank rule. Own-family exclusions are judge-specific sensitivities and do not provide a common cross-judge target.','']
-    sources=[RESULTS/'criterion_analysis_provenance.json']
+    recovery=read(RESULTS/'criterion/original_artifact_reconciliation.json')
+    charges=read(RESULTS/'criterion/charges.json')
+    if recovery['run_id']!=RUN_ID or recovery['state']!='RECONCILED':raise ValueError('original artifact recovery identity differs')
+    sources=[RESULTS/'criterion_analysis_provenance.json',RESULTS/'criterion/original_artifact_reconciliation.json',RESULTS/'criterion/charges.json',RESULTS/'criterion/harvest_summary.json']
+    accepted=sum(r['accepted_count'] for r in recovery['runs']);declared=sum(r['n_cells'] for r in recovery['runs'])
+    lines += ['## Original evidence and missingness','',
+              f"The artifact-only recovery accepted {accepted:,}/{declared:,} original admitted score repeats after verifying {recovery['verified_files']:,} files. Every admitted task retains a row, including absent artifacts, parser failures and uncertified submitted outputs. Run-level terminal errors do not establish individual task failure or absence of a prior verdict. No new inference was used for this recovery. Cached repeats and frozen deterministic rules remain separate sources; the item coverage below requires the frozen repeat aggregation.",'',
+              'Agent trajectories retain certified accounting but do not certify submitted verdict bytes. In particular, nonzero D0 coverage for the Terminus2 configurations comes from frozen deterministic rules, not recovered agent verdicts. No terminal command, model prose or trajectory is treated as a submitted score.','',
+              f"Known reported Valkyrie charges, including the twelve distinct original smoke conditions, total USD {charges['known_reported_sum_usd']:.7f}; {charges['unknown_charge_cells']:,} cells have unknown charges. The total bill is unknown. These are recorded charges, not an estimate or a spending cap.",'',
+              'The complete-pool repeat-information selection analyses, every group/task/base-model/provider-family transfer, conditional planning grid and explicit undefined result are in [the criterion repeat-information report](RESULTS_criterion_repeat_information.md). Neither report completes the still-required probe campaign.','']
     for target in (*VIEWS,'own_family_excluded'):
         for scope in ('pooled','original_G01_G13','late_G16_G17','all_declared_blank_zero'):
             lines += ['## '+target+' / '+scope,'',
@@ -63,7 +73,35 @@ def criterion_report():
     lines += ['', 'Historical fold-specific learned judges, separately named ensembles, item structural controls, and persona/provider-family diagnostics are reported in [the existing-procedure report](RESULTS_existing_and_controls.md).',
               'Machine-readable per-view estimates and input hashes: '+link(RESULTS/'criterion_descriptive_index.json')+'.']
     path=text_file('RESULTS_criterion_campaign.md',lines)
-    return [path],sources+[RESULTS/'repeat_variability_criterion.json']
+    repeat_path,repeat_sources=criterion_repeat_report()
+    return [path,repeat_path],sources+[RESULTS/'repeat_variability_criterion.json']+repeat_sources
+
+def criterion_repeat_report():
+    lines=['# Criterion repeat-information analyses','',
+           '**Doc link:** [Criterion agreement and original evidence](RESULTS_criterion_campaign.md)','',
+           '**TLDR:** The frozen repeat-information property is evaluated for the complete declared pool with missingness retained. Undefined associations, selection gains and planning results remain unavailable; this phase establishes no full-study shortlist.','',
+           'The property measures total-variation-distance mutual information between binned repeated scores. A task requires at least two candidates with all three accepted repeats; a configuration requires at least 80% task coverage. Selection utility requires at least 90% common item coverage across the declared comparison pool. These thresholds come from the frozen protocol and owner-property amendment. Held-out agent-group candidates are removed before rebuilding task-level repeat distributions.','',
+           'All intervals below are 95% percentile intervals from 10,000 task bootstrap draws with seed 47, preserving multiplicity and pairings. Associations additionally resample the three observed base-model clusters, keeping both Qwen harness variants in one cluster. Unconditional intervals recompute the selector; conditional intervals hold the observed selection fixed. No hypothesis test is performed (p-val=n/a).','',
+           'Planning assumes a +0.10 gain alternative, a one-sided centered-null 97.5th-percentile threshold and an 80% target rejection probability, conditional on the observed pool and tasks. Monte Carlo intervals describe simulation error. Independent new-family requirements remain NOT_IDENTIFIABLE.','']
+    sources=[]
+    for name in sorted(repeat_job_names()):
+        path=RESULTS/'repeat_only_analysis'/(name+'.json');job=read(path);sources.append(path)
+        if job['run_id']!=RUN_ID or job['draws']!=10000 or job['seed']!=47:raise ValueError('repeat analysis identity differs')
+        result=job['result'];lines += ['## '+name,'',link(path),'']
+        if name.endswith('_planning'):
+            if isinstance(result,dict):lines += [str(result),''];continue
+            lines += ['| Pool size | Resampled tasks | Subpools | Status | Finite/draws | Rejections | Power [Monte Carlo 95% interval] | Undefined-draw reasons |','|---:|---:|---:|---|---:|---:|---|---|']
+            for row in result:
+                ci=row.get('mc_interval_95');power=num(row.get('power'))+(' ['+', '.join(map(num,ci))+']' if ci else ' [undefined]')
+                lines.append('| '+' | '.join(map(str,[row['pool_size'],row['tasks'],row['subset_count'],row['status'],f"{row['finite_draws']}/{row['draws']}",row.get('rejections','undefined'),power,row.get('undefined_draw_reasons',{})]))+' |')
+            lines.append('');continue
+        if name.endswith('_pooled'):
+            lines += ['| Configuration | Tasks with defined repeat information / declared | Required fraction |','|---|---:|---:|']
+            for row in result.get('component_coverage',[]):
+                if row['component']=='repeat_tvd':lines.append(f"| {row['config'].replace('|',' / ')} | {row['observed']}/{row['structurally_eligible']} | {row['threshold']} |")
+            lines.append('')
+        selection_rows(lines,result)
+    return text_file('RESULTS_criterion_repeat_information.md',lines),sources
 
 def selection_rows(lines,result):
     configs=result.get('configs',[])
