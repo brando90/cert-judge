@@ -45,7 +45,7 @@ def metrics(x,y):
 
 def interval(values,point=np.nan):
     a=np.asarray(values,float);a=a[np.isfinite(a)]
-    return {'estimate':float(point),'interval_95':np.quantile(a,[.025,.975]).tolist() if len(a) else None,
+    return {'estimate':float(point),'interval_95':np.quantile(a,[.025,.975]).tolist() if len(a) and np.isfinite(point) else None,
             'finite_draws':len(a),'undefined_draws':len(values)-len(a),'draws':len(values),'p_val':None,
             'test':'none; descriptive percentile task bootstrap'}
 
