@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 14:04 PDT
+Last updated: 10-08-2026 14:15 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -70,3 +70,5 @@ Last updated: 10-08-2026 14:04 PDT
 - 10-08-2026 13:47 PDT:41 tests PASS. A decisive synthetic80%-coverage case now preserves finite bootstrap-draw counts but suppresses a confidence band when the original estimand is NOT_COMPUTABLE; previously such a row could pair an undefined point with a numeric band. Completed published criterion estimates are unchanged because their undefined rows have no finite draws. Full reports will also show compiler-class counts and explicitly separate timeout nonverification and unobserved backend revision identity. Independent scoring and follow-through jobs continue without replacement.
 
 - 10-08-2026 14:04 PDT: root13:42 provenance finding addressed: full-analysis sidecar binds current run/protocol/amendments, both reconciled admissions, exact structural manifest, all final score bytes and analysis code. Every aggregate view must equal its current-input derivation job; required inventories include all128 full-analysis jobs, three shared targets, all15 groups/five task folds, three base exclusions/two provider exclusions, and every20-cell computable power grid. Criterion-only reporting separately binds192 views and84 repeat analyses to stable criterion-phase inputs, so later probe harvest cannot silently alter it. Explicit unavailable results remain allowed; missing maps, stale same-run scores, substituted manifests and missing derivation jobs fail.47 deterministic tests PASS. No new measured admission or retry; all ten criterion runs and the independent compiler remain healthy.
+
+- 10-08-2026 14:15 PDT: target analyses now run in three independent ordinary Python processes, with disjoint output paths and deterministic seeds. Synthetic full-pipeline regression against exact106a12b serial code matches all128 full derivation jobs; criterion regression matches all192 views and84 repeat jobs. All47 deterministic tests remain PASS. Reduced draws were used only for these synthetic implementation checks; actual study jobs retain10000 draws. Evidence: expt_v1/results/implementation_parallel_verification.json. Root14:13 independently verified106a12b full-checkout layout and the complete provenance gates. No scoring driver or compiler was restarted.

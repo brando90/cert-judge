@@ -2,6 +2,8 @@
 from __future__ import annotations
 import argparse
 from collections import Counter,defaultdict
+from concurrent.futures import ProcessPoolExecutor,as_completed
+from multiprocessing import get_context
 import json
 import math
 from pathlib import Path
@@ -142,48 +144,62 @@ def cached_analysis(draws):
             print('cached descriptive complete',key,scope,flush=True)
     return result
 
-def full_analysis(manifest,draws):
+def job_runner(fingerprint,draws,jobs):
     import analysis_provenance as provenance
-    identity=provenance.capture_inputs('full',manifest)
-    targets=read(RESULTS/'targets_reconstructed.json');scores,repeats=accepted_scores();rows=[r for r in targets if not r['blank']]
-    fingerprint=provenance.fingerprint(identity);jobs=[]
     def job(name,compute):
         jobs.append(name)
         path=RESULTS/'analysis_jobs'/f'{name}.json'
         if path.exists() and provenance.current_job(read(path),fingerprint):return read(path)['result']
         result=clean(compute());write(path,{'run_id':RUN_ID,'input_sha256':fingerprint,'draws':draws,'seed':47,'result':result})
         print('analysis completed',name,flush=True);return result
+    return job
+
+def full_target(args):
+    key,targets,scores,repeats,records,manifest,draws,fingerprint=args
+    rows=[r for r in targets if not r['blank']];jobs=[];job=job_runner(fingerprint,draws,jobs)
+    p=make_panel(rows,scores,key,records);analysis=job('selection_'+key,lambda:p.evaluate(draws))
+    save('criterion_'+key+'.json',job('criterion_'+key,lambda:p.criterion(draws)))
+    sensitivity={}
+    for base in sorted(set(p.base)):
+        sensitivity['exclude_base_'+base]=job(key+'_exclude_base_'+base,lambda:p.evaluate(draws,columns=np.flatnonzero(p.base!=base)))
+    for family in sorted(set(p.family)):
+        sensitivity['exclude_provider_'+family]=job(key+'_exclude_provider_'+family,lambda:p.evaluate(draws,columns=np.flatnonzero(p.family!=family)))
+    for name,mask in [('original_G01_G13',[r['group'] not in ('G16','G17') for r in rows]),('late_G16_G17',[r['group'] in ('G16','G17') for r in rows])]:
+        sensitivity[name]=job(key+'_'+name,lambda:p.evaluate(draws,test_indices=np.flatnonzero(mask)))
+        scoped=make_panel([r for r,keep in zip(rows,mask) if keep],scores,key,records)
+        save('criterion_'+key+'_'+name+'.json',job('criterion_'+key+'_'+name,lambda:scoped.criterion(draws)))
+    # Same-eligible-pool sensitivity is additive; full-pool result above stays.
+    eligible=[j for j,c in enumerate(POOL) if np.isfinite(p.scores[:,j]).sum()>=math.ceil(.9*len(rows))]
+    sensitivity['same_eligible_pool']=job(key+'_same_eligible_pool',lambda:p.evaluate(draws,columns=eligible) if eligible else {'status':'NOT_COMPUTABLE','reason':'no configuration meets the frozen criterion coverage requirement'})
+    save('sensitivity_'+key+'.json',sensitivity)
+    transfers={};folds=S.task_folds(p.tasks);group_panels={}
+    for group in sorted({r['group'] for r in rows}):
+        group_records,_=property_records(repeats,targets,manifest,exclude_group=group)
+        q=make_panel(rows,scores,key,group_records)
+        group_panels[group]=q
+        transfers['agent_group_'+group]=job(key+'_group_'+group,lambda:q.evaluate(draws,test_indices=np.array([i for i,r in enumerate(rows) if r['group']==group]),exclude_group=group))
+    transfers['equal_group_mean']=job(key+'_equal_group_mean',lambda:S.equal_group_transfer(group_panels,draws))
+    for fold in range(5):
+        train=[t for t in p.tasks if folds[t]!=fold];test=np.array([i for i,r in enumerate(rows) if folds[r['task']]==fold])
+        transfers['task_fold_'+str(fold)]=job(key+'_task_fold_'+str(fold),lambda:p.evaluate(draws,train_tasks=train,test_indices=test))
+    save('transfers_'+key+'.json',{'assignment':folds,'results':transfers,'agent_group_interpretation':'conditional on known shared references; not task transfer'})
+    save('planning_'+key+'.json',{prop:job(key+'_planning_'+prop,lambda:S.planning(p,prop,draws)) for prop in S.PROPERTIES})
+    return key,analysis,jobs
+
+def full_analysis(manifest,draws):
+    import analysis_provenance as provenance
+    identity=provenance.capture_inputs('full',manifest)
+    targets=read(RESULTS/'targets_reconstructed.json');scores,repeats=accepted_scores();rows=[r for r in targets if not r['blank']]
+    fingerprint=provenance.fingerprint(identity);jobs=[]
+    job=job_runner(fingerprint,draws,jobs)
     records,details=property_records(repeats,targets,manifest)
     save('per_task_properties.json',{'records':records,'details':details,'semantic_auc':'NOT_COMPUTABLE: no independent strict-weakening/formatting audit'})
     save('repeat_variability.json',repeat_variability(repeats,targets));analyses={}
-    for key in ('T_all','T_C0','T_common_excluding_Anthropic_Alibaba'):
-        p=make_panel(rows,scores,key,records);analyses[key]=job('selection_'+key,lambda:p.evaluate(draws));save('selection_association.json',analyses)
-        save('criterion_'+key+'.json',job('criterion_'+key,lambda:p.criterion(draws)))
-        sensitivity={}
-        for base in sorted(set(p.base)):
-            sensitivity['exclude_base_'+base]=job(key+'_exclude_base_'+base,lambda:p.evaluate(draws,columns=np.flatnonzero(p.base!=base)))
-        for family in sorted(set(p.family)):
-            sensitivity['exclude_provider_'+family]=job(key+'_exclude_provider_'+family,lambda:p.evaluate(draws,columns=np.flatnonzero(p.family!=family)))
-        for name,mask in [('original_G01_G13',[r['group'] not in ('G16','G17') for r in rows]),('late_G16_G17',[r['group'] in ('G16','G17') for r in rows])]:
-            sensitivity[name]=job(key+'_'+name,lambda:p.evaluate(draws,test_indices=np.flatnonzero(mask)))
-            scoped=make_panel([r for r,keep in zip(rows,mask) if keep],scores,key,records)
-            save('criterion_'+key+'_'+name+'.json',job('criterion_'+key+'_'+name,lambda:scoped.criterion(draws)))
-        # Same-eligible-pool sensitivity is additive; full-pool result above stays.
-        eligible=[j for j,c in enumerate(POOL) if np.isfinite(p.scores[:,j]).sum()>=math.ceil(.9*len(rows))]
-        sensitivity['same_eligible_pool']=job(key+'_same_eligible_pool',lambda:p.evaluate(draws,columns=eligible) if eligible else {'status':'NOT_COMPUTABLE','reason':'no configuration meets the frozen criterion coverage requirement'})
-        save('sensitivity_'+key+'.json',sensitivity)
-        transfers={};folds=S.task_folds(p.tasks);group_panels={}
-        for group in sorted({r['group'] for r in rows}):
-            group_records,_=property_records(repeats,targets,manifest,exclude_group=group)
-            q=make_panel(rows,scores,key,group_records)
-            group_panels[group]=q
-            transfers['agent_group_'+group]=job(key+'_group_'+group,lambda:q.evaluate(draws,test_indices=np.array([i for i,r in enumerate(rows) if r['group']==group]),exclude_group=group))
-        transfers['equal_group_mean']=job(key+'_equal_group_mean',lambda:S.equal_group_transfer(group_panels,draws))
-        for fold in range(5):
-            train=[t for t in p.tasks if folds[t]!=fold];test=np.array([i for i,r in enumerate(rows) if folds[r['task']]==fold])
-            transfers['task_fold_'+str(fold)]=job(key+'_task_fold_'+str(fold),lambda:p.evaluate(draws,train_tasks=train,test_indices=test))
-        save('transfers_'+key+'.json',{'assignment':folds,'results':transfers,'agent_group_interpretation':'conditional on known shared references; not task transfer'})
-        save('planning_'+key+'.json',{prop:job(key+'_planning_'+prop,lambda:S.planning(p,prop,draws)) for prop in S.PROPERTIES})
+    with ProcessPoolExecutor(max_workers=3,mp_context=get_context("fork")) as workers:
+        pending=[workers.submit(full_target,(key,targets,scores,repeats,records,manifest,draws,fingerprint)) for key in provenance.TARGETS]
+        for future in as_completed(pending):
+            key,analysis,completed_jobs=future.result();analyses[key]=analysis;jobs.extend(completed_jobs)
+            save('selection_association.json',analyses)
     # Judge-family-specific targets are sensitivities, never a shared comparator.
     for family in ('Anthropic','Alibaba'):
         configs=[c for c in POOL if FAMILY[c.split('|')[0]]==family]
