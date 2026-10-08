@@ -28,6 +28,12 @@ def process_group_alive(pgid: int) -> bool:
     except ProcessLookupError:
         return False
 
+def dependency_wait_receipt(runtime: Path, run_id: str):
+    path=runtime/'dependency_wait.json'
+    if not path.exists():return None
+    receipt=json.loads(path.read_text())
+    return receipt if receipt.get('run_id')==run_id and receipt.get('state')=='dependency_waiting' else None
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -54,6 +60,11 @@ def main() -> int:
              'cwd': str(cwd), 'maximum_attempts': cfg['maximum_attempts']}
     prompt = Path(cfg['prompt']).read_text()
     for attempt in range(start_attempt, cfg['maximum_attempts'] + 1):
+        waiting=dependency_wait_receipt(runtime,cfg['run_id'])
+        if waiting:
+            state.update(state='dependency_waiting',attempt=previous.get('attempt',0),next_attempt=attempt,receipt=waiting,heartbeat_epoch=time.time())
+            atomic_json(state_path,state)
+            return 0
         for marker in ('COMPLETE.json', 'BLOCKED.json'):
             path = runtime / marker
             if path.exists():
@@ -89,6 +100,11 @@ def main() -> int:
             state.update(state='child_alive_adoption_required')
             atomic_json(state_path, state)
             return 75
+        waiting=dependency_wait_receipt(runtime,cfg['run_id'])
+        if waiting:
+            state.update(state='dependency_waiting',receipt=waiting,heartbeat_epoch=time.time())
+            atomic_json(state_path,state)
+            return 0
         for marker in ('COMPLETE.json', 'BLOCKED.json'):
             path = runtime / marker
             if path.exists():

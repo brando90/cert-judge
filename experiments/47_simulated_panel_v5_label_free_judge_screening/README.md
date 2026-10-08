@@ -22,7 +22,7 @@ Dependencies: experiment 39 frozen functions and configurations; archived experi
 |---|---|---|
 | Protocol and ownership | Frozen, amendments additive | Reserved number 47; owner notified; protocol precedes computations |
 | Source inventory and target reconstruction | Verified zero-call phase | 28 raw-cell files, frozen recovery precedence, and 650/650 saved main targets match at six decimals |
-| Reference probes and judge scoring | Active implementation and independent compilation | Criterion-first scheduling under Amendment 04; no new calls yet |
+| Reference probes and judge scoring | All20,250 pending criterion cells admitted; probes compiling independently |12/12 original smokes strictly accepted; exact slice recovery preserved every declared task |
 | Recommendations and planning | TODO | No conclusion yet |
 
 See [results.md](results.md) for current evidence and [checkpoint](CKPT_v5_sandbox.md) for recovery.
@@ -32,3 +32,7 @@ Cached descriptive output: [RESULTS_cached_descriptive.md](RESULTS_cached_descri
 - 10-08-2026 12:15 PDT: [All cached procedures, structural controls and panel diagnostics](RESULTS_existing_and_controls.md) are complete (90 procedures and 90 diagnostic views, 10,000 task draws each). [Raw-repeat uncertainty](expt_v1/results/existing_repeat_variability_intervals.json) preserves task pairing and missingness. The complete criterion manifest is frozen at 27,000 declared cells across twelve configurations; prompt packing is active. Full probe scoring, selection analysis and whole-study publication remain required.
 
 Reconstruct frozen code dependencies with `python3 expt_v1/prepare_frozen_vendor.py`, then `python3 expt_v1/fetch_dependencies.py` against the pinned source clone. Both use exact named Git blobs, and runtime admission verifies their hashes. Input/receipt data retained privately are identified by the committed provenance manifests; this public repository does not distribute raw provider-private ratings or credentials.
+
+Current measured-admission evidence: [criterion run receipt](expt_v1/results/criterion/scoring_admission_receipt.json). Read-only [artifact recovery](expt_v1/results/criterion/harvest_recovery_1.json) recovered original responses without repeated calls. The [task-selection transport condition](expt_v1/results/criterion/infrastructure_admission_recovery_1.json) replaces a 166,242-byte failed task query with verified equivalent dataset slices; it changes no prompts, judge settings or scientific cells.
+
+After criterion reconciliation, run `python3 expt_v1/run_offline.py --name criterion_only_analysis -- python3 analyze_criterion_only.py`, then `python3 expt_v1/report_campaign.py --criterion-only`. After verified probe integration, complete its frozen rendering/packing/quote/deployment, run `verify_task_slices.py --phase probes`, then admit its complete workload, run `analyze_campaign.py --probe-manifest probes/probe_manifest.json`, and generate `report_campaign.py --probe-manifest probes/probe_manifest.json`. Full reporting refuses unreconciled phases. Final publication and whole-study completion remain separate verified gates.

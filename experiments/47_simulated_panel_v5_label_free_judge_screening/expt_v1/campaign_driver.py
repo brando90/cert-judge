@@ -14,11 +14,12 @@ import threading
 import time
 from e47_adapter import ROOT,RESULTS,PRIVATE,RUN_ID,POOL,read,write,sha,phase_context,verify_dependencies
 from receipt_validation import accepted
+from harvest_transport import install as install_harvest_transport
 from run_offline import identity,update_job
 
-def reconcile_ambiguous_admission(ctl,cfg,part,phase):
+def reconcile_ambiguous_admission(ctl,cfg,part,phase,suffix=''):
     """Read-only recovery of a lost start receipt; never issue another start."""
-    key=cfg+'@'+part;state=ctl.load_state();entry=state['runs'].get(key)
+    key=cfg+'@'+part+suffix;state=ctl.load_state();entry=state['runs'].get(key)
     if not entry or entry.get('run_id') or entry.get('phase')=='admission_failed_verified_absent':return
     argv=entry.get('actual_command') or entry['command'];label=entry.get('actual_label') or argv[argv.index('--label')+1].replace('cj39-','cj47-'+phase+'-',1)
     entry['phase']='admission_unresolved';ctl.save_state(state)
@@ -37,13 +38,13 @@ def reconcile_ambiguous_admission(ctl,cfg,part,phase):
         if attempt<2:time.sleep(30)
     entry.update(phase='admission_failed_verified_absent',adoption='three read-only exact-filter inventories found no server run; no repeated start');ctl.save_state(state)
 
-def strict_harvest(ctl,phase,cfg,part):
-    blob=ctl.harvested(cfg,part)
-    if blob is None:return None
+def strict_harvest(ctl,phase,cfg,part,suffix=''):
+    blob=ctl.harvested(cfg,part,suffix) if suffix else ctl.harvested(cfg,part)
+    if blob is None:raise RuntimeError('harvest is unavailable; recover existing run receipts before classifying this condition')
     meta={r['cell']:r for r in ctl.pack_rows(cfg,part)}
     is_agent=ctl.unit_of(cfg)['pack_flavor']=='agent'
     receipts={}
-    artifacts=ctl.RAW/f"{cfg.replace('|','__')}__{part}_artifacts"
+    artifacts=ctl.RAW/f"{(cfg+'@'+part+suffix).replace('|','__').replace('@','_')}_artifacts"
     for path in sorted(artifacts.rglob('receipt.json')):
         raw=read(path);task_id=raw.get('task_id') or path.parent.name
         digest=sha(path.read_bytes())
@@ -95,7 +96,7 @@ def merge_phase(ctl,phase):
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--phase',choices=['criterion','probes'],required=True);args=ap.parse_args();phase=args.phase
     dependency_hashes=verify_dependencies()
-    e,_,_,ctl=phase_context(phase);runtime=ROOT/'runtime';name='judge_'+phase
+    e,_,_,ctl=phase_context(phase);install_harvest_transport(ctl);runtime=ROOT/'runtime';name='judge_'+phase
     lock=(runtime/(name+'.lock')).open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     admission=read(e.RESULTS/'admission_manifest.json');quote=read(e.RESULTS/'QUOTE.json');packs=read(e.RESULTS/'packs.json')
     if admission['state']!='FROZEN' or set(admission['configurations'])!=set(POOL):raise ValueError('incomplete frozen admission')
@@ -103,6 +104,14 @@ def main():
     if admission.get('transport_policy_sha256') and sha((e.RESULTS/'transport_policy.json').read_bytes())!=admission['transport_policy_sha256']:raise ValueError('frozen transport policy changed')
     for cfg,digest in admission['cells_sha256'].items():
         if sha((e.RESULTS/'cells'/f"{cfg.replace('|','__')}.json").read_bytes())!=digest:raise ValueError('frozen cell bytes changed')
+    selection_path=e.RESULTS/'task_selection_transport.json'
+    selection=read(selection_path) if selection_path.exists() else None
+    if selection:
+        if selection['run_id']!=RUN_ID or selection['phase']!=phase or selection['admission_manifest_sha256']!=quote['admission_manifest_sha256'] or selection['packs_sha256']!=quote['packs_sha256']:raise ValueError('task selection transport identity mismatch')
+        for cfg,selected in selection['configurations'].items():
+            ids=[r['task_id'] for r in ctl.pack_rows(cfg,'main')]
+            if selected['task_ids_sha256']!=sha(('\n'.join(sorted(ids))+'\n').encode()) or selected['expected_cells']!=len(ids) or not selected['remote_verified_equal']:raise ValueError('slice differs from full declared task list')
+    def suffix_for(cfg,part):return (selection or {}).get('suffixes',{}).get(cfg,'') if part=='main' else ''
     # Exact historical selectors are the sole allowed selectors. All scientific
     # harness settings come from the already verified panel/harness receipts.
     write(e.RESULTS/'selectors.json',{u['model_key']:{'selector':u['selectors'][0],'source':'frozen historical E39 harvest'} for u in read(e.RESULTS/'panel.json')['units']})
@@ -112,6 +121,10 @@ def main():
         if '--label' in argv:
             i=argv.index('--label')+1;argv[i]=argv[i].replace('cj39-','cj47-'+phase+'-',1)
         if argv[:2]==['run','start']:
+            if selection and '--task-ids-file' in argv:
+                for cfg,selected in selection['configurations'].items():
+                    if Path(argv[argv.index('--task-ids-file')+1]).name==f"task_ids_{(cfg+'@main'+suffix_for(cfg,'main')).replace('|','__').replace('@','_')}.txt":
+                        index=argv.index('--task-ids-file');argv[index:index+2]=['--slice',selected['slice']];break
             label=argv[argv.index('--label')+1]
             write(ctl.JUDGE/'actual_admission_commands'/(label+'.json'),{'argv':argv,'recorded_before_call':True,'recorded_epoch':time.time()})
             state=ctl.load_state()
@@ -144,12 +157,13 @@ def main():
             for cfg in POOL:
                 if cfg in unavailable:continue
                 if not ctl.pack_rows(cfg,part):continue
-                ctl.admit(cfg,part,concurrency=20)
-                ledger=ctl.load_state();entry=ledger['runs'][cfg+'@'+part]
+                suffix=suffix_for(cfg,part)
+                ctl.admit(cfg,part,concurrency=20,suffix=suffix)
+                ledger=ctl.load_state();entry=ledger['runs'][cfg+'@'+part+suffix]
                 argv=entry['command'];label=argv[argv.index('--label')+1].replace('cj39-','cj47-'+phase+'-',1)
                 actual=ctl.JUDGE/'actual_admission_commands'/(label+'.json')
                 if actual.exists():entry.update(actual_command=read(actual)['argv'],actual_label=label);ctl.save_state(ledger)
-                reconcile_ambiguous_admission(ctl,cfg,part,phase)
+                reconcile_ambiguous_admission(ctl,cfg,part,phase,suffix)
             while True:
                 ctl.poll(publish=True);runs=ctl.load_state()['runs'];pending=[]
                 changed=False
@@ -159,17 +173,17 @@ def main():
                 if changed:
                     current=ctl.load_state();current['runs']=runs;ctl.save_state(current)
                 for cfg in POOL:
-                    entry=runs.get(cfg+'@'+part)
+                    entry=runs.get(cfg+'@'+part+suffix_for(cfg,part))
                     if entry and entry.get('run_id') and entry.get('phase')!='terminal':pending.append(cfg)
                 state['pending_configurations']=pending
                 if not pending:break
                 time.sleep(30)
             for cfg in POOL:
-                entry=ctl.load_state()['runs'].get(cfg+'@'+part)
+                suffix=suffix_for(cfg,part);entry=ctl.load_state()['runs'].get(cfg+'@'+part+suffix)
                 if entry and entry.get('run_id') and entry.get('phase')=='terminal':
                     strict_path=ctl.JUDGE/'strict_harvests'/f"{cfg.replace('|','__')}__{part}.json"
                     if not strict_path.exists():
-                        ctl.harvest(cfg,part);blob=strict_harvest(ctl,phase,cfg,part)
+                        ctl.harvest(cfg,part,suffix);blob=strict_harvest(ctl,phase,cfg,part,suffix)
                     else:blob=read(strict_path)
                     if part=='smoke' and (blob is None or blob['accepted_count']!=len(blob['cells'])):unavailable[cfg]='smoke transport/parser failed; main condition retained unavailable, no silent retry'
                 elif part=='smoke':unavailable[cfg]='no successful smoke admission; inspect recorded admission failure'

@@ -10,6 +10,24 @@ from e47_adapter import frozen,write,read
 from campaign_driver import strict_harvest,reconcile_ambiguous_admission
 
 class AdmissionTests(unittest.TestCase):
+    def test_collection_failure_is_not_a_scientific_failure(self):
+        ctl=SimpleNamespace(harvested=lambda *args:None)
+        with self.assertRaisesRegex(RuntimeError,'recover existing run receipts'):
+            strict_harvest(ctl,'criterion','cfg','smoke')
+
+    def test_archived_final_view_adopts_without_network_and_rejects_wrong_run(self):
+        from harvest_transport import install
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);entry={'run_id':'owned-run','benchmark':'owned-benchmark','config':'cfg','part':'smoke'}
+            original=root/'cfg_smoke_artifacts/owned-benchmark.json'
+            write(original,{'benchmark_id':'owned-run','benchmark_name':'owned-benchmark','status':'FINISHED','evaluation_results':{'task':{'score':.8}}})
+            (root/'cfg_smoke_download.log').write_text('run output owned-run rc=0\n')
+            ctl=SimpleNamespace(RAW=root,load_state=lambda:{'runs':{'cfg@smoke':entry}},TERMINAL_RUN={'finished'},pack_rows=lambda *a:[{'task_id':'task'}],rows_of=lambda p:read(p)['evaluation_results'])
+            install(ctl);results,artifacts=ctl.download('cfg@smoke','owned-run')
+            self.assertEqual(results.read_bytes(),original.read_bytes())
+            payload=read(original);payload['benchmark_id']='different-run';write(original,payload)
+            with self.assertRaisesRegex(ValueError,'identity mismatch'):ctl.download('cfg@smoke','owned-run')
+
     def test_lost_start_receipt_adopts_exact_remote_run_without_new_start(self):
         import re,json
         with tempfile.TemporaryDirectory() as directory:
@@ -43,12 +61,22 @@ class AdmissionTests(unittest.TestCase):
         cfg='opus55x|H2'
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);raw=root/'raw';judge=root/'judge'
-            write(raw/'opus55x__H2__main_artifacts/task/receipt.json',{'task_id':'task','status':'measured','requests_sent':2,'http_status':429})
+            write(raw/'opus55x__H2_main_artifacts/task/receipt.json',{'task_id':'task','status':'measured','requests_sent':2,'http_status':429})
             blob={'cells':[{'cell':'c','task_id':'task','status':'measured','score':.5,'prompt_sha256_delivered':'p','agent_status':'measured'}]}
             ctl=SimpleNamespace(RAW=raw,JUDGE=judge,harvested=lambda *args:blob,pack_rows=lambda *args:[{'cell':'c','prompt_sha256':'p'}],unit_of=lambda *args:{'pack_flavor':'single_call'})
             result=strict_harvest(ctl,'criterion',cfg,'main')
             self.assertEqual(result['accepted_count'],0);cell=result['cells'][0]
             self.assertEqual(cell['status'],'unmeasured_infra');self.assertEqual(cell['acceptance_reason'],'HTTP_429_INFRASTRUCTURE_FAILURE')
             self.assertEqual(cell['requests_sent'],2);self.assertTrue(cell['raw_transport_receipt_sha256'])
+
+    def test_watchdog_respects_driver_lock_before_new_receipt_arrives(self):
+        import fcntl
+        from watch_campaign import driver_lock_held
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'driver.lock'
+            with path.open('a') as held:
+                fcntl.flock(held,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                self.assertTrue(driver_lock_held(path))
+            self.assertFalse(driver_lock_held(path))
 
 if __name__=='__main__':unittest.main()
