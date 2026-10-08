@@ -195,4 +195,15 @@ class StatisticsTests(unittest.TestCase):
         self.assertEqual(full['properties']['repeat_tvd'],focused['properties']['repeat_tvd'])
         self.assertEqual(full['controls'],focused['controls'])
 
+    def test_power_planning_does_not_invent_missing_H2_comparator(self):
+        cfgs=['opus55x|D0','qwen36|D0','qwen36|R4','t2_sonnet5|D0']
+        items=[{'item':str(i),'task':str(i)} for i in range(3)]
+        records=[{'config':cfg,'component':'repeat_tvd','task':str(t),'value':(j+1)/5} for j,cfg in enumerate(cfgs) for t in range(3)]
+        panel=S.Panel(items,cfgs,[[0,1,.1,.8],[.5,.5,.4,.3],[1,0,.9,.1]],[0,.5,1],records)
+        result=S.planning(panel,'repeat_tvd',draws=20)
+        for row in result:
+            self.assertEqual(row['finite_draws'],0);self.assertEqual(row['undefined_draws'],20)
+            self.assertEqual(row['undefined_draw_reasons'],{'no_H2_comparator_in_subpool':20})
+            self.assertEqual(row['status'],'NOT_COMPUTABLE')
+
 if __name__=='__main__':unittest.main()

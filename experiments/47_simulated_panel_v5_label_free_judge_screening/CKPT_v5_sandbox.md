@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 13:11 PDT
+Last updated: 10-08-2026 13:43 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -10,7 +10,7 @@ Last updated: 10-08-2026 13:11 PDT
 - Branch: `codex/cj-e47-v5-simulated-sandbox`; base `d012e140d7c53f3db4cb7be9db11faf436d3d8e3`.
 - Reserved remote checkout: `/dfs/scratch0/brando9/cert-judge-e47-v5-sandbox`; worker session `codex-cj-e47-v5-sandbox` on skampere1.
 - Source: VeriBench `ccd86d467fd7577826c4b549df2c532bf43b1892`; strict v5 allowlist in PROTOCOL.md.
-- Protocol: frozen at commit `d38359a673dbc762e18488f3b9d6e6bd45622ecd`, SHA-256 `513f394cfdf00f1fbc45b84026746af11e40cd003a639246ae354eacb29eb174`; amendment 01 is present. Twelve distinct experiment-47 smoke calls are now strictly accepted; main criterion admission is recovering a task-list transport limit. Cached-only descriptive analyses are complete and cannot establish full-pool selection utility.
+- Protocol: frozen at commit `d38359a673dbc762e18488f3b9d6e6bd45622ecd`, SHA-256 `513f394cfdf00f1fbc45b84026746af11e40cd003a639246ae354eacb29eb174`; amendment 01 is present. Twelve distinct experiment-47 smoke calls are now strictly accepted; all20,250 fresh criterion tasks are admitted and scoring under verified equivalent dataset slices. Cached-only descriptive analyses are complete and cannot establish full-pool selection utility.
 - Owner handoff: `AMENDMENT_01_owner_information_properties.md` freezes the October 7 owner's `repeat_tvd` and `deletion_tvd` definitions; `semantic_auc` remains pending audited strict-weakening and formatting probes. Do not invent replacements.
 - Remote health: skampere1 relevant checks PASS; shared storage warning has 4.4 TiB free, bounded expected work under 100 GiB; no cleanup needed.
 - Executor selection: initial gpt-6.1-sol/high was unsupported; inventory attempts 2–3 completed using verified gpt-5.6-terra/high. The next coupled scoring/statistics implementation phase selects gpt-6-astra/ultra; attempt 4 is live with native process 380672, full access and approval never; useful source/receipt inspection is recorded in runtime/worker_ack.json. Scientific judge pins remain unchanged.
@@ -64,3 +64,5 @@ Last updated: 10-08-2026 13:11 PDT
 - 10-08-2026 13:26 PDT:38 deterministic tests PASS via `python3 -m unittest discover -s expt_v1 -p test_*.py`, including exact agreement of the focused repeat-only estimator with the full estimator and paired raw-repeat variability intervals. Ordinary continuation cj47-criterion-followthrough driver2747519/child2747666 verified alive with a useful run-bound reconciliation check; it will run all192 criterion views and independent repeat analyses automatically after strict harvest, then generate the criterion report. No model/admission/retry path exists in that continuation. Probe dependency waiting remains inactive.
 
 - Watchdog startup now waits for a fresh driver receipt and checks the actual driver lock before any adoption;39 tests PASS. This source change has not restarted or reset live watchdog2506401, whose original one-adoption budget remains consumed.
+
+- 10-08-2026 13:42 PDT: semantic-audit dependency resolved by exact owner-commit metadata:0/50 fresh reference hashes match the25 owner audited source hashes; the250-row semantic manifest digest equals its owner input inventory. No historical scores/labels were imported. semantic_auc remains explicit NOT_COMPUTABLE, not an unresolved definition blocker. Planning receipts now partition undefined bootstrap draws (including absent H2 comparators) without changing estimators;40 tests PASS. Read-only current task-error inventory found30 sandbox/build failures in the observed subset, no429-tagged message in that subset; final raw transport receipts remain authoritative. Root13:28 verified the ordinary follow-through and allows a useful result-publication successor after it finishes; no waiting-only restart or whole-study completion is claimed.

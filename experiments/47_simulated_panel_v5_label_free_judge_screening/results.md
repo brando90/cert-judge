@@ -31,3 +31,5 @@ Measured scores, intervals, complete inventory and recommendations: pending remo
 ## 10-08-2026 13:16 PDT — full criterion admission
 
 All20,250 pending criterion cells now have Valkyrie run IDs, following12/12 strictly accepted distinct smokes. This is admission evidence, not final score coverage. [Run receipt](expt_v1/results/criterion/scoring_admission_receipt.json); [preserved artifact-collection recovery](expt_v1/results/criterion/harvest_recovery_1.json); [exact task-query transport recovery](expt_v1/results/criterion/infrastructure_admission_recovery_1.json). Probe compilation, full harvesting, selection/transfer/power analyses and final publication remain required.
+
+Semantic discrimination availability is resolved: [exact source-hash audit](expt_v1/results/semantic_audit_availability.json) finds0/50 fresh reference hashes in the25 historical owner audit sources. The slot is NOT_COMPUTABLE; ordinary deletion validity is not a semantic audit. This lookup imported no historical score or label arrays.
