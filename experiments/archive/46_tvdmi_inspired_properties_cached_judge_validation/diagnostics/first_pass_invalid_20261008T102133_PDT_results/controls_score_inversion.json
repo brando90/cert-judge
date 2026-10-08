@@ -1,0 +1,961 @@
+{
+  "description": "score -> 1-score; repeat information should be invariant while deletion orientation gates reversed ladders",
+  "fixtures": {
+    "candidate_id_only_repeat_signal": 0.5,
+    "task_id_only_repeat_signal": 0.0
+  },
+  "properties": {
+    "gem31h|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.11522633744855978,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.17407407407407416,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "gem31h|H0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1296296296296297,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.15925925925925935,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.17777777777777792,
+        "semantic_auc": -1.0
+      }
+    },
+    "gem31h|H1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.0740740740740742,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.17037037037037048,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1777777777777779,
+        "semantic_auc": -1.0
+      }
+    },
+    "gem31h|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.13168724279835403,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.18518518518518529,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2666666666666668,
+        "semantic_auc": -1.0
+      }
+    },
+    "gem31h|LEX": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.0074074074074075595,
+        "semantic_auc": -0.08333333333333333
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.014814814814814966,
+        "semantic_auc": -0.7666666666666667
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 1.6653345369377348e-16,
+        "semantic_auc": 0.08333333333333337
+      }
+    },
+    "gem31h|P1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.13333333333333347,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.10370370370370384,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.029629629629629773,
+        "semantic_auc": 0.0
+      }
+    },
+    "gem31h|P4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.07407407407407421,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14814814814814828,
+        "semantic_auc": -0.1
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.014814814814814952,
+        "semantic_auc": 0.0
+      }
+    },
+    "gem31h|P8": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.0740740740740742,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1777777777777779,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1629629629629631,
+        "semantic_auc": 0.0
+      }
+    },
+    "gem31h|R4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.16872427983539104,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1111111111111112,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.11851851851851863,
+        "semantic_auc": -1.0
+      }
+    },
+    "luna6h|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1646090534979425,
+        "semantic_auc": -0.6666666666666666
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.12592592592592605,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -0.33333333333333337
+      }
+    },
+    "luna6h|H0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.16296296296296306,
+        "semantic_auc": -0.6
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1296296296296297,
+        "semantic_auc": -0.8
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.23703703703703716,
+        "semantic_auc": -1.0
+      }
+    },
+    "luna6h|H1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.07407407407407422,
+        "semantic_auc": -0.8
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.09629629629629642,
+        "semantic_auc": -0.8
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2074074074074075,
+        "semantic_auc": -1.0
+      }
+    },
+    "luna6h|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.10370370370370384,
+        "semantic_auc": -0.8
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.09629629629629641,
+        "semantic_auc": -0.8
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1777777777777779,
+        "semantic_auc": -1.0
+      }
+    },
+    "luna6h|LEX": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.01111111111111126,
+        "semantic_auc": -0.55
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.04444444444444459,
+        "semantic_auc": -0.5333333333333333
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.01481481481481493,
+        "semantic_auc": -0.75
+      }
+    },
+    "luna6h|P1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.07407407407407421,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.05185185185185198,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.08888888888888904,
+        "semantic_auc": 0.0
+      }
+    },
+    "luna6h|P4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 1.609823385706477e-16,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.044444444444444606,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 1.6653345369377348e-16,
+        "semantic_auc": 0.0
+      }
+    },
+    "luna6h|P8": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.014814814814814965,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.0851851851851853,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.10370370370370383,
+        "semantic_auc": 0.0
+      }
+    },
+    "luna6h|R4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.11851851851851865,
+        "semantic_auc": -0.7
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.11851851851851858,
+        "semantic_auc": -0.8
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.07407407407407417,
+        "semantic_auc": -1.0
+      }
+    },
+    "opus55x|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.23045267489711943,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2296296296296297,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "opus55x|H0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1777777777777779,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1925925925925927,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.23703703703703716,
+        "semantic_auc": -1.0
+      }
+    },
+    "opus55x|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.08888888888888903,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.22222222222222235,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14814814814814828,
+        "semantic_auc": -1.0
+      }
+    },
+    "opus55x|LEX": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.007407407407407557,
+        "semantic_auc": -0.7
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.0666666666666668,
+        "semantic_auc": -0.38333333333333336
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.08888888888888903,
+        "semantic_auc": -0.5833333333333334
+      }
+    },
+    "opus55x|P4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.18518518518518526,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1962962962962964,
+        "semantic_auc": -0.2
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14814814814814825,
+        "semantic_auc": 0.0
+      }
+    },
+    "qwen36|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.19341563786008237,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "qwen36|H0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "qwen36|H1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.05761316872427994,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -0.9333333333333333
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "qwen36|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "qwen36|LEX": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": 0.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": 0.0
+      }
+    },
+    "qwen36|P1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.037037037037037174,
+        "semantic_auc": 0.0
+      }
+    },
+    "qwen36|P4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.21111111111111114,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": 0.0
+      }
+    },
+    "qwen36|P8": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": 0.0
+      }
+    },
+    "qwen36|R4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -0.8
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14814814814814822,
+        "semantic_auc": -1.0
+      }
+    },
+    "sol6h|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.07818930041152276,
+        "semantic_auc": -0.5
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.05185185185185198,
+        "semantic_auc": -0.6
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "sol6h|H0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.17037037037037048,
+        "semantic_auc": -0.6
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.13333333333333344,
+        "semantic_auc": -0.8
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14814814814814825,
+        "semantic_auc": -1.0
+      }
+    },
+    "sol6h|H1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.08888888888888902,
+        "semantic_auc": -0.6
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14814814814814828,
+        "semantic_auc": -0.8
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2666666666666668,
+        "semantic_auc": -1.0
+      }
+    },
+    "sol6h|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.09629629629629644,
+        "semantic_auc": -0.6
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.21481481481481493,
+        "semantic_auc": -0.8
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2666666666666668,
+        "semantic_auc": -1.0
+      }
+    },
+    "sol6h|LEX": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.05185185185185198,
+        "semantic_auc": -0.55
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.044444444444444564,
+        "semantic_auc": -0.7666666666666667
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.08888888888888899,
+        "semantic_auc": -0.33333333333333337
+      }
+    },
+    "sol6h|P1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.059259259259259414,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.08888888888888904,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.029629629629629783,
+        "semantic_auc": 0.0
+      }
+    },
+    "sol6h|P4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.048148148148148294,
+        "semantic_auc": 0.06666666666666665
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.044444444444444606,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 1.6653345369377348e-16,
+        "semantic_auc": 0.0
+      }
+    },
+    "sol6h|P8": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.0592592592592594,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.05185185185185198,
+        "semantic_auc": 0.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.04444444444444458,
+        "semantic_auc": 0.0
+      }
+    },
+    "sol6h|R4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.21851851851851858,
+        "semantic_auc": -0.6
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.22222222222222232,
+        "semantic_auc": -0.8
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14814814814814822,
+        "semantic_auc": -1.0
+      }
+    },
+    "sonnet5m|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.06172839506172848,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.13333333333333341,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "sonnet5m|H0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2407407407407408,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2333333333333334,
+        "semantic_auc": -0.9333333333333333
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.10370370370370374,
+        "semantic_auc": -1.0
+      }
+    },
+    "sonnet5m|H1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2000000000000001,
+        "semantic_auc": -0.8666666666666667
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.20740740740740748,
+        "semantic_auc": -0.9333333333333333
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2666666666666668,
+        "semantic_auc": -1.0
+      }
+    },
+    "sonnet5m|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14074074074074083,
+        "semantic_auc": -0.9333333333333333
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.21759259259259264,
+        "semantic_auc": -0.9333333333333333
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2666666666666668,
+        "semantic_auc": null
+      }
+    },
+    "sonnet5m|LEX": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 1.6653345369377348e-16,
+        "semantic_auc": -0.45
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 1.6653345369377348e-16,
+        "semantic_auc": -0.5
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 1.6653345369377348e-16,
+        "semantic_auc": -0.5833333333333334
+      }
+    },
+    "sonnet5m|P1": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.13333333333333347,
+        "semantic_auc": -0.25
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.0592592592592594,
+        "semantic_auc": -0.2
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.044444444444444536,
+        "semantic_auc": -0.5833333333333334
+      }
+    },
+    "sonnet5m|P4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.08888888888888903,
+        "semantic_auc": -0.4
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.0481481481481483,
+        "semantic_auc": -0.1
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.08888888888888903,
+        "semantic_auc": 0.0
+      }
+    },
+    "sonnet5m|P8": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.029629629629629783,
+        "semantic_auc": -0.2
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.11111111111111126,
+        "semantic_auc": -0.2
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1629629629629631,
+        "semantic_auc": 0.0
+      }
+    },
+    "sonnet5m|R4": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.10699588477366265,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2444444444444445,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.31111111111111117,
+        "semantic_auc": -1.0
+      }
+    },
+    "t2_luna|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.11522633744855977,
+        "semantic_auc": -0.8666666666666667
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.13168724279835403,
+        "semantic_auc": -0.8666666666666667
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -0.5
+      }
+    },
+    "t2_luna|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.13333333333333347,
+        "semantic_auc": -0.8
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.14074074074074083,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2962962962962964,
+        "semantic_auc": -1.0
+      }
+    },
+    "t2_qwen|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.1604938271604939,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "t2_qwen|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "t2_sonnet5|D0": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.22633744855967086,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.24444444444444452,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": null,
+        "semantic_auc": -1.0
+      }
+    },
+    "t2_sonnet5|H2": {
+      "test": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.10740740740740752,
+        "semantic_auc": -1.0
+      },
+      "train": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.16666666666666674,
+        "semantic_auc": -1.0
+      },
+      "val": {
+        "deletion_tvd": null,
+        "repeat_tvd": 0.2074074074074075,
+        "semantic_auc": -1.0
+      }
+    }
+  }
+}
