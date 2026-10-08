@@ -260,16 +260,19 @@ def planning(panel,property_name,draws=DRAWS,seed=SEED,subset_draws=100):
         feasible=list(combinations(range(n),size))
         if len(feasible)>subset_draws:feasible=[feasible[i] for i in sorted(rng.choice(len(feasible),subset_draws,replace=False))]
         for task_count in (25,50,100,200,400):
-            gains=[];bases=[];subset_ids=[]
+            gains=[];bases=[];subset_ids=[];unavailable=Counter()
             for b in range(draws):
                 cols=np.array(feasible[b%len(feasible)]);td=rng.choice(panel.tasks,task_count,replace=True)
                 q,support=panel.weighted_task_qualities(td,cols)
-                if support['status']!='COMPUTED':continue
+                if support['status']!='COMPUTED':unavailable['common_support_below_90_percent']+=1;continue
                 p,_=panel.property_values(td)
                 tolerance=1e-12 if property_name in ('repeat_tvd','deletion_tvd','semantic_auc') else 0.
                 gain=selection_statistics(p[property_name][cols],q,panel.h2[cols],tolerance=tolerance)[0][2]
                 if np.isfinite(gain):gains.append(gain);bases.append(len(set(panel.base[cols])));subset_ids.append(b%len(feasible))
-            a=np.array(gains);row={'pool_size':size,'tasks':task_count,'subset_count':len(feasible),'draws':draws,'finite_draws':len(a),'status':'COMPUTED' if len(a) else 'NOT_COMPUTABLE','new_family_requirement':'NOT_IDENTIFIABLE'}
+                elif not panel.h2[cols].any():unavailable['no_H2_comparator_in_subpool']+=1
+                elif not np.isfinite(p[property_name][cols]).any():unavailable['selector_abstains_no_property']+=1
+                else:unavailable['undefined_selected_or_H2_criterion']+=1
+            a=np.array(gains);row={'pool_size':size,'tasks':task_count,'subset_count':len(feasible),'draws':draws,'finite_draws':len(a),'undefined_draws':draws-len(a),'undefined_draw_reasons':dict(unavailable),'conditioning':'power conditions on defined paired H2 gains in the observed subpools','status':'COMPUTED' if len(a) else 'NOT_COMPUTABLE','new_family_requirement':'NOT_IDENTIFIABLE'}
             if len(a):
                 # Center within each fixed subpool before mixing null draws;
                 # differences in observed subpool effects are not null noise.

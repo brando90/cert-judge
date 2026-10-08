@@ -74,6 +74,7 @@ def observe():
     state['compiler_environment_sha256']=sha(COMPILER_ENVIRONMENT.encode())
     state['compile_cache_sha256']=sha(cache_path.read_bytes())
     state['state']='WAITING_PROBE_PUBLICATION'
+    if process:return state
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=HELPER,text=True).strip()
     for name in FILES:
         blob=subprocess.run(['git','show',commit+':'+str(REL/name)],cwd=HELPER,capture_output=True)
