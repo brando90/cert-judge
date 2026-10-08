@@ -12,8 +12,14 @@ import sys
 from functools import lru_cache
 from pathlib import Path
 
+def repository_root(start):
+    """Keep the same repository when the completed experiment is archived."""
+    for path in (Path(start).resolve(),*Path(start).resolve().parents):
+        if (path/'pyproject.toml').is_file() and (path/'py_src/cert_judge').is_dir():return path
+    raise ValueError('cert-judge repository root is unavailable')
+
 ROOT = Path(__file__).resolve().parent
-REPO = ROOT.parents[2]
+REPO = repository_root(ROOT)
 PRIVATE = ROOT/'private'
 RESULTS = ROOT/'results'
 VENDOR = ROOT/'vendor/e39'

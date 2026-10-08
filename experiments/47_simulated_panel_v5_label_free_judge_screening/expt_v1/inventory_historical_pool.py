@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
-REPO = ROOT.parents[2]
+from e47_adapter import REPO
 E39 = REPO / "experiments" / "39_label_free_proxy_index_train_val_test_over_judge_families"
 OUT = ROOT / "results"
 RUN_ID = "cj-e47-v5-10-08-2026-a1"

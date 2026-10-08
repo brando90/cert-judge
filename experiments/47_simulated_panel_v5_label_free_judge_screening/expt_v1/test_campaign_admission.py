@@ -10,6 +10,31 @@ from e47_adapter import frozen,write,read
 from campaign_driver import strict_harvest,reconcile_ambiguous_admission
 
 class AdmissionTests(unittest.TestCase):
+    def test_repository_identity_survives_experiment_archive_depth(self):
+        from e47_adapter import repository_root
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'pyproject.toml').write_text('synthetic repository marker');(root/'py_src/cert_judge').mkdir(parents=True)
+            for relative in ('experiments/47_example/expt_v1','experiments/archive/47_example/expt_v1'):
+                start=root/relative;start.mkdir(parents=True);self.assertEqual(repository_root(start),root)
+            (root/'pyproject.toml').unlink()
+            with self.assertRaisesRegex(ValueError,'unavailable'):repository_root(root/'experiments/47_example/expt_v1')
+
+    def test_full_followthrough_only_adopts_bound_existing_work(self):
+        import after_full_campaign as continuation
+        from e47_adapter import RUN_ID
+        with tempfile.TemporaryDirectory() as directory,patch.object(continuation,'ROOT',Path(directory)):
+            root=Path(directory);driver={'pid':123,'boot_id':'synthetic','start_ticks':'12'}
+            receipt={'run_id':RUN_ID,'phase':'probes','state':'RUNNING','admission_manifest_sha256':'frozen','driver':driver}
+            write(root/'runtime/judge_probes.json',receipt)
+            with patch.object(continuation,'identity',return_value=driver):self.assertFalse(continuation.phase_ready('probes','frozen'))
+            with patch.object(continuation,'identity',return_value=None):
+                with self.assertRaisesRegex(RuntimeError,'explicit adoption'):continuation.phase_ready('probes','frozen')
+            receipt['state']='RECONCILED';write(root/'runtime/judge_probes_RECONCILED.json',receipt)
+            self.assertTrue(continuation.phase_ready('probes','frozen'))
+            with self.assertRaisesRegex(ValueError,'unbound'):continuation.phase_ready('probes','changed')
+            receipt['state']='RUNNING';write(root/'runtime/judge_probes_RECONCILED.json',receipt)
+            with self.assertRaisesRegex(ValueError,'unbound'):continuation.phase_ready('probes','frozen')
+
     def test_collection_failure_is_not_a_scientific_failure(self):
         ctl=SimpleNamespace(harvested=lambda *args:None)
         with self.assertRaisesRegex(RuntimeError,'recover existing run receipts'):
