@@ -40,6 +40,8 @@ def main():
     while True:
         if require_existing_runs(ctl)!=expected:raise ValueError('original run identity changed during collection')
         ready=[(key,entry) for key,entry in ctl.load_state()['runs'].items() if entry['config'] not in complete and entry['phase']=='terminal']
+        # Adopt all completed certificates before starting another download wave.
+        ready.sort(key=lambda pair:not (ctl.RAW/(pair[0].replace('|','__').replace('@','_')+'_probe_collection.json')).exists())
         collect_wave(ctl,ready[:3],record)
         state='ALL_ORIGINAL_ARCHIVES_COLLECTED' if len(complete)==len(expected) else 'COLLECTING_OR_WAITING_FOR_TERMINAL_RUNS'
         write(path,{'run_id':RUN_ID,'state':state,'collected':complete,'epoch':time.time(),'new_inference_calls':0})
