@@ -2,8 +2,8 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the independent structural compiler remains active.
-**Last updated:** 10-08-2026 17:01 PDT
+**Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the complete structural probe artifacts are verified and integrated, with probe request rendering active.
+**Last updated:** 10-08-2026 19:12 PDT
 
 All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full probe scoring, analysis and final publication remain required.
 
@@ -16,7 +16,7 @@ All 20,250 original admitted task occurrences remain in scope. Ten original serv
 - Primary pool contains 12 historical configurations over three base models and two provider families. This is a limitation on judge-population uncertainty.
 - The exact pool inventory resolves four model/harness identities belonging to those three base models (`opus55x`, `qwen36`, `t2_qwen`, `t2_sonnet5`) across the same two provider families; 2/12 reuse exact cached receipts and the remaining 10/12 are admitted under the frozen criterion manifest. Receipt: [historical_primary_pool_inventory.json](expt_v1/results/historical_primary_pool_inventory.json).
 - File length and theorem-count ratio are item-level controls, not judge-ranking signals on shared inputs.
-- The Stanford Network Analysis Project coordinator on skampere1 completed attempt 5 (`gpt-6-astra`, ultra reasoning) and entered a run-bound dependency wait. Its full-access executor and supervisor exited successfully. The independent ordinary probe compiler remains active; the final main coordinator launch is reserved for actionable completed probe evidence.
+- The Stanford Network Analysis Project coordinator on skampere1 completed attempt 5 (`gpt-6-astra`, ultra reasoning) and entered a run-bound dependency wait. Its full-access executor and supervisor exited successfully. Attempt 6 is now the active verified continuation after clean probe completion; no further main executor launch remains.
 - No set-N, v6, set-B prediction or private rating file has been accessed by this helper.
 
 Measured criterion estimates and their uncertainty are available in [the criterion report](RESULTS_criterion_campaign.md). Full-study recommendations require the remaining complete probe campaign and all full analyses.
@@ -48,5 +48,11 @@ The [criterion agreement report](RESULTS_criterion_campaign.md) and [repeat-info
 ## 10-08-2026 17:01 PDT — criterion phase landed
 
 [Pull request 57](https://github.com/brando90/cert-judge/pull/57) is merged at `1dd8c871f4f7dd9932f198adb035984884c9c55f`, preserving the exact verified criterion-phase tree. Root independently verified both reports, all 281 report-source hashes, all 280 analysis artifacts, 19 current input hashes, 34 frozen dependencies and the original run ledger. The complete owned checkout passes layout and whitespace checks. Probe compilation, declared probe scoring, full analyses and recommendations remain required; the study stays RUNNING.
+
+## 10-08-2026 19:12 PDT — complete structural integration and callback admission guard
+
+The [integration receipt](expt_v1/results/probe_integration.json) verifies all 750 declared candidate identities, 691 nonblank candidate hashes, 50 references, 2,722 frozen probe rows and 1,293 transformed artifact byte strings against all 2,641 preserved compiler records. Replay makes zero compiler calls and preserves 580 unavailable structural rows. The helper artifact commit is `aaed94c38cc67032acd58a90a4e669052de1b168`; its final handoff is `f7d99e4ca22959c08bf55e8c403338a889e233e6`. These checks establish structural provenance, not semantic weakening.
+
+The passive callback observer is promoted to tracked code. New probe admissions require a subsequent healthy observation no older than 150 seconds, exact admission/configuration/observer hashes, all four model identities, eight live process identities and authenticated/unauthenticated endpoint status checks. The gate runs before ledger mutation and immediately before transport. A late failure is preserved as a proven pretransport rejection. Frozen vendor modules remain unchanged. Rendering is active in `cj47-render-probes`; no probe inference has been admitted yet.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
