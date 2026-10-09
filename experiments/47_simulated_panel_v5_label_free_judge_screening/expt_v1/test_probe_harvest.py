@@ -110,7 +110,8 @@ class ConcurrentCollectionTests(unittest.TestCase):
             def cli(argv,**kwargs):
                 calls.append(argv[:2])
                 if argv[:2]==['run','output']:
-                    started.set();release.wait(5);(Path(argv[-1])/'original-bytes').write_bytes(b'evidence')
+                    destination=Path(argv[-1]);self.assertFalse(destination.exists());destination.mkdir()
+                    started.set();release.wait(5);(destination/'original-bytes').write_bytes(b'evidence')
                     return SimpleNamespace(returncode=0,stdout='collected',stderr='')
                 self.assertEqual(argv[:2],['run','status'])
                 return SimpleNamespace(returncode=0,stdout=json.dumps({'missing_run_ids':[],'requested_count':1,'returned_count':1,'runs':[{'run_id':'original','status':'ERROR','total_tasks':1}]}),stderr='')
