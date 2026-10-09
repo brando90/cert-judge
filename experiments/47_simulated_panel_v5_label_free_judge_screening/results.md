@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
 **Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the complete structural probe artifacts are verified and integrated, with all probe requests rendered and packed; all twelve configuration runs are admitted and scoring is active.
-**Last updated:** 10-08-2026 21:09 PDT
+**Last updated:** 10-08-2026 22:11 PDT
 
 All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full probe scoring, analysis and final publication remain required.
 
@@ -68,5 +68,13 @@ All twelve [original probe runs](expt_v1/results/probes/admission_receipt.json) 
 ## 10-08-2026 21:09 PDT — scoring and collection progress
 
 The [server-state snapshot](expt_v1/results/probes/live_progress_snapshot.json) records 10178 finished tasks and 7 task errors across all 19,432 requests. These are server execution states, not accepted judge scores. The first terminal run is being collected through the authenticated original-output command while the complete remaining pool continues. A local collection-argument failure was preserved and corrected; no scoring run was repeated. Callback observation remains healthy.
+
+## 10-08-2026 22:11 PDT — strict probe results and effective collection handoff
+
+Three original probe archives have strict offline results: [Sonnet D0](expt_v1/results/probes/first_strict_harvest.json) accepts 1,260/1,260, [Opus D0](expt_v1/results/probes/opus_d0_strict_harvest.json) accepts 1,245/1,260, and [Sonnet H2](expt_v1/results/probes/sonnet_h2_strict_harvest.json) accepts 1,797/1,799 task occurrences. Together these yield 4,302/4,319 accepted occurrences; 14 missing-response rows, one unclean/parser-error row, one invalid rubric response and one missing task artifact remain excluded. Known charges for these three runs sum to USD 476.7785499; 15 cells have unknown costs. These partial results do not complete the campaign.
+
+The old collector finished its current archive before the [verified handoff](expt_v1/results/probes/collection_fence_effective_verification.json). The new ordinary collector durably records each retrieval intent and rejects automatic replay after failure, timeout or interruption; its first original Qwen D0 download is active. Completed certificates remain reusable with full hash checks. [Amendment05](AMENDMENT_05_released_run_capacity.md) prospectively permits one fixed operational capacity update for four named original runs after specific predecessors finish. Both Opus H0/H2 server responses acknowledge 50 concurrent tasks, with exact original identities and 1,799-task counts verified. Independent live concurrency metadata is unavailable; that limitation is explicit. The two Terminus2 Qwen updates remain gated on all five original single-call Qwen runs ending. Original admission concurrency of 20, every failure, all scientific settings and the full pool remain preserved.
+
+All 97 deterministic tests pass. Final publication requires an offline reproduction of all twelve probe harvests, full analyses and report provenance, exact-revision merge, landing and lifecycle checks. Whole-study completion remains unset.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
