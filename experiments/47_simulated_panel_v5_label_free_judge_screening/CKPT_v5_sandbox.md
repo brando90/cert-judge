@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 23:20 PDT
+Last updated: 10-08-2026 23:44 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -121,3 +121,5 @@ LANDED 1dd8c871f4f7dd9932f198adb035984884c9c55f https://github.com/brando90/cert
 - 10-08-2026 22:54 PDT: Both remaining original Opus archives rehashed and strictly verified offline: H0 1796/1799accepted, H2 1798/1799accepted, four missing-response rows retained. Acrosssix original probeharvests9115/9177accepted, knownUSD1193.6961541/20unknowncostcells. Collector continues original Qwenarchives; two original Terminus2Qwen runs remain active. Full report, publication and canonical lifecycle remain pending.
 
 - 10-08-2026 23:20 PDT: Original QwenH0/H1/H2 archives strictly verified offline:1662/1799,1694/1799,1628/1799 accepted. Frozen parser failures130/101/167 and missingresponse/artifact rows retained. Nine originalprobeharvests total14099/14574accepted, knownUSD1267.3649239/35unknowncostcells. OriginalQwenR4collection and twoTerminus2Qwen scoringruns remain active; no newscientificcall or native launch.
+
+- 10-08-2026 23:44 PDT: OriginalQwenR4 strictlyverified1745/1799accepted,52parserfailures+2missingresponse/artifact rows retained. Ten originalprobeharvests15844/16373accepted,knownUSD1292.3440543/37unknowncostcells. R4collection finished beforeD0scoring, so existingcollector isfree; preparedextraD0collectionhelper remainsunlaunched andisnotneeded. TwooriginalTerminus2Qwen scoringruns remainactive.
