@@ -23,6 +23,8 @@ Send from whichever of Brando's accounts you are signed in to (mail connector, e
 
 The older P1–P7/JTI and TIvar pipelines remain historical compatibility code. Their outputs are not PTI-v0 and must not be relabeled as such.
 
+**VeriBench versions (Brando, 10-09-2026).** cert-judge's VeriBench items use the family's version names. VBV1 is the original VeriBench (`brando90/veribench`: 896 Python-to-Lean tasks, core 614 plus IndustrySet 282). VBV2 is the private VeriSoftBench-derived task set built in VeriBench experiments 91 and 97 (VBV2.1 is experiment 99). VBV3 is VeriBench-Infinity (`brando90/veribench-dt`, paper `paper_latex/ICLR_2027_VeriBench_Infty/`). It has 24 source tasks with correct and intentionally incorrect Python variants, three frozen agent stages and kernel-checked comparison against the gold reference. Name the version beside every VeriBench number.
+
 ## Terminology for Scientific Prose
 
 Name the operation precisely rather than using "calibration" as a catchall: distinguish validation-set association, a fitted score mapping, threshold selection, and score--outcome reliability. Preserve external titles and citations, literal paths and code identifiers, and frozen evidence; wording cleanup also applies to stored archived manuscript prose, whose corresponding PDF artifacts must be rebuilt.
