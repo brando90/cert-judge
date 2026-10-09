@@ -5,9 +5,11 @@ The offline reconciler separately verifies every frozen request and used byte.
 """
 import json
 import fcntl
+import os
 import time
 from e47_adapter import RUN_ID, read, write, sha
 from harvest_original_artifacts import require, verified_files
+from run_offline import identity
 
 
 def collect(ctl, key):
@@ -30,6 +32,11 @@ def _collect(ctl, key):
         for filename,field in [('files_sha256.json','inventory_sha256'),('collection_command.json','command_sha256'),('identity_receipt.json','identity_sha256')]:
             require(sha((directory/filename).read_bytes())==evidence[field],'COLLECTION_CERTIFICATE:'+filename)
         return directory,verified_files(directory),evidence
+    # The lock prevents concurrent downloads; this durable intent also fences
+    # later invocations after failure, timeout, interruption or a killed process.
+    # A verified final certificate above is the only automatic completion path.
+    intent_path=ctl.RAW/(name+'_collection_intent.json')
+    require(not intent_path.exists(),'UNRESOLVED_COLLECTION_INTENT_REQUIRES_EXPLICIT_RECOVERY')
     command=directory/'collection_command.json'
     # Adopt an earlier successful owned harvest_transport download even when its
     # server final view was absent. Never download that original run a second time.
@@ -39,11 +46,27 @@ def _collect(ctl, key):
         require(prior.get('run_id')==run_id and prior.get('returncode')==0,'UNSUCCESSFUL_COLLECTION')
         origin='adopted successful owned harvest_transport collection command'
     else:
+        require(not list(ctl.RAW.glob(name+'_download_*')),'PRIOR_COLLECTION_STAGING_REQUIRES_EXPLICIT_RECOVERY')
         # Valkyrie's output command creates this path and refuses existing dirs.
         staging=ctl.RAW/(name+'_download_'+str(time.time_ns()))
         require(not staging.exists(),'COLLECTION_DESTINATION_EXISTS')
         argv=['run','output',run_id,'-o',str(staging)]
-        done=ctl.cli(argv,timeout=5400)
+        write(intent_path,{'scientific_run_id':RUN_ID,'run_id':run_id,'key':key,
+                          'ledger_entry_sha256':frozen_entry,'command':argv,
+                          'recorded_before_call':True,'created_epoch':time.time(),
+                          'process':identity(os.getpid()),'new_inference_calls':0})
+        with intent_path.open('rb') as durable:os.fsync(durable.fileno())
+        parent_fd=os.open(ctl.RAW,os.O_DIRECTORY)
+        try:os.fsync(parent_fd)
+        finally:os.close(parent_fd)
+        try:
+            done=ctl.cli(argv,timeout=5400)
+        except BaseException as error:
+            write(ctl.RAW/(name+'_collection_exception.json'),{
+                'scientific_run_id':RUN_ID,'run_id':run_id,
+                'intent_sha256':sha(intent_path.read_bytes()),
+                'exception_type':type(error).__name__,'automatic_retry_permitted':False})
+            raise
         write(staging/'collection_command.json',{'scientific_run_id':RUN_ID,'run_id':run_id,'command':argv,'returncode':done.returncode,'stdout':done.stdout,'stderr':done.stderr})
         if done.returncode:raise RuntimeError('read-only collection failed; preserve '+str(staging))
         staging.rename(directory);origin='authenticated valk run output'

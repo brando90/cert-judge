@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 20:52 PDT
+Last updated: 10-08-2026 21:36 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -105,3 +105,7 @@ LANDED 1dd8c871f4f7dd9932f198adb035984884c9c55f https://github.com/brando90/cert
 - 10-08-2026 20:16 PDT: controller upgrade VERIFIED_EXISTING_RUN_ADOPTION; new ordinary driver3548281, all12 original runIDs unchanged, zero new admissions/native launches. Watchdog and full_followthrough remain live. Full request-byte sweep19,432/19,432 PASS under frozen writer/header/prompt validation; transport disabled throughout. Current publicationc04ad7a on PR62;91 deterministic tests PASS. Native usage19%used/81%remaining.
 
 - 10-08-2026 20:52 PDT: ordinary collect_terminal_probes runs in cj47-probe-collection with verified child4013980 and first useful original12-run mask check. It collects each terminal archive while slower configurations continue; per-run locks prevent concurrent downloads by the final harvester. Eight focused tests PASS, including two simultaneous collectors issuing one output command. Server task errors are retained, currently4; causes await original artifacts. No scientific retry.
+
+- 10-08-2026 21:36 PDT: Collection now writes a durable per-run intent before authenticated output retrieval; failure, timeout, interruption, prior staging, or unfinished intent prevents another automatic download. All 94 deterministic tests pass, including concurrent collection and interrupted/killed attempts. Current Sonnet H2 legacy download is adopted with its exact live transport identity; eleven other run locks hold the old collector at a safe archive boundary before the ordinary-code handoff. Original run IDs/tasks remain unchanged. Scheduling redistribution has not occurred: the first supported metadata snapshot omitted concurrency (metadata_available=false), so verification is unresolved. Whole campaign remains running.
+
+- Second strict probe harvest: original Opus D0 accepts1245/1260 repeats;14 missing-response infrastructure rows and1 parser-error row remain unresolved. Certified known charges USD218.8064538,14 unknown-cost cells. Its real final-view digest and collection certificate are preserved; verification used zero transport commands. Together with original SonnetD0,2505/2520 examined probe repeats are accepted.
