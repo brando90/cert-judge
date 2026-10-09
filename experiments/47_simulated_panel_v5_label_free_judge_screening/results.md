@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
 **Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the independent structural compiler remains active.
-**Last updated:** 10-08-2026 16:36 PDT
+**Last updated:** 10-08-2026 17:01 PDT
 
 All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full probe scoring, analysis and final publication remain required.
 
@@ -16,7 +16,7 @@ All 20,250 original admitted task occurrences remain in scope. Ten original serv
 - Primary pool contains 12 historical configurations over three base models and two provider families. This is a limitation on judge-population uncertainty.
 - The exact pool inventory resolves four model/harness identities belonging to those three base models (`opus55x`, `qwen36`, `t2_qwen`, `t2_sonnet5`) across the same two provider families; 2/12 reuse exact cached receipts and the remaining 10/12 are admitted under the frozen criterion manifest. Receipt: [historical_primary_pool_inventory.json](expt_v1/results/historical_primary_pool_inventory.json).
 - File length and theorem-count ratio are item-level controls, not judge-ranking signals on shared inputs.
-- Stanford Network Analysis Project node skampere1 has a live full-access supervisor and a verified attempt-5 `gpt-6-astra` ultra-reasoning implementation executor. This is a new native checkpoint-based session after the reboot, not native resumption of attempt 4. The executor is not a measured judge.
+- The Stanford Network Analysis Project coordinator on skampere1 completed attempt 5 (`gpt-6-astra`, ultra reasoning) and entered a run-bound dependency wait. Its full-access executor and supervisor exited successfully. The independent ordinary probe compiler remains active; the final main coordinator launch is reserved for actionable completed probe evidence.
 - No set-N, v6, set-B prediction or private rating file has been accessed by this helper.
 
 Measured criterion estimates and their uncertainty are available in [the criterion report](RESULTS_criterion_campaign.md). Full-study recommendations require the remaining complete probe campaign and all full analyses.
@@ -44,5 +44,9 @@ The stale-provenance continuation bug is repaired: a same-run stale criterion re
 ## 10-08-2026 16:36 PDT — criterion analyses verified
 
 The [criterion agreement report](RESULTS_criterion_campaign.md) and [repeat-information report](RESULTS_criterion_repeat_information.md) include all 192 and 84 required views, respectively. [Current-input provenance](expt_v1/results/criterion_analysis_provenance.json) binds 280 artifacts; [report receipt](expt_v1/results/campaign_report_receipt.json) binds both rendered reports and their sources. Full 12-configuration common support is 0/691 nonblank items in each shared target, below the frozen 90% threshold. Every pooled selection statistic has 0/10,000 finite task-bootstrap draws; estimates and 95% intervals are undefined (p-val=n/a). All 60 conditional planning-grid cells across three targets are NOT_COMPUTABLE because paired common support fails; no new-family sample-size requirement is identifiable. All 65 deterministic tests pass, including process/run identity rejection for dependency waiting. These unavailable results preserve the complete pool and do not finish the pending probe campaign.
+
+## 10-08-2026 17:01 PDT — criterion phase landed
+
+[Pull request 57](https://github.com/brando90/cert-judge/pull/57) is merged at `1dd8c871f4f7dd9932f198adb035984884c9c55f`, preserving the exact verified criterion-phase tree. Root independently verified both reports, all 281 report-source hashes, all 280 analysis artifacts, 19 current input hashes, 34 frozen dependencies and the original run ledger. The complete owned checkout passes layout and whitespace checks. Probe compilation, declared probe scoring, full analyses and recommendations remain required; the study stays RUNNING.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
