@@ -5,6 +5,7 @@ failure stops this continuation. Existing deployment receipts are checked rather
 than redeployed, and an existing callback binding is never replaced.
 """
 from pathlib import Path
+import argparse
 import subprocess
 import sys
 import time
@@ -15,6 +16,7 @@ from callback_gate import require_callback_ready
 
 
 def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--services-only',action='store_true');args=parser.parse_args()
     runtime=ROOT/'runtime';out=RESULTS/'probes';admission=out/'admission_manifest.json'
     def note(stage,**extra):
         write(runtime/'probe_preparation_stage.json',{'run_id':RUN_ID,'phase':'probes','stage':stage,
@@ -53,8 +55,13 @@ def main():
                 raise ValueError('renderer dependency cwd/argv differs')
         note('WAITING_FOR_OWNED_RENDERER');time.sleep(10)
     if read(admission).get('state')!='FROZEN':raise ValueError('probe admission not frozen')
-    note('PACKING_FULL_DECLARED_PROBE_UNIVERSE');run('render_campaign.py','--packs','--phase','probes')
-    note('EXACT_COUNT_QUOTE');run('quote_campaign.py','--phase','probes')
+    if args.services_only:
+        packs=read(out/'packs.json');quote=read(out/'QUOTE.json')
+        if packs.get('verdict')!='PASS' or quote['admission_manifest_sha256']!=sha(admission.read_bytes()) or quote['packs_sha256']!=sha((out/'packs.json').read_bytes()):
+            raise ValueError('existing preparation cannot be adopted')
+    else:
+        note('PACKING_FULL_DECLARED_PROBE_UNIVERSE');run('render_campaign.py','--packs','--phase','probes')
+        note('EXACT_COUNT_QUOTE');run('quote_campaign.py','--phase','probes')
     for model in MODELS:
         note('DEPLOYMENT',model=model)
         if not (PRIVATE/'probes'/('deployment_'+model+'.json')).exists():
@@ -62,6 +69,7 @@ def main():
         proc=subprocess.run([sys.executable,str(ROOT/'deploy_e47.py'),'--phase','probes','--model',model,'--status'],cwd=REPO,capture_output=True,text=True,check=True)
         import json
         status=json.loads(proc.stdout)
+        write(runtime/('probe_deployment_status_'+model+'_'+str(time.time_ns())+'.json'),status)
         if not all(status.get(k) is True for k in ('service_alive','tunnel_alive')) or any(status.get(k)!=200 for k in ('local_health_now','tunnel_health_now')):
             raise RuntimeError('current deployment health failed '+model)
         write(runtime/('probe_deployment_status_'+model+'.json'),status)
