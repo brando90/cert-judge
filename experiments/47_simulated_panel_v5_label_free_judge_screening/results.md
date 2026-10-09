@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
 **Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the complete structural probe artifacts are verified and integrated, with all probe requests rendered and packed; all twelve configuration runs are admitted and scoring is active.
-**Last updated:** 10-08-2026 20:12 PDT
+**Last updated:** 10-08-2026 21:09 PDT
 
 All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full probe scoring, analysis and final publication remain required.
 
@@ -64,5 +64,9 @@ The new probe quote is USD 3214.4949606 under the recorded historical rate and o
 ## 10-08-2026 20:12 PDT — full probe scoring active
 
 All twelve [original probe runs](expt_v1/results/probes/admission_receipt.json) are admitted over 19,432 requests. The exact callback gate passed before every admission. The durable scoring driver, ordinary watchdog, scheduled eight-process callback observer and full-analysis continuation are active. A new artifact verifier preserves every missing or invalid request when an original archive lacks a server final view; it never manufactures a submission or repeats an admitted call. All 90 deterministic tests passed, and seven focused probe/adoption tests pass after the final read-only guard addition.
+
+## 10-08-2026 21:09 PDT — scoring and collection progress
+
+The [server-state snapshot](expt_v1/results/probes/live_progress_snapshot.json) records 10178 finished tasks and 7 task errors across all 19,432 requests. These are server execution states, not accepted judge scores. The first terminal run is being collected through the authenticated original-output command while the complete remaining pool continues. A local collection-argument failure was preserved and corrected; no scoring run was repeated. Callback observation remains healthy.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
