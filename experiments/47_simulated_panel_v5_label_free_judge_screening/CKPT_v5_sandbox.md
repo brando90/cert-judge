@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-09-2026 00:07 PDT
+Last updated: 10-09-2026 00:26 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -125,3 +125,5 @@ LANDED 1dd8c871f4f7dd9932f198adb035984884c9c55f https://github.com/brando90/cert
 - 10-08-2026 23:44 PDT: OriginalQwenR4 strictlyverified1745/1799accepted,52parserfailures+2missingresponse/artifact rows retained. Ten originalprobeharvests15844/16373accepted,knownUSD1292.3440543/37unknowncostcells. R4collection finished beforeD0scoring, so existingcollector isfree; preparedextraD0collectionhelper remainsunlaunched andisnotneeded. TwooriginalTerminus2Qwen scoringruns remainactive.
 
 - 10-09-2026 00:07 PDT: All twelve original probe runs terminal: 19,416 finished plus 16 error occurrences, complete 19,432-task mask retained. Existing collector965091 retrieves original Terminus2QwenD0; additional ordinary single-original-archive collector2675805/driver2675746 retrieves H2 under the same per-run lock and durable attempt guard, at most two remaining distinct downloads. Effective process, first useful scope verification and transport2676662 are bound in runtime/final_qwen_h2_collection_effective.json. Zero native launches or inference retries. All98 deterministic testsPASS; four focused held-out transfer testsPASS. Ten strict archives unchanged; last two strict results, full analyses/report and publication remain required.
+
+- 10-09-2026 00:26 PDT: Original Terminus2QwenD0 collection and independent strict reproduction complete: 1,242/1,260 accepted, 15 parser rejections plus two uncertified submissions and one absent artifact retained; USD52.846839 known, one unknown cost. Across eleven archives17,086/17,633 accepted. Public acceptance reasons now use fixed categories; full private parser exceptions and strict SHA b3548d59... are unchanged. Regression asserts private-text canaries never enter public summaries and all rows remain counted;99 testsPASS. Final scheduling provenance binds terminal ledger eb20943c...; earlier provisional receipt preserved. OriginalH2 collector and follow-through remain healthy.
