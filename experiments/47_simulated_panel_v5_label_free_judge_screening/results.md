@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the complete structural probe artifacts are verified and integrated, with all probe requests rendered and packed; all twelve configuration runs are admitted and scoring is active.
-**Last updated:** 10-08-2026 22:26 PDT
+**Status:** RUNNING — all twelve original probe runs are terminal; the final two original archives are downloading. Strict reconciliation, full analyses and final publication remain required.
+**Last updated:** 10-09-2026 00:07 PDT
 
-All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full probe scoring, analysis and final publication remain required.
+All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Strict probe reconciliation, full analysis and final publication remain required.
 
 - Source manifests distinguish old G00 anchor data from 50 fresh tasks; fresh groups are analyzed separately under the protocol.
 - Frozen S2 recovery precedence admitted 3,847 recovery receipts and retained 44 non-admitted recovery receipts; it never replaces a measured or parser-error original cell. The resolver uses declared manifest model identity rather than deriving a model name from recovery run labels.
@@ -96,5 +96,8 @@ Across nine strictly examined original probe runs, 14,099/14,574 occurrences are
 ## 10-08-2026 23:44 PDT — ten original probe archives reconciled
 
 The original [Qwen R4 result](expt_v1/results/probes/qwen_r4_strict_harvest.json) accepts 1,745/1,799 task occurrences. The frozen parser rejects 52 responses; one task lacks response bytes and one lacks its artifact. Known charges are USD 24.9791304, with two unknown costs. Across ten strictly examined original runs, 15,844/16,373 occurrences are accepted; known reported charges sum to USD 1292.3440543 and 37 costs remain unknown. Both original Terminus2 Qwen runs are still active. The existing collector is free to retrieve their archives as they become terminal.
+
+
+- 10-09-2026 00:07 PDT: [All twelve original probe runs are terminal](expt_v1/results/probes/terminal_runs.json): 19,416 server-finished and 16 server-error task occurrences out of 19,432. These are server states, not acceptance counts. Ten original archives yield 15,844/16,373 strictly accepted occurrences, with 529 unaccepted rows retained. The last two archives are collected concurrently through the existing durable attempt guards; no inference or native coordinator was relaunched. Full analysis follows complete reconciliation. All 98 deterministic tests pass.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.

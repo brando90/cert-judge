@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 23:44 PDT
+Last updated: 10-09-2026 00:07 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -24,8 +24,8 @@ Last updated: 10-08-2026 23:44 PDT
 - Cached-pool check: `expt_v1/inventory_cached_primary_pool.py` verified all 4,146 declared nonblank raw cells for reusable `opus55x|H0`/`opus55x|H2`, with 691/691 scorable nonblank items per configuration. The other ten primary configurations remain missing declared conditions, not substitutes.
 - Historical-pool inventory: exact experiment-39 harvest receipts verify 12 declared configurations over four model/harness identities, three base-model clusters and two provider families; only the two cached members are presently reusable. Receipt: `expt_v1/results/historical_primary_pool_inventory.json`.
 - Probe ownership boundary: a separate master-launched worker exclusively owns `expt_v1/probes/` and its ignored artifacts, with zero judge calls. Do not compile/build competing probes; integrate its verified output when supplied.
-- Current executor: attempt 6 of 6, native thread 01a11e66-e4a9-7740-bca4-9933429f0f70, verified gpt-6-astra/ultra/full access/never approvals; Latest verified native account observation: 25% weekly used / 75% remaining at 21:52; original 25-point reserve retained. Account-wide movement since baseline exceeds the 15-point phase estimate by five points, without task attribution; preserve that discrepancy. This is a new native checkpoint continuation, not resume of attempt 4. No further main launches remain.
-- Current next action: all12 probe runs/19432requests admitted. The strict artifact-aware controller has adopted those existing runs with new admissions forbidden. Complete original-output collection, then full analysis/recommendations/report and publication. No new run admission is permitted during adoption.
+- Current executor: attempt 6 of 6, native thread 01a11e66-e4a9-7740-bca4-9933429f0f70, verified gpt-6-astra/ultra/full access/never approvals; Latest verified native account observation: 29% weekly used / 71% remaining at 10-09-2026 00:01 PDT; original 25-point reserve retained. Account-wide movement since baseline exceeds the 15-point phase estimate by nine points, without task attribution; preserve that discrepancy. This is a new native checkpoint continuation, not resume of attempt 4. No further main launches remain.
+- Current next action: all 12 original probe runs and 19,432 task occurrences are terminal. Complete the final two original-output downloads, then strict reconciliation, full analysis/recommendations/report and publication. Existing scientific controller and full follow-through own these continuations; no new inference admission or native launch is permitted.
 - Current probe dependency: terminal helper publication f7d99e4 (artifact commit aaed94c), exact 750 candidate identities, 50 references, 2722 probe rows, 1293 transformed artifacts and 2641 recorded compilations pass the read-only gate. All missing/failed compile outcomes remain; no new compiler invocation.
 - Required completion gate (NOT met): all declared outputs reconciled, deterministic checks passed, pull request merged and exact landing receipt verified. Criterion-phase completion is not whole-task completion.
 
@@ -123,3 +123,5 @@ LANDED 1dd8c871f4f7dd9932f198adb035984884c9c55f https://github.com/brando90/cert
 - 10-08-2026 23:20 PDT: Original QwenH0/H1/H2 archives strictly verified offline:1662/1799,1694/1799,1628/1799 accepted. Frozen parser failures130/101/167 and missingresponse/artifact rows retained. Nine originalprobeharvests total14099/14574accepted, knownUSD1267.3649239/35unknowncostcells. OriginalQwenR4collection and twoTerminus2Qwen scoringruns remain active; no newscientificcall or native launch.
 
 - 10-08-2026 23:44 PDT: OriginalQwenR4 strictlyverified1745/1799accepted,52parserfailures+2missingresponse/artifact rows retained. Ten originalprobeharvests15844/16373accepted,knownUSD1292.3440543/37unknowncostcells. R4collection finished beforeD0scoring, so existingcollector isfree; preparedextraD0collectionhelper remainsunlaunched andisnotneeded. TwooriginalTerminus2Qwen scoringruns remainactive.
+
+- 10-09-2026 00:07 PDT: All twelve original probe runs terminal: 19,416 finished plus 16 error occurrences, complete 19,432-task mask retained. Existing collector965091 retrieves original Terminus2QwenD0; additional ordinary single-original-archive collector2675805/driver2675746 retrieves H2 under the same per-run lock and durable attempt guard, at most two remaining distinct downloads. Effective process, first useful scope verification and transport2676662 are bound in runtime/final_qwen_h2_collection_effective.json. Zero native launches or inference retries. All98 deterministic testsPASS; four focused held-out transfer testsPASS. Ten strict archives unchanged; last two strict results, full analyses/report and publication remain required.

@@ -25,7 +25,7 @@ Dependencies: experiment 39 frozen functions and configurations; archived experi
 | Original criterion scoring | All 20,250 admitted occurrences reconciled offline after terminal run errors | 4,312 original score repeats accepted; missing/parser/uncertified outputs retained; 22 harvest files unchanged on rerun |
 | Reference and candidate probes | Complete artifacts integrated after offline replay | 2,722 rows and 1,293 transformed artifacts; exact bytes and 2,641 terminal compiler records verified |
 | Criterion analysis | All 192 descriptive views and 84 repeat-information analyses verified | Complete-pool shared coverage 0/691; selection gains and conditional power unavailable |
-| Probe scoring and original-output collection | All 19,432 calls admitted once; collection active | 5,521/5,579 examined task occurrences strictly accepted across four original runs; failures and unknown charges retained |
+| Probe scoring and original-output collection | All 12 original runs terminal; final two archives downloading | 19,416 server-finished and 16 server-error occurrences; 15,844/16,373 strictly accepted across ten verified archives; all failures retained |
 | Full recommendations and planning | Implemented; awaiting complete probe reconciliation | All required views and provenance gates tested; no full-study shortlist |
 
 See [results.md](results.md) for current evidence and [checkpoint](CKPT_v5_sandbox.md) for recovery.
