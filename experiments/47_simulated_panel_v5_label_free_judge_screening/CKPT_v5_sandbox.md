@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 20:12 PDT
+Last updated: 10-08-2026 20:52 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -25,7 +25,7 @@ Last updated: 10-08-2026 20:12 PDT
 - Historical-pool inventory: exact experiment-39 harvest receipts verify 12 declared configurations over four model/harness identities, three base-model clusters and two provider families; only the two cached members are presently reusable. Receipt: `expt_v1/results/historical_primary_pool_inventory.json`.
 - Probe ownership boundary: a separate master-launched worker exclusively owns `expt_v1/probes/` and its ignored artifacts, with zero judge calls. Do not compile/build competing probes; integrate its verified output when supplied.
 - Current executor: attempt 6 of 6, native thread 01a11e66-e4a9-7740-bca4-9933429f0f70, verified gpt-6-astra/ultra/full access/never approvals; 84% weekly included allowance remains at admission. This is a new native checkpoint continuation, not resume of attempt 4. No further main launches remain.
-- Current next action: all12 probe runs/19432requests admitted. Adopt those existing runs with the strict artifact-aware controller, complete original-output collection, then full analysis/recommendations/report and publication. No new run admission is permitted during adoption.
+- Current next action: all12 probe runs/19432requests admitted. The strict artifact-aware controller has adopted those existing runs with new admissions forbidden. Complete original-output collection, then full analysis/recommendations/report and publication. No new run admission is permitted during adoption.
 - Current probe dependency: terminal helper publication f7d99e4 (artifact commit aaed94c), exact 750 candidate identities, 50 references, 2722 probe rows, 1293 transformed artifacts and 2641 recorded compilations pass the read-only gate. All missing/failed compile outcomes remain; no new compiler invocation.
 - Required completion gate (NOT met): all declared outputs reconciled, deterministic checks passed, pull request merged and exact landing receipt verified. Criterion-phase completion is not whole-task completion.
 
@@ -103,3 +103,5 @@ LANDED 1dd8c871f4f7dd9932f198adb035984884c9c55f https://github.com/brando90/cert
 - 10-08-2026 20:12 PDT: full declared probe campaign admitted under12 original UUIDs, recorded in results/probes/admission_receipt.json. Strict probe collection/verdict verification and existing-run-only controller mode pass tests; all90 tests passed before final adoption test, seven focused tests pass afterward. Controlled ordinary controller upgrade will preserve the ledger, services, tunnels and every scientific call; native coordinator remains attempt6.
 
 - 10-08-2026 20:16 PDT: controller upgrade VERIFIED_EXISTING_RUN_ADOPTION; new ordinary driver3548281, all12 original runIDs unchanged, zero new admissions/native launches. Watchdog and full_followthrough remain live. Full request-byte sweep19,432/19,432 PASS under frozen writer/header/prompt validation; transport disabled throughout. Current publicationc04ad7a on PR62;91 deterministic tests PASS. Native usage19%used/81%remaining.
+
+- 10-08-2026 20:52 PDT: ordinary collect_terminal_probes runs in cj47-probe-collection with verified child4013980 and first useful original12-run mask check. It collects each terminal archive while slower configurations continue; per-run locks prevent concurrent downloads by the final harvester. Eight focused tests PASS, including two simultaneous collectors issuing one output command. Server task errors are retained, currently4; causes await original artifacts. No scientific retry.

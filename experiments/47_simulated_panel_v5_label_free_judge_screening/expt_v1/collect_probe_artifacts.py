@@ -4,12 +4,21 @@ Collection is read-only. This file does not infer task outcomes or submit calls.
 The offline reconciler separately verifies every frozen request and used byte.
 """
 import json
+import fcntl
 import time
 from e47_adapter import RUN_ID, read, write, sha
 from harvest_original_artifacts import require, verified_files
 
 
 def collect(ctl, key):
+    """Serialize background and final collection of the same original run."""
+    ctl.RAW.mkdir(parents=True,exist_ok=True)
+    with (ctl.RAW/(key.replace('|','__').replace('@','_')+'_collection.lock')).open('a') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX)
+        return _collect(ctl,key)
+
+
+def _collect(ctl, key):
     entry=ctl.load_state()['runs'][key];run_id=entry['run_id']
     require(entry['phase']=='terminal' and entry['run_status'] in ctl.TERMINAL_RUN,'NONTERMINAL_RUN')
     name=key.replace('|','__').replace('@','_');directory=ctl.RAW/(name+'_artifacts')
