@@ -155,6 +155,8 @@ def full_report(manifest):
     analyses=read(RESULTS/'selection_association.json');recommendations=read(RESULTS/'recommendations.json')
     if set(analyses)!=set(VIEWS) or set(recommendations)!=set(PROPERTIES):raise ValueError('full required analyses not complete')
     sources=[Path(manifest),compile_path,RESULTS/'semantic_audit_availability.json',RESULTS/'selection_association.json',RESULTS/'recommendations.json',RESULTS/'full_analysis_provenance.json']
+    from capacity_provenance import verify_capacity
+    capacity,capacity_sources=verify_capacity();sources.extend(capacity_sources)
     details=['# Full property, transfer and planning estimates','',
              '**Doc link:** [Main scientific report](RESULTS_full_campaign.md)','',
              'All reported intervals are 95%. Task bootstrap draws use seed 47 and 10,000 draws; task multiplicity and pairings are retained. Association additionally resamples the three observed base-model clusters with all their variants. Conditional fixed-selection intervals answer a narrower question than unconditional selection intervals. No p-value test is performed.','']
@@ -205,6 +207,8 @@ def full_report(manifest):
     for phase in ('criterion','probes'):
         path=RESULTS/phase/'charges.json';charges=read(path);sources.append(path)
         lines += [f"{phase}: reported total USD {num(charges.get('reported_total_usd'))}; known reported sum USD {num(charges.get('known_reported_sum_usd'))}; {charges.get('unknown_charge_cells',0)} cells with unknown charges. Evidence: "+link(path)+'.']
+    lines += ['', 'Additive [Amendment05](AMENDMENT_05_released_run_capacity.md) reused task slots released by named terminal probe runs. It preserved the original run identifiers, complete task masks and scientific settings, with at most one update for each of four named targets and provider totals bounded by their original admission totals (100 Anthropic, 140 Alibaba task slots). These are operational task-slot limits, not request-rate guarantees. Original admission concurrency20 remains historical evidence. The dedicated update responses acknowledge the values below; independent live concurrency metadata was unavailable. No run, task or inference retry was added. '+link(RESULTS/'probes/capacity_provenance.json')+' binds the frozen condition and every actual scheduling receipt.', '', '| Configuration | Scheduling outcome | Server-acknowledged task concurrency |', '|---|---|---:|']
+    for cfg,value in capacity['configurations'].items():lines.append(f"| {cfg.replace('|',' / ')} | {value['state']} | {value.get('server_acknowledged_concurrency','not updated')} |")
     lines += ['', 'All measured inference used Vals-funded Valkyrie with frozen named model selectors, prompts, parsers and harnesses. Provider backend revision identity was not established. Failed transport/admission conditions and original run identifiers remain preserved. Collection recovery reads original artifacts and does not repeat measured verdicts. Missing charges are unavailable, never interpreted as zero. No provider keys or purchased subscription credits were used.','',
               'Cached and structural controls: [existing procedure report](RESULTS_existing_and_controls.md). Conditional power planning, all transfers and all unfavorable/undefined results: '+link(detail_path)+'. Raw provider-private outputs remain in ignored owned storage; published evidence is sanitized.']
     figure_paths=figures(analyses);lines += ['', '![Selection gains](figures/selection_gain.png)']
