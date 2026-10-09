@@ -1,0 +1,1330 @@
+{
+  "draws": 10000,
+  "input_sha256": "58eae4bb9b89b99e61c1f5eb9e2de5af3b737b9e2824ca863dd79cc1e15a0d5a",
+  "result": {
+    "base_model_count": 1,
+    "base_models": [
+      "Opus"
+    ],
+    "component_coverage": [
+      {
+        "component": "ident",
+        "config": "opus55x|H0",
+        "observed": 49,
+        "structurally_eligible": 49,
+        "threshold": 0.8
+      },
+      {
+        "component": "blank",
+        "config": "opus55x|H0",
+        "observed": 50,
+        "structurally_eligible": 50,
+        "threshold": 0.8
+      },
+      {
+        "component": "ms_gold",
+        "config": "opus55x|H0",
+        "observed": 46,
+        "structurally_eligible": 46,
+        "threshold": 0.8
+      },
+      {
+        "component": "ms_cand",
+        "config": "opus55x|H0",
+        "observed": 358,
+        "structurally_eligible": 360,
+        "threshold": 0.8
+      },
+      {
+        "component": "bm_gold",
+        "config": "opus55x|H0",
+        "observed": 24,
+        "structurally_eligible": 24,
+        "threshold": 0.8
+      },
+      {
+        "component": "repeat_tvd",
+        "config": "opus55x|H0",
+        "observed": 50,
+        "structurally_eligible": 50,
+        "threshold": 0.8
+      },
+      {
+        "component": "deletion_tvd",
+        "config": "opus55x|H0",
+        "observed": 46,
+        "structurally_eligible": 46,
+        "threshold": 0.8
+      },
+      {
+        "component": "semantic_auc",
+        "config": "opus55x|H0",
+        "observed": 0,
+        "structurally_eligible": 0,
+        "threshold": 0.8
+      },
+      {
+        "component": "ident",
+        "config": "opus55x|H2",
+        "observed": 49,
+        "structurally_eligible": 49,
+        "threshold": 0.8
+      },
+      {
+        "component": "blank",
+        "config": "opus55x|H2",
+        "observed": 50,
+        "structurally_eligible": 50,
+        "threshold": 0.8
+      },
+      {
+        "component": "ms_gold",
+        "config": "opus55x|H2",
+        "observed": 46,
+        "structurally_eligible": 46,
+        "threshold": 0.8
+      },
+      {
+        "component": "ms_cand",
+        "config": "opus55x|H2",
+        "observed": 359,
+        "structurally_eligible": 360,
+        "threshold": 0.8
+      },
+      {
+        "component": "bm_gold",
+        "config": "opus55x|H2",
+        "observed": 24,
+        "structurally_eligible": 24,
+        "threshold": 0.8
+      },
+      {
+        "component": "repeat_tvd",
+        "config": "opus55x|H2",
+        "observed": 50,
+        "structurally_eligible": 50,
+        "threshold": 0.8
+      },
+      {
+        "component": "deletion_tvd",
+        "config": "opus55x|H2",
+        "observed": 46,
+        "structurally_eligible": 46,
+        "threshold": 0.8
+      },
+      {
+        "component": "semantic_auc",
+        "config": "opus55x|H2",
+        "observed": 0,
+        "structurally_eligible": 0,
+        "threshold": 0.8
+      }
+    ],
+    "configs": [
+      "opus55x|H0",
+      "opus55x|H2"
+    ],
+    "controls": {
+      "declared_H2_count": 1,
+      "declared_pool_size": 2,
+      "exact_expectations": {
+        "hindsight_oracle": {
+          "draws": 10000,
+          "estimate": 0.9084762489123438,
+          "finite_draws": 10000,
+          "interval_95": [
+            0.8797690749988181,
+            0.9296637466276936
+          ],
+          "p_val": null,
+          "test": "none; descriptive percentile task bootstrap",
+          "undefined_draws": 0
+        },
+        "uniform_H2": {
+          "draws": 10000,
+          "estimate": 0.883584497081745,
+          "finite_draws": 10000,
+          "interval_95": [
+            0.8463270971840057,
+            0.9117503017875839
+          ],
+          "p_val": null,
+          "test": "none; descriptive percentile task bootstrap",
+          "undefined_draws": 0
+        },
+        "uniform_random": {
+          "draws": 10000,
+          "estimate": 0.8960303729970445,
+          "finite_draws": 10000,
+          "interval_95": [
+            0.8652624261114099,
+            0.919804805153442
+          ],
+          "p_val": null,
+          "test": "none; descriptive percentile task bootstrap",
+          "undefined_draws": 0
+        }
+      },
+      "seed": 47,
+      "seeded_single_judge_variability": {
+        "uniform_H2": {
+          "draws": 10000,
+          "estimate": 0.883584497081745,
+          "finite_draws": 10000,
+          "interpretation": "95% distribution interval combining task resampling and one uniformly sampled judge; not a confidence interval for the exact expectation",
+          "interval_95": [
+            0.8463270971840057,
+            0.9117503017875839
+          ],
+          "p_val": null,
+          "test": "none; seeded selector variability",
+          "undefined_draws": 0
+        },
+        "uniform_random": {
+          "draws": 10000,
+          "estimate": 0.8960303729970445,
+          "finite_draws": 10000,
+          "interpretation": "95% distribution interval combining task resampling and one uniformly sampled judge; not a confidence interval for the exact expectation",
+          "interval_95": [
+            0.8532375370623955,
+            0.9269793709070044
+          ],
+          "p_val": null,
+          "test": "none; seeded selector variability",
+          "undefined_draws": 0
+        }
+      }
+    },
+    "properties": {
+      "C_blank": {
+        "association": {
+          "kendall": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "pearson": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "conditional_fixed_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.012445875915299442,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0027177538293405414,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0027771059576371187,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.8960303729970445,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8652624261114099,
+              0.919804805153442
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "eligible_configurations": 2,
+        "finite_association_base_models": 1,
+        "finite_association_configurations": 2,
+        "finite_association_provider_families": 1,
+        "unconditional_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.012445875915299442,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0027177538293405414,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0027771059576371187,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.8960303729970445,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8652624261114099,
+              0.919804805153442
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "values": [
+          1.0,
+          1.0
+        ],
+        "weights": [
+          0.5,
+          0.5
+        ]
+      },
+      "C_bm_gold": {
+        "association": {
+          "kendall": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "pearson": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "conditional_fixed_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.005435507658681191,
+              0.04635611152718087
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.00271775382934065,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.9084762489123438,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8797449668862876,
+              0.9296637466276936
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "eligible_configurations": 2,
+        "finite_association_base_models": 1,
+        "finite_association_configurations": 2,
+        "finite_association_provider_families": 1,
+        "unconditional_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.004497543041209348,
+              0.04634151605259662
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.002104050791951137,
+              0.02317075802629831
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.9084762489123438,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8790623632926845,
+              0.9296637466276936
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "values": [
+          0.52422952259158,
+          0.36306968671526413
+        ],
+        "weights": [
+          1.0,
+          0.0
+        ]
+      },
+      "C_ident": {
+        "association": {
+          "kendall": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "pearson": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "conditional_fixed_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.012445875915299442,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0027177538293405414,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0027771059576371187,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.8960303729970445,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8652624261114099,
+              0.919804805153442
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "eligible_configurations": 2,
+        "finite_association_base_models": 1,
+        "finite_association_configurations": 2,
+        "finite_association_provider_families": 1,
+        "unconditional_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.012445875915299442,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0027177538293405414,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0027771059576371187,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.8960303729970445,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8652624261114099,
+              0.919804805153442
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "values": [
+          1.0,
+          1.0
+        ],
+        "weights": [
+          0.5,
+          0.5
+        ]
+      },
+      "C_ms_gold": {
+        "association": {
+          "kendall": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "pearson": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "conditional_fixed_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.005435507658681191,
+              0.04635611152718087
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.00271775382934065,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.9084762489123438,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8797449668862876,
+              0.9296637466276936
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "eligible_configurations": 2,
+        "finite_association_base_models": 1,
+        "finite_association_configurations": 2,
+        "finite_association_provider_families": 1,
+        "unconditional_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.04460650064492273
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              -0.019300350945171046,
+              0.02230325032246142
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.038600701890342065
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.9084762489123438,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8613328704940203,
+              0.9279658773745836
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "values": [
+          0.9836949322396107,
+          0.9815885851912105
+        ],
+        "weights": [
+          1.0,
+          0.0
+        ]
+      },
+      "GM_mono2": {
+        "association": {
+          "kendall": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "pearson": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "conditional_fixed_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": -0.012445875915299442,
+            "finite_draws": 10000,
+            "interval_95": [
+              -0.023178055763590433,
+              -0.0027177538293405444
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.005435507658681191,
+              0.04635611152718087
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.883584497081745,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8463270971840057,
+              0.9117503017875839
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "eligible_configurations": 2,
+        "finite_association_base_models": 1,
+        "finite_association_configurations": 2,
+        "finite_association_provider_families": 1,
+        "unconditional_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": -0.012445875915299442,
+            "finite_draws": 10000,
+            "interval_95": [
+              -0.02303285460881529,
+              0.0012077932408768636
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.04606570921763068
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.883584497081745,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8471036998418819,
+              0.9124919416376813
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "values": [
+          0.965205854778567,
+          0.9712532513619758
+        ],
+        "weights": [
+          0.0,
+          1.0
+        ]
+      },
+      "deletion_tvd": {
+        "association": {
+          "kendall": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "pearson": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "conditional_fixed_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.005435507658681191,
+              0.04635611152718087
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.00271775382934065,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.9084762489123438,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8797449668862876,
+              0.9296637466276936
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "eligible_configurations": 2,
+        "finite_association_base_models": 1,
+        "finite_association_configurations": 2,
+        "finite_association_provider_families": 1,
+        "unconditional_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.002969414771244664,
+              0.04634151605259662
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0014914926573293297,
+              0.02317075802629831
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.9084762489123438,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8790633001907013,
+              0.92963302637646
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "values": [
+          0.7185205314009664,
+          0.6516002415458937
+        ],
+        "weights": [
+          1.0,
+          0.0
+        ]
+      },
+      "repeat_tvd": {
+        "association": {
+          "kendall": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "pearson": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "conditional_fixed_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.005435507658681191,
+              0.04635611152718087
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.00271775382934065,
+              0.023178055763590433
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.0
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.9084762489123438,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.8797449668862876,
+              0.9296637466276936
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "eligible_configurations": 2,
+        "finite_association_base_models": 1,
+        "finite_association_configurations": 2,
+        "finite_association_provider_families": 1,
+        "unconditional_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": 0.024891751830598774,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.04634151605259662
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": 0.012445875915299331,
+            "finite_draws": 10000,
+            "interval_95": [
+              -0.009914635033500587,
+              0.02317075802629831
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": 0.0,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.0,
+              0.019829270067001057
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": 0.9084762489123438,
+            "finite_draws": 10000,
+            "interval_95": [
+              0.878099787269669,
+              0.9290213921079532
+            ],
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 0
+          }
+        },
+        "values": [
+          0.31428514806317,
+          0.2948602181701083
+        ],
+        "weights": [
+          1.0,
+          0.0
+        ]
+      },
+      "semantic_auc": {
+        "association": {
+          "kendall": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "pearson": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "conditional_fixed_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "eligible_configurations": 0,
+        "finite_association_base_models": 0,
+        "finite_association_configurations": 0,
+        "finite_association_provider_families": 0,
+        "unconditional_selection": {
+          "gain_vs_H2": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "gain_vs_random": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "regret": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          },
+          "selected_spearman": {
+            "draws": 10000,
+            "estimate": null,
+            "finite_draws": 0,
+            "interval_95": null,
+            "p_val": null,
+            "test": "none; descriptive percentile task bootstrap",
+            "undefined_draws": 10000
+          }
+        },
+        "values": [
+          null,
+          null
+        ],
+        "weights": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "provider_family_count": 1,
+    "support": {
+      "coverage": 1.0,
+      "declared": 691,
+      "observed": 691,
+      "status": "COMPUTED"
+    }
+  },
+  "run_id": "cj-e47-v5-10-08-2026-a1",
+  "seed": 47
+}

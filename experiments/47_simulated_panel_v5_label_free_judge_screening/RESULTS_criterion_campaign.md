@@ -17,7 +17,7 @@ Agent trajectories retain certified accounting but do not certify submitted verd
 
 Known reported Valkyrie charges, including the twelve distinct original smoke conditions, total USD 673.0186273; 11,823 cells have unknown charges. The total bill is unknown. These are recorded charges, not an estimate or a spending cap.
 
-The complete-pool repeat-information selection analyses, every group/task/base-model/provider-family transfer, conditional planning grid and explicit undefined result are in [the criterion repeat-information report](RESULTS_criterion_repeat_information.md). Neither report completes the still-required probe campaign.
+The complete-pool repeat-information selection analyses, every group/task/base-model/provider-family transfer, conditional planning grid and explicit undefined result are in [the criterion repeat-information report](RESULTS_criterion_repeat_information.md). These reports cover the criterion phase; the [experiment README](README.md) links the full campaign and its publication status.
 
 ## T_all / pooled
 

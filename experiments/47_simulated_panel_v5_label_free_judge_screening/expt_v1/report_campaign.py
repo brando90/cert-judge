@@ -139,7 +139,9 @@ def figures(analyses):
             else:ax.text(.02,i,'Not computable',transform=ax.get_yaxis_transform(),va='center',color='#666666',fontsize=8)
         ax.axvline(0,color='#777777',linestyle='--',linewidth=.8);ax.set_title('Primary target' if key==VIEWS[0] else 'Common family-excluded target')
         ax.set_xlabel('Paired Spearman gain over fixed H2');ax.grid(axis='x',alpha=.2)
-    axes[0].set_yticks(range(len(PROPERTIES)),PROPERTIES);axes[0].invert_yaxis()
+        if all(analyses[key]['properties'][prop]['unconditional_selection']['gain_vs_H2']['estimate'] is None for prop in PROPERTIES):
+            ax.set_xlim(-1,1);ax.set_xticks([]);ax.set_xlabel('Paired Spearman gain unavailable')
+    axes[0].set_yticks(range(len(PROPERTIES)),PROPERTIES);axes[0].set_ylim(len(PROPERTIES)-.5,-.5)
     fig.suptitle('Selection gain with unconditional task-bootstrap 95% intervals')
     fig.text(.5,.01,'50 observed tasks; fixed pool of 12 configurations, 3 base models, 2 provider families. Simulated-panel criterion.',ha='center',fontsize=8)
     fig.tight_layout(rect=(0,.04,1,.96));paths=[]
@@ -148,6 +150,7 @@ def figures(analyses):
     plt.close(fig);return paths
 
 def full_report(manifest):
+    manifest=Path(manifest).resolve()
     for phase in ('criterion','probes'):verified_reconciliation(phase)
     verify_full_receipt(manifest)
     probe=read(manifest);compile_path=Path(manifest).with_name('compile_summary.json');compilation=read(compile_path)
@@ -182,9 +185,12 @@ def full_report(manifest):
                 details.append('| '+' | '.join(map(str,[r['pool_size'],r['tasks'],r['subset_count'],f"{r['finite_draws']}/{r['draws']}",r.get('rejections','undefined'),power,num(r.get('centered_null_threshold_975')),r.get('base_model_counts',{})]))+' |')
             details.append('')
     detail_path=text_file('RESULTS_full_analysis_details.md',details)
+    decisions=Counter(recommendations.values())
+    coverage='; '.join(f"{NAMES[key]}: {analyses[key]['support']['observed']}/{analyses[key]['support']['declared']}" for key in VIEWS)
     lines=['# Full simulated-panel judge-screening campaign','',
            '**Doc link:** [Frozen protocol and additive amendments](README.md)',
-           '**TLDR:** This exploratory campaign evaluates frozen judge-screening properties against simulated-panel agreement. Recommendations concern a later prospective test and establish no judge–human validation or deployment guarantee.','',
+           '**TLDR:** The complete frozen screen yields '+', '.join(f'{count} {decision}' for decision,count in sorted(decisions.items()))+'. These simulated-panel results establish no judge–human validation or deployment guarantee.','',
+           'Complete 12-configuration criterion support is '+coverage+'. The frozen protocol requires 90% common item coverage. Where that gate fails, pooled association and selection estimates and their 95% intervals remain undefined; the tables retain finite/10,000 task-bootstrap draw counts (seed 47; p-val=n/a). No configuration was removed to improve common support. Exclusion from this sandbox shortlist is not evidence that a property is scientifically inferior. Any two-Opus sensitivity conditions on those cached configurations and cannot establish complete-pool selection utility.','',
            '## Recommendations','', '| Property | Frozen screening-rule result | Primary gain over H2 [95% interval] | Common-family-excluded gain over H2 [95% interval] |','|---|---|---|---|']
     for prop in PROPERTIES:lines.append('| '+' | '.join([prop,recommendations[prop]]+[interval(analyses[key]['properties'][prop]['unconditional_selection']['gain_vs_H2']) for key in (VIEWS[0],VIEWS[2])])+' |')
     strong=[p for p in PROPERTIES if recommendations[p]=='STRONG_FOLLOWUP']
