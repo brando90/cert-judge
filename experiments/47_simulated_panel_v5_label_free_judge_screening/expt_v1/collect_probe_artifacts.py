@@ -39,7 +39,9 @@ def _collect(ctl, key):
         require(prior.get('run_id')==run_id and prior.get('returncode')==0,'UNSUCCESSFUL_COLLECTION')
         origin='adopted successful owned harvest_transport collection command'
     else:
-        staging=ctl.RAW/(name+'_download_'+str(time.time_ns()));staging.mkdir()
+        # Valkyrie's output command creates this path and refuses existing dirs.
+        staging=ctl.RAW/(name+'_download_'+str(time.time_ns()))
+        require(not staging.exists(),'COLLECTION_DESTINATION_EXISTS')
         argv=['run','output',run_id,'-o',str(staging)]
         done=ctl.cli(argv,timeout=5400)
         write(staging/'collection_command.json',{'scientific_run_id':RUN_ID,'run_id':run_id,'command':argv,'returncode':done.returncode,'stdout':done.stdout,'stderr':done.stderr})
