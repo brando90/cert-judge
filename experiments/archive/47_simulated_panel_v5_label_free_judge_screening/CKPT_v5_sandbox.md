@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-09-2026 01:25 PDT
+Last updated: 10-09-2026 01:31 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -25,9 +25,9 @@ Last updated: 10-09-2026 01:25 PDT
 - Historical-pool inventory: exact experiment-39 harvest receipts verify 12 declared configurations over four model/harness identities, three base-model clusters and two provider families; only the two cached members are presently reusable. Receipt: `expt_v1/results/historical_primary_pool_inventory.json`.
 - Probe ownership boundary: a separate master-launched worker exclusively owns `expt_v1/probes/` and its ignored artifacts, with zero judge calls. Do not compile/build competing probes; integrate its verified output when supplied.
 - Current executor: attempt 6 of 6, native thread 01a11e66-e4a9-7740-bca4-9933429f0f70, verified gpt-6-astra/ultra/full access/never approvals; Latest verified native account observation: 31% weekly used / 69% remaining at 10-09-2026 01:07 PDT; original 25-point reserve retained. Account-wide movement since baseline exceeds the 15-point phase estimate by eleven points, without task attribution; preserve that discrepancy. This is a new native checkpoint continuation, not resume of attempt 4. No further main launches remain.
-- Current next action: full analysis and reports are verified. Inspect and publish the complete result artifacts to PR62, merge its exact verified head, then archive in a separate owned worktree and publish the landing record. Original native runtime remains here until exit; no further main launches or inference.
+- Current next action: none scientifically. Complete this archive/landing-record publication, retire only owned callbacks, record whole completion and send the authorized final notification. Preserve the active native runtime path until exit; the desktop master owns local synchronization.
 - Current probe dependency: terminal helper publication f7d99e4 (artifact commit aaed94c), exact 750 candidate identities, 50 references, 2722 probe rows, 1293 transformed artifacts and 2641 recorded compilations pass the read-only gate. All missing/failed compile outcomes remain; no new compiler invocation.
-- Required completion gate (NOT met): all declared outputs reconciled, deterministic checks passed, pull request merged and exact landing receipt verified. Criterion-phase completion is not whole-task completion.
+- Scientific/publication gate met: complete declared evidence, all analyses, 99 tests, frozen hashes and exact PR62 landing verified. This archive/landing-record change closes the lifecycle; runtime whole COMPLETE remains gated on its verified merge and owned-service retirement.
 
 - Master continuation: inventory executor attempts 1–3 are finished, not failed measured calls. Supervisor/worker group were confirmed absent and no active jobs existed; owned git state was clean. The probe dependency is now active and independently verified. Master prepares attempts 4–6 for rendering/admission/statistical implementation and full scoring, using cc_scoring_analysis.md. Original scientific run identity and all call receipts remain unchanged.
 
@@ -131,3 +131,7 @@ LANDED 1dd8c871f4f7dd9932f198adb035984884c9c55f https://github.com/brando90/cert
 - 10-09-2026 00:44 PDT: All12 original probe archives verified:18,759/19,432 accepted;673 unaccepted retained. Complete32,040-cell universe reconciles with2,076 deterministic,10,452 invalid and80 extraction-unavailable cells. Known probe chargesUSD1428.7917811,38 unknown costs. Full analysis first useful action verified at full_analysis_effective.json:8,100 property records/1,152 details;128 derivations required, current fingerprint58eae4bb9b89b99e61c1f5eb9e2de5af3b737b9e2824ca863dd79cc1e15a0d5a. Native Pro observation30%used/70%remaining at00:41,25-pointreserve; account-wide movement25points exceeds original15-point estimate by10, attribution unknown. Original estimate and maximum6 launches unchanged. Final report/transfer check/publication/archive still required.
 
 - 10-09-2026 01:25 PDT: all128 full derivations,192 criterion views,84 repeat-information jobs and6 rendered report artifacts verified;99 deterministic testsPASS. No strong follow-up (1 inconclusive,2 constant,5 uncomputable); full common support0/691,0/10000 finite selection draws. All12 original probe archives reverified offline,18759/19432accepted. Native account31%weeklyused/69%remaining at01:07PDT;25-pointreserve intact. Account-wide movement26points sincebaseline exceeds15-pointestimate by11, attributionunknown. No newnative orscientificcalls. Publication/lifecycle stillpending; wholeCOMPLETE absent.
+
+LANDED 1a5773bede0de3551ddec37a8b7bfa00ea03004b https://github.com/brando90/cert-judge/pull/62 10-09-2026 01:31 PDT
+
+- Completed canonical home: `experiments/archive/47_simulated_panel_v5_label_free_judge_screening`; original native runtime is intentionally retained in the old owned checkout until exit. All scientific bytes are preserved. Local synchronization and ignored-file reconciliation remain the desktop master's ownership; no shared checkout was changed.

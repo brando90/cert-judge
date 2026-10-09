@@ -1,11 +1,11 @@
 # Simulated-panel v5 screening results ledger
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**Status:** RUNNING — all scientific results and final reports are verified; exact-revision publication and archival are the remaining live dependency.
-**Last updated:** 10-09-2026 01:25 PDT
+**Status:** DONE — complete original evidence, all declared analyses and final reports verified and published; archived 10-09-2026.
+**Last updated:** 10-09-2026 01:31 PDT
 
-All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full analysis and report verification are complete; exact-revision publication and archival remain required.
+All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full analysis, report verification and exact-revision publication are complete; this record is in the canonical archive.
 
 - Source manifests distinguish old G00 anchor data from 50 fresh tasks; fresh groups are analyzed separately under the protocol.
 - Frozen S2 recovery precedence admitted 3,847 recovery receipts and retained 44 non-admitted recovery receipts; it never replaces a measured or parser-error original cell. The resolver uses declared manifest model identity rather than deriving a model name from recovery run labels.
@@ -16,7 +16,7 @@ All 20,250 original admitted task occurrences remain in scope. Ten original serv
 - Primary pool contains 12 historical configurations over three base models and two provider families. This is a limitation on judge-population uncertainty.
 - The exact pool inventory resolves four model/harness identities belonging to those three base models (`opus55x`, `qwen36`, `t2_qwen`, `t2_sonnet5`) across the same two provider families; 2/12 reuse exact cached receipts and the remaining 10/12 are admitted under the frozen criterion manifest. Receipt: [historical_primary_pool_inventory.json](expt_v1/results/historical_primary_pool_inventory.json).
 - File length and theorem-count ratio are item-level controls, not judge-ranking signals on shared inputs.
-- The Stanford Network Analysis Project coordinator on skampere1 completed attempt 5 (`gpt-6-astra`, ultra reasoning) and entered a run-bound dependency wait. Its full-access executor and supervisor exited successfully. Attempt 6 is now the active verified continuation after clean probe completion; no further main executor launch remains.
+- The Stanford Network Analysis Project coordinator on skampere1 completed attempt 5 (`gpt-6-astra`, ultra reasoning) and entered a run-bound dependency wait. Its full-access executor and supervisor exited successfully. Attempt 6 completed the scientific work and final publication; no further main executor launch is permitted.
 - No set-N, v6, set-B prediction or private rating file has been accessed by this helper.
 
 Measured criterion estimates and their uncertainty are available in [the criterion report](RESULTS_criterion_campaign.md). The [full-campaign report](RESULTS_full_campaign.md) now includes every requested analysis and the frozen screening decisions.
@@ -116,5 +116,9 @@ The final offline report rehashed 38,912 files (2,241,835,678 bytes) across all 
 
 The [final group-transfer check](expt_v1/results/group_transfer_final_input_verification.json) binds 8,641 unchanged criterion repeat rows, 9,000 independently audited recomputed task-property records, 540 final property values and coverage rows, and 45 support records. Held-out raw candidates are excluded before information recomputation. The three base models are Opus, Qwen and Sonnet; both Qwen harnesses share one cluster. Semantic discrimination remains unavailable because 0/50 fresh references match the 25 audited sources.
 
-**TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] The full simulated-panel analysis is verified with no supported strong-follow-up shortlist; exact-revision publication and archival remain.
+**TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] The full simulated-panel analysis is verified and published with no supported strong-follow-up shortlist; the complete evidence is archived.
 **Snapshot:** 128/128 derivations; 18,759/19,432 probe occurrences accepted; common support 0/691.
+
+## 10-09-2026 01:31 PDT — final results landed and archived
+
+[Pull request 62](https://github.com/brando90/cert-judge/pull/62) merged the exact verified scientific head `76a4359581f2e0baeb445a813bfe3def379e78f4` at `1a5773bede0de3551ddec37a8b7bfa00ea03004b`. The fetched main tree was identical. This landing-record change moves the completed experiment with `git mv`, updates the lifecycle inventory and preserves all frozen results byte-for-byte. [Publication receipt](expt_v1/results/publication_landing.json).
