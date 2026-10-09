@@ -84,7 +84,6 @@ class ProbeHarvestTests(unittest.TestCase):
                 ctl=SimpleNamespace(RAW=raw,load_state=lambda:{'runs':{'cfg@main':{'run_id':'original','phase':'terminal','run_status':'error'}}},TERMINAL_RUN={'error'},cli=lambda *a,**k:self.fail('transport'))
                 with self.assertRaises(h.InvalidEvidence):collect(ctl,'cfg@main')
 
-if __name__=='__main__':unittest.main()
 
 class ExistingRunAdoptionTests(unittest.TestCase):
     def test_only_complete_original_run_mask_is_adoptable(self):
@@ -100,3 +99,25 @@ class ExistingRunAdoptionTests(unittest.TestCase):
             with self.assertRaises(ValueError):require_existing_runs(ctl)
         del state['runs'][key]
         with self.assertRaises(ValueError):require_existing_runs(ctl)
+
+class ConcurrentCollectionTests(unittest.TestCase):
+    def test_two_collectors_download_original_run_once(self):
+        import json,threading,time
+        from concurrent.futures import ThreadPoolExecutor
+        with tempfile.TemporaryDirectory() as directory:
+            raw=Path(directory);calls=[];started=threading.Event();release=threading.Event()
+            entry={'run_id':'original','phase':'terminal','run_status':'error','expected_cells':1}
+            def cli(argv,**kwargs):
+                calls.append(argv[:2])
+                if argv[:2]==['run','output']:
+                    started.set();release.wait(5);(Path(argv[-1])/'original-bytes').write_bytes(b'evidence')
+                    return SimpleNamespace(returncode=0,stdout='collected',stderr='')
+                self.assertEqual(argv[:2],['run','status'])
+                return SimpleNamespace(returncode=0,stdout=json.dumps({'missing_run_ids':[],'requested_count':1,'returned_count':1,'runs':[{'run_id':'original','status':'ERROR','total_tasks':1}]}),stderr='')
+            ctl=SimpleNamespace(RAW=raw,load_state=lambda:{'runs':{'cfg@main':entry}},TERMINAL_RUN={'error'},cli=cli)
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                first=pool.submit(collect,ctl,'cfg@main');self.assertTrue(started.wait(2));second=pool.submit(collect,ctl,'cfg@main');time.sleep(.05);release.set()
+                self.assertEqual(first.result(),second.result())
+            self.assertEqual(calls,[['run','output'],['run','status']])
+
+if __name__=='__main__':unittest.main()
