@@ -2,8 +2,8 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the complete structural probe artifacts are verified and integrated, with probe request rendering active.
-**Last updated:** 10-08-2026 19:12 PDT
+**Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the complete structural probe artifacts are verified and integrated, with all probe requests rendered and packed; fresh callback preparation is active.
+**Last updated:** 10-08-2026 19:58 PDT
 
 All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full probe scoring, analysis and final publication remain required.
 
@@ -53,6 +53,12 @@ The [criterion agreement report](RESULTS_criterion_campaign.md) and [repeat-info
 
 The [integration receipt](expt_v1/results/probe_integration.json) verifies all 750 declared candidate identities, 691 nonblank candidate hashes, 50 references, 2,722 frozen probe rows and 1,293 transformed artifact byte strings against all 2,641 preserved compiler records. Replay makes zero compiler calls and preserves 580 unavailable structural rows. The helper artifact commit is `aaed94c38cc67032acd58a90a4e669052de1b168`; its final handoff is `f7d99e4ca22959c08bf55e8c403338a889e233e6`. These checks establish structural provenance, not semantic weakening.
 
-The passive callback observer is promoted to tracked code. New probe admissions require a subsequent healthy observation no older than 150 seconds, exact admission/configuration/observer hashes, all four model identities, eight live process identities and authenticated/unauthenticated endpoint status checks. The gate runs before ledger mutation and immediately before transport. A late failure is preserved as a proven pretransport rejection. Frozen vendor modules remain unchanged. Rendering is active in `cj47-render-probes`; no probe inference has been admitted yet.
+The passive callback observer is promoted to tracked code. New probe admissions require a subsequent healthy observation no older than 150 seconds, exact admission/configuration/observer hashes, all four model identities, eight live process identities and authenticated/unauthenticated endpoint status checks. The gate runs before ledger mutation and immediately before transport. A late failure is preserved as a proven pretransport rejection. Frozen vendor modules remain unchanged. Rendering and packing are complete; no probe inference has been admitted yet.
+
+## 10-08-2026 19:46 PDT — complete probe admission and pack freeze
+
+All twelve configurations retain 32,040 declared probe cells: 19,432 rendered scoring requests, 2,076 frozen deterministic cells, 10,452 structurally invalid cells and 80 extraction-unavailable cells. The latter categories are retained explicitly, not silently scored or dropped. Every one of the 19,432 transport tasks passed prompt round-trip checks, with zero failures and zero new smoke tasks. The [frozen admission](expt_v1/results/probes/admission_manifest.json), [pack verification](expt_v1/results/probes/pack_verification.json) and [quote](expt_v1/results/probes/QUOTE.json) are bound by exact hashes.
+
+The new probe quote is USD 3214.4949606 under the recorded historical rate and output assumptions. Token lengths use a proxy tokenizer and agent-turn costs remain uncertain; actual Valkyrie charges are authoritative. There is no automatic spending cap or pool reduction. Fresh deployment, scheduled callback verification and scoring remain pending at this checkpoint.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
