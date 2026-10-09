@@ -2,8 +2,8 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**Status:** RUNNING — all twelve original probe runs are terminal; the final two original archives are downloading. Strict reconciliation, full analyses and final publication remain required.
-**Last updated:** 10-09-2026 00:07 PDT
+**Status:** RUNNING — all twelve original probe runs are terminal; the final original archive is downloading. Strict reconciliation, full analyses and final publication remain required.
+**Last updated:** 10-09-2026 00:26 PDT
 
 All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Strict probe reconciliation, full analysis and final publication remain required.
 
@@ -99,5 +99,7 @@ The original [Qwen R4 result](expt_v1/results/probes/qwen_r4_strict_harvest.json
 
 
 - 10-09-2026 00:07 PDT: [All twelve original probe runs are terminal](expt_v1/results/probes/terminal_runs.json): 19,416 server-finished and 16 server-error task occurrences out of 19,432. These are server states, not acceptance counts. Ten original archives yield 15,844/16,373 strictly accepted occurrences, with 529 unaccepted rows retained. The last two archives are collected concurrently through the existing durable attempt guards; no inference or native coordinator was relaunched. Full analysis follows complete reconciliation. All 98 deterministic tests pass.
+
+- 10-09-2026 00:26 PDT: Original [Terminus2 Qwen direct-score archive](expt_v1/results/probes/t2_qwen_d0_strict_harvest.json) verifies 1,242/1,260 accepted occurrences; 15 frozen-parser rejections, two uncertified submissions and one absent artifact remain unaccepted. Known charges USD52.846839; one unknown cost. Across eleven original archives, 17,086/17,633 occurrences are accepted, with USD1345.1908933 known charges and 38 unknown costs. Full private parser errors are retained unchanged; public summaries use fixed categories so embedded verdict text is not published. All99 deterministic tests pass. The final original archive is still downloading.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
