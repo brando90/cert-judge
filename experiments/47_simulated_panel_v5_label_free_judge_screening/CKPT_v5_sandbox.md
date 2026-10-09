@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 22:08 PDT
+Last updated: 10-08-2026 22:37 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -113,3 +113,5 @@ LANDED 1dd8c871f4f7dd9932f198adb035984884c9c55f https://github.com/brando90/cert
 - 10-08-2026 21:43 PDT: Amendment05 was committed/pushed before scheduling updates. Original OpusH0/H2 each acknowledge50 concurrent tasks after three Anthropic runs became terminal; original task masks and admissions remain unchanged. The two original Terminus2 Qwen updates70each stay gated on all five single-call Qwen runs ending, with no further redistribution. The dedicated server acknowledgement is available; independent live concurrency metadata is unavailable and recorded as such. All97 deterministic tests pass. PR62 head dbaf91e includes the durable collection intent fence and bounded three-worker archive collection; safe loaded-code handoff is still waiting for the current original SonnetH2 download.
 
 - 10-08-2026 22:08 PDT: Original SonnetH2 archive completed and safe collection handoff verified. Old collector4100215/driver4100188 are absent; new ordinary collector965091 adopted two existing certificates and wrote its first original QwenD0 download intent before transport965591. The core fence source hash matches the tested published code; no native launch or inference retry. SonnetH2 strict offline verification accepts1797/1799 repeats, preserving one invalid rubric output and one absent task artifact; known charges USD157.422027,1 unknown-cost cell. Total examined probe repeats4302accepted/4319; three completed original archives preserved. Full campaign/analysis/publication remain unfinished.
+
+- 10-08-2026 22:37 PDT: Archive-path compatibility passes 98 deterministic tests and reproduces all four saved strict probe results exactly with transport forbidden; criterion provenance still verifies. Frozen absolute pack/task-list paths are located under the current owned root without changing historical path labels or receipts. Current study remains active: eight terminal runs, four complete verified archives; remaining original runs and downloads preserved. Final archival will use a separate owned publication worktree only after scientific completion, preserving the live native supervisor/runtime path until exit; root retains local synchronization.

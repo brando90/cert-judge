@@ -28,7 +28,7 @@ def verify_all():
               'expected_task_occurrences':sum(r['n_cells'] for r in rows),'accepted_task_occurrences':sum(r['accepted_count'] for r in rows),
               'verified_files':sum(r['collection']['files'] for r in rows),'verified_bytes':sum(r['collection']['bytes'] for r in rows),
               'known_reported_sum_usd':sum(r['charges_usd'] for r in rows),'unknown_cost_cells':sum(r['unknown_cost_cells'] for r in rows),
-              'source_hashes':{name:sha((ROOT/name).read_bytes()) for name in ('probe_publication_evidence.py','harvest_probe_artifacts.py','harvest_original_artifacts.py','collect_probe_artifacts.py','receipt_validation.py')},
+              'source_hashes':{name:sha((ROOT/name).read_bytes()) for name in ('probe_publication_evidence.py','harvest_probe_artifacts.py','harvest_original_artifacts.py','collect_probe_artifacts.py','receipt_validation.py','artifact_paths.py')},
               'transport_commands':0,'new_inference_calls':0,'whole_experiment_complete':False}
     path=RESULTS/'probes/original_artifact_reconciliation.json';write(path,evidence)
     return evidence,path

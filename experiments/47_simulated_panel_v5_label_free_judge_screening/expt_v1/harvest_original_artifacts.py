@@ -20,6 +20,7 @@ from e47_adapter import (ROOT, RESULTS, PRIVATE, RUN_ID, POOL, DEPENDENCIES,
                          read, write, sha, verify_dependencies, phase_context,
                          prompts, panel, module)
 from receipt_validation import accepted
+from artifact_paths import local_path, historical_path
 
 COLLECTION = Path('/dfs/scratch0/brando9/cj-e47-original-output-collection-10-08-2026')
 WRITER = DEPENDENCIES/'experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/scripts/valkyrie_judge_agent/judge_call.py'
@@ -244,11 +245,11 @@ def harvest_run(source, entry, unit, metas, cells, packed, pack, writer, parse, 
         row.update(config=unit['config'], run_id=entry['run_id'], phase=phase, part='main',
                    accepted=False, status='unmeasured_infra', cost_usd=None,
                    acceptance_reason='ARTIFACT_ABSENT_UNRESOLVED', prior_verdict_absence_established=False,
-                   server_submission_status=None, source_collection_path=str(directory/task_id))
+                   server_submission_status=None, source_collection_path=historical_path(directory/task_id))
         task = directory/task_id
         try:
             cell = cells[meta['cell']]
-            instruction = (Path(packed['pack'])/task_id/'instruction.md').read_bytes()
+            instruction = (local_path(packed['pack'])/task_id/'instruction.md').read_bytes()
             rendered = read(PRIVATE/phase/'cells'/unit['config'].replace('|', '__')/(meta['cell']+'.json'))
             header, hashes = verify_request(meta, cell, unit, instruction, rendered, pack, writer, phase)
             row['frozen_instruction_sha256'] = sha(instruction)

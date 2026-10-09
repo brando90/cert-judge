@@ -13,6 +13,7 @@ from e47_adapter import ROOT, RESULTS, RUN_ID, POOL, read, write, sha, phase_con
 import harvest_original_artifacts as h
 from receipt_validation import accepted
 from collect_probe_artifacts import collect
+from artifact_paths import local_path
 
 
 def certify_agent(row, served, meta, unit, parse):
@@ -58,7 +59,7 @@ def verify(ctl, config, key, directory, indexed, collection):
     cells=h.unique(read(cells_path)['cells'],'cell');metas=h.unique(per['cells'],'task_id');wanted=list(metas)
     h.require({m['cell'] for m in metas.values()}=={c['cell'] for c in cells.values() if c['status']=='render'} and len({m['cell'] for m in metas.values()})==len(metas),'PACK_CELL_MASK')
     h.require(entry['task_ids'] is None or entry['task_ids']==wanted,'LEDGER_TASK_MASK')
-    h.require(Path(entry['task_ids_file']).read_text().splitlines()==wanted,'ADMITTED_TASK_FILE')
+    h.require(local_path(entry['task_ids_file']).read_text().splitlines()==wanted,'ADMITTED_TASK_FILE')
     selection=read(e.RESULTS/'task_selection_transport.json');selected=selection['configurations'][config]
     h.require(selection['run_id']==RUN_ID and selection['phase']=='probes' and selection['admission_manifest_sha256']==quote['admission_manifest_sha256'] and selection['packs_sha256']==quote['packs_sha256'],'SELECTION_BINDING')
     h.require(selected['expected_cells']==len(wanted) and selected['remote_verified_equal'] and selected['benchmark']==entry['benchmark'] and selected['task_ids_sha256']==sha(('\n'.join(sorted(wanted))+'\n').encode()),'SELECTION_MASK')
