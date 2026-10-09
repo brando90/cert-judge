@@ -87,4 +87,10 @@ The original [Opus H0](expt_v1/results/probes/opus_h0_strict_harvest.json) and [
 
 All four [prospective scheduling updates](expt_v1/results/probes/capacity_receipt.json) now have exact server acknowledgements: Opus H0/H2 at 50 task slots and Terminus2 Qwen D0/H2 at 70 after all five named single-call Qwen runs ended. Independent concurrency metadata remains unavailable. No run, task or retry was added; the historical admission records remain unchanged. Ten of twelve original runs are terminal, while two Terminus2 Qwen runs and archive collection continue. The study remains RUNNING.
 
+## 10-08-2026 23:20 PDT — nine original probe archives reconciled
+
+Original Qwen [H0](expt_v1/results/probes/qwen_h0_strict_harvest.json), [H1](expt_v1/results/probes/qwen_h1_strict_harvest.json) and [H2](expt_v1/results/probes/qwen_h2_strict_harvest.json) accept 1,662/1,799, 1,694/1,799 and 1,628/1,799 task occurrences respectively. Their frozen parsers reject 130, 101 and 167 responses. Missing response bytes and absent task artifacts remain unresolved; the three runs contain 7, 4 and 4 unknown-cost tasks. These are original outputs, verified offline without transport or inference.
+
+Across nine strictly examined original probe runs, 14,099/14,574 occurrences are accepted; the known reported charge sum is USD 1267.3649239 and 35 costs remain unknown. The original Qwen R4 archive is being collected, and both original Terminus2 Qwen runs continue. No parser or scientific setting was changed to improve acceptance.
+
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.

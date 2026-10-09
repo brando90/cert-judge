@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 22:54 PDT
+Last updated: 10-08-2026 23:20 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -119,3 +119,5 @@ LANDED 1dd8c871f4f7dd9932f198adb035984884c9c55f https://github.com/brando90/cert
 - 10-08-2026 22:44 PDT: All four Amendment05 updates completed with original-run identity and exact server acknowledgements: OpusH0/H2 at50, Terminus2QwenD0/H2 at70 after all five named single-call Qwen runs became terminal. Offline capacity provenance passes; no new runs/tasks/retries and original admissionconcurrency20 unchanged. Native Pro observation28%weeklyused/72%remaining, reserve25 retained; account-wide movement23points exceeds original phaseestimate15 by8, attribution unknown and no purchased route. Ten original probe runs are terminal; two Terminus2Qwen runs and original archive collection remain active.
 
 - 10-08-2026 22:54 PDT: Both remaining original Opus archives rehashed and strictly verified offline: H0 1796/1799accepted, H2 1798/1799accepted, four missing-response rows retained. Acrosssix original probeharvests9115/9177accepted, knownUSD1193.6961541/20unknowncostcells. Collector continues original Qwenarchives; two original Terminus2Qwen runs remain active. Full report, publication and canonical lifecycle remain pending.
+
+- 10-08-2026 23:20 PDT: Original QwenH0/H1/H2 archives strictly verified offline:1662/1799,1694/1799,1628/1799 accepted. Frozen parser failures130/101/167 and missingresponse/artifact rows retained. Nine originalprobeharvests total14099/14574accepted, knownUSD1267.3649239/35unknowncostcells. OriginalQwenR4collection and twoTerminus2Qwen scoringruns remain active; no newscientificcall or native launch.
