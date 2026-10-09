@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**Status:** RUNNING — all original criterion and probe evidence is reconciled; the complete statistical analysis is running. Final report verification, publication and archival remain required.
-**Last updated:** 10-09-2026 00:44 PDT
+**Status:** RUNNING — all scientific results and final reports are verified; exact-revision publication and archival are the remaining live dependency.
+**Last updated:** 10-09-2026 01:25 PDT
 
-All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full analysis, report verification and final publication remain required.
+All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full analysis and report verification are complete; exact-revision publication and archival remain required.
 
 - Source manifests distinguish old G00 anchor data from 50 fresh tasks; fresh groups are analyzed separately under the protocol.
 - Frozen S2 recovery precedence admitted 3,847 recovery receipts and retained 44 non-admitted recovery receipts; it never replaces a measured or parser-error original cell. The resolver uses declared manifest model identity rather than deriving a model name from recovery run labels.
@@ -19,7 +19,7 @@ All 20,250 original admitted task occurrences remain in scope. Ten original serv
 - The Stanford Network Analysis Project coordinator on skampere1 completed attempt 5 (`gpt-6-astra`, ultra reasoning) and entered a run-bound dependency wait. Its full-access executor and supervisor exited successfully. Attempt 6 is now the active verified continuation after clean probe completion; no further main executor launch remains.
 - No set-N, v6, set-B prediction or private rating file has been accessed by this helper.
 
-Measured criterion estimates and their uncertainty are available in [the criterion report](RESULTS_criterion_campaign.md). Full-study recommendations require the remaining complete probe campaign and all full analyses.
+Measured criterion estimates and their uncertainty are available in [the criterion report](RESULTS_criterion_campaign.md). The [full-campaign report](RESULTS_full_campaign.md) now includes every requested analysis and the frozen screening decisions.
 
 - Exact fresh prompt reproduction: 1,382/1,382 full system+user hashes match the source manifests (H0/H2, 691 nonblank candidates each). The stricter cache gate requires equal delivered hashes or explicit alternative transport evidence. Failed receipts remain retained.
 - Historical inventory now distinguishes 60 member procedures and 30 separate ensembles, including every persona/instructions-only learned fold and late all-original-groups procedures. Raw repeat values/IDs remain in ignored storage with aggregate variability and provenance published.
@@ -105,3 +105,16 @@ The original [Qwen R4 result](expt_v1/results/probes/qwen_r4_strict_harvest.json
 - 10-09-2026 00:44 PDT: [Complete probe-cell reconciliation](expt_v1/results/probes/complete_cell_reconciliation.json) preserves all 32,040 declared cells: 18,759 accepted measured occurrences, 673 unaccepted requested occurrences, 2,076 accepted deterministic cells, 10,452 structurally invalid cells and 80 extraction-unavailable cells. The final [Terminus2 Qwen human-mirror archive](expt_v1/results/probes/t2_qwen_h2_strict_harvest.json) accepts 1,673/1,799; 121 parser failures and five uncertified submissions remain. All twelve original archives contain 38,912 hashed files and 2,241,835,678 bytes. [Probe charges](expt_v1/results/probes/charges.json) total USD 1428.7917811 known, with 38 unknown costs; the complete bill is unknown. The existing full follow-through is executing all 128 analysis derivations with 10,000 draws and seed 47; whole completion remains pending.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
+
+## 10-09-2026 01:25 PDT — complete scientific outputs verified
+
+All 128 required derivations, 192 criterion descriptive views and 84 criterion repeat-information analyses are verified against current measurements and unchanged frozen dependencies. The six rendered report/figure artifacts pass source/output hash and link checks. All 99 deterministic tests pass. [Scientific verification](expt_v1/results/final_scientific_verification.json); [full report](RESULTS_full_campaign.md); [complete estimates](RESULTS_full_analysis_details.md).
+
+The frozen screen gives no strong follow-up: reference bug monotonicity is INCONCLUSIVE; blank and identity controls are DROP_CONSTANT; reference deletion, geometric-mean deletion monotonicity, deletion information, repeat information and semantic discrimination are DROP_UNCOMPUTABLE. These exclusions concern this sandbox shortlist, not proof that a property is ineffective. The complete 12-configuration common support is 0/691 in all three targets against the protocol's 90% threshold. Pooled association and selection estimates and their 95% intervals are undefined, with 0/10,000 finite task-bootstrap draws (seed 47; p-val=n/a). All 420 explicit power-grid rows retain NOT_COMPUTABLE outcomes, plus three unavailable semantic-discrimination planning conditions; no independent-family requirement is identifiable.
+
+The final offline report rehashed 38,912 files (2,241,835,678 bytes) across all twelve original probe archives and reproduced every strict result: 18,759/19,432 accepted occurrences, 673 unaccepted retained. Probe known charges are USD 1428.7917811 with 38 unknown-cost cells; criterion known charges including original smokes are USD 673.0186273 with 11,823 unknown-cost cells. The total bill remains unknown. No new inference, retry or measured-cell readmission was used to recover or verify evidence.
+
+The [final group-transfer check](expt_v1/results/group_transfer_final_input_verification.json) binds 8,641 unchanged criterion repeat rows, 9,000 independently audited recomputed task-property records, 540 final property values and coverage rows, and 45 support records. Held-out raw candidates are excluded before information recomputation. The three base models are Opus, Qwen and Sonnet; both Qwen harnesses share one cluster. Semantic discrimination remains unavailable because 0/50 fresh references match the 25 audited sources.
+
+**TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] The full simulated-panel analysis is verified with no supported strong-follow-up shortlist; exact-revision publication and archival remain.
+**Snapshot:** 128/128 derivations; 18,759/19,432 probe occurrences accepted; common support 0/691.
