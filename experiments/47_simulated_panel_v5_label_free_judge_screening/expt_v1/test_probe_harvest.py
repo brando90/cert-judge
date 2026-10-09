@@ -101,6 +101,34 @@ class ExistingRunAdoptionTests(unittest.TestCase):
         with self.assertRaises(ValueError):require_existing_runs(ctl)
 
 class ConcurrentCollectionTests(unittest.TestCase):
+    def test_failed_timeout_interrupted_and_killed_attempts_never_repeat(self):
+        import subprocess
+        for failure in ('failed','timeout','interrupted','killed'):
+            with self.subTest(failure=failure),tempfile.TemporaryDirectory() as directory:
+                raw=Path(directory);calls=[]
+                entry={'run_id':'original','phase':'terminal','run_status':'error','expected_cells':1}
+                def cli(argv,**kwargs):
+                    calls.append(argv)
+                    self.assertTrue((raw/'cfg_main_collection_intent.json').exists())
+                    self.assertFalse(Path(argv[-1]).exists())
+                    if failure=='timeout':raise subprocess.TimeoutExpired(argv,1)
+                    if failure=='interrupted':raise KeyboardInterrupt()
+                    return SimpleNamespace(returncode=1,stdout='',stderr='preserved failure')
+                ctl=SimpleNamespace(RAW=raw,load_state=lambda:{'runs':{'cfg@main':entry}},TERMINAL_RUN={'error'},cli=cli)
+                if failure=='killed':
+                    # A kill can leave only the pre-call intent, without a result.
+                    write(raw/'cfg_main_collection_intent.json',{'recorded_before_call':True})
+                else:
+                    with self.assertRaises((RuntimeError,subprocess.TimeoutExpired,KeyboardInterrupt)):collect(ctl,'cfg@main')
+                with self.assertRaisesRegex(h.InvalidEvidence,'UNRESOLVED_COLLECTION_INTENT'):collect(ctl,'cfg@main')
+                self.assertEqual(len(calls),0 if failure=='killed' else 1)
+
+    def test_legacy_staging_without_intent_cannot_trigger_another_download(self):
+        with tempfile.TemporaryDirectory() as directory:
+            raw=Path(directory);(raw/'cfg_main_download_legacy').mkdir()
+            ctl=SimpleNamespace(RAW=raw,load_state=lambda:{'runs':{'cfg@main':{'run_id':'original','phase':'terminal','run_status':'error'}}},TERMINAL_RUN={'error'},cli=lambda *a,**k:self.fail('silent retry'))
+            with self.assertRaisesRegex(h.InvalidEvidence,'PRIOR_COLLECTION_STAGING'):collect(ctl,'cfg@main')
+
     def test_two_collectors_download_original_run_once(self):
         import json,threading,time
         from concurrent.futures import ThreadPoolExecutor
