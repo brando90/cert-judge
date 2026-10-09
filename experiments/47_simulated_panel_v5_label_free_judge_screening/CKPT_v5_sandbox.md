@@ -2,7 +2,7 @@
 
 **Doc link:** [Experiment README](README.md)
 Created: 10-08-2026 10:05 PDT
-Last updated: 10-08-2026 17:01 PDT
+Last updated: 10-08-2026 19:09 PDT
 
 - Objective: finish `47_simulated_panel_v5_label_free_judge_screening`, without accessing prospective data.
 - Master: Codex desktop chat `01a11c71-b74c-7dd3-a249-ca3d28526f39` (local orchestrator, full access / never approvals).
@@ -24,8 +24,9 @@ Last updated: 10-08-2026 17:01 PDT
 - Cached-pool check: `expt_v1/inventory_cached_primary_pool.py` verified all 4,146 declared nonblank raw cells for reusable `opus55x|H0`/`opus55x|H2`, with 691/691 scorable nonblank items per configuration. The other ten primary configurations remain missing declared conditions, not substitutes.
 - Historical-pool inventory: exact experiment-39 harvest receipts verify 12 declared configurations over four model/harness identities, three base-model clusters and two provider families; only the two cached members are presently reusable. Receipt: `expt_v1/results/historical_primary_pool_inventory.json`.
 - Probe ownership boundary: a separate master-launched worker exclusively owns `expt_v1/probes/` and its ignored artifacts, with zero judge calls. Do not compile/build competing probes; integrate its verified output when supplied.
-- Current next action: preserve the run-bound probe dependency wait. Criterion results (192 views and 84 repeat analyses) landed in pull request 57; all 22 original harvest files passed byte-identical offline reconstruction. Integrate only the complete independently published probe result after source/transformed-byte/cache gates, then finish all declared probe scoring and full analyses. No criterion readmission or new recovery condition is authorized.
-- Current probe dependency: root resumed the ordinary two-worker900s compiler after the reboot, PID99640/start151814/boot83765e57. The old native helper session was killed; its one reserved finalizer remains gated on a complete manifest and all50 G01 terminal source receipts. Use probe runtime/reboot_recovery.json and active_jobs.json for actual process/progress evidence; keep the healthy compiler untouched.
+- Current executor: attempt 6 of 6, native thread 01a11e66-e4a9-7740-bca4-9933429f0f70, verified gpt-6-astra/ultra/full access/never approvals; 84% weekly included allowance remains at admission. This is a new native checkpoint continuation, not resume of attempt 4. No further main launches remain.
+- Current next action: integrate complete published probe artifacts after offline replay; freeze/render/pack/quote the complete probe universe; deploy fresh callback namespaces and require current eight-process/endpoint health before every new admission. Original criterion is reconciled/published and must never be readmitted.
+- Current probe dependency: terminal helper publication f7d99e4 (artifact commit aaed94c), exact 750 candidate identities, 50 references, 2722 probe rows, 1293 transformed artifacts and 2641 recorded compilations pass the read-only gate. All missing/failed compile outcomes remain; no new compiler invocation.
 - Required completion gate (NOT met): all declared outputs reconciled, deterministic checks passed, pull request merged and exact landing receipt verified. Criterion-phase completion is not whole-task completion.
 
 - Master continuation: inventory executor attempts 1–3 are finished, not failed measured calls. Supervisor/worker group were confirmed absent and no active jobs existed; owned git state was clean. The probe dependency is now active and independently verified. Master prepares attempts 4–6 for rendering/admission/statistical implementation and full scoring, using cc_scoring_analysis.md. Original scientific run identity and all call receipts remain unchanged.

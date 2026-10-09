@@ -20,7 +20,7 @@ from run_offline import identity,update_job
 def reconcile_ambiguous_admission(ctl,cfg,part,phase,suffix=''):
     """Read-only recovery of a lost start receipt; never issue another start."""
     key=cfg+'@'+part+suffix;state=ctl.load_state();entry=state['runs'].get(key)
-    if not entry or entry.get('run_id') or entry.get('phase')=='admission_failed_verified_absent':return
+    if not entry or entry.get('run_id') or entry.get('phase') in ('admission_failed_verified_absent','admission_blocked_before_transport'):return
     argv=entry.get('actual_command') or entry['command'];label=entry.get('actual_label') or argv[argv.index('--label')+1].replace('cj39-','cj47-'+phase+'-',1)
     entry['phase']='admission_unresolved';ctl.save_state(state)
     for attempt in range(3):
@@ -121,6 +121,10 @@ def main():
         if '--label' in argv:
             i=argv.index('--label')+1;argv[i]=argv[i].replace('cj39-','cj47-'+phase+'-',1)
         if argv[:2]==['run','start']:
+            if phase=='probes':
+                from callback_gate import before_probe_transport
+                gate=before_probe_transport(ctl,ROOT,quote['admission_manifest_sha256'],original)
+                write(runtime/'callback_last_transport_gate.json',gate)
             if selection and '--task-ids-file' in argv:
                 for cfg,selected in selection['configurations'].items():
                     if Path(argv[argv.index('--task-ids-file')+1]).name==f"task_ids_{(cfg+'@main'+suffix_for(cfg,'main')).replace('|','__').replace('@','_')}.txt":
@@ -158,7 +162,10 @@ def main():
                 if cfg in unavailable:continue
                 if not ctl.pack_rows(cfg,part):continue
                 suffix=suffix_for(cfg,part)
-                ctl.admit(cfg,part,concurrency=20,suffix=suffix)
+                if phase=='probes':
+                    from callback_gate import admit_probe
+                    admit_probe(ctl,ROOT,quote['admission_manifest_sha256'],cfg,part,suffix)
+                else:ctl.admit(cfg,part,concurrency=20,suffix=suffix)
                 ledger=ctl.load_state();entry=ledger['runs'][cfg+'@'+part+suffix]
                 argv=entry['command'];label=argv[argv.index('--label')+1].replace('cj39-','cj47-'+phase+'-',1)
                 actual=ctl.JUDGE/'actual_admission_commands'/(label+'.json')
