@@ -157,6 +157,8 @@ def full_report(manifest):
     sources=[Path(manifest),compile_path,RESULTS/'semantic_audit_availability.json',RESULTS/'selection_association.json',RESULTS/'recommendations.json',RESULTS/'full_analysis_provenance.json']
     from capacity_provenance import verify_capacity
     capacity,capacity_sources=verify_capacity();sources.extend(capacity_sources)
+    from probe_publication_evidence import verify_all
+    probe_evidence,probe_evidence_path=verify_all();sources.append(probe_evidence_path)
     details=['# Full property, transfer and planning estimates','',
              '**Doc link:** [Main scientific report](RESULTS_full_campaign.md)','',
              'All reported intervals are 95%. Task bootstrap draws use seed 47 and 10,000 draws; task multiplicity and pairings are retained. Association additionally resamples the three observed base-model clusters with all their variants. Conditional fixed-selection intervals answer a narrower question than unconditional selection intervals. No p-value test is performed.','']
@@ -204,6 +206,7 @@ def full_report(manifest):
               'Group-transfer selection excludes held-out candidate contributions, including reconstruction of the repeat-information joint distribution. It conditions on shared known references and is not task transfer. Five task folds instead select using four task folds and evaluate the fifth. Equal-group results weight each of the 15 groups equally and retain paired task uncertainty.','',
               'The common target excludes Anthropic and Alibaba for comparable cross-judge quality. Own-family targets use different criteria and are sensitivity results only. The intervals condition on existing simulated ratings and omit new human-rater and model-family uncertainty. Reusing task information, exploratory protocol development and known historical failures limit confirmatory interpretation. Compilation establishes elaboration, not semantic weakening or bug relevance. A compiler timeout means nonverification within the frozen time bound, not proof of Lean invalidity; timeout diagnostics remain separately classified.','',
               '## Costs, infrastructure and provenance','']
+    lines += [f"Final offline re-verification accepts {probe_evidence['accepted_task_occurrences']}/{probe_evidence['expected_task_occurrences']} original probe task occurrences from all twelve runs; {probe_evidence['verified_files']} collected files and {probe_evidence['verified_bytes']} bytes were rehashed. The complete sanitized acceptance, failure, server-state, cost and collection bindings are in "+link(probe_evidence_path)+'. No transport command is permitted during this check.','']
     for phase in ('criterion','probes'):
         path=RESULTS/phase/'charges.json';charges=read(path);sources.append(path)
         lines += [f"{phase}: reported total USD {num(charges.get('reported_total_usd'))}; known reported sum USD {num(charges.get('known_reported_sum_usd'))}; {charges.get('unknown_charge_cells',0)} cells with unknown charges. Evidence: "+link(path)+'.']
