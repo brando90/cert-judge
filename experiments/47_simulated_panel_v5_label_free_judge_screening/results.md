@@ -81,4 +81,10 @@ All 97 deterministic tests pass. Final publication requires an offline reproduct
 
 The [strict original Qwen D0 result](expt_v1/results/probes/qwen_d0_strict_harvest.json) accepts 1,219/1,260 task occurrences. The frozen parser rejects 40 responses; one task lacks response bytes. Their original artifacts and failure rows remain preserved. Known charges are USD 19.028145, with one unknown-cost task. Across four examined probe runs, 5,521/5,579 task occurrences are accepted and 16 costs remain unknown. The collector is retrieving the two original remaining Opus archives in parallel; all other declared runs remain in scope.
 
+## 10-08-2026 22:54 PDT — six original probe archives reconciled
+
+The original [Opus H0](expt_v1/results/probes/opus_h0_strict_harvest.json) and [Opus H2](expt_v1/results/probes/opus_h2_strict_harvest.json) archives accept 1,796/1,799 and 1,798/1,799 task occurrences respectively. Three H0 and one H2 response byte strings are missing; their unresolved rows remain. Known charges are USD 367.90096 and USD 329.9884992, with three and one unknown-cost tasks respectively. Across six strictly examined original probe runs, 9,115/9,177 occurrences are accepted; the known charge sum is USD 1193.6961541 and 20 costs remain unknown. Verification rehashed original files and used no transport or inference.
+
+All four [prospective scheduling updates](expt_v1/results/probes/capacity_receipt.json) now have exact server acknowledgements: Opus H0/H2 at 50 task slots and Terminus2 Qwen D0/H2 at 70 after all five named single-call Qwen runs ended. Independent concurrency metadata remains unavailable. No run, task or retry was added; the historical admission records remain unchanged. Ten of twelve original runs are terminal, while two Terminus2 Qwen runs and archive collection continue. The study remains RUNNING.
+
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
