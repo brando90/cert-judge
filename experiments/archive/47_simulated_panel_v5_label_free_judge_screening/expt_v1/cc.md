@@ -1,6 +1,6 @@
 # Execute the v5 simulated-panel judge-screening sandbox
 
-> Execution record (10-09-2026 01:25 PDT): the original launch/model allowance below is historical and was superseded by the authorized continuation. The actual final executor is native Codex gpt-6-astra/ultra, attempt 6 of 6, full access with approval never. All scientific results and reports are verified; exact-revision publication and archival remain. Do not launch a seventh coordinator or repeat original cells.
+> Execution record (10-09-2026 01:25 PDT): the original launch/model allowance below is historical and was superseded by the authorized continuation. The actual final executor is native Codex gpt-6-astra/ultra, attempt 6 of 6, full access with approval never. All scientific results and reports are verified and published in PR62; this completed run is archived. Do not launch a seventh coordinator or repeat original cells.
 
 **TLDR:** Finish experiment 47's frozen protocol, beginning with zero-call inventory and cached analysis, then all declared reference probes and the historical 12-judge pool. Execute on this cluster host, retain unavailable cells and scientific limits, and publish verified phases through pull requests. This is simulated-panel agreement only; do not touch prospective rating-set material or redefine the project owner's new properties.
 
