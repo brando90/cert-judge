@@ -17,6 +17,17 @@ from receipt_validation import accepted
 from harvest_transport import install as install_harvest_transport
 from run_offline import identity,update_job
 
+def require_existing_runs(ctl):
+    runs=ctl.load_state()['runs']
+    expected={cfg+'@main' for cfg in POOL}
+    if set(runs)!=expected:raise ValueError('adoption requires exactly the complete original probe run mask')
+    for cfg in POOL:
+        entry=runs[cfg+'@main'];ids=[r['task_id'] for r in ctl.pack_rows(cfg,'main')]
+        if not entry.get('run_id') or not ctl.UUID_RE.fullmatch(entry['run_id']):raise ValueError('adoption run identity unresolved')
+        if entry.get('config')!=cfg or entry.get('part')!='main' or entry.get('expected_cells')!=len(ids):raise ValueError('adoption population differs')
+        if entry.get('task_ids') is not None and entry['task_ids']!=ids:raise ValueError('adoption task mask differs')
+    return {cfg: runs[cfg+'@main']['run_id'] for cfg in POOL}
+
 def reconcile_ambiguous_admission(ctl,cfg,part,phase,suffix=''):
     """Read-only recovery of a lost start receipt; never issue another start."""
     key=cfg+'@'+part+suffix;state=ctl.load_state();entry=state['runs'].get(key)
@@ -94,10 +105,14 @@ def merge_phase(ctl,phase):
     write(RESULTS/phase/'harvest_summary.json',{'run_id':RUN_ID,'phase':phase,'per_config':summary,'whole_experiment_complete':False})
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--phase',choices=['criterion','probes'],required=True);args=ap.parse_args();phase=args.phase
+    ap=argparse.ArgumentParser();ap.add_argument('--phase',choices=['criterion','probes'],required=True);ap.add_argument('--adopt-existing-only',action='store_true');args=ap.parse_args();phase=args.phase
     dependency_hashes=verify_dependencies()
     e,_,_,ctl=phase_context(phase);install_harvest_transport(ctl);runtime=ROOT/'runtime';name='judge_'+phase
     lock=(runtime/(name+'.lock')).open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    if args.adopt_existing_only:
+        if phase!='probes':raise ValueError('explicit adoption is scoped to the complete new probe campaign')
+        existing_runs=require_existing_runs(ctl)
+        write(runtime/'probe_existing_run_adoption.json',{'run_id':RUN_ID,'run_ids':existing_runs,'observed_epoch':time.time(),'new_admissions_permitted':False})
     admission=read(e.RESULTS/'admission_manifest.json');quote=read(e.RESULTS/'QUOTE.json');packs=read(e.RESULTS/'packs.json')
     if admission['state']!='FROZEN' or set(admission['configurations'])!=set(POOL):raise ValueError('incomplete frozen admission')
     if quote['admission_manifest_sha256']!=sha((e.RESULTS/'admission_manifest.json').read_bytes()) or quote['packs_sha256']!=sha((e.RESULTS/'packs.json').read_bytes()):raise ValueError('quote is not bound to admission')
@@ -121,6 +136,7 @@ def main():
         if '--label' in argv:
             i=argv.index('--label')+1;argv[i]=argv[i].replace('cj39-','cj47-'+phase+'-',1)
         if argv[:2]==['run','start']:
+            if args.adopt_existing_only:raise RuntimeError('existing-run adoption forbids all run start commands')
             if phase=='probes':
                 from callback_gate import before_probe_transport
                 gate=before_probe_transport(ctl,ROOT,quote['admission_manifest_sha256'],original)
@@ -162,6 +178,7 @@ def main():
                 if cfg in unavailable:continue
                 if not ctl.pack_rows(cfg,part):continue
                 suffix=suffix_for(cfg,part)
+                if args.adopt_existing_only:continue
                 if phase=='probes':
                     from callback_gate import admit_probe
                     admit_probe(ctl,ROOT,quote['admission_manifest_sha256'],cfg,part,suffix)
@@ -190,7 +207,11 @@ def main():
                 if entry and entry.get('run_id') and entry.get('phase')=='terminal':
                     strict_path=ctl.JUDGE/'strict_harvests'/f"{cfg.replace('|','__')}__{part}.json"
                     if not strict_path.exists():
-                        ctl.harvest(cfg,part,suffix);blob=strict_harvest(ctl,phase,cfg,part,suffix)
+                        if phase=='probes':
+                            from harvest_probe_artifacts import harvest
+                            blob=harvest(ctl,cfg,part,suffix)
+                        else:
+                            ctl.harvest(cfg,part,suffix);blob=strict_harvest(ctl,phase,cfg,part,suffix)
                     else:blob=read(strict_path)
                     if part=='smoke' and (blob is None or blob['accepted_count']!=len(blob['cells'])):unavailable[cfg]='smoke transport/parser failed; main condition retained unavailable, no silent retry'
                 elif part=='smoke':unavailable[cfg]='no successful smoke admission; inspect recorded admission failure'

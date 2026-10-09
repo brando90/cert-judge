@@ -72,14 +72,24 @@ def archive_members(data):
     return contents
 
 
-def verify_request(meta, cell, unit, instruction, rendered, pack, writer):
+def verify_request(meta, cell, unit, instruction, rendered, pack, writer, phase='criterion'):
     """Bind every local identity to frozen cells, header and exact prompt bytes."""
     for field in IDENTITY_FIELDS:
         require(meta.get(field) == cell.get(field), 'CELL_BINDING:'+field)
     require(meta['task_id'] == pack.task_id_of('cj47', unit['prompt_key'],
             f"q{meta['queue_index']:05d}__{cell['cell']}"), 'TASK_ID_BINDING')
-    require(cell['cell'] == f"crit__{cell['item']}__L{cell['level']}__r{cell['repeat']}"
-            and cell['kind'] == 'crit' and cell['repeat'] in (1, 2, 3), 'CELL_IDENTITY')
+    if phase == 'criterion':
+        require(cell['cell'] == f"crit__{cell['item']}__L{cell['level']}__r{cell['repeat']}"
+                and cell['kind'] == 'crit' and cell['repeat'] in (1, 2, 3), 'CELL_IDENTITY')
+    else:
+        require(phase == 'probes', 'UNKNOWN_PHASE')
+        e, renderer, _, _ = phase_context(phase)
+        kind = cell['kind']
+        require(kind in e.KINDS and kind != 'crit', 'PROBE_KIND')
+        repeats = 2 if kind == 'ms_gold' else e.KINDS[kind]['repeats']
+        require(type(cell['repeat']) is int and cell['repeat'] in range(1, repeats+1)
+                and cell['cell'] == renderer.cell_id(kind, cell['key'], cell['level'], cell['repeat'])
+                and cell.get('status') == 'render' and cell.get('valid') is True, 'PROBE_CELL_IDENTITY')
     require(len(instruction) == meta['instruction_bytes'] and sha(instruction) == meta['instruction_sha256'],
             'INSTRUCTION_BYTES')
     text = instruction.decode('utf-8')
@@ -222,7 +232,7 @@ def verified_files(directory):
     return indexed
 
 
-def harvest_run(source, entry, unit, metas, cells, packed, pack, writer, parse, directory, indexed):
+def harvest_run(source, entry, unit, metas, cells, packed, pack, writer, parse, directory, indexed, phase='criterion'):
     wanted = source['frozen_task_ids']
     require(len(wanted) == len(set(wanted)) and set(wanted) == set(metas), 'TASK_MASK_OR_DUPLICATE')
     require(entry['expected_cells'] == len(wanted), 'EXPECTED_TASK_COUNT')
@@ -231,7 +241,7 @@ def harvest_run(source, entry, unit, metas, cells, packed, pack, writer, parse, 
     for task_id in wanted:
         meta = metas[task_id]
         row = {k: meta[k] for k in ('task_id', *IDENTITY_FIELDS)}
-        row.update(config=unit['config'], run_id=entry['run_id'], phase='criterion', part='main',
+        row.update(config=unit['config'], run_id=entry['run_id'], phase=phase, part='main',
                    accepted=False, status='unmeasured_infra', cost_usd=None,
                    acceptance_reason='ARTIFACT_ABSENT_UNRESOLVED', prior_verdict_absence_established=False,
                    server_submission_status=None, source_collection_path=str(directory/task_id))
@@ -239,8 +249,8 @@ def harvest_run(source, entry, unit, metas, cells, packed, pack, writer, parse, 
         try:
             cell = cells[meta['cell']]
             instruction = (Path(packed['pack'])/task_id/'instruction.md').read_bytes()
-            rendered = read(PRIVATE/'criterion/cells'/unit['config'].replace('|', '__')/(meta['cell']+'.json'))
-            header, hashes = verify_request(meta, cell, unit, instruction, rendered, pack, writer)
+            rendered = read(PRIVATE/phase/'cells'/unit['config'].replace('|', '__')/(meta['cell']+'.json'))
+            header, hashes = verify_request(meta, cell, unit, instruction, rendered, pack, writer, phase)
             row['frozen_instruction_sha256'] = sha(instruction)
             row['frozen_header_sha256'] = sha(json.dumps(header, sort_keys=True).encode())
             if not task.is_dir():
