@@ -3,7 +3,7 @@
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
 **Status:** RUNNING — original criterion artifacts are reconciled offline after the verified host reboot; all criterion analyses and reports are verified; the complete structural probe artifacts are verified and integrated, with all probe requests rendered and packed; all twelve configuration runs are admitted and scoring is active.
-**Last updated:** 10-08-2026 22:11 PDT
+**Last updated:** 10-08-2026 22:26 PDT
 
 All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full probe scoring, analysis and final publication remain required.
 
@@ -76,5 +76,9 @@ Three original probe archives have strict offline results: [Sonnet D0](expt_v1/r
 The old collector finished its current archive before the [verified handoff](expt_v1/results/probes/collection_fence_effective_verification.json). The new ordinary collector durably records each retrieval intent and rejects automatic replay after failure, timeout or interruption; its first original Qwen D0 download is active. Completed certificates remain reusable with full hash checks. [Amendment05](AMENDMENT_05_released_run_capacity.md) prospectively permits one fixed operational capacity update for four named original runs after specific predecessors finish. Both Opus H0/H2 server responses acknowledge 50 concurrent tasks, with exact original identities and 1,799-task counts verified. Independent live concurrency metadata is unavailable; that limitation is explicit. The two Terminus2 Qwen updates remain gated on all five original single-call Qwen runs ending. Original admission concurrency of 20, every failure, all scientific settings and the full pool remain preserved.
 
 All 97 deterministic tests pass. Final publication requires an offline reproduction of all twelve probe harvests, full analyses and report provenance, exact-revision merge, landing and lifecycle checks. Whole-study completion remains unset.
+
+## 10-08-2026 22:26 PDT — original Qwen D0 archive reconciled
+
+The [strict original Qwen D0 result](expt_v1/results/probes/qwen_d0_strict_harvest.json) accepts 1,219/1,260 task occurrences. The frozen parser rejects 40 responses; one task lacks response bytes. Their original artifacts and failure rows remain preserved. Known charges are USD 19.028145, with one unknown-cost task. Across four examined probe runs, 5,521/5,579 task occurrences are accepted and 16 costs remain unknown. The collector is retrieving the two original remaining Opus archives in parallel; all other declared runs remain in scope.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
