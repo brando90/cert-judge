@@ -2,21 +2,20 @@
 
 **Doc link:** [Runbook](cc.md)
 Created: 10-08-2026 10:51 PDT
-Last updated: 10-08-2026 11:33 PDT
+Last updated: 10-08-2026 18:57 PDT
 
 - Scope: only frozen probe construction/compilation; zero judge calls.
-- Status: RUNNING. The previous foreground driver (process 325184) exited without terminal manifests after retaining 55 hash-bound receipts (18 successful, 37 failed); its cache is preserved. Resumed sole driver is process 689488 in tmux `codex-cj-e47-v5-probes:probe-build-resume`, with exactly two compile workers and the same cache/environment; it has 99 receipts (40 successful, 59 failed), zero timeouts, and two live Lean children at this checkpoint.
+- Status: VERIFIED FOR SCOPED PUBLICATION. The compiler exited 0 with terminal manifests and no active compile jobs; attempt 4 is the one permitted postcompile finalizer, not a scoring-cell retry.
 - Owner: named session codex-cj-e47-v5-probes; branch codex/cj-e47-v5-probes.
 - Main integrator: /dfs/scratch0/brando9/cert-judge-e47-v5-sandbox.
 - Inputs: pinned metadata at 79bbfa3; frozen E39 source; v5 source ccd86d467fd7577826c4b549df2c532bf43b1892.
 - Expected scope: 50 references and 750 declared candidates, including 691 nonblank; verify manifest counts.
-- Input preflight: 750 declared fresh rows, 691 nonblank and 59 blank from the frozen main plus late manifests; exactly 50 unique reference hashes are being copied and verified. The permitted source copy presently has no G01 candidate bytes despite 50 nonblank G01 declarations; main owner is recovering only exact pinned, manifest-hash-matched bytes. Do not finalize G01 as unavailable.
+- Input terminal state: 750 declared fresh rows, 691 nonblank hash-verified candidates, 59 declared blanks, 50 unique reference hashes, and 50/50 verified G01 candidate hashes.
 - Lean preflight: `/lfs/skampere1/0/brando9/vb90_grading/lean_project` declares `leanprover/lean4:v4.22.0`; `~/.elan/bin/lake --version` reports Lean 4.22.0. Its toolchain and lake-manifest hashes are recorded by the driver.
-- G01 recovery: main delivered all 50 allowed G01 blobs into its input copy at 10-08-2026 11:20 PDT. Local verification found 50 files and 50/50 `cand_sha256` matches against the frozen manifest; the current pass has copied and hash-verified all G01 bytes, and its cache will be reused for any later resumable pass.
-- Runtime liveness: `runtime/active_jobs.json` now carries the live compiler in its nonempty `jobs` list as well as its detailed driver receipt, so the serial supervisor will adopt it rather than launch a competing writer. The tmux-owned compiler and host monitor are healthy.
-- Duration decision: retain the two-worker bound under the observed host load. The frozen bug-mutation search has variable attempts; 741 distinct base sources and up to 3,014 original/deletion proposals precede those searches, so terminal compilation is expected to require hours rather than a short coordinator turn. Preserve receipts and continue rather than cut scope.
-- Next: observe process 689488 through all available declared source/probe hashes, then validate and publish terminal manifests. If it exits before terminal manifests, start only the exact hash-resumable continuation from the preserved cache under the existing three-attempt limit.
+- Terminal manifests: source `c032ac46e92dfe2ed326b1372e21f8d69a6d2b719fffc1ca379ea33a507493aa`, probe `d41ceff706a47eebc6310935f983f4837c1e22b4a12091d0b15fc73abe4b743a`, summary `18771989748e56fc15ad9f1c5658ac259276482ecb006043c0c0b28a85eca62d`; independent audit PASS.
+- Terminal compilation: 2,641 unique cache receipts, 1,711 success, 930 failure (421 elaboration, 392 type-or-elaboration, 110 parse, 4 unresolved-import, 3 timeout), one environment fingerprint.
+- Next: commit and push only tracked `probes/` deliverables, write the commit-bound handoff/COMPLETE receipts, notify the main worker mailbox, then leave no scoped active jobs.
 - Runtime: expt_v1/probes/runtime, run cj-e47-probes-10-08-2026-a1.
-- Remote usage receipt 10:46 PDT: weekly 5% used, 95% remaining; included subscription. Next-phase estimate up to 10 percentage points, 25% finishing reserve; two execution coordinators shared. Purchased-credit spillover unverified/ineligible.
+- Native usage read at postcompile finalization start: 10-08-2026 11:35 PDT receipt reports 7% used / 93% included weekly allowance remaining, with a 25% finishing reserve; this phase is capped at an estimated 3 percentage points, and prepaid spillover remains ineligible.
 - Health preflight PASS relevant checks; shared storage 4735 GiB / local storage 9322 GiB free; warnings only. No graphics processors, 2 compile workers initially.
 - Watchdog: /lfs/skampere1/0/brando9/snap_jobs/cj-e47-probes-watch.py; five-minute cron. Classification self-test passed locally; remote installation/first check pending. Root app heartbeat already covers main experiment, with this checkpoint linked.
