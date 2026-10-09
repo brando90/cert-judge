@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/47_simulated_panel_v5_label_free_judge_screening/results.md>
 
-**Status:** RUNNING — all twelve original probe runs are terminal; the final original archive is downloading. Strict reconciliation, full analyses and final publication remain required.
-**Last updated:** 10-09-2026 00:26 PDT
+**Status:** RUNNING — all original criterion and probe evidence is reconciled; the complete statistical analysis is running. Final report verification, publication and archival remain required.
+**Last updated:** 10-09-2026 00:44 PDT
 
-All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Strict probe reconciliation, full analysis and final publication remain required.
+All 20,250 original admitted task occurrences remain in scope. Ten original server runs ended with a failed final callback; those run-level errors do not classify individual tasks or prove that a verdict never existed. No scoring cell has been readmitted during recovery. Full analysis, report verification and final publication remain required.
 
 - Source manifests distinguish old G00 anchor data from 50 fresh tasks; fresh groups are analyzed separately under the protocol.
 - Frozen S2 recovery precedence admitted 3,847 recovery receipts and retained 44 non-admitted recovery receipts; it never replaces a measured or parser-error original cell. The resolver uses declared manifest model identity rather than deriving a model name from recovery run labels.
@@ -101,5 +101,7 @@ The original [Qwen R4 result](expt_v1/results/probes/qwen_r4_strict_harvest.json
 - 10-09-2026 00:07 PDT: [All twelve original probe runs are terminal](expt_v1/results/probes/terminal_runs.json): 19,416 server-finished and 16 server-error task occurrences out of 19,432. These are server states, not acceptance counts. Ten original archives yield 15,844/16,373 strictly accepted occurrences, with 529 unaccepted rows retained. The last two archives are collected concurrently through the existing durable attempt guards; no inference or native coordinator was relaunched. Full analysis follows complete reconciliation. All 98 deterministic tests pass.
 
 - 10-09-2026 00:26 PDT: Original [Terminus2 Qwen direct-score archive](expt_v1/results/probes/t2_qwen_d0_strict_harvest.json) verifies 1,242/1,260 accepted occurrences; 15 frozen-parser rejections, two uncertified submissions and one absent artifact remain unaccepted. Known charges USD52.846839; one unknown cost. Across eleven original archives, 17,086/17,633 occurrences are accepted, with USD1345.1908933 known charges and 38 unknown costs. Full private parser errors are retained unchanged; public summaries use fixed categories so embedded verdict text is not published. All99 deterministic tests pass. The final original archive is still downloading.
+
+- 10-09-2026 00:44 PDT: [Complete probe-cell reconciliation](expt_v1/results/probes/complete_cell_reconciliation.json) preserves all 32,040 declared cells: 18,759 accepted measured occurrences, 673 unaccepted requested occurrences, 2,076 accepted deterministic cells, 10,452 structurally invalid cells and 80 extraction-unavailable cells. The final [Terminus2 Qwen human-mirror archive](expt_v1/results/probes/t2_qwen_h2_strict_harvest.json) accepts 1,673/1,799; 121 parser failures and five uncertified submissions remain. All twelve original archives contain 38,912 hashed files and 2,241,835,678 bytes. [Probe charges](expt_v1/results/probes/charges.json) total USD 1428.7917811 known, with 38 unknown costs; the complete bill is unknown. The existing full follow-through is executing all 128 analysis derivations with 10,000 draws and seed 47; whole completion remains pending.
 
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
