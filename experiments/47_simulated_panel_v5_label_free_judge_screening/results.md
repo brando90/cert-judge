@@ -93,4 +93,8 @@ Original Qwen [H0](expt_v1/results/probes/qwen_h0_strict_harvest.json), [H1](exp
 
 Across nine strictly examined original probe runs, 14,099/14,574 occurrences are accepted; the known reported charge sum is USD 1267.3649239 and 35 costs remain unknown. The original Qwen R4 archive is being collected, and both original Terminus2 Qwen runs continue. No parser or scientific setting was changed to improve acceptance.
 
+## 10-08-2026 23:44 PDT — ten original probe archives reconciled
+
+The original [Qwen R4 result](expt_v1/results/probes/qwen_r4_strict_harvest.json) accepts 1,745/1,799 task occurrences. The frozen parser rejects 52 responses; one task lacks response bytes and one lacks its artifact. Known charges are USD 24.9791304, with two unknown costs. Across ten strictly examined original runs, 15,844/16,373 occurrences are accepted; known reported charges sum to USD 1292.3440543 and 37 costs remain unknown. Both original Terminus2 Qwen runs are still active. The existing collector is free to retrieve their archives as they become terminal.
+
 **TLDR-end:** [cert-judge: 47_simulated_panel_v5_label_free_judge_screening] Continue the complete simulated-panel judge-screening study through strict original-evidence recovery, the independently owned probe campaign, all declared analyses and verified publication.
