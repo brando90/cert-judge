@@ -2,15 +2,43 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/CKPT_MASTER_tmux1_cc_6043a46f.md>
 
-**TLDR:** All four SNAP experiments dispatched on 09-30-2026 are done and merged; no worker or watch is left running.
-- **39:** a new label-free index, `C_ms_gold`, passes on held-out judges (test Spearman 0.558); the paper's `TI_var` and `PTI_v0` fail there.
-- **41:** the paper's 72-pair evidence rests on mismatched references (7 of 24 tasks match), and the re-score against corrected labels is inconclusive.
-- **42:** only 15 of 56 judges pass the semantic screen.
-- **43:** no judge was gamed beyond what the validated reference also credited, and the index did not predict gaming resistance.
-- **Waiting on Brando:** what the paper should now claim.
+**TLDR:** Decision [p10] (what the paper claims now) is resolved: the paper was rewritten on 10-13-2026 to "what transfers to held-out judges and what does not" and is waiting for Brando in [pull request #64](https://github.com/brando90/cert-judge/pull/64); experiments 39, 41, 42 and 43 are archived in the same branch. No worker or watch is running.
 
 Created: 09-30-2026 14:00 PDT
-Last updated: 09-30-2026 21:50 PDT (verified on skampere1 at 21:46 PDT and on GitHub `ce3b595`)
+Last updated: 10-13-2026 14:02 PDT
+
+## Goal
+- Decide and execute what the cert-judge paper claims after experiments 39 (transfer PASS for `C_ms_gold`), 41 (72-pair provenance), 42 (semantic screen), 43 (gaming) and 44 (selection utility), and keep the experiment tree to active work.
+
+## What ran
+- 10-13-2026, lane agent (Claude Fable 5.1, worktree `~/cj_worktrees/paper-framing-10-13-2026`, branch `paper/framing-10-13-2026`): framing decided by the master session under Trigger Rule 57 (VeriBench `experiments/DECISIONS_10-13-2026_open_decisions_resolved.md`, `00b219a4cc`) and executed: `docs/PAPER_FRAMING_DECISION_10-13-2026.md` (`ef1554a`), the paper rewrite with a rebuilt `main.pdf` (`5e84f25`), the archive move of 39/41/42/43 with repointed consumers and passing tests (`4779e32`), pull request #64 (open, not merged; Brando reads it first).
+- Nothing was submitted to any venue; no model-reviewer QA was requested or run; no model calls were made (every number is read from committed receipts; the two prompt-group rows were recomputed from `units_test.json`).
+
+## Results
+- Paper claims, in order (sources in the decision document): (1) `C_ms_gold` test Spearman 0.558 [0.078, 0.762], one-sided permutation p-val=0.0127, 16 of 18 held-out configurations (train 0.761, n=18; validation 0.762, n=20), with the prompt-group sensitivity as a scope limit (0.453 [-0.177, 0.825], p-val=0.0551 on 14; -0.371 [-0.787, 0.304], p-val=0.8615 on the 10 fuller-context prompts); (2) `TI_var` -0.332 [-0.636, 0.135], p-val=0.9135 (18) and `PTI_v0` -0.274 [-0.753, 0.111], p-val=0.7793 (9 of 18) do not transfer; (3) selection utility not demonstrated: proxy 0.768 vs fixed H2 0.853, paired -0.086 [-0.308, 0.058], p-val=n/a (42 files / 15 tasks, 10,000 task-cluster draws); (4) semantic screen 15 of 56 pass and gaming gaps -0.162 to +0.033 with no task-bootstrap interval above zero (59 of 62 edited candidates flagged) are characterization; (5) the 72-pair numbers (0.833 / 0.905 / 0.738 reproduced; 7 of 24 scored tasks match the rater-seen references) are in Appendix `999` with the best-of-k bias (+0.153, 4,000 splits).
+- Build: latexmk 0 errors, 0 undefined references, 0 overfull boxes, 26 pages, main text ends on page 10; `latex_sentence_lines.py --check` passes; layout check `Layout OK: 0 active experiments`; tests after the move: 39 (19 passed), 41 (8), 42 (13 + 1 skipped), 43 (13 + 1 skipped with a local VeriBench clone).
+
+## Stuck / blocked
+- Nothing blocks the branch. Merging waits on Brando reading the framing (by design); the TMLR style conversion (`tmlr.sty` in `paper_latex/archive/TMLR_2026_resubmission/`) is a submission-time step.
+
+## Next steps
+1. Brando reads PR #64; on approval merge it (`gh pr merge 64 --merge`), then `python3 py_src/cert_judge/experiment_layout.py --check` in `~/cert-judge` after pulling (its local main is behind `origin/main`; pull, do not merge there).
+2. [p 6/10] TMLR conversion at submission time: swap `iclr2027_conference` for `tmlr`, add the author block, rebuild, check the page header; keep the file layout.
+3. [p 6/10] New human raters (catalog items 35.10 and 35.11 in `experiments/ideas/35_missing_experiments_from_reviews/EXPERIMENTS.md`): still the only route to the decisive selection test described in Section 6.
+4. [p 4/10] Verina transfer without labels (`experiments/ideas/verina_property_transfer_no_new_labels/`), reusing experiment 39's archived pipeline.
+
+## Brando to-do
+- Read the framing (`docs/PAPER_FRAMING_DECISION_10-13-2026.md`) and the paper in PR #64 before any submission; the pull request is deliberately unmerged.
+- Confirm the ICLR 2027 status of forum `yoLB5iP7Pn` (submission 35334) with a signed-in OpenReview check (`~/keys/openreview_credentials.txt` does not exist; `/chrome` with your session is the alternative). The 09-26-2026 browser read said "withdrawn"; the 10-13-2026 public-API read returned no note.
+- Decide whether to keep the title "Checking the Checks: Behavioral Screens for LLM Judges of Formal Specifications" or name the transfer test in it.
+
+## Log
+- 09-30-2026 21:50 PDT -- all four SNAP experiments done and merged; watchdogs removed; decision [p10] (what the paper claims) left for Brando.
+- 10-13-2026 14:02 PDT -- decision [p10] resolved by the master session (Trigger Rule 57) and executed by the lane agent: framing document `ef1554a`, paper rewrite `5e84f25`, archive of 39/41/42/43 `4779e32`, PR #64 opened (unmerged); state block above rewritten into the six Rule-44 headings, the 09-30-2026 Rule-45 sections kept below as history.
+
+---
+
+# Historical state (09-30-2026, Rule-45 layout; superseded by the block above)
 
 ## 1. Identity and recovery
 
