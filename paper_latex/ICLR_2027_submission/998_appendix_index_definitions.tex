@@ -1,6 +1,30 @@
 % !TEX root = main.tex
 \section{Index Definitions and Implementation}\label{app:index-definitions}
-\paragraph{Fixed equal-weight index.}
+\paragraph{Components of the transfer study.}
+% Provenance: experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/scripts/analysis_lib.py (components, ladder_quality, ladder_medians; MIN_COMPONENT_COVERAGE = 0.80).
+Let $m(k,\kappa,\ell)$ be the median over repeated calls of a configuration's score on cell $(k,\kappa,\ell)$, where $k$ is the probe kind, $\kappa$ the gold or candidate, and $\ell$ the ladder level.
+For a gold ladder of kind $k\in\{\text{deletion},\text{bug}\}$ on gold $\kappa$ with valid levels $1,\dots,L$, the level sequence is $(0,1,\dots,L)$ and the score sequence is $(m(\text{ident},\kappa,0),\,m(k,\kappa,1),\dots,m(k,\kappa,L))$; a ladder with any unscored level is dropped.
+Its quality is $q=(1-\rho)/2$ with $\rho$ the tie-aware Spearman correlation between the two sequences, and $q=0$ when every score is identical.
+$C_{\mathrm{ms,gold}}$ and $C_{\mathrm{bm,gold}}$ are the means of $q$ over the gold deletion and bug ladders, and $C_{\mathrm{ms,cand}}$ applies the same rule to candidate deletion ladders anchored at the criterion cell.
+Identity is the mean of $m(\text{ident},\kappa,0)$ over golds; blank is the mean of $1-m(\text{blank},\kappa,0)$.
+Alpha-renaming, reordering, and proof-to-\texttt{sorry} invariance are means of $1-|m(\text{crit},x,0)-m(k,x,1)|$ over candidates $x$; spam non-increase is the mean of $1-\max(0,\,m(\text{spam},x,1)-m(\text{crit},x,0))$.
+Stability is the mean of $1-\min(1,\,2\,\sigma)$ over the criterion, identity, and bug cells with at least two repeats, where $\sigma$ is the population standard deviation across repeats.
+A component is reported only when at least 80\% of its structurally valid probes are scored; otherwise it is missing, and so is every index that contains it.
+The pre-registered aggregates take geometric means, an arithmetic mean, or a minimum of fixed component subsets without fitted weights.
+
+\paragraph{The frozen four-property index.}
+% Provenance: docs/spec/PTI_V0.md; analysis_lib.pti_v0_frozen.
+$\mathrm{PTI}_{v0}$ is the geometric mean of four properties: the geometric mean of the identity scores over golds, the geometric means of the bug-ladder and deletion-ladder qualities, and the geometric mean of the alpha-renaming invariances over candidates.
+Its geometric means are exact-zero (any zero factor gives zero, with no floor), and each property requires every structurally valid probe to be scored, so the index is undefined whenever a required score is missing.
+Single-repeat ladder levels contribute their quality unchanged.
+
+\paragraph{Fixed equal-weight index of the earlier version.}
+The scalar our earlier version proposed is computed from bug-ladder scores only:
+\begin{equation}
+\mathrm{TI}_{\mathrm{var}}=\exp\!\left[\tfrac13\log C_f+\tfrac13\log(1-\widetilde V_c)+\tfrac13\log(1-\widetilde V_s)\right].
+\label{eq:tivar}
+\end{equation}
+In the transfer study the tildes denote min--max normalization over the 18 train configurations, so the index is panel-independent for the validation and test judges.
 For each file $f$ and bug level $\ell$, let $s_{f\ell}$ be the median recorded repeat score and $v_{f\ell}$ its population variance.
 Let $\rho_f$ be Spearman's correlation between level and $s_{f\ell}$, and set $c_f=\mathrm{clip}((1-\rho_f)/2,0,1)$.
 Writing $\mathcal F$ for the included ladders, the archived implementation uses

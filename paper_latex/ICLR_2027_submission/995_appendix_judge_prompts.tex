@@ -1,5 +1,14 @@
 % !TEX root = main.tex
 \section{Judge Prompts and Scoring Configuration}\label{app:judge-prompts}
+\paragraph{Judges and prompts of the transfer study (Section~\ref{sec:setup}).}
+% Provenance: experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/scripts/e39.py (MODELS, PROMPTS) and results.md ("Selectors actually used").
+The six judge models were served through one hosted gateway under the identifiers \texttt{openai/gpt-6-sol-high} (reasoning effort high), \texttt{anthropic/claude-sonnet-5-medium} (compute effort medium), \texttt{openai/gpt-6-luna-high} (high), \texttt{google/gemini-3.1-pro-preview}, \texttt{anthropic/claude-opus-5-5-no-fallback} (compute effort maximum), and \texttt{alibaba/qwen3.6-27b}.
+The agent judges ran the same models inside the Terminus2 harness (at most 20 turns, reasoning effort high where exposed) and wrote their verdict to a file.
+The five fuller-context prompts are \textsc{VeriBench}'s frozen rubrics, imported byte-for-byte: \texttt{D0\_deployed\_tc\_v1} (integer $0$--$10$, divided by ten), \texttt{R4\_exp75\_human\_precondition}, \texttt{H0\_human\_mirror}, \texttt{H1\_human\_mirror\_rater\_conventions}, and \texttt{H2\_human\_mirror\_conventions\_demos} (integer $0$--$5$, divided by five); each shows the judge the complete reference, the task's Python source, and the full candidate.
+The four legacy prompts are the \texttt{P1\_BASELINE}, \texttt{P4\_CHECKLIST}, \texttt{P8\_STRICT\_B}, and \texttt{BAD\_STRINGY} prompts listed below, verbatim, with the reference field holding the gold's last theorem block as in our earlier version.
+Scores were normalized to $[0,1]$ at parse time, and the expert target is the $0$--$5$ mean divided by five, so no further scaling is applied.
+
+\paragraph{Prompts of the earlier 72-pair validation set (Appendix~\ref{app:validation-set-72}).}
 The primary family model identifiers are \texttt{gpt-5.3-codex}, \texttt{claude-opus-4-7}, and \texttt{Qwen/Qwen3-Coder-30B-A3B-Instruct}.
 Each family panel contains the three semantic prompts below and \texttt{BAD\_STRINGY}, plus \texttt{gpt-4o-mini} with the checklist and strict prompts.
 The other two configurations are the deterministic edit-distance control \texttt{editdist\_e1} and seeded control \texttt{random\_r1}.

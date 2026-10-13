@@ -19,16 +19,20 @@ When a candidate shares the reference's interface, automated proof attempts in b
 Such attempts do not decide equivalence in general, and a failed attempt does not show inequivalence.
 Across differing representations, these checks need a specified correspondence.
 BEq+ reports both false positives and false negatives relative to human judgments~\citep{poiroux2025beq}.
-We did not benchmark such a tool against the graded reference-coverage judgments studied here.
+We did not benchmark such a tool against the graded reference-coverage ratings studied here.
 A gold reference gives the judge a concrete comparison target, but it does not make the judge immune to strategic manipulation~\citep{robertson2025stepbystep}.
 
 \paragraph{Judge configuration.}
-A judge configuration is $\theta=(\text{model},\text{prompt},n_{\mathrm{repeats}},\text{aggregation})$ with score $J_\theta(x,g)\in[0,1]$.
-The headline panels take the median over repeated calls.
-Despite the prompt label ``REFERENCE IMPLEMENTATION,'' the reference field holds the gold file's final theorem block, and the candidate field holds the full candidate file.
-The measured task therefore depends on this extraction rule as well as on the nominal rubric, and a changed rule requires a new assessment.
+A judge configuration is $\theta=(\text{model},\text{prompt},\text{harness},n_{\mathrm{repeats}},\text{aggregation})$ with score $J_\theta(x,g)\in[0,1]$.
+Every panel in this paper takes the median over repeated calls.
+Two prompt families render the inputs differently.
+The legacy prompts of our earlier version fill a field labelled ``REFERENCE IMPLEMENTATION'' with the gold file's final theorem block and show the full candidate file.
+The fuller-context prompts of \textsc{VeriBench}'s judge show the complete reference, the task's Python source, and the full candidate.
+The measured task therefore depends on the rendering as well as on the nominal rubric, and a changed rendering requires a new assessment.
+A harness is either one gateway call that carries the prompt bytes, or the Terminus2 agent harness, which receives the same bytes as its task and writes a verdict file from inside a sandbox.
 
 \paragraph{Two levels of agreement.}
-\emph{Artifact-level agreement} is the correlation between one judge's scores and the human ratings over candidate--gold pairs.
-\emph{Judge-level association} is the correlation, across judge configurations, between their artifact-level agreement and a property index.
-The first says how well one judge tracks humans; the second says whether the screen orders judges the way humans would.
+\emph{Artifact-level agreement} is the correlation between one judge's scores and the human ratings over candidate--gold pairs; on the 45 held-out items of Section~\ref{sec:setup} we call it the \emph{criterion}.
+\emph{Judge-level association} is the correlation, across judge configurations, between their artifact-level agreement and a label-free component or index.
+The first says how well one judge tracks the raters; the second says whether the screen orders judges the way the raters would.
+A screen \emph{transfers} when the judge-level association measured on the judges it was selected on persists on judges it was not.

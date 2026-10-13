@@ -19,15 +19,15 @@ Quadratic-weighted $\kappa$ & 0.372 & $[0.073,0.581]$ \\
 Mean absolute error & 0.771 & Not reported \\
 \bottomrule
 \end{tabular}
-\caption{The two human passes disagree on the same artifacts, making the choice of label view consequential.
+\caption{The two human passes disagree on the same artifacts, making the choice of rating view consequential.
 Mean absolute error uses the original $0$--$5$ rating scale; all estimates use 72 overlapping pairs.}
 \label{tab:app-human-human-ceiling}
 \end{table}
 
 \subsection{Expanded configuration panel}\label{app:expanded-panel}
 The expanded panel compares the arithmetic $v2$ with the pass1-selected geometric form $\mathrm{mono}^{0.4}\mathrm{stab}^{0.6}$.
-Its averaged-label association is $0.769$, with bootstrap interval $[0.34,0.95]$ (Figure~\ref{fig:app-exp25-13judge}).
-The result concerns 13 configurations on reused validation labels, not 13 independent model families or unseen data.
+Its averaged-rating association is $0.769$, with bootstrap interval $[0.34,0.95]$ (Figure~\ref{fig:app-exp25-13judge}).
+The result concerns 13 configurations on reused validation ratings, not 13 independent model families or unseen data.
 The plotted geometric index is not $\mathrm{TI}_{\mathrm{var}}$.
 
 \begin{figure}[htbp]
@@ -39,9 +39,9 @@ The two panels compare arithmetic $v2$ with $\mathrm{mono}^{0.4}\mathrm{stab}^{0
 \end{figure}
 
 \subsection{Negative results}\label{app:negative-results}
-A separate Leanstral panel yields $\mathrm{TI}_{\mathrm{var}}$ associations of $-0.1190$, $-0.0476$, and $-0.0952$ on pass1, pass2, and averaged labels.
+A separate Leanstral panel yields $\mathrm{TI}_{\mathrm{var}}$ associations of $-0.1190$, $-0.0476$, and $-0.0952$ on pass1, pass2, and averaged ratings.
 It uses \texttt{labs-leanstral-2603} in the same eight-configuration form, with three recorded scores per row for every configuration and median aggregation.
-Its five-configuration semantic subset remains negatively associated on all three label views (Table~\ref{tab:subset-diagnostics}).
+Its five-configuration semantic subset remains negatively associated on all three rating views (Table~\ref{tab:subset-diagnostics}).
 These recorded results contradict a claim that the fixed index works for every family.
 They do not establish why the association fails.
 The different-rubric human pool described in Section~\ref{sec:limitations-test} also produced no qualifying index in either registered screen.

@@ -1,7 +1,7 @@
 % !TEX root = main.tex
 \section{Conclusion}
 Agents now write the trust artifacts for their own code, and a language-model judge decides whether those artifacts say the right thing.
-We replaced the per-judge human validation of that judge with one human panel and four falsifiable properties that fix how scores must respond to controlled edits.
-On the validation set, the fixed equal-weight index tracks judge-level human agreement across three families, and the property report exposes a lexical judge that human agreement rates as acceptable.
-The report, not the scalar, is the screen's verdict, and a locked test must still establish transfer beyond the labels used to select the protocol.
-Human judgment then becomes a reusable foundation: collected once, it anchors automated, falsifiable checks that every new judge must pass.
+We asked whether label-free behavioral properties can take over part of the human validation of that judge, and we tested the answer on judges the properties were not selected on.
+One property transfers: the fall in score as theorem statements are deleted from the reference predicts held-out judges' agreement with expert ratings under our pre-registered gates, with a wide interval and an association carried by prompt groups rather than by differences among the judges one would deploy.
+The two indices our earlier work proposed do not transfer, choosing a judge by the transferred screen does not beat a fixed human-mirror prompt, a semantic screen passes 15 of 56 configurations, and a score-optimizing attacker inflates the attacked judges and the validated reference alike.
+Label-free screens can rule judges out and expose failures that human agreement hides; choosing among the judges one would deploy still needs a human panel, and the decisive test of any replacement is a frozen screen scored against new ratings.

@@ -1,39 +1,39 @@
 % !TEX root = main.tex
-\section{Limitations and a Locked Test}\label{sec:limitations-test}
-\paragraph{Validation evidence, not a test.}
-The same labels informed the index form, repeat aggregation, threshold, and prompt panel, so the reported correlations are optimistic validation-set estimates.
-They rest on one annotator and eight configurations per family, with shared controls rather than independent samples of eight models.
-No test-set result establishes reliability for a new judge or artifact distribution.
-We also collected 343 labels from five raters over 78 candidate--gold pairs.
-That pool uses statement coverage with a theorem-spam deduction, a different rubric from the panel's holistic ratings.
-Its Spearman agreement with the panel labels is approximately $0.13$ on 63 shared pairs.
-Two pre-registered screens asked whether property indices tracked agreement with that pool.
-The screen of 14 configurations was underpowered; the expanded screen of 32 found no index meeting its registered criterion.
-Its largest absolute Spearman association was $-0.39$ with Holm-adjusted permutation $p=0.25$; leave-one-out selection transfer yielded $\rho=0.24$, $p=0.49$.
-These negative results do not demonstrate transfer under the original criterion, nor can the pool serve as a test set for that criterion.
-Appendix~\ref{app:negative-results} records the corresponding negative-control evidence.
+\section{Limitations and a Decisive Test}\label{sec:limitations-test}
+\paragraph{What the transfer result shows and what it does not.}
+% Provenance: experiments/archive/39_.../results/TEST_RECEIPT.json; docs/PAPER_FRAMING_DECISION_10-13-2026.md (sensitivity rows).
+The registered gates test whether the association on the held-out judges is positive; they do not test whether the population association exceeds $0.45$, and the interval's lower bound is $0.078$.
+The association is carried largely by the difference between prompts that see the whole reference and prompts that see its last theorem block, and it reverses within the ten fuller-context test configurations.
+The screen therefore separates judge groups one can already tell apart; within the group one would deploy, the evidence does not show that it ranks judges.
+The configurations inside each split share judge models and prompt families, so the configuration bootstrap understates uncertainty, and the test judges were two single-call models and two agent harnesses rather than an independent sample of judges.
 
-\paragraph{What the screen covers.}\label{sec:limitations-finite}
-The probes do not establish sensitivity to vacuity, subtle weakening, over-constraint, or formatting-only edits beyond the four rewrites studied here.
-Constructing probes with known directions for these failures is the next methodological step; we claim no result for them.
-The historical alpha generator can produce malformed text, so its low scores do not establish sensitivity to valid alpha-renaming.
-Other scripted rewrites and the intended ordering of bug edits also lack semantic validation.
-The language-model configurations use single-call rubric prompts per repeat, so structured multi-stage judges~\citep{TongZhang2024CodeJudge} are untested.
-No automated equivalence baseline on interface-matched pairs was run (Section~\ref{sec:problem-setup}).
-We cannot separate rubric ambiguity from misunderstanding Lean semantics with the current annotations.
-Presentation, including redundant theorems, implementation bloat, and unnecessary abstraction, is unassessed; holistic human ratings may reflect it implicitly.
-We did not optimize candidates against the judge, so resistance to gaming is untested.
+\paragraph{No demonstrated selection advantage.}
+% Provenance: experiments/archive/44_.../RESULTS_selection_utility.md; experiments/archive/45_.../RESULTS_five_rater_comparison.md.
+Choosing by the screen did not beat a fixed human-mirror prompt on cached scores (paired difference $-0.086$ $[-0.308, 0.058]$), and the five-rater sensitivity leaves the comparison unresolved ($-0.012$ $[-0.198, 0.186]$).
+Both comparisons reuse the criterion items, condition on a fixed pool of twelve configurations, and run no hypothesis test; they cannot show that the screen is useless, only that its usefulness is not established.
 
-\paragraph{Scope.}
-All candidates and probes come from \textsc{VeriBench} in Lean~4.
-The protocol could be instantiated for another proof assistant or for AI-written tests, but neither cross-assistant nor cross-benchmark transfer has been tested.
-A score is relative to the supplied gold reference and extraction rule, not a guarantee that all intended requirements are present.
-Reference-free screening and the number of annotators needed for a stable criterion remain open.
-The index also depends on its comparison panel and omits constant ladders with undefined correlations; these implementation choices limit portable screening.
+\paragraph{Coverage of the probes.}\label{sec:limitations-finite}
+% Provenance: experiments/archive/39_.../results.md "Deviations" (3/75 candidates elaborate; reorder 0/75); PROTOCOL.md "Legacy-prompt limitation".
+Only three of the 75 rated candidates elaborate under the pinned toolchain, so the candidate-side invariance components (alpha-renaming, proof-to-\texttt{sorry}, reordering, spam, candidate deletion) rest on three candidates or none, and every pre-registered aggregate that contains reordering was undefined.
+The family effectively reduced to the gold-side components and the single components, and we claim nothing about rewrite invariance.
+Elaboration failures reflect retired imports and Markdown fences in the stored candidates, not necessarily invalidity under the environments in which they were generated.
+The gold deletion ladders remove theorem statements and unit tests alike (Appendix~\ref{app:spec-vs-tests}), and the legacy prompts can see only the first deletion level.
 
-\paragraph{A locked test.}
-A decisive test would first freeze the rubric, property generators, score extraction, aggregation, index, normalization reference, and any rejection rule.
-Independent raters would then label new candidate--gold pairs under that rubric, with new judge configurations fixed before their labels are examined.
-The analysis would report both artifact-level agreement and judge-level association, including uncertainty and property-specific failures.
-A separate distribution-shift test would be needed for new domains.
-Because the original rubric text is unavailable, recovering it or validating an explicitly reconstructed criterion is a prerequisite to claiming a matched-rubric test.
+\paragraph{The criterion.}
+% Provenance: docs/project_assessment_10-05-2026.md (read-only counts from VeriBench experiment 100 inputs/items.jsonl, SHA-256 ad9ed552..., matching results/probe_manifest.json); results.md "Human ceiling".
+The criterion is one human panel: 45 candidates from 15 tasks, 18 with two expert ratings and 27 with three, and a leave-one-expert-out ceiling of $0.747$.
+Nine of the 45 candidates come from three tasks whose reference was a placeholder at rating time, and nine from three tasks whose reference statements changed within the rating window.
+The reference-quality views of the selection-utility study did not change its reading, but a criterion restricted to ordinary references has not been used for the transfer test itself.
+Prompt families and rated items recur across the judge splits, so the result supports transfer to new judge configurations on this panel, not to new candidate generators, domains, or independent panels.
+
+\paragraph{The characterizations' own limits.}
+% Provenance: experiments/archive/42_.../REPORT.md ("Reading", items 4 and 5; "Caution"); experiments/archive/43_.../REPORT.md section 7.
+The semantic screen is necessary, not sufficient: a change detector passes it, about half of its weakening probes are redundant at file level, and two references contain mutually inconsistent \texttt{sorry}-proved theorems.
+The gaming study used one attacked model, six prompts, 15 items from six tasks, and a model ensemble as its reference, so a near-zero gap can hide a blind spot the reference shares, and its six-point association can detect only very strong relations.
+The edited candidates have no human ratings; an expert re-rating is the only way to settle whether their gains were genuine.
+Presentation, including redundant theorems and unnecessary abstraction, is unassessed, and all candidates and probes come from \textsc{VeriBench} in Lean~4.
+
+\paragraph{A decisive test.}
+A decisive test of the screen as a selector would freeze the probes, the rubric, the extraction, and a selection rule, then have independent raters rate new candidate--gold pairs under the frozen rubric for configurations fixed before any rating is examined.
+It would report the selection loss against the best available judge and a false-acceptance rate, with a sample size chosen from clustered precision rather than an arbitrary judge count.
+Human adjudication of weakened and attacker-edited files, which both model judges and the model reference credited, would test the shared blind spot that no model-only study can.

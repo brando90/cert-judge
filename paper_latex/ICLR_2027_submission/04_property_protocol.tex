@@ -1,32 +1,34 @@
 % !TEX root = main.tex
-\section{Screening Judges with Falsifiable Properties}\label{sec:property-protocol}
-\paragraph{Labels once, checks for every judge.}
+\section{Screening Judges with Label-Free Properties, Tested on Held-Out Judges}\label{sec:property-protocol}
+\paragraph{Ratings once, checks for every judge, transfer tested once.}
 Figure~\ref{fig:protocol} and Table~\ref{tab:protocol_workflow} lay out the protocol.
-A human panel rates candidate--gold pairs once; this validation set links judge behavior to the intended scoring task.
-For each judge configuration, we measure agreement with those ratings and, separately, its responses to scripted edits of gold artifacts.
-The edits require judge calls but no new labels.
-We use the validation set to choose the index form, the prompts, the repeat aggregation, and the decision threshold, then freeze them.
-A later configuration faces the same frozen checks without access to the labels.
-The present evidence supports this as a screen; it does not establish transfer to an unseen configuration or artifact distribution (Section~\ref{sec:limitations-test}).
+Experts rate candidate--gold pairs once; these ratings define the criterion of Section~\ref{sec:problem-setup}.
+For each judge configuration we measure its agreement with the ratings and, separately, its responses to scripted edits of gold references and rated candidates.
+The edits cost judge calls but no new ratings.
+Judge configurations are then split by judge model and harness into train, validation, and test sets.
+The screen is selected on the train judges, checked on the validation judges, frozen, and evaluated once on the held-out test judges under gates fixed before any judge call.
+A later configuration faces the same frozen checks without access to the ratings.
+% Provenance: the protocol is experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/PROTOCOL.md (locked before any run; Amendment 1 removed the automatic spend cap).
 
 \begin{figure}[t]
 \centering
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[>=Stealth, node distance=5mm,
  box/.style={draw=darkblue!65,rounded corners=2pt,align=center,inner sep=6pt,font=\small},
  flow/.style={->,thick,draw=darkblue!75}]
-\node[box,text width=24mm] (gold) {Gold artifacts\\and scripted edits};
-\node[box,text width=26mm,right=of gold] (judge) {Judge configuration\\model, prompt, repeats};
-\node[box,text width=25mm,right=of judge] (checks) {Property checks\\P1--P4};
-\node[box,text width=23mm,right=of checks] (index) {Index and\\failure report};
+\node[box,text width=27mm] (gold) {Gold references and\\rated candidates with\\Lean-validated edits};
+\node[box,text width=27mm,right=of gold] (judge) {Judge configuration\\model, prompt, harness,\\repeats};
+\node[box,text width=26mm,right=of judge] (checks) {Property components\\identity, deletion, bug,\\rewrite, stability};
+\node[box,text width=22mm,right=of checks] (index) {Index and\\failure report};
 \draw[flow] (gold)--(judge); \draw[flow] (judge)--(checks); \draw[flow] (checks)--(index);
-\node[box,text width=45mm,below=12mm of judge,fill=gray!6] (panel) {One-time validation set\\human ratings of candidate--gold pairs};
-\node[box,text width=49mm,right=12mm of panel,fill=gray!6] (select) {Measure association; select and freeze\\index form, prompts, aggregation, threshold};
+\node[box,text width=46mm,below=12mm of judge,fill=gray!6] (panel) {One-time expert ratings of\\candidate--gold pairs (the criterion)};
+\node[box,text width=52mm,right=10mm of panel,fill=gray!6] (select) {Select on train judges, check on validation\\judges, freeze, test once on held-out judges};
 \draw[flow] (panel)--(select);
 \draw[flow] (index.south)--(select.north east);
 \draw[flow,dashed] (judge.south)--(panel.north);
 \end{tikzpicture}
-\caption{Human labels enter once (bottom); every later judge faces only the automated checks (top).
-The bottom path measures validation-set association and selects protocol choices, so its results are optimistic rather than a held-out test.}
+\end{adjustbox}
+\caption{\textbf{Human ratings enter once (bottom); every later judge faces only the automated checks (top).} The bottom path selects the screen on the train and validation judges and evaluates the frozen choice once on judge models that neither step touched.}
 \label{fig:protocol}
 \end{figure}
 
@@ -34,42 +36,45 @@ The bottom path measures validation-set association and selects protocol choices
 \centering\small
 \begin{tabularx}{\linewidth}{@{}lXX@{}}
 \toprule
-Stage & Human labels & Judge computation \\
+Stage & Human ratings & Judge computation \\
 \midrule
-Establish the screen & Rate candidate--gold pairs once & Measure human agreement and property responses \\
-Select and freeze & Use the validation ratings & Choose index form, prompts, aggregation, threshold \\
-Screen a new judge & Do not consult the labels & Run the frozen probes; inspect index and failure report \\
-Test transfer & Collect independent ratings under the frozen rubric & Evaluate the frozen choices on untouched items \\
+Establish the criterion & Experts rate candidate--gold pairs once & Measure each configuration's agreement and its property components \\
+Select and freeze & Use the train and validation judges' agreement & Rank the candidate family on the train judges, pick on the validation judges, seal the test rows \\
+Test transfer & Do not consult the ratings again & Compute the frozen screen on the held-out judges; apply the pre-registered gates once \\
+Screen a new judge & None & Run the frozen probes; inspect the index and the failure report \\
 \bottomrule
 \end{tabularx}
-\caption{Screening a new judge costs inference, not labels; establishing transfer needs a separate, locked test.}
+\caption{\textbf{Screening a new judge costs inference, not ratings; the transfer test is a one-shot evaluation on judges the screen was not selected on.} The split is over judge models and harnesses, not over items, because the question is whether the screen carries over to a new judge.}
 \label{tab:protocol_workflow}
 \end{table}
 
-\paragraph{Four falsifiable properties.}
-Each property fixes, by construction, how $J_\theta$ must respond to a scripted edit of a gold artifact $g$.
-\textbf{P1 (identity)} requires the maximum score when an artifact is compared with itself or with a meaning-preserving rewrite of itself, $J_\theta(g,g)=1$.
-The rewrites include alpha-renaming, which consistently changes bound-variable names without changing their meaning.
-In the recorded panels, the identity summary uses four rewrite probes per artifact (renaming, reordering, style, and alpha-renaming); unedited self-comparisons appear at bug-ladder level 0 (Appendix~\ref{app:failure-diagnostics}).
-\textbf{P2 (bug monotonicity)} requires non-increasing scores as bugs accumulate in the candidate.
-The historical bug ladder used here edits the candidate text, including theorem statements; it is not restricted to implementation bugs.
-\textbf{P3 (missing-specification monotonicity)} requires non-increasing scores as theorem statements and unit tests are removed.
-We keep this historical name although unit tests are not specifications under Section~\ref{sec:problem-setup}.
-Each ladder level extends the previous one, so the required ordering concerns cumulative damage, not equal severity of individual edits.
-Ties are allowed; any local score increase is a reversal.
-\textbf{P4 (stability)} requires stable scores across repeated calls on the same input.
-The properties are targets for the probes, not theorems about every scripted transformation; Appendix~\ref{app:failure-diagnostics} records where the historical generators fall short.
+\paragraph{Probes and components.}
+Every probe is a scripted edit of a gold reference $g$ or of a rated candidate $x$, and every edited file must elaborate under Lean~4.22 with Mathlib; an edit that fails to elaborate is excluded before any judge call and counted.
+Ten components summarize a configuration's responses (exact definitions in Appendix~\ref{app:index-definitions}).
+\emph{Identity} is the median score of each gold against itself, and \emph{blank} is one minus the score of an empty candidate.
+\emph{Gold deletion monotonicity}, $C_{\mathrm{ms,gold}}$, is the component this paper selects, defined below.
+\emph{Candidate deletion monotonicity} and \emph{gold bug monotonicity} apply the same ladder construction to a rated candidate and to cumulative implementation bugs in the gold.
+\emph{Alpha-renaming}, \emph{proof-to-\texttt{sorry}}, and \emph{reordering} invariance are one minus the absolute score change under the rewrite, and \emph{spam non-increase} is one minus any score gain after theorem statements are appended to a candidate.
+\emph{Stability} is one minus twice the population standard deviation across three repeated calls, averaged over the repeated cells.
+For a deletion ladder, level $0$ is the gold as its own candidate and level $\ell$ removes a cumulative fraction $\ell/L$ of its theorem statements, last theorem first, with $L\le 4$.
+The ladder quality is $(1-\rho)/2$ for the tie-aware Spearman correlation $\rho$ between level and median score; a constant ladder counts $0$.
+$C_{\mathrm{ms,gold}}$ is the mean ladder quality over the 24 gold ladders, so a score that falls monotonically with every deletion gives $1$ and a constant or rising score gives $0$.
+A component needs at least 80\% of its valid probes scored; otherwise it is missing rather than zero.
 
-\paragraph{A fixed equal-weight summary.}
-Different failures need different checks, so the protocol keeps the per-property report.
-For ranking configurations, we also use one scalar, $\mathrm{TI}_{\mathrm{var}}$, computed from bug-ladder scores only:
-\begin{equation}
-\mathrm{TI}_{\mathrm{var}}=\exp\!\left[\tfrac13\log C_f+\tfrac13\log(1-\widetilde V_c)+\tfrac13\log(1-\widetilde V_s)\right].
-\label{eq:tivar}
-\end{equation}
-Here $C_f$ is the mean transformed per-file Spearman correlation between bug level and score, $V_c$ is the variance of these per-file values, and $V_s$ is the mean within-level variance across repeated calls.
-The tildes denote min--max normalization across the configurations of the same family panel, and the implementation floors each logarithm's argument at $10^{-6}$ (Appendix~\ref{app:index-definitions}).
-The geometric mean acts as a smooth conjunction: a strong component cannot fully offset a weak one, and equal weights avoid fitting component weights to the human ratings.
-The scalar omits P1, P3, and a direct penalty for local reversals, so it summarizes selected behavior rather than replacing the report.
-Its panel-dependent normalization also means that its absolute value can change when the comparison panel changes.
-Prospective use therefore needs a frozen normalization reference, whose transfer we have not tested.
+\paragraph{The candidate family and the selection rule.}
+Twenty-two indices were pre-registered: the two indices of our earlier work, nine fixed aggregates of component subsets (geometric means, an arithmetic mean, and a minimum), and the ten single components.
+The rule ranks every candidate by its Spearman association with the criterion over the 18 train configurations, breaking ties toward fewer components, keeps the top three, and selects the finalist with the highest validation association.
+The test rows were sealed in a private file, and the selection was committed before any test row was read.
+% Provenance: experiments/archive/39_.../results/SELECTION.json and FINALISTS.json (seal commit 86ae479201e5); the candidate family is analysis_lib.CANDIDATES.
+
+\paragraph{Pre-registered gates.}
+The selected index passes if its test Spearman association is at least $0.45$ and its one-sided permutation $p$ for a positive association is below $0.05$ (10{,}000 permutations).
+Uncertainty is a 95\% percentile bootstrap over configurations (10{,}000 draws).
+The outcome is inconclusive, never resolved by changing a threshold, if the criterion is not computable for more than five of the 18 test configurations or if the interval spans more than $1.2$.
+We also report whether the train, validation, and test associations lie within $0.30$ of each other, and the two earlier indices on every split regardless of selection.
+The permutation test rejects the absence of a positive association; it does not test that the population correlation exceeds $0.45$, so we report the interval's lower bound beside the verdict.
+
+\paragraph{The two earlier indices.}
+$\mathrm{TI}_{\mathrm{var}}$ is the geometric mean of the mean bug-ladder quality and two variance penalties, min--max normalized here over the train configurations (Equation~\ref{eq:tivar}, Appendix~\ref{app:index-definitions}).
+$\mathrm{PTI}_{v0}$ is the frozen geometric mean of the identity, bug-ladder, deletion-ladder, and alpha-renaming properties with exact-zero geometric means and strict coverage, so it is undefined whenever any required probe is unscored and zero whenever any property is zero.
+Both enter the family as frozen candidates and are reported on every split.

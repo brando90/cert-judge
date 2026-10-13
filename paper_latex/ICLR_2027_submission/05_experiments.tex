@@ -1,179 +1,173 @@
 % !TEX root = main.tex
-\section{Experiments}
-\subsection{Validation set}\label{sec:data-human-protocol}\label{sec:veribench-overview}
-We evaluate candidate--gold pairs from \textsc{VeriBench}~\citep{miranda2026veribench}.
-One annotator supplied holistic ratings on a $0$--$5$ scale in two passes, pass1 under a stricter rubric and pass2 under a more lenient one.
-The collection covered 75 pairs from 25 problems with three agent generations per problem.
-One gold filename could not be resolved, leaving 72 analyzed pairs from 24 problems.
-We report each pass and the archived averaged-label view; they are two judgments by one person, not independent annotators.
-Inter-pass agreement is Spearman $0.249$, quadratic-weighted $\kappa=0.372$, and mean absolute error $0.771$ on the shared pairs (Appendix~\ref{app:exp16-exp17}).
-These statistics describe label disagreement; they do not establish an upper bound on judge agreement.
-The original written rubric was not recovered, so we cannot reconstruct every annotation instruction.
+\section{Experiments}\label{sec:experiments}
+\subsection{Setup}\label{sec:setup}
+\paragraph{Judges.}
+% Provenance: experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/scripts/e39.py (MODELS, PROMPTS, PROMPTS_BY_MODEL, CONTROLS), results/panel.json, results.md ("Selectors actually used").
+Fifty-six LLM configurations combine six models, nine prompts, and two harnesses.
+The train judges are GPT-6 Sol (high reasoning) and Claude Sonnet 5 (medium effort); the validation judges are GPT-6 Luna (high), Gemini 3.1 Pro, and GPT-6 Luna inside the Terminus2 agent harness; the test judges are Claude Opus 5.5 (maximum effort), Qwen3.6-27B, and Terminus2 with Claude Sonnet 5 and with Qwen3.6-27B.
+Five fuller-context prompts come from \textsc{VeriBench}'s judge: the deployed coverage rubric (D0), an earlier checklist with a precondition clause (R4), the raters' own instructions verbatim (H0), those instructions with four rater conventions (H1), and with rated demonstrations added (H2).
+Four legacy prompts come from our earlier version and show the judge only the gold's last theorem block: a baseline (P1), a checklist (P4), a strict variant (P8), and the deliberately lexical \texttt{BAD\_STRINGY} (LEX).
+Claude Opus 5.5 ran five prompts and each agent judge two, so the split holds 18 train, 20 validation, and 18 test configurations; four deterministic controls join the train split for reporting only.
+Every call went through the Vals-hosted gateway, with Vals-reported charges of \$574.
 
-This panel is the \emph{validation set}: it informed index-form selection, repeat aggregation, the threshold, and the prompt panel, so correlations on it are optimistic.
-The fixed equal-weight $\mathrm{TI}_{\mathrm{var}}$ has no fitted weights, so there is no training set.
-A separate weight-tuned comparison uses these same pairs, and no analysis in this paper is a test-set result.
-For each judge, artifact-level agreement is the Spearman correlation between its scores and the human ratings on the analyzed pairs.
-We then ask whether the index orders configurations by that agreement.
+\paragraph{Items and criterion.}
+% Provenance: PROTOCOL.md rows "Items", "Criterion items", "Criterion statistic"; results.md "Human ceiling"; RESULTS_proxy_index_train_val_test.md ("Criterion ranking reproducibility ... 0.928").
+The items are 75 candidates from 25 \textsc{VeriBench} tasks, three agent generations per task, with the references current at the time of rating.
+The criterion items are the 45 candidates of the 15 tasks in \textsc{VeriBench}'s validation and test task split, and the target is the mean of three expert coverage ratings on a $0$--$5$ scale, divided by five.
+A configuration's criterion is the Spearman correlation between its median of three repeated scores and the target, computed only when at least 90\% of the 45 items have a score.
+The mean leave-one-expert-out Spearman correlation among the raters on these items is $0.747$.
+Across 47 LLM configurations, the criterion computed on the 15 validation items and on the 30 test items rank the configurations alike (Spearman $0.928$), so the item split is not what separates judges.
 
-\subsection{Property checks on GPT-5.3-Codex}\label{sec:property-results}
-Figure~\ref{fig:judge_sanity_checks} summarizes the 24-problem panel for the three semantic Codex prompts.
-Each bug ladder has five levels, the original artifact plus four cumulative edits, and each artifact has four rewrite probes.
-Mean scores fall from $1.0$ at level zero to $0.24$--$0.27$ after the first cumulative edit and to about zero thereafter.
-Averages conceal local reversals: the strict prompt reverses on four of 24 ladders, whereas the baseline and checklist prompts have none (Table~\ref{tab:codex_configs}).
-Renaming, reordering, and style rewrites leave mean scores at or near $1.0$.
-The archived alpha probes are the exception, but their generator can produce malformed Lean text.
-The baseline and checklist prompts assign them a mean score of zero; the strict prompt assigns $0.179$.
-Appendix~\ref{app:failure-diagnostics} keeps the per-configuration diagnostics and the corresponding Claude Opus curves.
+\paragraph{Probes.}
+% Provenance: results.md "Probes elaborated with Lean 4.22 + Mathlib" (ident 24/1, blank 25/0, ms_gold 76/4, bm_gold 37/60, ms_cand 3/72, alpha 3/72, reorder 0/75, sorry 3/72, spam 3/72) and "Cells by status" (measured 28,345; deterministic 504; unmeasured_extraction 81; parse_error 235; model_error 7; unmeasured_infra 4; 28,591 declared calls).
+Twenty-four of the 25 gold references elaborate under Lean~4.22 with Mathlib, giving 24 identity cells, 25 empty-candidate cells, 76 valid deletion levels on 24 ladders, and 37 valid bug levels.
+Only three of the 75 rated candidates elaborate under this toolchain, because of retired imports, Markdown fences, and type errors, so the candidate-side probes cover three candidates and the reordering probe none.
+The campaign declared 28{,}591 cells over the 56 configurations: 28{,}345 were measured, 504 were settled by the deployed rubric's deterministic rules, and 327 are missing by class (235 unparsable verdicts, 81 extractor refusals, 7 model errors, 4 infrastructure failures) and stay missing in every denominator.
+
+\subsection{What transfers to held-out judges}\label{sec:transfer}
+% Provenance: experiments/archive/39_.../results/TEST_RECEIPT.json (train / validation / test rows, bootstrap and permutation); the two prompt-group rows were recomputed on 10-13-2026 from results/units_test.json with analysis_lib.association (10,000 draws, seed 39) and are recorded in docs/PAPER_FRAMING_DECISION_10-13-2026.md.
+Table~\ref{tab:transfer} and Figure~\ref{fig:transfer} give the result.
+Gold deletion monotonicity, $C_{\mathrm{ms,gold}}$, won the train ranking (Spearman $0.761$ over 18 configurations) and the validation check ($0.762$ over 20), ahead of the identity component and a two-component geometric mean.
+On the held-out judges its association with the criterion is $0.558$, with a 95\% configuration-bootstrap interval of $[0.078, 0.762]$ and a one-sided permutation $p$ of $0.0127$ over the 16 of 18 test configurations for which it is defined.
+Both pre-registered gates pass, the criterion was computable for all 18 test configurations, and the train--test gap of $0.203$ is within the $0.30$ tolerance.
+The two missing configurations are Qwen3.6-27B with the H2 and R4 prompts, whose deletion ladders fell below the 80\% coverage rule after unparsable verdicts.
+The interval's lower bound is $0.078$, and the permutation test does not establish that the population association exceeds $0.45$.
+
+\begin{table}[t]
+\centering\small
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}llrlrrr@{}}
+\toprule
+Index & Judge split & $n$ & Spearman [95\% interval] & Pearson & Kendall $\tau_b$ & Permutation $p$ \\
+\midrule
+$C_{\mathrm{ms,gold}}$ (selected) & train & 18 & 0.761 & 0.643 & 0.569 & --- \\
+ & validation & 20 & 0.762 & 0.759 & 0.537 & --- \\
+ & \textbf{test} & 16 of 18 & \textbf{0.558} $[0.078, 0.762]$ & 0.643 & 0.360 & \textbf{0.0127} \\
+\quad test without the lexical prompt & test & 14 & 0.453 $[-0.177, 0.825]$ & 0.824 & 0.331 & 0.0551 \\
+\quad test, fuller-context prompts only & test & 10 & $-0.371$ $[-0.787, 0.304]$ & $-0.319$ & $-0.225$ & 0.8615 \\
+\midrule
+$\mathrm{TI}_{\mathrm{var}}$ (earlier scalar) & train & 18 & $-0.010$ & 0.128 & $-0.013$ & --- \\
+ & validation & 20 & $-0.177$ & $-0.042$ & $-0.132$ & --- \\
+ & test & 18 & $-0.332$ $[-0.636, 0.135]$ & $-0.194$ & $-0.172$ & 0.9135 \\
+\midrule
+$\mathrm{PTI}_{v0}$ (earlier four-property index) & train & 15 & 0.433 & 0.307 & 0.365 & --- \\
+ & validation & 0 of 18 & not computable & --- & --- & --- \\
+ & test & 9 of 18 & $-0.274$ $[-0.753, 0.111]$ & $-0.075$ & $-0.236$ & 0.7793 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{\textbf{Gold deletion monotonicity, selected on the train and validation judges, predicts the held-out judges' agreement with the experts under the pre-registered gates, but the association depends on the prompt group; the two earlier indices do not transfer.} Each row is a judge-level Spearman association between an index and the criterion over judge configurations; $n$ counts configurations with both values.
+Intervals are 95\% percentile bootstraps over configurations and $p$ is the one-sided positive-association permutation probability (10{,}000 draws, seed 39), computed for the test split only; the two prompt-group rows are post hoc sensitivity analyses on the same test rows.
+$\mathrm{PTI}_{v0}$ is undefined wherever any required probe is unscored, and eight of its nine test values are exactly zero.}
+\label{tab:transfer}
+\end{table}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/codex_property_checks.pdf}
-\caption{Early bug edits and malformed alpha probes lower the Codex judges' mean scores.
-Each point averages median scores over 24 problems, with three calls per problem and prompt; these are descriptive means, not uncertainty intervals.
-Local reversals remain visible in Table~\ref{tab:codex_configs}.}
-\label{fig:judge_sanity_checks}
+\includegraphics[width=\linewidth]{figures/c_ms_gold_vs_criterion_train_val_test.pdf}
+\caption{\textbf{The association between gold deletion monotonicity and agreement with the experts is carried largely by the gap between the legacy prompts and the fuller-context prompts.} Each marker is one judge configuration; the horizontal axis is $C_{\mathrm{ms,gold}}$ and the vertical axis its Spearman agreement with the expert ratings on the 45 criterion items.
+The fuller-context configurations cluster near $C_{\mathrm{ms,gold}}=1$, where the component no longer separates them; the deterministic controls appear on the train panel for reference and were not used for selection.
+Drawn from the committed unit files of the transfer study.}
+\label{fig:transfer}
 \end{figure}
 
-\paragraph{Alpha-renaming and a canonicalization proxy.}
-The historical alpha routine can duplicate the assignment marker and rename signature variables without updating the proof body.
-Its score drops therefore cannot establish a failure of invariance under valid alpha-renaming.
-A post-hoc proxy replaces each judge's alpha scores with its median score under style edits.
-Across the eight Codex-panel configurations, this lowers the mean per-judge standard deviation across identity-probe scores from $0.250$ to $0.070$.
-This manipulation changes recorded scores rather than the judge's inputs.
-A real fix must rescore canonicalized text and verify that the transformation preserves meaning.
+\paragraph{Scope limit: the prompt groups.}
+% Provenance: PROTOCOL.md "Legacy-prompt limitation (known before any call)"; docs/project_assessment_10-05-2026.md and docs/PAPER_FRAMING_DECISION_10-13-2026.md (recomputed rows).
+The legacy prompts show the judge only the gold's last theorem block, so deleting statements elsewhere in the reference is invisible to them beyond the first level; this limitation was recorded before any call.
+The legacy configurations therefore sit at low $C_{\mathrm{ms,gold}}$ and low agreement, and the fuller-context configurations at high values of both (Figure~\ref{fig:transfer}).
+Excluding the deliberately lexical prompt leaves 14 test configurations with an association of $0.453$ $[-0.177, 0.825]$ and $p = 0.0551$, below the registered gates.
+Within the ten fuller-context test configurations the association is $-0.371$ $[-0.787, 0.304]$, $p = 0.8615$.
+This subset mixes rubrics and models and is not a controlled comparison, and the human-mirror rubric alone has only three test configurations, below the protocol's minimum of eight.
+The registered result therefore shows that the screen separates judges that see the reference from judges that do not; it does not show that the screen ranks judges within the group one would deploy.
 
-\paragraph{Coverage of P3.}
-The eight-configuration panels contain rewrite probes and bug ladders but no missing-specification ladders.
-They therefore cannot say which association P3 has with human agreement.
-P3 remains a proposed part of the screen; none of the bug-ladder statistics below belongs to it.
+\paragraph{What does not transfer.}
+% Provenance: TEST_RECEIPT.json rows for TI_var_trainnorm and PTI_v0_frozen; results.md verdict paragraph.
+$\mathrm{TI}_{\mathrm{var}}$, the scalar our earlier version proposed, has no positive association on any split and $-0.332$ $[-0.636, 0.135]$ on the 18 test configurations.
+$\mathrm{PTI}_{v0}$ is undefined for the validation judges and for nine test configurations, because its exact-zero geometric mean needs every ladder and the three alpha-renaming probes, and it is zero for eight of the nine test configurations where it is defined, giving $-0.274$ $[-0.753, 0.111]$.
+These rows are the pre-registered secondary report; they share the test judges with the selected index but not its 16-configuration support, so the comparison is descriptive rather than a paired test.
+Two further descriptive facts: the identity component, a finalist that was not selected, reaches $0.697$ on all 18 test configurations, and the four agent-judge configurations occupy the top of both axes (criterion $0.768$--$0.870$, $C_{\mathrm{ms,gold}}$ $0.992$--$0.996$).
+% Provenance: RESULTS_proxy_index_train_val_test.md "Secondary (test only, not pre-registered)" and the agent-judge table.
 
-\subsection{The index tracks judge-level human agreement on the validation set}\label{sec:tivar_cross_model_results}\label{sec:validation-human-alignment}
-The three primary families are GPT-5.3-Codex, Claude Opus 4.7, and Qwen3-Coder.
-Each eight-configuration panel contains three semantic prompts, a deliberately lexical prompt on the same model, two GPT-4o-mini prompts, edit distance, and a random control.
-These are family panels with shared controls, not eight independent models per family.
-The frozen model identifiers and complete main-panel prompts appear in Appendix~\ref{app:judge-prompts}.
-Scores are medians over three repeated calls for language-model judges; the Codex-panel controls use nine repeats, and the other panels use three.
-
-Figure~\ref{fig:tivar_cross_model_avg} uses the fixed equal-weight index of Equation~\ref{eq:tivar}.
-Its judge-level Spearman association is positive for each primary family and label view (Table~\ref{tab:tivar_cross_model_results}).
-For Codex, the averaged-label Pearson and Kendall associations are $0.868$ and $0.643$.
-The Codex bootstrap intervals are wide, and the resampling does not correct for the earlier protocol selection.
-Exact permutation probabilities over all $8!$ orderings are $0.096$, $0.022$, and $0.132$ for Claude Opus and $0.005$, $0.243$, and $0.011$ for Qwen3-Coder on averaged, pass1, and pass2 labels (Appendix~\ref{app:judge-level-diagnostics}).
-Only some cells are individually distinguishable from a random ordering at the $0.05$ level, and the nine tests are unadjusted.
-Pass-to-pass differences also matter: Qwen's association changes from $0.476$ on pass1 to $0.857$ on pass2.
-Excluding random, edit distance, and the lexical prompt leaves five semantic configurations, with averaged-label associations of $0.900$ for Codex, $0.600$ for Claude Opus, and $0.900$ for Qwen3-Coder.
-These descriptive subsets retain the original eight-configuration normalization.
-Neither five configurations nor the three target-family semantic prompts establish precise discrimination among useful judges; all three label views appear in Appendix~\ref{app:judge-level-diagnostics}.
-With eight configurations and disagreeing label passes, these estimates support a descriptive association rather than a precise or portable effect size.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{figures/judge_agreement_fixed_index.pdf}
-\caption{The fixed equal-weight index has a positive association with human agreement in each primary family, but high index values do not rule out lexical judges.
-Each point is one configuration; the vertical axis is its Spearman agreement with averaged human labels on 72 pairs.
-Panel titles report the correlation across eight configurations; Table~\ref{tab:tivar_cross_model_results} gives Codex uncertainty.}
-\label{fig:tivar_cross_model_avg}
-\end{figure}
+\subsection{Does the screen choose better judges than a fixed prompt?}\label{sec:selection-utility}
+% Provenance: experiments/archive/44_cached_score_judge_selection_utility/RESULTS_selection_utility.md (primary_full_context pool, original45 view; no new inference) and experiments/archive/45_five_rater_cached_selection_task_split_and_behavioral_audit/RESULTS_five_rater_comparison.md (five-rater, test-task-only view).
+A screen is useful in practice if choosing a judge by it yields a judge that agrees with the raters at least as well as a simple alternative.
+We compared four selectors on the 12 fuller-context test configurations, using only cached scores: choose the configuration with the highest $C_{\mathrm{ms,gold}}$; choose uniformly among the four configurations that use the human-mirror rubric H2, which \textsc{VeriBench} transferred from its train judges; choose uniformly at random; and choose by the identity component.
+Agreement is evaluated on the 42 rated files from 15 tasks that every configuration scored, with paired task-cluster bootstraps of 10{,}000 draws conditional on this fixed pool.
+The proxy selects the Terminus2 agent judge with the deployed rubric, with expected Spearman agreement $0.768$ $[0.401, 0.930]$; the fixed H2 rubric gives $0.853$ $[0.645, 0.931]$ and random choice $0.784$ $[0.528, 0.892]$ (Table~\ref{tab:selection-utility}).
+The paired difference between the proxy and the fixed rubric is $-0.086$ $[-0.308, 0.058]$, and between the proxy and random choice $-0.017$ $[-0.162, 0.080]$; no hypothesis test was run.
+The proxy's regret against the best configuration in the pool is $0.104$ $[0.008, 0.379]$, the fixed rubric's $0.018$ $[0.009, 0.116]$.
+Every reference-quality view (excluding placeholder references, ambiguous references, both, or restricting to the test tasks) keeps the proxy at or below the fixed rubric, by $0.050$ to $0.177$.
+Re-targeting the criterion to all five current raters on the test tasks alone gives proxy $0.815$ $[0.411, 0.950]$ against $0.826$ $[0.494, 0.936]$ for the fixed rubric, a paired difference of $-0.012$ $[-0.198, 0.186]$ over 29 of 30 outputs from 10 tasks.
+Selection utility is therefore not demonstrated; it is also not disproved, and the intervals are too wide to call the two selectors equivalent.
 
 \begin{table}[t]
 \centering\small
-\begin{tabular}{@{}lrrrrrr@{}}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrlrr@{}}
 \toprule
-& \multicolumn{4}{c}{Averaged labels} & \multicolumn{2}{c}{$\mathrm{TI}_{\mathrm{var}}$ by pass} \\
-\cmidrule(lr){2-5}\cmidrule(lr){6-7}
-Family & $v1$ & $v2$ & $\mathrm{GM}_{.4,.6}$ & $\mathrm{TI}_{\mathrm{var}}$ & pass1 & pass2 \\
+Selector (12 fuller-context test configurations) & Expected Spearman & 95\% interval & Regret vs.\ best & Mean bias (judge $-$ human) \\
 \midrule
-Codex & 0.762 & 0.476 & 0.857 & 0.833 & 0.905 & 0.738 \\
-Claude Opus & 0.429 & 0.143 & 0.714 & 0.643 & 0.810 & 0.595 \\
-Qwen3-Coder & 0.524 & 0.500 & 0.786 & 0.905 & 0.476 & 0.857 \\
+Proxy: highest $C_{\mathrm{ms,gold}}$ & 0.768 & $[0.401, 0.930]$ & 0.104 $[0.008, 0.379]$ & $-0.010$ \\
+Fixed human-mirror rubric H2 & 0.853 & $[0.645, 0.931]$ & 0.018 $[0.009, 0.116]$ & $+0.120$ \\
+Random configuration & 0.784 & $[0.528, 0.892]$ & 0.087 $[0.047, 0.238]$ & $+0.097$ \\
+Identity component & 0.784 & $[0.528, 0.892]$ & 0.087 $[0.047, 0.238]$ & $+0.097$ \\
 \midrule
-\multicolumn{4}{l}{Codex $\mathrm{TI}_{\mathrm{var}}$: 95\% interval} & $[0.24,1.00]$ & $[0.41,1.00]$ & $[0.11,1.00]$ \\
-\multicolumn{4}{l}{Codex $\mathrm{TI}_{\mathrm{var}}$: permutation $p$} & 0.017 & 0.005 & 0.045 \\
+Proxy $-$ H2 & $-0.086$ & $[-0.308, 0.058]$ & & \\
+Proxy $-$ random & $-0.017$ & $[-0.162, 0.080]$ & & \\
 \bottomrule
 \end{tabular}
-\caption{The fixed index is competitive with a two-component geometric comparison whose weights were selected on pass1.
-Entries are Spearman correlations between each index and judge-level human agreement on the validation set, with eight configurations per family.
-Codex intervals and permutation probabilities use 10{,}000 resamples and permutations, seed 42; exact permutation probabilities for every cell are in Appendix~\ref{app:judge-level-diagnostics}.
-Appendix~\ref{app:index-definitions} defines all indices.}
-\label{tab:tivar_cross_model_results}\label{tab:cross_model_index_compare_avg}
+\end{adjustbox}
+\caption{\textbf{Choosing a judge by the transferred screen does not beat a fixed human-mirror prompt on cached scores.} Expected Spearman agreement with the three-expert mean over the 42 shared rated files from 15 tasks; intervals are paired task-cluster percentile bootstraps (10{,}000 draws) conditional on the fixed pool, with no hypothesis test (p-val not applicable).
+The identity component ties all twelve configurations, so it coincides with random choice.
+Mean bias is the selected judge's mean score minus the human mean ($0.502$) on the same files, positive meaning lenient; mean absolute errors are $0.154$ (proxy) and $0.173$ (H2).}
+\label{tab:selection-utility}
 \end{table}
 
-\subsection{Human agreement alone can miss a bad judge}\label{sec:lexical-judge}
-The lexical prompt, \texttt{BAD\_STRINGY}, instructs the model to ignore theorem meaning and grade textual overlap.
-On the Codex panel, its human agreement of $0.435$ lies among the semantic prompts' values, $0.365$--$0.466$.
-A validation protocol that stops at human agreement would accept it.
-Yet it reverses on 20 of 24 bug ladders (Table~\ref{tab:codex_configs}).
-The scalar does not expose it either: its index value is $0.940$, below the three semantic prompts but far above the failing GPT-4o-mini configurations, and edit distance scores $0.928$.
-In the Qwen panel, the lexical configuration even has the highest index value, $0.982$.
-The failure report therefore carries information that both human agreement and the scalar can miss.
-No validated cutoff on $\mathrm{TI}_{\mathrm{var}}$ establishes that a judge is acceptable; the screen's verdict is the per-property report.
+\subsection{A semantic screen: vacuity, weakening, and over-constraint}\label{sec:semantic-screen}
+% Provenance: experiments/archive/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges/REPORT.md, results/RESULTS_semantic_screen.md, results/index_association.json.
+The deletion ladders remove whole statements.
+To test whether judges notice specifications that look right but guarantee less, we built 194 Lean-validated probes from the same 24 references: 24 identity anchors, 38 vacuity probes that replace theorem statements by \texttt{True}, 57 cumulative weakenings (a dropped conjunct, a relaxed equality, a disjunctive escape) each with a \texttt{sorry}-free Lean proof that the reference statement implies its weakened counterpart, 37 over-constraint probes that add a hypothesis proved unsatisfiable, and 38 formatting-only edits.
+All 56 configurations scored every probe three times (32{,}592 calls, 99.35\% measured, \$656.15).
+Directional accuracy is the share of a family's probes scored strictly below the same task's identity probe.
+The locked rule requires directional accuracy of at least $0.8$ on vacuity, weakening, and over-constraint and a formatting gap of at most $0.05$.
+Vacuity is caught almost universally (mean directional accuracy $0.996$).
+Weakening separates judges: under the fuller-context rubrics Claude Sonnet 5 reaches $0.95$ and Qwen3.6-27B $0.91$, Claude Opus 5.5 $0.87$, Gemini 3.1 Pro $0.68$, GPT-6 Luna $0.42$, and GPT-6 Sol $0.38$, and the legacy prompts, which cannot see most weakened statements, $0.04$--$0.14$.
+Fifteen of the 56 configurations pass: Claude Sonnet 5 and Qwen3.6-27B on all five fuller-context rubrics, Claude Opus 5.5 on two, Gemini 3.1 Pro on one, and both Terminus2 judges with the H2 rubric.
+The screen is necessary rather than sufficient: a character edit-distance baseline passes it because every edit lowers its score, which the formatting false-alarm rate exposes (its discrimination, semantic accuracy minus false alarms, is $0.00$).
+Thirty-one of the 57 weakening probes leave the file-level guarantee unchanged because another theorem of the same reference restates the dropped property; on the 25 strictly weaker probes GPT-6 Sol with H2 rises from $0.39$ to $0.84$ and GPT-6 Luna with H2 from $0.44$ to $0.92$, so part of the miss rate is judges declining to penalize redundancy.
+Weakening directional accuracy also tracks the criterion: Spearman $0.73$ $[0.55, 0.86]$ over the 38 train and validation configurations ($p < 0.001$) and $0.72$ $[0.31, 0.92]$ over the 18 test configurations ($p = 0.001$), the latter computed after the test receipt existed.
+Combining a semantic score with $C_{\mathrm{ms,gold}}$ changes the train and validation association from $0.78$ to $0.72$ ($\Delta = -0.06$ $[-0.16, 0.04]$) and the test association from $0.56$ to $0.67$ ($\Delta = +0.11$ $[-0.13, 0.39]$), so no incremental benefit is established.
+These unit bootstraps resample configurations that share six judge models and understate the uncertainty.
+
+\subsection{A score-optimizing attacker}\label{sec:gaming}
+% Provenance: experiments/archive/43_judge_gaming_resistance_score_optimizing_attacker_vs_property_index/REPORT.md and results/analysis.json (per_judge, association, charges).
+We also tested resistance to optimization directly.
+GPT-6 Luna (high reasoning) edited 15 low-coverage rated candidates (expert mean at most $0.6$, six tasks) for eight Lean-checked rounds to raise one judge's score, seeing only that score, the task's Python source, and its own history, never the gold, the rubric, or a rating.
+It attacked six Claude Sonnet 5 configurations (LEX, D0, H0, H2, P1, P8): 90 cells and 720 attempts, of which 634 elaborated, 356 only after failing proofs were replaced by \texttt{sorry}; 119 edits were accepted and 62 of the 90 final candidates differ from their start.
+Each start and final candidate was then rescored three times by the attacked judge and by a reference of the H2 rubric on Claude Opus 5.5 and on GPT-6 Sol.
+The gaming gap, the attacked judge's gain minus the reference's gain, ranges from $-0.162$ $[-0.325, -0.033]$ for the lexical prompt to $+0.033$ $[-0.103, +0.142]$ for H2, with no task-bootstrap interval wholly above zero (Table~\ref{tab:gaming}).
+This is no evidence that the edits were sound.
+The edited files grew from $0.82$ to $12.37$ theorem statements on average, and 59 of the 62 edited candidates carry at least one deterministic flag, most often a unit test stated as a theorem (50 of 62) or a statement that never mentions the implementation (45 of 62); the reference credited those files as well.
+The defensible reading is that no attacked judge shows a statistically resolved excess over the model reference, not that any judge resisted.
+Across the six attacked configurations the label-free index did not predict the gap: $C_{\mathrm{ms,gold}}$ has Spearman $+0.600$ with the gap (exact one-sided $p = 0.912$ for the resistance direction), $\mathrm{TI}_{\mathrm{var}}$ $-0.086$ ($p = 0.460$), and $\mathrm{PTI}_{v0}$ is defined for only three of the six.
 
 \begin{table}[t]
 \centering\small
-\begin{tabular}{@{}lrrr@{}}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrr@{}}
 \toprule
-Codex-panel configuration & Human $\rho$ (avg) & $\mathrm{TI}_{\mathrm{var}}$ & Ladders with reversals \\
+Attacked judge (Claude Sonnet 5) & Gaming gap [95\% interval] & Attacked gain & Reference gain & Flagged, edited cells \\
 \midrule
-Baseline prompt & 0.466 & 0.958 & 0/24 \\
-Checklist prompt & 0.419 & 0.958 & 0/24 \\
-Strict prompt & 0.365 & 0.950 & 4/24 \\
-Lexical prompt & 0.435 & 0.940 & 20/24 \\
-GPT-4o-mini, strict & $-0.014$ & 0.324 & 18/24 \\
-GPT-4o-mini, checklist & 0.092 & 0.007 & 16/24 \\
-Edit distance & 0.199 & 0.928 & 24/24 \\
-Random & $-0.001$ & 0.008 & 24/24 \\
+LEX (lexical) & $-0.162$ $[-0.325, -0.033]$ & $+0.013$ & $+0.176$ & 7 of 8 \\
+D0 (deployed rubric) & $-0.044$ $[-0.186, +0.048]$ & $+0.311$ & $+0.356$ & 13 of 15 \\
+H0 (raters' instructions) & $-0.027$ $[-0.057, -0.002]$ & $+0.236$ & $+0.262$ & 7 of 7 \\
+H2 (human mirror) & $+0.033$ $[-0.103, +0.142]$ & $+0.378$ & $+0.344$ & 10 of 10 \\
+P1 (legacy baseline) & $-0.136$ $[-0.281, +0.031]$ & $+0.164$ & $+0.300$ & 11 of 11 \\
+P8 (legacy strict) & $-0.088$ $[-0.213, +0.067]$ & $+0.086$ & $+0.173$ & 11 of 11 \\
 \bottomrule
 \end{tabular}
-\caption{The lexical judge agrees with humans despite frequent bug-ladder reversals, and the scalar index penalizes it only slightly.
-A reversal is any local score increase as cumulative edits are added; the diagnostic uses the recorded repeat-aggregated scores.}
-\label{tab:codex_configs}
+\end{adjustbox}
+\caption{\textbf{No attacked configuration gained more than the model reference credited, and nearly every edited candidate carries a flag that the reference credited too.} Fifteen cells per judge; gains are fresh-repeat means on the $[0,1]$ scale; intervals are task-clustered percentile bootstraps over the six tasks (10{,}000 resamples, seed 43), with no hypothesis test.
+Flag counts are edited cells whose final candidate adds a vacuous, ground, unrelated, duplicated, or inflated statement, among the cells the attacker changed.}
+\label{tab:gaming}
 \end{table}
-
-\paragraph{Choice of index.}
-The two-component geometric comparison is numerically higher than $\mathrm{TI}_{\mathrm{var}}$ for Codex and Opus on averaged labels (Table~\ref{tab:tivar_cross_model_results}).
-It uses bug monotonicity and decision stability with weights $0.4$ and $0.6$, selected on pass1, rather than fixed equal weights.
-We retain $\mathrm{TI}_{\mathrm{var}}$ for its explicit variance penalties and positive associations across the primary families and passes, not because these data establish its superiority.
-The bug-monotonicity component alone has averaged-label associations of $0.643$, $0.467$, and $0.690$.
-The full index has higher point correlations in eight of nine family--pass cells, a descriptive comparison on reused labels rather than independent validation of the penalties (Appendix~\ref{app:judge-level-diagnostics}).
-The exception is Qwen pass2, where the component alone reaches $0.905$ and the full index $0.857$.
-A separate search over six component weights gives cross-pass associations of $0.810$ and $0.786$ on the same pairs (Appendix~\ref{app:moved-results}).
-The pass1-selected geometric form reaches $0.769$ on an expanded 13-configuration panel, with a 95\% interval of $[0.34,0.95]$ (Appendix~\ref{app:expanded-panel}).
-Neither comparison provides a held-out estimate.
-A separate Leanstral panel has averaged-label association $-0.095$ for the fixed index (Appendix~\ref{app:negative-results}), so the positive result does not hold for every recorded family.
-
-\paragraph{Weight and normalization sensitivity.}
-Recomputing the fixed index on a local grid of weight triples gives averaged-label Spearman ranges of $0.738$--$0.857$ for Codex, $0.643$--$0.714$ for Opus, and $0.881$--$0.976$ for Qwen.
-This analysis uses only committed component vectors and keeps their normalization fixed (Appendix~\ref{app:weight-sensitivity}).
-It does not assess sensitivity to changing the normalization panel.
-We do not report leave-one-family-out transfer: the panels share controls and normalize separately, so pooling their scores would not constitute an independent family test.
-
-\paragraph{Which measured statistics matter.}
-Among the recorded diagnostics, weak monotonicity on bug ladders has the largest association with human agreement on each label view (Table~\ref{tab:property_assoc}).
-It measures the absence of local increases; bug-rank correlation measures the overall direction.
-The archived field name \texttt{P3\_weak\_mono} refers to this bug statistic, not to the P3 missing-specification property.
-Identity-rewrite scores and repeat decision stability have weaker or inconsistent associations.
-Only the weak-monotonicity statistic on pass2 and averaged labels has an unadjusted permutation $p<0.05$; these component comparisons are exploratory.
-
-\begin{table}[t]
-\centering\small
-\begin{tabular}{@{}lrrr@{}}
-\toprule
-Measured diagnostic & pass1 & pass2 & avg \\
-\midrule
-Mean identity-rewrite score & $-0.21$ (0.62) & 0.02 (0.98) & $-0.02$ (0.98) \\
-Bug-rank monotonicity & 0.60 (0.13) & 0.67 (0.08) & 0.71 (0.06) \\
-Bug weak monotonicity & 0.63 (0.11) & 0.78 (0.03) & 0.75 (0.04) \\
-Repeat decision stability & 0.47 (0.24) & $-0.23$ (0.57) & 0.14 (0.76) \\
-\bottomrule
-\end{tabular}
-\caption{Bug weak monotonicity has the largest observed association among the measured diagnostics; this table contains no P3 missing-specification result.
-Entries are Spearman correlations with human agreement across eight Codex-panel configurations; unadjusted permutation probabilities appear in parentheses.}
-\label{tab:property_assoc}
-\end{table}
-
-\paragraph{Artifact-score threshold.}
-A historical sweep of the artifact-score threshold over six values from $0.60$ to $0.85$ lowers the observed decision-flip rate from $0.058$ to $0.046$ and the pass rate from $0.583$ to $0.536$ (Appendix Table~\ref{tab:exp13_threshold_sweep}).
-The selected threshold is $0.85$, which has the lowest observed flip rate in that sweep, although its interval overlaps those of every other threshold.
-No paired difference test or unique optimality has been established.
-This thresholds $J_\theta(x,g)$, not the judge-level index, and measures repeatability rather than correctness of the accepted artifacts.
