@@ -86,3 +86,4 @@ Last updated: 10-13-2026 14:02 PDT
 ## 7. Not committed, and why
 
 - `experiments/archive/34_iclr_mega_rewrite_astra/results/astra_last_message.md` and `astra_pid` are untracked 09-22 Astra leftovers, not this session's work. They are left untracked on purpose.
+- 10-13-2026 14:08 PDT -- Brando corrected the lane: the paper's claims are NOT being rewritten; plan of record = more human data (the shared set-N rating round, then a cert-judge pool), framing decided after it. PR #64 stays an unmerged interim draft; rule added to CLAUDE.md/AGENTS.md on main.
