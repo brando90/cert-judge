@@ -13,6 +13,10 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 Send from whichever of Brando's accounts you are signed in to (mail connector, else uutils SMTP); his request is the go-ahead. CC `brando.science@gmail.com`, `brandojazz@gmail.com` and `brando@vals.ai`, skipping the sender. Internal notifications follow agents-config Trigger Rule 26.
 
+## Paper plan: more human data, not weaker claims (Brando, 10-13-2026)
+
+The cert-judge paper is being made as strong as possible, and its known gap is human data: a fresh, pre-registered human rating round (shared with VeriBench's set-N round, experiment 102) that tests the judge-trust index on new items and new judges is being prepared and run. Never "rewrite the paper's claims" to fit the current evidence, retire a claim, or pick a new framing on your own because an intermediate experiment (39, 41, 42, 43, 44, 45) came out weak or null: those results feed the next human-data round and the limitations section, and the framing is Brando's call after that round. A result-consistent interim draft may be prepared on a branch, labelled as such and left unmerged. Brando, 10-13-2026: "we are not 'rewriting the paper's claims'. We are trying to make the paper as high quality as possible. I thought the issue was that we need more human data, which is what we are preparing and having people go through."
+
 ## Project Purpose
 
 `cert-judge` studies LLM-based judges for Lean 4 theorem/specification scoring. Keep these scientific objects distinct:
