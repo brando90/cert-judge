@@ -14,14 +14,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 E = Path(__file__).resolve().parents[1]                       # experiment 42 root
-REPO = E.parents[1]                                           # cert-judge root
+REPO = E.parents[2]                                           # cert-judge root (experiment lives under experiments/archive/ since 10-13-2026)
 PRIVATE = E / "private"                                       # git-ignored: probe files, prompts, packs, raw verdicts
 RESULTS = E / "results"
 EXPERIMENT = "certjudge42-semantic-probes"
 SEED = 42
 
 # Experiment 39's folder in THIS clone (read-only import of its frozen panel and prompt files; never written).
-E39_DIR = REPO / "experiments/39_label_free_proxy_index_train_val_test_over_judge_families"
+E39_DIR = REPO / "experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families"
 E39_PROMPT_DIR = E39_DIR / "prompts"
 
 # VeriBench clone read by this experiment (never written). e39.py reads E39_VERIBENCH_REPO at import time, so it is

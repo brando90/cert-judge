@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 
 EXP_DIR = Path(__file__).resolve().parents[1]
-CJ_ROOT = EXP_DIR.parents[1]
+CJ_ROOT = EXP_DIR.parents[2]  # under experiments/archive/ since 10-13-2026
 B = CJ_ROOT / "experiments/archive/04_veribench_validation"
 
 INPUTS = {

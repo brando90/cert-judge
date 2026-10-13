@@ -11,7 +11,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-sys.path[:0] = [str(Path(__file__).resolve().parents[3] / "py_src")]
+sys.path[:0] = [str(Path(__file__).resolve().parents[4] / "py_src")]
 from cert_judge.probe_validation import (  # noqa: E402
     _TOP_LEVEL_BOUNDARY_RE, _find_assignment, Declaration, LeanCompiler, alpha_rename_bound_identifier,
     build_bug_ladder, mask_lean_noncode, sha256_text,

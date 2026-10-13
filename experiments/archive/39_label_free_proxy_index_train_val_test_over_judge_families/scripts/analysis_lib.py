@@ -11,7 +11,7 @@ import statistics
 import sys
 from pathlib import Path
 
-sys.path[:0] = [str(Path(__file__).resolve().parents[3] / "py_src")]
+sys.path[:0] = [str(Path(__file__).resolve().parents[4] / "py_src")]
 from cert_judge import pti_v0 as PV                            # noqa: E402
 
 HUMAN_CEILING_HELDOUT = 0.747          # mean leave-one-expert-out Spearman on the 45 held-out items (experiment 100)

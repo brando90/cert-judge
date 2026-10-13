@@ -36,10 +36,18 @@ DUP = "\ntheorem myMin_mem_copy{n} (xs : List Int) (h : xs ≠ []) : myMin xs h 
 
 def test_vendored_legacy_matches_experiment_39():
     root = e43.REPO
-    src = "experiments/39_label_free_proxy_index_train_val_test_over_judge_families"
+    # Experiment 39 moved to experiments/archive/ on 10-13-2026; read its frozen files from this checkout, and fall back
+    # to origin/main (either path) when a sparse checkout lacks them.
+    srcs = ["experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families",
+            "experiments/39_label_free_proxy_index_train_val_test_over_judge_families"]
     vend = e43.SCRIPTS / "vendor_e39"
     for rel in ["scripts/legacy.py"] + [f"prompts/{p}.txt" for p in ("BAD_STRINGY", "P1_BASELINE", "P4_CHECKLIST", "P8_STRICT_B")]:
-        theirs = subprocess.run(["git", "-C", str(root), "show", f"origin/main:{src}/{rel}"], capture_output=True, check=True).stdout
+        local = [root / src / rel for src in srcs if (root / src / rel).is_file()]
+        if local:
+            theirs = local[0].read_bytes()
+        else:
+            shown = [subprocess.run(["git", "-C", str(root), "show", f"origin/main:{src}/{rel}"], capture_output=True) for src in srcs]
+            theirs = next(s.stdout for s in shown if s.returncode == 0)
         assert (vend / rel).read_bytes() == theirs, rel
 
 

@@ -10,7 +10,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-sys.path[:0] = [str(Path(__file__).resolve().parent), str(Path(__file__).resolve().parents[3] / "py_src")]
+sys.path[:0] = [str(Path(__file__).resolve().parent), str(Path(__file__).resolve().parents[4] / "py_src")]
 import e43                                                    # noqa: E402
 from cert_judge.probe_validation import (  # noqa: E402
     _SPEC_NAME_RE, CompileResult, LeanCompiler, classify_compile_error, mask_lean_noncode, summarize_compile_error,

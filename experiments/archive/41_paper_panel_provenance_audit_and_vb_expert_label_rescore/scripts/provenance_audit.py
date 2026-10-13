@@ -19,7 +19,7 @@ import json
 import subprocess
 from pathlib import Path
 
-CJ_ROOT = Path(__file__).resolve().parents[3]  # .../cert-judge_e41
+CJ_ROOT = Path(__file__).resolve().parents[4]  # .../cert-judge_e41 (under experiments/archive/ since 10-13-2026)
 EXP_DIR = Path(__file__).resolve().parents[1]
 VB_ROOT = Path("/lfs/skampere1/0/brando9/veribench_e41")
 DATA = CJ_ROOT / "experiments/archive/04_veribench_validation/data"

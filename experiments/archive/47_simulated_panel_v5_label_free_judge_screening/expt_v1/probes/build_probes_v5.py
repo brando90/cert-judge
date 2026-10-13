@@ -27,7 +27,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 EXPT = HERE.parent
 REPO = HERE.parents[3]
-E39 = REPO / "experiments/39_label_free_proxy_index_train_val_test_over_judge_families/scripts"
+E39 = REPO / "experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/scripts"
 SOURCE_ROOT_DEFAULT = Path("/dfs/scratch0/brando9/cert-judge-e47-v5-sandbox/experiments/47_simulated_panel_v5_label_free_judge_screening/expt_v1")
 LAKE_PROJECT_DEFAULT = Path("/lfs/skampere1/0/brando9/vb90_grading/lean_project")
 LAKE_BIN_DEFAULT = Path.home() / ".elan/bin/lake"
@@ -346,7 +346,7 @@ def main() -> int:
         built = list(pool.map(lambda task: build_one(task, references[task], sorted(by_task[task], key=lambda r: r["item"]), compiler), sorted(references)))
     rows = [row for item_rows, _ in built for row in item_rows]
     artifacts = [artifact for _, item_artifacts in built for artifact in item_artifacts]
-    probe_manifest = {"written_utc": utc(), "run_id": "cj-e47-probes-10-08-2026-a1", "frozen_transform": {"path": "experiments/39_label_free_proxy_index_train_val_test_over_judge_families/scripts/probes.py", "sha256": sha_file(E39 / "probes.py"), "kinds": {"ident": 0, "blank": 0, "ms_gold": 4, "ms_cand": 3, "bm_gold": 4}},
+    probe_manifest = {"written_utc": utc(), "run_id": "cj-e47-probes-10-08-2026-a1", "frozen_transform": {"path": "experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/scripts/probes.py", "sha256": sha_file(E39 / "probes.py"), "kinds": {"ident": 0, "blank": 0, "ms_gold": 4, "ms_cand": 3, "bm_gold": 4}},
                       "rows": rows, "counts": counts(rows), "private_artifacts": artifacts}
     json_write(HERE / "probe_manifest.json", probe_manifest)
     cache_rows = [json.loads(x) for x in (PRIVATE / "compile_cache.jsonl").read_text(encoding="utf-8").splitlines()]

@@ -14,7 +14,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True           # never leave __pycache__ inside the read-only VeriBench clone
 
 E = Path(__file__).resolve().parents[1]                       # experiment 43 root
-REPO = E.parents[1]                                           # cert-judge root
+REPO = E.parents[2]                                           # cert-judge root (experiment lives under experiments/archive/ since 10-13-2026)
 SCRIPTS = E / "scripts"
 PRIVATE = E / "private"                                       # git-ignored: prompts, packs, raw completions, cell state
 RESULTS = E / "results"

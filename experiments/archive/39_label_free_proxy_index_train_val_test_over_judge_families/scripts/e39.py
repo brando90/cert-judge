@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 E = Path(__file__).resolve().parents[1]                       # experiment 39 root
-REPO = E.parents[1]                                           # cert-judge root
+REPO = E.parents[2]                                           # cert-judge root (experiment lives under experiments/archive/ since 10-13-2026)
 PRIVATE = E / "private"                                       # git-ignored: prompts, packs, raw verdicts
 RESULTS = E / "results"
 PROMPT_DIR = E / "prompts"

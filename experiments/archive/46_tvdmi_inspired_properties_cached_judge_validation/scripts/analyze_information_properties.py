@@ -35,8 +35,8 @@ from cert_judge.information_properties import (  # noqa: E402
 
 E46 = Path(__file__).resolve().parents[1]
 OUT = E46 / "results"
-E39 = ROOT / "experiments/39_label_free_proxy_index_train_val_test_over_judge_families"
-E42 = ROOT / "experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges"
+E39 = ROOT / "experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families"
+E42 = ROOT / "experiments/archive/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges"
 E44 = ROOT / "experiments/archive/44_cached_score_judge_selection_utility"
 E45 = ROOT / "experiments/archive/45_five_rater_cached_selection_task_split_and_behavioral_audit"
 SEED = 20261008

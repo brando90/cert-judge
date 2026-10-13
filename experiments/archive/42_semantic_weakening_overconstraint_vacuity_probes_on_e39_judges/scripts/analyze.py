@@ -199,12 +199,16 @@ def cmd_screen(args) -> int:
 # Index association with experiment 39's criterion
 # ------------------------------------------------------------------------------------------------------------------
 
-E39_REL = "experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results"
+E39_REL = "experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/results"
+E39_REL_PRE_ARCHIVE = "experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results"   # path at refs before the 10-13-2026 archive move
 
 
 def git_json(ref: str, rel: str):
-    out = subprocess.run(["git", "show", f"{ref}:{E39_REL}/{rel}"], cwd=str(e42.REPO), capture_output=True, text=True)
-    return json.loads(out.stdout) if out.returncode == 0 else None
+    for base in (E39_REL, E39_REL_PRE_ARCHIVE):
+        out = subprocess.run(["git", "show", f"{ref}:{base}/{rel}"], cwd=str(e42.REPO), capture_output=True, text=True)
+        if out.returncode == 0:
+            return json.loads(out.stdout)
+    return None
 
 
 def assoc(xs, ys, draws: int) -> dict:

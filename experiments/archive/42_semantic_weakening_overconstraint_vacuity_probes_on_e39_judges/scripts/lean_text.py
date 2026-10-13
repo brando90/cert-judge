@@ -10,7 +10,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-sys.path[:0] = [str(Path(__file__).resolve().parents[3] / "py_src")]
+sys.path[:0] = [str(Path(__file__).resolve().parents[4] / "py_src")]
 from cert_judge.probe_validation import _TOP_LEVEL_BOUNDARY_RE, mask_lean_noncode  # noqa: E402
 
 OPEN = {"(": ")", "{": "}", "[": "]", "⦃": "⦄"}

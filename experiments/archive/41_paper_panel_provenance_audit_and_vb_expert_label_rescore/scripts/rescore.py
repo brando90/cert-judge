@@ -21,7 +21,7 @@ import numpy as np
 from scipy import stats
 
 EXP_DIR = Path(__file__).resolve().parents[1]
-CJ_ROOT = EXP_DIR.parents[1]
+CJ_ROOT = EXP_DIR.parents[2]  # under experiments/archive/ since 10-13-2026
 VB04 = CJ_ROOT / "experiments/archive/04_veribench_validation"
 VB13 = CJ_ROOT / "experiments/archive/13_qwen_replication_exp16_exp19"
 VB_HUMAN_LABELS = Path("/lfs/skampere1/0/brando9/veribench_e41/veribench_dataset/human_labels")

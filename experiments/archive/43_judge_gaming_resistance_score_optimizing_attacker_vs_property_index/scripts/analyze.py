@@ -22,7 +22,8 @@ from pathlib import Path
 sys.path[:0] = [str(Path(__file__).resolve().parent)]
 import e43                                                    # noqa: E402
 
-E39_DIR = "experiments/39_label_free_proxy_index_train_val_test_over_judge_families"
+E39_DIR = "experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families"
+E39_DIR_PRE_ARCHIVE = "experiments/39_label_free_proxy_index_train_val_test_over_judge_families"   # path at refs before the 10-13-2026 archive move
 E39_OPEN = f"{E39_DIR}/results/units_train_val.json"          # train + val units only (the test units are sealed elsewhere)
 E39_FINALISTS = f"{E39_DIR}/results/FINALISTS.json"
 FROZEN = ("PTI_v0_frozen", "TI_var_trainnorm")
@@ -101,17 +102,22 @@ def git_show(ref: str, path: str):
 def index_values(refs: list[str]) -> dict:
     """Index values of the attacked configurations from experiment 39's committed OPEN units file (never the sealed one)."""
     for ref in refs:
-        units = git_show(ref, E39_OPEN)
+        units, open_path, fin = None, E39_OPEN, {}
+        for base in (E39_DIR, E39_DIR_PRE_ARCHIVE):
+            open_path = f"{base}/results/units_train_val.json"
+            units = git_show(ref, open_path)
+            if units is not None:
+                fin = git_show(ref, f"{base}/results/FINALISTS.json") or {}
+                break
         if units is None:
             continue
-        fin = git_show(ref, E39_FINALISTS) or {}
         selected = fin.get("selected")
         names = ([selected] if selected else []) + list(FROZEN)
         per = {}
         for u in units["units"]:
             if u["config"] in e43.JUDGES:
                 per[u["config"]] = {n: u["indices"].get(n) for n in names}
-        return {"source_ref": ref, "source_path": E39_OPEN, "selected_index": selected, "index_names": names, "values": per}
+        return {"source_ref": ref, "source_path": open_path, "selected_index": selected, "index_names": names, "values": per}
     return {"source_ref": None, "selected_index": None, "index_names": list(FROZEN), "values": {},
             "status": "NOT_AVAILABLE: experiment 39 has not committed results/units_train_val.json on any searched ref"}
 
