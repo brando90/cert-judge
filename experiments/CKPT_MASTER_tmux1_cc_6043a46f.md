@@ -29,7 +29,6 @@ Last updated: 10-13-2026 14:02 PDT
 
 ## Brando to-do
 - Read the framing (`docs/PAPER_FRAMING_DECISION_10-13-2026.md`) and the paper in PR #64 before any submission; the pull request is deliberately unmerged.
-- Confirm the ICLR 2027 status of forum `yoLB5iP7Pn` (submission 35334) with a signed-in OpenReview check (`~/keys/openreview_credentials.txt` does not exist; `/chrome` with your session is the alternative). The 09-26-2026 browser read said "withdrawn"; the 10-13-2026 public-API read returned no note.
 - Decide whether to keep the title "Checking the Checks: Behavioral Screens for LLM Judges of Formal Specifications" or name the transfer test in it.
 
 ## Log
@@ -87,3 +86,4 @@ Last updated: 10-13-2026 14:02 PDT
 
 - `experiments/archive/34_iclr_mega_rewrite_astra/results/astra_last_message.md` and `astra_pid` are untracked 09-22 Astra leftovers, not this session's work. They are left untracked on purpose.
 - 10-13-2026 14:08 PDT -- Brando corrected the lane: the paper's claims are NOT being rewritten; plan of record = more human data (the shared set-N rating round, then a cert-judge pool), framing decided after it. PR #64 stays an unmerged interim draft; rule added to CLAUDE.md/AGENTS.md on main.
+- 10-13-2026 14:23 PDT -- ICLR 2027 status settled from the repository's own records: submission 35334 was registered 09-17 and never submitted (experiments/archive/34_.../submission/SUBMISSION_STATUS.md); the forum read withdrawn on 09-26 (experiment 37 README). Not a Brando to-do; no sign-in check needed.

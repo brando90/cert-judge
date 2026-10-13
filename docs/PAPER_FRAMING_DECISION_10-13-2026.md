@@ -118,3 +118,5 @@ TMLR (rolling submission; accepts a careful negative-plus-partial result). The I
 ## Log
 
 - 10-13-2026 13:50 PDT -- file created from the master decision (VeriBench `00b219a4cc`); prompt-group sensitivity rows recomputed from `units_test.json` (byte-identical to the 10-05-2026 assessment); experiments 39, 41, 42, 43 archived in the same branch (`paper/framing-10-13-2026`).
+
+**ICLR 2027 status (10-13-2026 14:23 PDT):** settled by the repository: submission 35334 was registered on 09-17-2026 and never submitted; the forum showed withdrawn on 09-26-2026. No further check is needed.
