@@ -30,7 +30,7 @@ Last updated: 09-30-2026 21:50 PDT (verified on skampere1 at 21:46 PDT and on Gi
 ## 3. Hazards a successor must know first
 
 - **The paper's main claims are contradicted or unsupported** by experiments 39 and 41. Do not edit `paper_latex/` before Brando picks the framing.
-- **ICLR 2027 status is unverified.** `experiments/archive/37_openreview_feedback_current_iclr_revision/README.md:18` (09-26) says the live forum `yoLB5iP7Pn` showed *withdrawn*. The `uutils.openreview_uu` fetcher (ultimate-utils `c1ff4ea`, env `~/uv_envs/openreview-uu`) needs `~/keys/openreview_credentials.txt` from Brando; the alternative is `/chrome`.
+- **ICLR 2027 status: withdrawn; nothing to do** (settled 10-13-2026 from the repository: the forum read withdrawn on 09-26 per experiment 37's README, and the full submission was never submitted per experiment 34's SUBMISSION_STATUS). Earlier text: ICLR 2027 status is unverified. `experiments/archive/37_openreview_feedback_current_iclr_revision/README.md:18` (09-26) says the live forum `yoLB5iP7Pn` showed *withdrawn*. The `uutils.openreview_uu` fetcher (ultimate-utils `c1ff4ea`, env `~/uv_envs/openreview-uu`) needs `~/keys/openreview_credentials.txt` from Brando; the alternative is `/chrome`.
 - **skampere1 root disk filled once** (experiment 43, 15:55 PDT): 32 GB of stale Claude Code temp files were cleared. Root disk is now 75% used (213 GB free).
 - **Shared checkout:** commit with explicit pathspecs from a private worktree.
 
