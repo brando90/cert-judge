@@ -11,7 +11,7 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Email (Brando, 10-06-2026)
 
-Send from whichever of Brando's accounts you are signed in to (mail connector, else uutils SMTP); his request is the go-ahead. CC `brando.science@gmail.com`, `brandojazz@gmail.com` and `brando@vals.ai`, skipping the sender. Internal notifications follow agents-config Trigger Rule 26.
+Send from whichever of Brando's accounts you are signed in to (mail connector, else uutils SMTP); his request is the go-ahead. CC `brando.science@gmail.com`, `brandojazz@gmail.com` and `brando@vals.ai`, skipping the sender. Internal notifications follow agents-config Trigger Rule 26. Refinements (Brando, 10-13-2026): email to Vals people (vals.ai addresses) CCs only `brando@vals.ai` and BCCs the other two; every email at least BCCs `brandojazz@gmail.com` unless it is the sender.
 
 ## Paper plan: more human data, not weaker claims (Brando, 10-13-2026)
 
