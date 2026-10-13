@@ -1,0 +1,118 @@
+<!-- TLDR: The cert-judge paper now claims, in order, that one label-free deletion-monotonicity screen transfers to held-out judges (with its lower bound and a prompt-group scope limit), that the paper's two pre-registered indices do not, that selection utility is not demonstrated, that the semantic and gaming studies are characterization, and that the 72-pair validation numbers move to the appendix; every number below names its interval, denominator, split and source file, and the section-by-section rewrite plan executes this framing for a TMLR submission. -->
+# Paper framing decision, 10-13-2026: what the cert-judge paper claims now
+
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/docs/PAPER_FRAMING_DECISION_10-13-2026.md>
+
+**TLDR:** The paper's story is *what transfers and what does not*. A single label-free component, gold deletion monotonicity (`C_ms_gold`: a judge's score should fall as theorem statements are deleted from the gold reference), selected on the train and validation judges, predicts held-out judges' agreement with expert ratings under the pre-registered rule (test Spearman 0.558 [0.078, 0.762], one-sided permutation p 0.0127, 16 of 18 declared test configurations). The paper's own pre-registered indices, `TI_var` and `PTI_v0`, do not transfer. Choosing a judge by the proxy does not beat choosing a fixed human-mirror prompt. The semantic screen and the gaming study are reported as characterization, and the earlier 72-pair validation-set numbers move to the appendix with their provenance caveat. Target venue: TMLR (Transactions on Machine Learning Research). Decided by the master session under agents-config Trigger Rule 57 and recorded in VeriBench `experiments/DECISIONS_10-13-2026_open_decisions_resolved.md` (commit `00b219a4cc`), section "Cert-judge paper: what it claims now"; this file is the lane's execution record.
+
+Created: 10-13-2026 13:50 PDT
+Last updated: 10-13-2026 13:50 PDT
+
+Terminology used throughout: *rating* for the human data, *rater* or *expert* for the people, *judge* for the models; splits are train / validation / test; "judge validation" and "judge--human agreement", never "calibrat*". Every statistic is written `x [lo, hi] p-val=Z` with the test named, or `p-val=n/a` when no test was run (agents-config Hard Rule 11). All source paths are relative to the cert-judge repository root; experiments 39, 41, 42 and 43 are archived under `experiments/archive/` in the same pull request as this file.
+
+## The five claims, in order
+
+### Claim 1: the deletion-monotonicity screen transfers to held-out judges, within a stated scope
+
+- **Instrument.** `C_ms_gold`: for each of the 24 gold references with a Lean-valid deletion ladder (levels 0--4, cumulative removal of theorem statements, last theorem first), the tie-aware Spearman correlation ρ between deletion level and the judge's median score is turned into a ladder quality (1 − ρ)/2 (a constant ladder counts 0), and the component is the mean over ladders (needs ≥ 80% of the 24 ladders scored). Selected from a 22-member pre-registered family by ranking on the 18 train judge configurations and picking the finalist with the highest validation Spearman; frozen before any test row was read (seal commit `86ae479201e5`). Source: `experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/PROTOCOL.md`, `.../results/SELECTION.json`, `.../scripts/analysis_lib.py` (`ladder_quality`, `components`).
+- **Criterion.** Each judge configuration's Spearman correlation between its median-of-three score and the mean of three expert coverage ratings (0--5 scale ÷ 5) on the 45 VeriBench candidates of experiment 100's validation + test tasks (15 tasks), computed only when ≥ 90% of the 45 items have a score. Human ceiling on those items: 0.747 (mean leave-one-expert-out Spearman). Source: `.../39.../results/RESULTS_proxy_index_train_val_test.md`, `.../results.md`.
+- **Numbers (source `.../39.../results/TEST_RECEIPT.json`, rendered in `.../results/RESULTS_proxy_index_train_val_test.md`):**
+
+| Judge split (unit = judge configuration) | n contributing / declared | Spearman [95% configuration bootstrap, 10,000 draws, seed 39] | Pearson | Kendall τ-b | One-sided positive-association permutation p (10,000 permutations) |
+|---|---:|---:|---:|---:|---:|
+| Train (GPT-6 Sol high, Claude Sonnet 5 medium; LLM configurations only) | 18 / 18 | 0.761 (interval not computed: selection split) | 0.643 | 0.569 | not computed |
+| Validation (GPT-6 Luna high, Gemini 3.1 Pro, Terminus2 + Luna) | 20 / 20 | 0.762 (not computed: selection split) | 0.759 | 0.537 | not computed |
+| Test (Claude Opus 5.5 max, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen) | 16 / 18 | **0.558 [0.078, 0.762]** | 0.643 | 0.360 | **p-val=0.0127** |
+
+- **Verdict under the pre-registered rule** (`PROTOCOL.md`: test Spearman ≥ 0.45 and one-sided permutation p < 0.05; INCONCLUSIVE if the criterion is NOT_COMPUTABLE for > 5 of 18 test units or the interval spans > 1.2): **PASS**; the criterion was computable for 18/18 test units, the index for 16/18 (`qwen36|H2` and `qwen36|R4` have deletion-ladder coverage 19/24 < 80% after parse errors); train − test gap 0.203 is within the 0.30 match tolerance. The permutation test rejects "no positive association"; **it does not test that the population correlation exceeds 0.45**, and the interval's lower bound is 0.078 (10-05-2026 assessment, `docs/project_assessment_10-05-2026.md` in the shared checkout, untracked).
+- **Prompt-group sensitivity, reported as a scope limit** (post hoc; recomputed on 10-13-2026 from the committed `.../39.../results/units_test.json` with `analysis_lib.association`, 10,000 draws, seed 39, byte-identical inputs; the same numbers appear in the 10-05-2026 assessment):
+
+| Test subset | n | Spearman [95% configuration bootstrap] | Pearson | Kendall τ-b | One-sided permutation p |
+|---|---:|---:|---:|---:|---:|
+| All declared test configurations (registered) | 16 | 0.558 [0.078, 0.762] | 0.643 | 0.360 | 0.0127 |
+| Without the deliberately lexical prompt LEX | 14 | 0.453 [−0.177, 0.825] | 0.824 | 0.331 | 0.0551 |
+| Fuller-context prompts only (D0, H0, H1, H2, R4) | 10 | −0.371 [−0.787, 0.304] | −0.319 | −0.225 | 0.8615 |
+
+  The legacy prompts (P1, P4, P8, LEX) show the judge only the gold's last theorem block, so their gold-deletion ladders are informative at level 1 only (recorded in `PROTOCOL.md` before any call). The pooled association therefore partly reflects the rendering groups; the fuller-context subset is not a controlled comparison (different rubrics and models) and the human-mirror rubric H2 alone has three measured test configurations, below the protocol's eight-unit minimum.
+- **Descriptive, not pre-registered** (`RESULTS_proxy_index_train_val_test.md`): the identity component `C_ident`, a finalist that was not selected, has test Spearman 0.697 (18 configurations); the four Terminus2 agent judges sit at the top of both axes (criterion 0.768--0.870, `C_ms_gold` 0.992--0.996); over the 14 single-call test units alone `C_ms_gold` has 0.573.
+- **Five-rater sensitivity** (`experiments/archive/45_five_rater_cached_selection_task_split_and_behavioral_audit/RESULTS_five_rater_comparison.md`): with all five current raters as the target, the test-judge association is 0.555 [0.420, 0.786] (16/18; task-cluster bootstrap conditional on the fixed judge panel, 10,000 draws, seed 45, p-val=n/a), paired change versus the three-rater target −0.003 [−0.081, 0.160].
+
+### Claim 2: the paper's original pre-registered indices do not transfer
+
+Same receipt (`.../39.../results/TEST_RECEIPT.json`), same held-out judges:
+
+| Index | Train Spearman (n) | Validation Spearman (n) | Test Spearman [95% configuration bootstrap] (n) | Test Pearson / Kendall | One-sided permutation p |
+|---|---:|---:|---:|---:|---:|
+| `TI_var` (train-normalized; bug-ladder correlation plus two variance penalties; the paper's earlier scalar) | −0.010 (18) | −0.177 (20) | −0.332 [−0.636, 0.135] (18) | −0.194 / −0.172 | 0.9135 |
+| `PTI_v0` (frozen four-property geometric mean, `docs/spec/PTI_V0.md`) | 0.433 (15) | not computable (18) | −0.274 [−0.753, 0.111] (9 of 18; eight of the nine values are exactly zero; 6,517 of 10,000 bootstrap draws retain variation) | −0.075 / −0.236 | 0.7793 |
+
+`PTI_v0` is NOT_COMPUTABLE for nine test units because its exact-zero geometric mean needs every ladder and the three alpha-renaming probes. These rows are the pre-registered secondary report; comparing them with `C_ms_gold`'s 16 units is not a paired superiority test.
+
+### Claim 3: selection utility against a fixed human-mirror rubric is not demonstrated
+
+Source: `experiments/archive/44_cached_score_judge_selection_utility/RESULTS_selection_utility.md` (zero new inference; cached scores only).
+
+- Primary pool: 12 full-context test configurations (Claude Opus 5.5, Qwen3.6-27B, Terminus2 + Sonnet 5, Terminus2 + Qwen on D0/H0/H1/H2/R4), common support 42 shared rated files from 15 tasks (the original 45-item criterion view).
+- Proxy selection by frozen `C_ms_gold` (picks `t2_sonnet5|D0`, margin 0.001): expected Spearman agreement 0.768 [0.401, 0.930]; fixed human-mirror rubric H2 (uniform choice among the four H2 configurations, not an ensemble): 0.853 [0.645, 0.931]; random: 0.784 [0.528, 0.892].
+- **Paired difference proxy − H2: −0.086 [−0.308, 0.058], p-val=n/a** (10,000 task-cluster bootstrap draws conditional on the fixed pool, candidates and proxy values); proxy − random −0.017 [−0.162, 0.080], p-val=n/a. Regret versus the best available configuration: proxy 0.104 [0.008, 0.379], H2 0.018 [0.009, 0.116].
+- Absolute-agreement diagnostics on the same items (judge minus human, positive = lenient): proxy-selected judge mean absolute error 0.154, bias −0.010 (judge mean 0.493, human mean 0.502); H2 expectation 0.173, bias +0.120 (0.623 versus 0.502).
+- Every reference-quality view (no placeholder references, no ambiguous references, neither, test tasks only) keeps the proxy at or below H2 (differences −0.177 to −0.050 in the primary pool).
+- Five-rater, test-task-only sensitivity (`experiments/archive/45_.../RESULTS_five_rater_comparison.md`): proxy 0.815 [0.411, 0.950] versus H2 0.826 [0.494, 0.936], paired difference −0.012 [−0.198, 0.186], p-val=n/a (29/30 outputs, 10 tasks; 9,999/10,000 finite draws). Superiority is unresolved, not disproved and not equivalence.
+
+### Claim 4: the semantic screen and the gaming study are characterization
+
+**Semantic screen** (`experiments/archive/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges/REPORT.md`, `.../results/RESULTS_semantic_screen.md`, `.../results/index_association.json`):
+
+- 194 Lean-validated probes from the 25 annotation-era VeriBench references (24 elaborate): 24 identity anchors, 38 vacuity, 57 cumulative weakening (each with a `sorryAx`-free Lean proof that the reference statement implies its weakened counterpart), 37 over-constraint (added hypothesis proved unsatisfiable), 38 formatting-only. 56 judge configurations × 3 repeats = 32,592 Valkyrie calls, 32,592/32,592 reconciled, 99.35% measured, $656.15 Vals-reported.
+- Locked rule (directional accuracy ≥ 0.8 on vacuity, weakening and over-constraint; formatting gap ≤ 0.05): **15 of 56 LLM configurations pass** (Claude Sonnet 5 on D0/H0/H1/H2/R4, Qwen3.6-27B on the same five, Claude Opus 5.5 on D0/H0, Gemini 3.1 Pro on H0, Terminus2 + Sonnet 5 on H2, Terminus2 + Qwen on H2). Vacuity is caught almost universally (mean directional accuracy 0.996); weakening separates judges (VeriBench rubrics: Sonnet 5 0.95, Qwen3.6 0.91, Opus 5.5 0.87, Gemini 3.1 Pro 0.68, GPT-6 Luna 0.42, GPT-6 Sol 0.38; legacy prompts 0.04--0.14). The edit-distance control passes the screen (discrimination 0.00 once the formatting false-alarm rate is subtracted), so the screen is necessary, not sufficient.
+- 31 of 57 weakening probes leave the file-level guarantee unchanged because another theorem restates the dropped property; on the 25 strictly weaker probes, GPT-6 Sol/H2 rises from 0.39 to 0.84 and GPT-6 Luna/H2 from 0.44 to 0.92 (sensitivity point estimates; intervals not computed for this comparison).
+- Association with experiment 39's criterion (bootstrap over configurations; one-sided permutation p, 10,000 draws, seed 42): weakening directional accuracy 0.73 [0.55, 0.86], p-val<0.001 over the 38 train + validation configurations; 0.72 [0.31, 0.92], p-val=0.001 over the 18 test configurations (post hoc: computed after the test receipt existed). Adding the semantic score to `C_ms_gold` changes train + validation Spearman from 0.78 to 0.72 (Δ −0.06 [−0.16, 0.04]) and test from 0.56 to 0.67 (Δ +0.11 [−0.13, 0.39]); no established incremental benefit. Configurations share six judge models, so these intervals understate uncertainty.
+
+**Gaming study** (`experiments/archive/43_judge_gaming_resistance_score_optimizing_attacker_vs_property_index/REPORT.md`, `.../results/analysis.json`):
+
+- GPT-6 Luna (high reasoning) edited 15 low-coverage rated candidates (expert mean ≤ 0.6; 6 tasks) for 8 Lean-checked rounds to raise one judge's score, seeing only that score; six Claude Sonnet 5 (medium) configurations attacked (LEX, D0, H0, H2, P1, P8): **90 cells, 720 attacker attempts**, 634 Lean-valid (356 only after proof relaxation to `sorry`), 119 accepted edits; $60.21 Vals-reported.
+- Gaming gap = attacked-judge gain − reference gain (reference: H2 on Claude Opus 5.5 max and on GPT-6 Sol high, three fresh repeats each): LEX −0.162 [−0.325, −0.033], D0 −0.044 [−0.186, +0.048], H0 −0.027 [−0.057, −0.002], H2 +0.033 [−0.103, +0.142], P1 −0.136 [−0.281, +0.031], P8 −0.088 [−0.213, +0.067] (task-clustered percentile bootstrap, 10,000 resamples of 6 tasks, seed 43; p-val=n/a). **No interval lies wholly above zero.** The defensible reading is "no statistically resolved excess over the model reference", never "never beaten".
+- What the attacker added: 62 of 90 final candidates differ from their start; theorem statements rose from 0.82 to 12.37 per edited file; **59 of 62 edited candidates carry at least one deterministic flag** (ground statements, i.e. unit tests stated as theorems, in 50 of 62; unrelated 45; inflation 16; duplicate 6), and the reference ensemble credited those files as well.
+- The label-free index did not predict resistance across the six judges: `C_ms_gold` ρ +0.600 (exact one-sided p 0.912 for a negative association; bootstrap [−0.486, +0.886]), `TI_var` −0.086 (p 0.460), `PTI_v0` not computable (3 of 6 judges). Six judges can only detect ρ ≤ −0.829.
+
+### Claim 5: the 72-pair validation-set numbers move to the appendix with the provenance caveat; selection bias motivates independent selection and evaluation
+
+- **Numbers reproduced** (gate G0 of `experiments/archive/41_paper_panel_provenance_audit_and_vb_expert_label_rescore/REPORT.md`): judge-level Spearman between `TI_var` and human agreement on the GPT-5.3-Codex panel of eight configurations: 0.833 (averaged labels), 0.905 (pass1), 0.738 (pass2); Claude Opus 4.7 0.643 / 0.810 / 0.595; Qwen3-Coder 0.905 / 0.476 / 0.857; all nine reproduced to three decimals. Codex intervals (10,000 resamples, seed 42): [0.24, 1.00], [0.41, 1.00], [0.11, 1.00]; permutation p 0.017, 0.005, 0.045 (`paper_latex/ICLR_2027_submission/05_experiments.tex` before this rewrite; `experiments/archive/38_iclr_body_rewrite_to_trust_artifact_abstract/analysis/results/judge_level_diagnostics.csv`).
+- **Provenance caveat** (same report): the paper's two label passes are VeriBench participant 1's superseded old-prompt rating passes (pass1 = `participant1_data_pass_2.tsv`, 75/75 identical; pass2 = `participant1_data_pass_1.tsv`, 72/75 identical; the pass names are swapped); 1 of 25 tasks (`0_unsafeMultiply_safe`) was never scored by the frozen judge pipeline (stale gold filename), which is why the panel has 72 pairs; of the 24 scored tasks only 7 have judge-seen reference bytes (vendored copy frozen 2026-04-12) identical to the rater-seen bytes at the label commit date; the corrected-label re-score on the 21 matched items (7 tasks) against VeriBench's three-expert mean is inconclusive under the pre-registered rule: Codex +0.333 [−0.321, 0.543], Claude Opus −0.381 [−0.524, 0.657], Qwen3-Coder +0.667 [−0.575, 0.898] (task-clustered bootstrap, 10,000 resamples, seed 42; exact permutation p 0.428, 0.360, 0.083).
+- **Best-of-k selection bias** (`experiments/archive/40_best_of_k_judge_selection_bias_validation_set/REPORT.md`): choosing the best of 8 configurations on 12 of the 24 problems overstates its Spearman agreement on the other 12 by **+0.153 on average over 4,000 random splits** (Monte Carlo standard error 0.004--0.005; 2.5--97.5% split range [−0.334, +0.689] is not a confidence interval for the mean; p-val=n/a); a latent-quality simulation fitted to the panel puts the overstatement at about 0.10 for choosing on all 72 pairs; adjusting the judge-level p-values for the choice among four reported index forms multiplies them by 1.9--3.2 and leaves 4 of 9 family--label cells below 0.05 (6 of 9 unadjusted). Choosing by the label-free v1 index never overstates agreement (within ±0.01) but picks judges about as good as random (0.229--0.296 versus 0.266--0.278 held-out, K = 2--32). This motivates the train / validation / test split over judges in experiment 39.
+
+## Venue
+
+TMLR (rolling submission; accepts a careful negative-plus-partial result). The ICLR 2027 forum `yoLB5iP7Pn` (submission 35334) read "withdrawn" in a 09-26-2026 browser read (`experiments/archive/37_openreview_feedback_current_iclr_revision/README.md`); on 10-13-2026 the public OpenReview API returned no note for it, consistent with a withdrawn or private submission. A signed-in check is Brando's to-do (`~/keys/openreview_credentials.txt` does not exist; `/chrome` with his session is the alternative). Until he confirms, nothing is submitted anywhere. The LaTeX stays in `paper_latex/ICLR_2027_submission/` with the ICLR style file (the repository's venue-directory convention names this directory as the active manuscript); the TMLR style conversion (`tmlr.sty` exists in `paper_latex/archive/TMLR_2026_resubmission/`) is a mechanical step at submission time and is recorded in `CHANGES.md`.
+
+## What moves to the appendix
+
+- The 72-pair validation set: its description, the `TI_var` association table (Codex / Claude Opus 4.7 / Qwen3-Coder × averaged / pass1 / pass2), the Codex property-check figure and the lexical-judge table (`BAD_STRINGY` reverses on 20 of 24 bug ladders while matching the semantic prompts' human agreement), the choice-of-index, weight-sensitivity, which-statistics-matter and threshold paragraphs, the provenance caveat (experiment 41) and the best-of-k selection bias (experiment 40). New file `999_appendix_validation_set_72_pairs.tex`; the existing appendices `990` (additional validation-set results), `996` (diagnostics), `997` (human agreement, expanded panel, Leanstral negative result) and `998` (index definitions) stay and are referenced from it.
+- The `TI_var` equation moves from the protocol section to Appendix `998` (index definitions), which also gains the definitions of `C_ms_gold` and `PTI_v0`.
+
+## Section-by-section rewrite plan (executed in the same pull request)
+
+| File | Change |
+|---|---|
+| `00_abstract.tex` | New abstract: problem, the human-agreement assumption, the question (do label-free properties predict agreement for judges they were not selected on), the 56-configuration train/validation/test design, claim 1 with interval and scope limit, claims 2--4 in one sentence each, the "rule out, not pick" implication. CS197 move comments kept as `%` comments only. |
+| `01_introduction.tex` | Six paragraphs in the same order; the measured best-of-k overstatement (+0.15) carries the adaptive-overfitting sentence; contributions list rewritten to the five claims. |
+| `02_related_work.tex` | Unchanged except the closing sentence, which now states that the association's transfer to judges it was not selected on is what this paper tests. |
+| `03_problem_setup.tex` | Judge configuration now includes the rendering family (legacy last-theorem-block versus fuller-context) and the harness (single call versus Terminus2 agent); the criterion is named; two levels of agreement kept. |
+| `04_property_protocol.tex` | Retitled "Screening judges with label-free properties, tested on held-out judges": the protocol (labels once; probes Lean-validated; split over judge models; select on train, check on validation, test once), the ten components with `C_ms_gold` defined, the 22-member candidate family and selection rule, the pre-registered gates, and `TI_var` / `PTI_v0` presented as the earlier indices carried into the family. Figure and workflow table updated. |
+| `05_experiments.tex` | 5.1 setup (judges, items, criterion, probes, counts, charges, transport); 5.2 the main table (train / validation / test rows for `C_ms_gold`, `PTI_v0`, `TI_var`, plus the two prompt-group sensitivity rows) and the new figure; 5.3 selection utility (experiment 44, five-rater sensitivity from 45); 5.4 semantic screen (42); 5.5 gaming (43). Every number carries a `% Provenance:` comment. |
+| `06_limitations.tex` | No demonstrated selection advantage; prompt-group confound; the registered p-value does not test ρ > 0.45; candidate-side invariance coverage 3 of 75 originals; 9 of 45 criterion candidates from placeholder-reference tasks and 9 of 45 from tasks whose reference statements changed; a single human panel; shared judge models inside splits; one domain; the semantic screen's redundancy and the gaming reference's shared blind spot; what a decisive test needs. |
+| `07_conclusion.tex` | What transfers and what does not, in five sentences. |
+| `08_statements.tex` | Reproducibility (the four experiments' receipts, the figure script, zero-call recomputation), ethics (VeriBench's expert raters; the earlier author-supplied panel now in the appendix), AI-use (attacker, judges, Claude Code subagents that proposed weakening edits, coding assistants). |
+| `995_appendix_judge_prompts.tex` | New opening paragraph naming the two prompt families and the six judge models of the transfer study with their exact identifiers; legacy prompt listings kept. |
+| `998_appendix_index_definitions.tex` | Adds `C_ms_gold` and `PTI_v0`; receives the `TI_var` equation (label `eq:tivar`). |
+| `999_appendix_validation_set_72_pairs.tex` (new) | The 72-pair validation set, its results, the provenance caveat and the selection-bias analysis (see "What moves to the appendix"). |
+| `main.tex` | Adds the new appendix to the `\input` list; header comment records the TMLR target. |
+| `CHANGES.md`, `OPEN_QUESTIONS.md` | Record the 10-13-2026 reframing, the venue change and the remaining open items. |
+
+## ICLR status note
+
+`experiments/CKPT_MASTER_tmux1_cc_6043a46f.md` section 3 and `experiments/archive/37_openreview_feedback_current_iclr_revision/README.md:18` record the 09-26-2026 "withdrawn" read of forum `yoLB5iP7Pn`; the 10-13-2026 public-API read returned no note. Both are consistent with a withdrawn or private submission and neither is a signed-in confirmation. Brando confirms the status before any submission; the rewrite does not depend on it.
+
+## Log
+
+- 10-13-2026 13:50 PDT -- file created from the master decision (VeriBench `00b219a4cc`); prompt-group sensitivity rows recomputed from `units_test.json` (byte-identical to the 10-05-2026 assessment); experiments 39, 41, 42, 43 archived in the same branch (`paper/framing-10-13-2026`).
