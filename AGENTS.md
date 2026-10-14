@@ -82,6 +82,8 @@ That CLI has no inference client and cannot load credentials. Paid judge inferen
 
 Brando's rule (VeriBench 09-28-2026, extended to cert-judge 09-30-2026): Valkyrie (`valk run start --benchmark … --agent … --model …`, including custom agents such as experiment 103's `vb103_judge`) is Vals-funded with effectively unlimited capacity. Do not add automatic dollar caps or spend-triggered stop rules to a Valkyrie run, and do not shrink manifests, sample tasks, drop models or ask for a spend estimate to save cost. Still name the route of every call, record the charges Valkyrie reports, and keep runaway guards: declared cells only, no silent retry loops, never re-admit a cell that already has a verdict, and treat HTTP 429 as an infrastructure failure. Source: VeriBench `docs/agent_rules/experiment_funding_and_valkyrie.md`.
 
+For new Vals-hosted runs, follow `~/agents-config/workflows/valkyrie.md` for `valkyrie login`, the Daytona sandbox provider, agent secrets named by `contract.yaml`, and separate verification of the organization and model payer. Completed runs using the former local `valkyrie.yaml` configuration remain historical; their Amazon Web Services (AWS) run history does not migrate to the hosted service.
+
 ## Architecture
 
 ### Core Package: `py_src/cert_judge/`
