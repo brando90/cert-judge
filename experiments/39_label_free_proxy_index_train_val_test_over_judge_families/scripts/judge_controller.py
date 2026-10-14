@@ -15,7 +15,6 @@ from __future__ import annotations
 import argparse
 import base64
 import json
-import os
 import re
 import shutil
 import subprocess
@@ -24,6 +23,9 @@ from pathlib import Path
 
 sys.path[:0] = [str(Path(__file__).resolve().parent)]
 import e39                                                    # noqa: E402
+
+sys.path[:0] = [str(Path(__file__).resolve().parents[3] / "py_src")]
+from cert_judge import valkyrie_hosted as VH                   # noqa: E402
 import legacy                                                 # noqa: E402
 
 JUDGE = e39.PRIVATE / "judge"
@@ -38,17 +40,13 @@ def fs(config: str) -> str:
     return config.replace("|", "__")
 
 
-def env() -> dict[str, str]:
-    out = dict(os.environ)
-    for key in ("VALKYRIE_API_KEY", "TRACKER_SERVICE_URL", "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY",
-                "GOOGLE_API_KEY", "CLAUDE_CODE_OAUTH_TOKEN", "ANTHROPIC_AUTH_TOKEN", "PYTHONPATH", "PYTHONHOME"):
-        out.pop(key, None)
-    out.update(VALKYRIE_ENV="bench", VALKYRIE_CONFIG_PATH=str(e39.PRIVATE / "valkyrie.yaml"))
-    return out
+# Hosted Valkyrie (10-14-2026): the CLI reads only `valkyrie login` / VALKYRIE_API_KEY / VALKYRIE_URL; the former
+# private valkyrie.yaml, VALKYRIE_CONFIG_PATH and VALKYRIE_ENV=bench are ignored and no longer set.
+VALK = VH.resolve_cli(e39.VALK, "E39_VALK")
 
 
 def cli(args: list[str], timeout: int = 1800) -> subprocess.CompletedProcess:
-    return subprocess.run([str(e39.VALK)] + args, env=env(), stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=timeout)
+    return VH.cli(VALK, args, timeout=timeout)
 
 
 def load_state() -> dict:
@@ -102,6 +100,10 @@ def admit(config: str, part: str, concurrency: int, only: list[str] | None = Non
     unit = unit_of(config)
     model_key = unit["model_key"]
     deployment = e39.read_json(e39.PRIVATE / f"deployment_{model_key}.json")
+    if deployment.get("registered_by") != VH.REGISTERED_BY:
+        raise SystemExit(f"{model_key}: its deployment predates hosted Valkyrie (no server-side service registration); "
+                         "redeploy it with scripts/deploy_service.py before admitting")
+    preflight = VH.require(VH.preflight(VALK, JUDGE / "valkyrie_preflight.log"))
     benchmark = deployment["benchmark"]
     key = f"{config}@{part}{suffix}"
     state = load_state()
@@ -125,7 +127,7 @@ def admit(config: str, part: str, concurrency: int, only: list[str] | None = Non
         agent = harness["agent"]
         kwargs = {k: str(v) for k, v in harness.get("kwargs", {}).items()}
         kwargs.update({k: str(v) for k, v in unit["kwargs"].items() if k in harness.get("supported_kwargs", [])})
-        secret_args = ["-s", harness["secret_env"], e39.GATEWAY_SECRET] if harness.get("secret_env") else []
+        secret_args = ["-s", harness["secret_env"], VH.GATEWAY_SECRET] if harness.get("secret_env") else []
         agent_sha = harness.get("contract_sha256")
     else:
         agent = e39.AGENT
@@ -142,7 +144,8 @@ def admit(config: str, part: str, concurrency: int, only: list[str] | None = Non
              "kwargs": kwargs, "concurrency": concurrency, "expected_cells": len(ids), "part": part, "suffix": suffix,
              "benchmark": benchmark, "judge_agent_sha256": agent_sha, "service_pid": deployment["service_pid"],
              "admitted_at": e39.stamp(), "task_ids_file": str(ids_file), "task_ids": ids if only is not None else None,
-             "phase": "admitting", "command": args}
+             "phase": "admitting", "command": args, "route": VH.ROUTE,
+             "valkyrie_preflight": {k: preflight[k] for k in ("organization", "credential", "default_provider")}}
     state["runs"][key] = entry
     save_state(state)                                          # recorded BEFORE the call: never replay an admission
     result = cli(args)

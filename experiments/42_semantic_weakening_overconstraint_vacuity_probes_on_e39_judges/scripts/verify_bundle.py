@@ -15,21 +15,20 @@ from pathlib import Path
 sys.path[:0] = [str(Path(__file__).resolve().parent)]
 import e42                                                    # noqa: E402
 
+sys.path[:0] = [str(Path(__file__).resolve().parents[3] / "py_src")]
+from cert_judge import valkyrie_hosted as VH                   # noqa: E402
+
 LOCAL_BUNDLE = e42.X103 / "scripts/valkyrie_judge_agent"
 BUNDLE_RECEIPT = e42.X103 / "results/agent_bundle_judge.json"
 
 
-def env() -> dict[str, str]:
-    out = dict(os.environ)
-    for key in ("VALKYRIE_API_KEY", "TRACKER_SERVICE_URL", "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY",
-                "GOOGLE_API_KEY", "CLAUDE_CODE_OAUTH_TOKEN", "ANTHROPIC_AUTH_TOKEN", "PYTHONPATH", "PYTHONHOME"):
-        out.pop(key, None)
-    out.update(VALKYRIE_ENV="bench", VALKYRIE_CONFIG_PATH=str(e42.PRIVATE / "valkyrie.yaml"))
-    return out
+# Hosted Valkyrie (10-14-2026): the CLI reads only `valkyrie login` / VALKYRIE_API_KEY / VALKYRIE_URL; the former
+# private valkyrie.yaml, VALKYRIE_CONFIG_PATH and VALKYRIE_ENV=bench are ignored and no longer set.
+VALK = VH.resolve_cli(e42.VALK, "E42_VALK")
 
 
 def cli(args: list[str], timeout: int = 900) -> subprocess.CompletedProcess:
-    return subprocess.run([str(e42.VALK)] + args, env=env(), stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=timeout)
+    return VH.cli(VALK, args, timeout=timeout)
 
 
 def tree(root: Path) -> dict[str, str]:
@@ -45,6 +44,7 @@ def main() -> int:
     if into.exists():
         shutil.rmtree(into)
     into.mkdir(parents=True)
+    preflight = VH.require(VH.preflight(VALK, e42.PRIVATE / "valkyrie_preflight.log"))
     result = cli(["agent", "download", e42.AGENT, "-o", str(into)])
     (e42.PRIVATE / "agent_download.log").write_text(result.stdout + result.stderr)
     if result.returncode:
@@ -53,7 +53,8 @@ def main() -> int:
     local = tree(LOCAL_BUNDLE)
     validated = e42.read_json(BUNDLE_RECEIPT)
     receipt = {"written_utc": e42.stamp(), "condition": "expt42-judge-bundle-check", "agent": e42.AGENT,
-               "route": "Valkyrie (VALKYRIE_ENV=bench)", "pushed_by": "experiment 103; experiment 42 downloads only",
+               "route": VH.ROUTE,
+               "valkyrie_preflight": {k: preflight[k] for k in ("organization", "credential", "default_provider")}, "pushed_by": "experiment 103; experiment 42 downloads only",
                "experiment_103_receipt": str(BUNDLE_RECEIPT), "experiment_103_receipt_sha256": e42.sha_file(BUNDLE_RECEIPT),
                "experiment_103_validated_sha256": validated["downloaded_files_sha256"], "experiment_103_local_files_sha256": local,
                "downloaded_now_sha256": downloaded,

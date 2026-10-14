@@ -2,7 +2,8 @@
 """TLDR: (Vendored from experiment 39's scripts/deploy_service.py at origin/e39-proxy-index-search 9823689, adapted to
 experiment 42's paths, benchmark names certjudge42-<key> and ports 9460-9468.) Serve one judge-model pack of experiment 42 through experiment 103's collect-only, Lean-less benchmark
 service (run read-only) on its own port behind a cloudflared tunnel, verify health 200 / unauthenticated 401,
-and register it as benchmark `certjudge42-<model>` in experiment 42's own private Valkyrie config. Adapted from
+and register it as benchmark `certjudge42-<model>` on the hosted Valkyrie Tracker (`valkyrie benchmark service
+set --auth-secret`). Adapted from
 experiment 105's deploy_service.py. Zero model calls; nothing of experiments 103/105 is written."""
 from __future__ import annotations
 
@@ -21,13 +22,14 @@ from pathlib import Path
 sys.path[:0] = [str(Path(__file__).resolve().parent)]
 import e42                                                    # noqa: E402
 
-import yaml                                                   # noqa: E402
+sys.path[:0] = [str(Path(__file__).resolve().parents[3] / "py_src")]
+from cert_judge import valkyrie_hosted as VH                   # noqa: E402
 
 SERVICE_DIR = e42.X103 / "scripts/vb_service_single_call"
 VENV = Path(os.environ.get("E42_VENV", "/lfs/skampere1/0/brando9/vb103_venv"))
 CLOUDFLARED = Path(os.environ.get("E42_CLOUDFLARED", "/lfs/skampere1/0/brando9/vb-e2-service-20260916/bin/cloudflared"))
 KERNEL_AXIOMS = e42.VB_REPO / "scripts/scsc/kernel_axioms.py"
-VALKYRIE_SOURCE = Path(os.environ.get("E42_VALKYRIE_SOURCE", str(Path.home() / ".config/valkyrie/valkyrie.yaml")))
+VALK = VH.resolve_cli(e42.VALK, "E42_VALK")         # hosted CLI (valkyrie login), not a private valkyrie.yaml
 # Sandbox base image for the AGENT-judge services only. The service's default (a bare Ubuntu 24.04 digest) has no system
 # python3; its Lean-less `verify` phase requires one, which the vb103_judge bundle's setup happens to install (apt) before
 # that phase runs, while the Terminus2 bundle's setup installs uv + a private CPython venv only, so every agent-judge
@@ -90,6 +92,8 @@ def main() -> int:
     pack = e42.PRIVATE / "packs" / args.model
 
     os.umask(0o077)
+    # Registration needs a login (an access key cannot change a saved service), so check it before starting anything.
+    preflight = VH.require(VH.preflight(VALK, e42.PRIVATE / "valkyrie_preflight.log", need_login=True))
     e42.PRIVATE.mkdir(mode=0o700, exist_ok=True)
     os.chmod(e42.PRIVATE, 0o700)
     receipt_path = e42.PRIVATE / f"deployment_{args.model}.json"
@@ -165,12 +169,9 @@ def main() -> int:
     if unauth != 401:
         raise SystemExit(f"tunnel answered an unauthenticated probe with {unauth}; refusing")
 
-    target = e42.PRIVATE / "valkyrie.yaml"
-    cfg = yaml.safe_load((target if target.exists() else VALKYRIE_SOURCE).read_text())
-    cfg.setdefault("custom_benchmark_services", {})[benchmark] = url
-    cfg.setdefault("benchmark_auth", {})[benchmark] = "Bearer " + bearer
-    target.write_text(yaml.safe_dump(cfg))
-    os.chmod(target, 0o600)
+    # Server-side registration on the Tracker (secret <benchmark>-bearer + benchmark service set); the old
+    # custom_benchmark_services / benchmark_auth entries in a private valkyrie.yaml are ignored by the hosted CLI.
+    registration = VH.register_service(VALK, benchmark, url, bearer, e42.PRIVATE / f"registration_{args.model}.log")
 
     receipt = {"deployed_utc": e42.stamp(), "model_key": args.model, "benchmark": benchmark, "service_pid": service.pid,
                "tunnel_pid": tunnel.pid, "port": port, "tunnel_url": url, "local_health": 200, "local_unauthenticated_health": 401,
@@ -178,7 +179,8 @@ def main() -> int:
                "service_code": "experiment 103 vb_service_single_call, run read-only with experiment 42's env",
                "service_files_sha256": {p.name: e42.sha_file(p) for p in sorted(SERVICE_DIR.glob("*.py"))},
                "pack_dir": str(pack), "pack_task_count": len([p for p in pack.iterdir() if p.is_dir()]),
-               "control_pack": True, "grade_mode": "collect_only", "sandbox_lean": "none", "valkyrie_config": str(target),
+               "control_pack": True, "grade_mode": "collect_only", "sandbox_lean": "none", **registration, "route": VH.ROUTE,
+               "valkyrie_preflight": {k: preflight[k] for k in ("organization", "credential", "default_provider")},
                "base_image": env.get("VB_BASE_IMAGE", "service default (ubuntu 24.04 digest)"), "harness": e42.MODELS[args.model]["harness"],
                "inference_calls": 0}
     tmp = receipt_path.with_suffix(".tmp")

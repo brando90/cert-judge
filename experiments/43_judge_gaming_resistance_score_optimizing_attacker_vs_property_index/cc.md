@@ -24,7 +24,7 @@ TMUX: cj-e43-gaming-resistance        # your session name (Rule 42)
 - **Host:** `skampere1`. Run `bash ~/agents-config/scripts/snap_health.sh --node skampere1` first.
 - **Clones (node-local):** `git clone https://github.com/brando90/cert-judge.git /lfs/skampere1/0/brando9/cert-judge_e43 && cd /lfs/skampere1/0/brando9/cert-judge_e43 && git switch -c e43-gaming-resistance origin/main`; `git clone https://github.com/brando90/veribench.git /lfs/skampere1/0/brando9/veribench_e43` (read-only).
 - **Lean:** experiment 39's project `/lfs/skampere1/0/brando9/vb90_grading/lean_project` (do not modify it). If it lacks the `VeriBench` module and experiment 39 has not solved that yet, build your own copy under `/lfs/skampere1/0/brando9/cj_e43_lean_project` and record how.
-- **Valkyrie:** `~/.config/valkyrie/valkyrie.yaml` (never print or copy it). Use your own benchmark name (for example `certjudge43-gaming`) and ports that do not collide with experiments 39 (8990–8998) or 42.
+- **Valkyrie (hosted since 10-13-2026):** run `valkyrie login` and check `valkyrie whoami` and `valkyrie provider list`; a private `valkyrie.yaml` is ignored now. Run the transport through `scripts/transport_hosted.py` (`deploy`, `verify-bundle`, `attack all`) or `scripts/worker_loop_hosted.sh`; it registers `certjudge43-gaming` on the Tracker after every tunnel start and leaves `transport.py` as run on 09-30-2026. Use your own benchmark name (for example `certjudge43-gaming`) and ports that do not collide with experiments 39 (8990–8998) or 42.
 - **Experiment dir:** `experiments/43_judge_gaming_resistance_score_optimizing_attacker_vs_property_index/`; `private/` is git-ignored scratch.
 
 ## Steps

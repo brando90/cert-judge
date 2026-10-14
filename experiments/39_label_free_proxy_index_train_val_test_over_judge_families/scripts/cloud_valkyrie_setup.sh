@@ -1,31 +1,28 @@
 #!/usr/bin/env bash
-# TLDR: Make the Valkyrie CLI usable in a Claude Code cloud container: install `valk` with uv and write
-# ~/.config/valkyrie/valkyrie.yaml from the environment secret VALKYRIE_YAML_B64 (the base64 of Brando's own
-# valkyrie.yaml, stored in the cloud environment's settings, never pasted into chat or committed). Verified
-# 09-30-2026: `uv tool install git+https://github.com/vals-ai/Valkyrie@prod` and `valk --help` work through the
-# container proxy; docs.valkyrie.vals.ai and model-gateway.vals.ai are reachable. This makes admit/poll/harvest
-# possible from a cloud session; the pack services (a tunnel that must stay up for the whole campaign) and Lean
-# probe validation still belong on an always-on host such as SNAP. A cloudflared quick tunnel also needs outbound
-# TCP 7844, which the container network blocks (443 is open), so the pack service cannot be exposed from here.
+# TLDR: Make the hosted Valkyrie CLI usable in a Claude Code cloud container: install `valkyrie` with uv and check
+# that the environment secret VALKYRIE_API_KEY (an access key from `valkyrie token create <name> --expires-in-days 90`
+# on Brando's machine, stored in the cloud environment's settings, never pasted into chat or committed) reaches his
+# organization. Since 10-13-2026 Valkyrie runs in Vals' cloud and the CLI reads only a saved login, VALKYRIE_API_KEY
+# and VALKYRIE_URL; the former VALKYRIE_YAML_B64 / ~/.config/valkyrie/valkyrie.yaml route is ignored and no longer
+# written. An access key can admit, poll and harvest runs and download agents, but cannot register a benchmark
+# service (`valkyrie benchmark service set` needs `valkyrie login`). The pack services (a tunnel that must stay up
+# for the whole campaign) and Lean probe validation still belong on an always-on host such as SNAP: a cloudflared
+# quick tunnel needs outbound TCP 7844, which the container network blocks (443 is open).
 set -euo pipefail
-if ! command -v valk >/dev/null 2>&1; then
-  uv tool install --quiet "git+https://github.com/vals-ai/Valkyrie@prod"
-fi
 export PATH="$HOME/.local/bin:$PATH"
-cfg="$HOME/.config/valkyrie/valkyrie.yaml"
-if [ -f "$cfg" ]; then
-  echo "valkyrie.yaml already present at $cfg (left unchanged)"
-elif [ -n "${VALKYRIE_YAML_B64:-}" ]; then
-  umask 077
-  mkdir -p "$(dirname "$cfg")"
-  printf '%s' "$VALKYRIE_YAML_B64" | base64 -d > "$cfg"
-  chmod 600 "$cfg"
-  echo "wrote $cfg from VALKYRIE_YAML_B64 ($(wc -c < "$cfg") bytes; contents never printed)"
-else
-  echo "no VALKYRIE_YAML_B64 in the environment and no $cfg: add the secret in the cloud environment settings" >&2
+if ! valkyrie whoami --help >/dev/null 2>&1; then
+  uv tool install --quiet --force "git+https://github.com/vals-ai/Valkyrie@prod"
+fi
+if [ -n "${VALKYRIE_YAML_B64:-}" ] || [ -n "${VALKYRIE_CONFIG_PATH:-}" ] || [ -n "${VALKYRIE_ENV:-}" ]; then
+  echo "note: VALKYRIE_YAML_B64 / VALKYRIE_CONFIG_PATH / VALKYRIE_ENV are ignored by hosted Valkyrie; remove them from the environment settings" >&2
+fi
+if [ -z "${VALKYRIE_API_KEY:-}" ]; then
+  echo "no VALKYRIE_API_KEY in the environment: create one with 'valkyrie token create cj-cloud --expires-in-days 90' and add it to the cloud environment settings" >&2
   exit 2
 fi
-valk --help >/dev/null && echo "valk OK"
-# Read-only checks that spend nothing: list runs and agents (both fail loudly on a bad key or bucket access).
-VALKYRIE_ENV="${VALKYRIE_ENV:-bench}" valk run list 2>&1 | tail -3 || true
-VALKYRIE_ENV="${VALKYRIE_ENV:-bench}" valk agent list --all 2>&1 | tail -5 || true
+unset VALKYRIE_ENV VALKYRIE_CONFIG_PATH
+# Read-only checks that spend nothing: identity (organization and credential kind), the default sandbox provider,
+# and the agent list (all fail loudly on a bad or expired key).
+valkyrie whoami
+valkyrie provider list
+valkyrie agent list --all 2>&1 | tail -5 || true
