@@ -146,3 +146,18 @@ def test_cloud_setup_uses_the_access_key():
     sh = (next((REPO / "experiments").glob("39_*")) / "scripts/cloud_valkyrie_setup.sh").read_text()
     assert "base64 -d" not in sh and "valkyrie.yaml\"" not in sh
     assert "VALKYRIE_API_KEY" in sh and "valkyrie whoami" in sh and "valkyrie provider list" in sh
+
+
+def test_bundle_check_accepts_only_the_gateway_secret_rename():
+    import hashlib
+
+    def sha(b):
+        return hashlib.sha256(b).hexdigest()
+    old = b"name: vb103_judge\nsecrets:\n  MODEL_GATEWAY_API_KEY: fellows/brandoModelGatewayApiKey\n"
+    new = old.replace(b"fellows/brandoModelGatewayApiKey", b"brandoModelGatewayApiKey")
+    validated = {"contract.yaml": sha(old), "judge_call.py": "aa"}
+    assert VH.matches_validated_except_secret_rename(dict(validated), validated, old)
+    assert VH.matches_validated_except_secret_rename({"contract.yaml": sha(new), "judge_call.py": "aa"}, validated, new)
+    tampered = new + b"run_cmd: other\n"
+    assert not VH.matches_validated_except_secret_rename({"contract.yaml": sha(tampered), "judge_call.py": "aa"}, validated, tampered)
+    assert not VH.matches_validated_except_secret_rename({"contract.yaml": sha(new), "judge_call.py": "bb"}, validated, new)

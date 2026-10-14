@@ -60,7 +60,13 @@ def main() -> int:
                "downloaded_now_sha256": downloaded,
                "identical_to_experiment_103_validated_bundle": downloaded == validated["downloaded_files_sha256"],
                "identical_to_experiment_103_local_files": downloaded == local, "inference_calls": 0}
-    receipt["verdict"] = "PASS" if (receipt["identical_to_experiment_103_validated_bundle"] and receipt["identical_to_experiment_103_local_files"]) else "FAIL"
+    # The hosted move renames the gateway secret in the bundle's contract.yaml (no slash allowed in tenant secret names);
+    # that one edit is accepted only if restoring the old name reproduces experiment 103's validated contract hash.
+    contract = into / e39.AGENT / "contract.yaml"
+    receipt["identical_except_gateway_secret_rename"] = VH.matches_validated_except_secret_rename(
+        downloaded, validated["downloaded_files_sha256"], contract.read_bytes() if contract.is_file() else b"")
+    receipt["verdict"] = "PASS" if ((receipt["identical_to_experiment_103_validated_bundle"] or receipt["identical_except_gateway_secret_rename"])
+                                    and receipt["identical_to_experiment_103_local_files"]) else "FAIL"
     e39.write_json(args.out, receipt)
     print(json.dumps({k: receipt[k] for k in ("verdict", "agent", "identical_to_experiment_103_validated_bundle",
                                               "identical_to_experiment_103_local_files")}, indent=1))

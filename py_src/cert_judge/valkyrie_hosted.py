@@ -9,6 +9,7 @@ changes. Every call here is a CLI subprocess with zero model calls; no secret va
 Checked against `vals-ai/Valkyrie@prod` 865135f (10-14-2026)."""
 from __future__ import annotations
 
+import hashlib
 import os
 import re
 import shutil
@@ -18,6 +19,7 @@ from pathlib import Path
 # Organization secret holding the model-gateway key. The former name `fellows/brandoModelGatewayApiKey` lived in the
 # per-user AWS Secrets Manager; tenant secret names cannot contain a slash.
 GATEWAY_SECRET = os.environ.get("CJ_GATEWAY_SECRET", "brandoModelGatewayApiKey")
+LEGACY_GATEWAY_SECRET = "fellows/brandoModelGatewayApiKey"
 SECRET_NAME_RE = re.compile(r"^[A-Za-z0-9_+=.@-]{1,128}$")
 ROUTE = "Valkyrie hosted (Vals cloud; valkyrie login or VALKYRIE_API_KEY)"
 REGISTERED_BY = "valkyrie benchmark service set --auth-secret"
@@ -151,3 +153,18 @@ def register_service(valk: Path, benchmark: str, url: str, bearer: str, log_path
         tail = "" if saved is None else (saved.stderr or saved.stdout)[-400:]
         raise SystemExit(f"`valkyrie benchmark service set {benchmark}` failed: {tail}")
     return {"benchmark": benchmark, "registered_by": REGISTERED_BY, "auth_secret": secret, "auth_header": "Authorization"}
+
+
+def matches_validated_except_secret_rename(downloaded: dict[str, str], validated: dict[str, str], contract: bytes) -> bool:
+    """True when a served bundle equals the validated one byte for byte except that its contract.yaml maps
+    GATEWAY_SECRET where the validated bytes mapped the pre-hosted name, the only edit the hosted move makes to a
+    bundle: restoring the old name in the served contract must reproduce the validated contract hash exactly."""
+    if set(downloaded) != set(validated):
+        return False
+    changed = [name for name in downloaded if downloaded[name] != validated[name]]
+    if not changed:
+        return True
+    old_name, new_name = LEGACY_GATEWAY_SECRET.encode(), GATEWAY_SECRET.encode()
+    if changed != ["contract.yaml"] or old_name in contract or new_name not in contract:
+        return False
+    return hashlib.sha256(contract.replace(new_name, old_name)).hexdigest() == validated["contract.yaml"]

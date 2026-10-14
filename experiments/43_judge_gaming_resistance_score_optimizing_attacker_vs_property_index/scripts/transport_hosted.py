@@ -116,12 +116,21 @@ def deploy() -> dict:
 
 def verify_bundle() -> int:
     preflight()
-    rc = FROZEN["verify_bundle"]()                             # downloads through the rebound cli
+    FROZEN["verify_bundle"]()                                  # downloads through the rebound cli
     path = e43.RESULTS / "agent_bundle_check.json"
     receipt = e43.read_json(path)
+    # Accept the one edit the hosted move makes (the gateway secret renamed in contract.yaml) only when restoring the
+    # old name reproduces experiment 103's validated contract hash.
+    contract = e43.PRIVATE / "agent_download_judge" / e43.AGENT / "contract.yaml"
+    receipt["identical_except_gateway_secret_rename"] = VH.matches_validated_except_secret_rename(
+        receipt["downloaded_now_sha256"], receipt["experiment_103_validated_sha256"],
+        contract.read_bytes() if contract.is_file() else b"")
+    receipt["verdict"] = "PASS" if ((receipt["identical_to_experiment_103_validated_bundle"] or receipt["identical_except_gateway_secret_rename"])
+                                    and receipt["identical_to_experiment_103_local_files"]) else "FAIL"
     receipt.update(route=VH.ROUTE, valkyrie_preflight=_preflight_summary())
     e43.write_json(path, receipt)
-    return rc
+    print(json.dumps({k: receipt[k] for k in ("verdict", "identical_except_gateway_secret_rename")}))
+    return 0 if receipt["verdict"] == "PASS" else 1
 
 
 def admit(run_key: str, reqs: list, concurrency: int) -> dict:
