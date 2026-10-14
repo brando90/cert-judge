@@ -1,6 +1,6 @@
 # Experiment 49: how many tasks, raters and held-out judges the cert-judge human rating pool needs, measured by resampling cached judge scores and five raters
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/49_human_rating_round_design_precision_and_power_from_cached_judge_scores_and_five_raters/README.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/49_human_rating_round_design_precision_and_power_from_cached_judge_scores_and_five_raters/README.md>
 
 **TLDR:** The plan of record is more human data: VeriBench's set-N round (25 task folders, two ratings per file, closes 11-06-2026) is evaluation-only, and judge screening is to come from a separate cert-judge pool on other tasks. This zero-inference study tells that pool's designers what they buy with each rated task, each extra rater and each held-out judge configuration, by resampling experiment 39's cached scores (56 judge configurations × 75 items × 3 repeats) and VeriBench experiment 100's five current raters: criterion precision and ranking reliability over a tasks × raters grid, power of the pre-registered held-out test (Spearman ≥ 0.45, p-val < 0.05) versus the number of held-out judge configurations (independent and model-clustered), the equal-budget allocation, and a labelled model-based extrapolation beyond 75 items. Decision rule: the smallest design meeting agent-suggested targets (ranking reliability 0.90, gate agreement 0.90, power 0.80), or "unmet" with the best value achieved ([PROTOCOL.md](PROTOCOL.md)).
 
@@ -46,7 +46,8 @@
 | Step | Status | Notes |
 |---|---|---|
 | Protocol locked | Done (10-14-2026 12:52 PDT) | [PROTOCOL.md](PROTOCOL.md) |
-| Analysis code and tests | Pending | |
-| G0 reproduction | Pending | |
-| Q1–Q4 | Pending | |
-| Report and ledger | Pending | |
+| Analysis code and tests | Done (10-14-2026 13:12 PDT) | `scripts/analyze_e49.py`, `scripts/test_e49.py` (9 passed) |
+| G0 reproduction | Done (10-14-2026 13:12 PDT) | PASS: criterion and registered association reproduced to 1e-9, NumPy parity 0 |
+| Q1–Q4 | Done (10-14-2026 13:12 PDT) | 20 tasks × 2 raters adequate; mixed-family power 0.915 at K = 12; fuller-context pool never above 0.286 |
+| Report and ledger | Done (10-14-2026 13:12 PDT) | [RESULTS_rating_round_design.md](RESULTS_rating_round_design.md), [results.md](results.md) |
+| Archived | Done (10-14-2026 13:15 PDT) | `experiments/archive/49_human_rating_round_design_precision_and_power_from_cached_judge_scores_and_five_raters` (Trigger Rule 39: verdict commit) |
