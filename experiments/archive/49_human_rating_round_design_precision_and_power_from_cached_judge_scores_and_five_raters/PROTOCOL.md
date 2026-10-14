@@ -1,6 +1,6 @@
 # Experiment 49 — PROTOCOL (LOCKED before any number is computed)
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/49_human_rating_round_design_precision_and_power_from_cached_judge_scores_and_five_raters/PROTOCOL.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/49_human_rating_round_design_precision_and_power_from_cached_judge_scores_and_five_raters/PROTOCOL.md>
 
 **TLDR:** Zero-inference design study for the planned cert-judge human rating pool (the judge-screening pool that VeriBench's set-N plan defers to "a separate pool on other tasks", option C of amendment C15). Using experiment 39's cached judge scores (56 LLM judge configurations × 75 VeriBench items × 3 repeats) and VeriBench experiment 100's five current raters, it measures by resampling how the judge–human criterion's precision, its ranking of judge configurations, and the power of the pre-registered held-out test (Spearman ≥ 0.45, one-sided permutation p-val < 0.05) depend on the number of rated tasks, raters per item and held-out judge configurations. The output is a measured sample-size table, not a verdict on any judge.
 

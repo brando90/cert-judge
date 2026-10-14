@@ -1,0 +1,122 @@
+{
+ "written_utc": "2026-10-14T20:17:19.057281+00:00",
+ "seed": 49,
+ "quick": false,
+ "runtime_seconds": 89.3,
+ "g0_pass": true,
+ "readings": {
+  "targets": {
+   "ranking_reliability": 0.9,
+   "gate_agreement": 0.9,
+   "power": 0.8,
+   "source": "agent-suggested (PROTOCOL.md)"
+  },
+  "smallest_adequate_TR": {
+   "T": 20,
+   "R": 2,
+   "ratings_nominal": 120,
+   "ratings_used_mean": 110.76,
+   "ranking_reliability_mean": 0.9497598086124402,
+   "gate_agreement_mean": 0.9150178571428571
+  },
+  "best_cell_if_unmet": {
+   "T": 25,
+   "R": 5,
+   "ranking_reliability_mean": 1.0,
+   "gate_agreement_mean": 1.0
+  },
+  "smallest_adequate_K_all_configurations": {
+   "K": 12,
+   "power": 0.915,
+   "met": true
+  },
+  "smallest_adequate_K_fuller_context": {
+   "K": null,
+   "power": 0.286,
+   "met": false
+  },
+  "power_at_K16": {
+   "all_configurations": 0.977,
+   "test_16": 0.789,
+   "fuller_context": 0.286,
+   "legacy": 0.0
+  },
+  "smallest_adequate_M_clustered": {
+   "M": 2,
+   "power": 0.809,
+   "met": true
+  }
+ },
+ "reference_heldout_association": {
+  "n_units": 16,
+  "units": [
+   "opus55x|D0",
+   "opus55x|H0",
+   "opus55x|H2",
+   "opus55x|LEX",
+   "opus55x|P4",
+   "qwen36|D0",
+   "qwen36|H0",
+   "qwen36|H1",
+   "qwen36|LEX",
+   "qwen36|P1",
+   "qwen36|P4",
+   "qwen36|P8",
+   "t2_qwen|D0",
+   "t2_qwen|H2",
+   "t2_sonnet5|D0",
+   "t2_sonnet5|H2"
+  ],
+  "spearman": 0.5960266514265761,
+  "kendall": 0.37657233394007533,
+  "pearson": 0.6956418516247473,
+  "ci": {
+   "lo": 0.13432835820895522,
+   "hi": 0.7797619047619048,
+   "valid_draws": 10000
+  },
+  "permutation_p": 0.009299070092990702,
+  "resampled_unit": "judge configuration",
+  "draws": 10000,
+  "seed": 49
+ },
+ "registered_heldout_association": {
+  "n_units": 16,
+  "units": [
+   "opus55x|D0",
+   "opus55x|H0",
+   "opus55x|H2",
+   "opus55x|LEX",
+   "opus55x|P4",
+   "qwen36|D0",
+   "qwen36|H0",
+   "qwen36|H1",
+   "qwen36|LEX",
+   "qwen36|P1",
+   "qwen36|P4",
+   "qwen36|P8",
+   "t2_qwen|D0",
+   "t2_qwen|H2",
+   "t2_sonnet5|D0",
+   "t2_sonnet5|H2"
+  ],
+  "spearman": 0.5577632120757341,
+  "kendall": 0.3598357857649609,
+  "pearson": 0.642903931507812,
+  "ci": {
+   "lo": 0.07807807807807808,
+   "hi": 0.7622585438335809,
+   "valid_draws": 10000
+  },
+  "permutation_p": 0.012698730126987301,
+  "resampled_unit": "judge configuration",
+  "draws": 10000,
+  "seed": 39
+ },
+ "registered_vs_reference": {
+  "ranking_reliability": 0.9614490772385509,
+  "gate_agreement": 0.9285714285714286
+ },
+ "q4_single_rater_icc_c1": 0.5169781300195618,
+ "q4_design_effect_median": 2.6443658030168726
+}
