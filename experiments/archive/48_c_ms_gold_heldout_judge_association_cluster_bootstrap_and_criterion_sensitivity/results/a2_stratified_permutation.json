@@ -1,0 +1,57 @@
+{
+ "written_utc": "2026-10-14T20:09:00.695832+00:00",
+ "seed": 48,
+ "draws": 10000,
+ "observed_spearman": 0.5577632120757341,
+ "n_units": 16,
+ "within_model": {
+  "strata_sizes": {
+   "opus55x": 5,
+   "qwen36": 7,
+   "t2_qwen": 2,
+   "t2_sonnet5": 2
+  },
+  "permutation_p": 0.0700929907009299,
+  "test": "one-sided permutation of the criterion within judge model",
+  "reading": "pooled association not shown to hold within models"
+ },
+ "within_prompt_family": {
+  "strata_sizes": {
+   "fuller_context": 10,
+   "legacy": 6
+  },
+  "permutation_p": 0.9136086391360864,
+  "test": "one-sided permutation of the criterion within prompt-rendering family (legacy vs fuller-context)",
+  "reading": "pooled association not shown to hold within prompt families"
+ },
+ "within_model_descriptive": {
+  "opus55x": {
+   "n_units": 5,
+   "spearman": 0.6,
+   "kendall": 0.4,
+   "pearson": 0.7158017434150318,
+   "note": "descriptive: fewer than 8 units, no interval and no test"
+  },
+  "qwen36": {
+   "n_units": 7,
+   "spearman": 0.6428571428571429,
+   "kendall": 0.42857142857142855,
+   "pearson": 0.4937122365839153,
+   "note": "descriptive: fewer than 8 units, no interval and no test"
+  },
+  "t2_qwen": {
+   "n_units": 2,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null,
+   "note": "not computed: fewer than 3 units"
+  },
+  "t2_sonnet5": {
+   "n_units": 2,
+   "spearman": null,
+   "kendall": null,
+   "pearson": null,
+   "note": "not computed: fewer than 3 units"
+  }
+ }
+}

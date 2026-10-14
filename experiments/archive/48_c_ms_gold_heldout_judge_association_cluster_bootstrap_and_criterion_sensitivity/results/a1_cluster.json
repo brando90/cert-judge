@@ -1,0 +1,361 @@
+{
+ "written_utc": "2026-10-14T20:08:50.281558+00:00",
+ "seed": 48,
+ "draws": 10000,
+ "units": [
+  "opus55x|D0",
+  "opus55x|H0",
+  "opus55x|H2",
+  "opus55x|LEX",
+  "opus55x|P4",
+  "qwen36|D0",
+  "qwen36|H0",
+  "qwen36|H1",
+  "qwen36|LEX",
+  "qwen36|P1",
+  "qwen36|P4",
+  "qwen36|P8",
+  "t2_qwen|D0",
+  "t2_qwen|H2",
+  "t2_sonnet5|D0",
+  "t2_sonnet5|H2"
+ ],
+ "a_registered_configuration_bootstrap_seed39": {
+  "n_units": 16,
+  "spearman": 0.5577632120757341,
+  "kendall": 0.3598357857649609,
+  "pearson": 0.642903931507812,
+  "permutation_p": 0.012698730126987301,
+  "ci": {
+   "lo": 0.07807807807807808,
+   "hi": 0.7622585438335809,
+   "valid_draws": 10000
+  },
+  "bootstrap_unit": "judge configuration",
+  "draws": 10000,
+  "seed": 39
+ },
+ "a_configuration_bootstrap_seed48": {
+  "n_units": 16,
+  "spearman": 0.5577632120757341,
+  "kendall": 0.3598357857649609,
+  "pearson": 0.642903931507812,
+  "ci": {
+   "lo": 0.09091070624867884,
+   "hi": 0.7638266068759342,
+   "valid_draws": 10000
+  },
+  "permutation_p": 0.015898410158984102,
+  "bootstrap_unit": "judge configuration",
+  "draws": 10000,
+  "seed": 48
+ },
+ "b_model_cluster_bootstrap": {
+  "n_clusters": 4,
+  "clusters": [
+   "opus55x",
+   "qwen36",
+   "t2_qwen",
+   "t2_sonnet5"
+  ],
+  "cluster_sizes": {
+   "opus55x": 5,
+   "qwen36": 7,
+   "t2_qwen": 2,
+   "t2_sonnet5": 2
+  },
+  "draws": 10000,
+  "seed": 48,
+  "all_defined_draws": {
+   "lo": -0.8421052631578947,
+   "hi": 0.656312625250501,
+   "valid_draws": 10000
+  },
+  "draws_with_at_least_8_units": {
+   "lo": -0.8421052631578947,
+   "hi": 0.656312625250501,
+   "valid_draws": 10000
+  },
+  "draws_fewer_than_8_units": 0,
+  "undefined_draws": 0,
+  "distinct_cluster_multisets": 35
+ },
+ "c_prompt_cluster_bootstrap": {
+  "n_clusters": 8,
+  "clusters": [
+   "D0",
+   "H0",
+   "H1",
+   "H2",
+   "LEX",
+   "P1",
+   "P4",
+   "P8"
+  ],
+  "cluster_sizes": {
+   "D0": 4,
+   "H0": 2,
+   "H1": 1,
+   "H2": 3,
+   "LEX": 2,
+   "P1": 1,
+   "P4": 2,
+   "P8": 1
+  },
+  "draws": 10000,
+  "seed": 48,
+  "all_defined_draws": {
+   "lo": -0.1230927458659556,
+   "hi": 0.8504672897196262,
+   "valid_draws": 10000
+  },
+  "draws_with_at_least_8_units": {
+   "lo": -0.1230927458659556,
+   "hi": 0.8504672897196262,
+   "valid_draws": 10000
+  },
+  "draws_fewer_than_8_units": 0,
+  "undefined_draws": 0,
+  "distinct_cluster_multisets": 6435
+ },
+ "d_leave_one_model_out": {
+  "views": {
+   "opus55x": {
+    "dropped_units": 5,
+    "n_units": 11,
+    "spearman": 0.5454545454545454,
+    "kendall": 0.38181818181818183,
+    "pearson": 0.6187450347121031,
+    "ci": {
+     "lo": -0.17370892018779344,
+     "hi": 0.8490566037735849,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.04279572042795721,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   },
+   "qwen36": {
+    "dropped_units": 7,
+    "n_units": 9,
+    "spearman": 0.37657233394007533,
+    "kendall": 0.19720265943665385,
+    "pearson": 0.7722422954849493,
+    "ci": {
+     "lo": -0.6559360493526302,
+     "hi": 0.8421052631578947,
+     "valid_draws": 9999
+    },
+    "permutation_p": 0.15748425157484253,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "WEAKENED"
+   },
+   "t2_qwen": {
+    "dropped_units": 2,
+    "n_units": 14,
+    "spearman": 0.5912087912087912,
+    "kendall": 0.38461538461538464,
+    "pearson": 0.6118741585507561,
+    "ci": {
+     "lo": 0.15812917594654788,
+     "hi": 0.7822222222222223,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.013898610138986101,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   },
+   "t2_sonnet5": {
+    "dropped_units": 2,
+    "n_units": 14,
+    "spearman": 0.583058658651739,
+    "kendall": 0.37569634167468435,
+    "pearson": 0.6152097910175999,
+    "ci": {
+     "lo": 0.1319910514541387,
+     "hi": 0.78125,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.015298470152984701,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   }
+  },
+  "summary": {
+   "min": 0.37657233394007533,
+   "median": 0.5642566020531422,
+   "max": 0.5912087912087912,
+   "n_views": 4,
+   "readings": {
+    "opus55x": "ROBUST",
+    "qwen36": "WEAKENED",
+    "t2_qwen": "ROBUST",
+    "t2_sonnet5": "ROBUST"
+   }
+  }
+ },
+ "d_leave_one_prompt_out": {
+  "views": {
+   "D0": {
+    "dropped_units": 4,
+    "n_units": 12,
+    "spearman": 0.7412587412587412,
+    "kendall": 0.5454545454545454,
+    "pearson": 0.6225274693699678,
+    "ci": {
+     "lo": 0.29927007299270075,
+     "hi": 0.9318181818181818,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.0034996500349965005,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   },
+   "H0": {
+    "dropped_units": 2,
+    "n_units": 14,
+    "spearman": 0.5346537888768776,
+    "kendall": 0.3093969872615048,
+    "pearson": 0.6263682136672195,
+    "ci": {
+     "lo": 0.04255343161880268,
+     "hi": 0.71875,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.0240975902409759,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   },
+   "H1": {
+    "dropped_units": 1,
+    "n_units": 15,
+    "spearman": 0.5951745003935673,
+    "kendall": 0.3827795011754764,
+    "pearson": 0.6304005979873656,
+    "ci": {
+     "lo": 0.14505946673812833,
+     "hi": 0.7870036101083032,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.011198880111988802,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   },
+   "H2": {
+    "dropped_units": 3,
+    "n_units": 13,
+    "spearman": 0.5859702929929769,
+    "kendall": 0.37420133621706914,
+    "pearson": 0.5885171307116889,
+    "ci": {
+     "lo": 0.12694048757512408,
+     "hi": 0.7815126050420168,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.020597940205979402,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   },
+   "LEX": {
+    "dropped_units": 2,
+    "n_units": 14,
+    "spearman": 0.4532455988009745,
+    "kendall": 0.33149677206589795,
+    "pearson": 0.8238323617243769,
+    "ci": {
+     "lo": -0.19015659955257272,
+     "hi": 0.8248847926267281,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.053394660533946606,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "WEAKENED"
+   },
+   "P1": {
+    "dropped_units": 1,
+    "n_units": 15,
+    "spearman": 0.5058089597939326,
+    "kendall": 0.34450155105792873,
+    "pearson": 0.7494885048450312,
+    "ci": {
+     "lo": -0.04000059505460042,
+     "hi": 0.7621621621621621,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.029397060293970604,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   },
+   "P4": {
+    "dropped_units": 2,
+    "n_units": 14,
+    "spearman": 0.4642467055679884,
+    "kendall": 0.28729720245711154,
+    "pearson": 0.5941279010724227,
+    "ci": {
+     "lo": -0.16265846328540937,
+     "hi": 0.7458823529411764,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.0496950304969503,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   },
+   "P8": {
+    "dropped_units": 1,
+    "n_units": 15,
+    "spearman": 0.5022343381699472,
+    "kendall": 0.3253625759991549,
+    "pearson": 0.6376534998888337,
+    "ci": {
+     "lo": -0.038391224862888484,
+     "hi": 0.7454545454545455,
+     "valid_draws": 10000
+    },
+    "permutation_p": 0.029997000299970003,
+    "bootstrap_unit": "judge configuration",
+    "draws": 10000,
+    "seed": 48,
+    "reading": "ROBUST"
+   }
+  },
+  "summary": {
+   "min": 0.4532455988009745,
+   "median": 0.5202313743354051,
+   "max": 0.7412587412587412,
+   "n_views": 8,
+   "readings": {
+    "D0": "ROBUST",
+    "H0": "ROBUST",
+    "H1": "ROBUST",
+    "H2": "ROBUST",
+    "LEX": "WEAKENED",
+    "P1": "ROBUST",
+    "P4": "ROBUST",
+    "P8": "ROBUST"
+   }
+  }
+ }
+}

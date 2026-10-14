@@ -1,6 +1,6 @@
 # Experiment 48: cluster-aware intervals and criterion sensitivity of the held-out judge association of `C_ms_gold`
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/48_c_ms_gold_heldout_judge_association_cluster_bootstrap_and_criterion_sensitivity/README.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/48_c_ms_gold_heldout_judge_association_cluster_bootstrap_and_criterion_sensitivity/README.md>
 
 **TLDR:** Experiment 39 found that the gold deletion-monotonicity screen `C_ms_gold`, chosen on the train and validation judge models, predicts judge–human agreement on the held-out judge models (test Spearman 0.558 [0.078, 0.762], one-sided permutation p-val=0.0127, 16 of 18 units). That interval treats the 16 configurations as independent although they come from four judge models and nine prompts, and its criterion is an estimate from 45 items and three raters. This zero-inference study recomputes the association under pre-registered cluster bootstraps, within-model and within-prompt-family permutation tests, task-level criterion resampling, single-rater and leave-one-rater-out targets, and the reference-quality views of experiment 44, all from experiment 39's committed receipts and VeriBench experiment 100's pinned ratings. Decision rule: each view is ROBUST (Spearman ≥ 0.45, p-val < 0.05), WEAKENED or REVERSED under the thresholds experiment 39 pre-registered; the registered PASS is scoped, not re-litigated ([PROTOCOL.md](PROTOCOL.md)).
 
@@ -46,7 +46,8 @@
 | Step | Status | Notes |
 |---|---|---|
 | Protocol locked | Done (10-14-2026 12:50 PDT) | [PROTOCOL.md](PROTOCOL.md) |
-| Analysis code and tests | Pending | |
-| G0 reproduction | Pending | |
-| A1–A6 | Pending | |
-| Report and ledger | Pending | |
+| Analysis code and tests | Done (10-14-2026 13:03 PDT) | `scripts/analyze_e48.py`, `scripts/test_e48.py` (10 passed) |
+| G0 reproduction | Done (10-14-2026 13:03 PDT) | PASS: registered 0.558 [0.078, 0.762] p-val=0.0127 reproduced to 1e-9; criteria and `C_ms_gold` of every test unit reproduced |
+| A1–A6 | Done (10-14-2026 13:03 PDT) | within-model p-val=0.0701; within-prompt-family p-val=0.9136; model-cluster interval [−0.842, 0.656]; two-level interval [0.073, 0.871]; rater and reference-quality views all ROBUST (min 0.500 / 0.530) |
+| Report and ledger | Done (10-14-2026 13:03 PDT) | [results.md](results.md), [RESULTS_heldout_association_sensitivity.md](RESULTS_heldout_association_sensitivity.md) |
+| Archived | Done (10-14-2026 13:08 PDT) | `experiments/archive/48_c_ms_gold_heldout_judge_association_cluster_bootstrap_and_criterion_sensitivity` (Trigger Rule 39: verdict commit) |

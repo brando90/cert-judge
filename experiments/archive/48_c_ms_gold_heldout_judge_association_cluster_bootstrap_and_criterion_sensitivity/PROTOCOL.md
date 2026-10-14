@@ -1,6 +1,6 @@
 # Experiment 48 — PROTOCOL (LOCKED before any number is computed)
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/48_c_ms_gold_heldout_judge_association_cluster_bootstrap_and_criterion_sensitivity/PROTOCOL.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/48_c_ms_gold_heldout_judge_association_cluster_bootstrap_and_criterion_sensitivity/PROTOCOL.md>
 
 **TLDR:** Zero-inference sensitivity study of experiment 39's held-out result (the gold deletion-monotonicity screen `C_ms_gold` versus judge–human agreement over the 18 held-out judge configurations: Spearman 0.558 [0.078, 0.762], one-sided permutation p-val=0.0127, 16 of 18 units). It asks whether that association survives (a) the clustering of configurations inside four judge models and nine prompts, (b) estimation noise in the criterion (15 tasks, 45 items), (c) the choice and number of expert raters, and (d) the reference quality of the criterion items. Every view is pre-declared here with its reading rule; the registered PASS verdict of experiment 39 is never re-litigated, only scoped.
 
