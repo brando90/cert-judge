@@ -16,6 +16,12 @@ Motivation: the paper's results all come from VeriBench (`05_experiments.tex:4`)
 
 Idea 2 depends on idea 1. Ideas 3–5 are independent and make no model calls.
 
+## Human data (paper plan of 10-13-2026: more human data, not weaker claims)
+
+| Priority | Idea | Execution | Paper inclusion | Judge-call spend | One-line setup |
+|---:|---|---|---|---|---|
+| 1 | [cj_human_rating_pool_prospective_screen](cj_human_rating_pool_prospective_screen/PROPOSAL_10-14-2026.md) | DEFERRED — NOT RUN (pre-registration draft, 10-14-2026; rating can start only after VeriBench's set-N round closes on 11-06-2026) | UNDECIDED — Brando's call after the round | 0 to design; about 46,750 judge calls for the primary outputs and about 125,800 for the full component family (estimates scaled from experiment 39's 521 cells per configuration) | Experiment 39's frozen screen `C_ms_gold` tested once on 51 judge configurations and 125 fresh 2026-agent files (25 VeriBench V1 tasks disjoint from set N and the 25 historical tasks) it never saw, rated twice under the set-N rubric by the set-N panel. |
+
 ## Reviewer-requested experiments
 
 Moved here from the active list on 09-28-2026: the catalog is complete, and none of its twelve experiments has started.
