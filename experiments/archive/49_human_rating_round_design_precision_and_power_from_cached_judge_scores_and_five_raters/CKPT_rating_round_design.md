@@ -1,7 +1,7 @@
 # CKPT — experiment 49 rating-round design
 
 Created: 10-14-2026 12:52 PDT
-Last updated: 10-14-2026 13:15 PDT
+Last updated: 10-14-2026 13:19 PDT
 
 1. **Goal** — how many rated tasks, raters per item and held-out judge configurations the cert-judge screening pool needs, measured by resampling cached judge scores and five raters (zero inference).
 2. **What ran** — 10-14-2026 13:12 PDT: `scripts/analyze_e49.py` full run (82 s, seed 49; G0 PASS), `scripts/test_e49.py` 9 passed; report `RESULTS_rating_round_design.md`, receipts `results/*.json`, ledger `results.md` DONE. Branch `claude/cj-e48-e49-cached-analyses`, worktree `~/.worktrees/cert-judge/e48-e49-cached-analyses`.
@@ -14,3 +14,4 @@ Last updated: 10-14-2026 13:15 PDT
 - 10-14-2026 12:52 PDT -- folder created, protocol locked, no numbers yet.
 - 10-14-2026 13:12 PDT -- full analysis run, tests 9 passed, report and ledger DONE; one deviation (Q4(b) design effect via task bootstrap).
 - 10-14-2026 13:15 PDT -- verdict recorded; folder archived to experiments/archive/49_human_rating_round_design_precision_and_power_from_cached_judge_scores_and_five_raters (repo-root resolution fixed for the new depth, selection-split caveat added to the power reading, analysis re-run from the archived location, 9 tests pass).
+- 10-14-2026 13:19 PDT -- LANDED bd43beb65d2999490ac920c23999e309860838ea https://github.com/brando90/cert-judge/pull/66 10-14-2026 13:19 PDT (rebase-merged; experiment landed on main in its archived home)
