@@ -1,0 +1,78 @@
+{
+ "written_utc": "2026-10-14T20:09:27.235976+00:00",
+ "seed": 48,
+ "draws": 10000,
+ "n_units": 16,
+ "g0_pass": true,
+ "registered_test_spearman": 0.5577632120757341,
+ "headline": {
+  "within_model_permutation_p": 0.0700929907009299,
+  "within_model_reading": "pooled association not shown to hold within models",
+  "within_prompt_family_permutation_p": 0.9136086391360864,
+  "min_reference_quality_spearman": 0.5298014679347343,
+  "min_reference_quality_view": "neither_placeholder_nor_ambiguous",
+  "min_reference_quality_reading": "ROBUST",
+  "two_level_lower_bound": 0.07302533532041729,
+  "two_level_upper_bound": 0.8707692307692307,
+  "two_level_lower_bound_above_0": true,
+  "two_level_lower_bound_above_gate": false,
+  "task_only_interval": [
+   0.4120678083936822,
+   0.7832167832167832
+  ]
+ },
+ "readings": {
+  "leave_one_model_out": {
+   "opus55x": "ROBUST",
+   "qwen36": "WEAKENED",
+   "t2_qwen": "ROBUST",
+   "t2_sonnet5": "ROBUST"
+  },
+  "leave_one_prompt_out": {
+   "D0": "ROBUST",
+   "H0": "ROBUST",
+   "H1": "ROBUST",
+   "H2": "ROBUST",
+   "LEX": "WEAKENED",
+   "P1": "ROBUST",
+   "P4": "ROBUST",
+   "P8": "ROBUST"
+  },
+  "rater_views": {
+   "single_p1": "ROBUST",
+   "single_p2": "ROBUST",
+   "single_p3": "ROBUST",
+   "single_p4": "ROBUST",
+   "single_p5": "ROBUST",
+   "all_available_raters_mean": "ROBUST",
+   "leave_out_p1": "ROBUST",
+   "leave_out_p2": "ROBUST",
+   "leave_out_p3": "ROBUST",
+   "leave_out_p4": "ROBUST",
+   "leave_out_p5": "ROBUST",
+   "registered_target_expert": "ROBUST"
+  },
+  "reference_quality_views": {
+   "original45": "ROBUST",
+   "no_placeholder_reference_tasks": "ROBUST",
+   "no_ambiguous_reference_tasks": "ROBUST",
+   "neither_placeholder_nor_ambiguous": "ROBUST"
+  }
+ },
+ "cluster_intervals": {
+  "model_cluster_all_defined": [
+   -0.8421052631578947,
+   0.656312625250501
+  ],
+  "prompt_cluster_all_defined": [
+   -0.1230927458659556,
+   0.8504672897196262
+  ]
+ },
+ "attenuation": {
+  "criterion_split_half_spearman_brown": 0.9625997242804095,
+  "proxy_split_half_spearman_brown": 0.9405539702125238,
+  "disattenuated_test_spearman": 0.5861855918745091
+ },
+ "runtime_seconds": 54.2
+}
