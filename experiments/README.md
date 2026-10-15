@@ -1,5 +1,7 @@
 # Experiments
 
+**Spending pause (10-15-2026):** Valkyrie and Vals API-key inference are paused pending essential-run selection and a per-run cap. Local models on Stanford Network Analysis Project nodes, cached-data analysis and human-rating administration may continue. [Verified state and restart checkpoint](CKPT_vals_spend_pause.md).
+
 Only currently pursued experiments belong directly in this directory.
 
 Experiments 33a–33e, 34, and 38 finished and moved to `archive/` on 09-28-2026.
