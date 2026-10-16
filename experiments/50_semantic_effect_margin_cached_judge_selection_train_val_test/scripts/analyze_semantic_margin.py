@@ -70,8 +70,25 @@ def manifest() -> dict:
 
 def assert_freeze() -> None:
     expected = manifest()["files"]
-    changed = [name for name, digest in expected.items() if sha256(ROOT / name) != digest]
+    # The selector was computed with the initial local evaluator source frozen in
+    # input_manifest.json.  A dated evaluator-only correction after selection is
+    # recorded separately; it may not mutate the frozen data/protocol inputs.
+    mutable_after_selection = {
+        "experiments/50_semantic_effect_margin_cached_judge_selection_train_val_test/scripts/analyze_semantic_margin.py",
+        "experiments/50_semantic_effect_margin_cached_judge_selection_train_val_test/scripts/freeze_inputs.py",
+        "tests/test_semantic_margin.py",
+    }
+    changed = [name for name, digest in expected.items() if name not in mutable_after_selection and sha256(ROOT / name) != digest]
     if changed: raise RuntimeError(f"frozen input changed: {changed}")
+
+
+def assert_evaluation_source_freeze() -> None:
+    """Verify the separately committed post-selection evaluator correction."""
+    receipt = read(OUT / "evaluation_source_manifest.json")
+    if receipt["selection_receipt_sha256"] != sha256(OUT / "selection_receipt.json"):
+        raise RuntimeError("selection receipt changed after selector freeze")
+    changed = [name for name, digest in receipt["files"].items() if sha256(ROOT / name) != digest]
+    if changed: raise RuntimeError(f"corrected evaluator source changed: {changed}")
 
 
 def maximum_weights(configs: list[str], values: dict[str, float | None]):
@@ -203,7 +220,7 @@ def evaluate_split(configs, split_rows, medians, repeats, ratings, selectors, dr
     targets, per_judge = {}, {}
     for target in ("current5_mean_0_to_1", "current3_mean_0_to_1"):
         human = np.array([ratings[item][target] for item in ids], float)
-        metrics, point_pc, boot_pc = {}, *metric_block(configs, matrix, human, groups, selectors["fixed_H2"], draws)[:2]
+        _, point_pc, boot_pc = metric_block(configs, matrix, human, groups, selectors["fixed_H2"], draws)
         # Build all selector statistics with the identical seed/draws, then paired margin contrasts.
         selector_rows, boot_cache, point_cache = {}, {}, {}
         for name, weights in selectors.items():
@@ -265,7 +282,7 @@ def robustness(rows, selectors, meta, items, medians, repeats, ratings, draws):
 
 
 def evaluate(draws):
-    assert_freeze(); selectors = read(OUT / "selectors.json"); receipt = read(OUT / "selection_receipt.json")
+    assert_freeze(); assert_evaluation_source_freeze(); selectors = read(OUT / "selectors.json"); receipt = read(OUT / "selection_receipt.json")
     if receipt["selectors_sha256"] != sha256(OUT / "selectors.json") or selectors["human_outcomes_read"]: raise RuntimeError("selector seal is invalid")
     rows = read(OUT / "configuration_overview.json")["configs"]
     meta, items, ratings = E46A.load_metadata(include_ratings=True); medians, repeats = E46A.score_medians(meta); configs = selectors["primary_pool"]
