@@ -3,6 +3,7 @@ import importlib.util
 from pathlib import Path
 import unittest
 import numpy as np
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("e50_margin", ROOT / "experiments/archive/50_semantic_effect_margin_cached_judge_selection_train_val_test/scripts/analyze_semantic_margin.py")
@@ -56,6 +57,17 @@ class SemanticMarginTest(unittest.TestCase):
     def test_archived_manifest_path_resolution(self):
         old = "experiments/50_semantic_effect_margin_cached_judge_selection_train_val_test/PROTOCOL.md"
         self.assertEqual(M.resolve_manifest_path(old), ROOT / "experiments/archive/50_semantic_effect_margin_cached_judge_selection_train_val_test/PROTOCOL.md")
+
+    def test_archived_integrity_validates_original_and_archive_sources(self):
+        M.assert_freeze()
+        M.assert_evaluation_source_freeze()
+        actual = M.sha256
+        protocol = ROOT / "experiments/archive/50_semantic_effect_margin_cached_judge_selection_train_val_test/PROTOCOL.md"
+        with patch.object(M, "sha256", side_effect=lambda path: "tampered" if Path(path) == protocol else actual(path)):
+            with self.assertRaises(RuntimeError): M.assert_freeze()
+        archive_script = ROOT / "experiments/archive/50_semantic_effect_margin_cached_judge_selection_train_val_test/scripts/analyze_semantic_margin.py"
+        with patch.object(M, "sha256", side_effect=lambda path: "tampered" if Path(path) == archive_script else actual(path)):
+            with self.assertRaises(RuntimeError): M.assert_evaluation_source_freeze()
     def test_exaggerated_margin_is_wrong_against_humans(self):
         declaration = {"a": {"strict": [{"kind":"w", "level":1}], "formatting":[{"kind":"f", "level":1}]}}
         cells = {("ident","a",1): {1:1.,2:1.}, ("w","a",1): {1:0.,2:0.}, ("f","a",1): {1:1.,2:1.}}
