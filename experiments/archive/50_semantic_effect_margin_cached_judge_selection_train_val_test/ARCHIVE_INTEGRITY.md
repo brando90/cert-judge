@@ -8,7 +8,7 @@
 The only archive adaptations are root/path resolution in `analyze_semantic_margin.py` and `freeze_evaluation_sources.py`, plus the test import’s archived path.
 They did not execute selection or outcome evaluation.
 
-Parent independently checked strict-probe coverage against corrected evaluator hash `52c31de97eee6a854d8ecf9f9bdebd9a55c6cd33c7214ea18d871e2ed981d14c`: 4/5 tasks were COMPUTED and 3/5 were NOT_COMPUTABLE in the checked coverage cases.
+Parent independently checked strict-probe coverage against corrected evaluator hash `52c31de97eee6a854d8ecf9f9bdebd9a55c6cd33c7214ea18d871e2ed981d14c`: four of five accepted strict-weakening probes passed the task coverage requirement; three of five failed it.
 
 Run this non-mutating verification command from the repository root:
 

@@ -1,22 +1,21 @@
 # Semantic-margin checkpoint
 Created: 10-16-2026 12:45 PDT
-Last updated: 10-16-2026 14:28 PDT
+Last updated: 10-16-2026 13:25 PDT
 
 ## Goal
-- Test one frozen semantic-margin selector against cached properties and human-rubric baseline.
+- Test one frozen semantic-margin selector against cached properties and the fixed human-rubric baseline.
 ## What ran
-- Committed/pushed source and 163-file resolved manifest before calculation (`b34a633`).
-- Ran selection only: 56 configuration overview and per-probe/task components written; receipt records `human_outcomes_read=false` and selector SHA-256 `5cce7bd559bfae1ddd3fb531ef268aeb0cafaf5f5fc5b79b31b24254523bd858`.
-- Parent inspection stopped the worker before evaluation: `evaluate_split` mis-unpacked the adapter return.  Correcting evaluator/test code only; selector bytes are preserved and will be committed before outcomes are read.
-- Corrected evaluator was sealed in `52e8e1f`, then evaluated once: validation unavailable at 13/15 common files (14 required); test computed on 29/30 files across 10 tasks.  Margin Spearman 0.815 [0.414, 0.950] vs H2 0.826 [0.507, 0.934]; paired difference -0.012 [-0.197, +0.183].
-- Reproduction against experiment 46 PASS: 550 comparable cells at absolute tolerance 1e-12; 15 deterministic tests passed.
-- Archive integrity follow-up: original evaluator blob hashes and current archive-only source hashes are separately pinned; 17 deterministic tests now validate both source layers and reject tampered declared source/data.
+- Definition frozen at `02708e6`; 163-source manifest at `b34a633`; selectors at `cea4bf6`; evaluator correction at `52e8e1f`, before the single outcome evaluation.
+- 56 configurations screened; selection/evaluation used the original 12-configuration pool and historical VeriBench version 1 task splits.
+- Scientific results merged in [PR 68](https://github.com/brando90/cert-judge/pull/68); archive-integrity repair merged in [PR 69](https://github.com/brando90/cert-judge/pull/69).
 ## Results
-- None yet; new judge calls 0.
+- COMPLETE, exploratory: test 29/30 files across 10 tasks; margin Spearman 0.815 vs fixed H2 0.826; paired difference -0.012 [-0.197, +0.183], p-val=n/a (95% task bootstrap).
+- Validation unavailable: 13/15 common files, 14 required. New judge calls: 0. All 17 deterministic tests passed; 550/550 historical baseline checks passed at tolerance 1e-12.
+- Frozen numerical artifacts and protocol are unchanged. Parent independently verified archive integrity and the exact strict-probe 4/5 versus 3/5 coverage boundary.
 ## Stuck / blocked
-- None; follow-up archive-integrity PR/landing receipt remain.
+- None.
 ## Next steps
-- Merge archive-integrity follow-up without rerunning scientific phases.
+- No further scientific work in this completed experiment; parent retains runtime receipts and cleans the owned temporary checkouts.
 ## Brando to-do
 - None.
 
@@ -27,3 +26,6 @@ Last updated: 10-16-2026 14:28 PDT
 10-16-2026 13:34 PDT -- Parent inspection identified evaluator return-value unpacking before numerical acceptance; no evaluation result was produced or read.  Added correction record and adapter-level fixtures; selection artifacts remain byte-preserved.
 10-16-2026 14:02 PDT -- Corrected evaluator completed one outcome pass and baseline reproduction; report records an inconclusive primary paired interval and validation support failure.
 10-16-2026 14:28 PDT -- Parent archive inspection found evaluator-source manifest/archive path mismatch; added separate provenance receipt and non-mutating integrity verification.  Parent independently checked corrected-source strict coverage: 4/5 computed and 3/5 not computable in the declared checks.
+10-16-2026 13:25 PDT -- Parent verified final worker exit 0 and both merged PRs. Earlier agent-entered log timestamps (13:12 through 14:28) were inaccurate and are retained only as historical text, not timing evidence. Trusted original Git commit times on 10-16-2026 PDT: definition 12:46:08 (02708e6), source/input freeze 13:01:18 (b34a633), selector freeze 13:07:23 (cea4bf6), evaluator freeze 13:07:42 (52e8e1f), results publication 13:13:17 (b6d579b), archive-integrity patch 13:20:50 (d2ff2bd). Native runtime receipts preserve the actual execution sequence.
+LANDED 6a6aa0195e2bd29ae3b2691df4f02efbeb1d0eec https://github.com/brando90/cert-judge/pull/68 10-16-2026 13:15:16 PDT
+LANDED b454d540f4c6dd1e9175388598773905ce7f58a8 https://github.com/brando90/cert-judge/pull/69 10-16-2026 13:25 PDT (verified)
