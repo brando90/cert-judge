@@ -1,0 +1,1822 @@
+{
+  "leave_model_harness": {
+    "opus55x": {
+      "pool": [
+        "qwen36|D0",
+        "qwen36|H0",
+        "qwen36|H1",
+        "qwen36|H2",
+        "qwen36|R4",
+        "t2_qwen|D0",
+        "t2_qwen|H2",
+        "t2_sonnet5|D0",
+        "t2_sonnet5|H2"
+      ],
+      "test": {
+        "current3_mean_0_to_1": {
+          "margin_minus_every_comparator": {
+            "fixed_H2": {
+              "bias": {
+                "hi": -0.03333333333333337,
+                "lo": -0.2755555555555556,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.1413793103448276
+              },
+              "human_mean": {
+                "hi": 1.1102230246251565e-16,
+                "lo": 0.0,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.0
+              },
+              "judge_mean": {
+                "hi": -0.03333333333333344,
+                "lo": -0.2755555555555558,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.1413793103448278
+              },
+              "kendall": {
+                "hi": 0.17092294763005766,
+                "lo": -0.40957472953165175,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.07982945309765765
+              },
+              "mae": {
+                "hi": 0.07518518518518522,
+                "lo": -0.08806657848324513,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.014176245210727939
+              },
+              "pearson": {
+                "hi": 0.1389293923221761,
+                "lo": -0.33870618189346424,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.018776917039359242
+              },
+              "spearman": {
+                "hi": 0.16507764072611422,
+                "lo": -0.38749941310256864,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.052886242546912654
+              }
+            }
+          },
+          "selectors": {
+            "fixed_H2": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.20229885057471256,
+                  "lo": 0.054320987654320994,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.12873563218390804
+                },
+                "human_mean": {
+                  "hi": 0.6551819923371645,
+                  "lo": 0.3160493827160494,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.48160919540229885
+                },
+                "judge_mean": {
+                  "hi": 0.7800000000000001,
+                  "lo": 0.4345667989417989,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6103448275862071
+                },
+                "kendall": {
+                  "hi": 0.8724451260910905,
+                  "lo": 0.4940166358865476,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7429651132052811
+                },
+                "mae": {
+                  "hi": 0.22619047619047616,
+                  "lo": 0.11666187739463602,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.16934865900383142
+                },
+                "pearson": {
+                  "hi": 0.9380530236008198,
+                  "lo": 0.7029482775980367,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8529993584534284
+                },
+                "spearman": {
+                  "hi": 0.9408067691704616,
+                  "lo": 0.5799396332230469,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8509067749725685
+                }
+              },
+              "weights": {
+                "qwen36|H2": 0.3333333333333333,
+                "t2_qwen|H2": 0.3333333333333333,
+                "t2_sonnet5|H2": 0.3333333333333333
+              }
+            },
+            "max_train_semantic_margin": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.08735632183908049,
+                  "lo": -0.13809964726631396,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": -0.012643678160919545
+                },
+                "human_mean": {
+                  "hi": 0.6551819923371645,
+                  "lo": 0.3160493827160494,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.48160919540229885
+                },
+                "judge_mean": {
+                  "hi": 0.6862068965517241,
+                  "lo": 0.2571428571428572,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.4689655172413793
+                },
+                "kendall": {
+                  "hi": 0.9062027698315368,
+                  "lo": 0.25068857718292675,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6631356601076235
+                },
+                "mae": {
+                  "hi": 0.2357164902998236,
+                  "lo": 0.09540229885057475,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.15517241379310348
+                },
+                "pearson": {
+                  "hi": 0.9715489719840242,
+                  "lo": 0.4543416373959187,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8342224414140692
+                },
+                "spearman": {
+                  "hi": 0.964569845256972,
+                  "lo": 0.33486392556853434,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7980205324256558
+                }
+              },
+              "weights": {
+                "t2_sonnet5|D0": 1.0
+              }
+            }
+          }
+        },
+        "current5_mean_0_to_1": {
+          "margin_minus_every_comparator": {
+            "fixed_H2": {
+              "bias": {
+                "hi": -0.03333333333333336,
+                "lo": -0.2755555555555556,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.14137931034482762
+              },
+              "human_mean": {
+                "hi": 1.1102230246251565e-16,
+                "lo": 0.0,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.0
+              },
+              "judge_mean": {
+                "hi": -0.03333333333333344,
+                "lo": -0.2755555555555558,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.1413793103448278
+              },
+              "kendall": {
+                "hi": 0.23420709202936707,
+                "lo": -0.24888938466883592,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.03072143155915652
+              },
+              "mae": {
+                "hi": 0.15793275862068953,
+                "lo": -0.021839080459770135,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.056321839080459735
+              },
+              "pearson": {
+                "hi": 0.16278495819466682,
+                "lo": -0.2616565295729872,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.02198247125478081
+              },
+              "spearman": {
+                "hi": 0.24231554132110972,
+                "lo": -0.24015108631711674,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.00576337926073478
+              }
+            }
+          },
+          "selectors": {
+            "fixed_H2": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.0868888888888889,
+                  "lo": -0.04735852490421451,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.021724137931034518
+                },
+                "human_mean": {
+                  "hi": 0.7227586206896551,
+                  "lo": 0.4532108516483516,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5886206896551724
+                },
+                "judge_mean": {
+                  "hi": 0.7800000000000001,
+                  "lo": 0.4345667989417989,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6103448275862071
+                },
+                "kendall": {
+                  "hi": 0.8438657994220977,
+                  "lo": 0.3990134646963963,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6971069187460435
+                },
+                "mae": {
+                  "hi": 0.19595299671592778,
+                  "lo": 0.09701149425287359,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.14057471264367816
+                },
+                "pearson": {
+                  "hi": 0.9522340363152951,
+                  "lo": 0.6273554671256295,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8483033179837172
+                },
+                "spearman": {
+                  "hi": 0.9337445058327978,
+                  "lo": 0.4924997562569113,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.820550147343243
+                }
+              },
+              "weights": {
+                "qwen36|H2": 0.3333333333333333,
+                "t2_qwen|H2": 0.3333333333333333,
+                "t2_sonnet5|H2": 0.3333333333333333
+              }
+            },
+            "max_train_semantic_margin": {
+              "metrics": {
+                "bias": {
+                  "hi": -0.004827586206896556,
+                  "lo": -0.2464285714285714,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": -0.1196551724137931
+                },
+                "human_mean": {
+                  "hi": 0.7227586206896551,
+                  "lo": 0.4532108516483516,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5886206896551724
+                },
+                "judge_mean": {
+                  "hi": 0.6862068965517241,
+                  "lo": 0.2571428571428572,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.4689655172413793
+                },
+                "kendall": {
+                  "hi": 0.8660553903621488,
+                  "lo": 0.3224856396377582,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.666385487186887
+                },
+                "mae": {
+                  "hi": 0.29,
+                  "lo": 0.11959333333333336,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.1968965517241379
+                },
+                "pearson": {
+                  "hi": 0.9542455116201093,
+                  "lo": 0.5199235305725668,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8263208467289364
+                },
+                "spearman": {
+                  "hi": 0.9503615519684503,
+                  "lo": 0.41417395904667226,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8147867680825083
+                }
+              },
+              "weights": {
+                "t2_sonnet5|D0": 1.0
+              }
+            }
+          }
+        }
+      },
+      "weights": {
+        "t2_sonnet5|D0": 1.0
+      }
+    },
+    "qwen36": {
+      "pool": [
+        "opus55x|D0",
+        "opus55x|H0",
+        "opus55x|H2",
+        "t2_qwen|D0",
+        "t2_qwen|H2",
+        "t2_sonnet5|D0",
+        "t2_sonnet5|H2"
+      ],
+      "test": {
+        "current3_mean_0_to_1": {
+          "margin_minus_every_comparator": {
+            "fixed_H2": {
+              "bias": {
+                "hi": -0.06904761904761908,
+                "lo": -0.2833333333333334,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.164367816091954
+              },
+              "human_mean": {
+                "hi": 1.1102230246251565e-16,
+                "lo": 0.0,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.0
+              },
+              "judge_mean": {
+                "hi": -0.06904761904761902,
+                "lo": -0.2833333333333335,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.16436781609195422
+              },
+              "kendall": {
+                "hi": 0.08281008884555045,
+                "lo": -0.318579664201729,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.0934608994820254
+              },
+              "mae": {
+                "hi": 0.06777873563218399,
+                "lo": -0.10083024691358027,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.025670498084291143
+              },
+              "pearson": {
+                "hi": 0.09675598025036661,
+                "lo": -0.3382209085846721,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.030529510706114205
+              },
+              "spearman": {
+                "hi": 0.08190545645173455,
+                "lo": -0.30645434185717535,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.0630318544235936
+              }
+            }
+          },
+          "selectors": {
+            "fixed_H2": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.21609195402298847,
+                  "lo": 0.09102564102564104,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.15172413793103445
+                },
+                "human_mean": {
+                  "hi": 0.6551819923371645,
+                  "lo": 0.3160493827160494,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.48160919540229885
+                },
+                "judge_mean": {
+                  "hi": 0.7966666666666669,
+                  "lo": 0.4583256172839505,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6333333333333335
+                },
+                "kendall": {
+                  "hi": 0.8862016113168963,
+                  "lo": 0.5062342067070503,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7565965595896489
+                },
+                "mae": {
+                  "hi": 0.23851851851851846,
+                  "lo": 0.12703703703703703,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.18084291187739462
+                },
+                "pearson": {
+                  "hi": 0.9457444099987523,
+                  "lo": 0.7401135541074765,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8647519521201834
+                },
+                "spearman": {
+                  "hi": 0.9531944828944935,
+                  "lo": 0.5818895239273174,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8610523868492495
+                }
+              },
+              "weights": {
+                "opus55x|H2": 0.3333333333333333,
+                "t2_qwen|H2": 0.3333333333333333,
+                "t2_sonnet5|H2": 0.3333333333333333
+              }
+            },
+            "max_train_semantic_margin": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.08735632183908049,
+                  "lo": -0.13809964726631396,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": -0.012643678160919545
+                },
+                "human_mean": {
+                  "hi": 0.6551819923371645,
+                  "lo": 0.3160493827160494,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.48160919540229885
+                },
+                "judge_mean": {
+                  "hi": 0.6862068965517241,
+                  "lo": 0.2571428571428572,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.4689655172413793
+                },
+                "kendall": {
+                  "hi": 0.9062027698315368,
+                  "lo": 0.25068857718292675,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6631356601076235
+                },
+                "mae": {
+                  "hi": 0.2357164902998236,
+                  "lo": 0.09540229885057475,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.15517241379310348
+                },
+                "pearson": {
+                  "hi": 0.9715489719840242,
+                  "lo": 0.4543416373959187,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8342224414140692
+                },
+                "spearman": {
+                  "hi": 0.964569845256972,
+                  "lo": 0.33486392556853434,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7980205324256558
+                }
+              },
+              "weights": {
+                "t2_sonnet5|D0": 1.0
+              }
+            }
+          }
+        },
+        "current5_mean_0_to_1": {
+          "margin_minus_every_comparator": {
+            "fixed_H2": {
+              "bias": {
+                "hi": -0.06904761904761908,
+                "lo": -0.2833333333333333,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.16436781609195406
+              },
+              "human_mean": {
+                "hi": 1.1102230246251565e-16,
+                "lo": 0.0,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.0
+              },
+              "judge_mean": {
+                "hi": -0.06904761904761902,
+                "lo": -0.2833333333333335,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.16436781609195422
+              },
+              "kendall": {
+                "hi": 0.13416668754199812,
+                "lo": -0.21806653215201052,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.055243093992325965
+              },
+              "mae": {
+                "hi": 0.1557821428571428,
+                "lo": -0.02148148148148149,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.054022988505747105
+              },
+              "pearson": {
+                "hi": 0.11060771458670465,
+                "lo": -0.27958342181092777,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.040303521624594496
+              },
+              "spearman": {
+                "hi": 0.14345276271624985,
+                "lo": -0.20353007425357866,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.027295924032491592
+              }
+            }
+          },
+          "selectors": {
+            "fixed_H2": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.09989166666666666,
+                  "lo": -0.01107142857142856,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.04471264367816096
+                },
+                "human_mean": {
+                  "hi": 0.7227586206896551,
+                  "lo": 0.4532108516483516,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5886206896551724
+                },
+                "judge_mean": {
+                  "hi": 0.7966666666666669,
+                  "lo": 0.4583256172839505,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6333333333333335
+                },
+                "kendall": {
+                  "hi": 0.8555195842608693,
+                  "lo": 0.44096102647476093,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7216285811792129
+                },
+                "mae": {
+                  "hi": 0.1948902298850575,
+                  "lo": 0.10011904761904766,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.1428735632183908
+                },
+                "pearson": {
+                  "hi": 0.956683221905761,
+                  "lo": 0.6840777585146761,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8666243683535308
+                },
+                "spearman": {
+                  "hi": 0.9426107674276608,
+                  "lo": 0.5297277063778223,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8420826921149999
+                }
+              },
+              "weights": {
+                "opus55x|H2": 0.3333333333333333,
+                "t2_qwen|H2": 0.3333333333333333,
+                "t2_sonnet5|H2": 0.3333333333333333
+              }
+            },
+            "max_train_semantic_margin": {
+              "metrics": {
+                "bias": {
+                  "hi": -0.004827586206896556,
+                  "lo": -0.2464285714285714,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": -0.1196551724137931
+                },
+                "human_mean": {
+                  "hi": 0.7227586206896551,
+                  "lo": 0.4532108516483516,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5886206896551724
+                },
+                "judge_mean": {
+                  "hi": 0.6862068965517241,
+                  "lo": 0.2571428571428572,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.4689655172413793
+                },
+                "kendall": {
+                  "hi": 0.8660553903621488,
+                  "lo": 0.3224856396377582,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.666385487186887
+                },
+                "mae": {
+                  "hi": 0.29,
+                  "lo": 0.11959333333333336,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.1968965517241379
+                },
+                "pearson": {
+                  "hi": 0.9542455116201093,
+                  "lo": 0.5199235305725668,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8263208467289364
+                },
+                "spearman": {
+                  "hi": 0.9503615519684503,
+                  "lo": 0.41417395904667226,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8147867680825083
+                }
+              },
+              "weights": {
+                "t2_sonnet5|D0": 1.0
+              }
+            }
+          }
+        }
+      },
+      "weights": {
+        "t2_sonnet5|D0": 1.0
+      }
+    },
+    "t2_qwen": {
+      "pool": [
+        "opus55x|D0",
+        "opus55x|H0",
+        "opus55x|H2",
+        "qwen36|D0",
+        "qwen36|H0",
+        "qwen36|H1",
+        "qwen36|H2",
+        "qwen36|R4",
+        "t2_sonnet5|D0",
+        "t2_sonnet5|H2"
+      ],
+      "test": {
+        "current3_mean_0_to_1": {
+          "margin_minus_every_comparator": {
+            "fixed_H2": {
+              "bias": {
+                "hi": -0.067816091954023,
+                "lo": -0.2833333333333333,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.16551724137931034
+              },
+              "human_mean": {
+                "hi": 1.1102230246251565e-16,
+                "lo": 0.0,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.0
+              },
+              "judge_mean": {
+                "hi": -0.06781609195402305,
+                "lo": -0.28333333333333344,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.1655172413793105
+              },
+              "kendall": {
+                "hi": 0.11319200804237821,
+                "lo": -0.2965628119094538,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.0693474799290843
+              },
+              "mae": {
+                "hi": 0.06944444444444442,
+                "lo": -0.10888888888888879,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.030651340996168536
+              },
+              "pearson": {
+                "hi": 0.12701049672630244,
+                "lo": -0.31263931771742265,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.009294317202173219
+              },
+              "spearman": {
+                "hi": 0.11512805395150258,
+                "lo": -0.2813153151242607,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.040821939459686596
+              }
+            }
+          },
+          "selectors": {
+            "fixed_H2": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.21888888888888888,
+                  "lo": 0.08927579365079365,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.1528735632183908
+                },
+                "human_mean": {
+                  "hi": 0.6551819923371645,
+                  "lo": 0.3160493827160494,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.48160919540229885
+                },
+                "judge_mean": {
+                  "hi": 0.7931091954022987,
+                  "lo": 0.4666666666666667,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6344827586206898
+                },
+                "kendall": {
+                  "hi": 0.865469400474154,
+                  "lo": 0.472904705664306,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7324831400367078
+                },
+                "mae": {
+                  "hi": 0.242911877394636,
+                  "lo": 0.13214175485008817,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.18582375478927202
+                },
+                "pearson": {
+                  "hi": 0.9295288630609149,
+                  "lo": 0.7087700336988199,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8435167586162424
+                },
+                "spearman": {
+                  "hi": 0.9381254185807836,
+                  "lo": 0.545989057749418,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8388424718853424
+                }
+              },
+              "weights": {
+                "opus55x|H2": 0.3333333333333333,
+                "qwen36|H2": 0.3333333333333333,
+                "t2_sonnet5|H2": 0.3333333333333333
+              }
+            },
+            "max_train_semantic_margin": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.08735632183908049,
+                  "lo": -0.13809964726631396,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": -0.012643678160919545
+                },
+                "human_mean": {
+                  "hi": 0.6551819923371645,
+                  "lo": 0.3160493827160494,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.48160919540229885
+                },
+                "judge_mean": {
+                  "hi": 0.6862068965517241,
+                  "lo": 0.2571428571428572,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.4689655172413793
+                },
+                "kendall": {
+                  "hi": 0.9062027698315368,
+                  "lo": 0.25068857718292675,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6631356601076235
+                },
+                "mae": {
+                  "hi": 0.2357164902998236,
+                  "lo": 0.09540229885057475,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.15517241379310348
+                },
+                "pearson": {
+                  "hi": 0.9715489719840242,
+                  "lo": 0.4543416373959187,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8342224414140692
+                },
+                "spearman": {
+                  "hi": 0.964569845256972,
+                  "lo": 0.33486392556853434,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7980205324256558
+                }
+              },
+              "weights": {
+                "t2_sonnet5|D0": 1.0
+              }
+            }
+          }
+        },
+        "current5_mean_0_to_1": {
+          "margin_minus_every_comparator": {
+            "fixed_H2": {
+              "bias": {
+                "hi": -0.06781609195402301,
+                "lo": -0.2833333333333333,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.1655172413793104
+              },
+              "human_mean": {
+                "hi": 1.1102230246251565e-16,
+                "lo": 0.0,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.0
+              },
+              "judge_mean": {
+                "hi": -0.06781609195402305,
+                "lo": -0.28333333333333344,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.1655172413793105
+              },
+              "kendall": {
+                "hi": 0.15832800476076375,
+                "lo": -0.19416784236775797,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.035122787421264734
+              },
+              "mae": {
+                "hi": 0.16023563218390785,
+                "lo": -0.02577777777777779,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.05402298850574708
+              },
+              "pearson": {
+                "hi": 0.1390449055761254,
+                "lo": -0.2641849630341876,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.02656880764874958
+              },
+              "spearman": {
+                "hi": 0.17205430975773628,
+                "lo": -0.17984335446554736,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.007995587777466784
+              }
+            }
+          },
+          "selectors": {
+            "fixed_H2": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.09733333333333336,
+                  "lo": -0.003908045977011444,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.04586206896551728
+                },
+                "human_mean": {
+                  "hi": 0.7227586206896551,
+                  "lo": 0.4532108516483516,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5886206896551724
+                },
+                "judge_mean": {
+                  "hi": 0.7931091954022987,
+                  "lo": 0.4666666666666667,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6344827586206898
+                },
+                "kendall": {
+                  "hi": 0.8463897816404853,
+                  "lo": 0.4176117645519303,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7015082746081517
+                },
+                "mae": {
+                  "hi": 0.19522385057471267,
+                  "lo": 0.09908011494252872,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.14287356321839081
+                },
+                "pearson": {
+                  "hi": 0.949917234316054,
+                  "lo": 0.6595894281896949,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8528896543776859
+                },
+                "spearman": {
+                  "hi": 0.9333834245891556,
+                  "lo": 0.5043660181035681,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8227823558599751
+                }
+              },
+              "weights": {
+                "opus55x|H2": 0.3333333333333333,
+                "qwen36|H2": 0.3333333333333333,
+                "t2_sonnet5|H2": 0.3333333333333333
+              }
+            },
+            "max_train_semantic_margin": {
+              "metrics": {
+                "bias": {
+                  "hi": -0.004827586206896556,
+                  "lo": -0.2464285714285714,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": -0.1196551724137931
+                },
+                "human_mean": {
+                  "hi": 0.7227586206896551,
+                  "lo": 0.4532108516483516,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5886206896551724
+                },
+                "judge_mean": {
+                  "hi": 0.6862068965517241,
+                  "lo": 0.2571428571428572,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.4689655172413793
+                },
+                "kendall": {
+                  "hi": 0.8660553903621488,
+                  "lo": 0.3224856396377582,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.666385487186887
+                },
+                "mae": {
+                  "hi": 0.29,
+                  "lo": 0.11959333333333336,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.1968965517241379
+                },
+                "pearson": {
+                  "hi": 0.9542455116201093,
+                  "lo": 0.5199235305725668,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8263208467289364
+                },
+                "spearman": {
+                  "hi": 0.9503615519684503,
+                  "lo": 0.41417395904667226,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8147867680825083
+                }
+              },
+              "weights": {
+                "t2_sonnet5|D0": 1.0
+              }
+            }
+          }
+        }
+      },
+      "weights": {
+        "t2_sonnet5|D0": 1.0
+      }
+    },
+    "t2_sonnet5": {
+      "pool": [
+        "opus55x|D0",
+        "opus55x|H0",
+        "opus55x|H2",
+        "qwen36|D0",
+        "qwen36|H0",
+        "qwen36|H1",
+        "qwen36|H2",
+        "qwen36|R4",
+        "t2_qwen|D0",
+        "t2_qwen|H2"
+      ],
+      "test": {
+        "current3_mean_0_to_1": {
+          "margin_minus_every_comparator": {
+            "fixed_H2": {
+              "bias": {
+                "hi": -0.07975061576354696,
+                "lo": -0.2933333333333333,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.19080459770114944
+              },
+              "human_mean": {
+                "hi": 1.1102230246251565e-16,
+                "lo": 0.0,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.0
+              },
+              "judge_mean": {
+                "hi": -0.07975061576354679,
+                "lo": -0.2933333333333332,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.19080459770114938
+              },
+              "kendall": {
+                "hi": 0.13873868696691433,
+                "lo": -0.3444814190096272,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.12004544528235139
+              },
+              "mae": {
+                "hi": 0.10421455938697322,
+                "lo": -0.052780172413793104,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.024521072796934856
+              },
+              "pearson": {
+                "hi": 0.054824784791307916,
+                "lo": -0.38968027450812415,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.14594801865411067
+              },
+              "spearman": {
+                "hi": 0.13163890958658164,
+                "lo": -0.3771947930155704,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.13697462963460016
+              }
+            }
+          },
+          "selectors": {
+            "fixed_H2": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.20999999999999996,
+                  "lo": 0.08620689655172412,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.1471264367816092
+                },
+                "human_mean": {
+                  "hi": 0.6551819923371645,
+                  "lo": 0.3160493827160494,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.48160919540229885
+                },
+                "judge_mean": {
+                  "hi": 0.7877857142857144,
+                  "lo": 0.4615229885057473,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6287356321839082
+                },
+                "kendall": {
+                  "hi": 0.8672157854745295,
+                  "lo": 0.47152075764052903,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.7341490736088965
+                },
+                "mae": {
+                  "hi": 0.23481609195402298,
+                  "lo": 0.12835249042145597,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.1800766283524904
+                },
+                "pearson": {
+                  "hi": 0.9332461377657759,
+                  "lo": 0.7185071173909714,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8507505335080197
+                },
+                "spearman": {
+                  "hi": 0.9391918582246788,
+                  "lo": 0.5461267145851085,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8417729105093872
+                }
+              },
+              "weights": {
+                "opus55x|H2": 0.3333333333333333,
+                "qwen36|H2": 0.3333333333333333,
+                "t2_qwen|H2": 0.3333333333333333
+              }
+            },
+            "max_train_semantic_margin": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.08966379310344816,
+                  "lo": -0.15111111111111106,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": -0.04367816091954024
+                },
+                "human_mean": {
+                  "hi": 0.6551819923371645,
+                  "lo": 0.3160493827160494,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.48160919540229885
+                },
+                "judge_mean": {
+                  "hi": 0.6500000000000001,
+                  "lo": 0.23702777777777778,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.4379310344827588
+                },
+                "kendall": {
+                  "hi": 0.8353907801776727,
+                  "lo": 0.31144207604293533,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6141036283265451
+                },
+                "mae": {
+                  "hi": 0.2844444444444445,
+                  "lo": 0.12758620689655176,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.20459770114942524
+                },
+                "pearson": {
+                  "hi": 0.914160846539323,
+                  "lo": 0.4203402806645631,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.704802514853909
+                },
+                "spearman": {
+                  "hi": 0.9137911811592014,
+                  "lo": 0.37513049404800125,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.704798280874787
+                }
+              },
+              "weights": {
+                "qwen36|D0": 1.0
+              }
+            }
+          }
+        },
+        "current5_mean_0_to_1": {
+          "margin_minus_every_comparator": {
+            "fixed_H2": {
+              "bias": {
+                "hi": -0.07975061576354699,
+                "lo": -0.29333333333333333,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.19080459770114944
+              },
+              "human_mean": {
+                "hi": 1.1102230246251565e-16,
+                "lo": 0.0,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.0
+              },
+              "judge_mean": {
+                "hi": -0.07975061576354679,
+                "lo": -0.2933333333333332,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.19080459770114938
+              },
+              "kendall": {
+                "hi": 0.16381480205662263,
+                "lo": -0.32209436825239085,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.1079896756979074
+              },
+              "mae": {
+                "hi": 0.1809523809523809,
+                "lo": 0.06571428571428564,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": 0.12597701149425286
+              },
+              "pearson": {
+                "hi": 0.012382196325662623,
+                "lo": -0.4026636391613991,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.18369671405805643
+              },
+              "spearman": {
+                "hi": 0.1491727385312169,
+                "lo": -0.39018509597723783,
+                "p_value": null,
+                "undefined_draws": 0,
+                "valid_draws": 10000,
+                "value": -0.1330339719571474
+              }
+            }
+          },
+          "selectors": {
+            "fixed_H2": {
+              "metrics": {
+                "bias": {
+                  "hi": 0.0905555555555556,
+                  "lo": -0.008395061728395036,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.04011494252873567
+                },
+                "human_mean": {
+                  "hi": 0.7227586206896551,
+                  "lo": 0.4532108516483516,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5886206896551724
+                },
+                "judge_mean": {
+                  "hi": 0.7877857142857144,
+                  "lo": 0.4615229885057473,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6287356321839082
+                },
+                "kendall": {
+                  "hi": 0.833024923538767,
+                  "lo": 0.4051566082643064,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6941232634430711
+                },
+                "mae": {
+                  "hi": 0.19563304597701153,
+                  "lo": 0.10103448275862073,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.14333333333333334
+                },
+                "pearson": {
+                  "hi": 0.9482848521434678,
+                  "lo": 0.6582489610322515,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8530145614564952
+                },
+                "spearman": {
+                  "hi": 0.9283832626927848,
+                  "lo": 0.4934960108170596,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.8203392992644971
+                }
+              },
+              "weights": {
+                "opus55x|H2": 0.3333333333333333,
+                "qwen36|H2": 0.3333333333333333,
+                "t2_qwen|H2": 0.3333333333333333
+              }
+            },
+            "max_train_semantic_margin": {
+              "metrics": {
+                "bias": {
+                  "hi": -0.015352524630541911,
+                  "lo": -0.2603333333333333,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": -0.15068965517241376
+                },
+                "human_mean": {
+                  "hi": 0.7227586206896551,
+                  "lo": 0.4532108516483516,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5886206896551724
+                },
+                "judge_mean": {
+                  "hi": 0.6500000000000001,
+                  "lo": 0.23702777777777778,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.4379310344827588
+                },
+                "kendall": {
+                  "hi": 0.8017715237137375,
+                  "lo": 0.30924614268109063,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.5861335877451637
+                },
+                "mae": {
+                  "hi": 0.33551724137931027,
+                  "lo": 0.19068134236453202,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.2693103448275862
+                },
+                "pearson": {
+                  "hi": 0.8695520924621523,
+                  "lo": 0.3807813674284405,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6693178473984388
+                },
+                "spearman": {
+                  "hi": 0.8941307589223055,
+                  "lo": 0.3594248956846716,
+                  "p_value": null,
+                  "undefined_draws": 0,
+                  "valid_draws": 10000,
+                  "value": 0.6873053273073497
+                }
+              },
+              "weights": {
+                "qwen36|D0": 1.0
+              }
+            }
+          }
+        }
+      },
+      "weights": {
+        "qwen36|D0": 1.0
+      }
+    }
+  },
+  "leave_test_task_primary_delta_spearman": {
+    "0_unsafeCopy_safe": {
+      "hi": 0.24346319865404076,
+      "lo": -0.26030518663235774,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.014729917996659347
+    },
+    "1_MyAdd": {
+      "hi": 0.2243528282398955,
+      "lo": -0.264650751906543,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.029527876864522518
+    },
+    "1_bisect_left": {
+      "hi": 0.25284822702368687,
+      "lo": -0.00221725099730878,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": 0.0718776603453537
+    },
+    "33_MyMinimum": {
+      "hi": 0.14938520896646365,
+      "lo": -0.19406730030687444,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.02609116764945263
+    },
+    "4_json_decoder": {
+      "hi": 0.2266627214525967,
+      "lo": -0.23605363772720567,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.01051543789104159
+    },
+    "4_unsafeCounter_safe": {
+      "hi": 0.23905540575854267,
+      "lo": -0.25297013432588905,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.02108748985691289
+    },
+    "humaneval_31_is_prime": {
+      "hi": 0.17762446455492775,
+      "lo": -0.17523312801638977,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.006694882783438327
+    },
+    "humaneval_3_below_zero": {
+      "hi": 0.2210479297043114,
+      "lo": -0.203850232630468,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.009768347812500022
+    },
+    "insertion_sort": {
+      "hi": 0.11993168909528534,
+      "lo": -0.22725430457208295,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.031900047896335826
+    },
+    "merge_sort": {
+      "hi": 0.148431429992183,
+      "lo": -0.2378466525795036,
+      "p_value": null,
+      "undefined_draws": 0,
+      "valid_draws": 10000,
+      "value": -0.029440447364387223
+    }
+  },
+  "leave_training_task_selectors": {
+    "0_bisect_right": {
+      "train_values": {
+        "opus55x|D0": 0.45,
+        "opus55x|H0": 0.4,
+        "opus55x|H2": 0.4,
+        "qwen36|D0": 0.4708333333333333,
+        "qwen36|H0": 0.4083333333333333,
+        "qwen36|H1": 0.24166666666666664,
+        "qwen36|H2": null,
+        "qwen36|R4": 0.35,
+        "t2_qwen|D0": 0.45833333333333337,
+        "t2_qwen|H2": 0.2583333333333333,
+        "t2_sonnet5|D0": 0.49583333333333335,
+        "t2_sonnet5|H2": 0.32499999999999996
+      },
+      "weights": {
+        "t2_sonnet5|D0": 1.0
+      }
+    },
+    "18_MyFibonacci": {
+      "train_values": {
+        "opus55x|D0": 0.45,
+        "opus55x|H0": 0.4,
+        "opus55x|H2": 0.375,
+        "qwen36|D0": 0.4458333333333333,
+        "qwen36|H0": 0.38333333333333336,
+        "qwen36|H1": 0.26666666666666666,
+        "qwen36|H2": 0.32916666666666666,
+        "qwen36|R4": 0.35,
+        "t2_qwen|D0": 0.42083333333333334,
+        "t2_qwen|H2": 0.2833333333333333,
+        "t2_sonnet5|D0": 0.48333333333333334,
+        "t2_sonnet5|H2": 0.3
+      },
+      "weights": {
+        "t2_sonnet5|D0": 1.0
+      }
+    },
+    "3_heappop": {
+      "train_values": {
+        "opus55x|D0": 0.43333333333333335,
+        "opus55x|H0": 0.38333333333333336,
+        "opus55x|H2": 0.35833333333333334,
+        "qwen36|D0": 0.45,
+        "qwen36|H0": 0.4083333333333333,
+        "qwen36|H1": 0.2333333333333333,
+        "qwen36|H2": null,
+        "qwen36|R4": 0.3333333333333333,
+        "t2_qwen|D0": 0.4375,
+        "t2_qwen|H2": 0.24999999999999997,
+        "t2_sonnet5|D0": 0.48333333333333334,
+        "t2_sonnet5|H2": 0.3
+      },
+      "weights": {
+        "t2_sonnet5|D0": 1.0
+      }
+    },
+    "43_replace_spaces": {
+      "train_values": {
+        "opus55x|D0": 0.44166666666666665,
+        "opus55x|H0": 0.4166666666666667,
+        "opus55x|H2": 0.39166666666666666,
+        "qwen36|D0": 0.4708333333333333,
+        "qwen36|H0": 0.42500000000000004,
+        "qwen36|H1": 0.2833333333333333,
+        "qwen36|H2": null,
+        "qwen36|R4": 0.39166666666666666,
+        "t2_qwen|D0": 0.4458333333333333,
+        "t2_qwen|H2": 0.2833333333333333,
+        "t2_sonnet5|D0": 0.5,
+        "t2_sonnet5|H2": 0.35
+      },
+      "weights": {
+        "t2_sonnet5|D0": 1.0
+      }
+    },
+    "humaneval_47_median": {
+      "train_values": {
+        "opus55x|D0": 0.42500000000000004,
+        "opus55x|H0": 0.4,
+        "opus55x|H2": 0.375,
+        "qwen36|D0": 0.4458333333333333,
+        "qwen36|H0": 0.4083333333333333,
+        "qwen36|H1": 0.24166666666666664,
+        "qwen36|H2": null,
+        "qwen36|R4": 0.375,
+        "t2_qwen|D0": 0.42083333333333334,
+        "t2_qwen|H2": 0.2583333333333333,
+        "t2_sonnet5|D0": 0.4708333333333333,
+        "t2_sonnet5|H2": 0.32499999999999996
+      },
+      "weights": {
+        "t2_sonnet5|D0": 1.0
+      }
+    }
+  },
+  "original_full_pool_common_test_files": [
+    "0_unsafeCopy_safe__agent0",
+    "0_unsafeCopy_safe__agent1",
+    "0_unsafeCopy_safe__agent2",
+    "1_MyAdd__agent0",
+    "1_MyAdd__agent1",
+    "1_MyAdd__agent2",
+    "1_bisect_left__agent0",
+    "1_bisect_left__agent1",
+    "1_bisect_left__agent2",
+    "33_MyMinimum__agent0",
+    "33_MyMinimum__agent1",
+    "33_MyMinimum__agent2",
+    "4_json_decoder__agent1",
+    "4_json_decoder__agent2",
+    "4_unsafeCounter_safe__agent0",
+    "4_unsafeCounter_safe__agent1",
+    "4_unsafeCounter_safe__agent2",
+    "humaneval_31_is_prime__agent0",
+    "humaneval_31_is_prime__agent1",
+    "humaneval_31_is_prime__agent2",
+    "humaneval_3_below_zero__agent0",
+    "humaneval_3_below_zero__agent1",
+    "humaneval_3_below_zero__agent2",
+    "insertion_sort__agent0",
+    "insertion_sort__agent1",
+    "insertion_sort__agent2",
+    "merge_sort__agent0",
+    "merge_sort__agent1",
+    "merge_sort__agent2"
+  ]
+}

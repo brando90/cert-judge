@@ -27,6 +27,8 @@ E46 = ROOT / "experiments/archive/46_tvdmi_inspired_properties_cached_judge_vali
 E45 = ROOT / "experiments/archive/45_five_rater_cached_selection_task_split_and_behavioral_audit"
 SEED, DRAWS = 20261008, 10_000
 METRICS = ("spearman", "pearson", "kendall", "mae", "bias", "judge_mean", "human_mean")
+ACTIVE_PREFIX = "experiments/50_semantic_effect_margin_cached_judge_selection_train_val_test/"
+ARCHIVE_PREFIX = "experiments/archive/50_semantic_effect_margin_cached_judge_selection_train_val_test/"
 
 
 def load_module(name: str, path: Path):
@@ -46,6 +48,14 @@ def read(path: Path):
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def resolve_manifest_path(name: str) -> Path:
+    """Resolve pre-archive manifest names without rewriting frozen receipts."""
+    candidate = ROOT / name
+    if candidate.exists() or not name.startswith(ACTIVE_PREFIX):
+        return candidate
+    return ROOT / (ARCHIVE_PREFIX + name.removeprefix(ACTIVE_PREFIX))
 
 
 def clean(value):
@@ -78,7 +88,7 @@ def assert_freeze() -> None:
         "experiments/50_semantic_effect_margin_cached_judge_selection_train_val_test/scripts/freeze_inputs.py",
         "tests/test_semantic_margin.py",
     }
-    changed = [name for name, digest in expected.items() if name not in mutable_after_selection and sha256(ROOT / name) != digest]
+    changed = [name for name, digest in expected.items() if name not in mutable_after_selection and sha256(resolve_manifest_path(name)) != digest]
     if changed: raise RuntimeError(f"frozen input changed: {changed}")
 
 
@@ -87,7 +97,7 @@ def assert_evaluation_source_freeze() -> None:
     receipt = read(OUT / "evaluation_source_manifest.json")
     if receipt["selection_receipt_sha256"] != sha256(OUT / "selection_receipt.json"):
         raise RuntimeError("selection receipt changed after selector freeze")
-    changed = [name for name, digest in receipt["files"].items() if sha256(ROOT / name) != digest]
+    changed = [name for name, digest in receipt["files"].items() if sha256(resolve_manifest_path(name)) != digest]
     if changed: raise RuntimeError(f"corrected evaluator source changed: {changed}")
 
 

@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 ROOT = next(p for p in Path(__file__).resolve().parents if (p / "pyproject.toml").is_file())
-E50 = ROOT / "experiments/50_semantic_effect_margin_cached_judge_selection_train_val_test"
+E50 = Path(__file__).resolve().parents[1]
 
 
 def sha256(path: Path) -> str:
