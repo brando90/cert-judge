@@ -58,3 +58,4 @@ Last updated: 09-30-2026 21:50 PDT (verified on skampere1 at 21:46 PDT and on Gi
 ## 7. Not committed, and why
 
 - `experiments/archive/34_iclr_mega_rewrite_astra/results/astra_last_message.md` and `astra_pid` are untracked 09-22 Astra leftovers, not this session's work. They are left untracked on purpose.
+- 10-16-2026 13:05 PDT -- open by design, unmerged: PR #64 (interim result-consistent draft; plan of record = more human data) and PR #65 (pre-registered human rating-pool proposal: 25 tasks x 5 files, 51 new judge configurations); nothing running; Brando's personal Claude credits are out until 10-20-2026 00:00 PDT.
