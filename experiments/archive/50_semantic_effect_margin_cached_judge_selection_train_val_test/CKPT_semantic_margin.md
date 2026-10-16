@@ -1,6 +1,6 @@
 # Semantic-margin checkpoint
 Created: 10-16-2026 12:45 PDT
-Last updated: 10-16-2026 13:25 PDT
+Last updated: 10-16-2026 13:28 PDT
 
 ## Goal
 - Test one frozen semantic-margin selector against cached properties and the fixed human-rubric baseline.
@@ -15,7 +15,7 @@ Last updated: 10-16-2026 13:25 PDT
 ## Stuck / blocked
 - None.
 ## Next steps
-- No further scientific work in this completed experiment; parent retains runtime receipts and cleans the owned temporary checkouts.
+- No further scientific work. Remote checkout removed; runtime receipts retained. The app protected the pinned local worktree, so it remains attached.
 ## Brando to-do
 - None.
 
@@ -29,3 +29,4 @@ Last updated: 10-16-2026 13:25 PDT
 10-16-2026 13:25 PDT -- Parent verified final worker exit 0 and both merged PRs. Earlier agent-entered log timestamps (13:12 through 14:28) were inaccurate and are retained only as historical text, not timing evidence. Trusted original Git commit times on 10-16-2026 PDT: definition 12:46:08 (02708e6), source/input freeze 13:01:18 (b34a633), selector freeze 13:07:23 (cea4bf6), evaluator freeze 13:07:42 (52e8e1f), results publication 13:13:17 (b6d579b), archive-integrity patch 13:20:50 (d2ff2bd). Native runtime receipts preserve the actual execution sequence.
 LANDED 6a6aa0195e2bd29ae3b2691df4f02efbeb1d0eec https://github.com/brando90/cert-judge/pull/68 10-16-2026 13:15:16 PDT
 LANDED b454d540f4c6dd1e9175388598773905ce7f58a8 https://github.com/brando90/cert-judge/pull/69 10-16-2026 13:25 PDT (verified)
+10-16-2026 13:28 PDT -- Parent preserved runtime archive (SHA-256 7511a05c84a6c9d5086f1260b3aa2f55a03f97d1dfa124db2065f6208d13e7e5) under canonical experiments/archive/.local_leftovers/e50_semantic_margin_runtime/ and removed the completed remote clone. Managed archive_worktree refused local cleanup because this worktree is protected by a pinned task or workspace; retained that protected checkout.
