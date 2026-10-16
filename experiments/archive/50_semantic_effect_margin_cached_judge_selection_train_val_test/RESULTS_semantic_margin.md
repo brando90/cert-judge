@@ -90,6 +90,7 @@ Archived-baseline reproduction: PASS over 550 comparable cells at absolute toler
 ## Artifacts
 
 Numerical tables: `results/configuration_overview.json`, `per_probe_task_components.json`, `selectors.json`, `evaluation.json`, `association.json`, `robustness.json`, `baseline_reproduction.json`, and `runtime.json`.
+Archive-only source provenance and the exact non-mutating verification command are in [ARCHIVE_INTEGRITY.md](ARCHIVE_INTEGRITY.md).
 
 **TLDR-end:** [cert-judge: 50_semantic_effect_margin_cached_judge_selection_train_val_test] The frozen semantic-margin selector does not show a positive historical cached-selection advantage over fixed H2 on the 29-file test support; all numerical artifacts and conditional uncertainty are committed.
 

@@ -14,6 +14,7 @@ import json
 import math
 import platform
 import statistics
+import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -58,6 +59,35 @@ def resolve_manifest_path(name: str) -> Path:
     return ROOT / (ARCHIVE_PREFIX + name.removeprefix(ACTIVE_PREFIX))
 
 
+def git_blob_sha256(commit: str, name: str) -> str:
+    """Hash a historical blob without writing or checking out any source."""
+    blob = subprocess.run(["git", "show", f"{commit}:{name}"], cwd=ROOT, check=True, capture_output=True).stdout
+    return hashlib.sha256(blob).hexdigest()
+
+
+def archive_provenance() -> dict:
+    return read(OUT / "archive_source_provenance.json")
+
+
+def assert_archive_source_provenance() -> None:
+    """Validate both pre-run source blobs and declared archive-only replacements."""
+    receipt = archive_provenance()
+    if sha256(OUT / "evaluation_source_manifest.json") != receipt["original_evaluation_source_manifest_sha256"]:
+        raise RuntimeError("original evaluation-source manifest changed")
+    for entry in receipt["archive_adaptations"]:
+        if sha256(resolve_manifest_path(entry["archive_path"])) != entry["archive_sha256"]:
+            raise RuntimeError(f"archived adaptation changed: {entry['archive_path']}")
+        if git_blob_sha256(entry["evaluation_source_commit"], entry["original_path"]) != entry["evaluation_sha256"]:
+            raise RuntimeError(f"evaluation source blob mismatch: {entry['original_path']}")
+    for entry in receipt["preselection_source_blobs"]:
+        if git_blob_sha256(entry["selection_source_commit"], entry["path"]) != entry["sha256"]:
+            raise RuntimeError(f"selection source blob mismatch: {entry['path']}")
+    for entry in receipt["frozen_numerical_bodies"]:
+        path = E50 / entry["relative_path"]
+        if sha256(path) != entry["sha256"] or git_blob_sha256(entry["published_results_commit"], str(path.relative_to(ROOT))) != entry["sha256"]:
+            raise RuntimeError(f"frozen numerical body changed: {entry['relative_path']}")
+
+
 def clean(value):
     if isinstance(value, dict): return {str(k): clean(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)): return [clean(v) for v in value]
@@ -80,16 +110,11 @@ def manifest() -> dict:
 
 def assert_freeze() -> None:
     expected = manifest()["files"]
-    # The selector was computed with the initial local evaluator source frozen in
-    # input_manifest.json.  A dated evaluator-only correction after selection is
-    # recorded separately; it may not mutate the frozen data/protocol inputs.
-    mutable_after_selection = {
-        "experiments/50_semantic_effect_margin_cached_judge_selection_train_val_test/scripts/analyze_semantic_margin.py",
-        "experiments/50_semantic_effect_margin_cached_judge_selection_train_val_test/scripts/freeze_inputs.py",
-        "tests/test_semantic_margin.py",
-    }
-    changed = [name for name, digest in expected.items() if name not in mutable_after_selection and sha256(resolve_manifest_path(name)) != digest]
+    receipt = archive_provenance()
+    preselection = {entry["path"] for entry in receipt["preselection_source_blobs"]}
+    changed = [name for name, digest in expected.items() if name not in preselection and sha256(resolve_manifest_path(name)) != digest]
     if changed: raise RuntimeError(f"frozen input changed: {changed}")
+    assert_archive_source_provenance()
 
 
 def assert_evaluation_source_freeze() -> None:
@@ -97,8 +122,11 @@ def assert_evaluation_source_freeze() -> None:
     receipt = read(OUT / "evaluation_source_manifest.json")
     if receipt["selection_receipt_sha256"] != sha256(OUT / "selection_receipt.json"):
         raise RuntimeError("selection receipt changed after selector freeze")
-    changed = [name for name, digest in receipt["files"].items() if sha256(resolve_manifest_path(name)) != digest]
+    archive = archive_provenance()
+    adapted = {entry["original_path"] for entry in archive["archive_adaptations"]}
+    changed = [name for name, digest in receipt["files"].items() if name not in adapted and sha256(resolve_manifest_path(name)) != digest]
     if changed: raise RuntimeError(f"corrected evaluator source changed: {changed}")
+    assert_archive_source_provenance()
 
 
 def maximum_weights(configs: list[str], values: dict[str, float | None]):
