@@ -1,0 +1,527 @@
+{
+ "written_utc": "2026-10-18T21:08:31.418697+00:00",
+ "status": "JUDGES AND RUBRIC PINNED. Candidate files are not pinned. Do not send packets.",
+ "no_model_calls": true,
+ "source": "PROPOSAL_10-14-2026.md section 3.2, selectors as written there",
+ "rubric": {
+  "path": "/Users/brandomiranda/veribench/py_src/veribench_prompts/human_judgements_prompt.md",
+  "sha256": "b29e9cafdab10463d29b6ffdbb4700b46ead0e6023278b9b7b69d9ef0ab350af"
+ },
+ "prompt_fingerprints": {
+  "D0": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46",
+  "R4": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b",
+  "H0": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114",
+  "H1": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716",
+  "H2": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+ },
+ "prompt_fingerprint_source": "experiments/39_label_free_proxy_index_train_val_test_over_judge_families/results/panel.json",
+ "panel_sha256": "472855b9b4ff293d9ad618e1b2bf0f8fbe1c7a4b8aa8957c5aa7d1f7e5baaa40",
+ "n_units": 51,
+ "n_single_call": 45,
+ "n_agent": 6,
+ "publication_caveat": "Gemini 4 Argon units are in the pin. Experiment 106 keeps that model's per-configuration statistics private unless Vals permits publication; the public outer association then uses the other 46 units.",
+ "units": [
+  {
+   "config": "fable51|D0",
+   "family": "fable51",
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "compute_effort": "high"
+   },
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "fable51|R4",
+   "family": "fable51",
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "compute_effort": "high"
+   },
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "fable51|H0",
+   "family": "fable51",
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "compute_effort": "high"
+   },
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "fable51|H1",
+   "family": "fable51",
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "compute_effort": "high"
+   },
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "fable51|H2",
+   "family": "fable51",
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "compute_effort": "high"
+   },
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "astra|D0",
+   "family": "astra",
+   "selector": "openai/gpt-6-astra-high",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "astra|R4",
+   "family": "astra",
+   "selector": "openai/gpt-6-astra-high",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "astra|H0",
+   "family": "astra",
+   "selector": "openai/gpt-6-astra-high",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "astra|H1",
+   "family": "astra",
+   "selector": "openai/gpt-6-astra-high",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "astra|H2",
+   "family": "astra",
+   "selector": "openai/gpt-6-astra-high",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "argon|D0",
+   "family": "argon",
+   "selector": "google/gemini-4-argon",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "argon|R4",
+   "family": "argon",
+   "selector": "google/gemini-4-argon",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "argon|H0",
+   "family": "argon",
+   "selector": "google/gemini-4-argon",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "argon|H1",
+   "family": "argon",
+   "selector": "google/gemini-4-argon",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "argon|H2",
+   "family": "argon",
+   "selector": "google/gemini-4-argon",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "grok47|D0",
+   "family": "grok47",
+   "selector": "grok/grok-4.7-high",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "grok47|R4",
+   "family": "grok47",
+   "selector": "grok/grok-4.7-high",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "grok47|H0",
+   "family": "grok47",
+   "selector": "grok/grok-4.7-high",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "grok47|H1",
+   "family": "grok47",
+   "selector": "grok/grok-4.7-high",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "grok47|H2",
+   "family": "grok47",
+   "selector": "grok/grok-4.7-high",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "kimik3|D0",
+   "family": "kimik3",
+   "selector": "kimi/kimi-k3-high",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "kimik3|R4",
+   "family": "kimik3",
+   "selector": "kimi/kimi-k3-high",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "kimik3|H0",
+   "family": "kimik3",
+   "selector": "kimi/kimi-k3-high",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "kimik3|H1",
+   "family": "kimik3",
+   "selector": "kimi/kimi-k3-high",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "kimik3|H2",
+   "family": "kimik3",
+   "selector": "kimi/kimi-k3-high",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "qwen38|D0",
+   "family": "qwen38",
+   "selector": "alibaba/qwen3.8-max",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "qwen38|R4",
+   "family": "qwen38",
+   "selector": "alibaba/qwen3.8-max",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "qwen38|H0",
+   "family": "qwen38",
+   "selector": "alibaba/qwen3.8-max",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "qwen38|H1",
+   "family": "qwen38",
+   "selector": "alibaba/qwen3.8-max",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "qwen38|H2",
+   "family": "qwen38",
+   "selector": "alibaba/qwen3.8-max",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "deepseek|D0",
+   "family": "deepseek",
+   "selector": "deepseek/deepseek-v4-pro-0813-high",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "deepseek|R4",
+   "family": "deepseek",
+   "selector": "deepseek/deepseek-v4-pro-0813-high",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "deepseek|H0",
+   "family": "deepseek",
+   "selector": "deepseek/deepseek-v4-pro-0813-high",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "deepseek|H1",
+   "family": "deepseek",
+   "selector": "deepseek/deepseek-v4-pro-0813-high",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "deepseek|H2",
+   "family": "deepseek",
+   "selector": "deepseek/deepseek-v4-pro-0813-high",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "glm53|D0",
+   "family": "glm53",
+   "selector": "zai/glm-5.3-high",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "glm53|R4",
+   "family": "glm53",
+   "selector": "zai/glm-5.3-high",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "glm53|H0",
+   "family": "glm53",
+   "selector": "zai/glm-5.3-high",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "glm53|H1",
+   "family": "glm53",
+   "selector": "zai/glm-5.3-high",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "glm53|H2",
+   "family": "glm53",
+   "selector": "zai/glm-5.3-high",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "mimo|D0",
+   "family": "mimo",
+   "selector": "xiaomi/mimo-v2.6-pro",
+   "prompt": "D0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "mimo|R4",
+   "family": "mimo",
+   "selector": "xiaomi/mimo-v2.6-pro",
+   "prompt": "R4",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "96f461ee65d61e4adb07972f0995c9d40accfe7a46c57262630831510358bb7b"
+  },
+  {
+   "config": "mimo|H0",
+   "family": "mimo",
+   "selector": "xiaomi/mimo-v2.6-pro",
+   "prompt": "H0",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "c5e638a4032b298617ac364c2c0a5d042775981ad8f9e4140e166e22a13f7114"
+  },
+  {
+   "config": "mimo|H1",
+   "family": "mimo",
+   "selector": "xiaomi/mimo-v2.6-pro",
+   "prompt": "H1",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "bb2bd6cea787b42e65cde691292f96863787c0cbddce4d1b4f83bbdccb6dc716"
+  },
+  {
+   "config": "mimo|H2",
+   "family": "mimo",
+   "selector": "xiaomi/mimo-v2.6-pro",
+   "prompt": "H2",
+   "harness": "vb103_judge",
+   "kwargs": {},
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "t2_fable51|H2",
+   "family": "fable51",
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "prompt": "H2",
+   "harness": "terminus2",
+   "kwargs": {
+    "compute_effort": "high",
+    "max_turns": 20,
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "t2_fable51|D0",
+   "family": "fable51",
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "prompt": "D0",
+   "harness": "terminus2",
+   "kwargs": {
+    "compute_effort": "high",
+    "max_turns": 20,
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "t2_astra|H2",
+   "family": "astra",
+   "selector": "openai/gpt-6-astra-high",
+   "prompt": "H2",
+   "harness": "terminus2",
+   "kwargs": {
+    "max_turns": 20,
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "t2_astra|D0",
+   "family": "astra",
+   "selector": "openai/gpt-6-astra-high",
+   "prompt": "D0",
+   "harness": "terminus2",
+   "kwargs": {
+    "max_turns": 20,
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  },
+  {
+   "config": "t2_kimik3|H2",
+   "family": "kimik3",
+   "selector": "kimi/kimi-k3-high",
+   "prompt": "H2",
+   "harness": "terminus2",
+   "kwargs": {
+    "max_turns": 20,
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9"
+  },
+  {
+   "config": "t2_kimik3|D0",
+   "family": "kimik3",
+   "selector": "kimi/kimi-k3-high",
+   "prompt": "D0",
+   "harness": "terminus2",
+   "kwargs": {
+    "max_turns": 20,
+    "reasoning_effort": "high"
+   },
+   "prompt_fingerprint": "c0da49bbe86d1fa1fd9438d06a37f5d7afc8ddf0429b9aa0c0d53d6caab97e46"
+  }
+ ],
+ "not_pinned": [
+  "SHA-256 of the 125 experiment-109 candidate files (25 wave-1 tasks x Fable 5.1, GPT-6 Astra, Kimi K3, GLM-5.3, Mistral Medium 3.5). No Lean outputs from experiment 109 are in the local VeriBench checkout, and the IC summaries do not store per-file hashes."
+ ]
+}
