@@ -6,7 +6,8 @@ The registered gates test whether the association on the held-out judges is posi
 The association is carried largely by the difference between prompts that see the whole reference and prompts that see its last theorem block, and it reverses within the ten fuller-context test configurations.
 % Provenance: experiments/archive/48_c_ms_gold_heldout_judge_association_cluster_bootstrap_and_criterion_sensitivity/RESULTS_heldout_association_sensitivity.md on main (pull request 66); stratified permutations and the judge-model cluster bootstrap, 10{,}000 draws, seed 48.
 The same limit appears when the criterion is permuted inside groups, rather than when prompts are dropped after the fact.
-Permuting within judge model gives a one-sided $p$ of $0.0701$, and permuting within prompt family gives $0.9136$, on the 16 configurations where the screen is defined.
+Permuting within judge model gives a one-sided $p$ of $0.0701$ on the 16 configurations where the screen is defined.
+Permuting within prompt family gives $0.9136$ on those same 16 configurations.
 Resampling the four held-out judge models puts the Spearman of $0.558$ in $[-0.842, 0.656]$.
 The screen therefore separates judge groups one can already tell apart; within the group one would deploy, the evidence does not show that it ranks judges.
 The configurations inside each split share judge models and prompt families, so the configuration bootstrap understates uncertainty, and the test judges were two single-call models and two agent harnesses rather than an independent sample of judges.
