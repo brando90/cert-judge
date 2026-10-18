@@ -1,0 +1,205 @@
+{
+ "written_utc": "2026-10-18T21:04:11.378623+00:00",
+ "status": "PARTIAL \u2014 wave-1 tasks and the accept threshold only. Candidate bytes and the 51 judge selectors are not pinned. Do not send packets.",
+ "no_model_calls": true,
+ "manifest_sha256": "907c6fde1713fb6cb0a2f711a25cc889c196164691c687f6886e9473d7da2ee7",
+ "manifest_path": "/Users/brandomiranda/veribench/experiments/106_simulated_expert_raters_icl_from_human_labels_leave_one_agent_out_fsc_judge/expt_v5/manifest.json",
+ "units_train_val_sha256": "3af3b24dd3ae42981ffd0c40bff0db50be781cecb4c102b56575ba17cbfa3c02",
+ "analysis_lib_sha256": "3051346cbeb858cf0256f76938cadd15e055524e12301c13c4a78487878e4ba8",
+ "draw": {
+  "seed": 20261014,
+  "generator": "random.Random, one stream, sample(5) per split",
+  "dropped_stems": [
+   "heapsort_build_heap",
+   "heapsort_max_heapify"
+  ],
+  "reason": "set N folder N17 shows raters the heapsort_build_heap and heapsort_max_heapify references",
+  "split_order": [
+   "easy_set",
+   "cs_set",
+   "humaneval_set",
+   "realcode_set",
+   "security_set"
+  ],
+  "eligible_counts": {
+   "easy_set": 10,
+   "cs_set": 8,
+   "humaneval_set": 10,
+   "realcode_set": 10,
+   "security_set": 10
+  },
+  "n_tasks": 25,
+  "tasks": [
+   {
+    "task": "easy_set/21_is_palindrome",
+    "split": "easy_set",
+    "reference_sha256": "c31ae6fcb058fde61dca7e383ccca5cfb1f4a409db9235e2d5dcb2a3e5279fe8",
+    "reference_path": "veribench_dataset/lean_src/veribench/easy_set/21_is_palindrome.lean"
+   },
+   {
+    "task": "easy_set/2_MyMax",
+    "split": "easy_set",
+    "reference_sha256": "dedce595a7601d61ae48f91f0bc2d5afd3707789c5ce8f98b51dfef3aabcd6e1",
+    "reference_path": "veribench_dataset/lean_src/veribench/easy_set/2_MyMax.lean"
+   },
+   {
+    "task": "easy_set/4_MyRemainder",
+    "split": "easy_set",
+    "reference_sha256": "f856835a161a063a5907f6f03cf871b7a5919046fb33be289282aa50e48420ad",
+    "reference_path": "veribench_dataset/lean_src/veribench/easy_set/4_MyRemainder.lean"
+   },
+   {
+    "task": "easy_set/40_all_even",
+    "split": "easy_set",
+    "reference_sha256": "fd5f1a855d83c55849c123421a7d689cec1a61123b4aa96e6776bef9e3e6cdc0",
+    "reference_path": "veribench_dataset/lean_src/veribench/easy_set/40_all_even.lean"
+   },
+   {
+    "task": "easy_set/7_myEvanList",
+    "split": "easy_set",
+    "reference_sha256": "889f845682b0c36e325fede777c4c74561b11a218a6a884eb74f15b3beec4f1b",
+    "reference_path": "veribench_dataset/lean_src/veribench/easy_set/7_myEvanList.lean"
+   },
+   {
+    "task": "cs_set/quick_sort",
+    "split": "cs_set",
+    "reference_sha256": "8e4f60ffa2d2286cbade3387acfbc8a71cee8983267ce86ceeaafcfcded6bf98",
+    "reference_path": "veribench_dataset/lean_src/veribench/cs_set/quick_sort.lean"
+   },
+   {
+    "task": "cs_set/linear_search",
+    "split": "cs_set",
+    "reference_sha256": "bf3f65f95ae2e2e53c3f55a75b740884decec7d8b3d4957b3a51db65951d51f6",
+    "reference_path": "veribench_dataset/lean_src/veribench/cs_set/linear_search.lean"
+   },
+   {
+    "task": "cs_set/kruskal",
+    "split": "cs_set",
+    "reference_sha256": "02e01fc5ec823974c901451ceaa2ac03fb31d43a4a07577b2484e2e31d0bb038",
+    "reference_path": "veribench_dataset/lean_src/veribench/cs_set/kruskal.lean"
+   },
+   {
+    "task": "cs_set/lcs",
+    "split": "cs_set",
+    "reference_sha256": "be205e98fe255423a1945553c39b3edae47595a40b3c0c09f675cb97f25a8167",
+    "reference_path": "veribench_dataset/lean_src/veribench/cs_set/lcs.lean"
+   },
+   {
+    "task": "cs_set/heapsort_heap_structure",
+    "split": "cs_set",
+    "reference_sha256": "d6b48e17037f632a22fa7a26a2333b7c339ea8bb9a41b2fb9a3f0687ee1cb2f0",
+    "reference_path": "veribench_dataset/lean_src/veribench/cs_set/heapsort_heap_structure.lean"
+   },
+   {
+    "task": "humaneval_set/humaneval_16_count_distinct_characters",
+    "split": "humaneval_set",
+    "reference_sha256": "de8a4d3616bb60ba050d265a82a728511477540b7f77524e67a201f1d070b8fd",
+    "reference_path": "veribench_dataset/lean_src/veribench/humaneval_set/humaneval_16_count_distinct_characters.lean"
+   },
+   {
+    "task": "humaneval_set/humaneval_82_prime_length",
+    "split": "humaneval_set",
+    "reference_sha256": "4f91d8464682afc30ebda7eaae3b6253ebd2b997836db6ba95ee1231f2da8107",
+    "reference_path": "veribench_dataset/lean_src/veribench/humaneval_set/humaneval_82_prime_length.lean"
+   },
+   {
+    "task": "humaneval_set/humanevalXL_9__isPrime",
+    "split": "humaneval_set",
+    "reference_sha256": "eac9bb4153fcabfba82fc36ee3cebfb37c380a08ea38604ec70d0d79c35c2cec",
+    "reference_path": "veribench_dataset/lean_src/veribench/humaneval_set/humanevalXL_9__isPrime.lean"
+   },
+   {
+    "task": "humaneval_set/humaneval_28_concatenate",
+    "split": "humaneval_set",
+    "reference_sha256": "757863d3f53f9a2523e1f4fd9ab06cf8e2a5ece9ab6c05ef207920cbc2310e45",
+    "reference_path": "veribench_dataset/lean_src/veribench/humaneval_set/humaneval_28_concatenate.lean"
+   },
+   {
+    "task": "humaneval_set/humaneval_25_factorize",
+    "split": "humaneval_set",
+    "reference_sha256": "d0224e744c88f4e2f3fee25e2c876c8d135550e165d2cc1d63e8f681e683278c",
+    "reference_path": "veribench_dataset/lean_src/veribench/humaneval_set/humaneval_25_factorize.lean"
+   },
+   {
+    "task": "realcode_set/15_functools_reduce",
+    "split": "realcode_set",
+    "reference_sha256": "546d5b0b0b187c8115aba9e6c747718aca4f539c7178f0f894824a7dd0a1ae67",
+    "reference_path": "veribench_dataset/lean_src/veribench/realcode_set/15_functools_reduce.lean"
+   },
+   {
+    "task": "realcode_set/14_fractions_core",
+    "split": "realcode_set",
+    "reference_sha256": "67ce56b715b6e46407e15ddbf4fac35d6abc3ac19adf1ce2d2fb73bf24c584a8",
+    "reference_path": "veribench_dataset/lean_src/veribench/realcode_set/14_fractions_core.lean"
+   },
+   {
+    "task": "realcode_set/27_graphlib",
+    "split": "realcode_set",
+    "reference_sha256": "7ddc941306d7b527c35af8c8d0c69645b6143b013af1f6337881f1b70fa06ac5",
+    "reference_path": "veribench_dataset/lean_src/veribench/realcode_set/27_graphlib.lean"
+   },
+   {
+    "task": "realcode_set/17_functools_partial",
+    "split": "realcode_set",
+    "reference_sha256": "2e6ee5dc090947215fc493b7bbd65c5dd337f72c6965aa9d9ee3da32e6ea13c9",
+    "reference_path": "veribench_dataset/lean_src/veribench/realcode_set/17_functools_partial.lean"
+   },
+   {
+    "task": "realcode_set/29_statistics_median_high",
+    "split": "realcode_set",
+    "reference_sha256": "8b1db06c5458cf422792dfb3a449fa17a1115e833c92afb198d2ee25fb03a0e7",
+    "reference_path": "veribench_dataset/lean_src/veribench/realcode_set/29_statistics_median_high.lean"
+   },
+   {
+    "task": "security_set/security_6858/vulnerabilities/118_unsafeChrootUID",
+    "split": "security_set",
+    "reference_sha256": "7331eb4416b10324ab1c24f8dd153b0fdab1b2851a065c3bfc3a2012be2fef71",
+    "reference_path": "veribench_dataset/lean_src/veribench/security_set/security_6858/vulnerabilities/118_unsafeChrootUID.lean"
+   },
+   {
+    "task": "security_set/security_6858/safe/81_unsafeSigPerm_safe",
+    "split": "security_set",
+    "reference_sha256": "01932bc42a6fcebb534ac75556ed40062864bc8e861ce830bddbee5be97b8bf1",
+    "reference_path": "veribench_dataset/lean_src/veribench/security_set/security_6858/safe/81_unsafeSigPerm_safe.lean"
+   },
+   {
+    "task": "security_set/security_6858/vulnerabilities/101_unsafeGuardReuse",
+    "split": "security_set",
+    "reference_sha256": "bf7b54522e5d16c8df3eb6b8dc15c09f12a5bea48ec6fbeda80d90ac620e1360",
+    "reference_path": "veribench_dataset/lean_src/veribench/security_set/security_6858/vulnerabilities/101_unsafeGuardReuse.lean"
+   },
+   {
+    "task": "security_set/security_6858/vulnerabilities/11_unsafeTimingComparison",
+    "split": "security_set",
+    "reference_sha256": "59cf1d30d9f9ca4106b42839a36771df249a546bd3b351cd325dccf71b5ec596",
+    "reference_path": "veribench_dataset/lean_src/veribench/security_set/security_6858/vulnerabilities/11_unsafeTimingComparison.lean"
+   },
+   {
+    "task": "security_set/security_6858/safe/22_unsafeTaintedLen_safe",
+    "split": "security_set",
+    "reference_sha256": "d228215430b8a0f7043993f1991c5835e11e4094668d97c3bf5b9415194976a9",
+    "reference_path": "veribench_dataset/lean_src/veribench/security_set/security_6858/safe/22_unsafeTaintedLen_safe.lean"
+   }
+  ]
+ },
+ "accept_threshold": {
+  "tau": 0.9015718800218536,
+  "balanced_accuracy": 0.9705882352941176,
+  "tp": 21,
+  "fp": 1,
+  "fn": 0,
+  "tn": 16,
+  "tpr": 1.0,
+  "tnr": 0.9411764705882353,
+  "n_units": 38,
+  "n_good": 21,
+  "n_bad": 17,
+  "tie_break": "largest tau among thresholds with the maximum balanced accuracy",
+  "good_definition": "held-out Spearman >= 0.45"
+ },
+ "not_frozen": [
+  "SHA-256 of the 125 candidate files from experiment 109",
+  "the 51 new judge selectors, efforts and prompt fingerprints",
+  "the set-N rubric file hash (the proposal cites b29e9caf; that file was not in the local human_round tree on 10-18-2026)"
+ ]
+}
