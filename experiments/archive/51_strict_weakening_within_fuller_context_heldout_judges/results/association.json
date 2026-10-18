@@ -1,0 +1,217 @@
+{
+ "written_utc": "2026-10-18T20:59:14.052754+00:00",
+ "g0": {
+  "pass": true,
+  "checks": {
+   "n_units": {
+    "got": 16,
+    "receipt": 16
+   },
+   "spearman": {
+    "got": 0.5577632120757341,
+    "receipt": 0.5577632120757341
+   },
+   "kendall": {
+    "got": 0.3598357857649609,
+    "receipt": 0.3598357857649609
+   },
+   "pearson": {
+    "got": 0.642903931507812,
+    "receipt": 0.6429039315078119
+   },
+   "ci_lo": {
+    "got": 0.07807807807807808,
+    "receipt": 0.07807807807807808
+   },
+   "ci_hi": {
+    "got": 0.7622585438335809,
+    "receipt": 0.7622585438335809
+   },
+   "permutation_p": {
+    "got": 0.012698730126987301,
+    "receipt": 0.012698730126987301
+   }
+  }
+ },
+ "dropped_test": {
+  "not_fuller": 6,
+  "wrong_split": 0,
+  "control": 0,
+  "missing_screen": 0,
+  "missing_strict": 0,
+  "criterion_not_computed": 0,
+  "split_mismatch": 0
+ },
+ "primary": {
+  "n": 12,
+  "configs": [
+   "opus55x|D0",
+   "opus55x|H0",
+   "opus55x|H2",
+   "qwen36|D0",
+   "qwen36|H0",
+   "qwen36|H1",
+   "qwen36|H2",
+   "qwen36|R4",
+   "t2_qwen|D0",
+   "t2_qwen|H2",
+   "t2_sonnet5|D0",
+   "t2_sonnet5|H2"
+  ],
+  "spearman": -0.32387513781564786,
+  "pearson": -0.2647555575087148,
+  "kendall": -0.27524094128159016,
+  "ci": {
+   "lo": -0.7606388292556648,
+   "hi": 0.04486365344241678,
+   "valid_draws": 8842
+  },
+  "permutation_p": 0.8656134386561344,
+  "reading": "REVERSED",
+  "n_x_at_one": 10,
+  "x_min": 0.96,
+  "x_max": 1.0
+ },
+ "within_model": {
+  "permutation_p": 1.0,
+  "draws": 10000,
+  "finite_draws": 10000,
+  "observed": -0.32387513781564786,
+  "models": {
+   "opus55x": 3,
+   "qwen36": 5,
+   "t2_qwen": 2,
+   "t2_sonnet5": 2
+  },
+  "test": "one-sided permutation of the criterion within judge model"
+ },
+ "model_cluster_ci": {
+  "lo": -0.7574706955280661,
+  "hi": -0.224630175168721,
+  "valid_draws": 6808,
+  "p_val": "n/a",
+  "n_models": 4
+ },
+ "primary_weakening": {
+  "n": 12,
+  "configs": [
+   "opus55x|D0",
+   "opus55x|H0",
+   "opus55x|H2",
+   "qwen36|D0",
+   "qwen36|H0",
+   "qwen36|H1",
+   "qwen36|H2",
+   "qwen36|R4",
+   "t2_qwen|D0",
+   "t2_qwen|H2",
+   "t2_sonnet5|D0",
+   "t2_sonnet5|H2"
+  ],
+  "spearman": 0.25919479328518813,
+  "pearson": -0.06429029104673939,
+  "kendall": 0.19847906537954926,
+  "ci": {
+   "lo": -0.44483985765124556,
+   "hi": 0.8279569892473119,
+   "valid_draws": 10000
+  },
+  "permutation_p": 0.21027897210278973,
+  "reading": "FAIL",
+  "n_x_at_one": 2,
+  "x_min": 0.7543859649122807,
+  "x_max": 1.0,
+  "dropped_missing": 0,
+  "name": "primary_weakening"
+ },
+ "c_ms_gold": {
+  "n": 10,
+  "configs": [
+   "opus55x|D0",
+   "opus55x|H0",
+   "opus55x|H2",
+   "qwen36|D0",
+   "qwen36|H0",
+   "qwen36|H1",
+   "t2_qwen|D0",
+   "t2_qwen|H2",
+   "t2_sonnet5|D0",
+   "t2_sonnet5|H2"
+  ],
+  "spearman": -0.3708223816448394,
+  "pearson": -0.3191705565424407,
+  "kendall": -0.22473328748774737,
+  "ci": {
+   "lo": -0.7880794701986755,
+   "hi": 0.3167701863354037,
+   "valid_draws": 10000
+  },
+  "permutation_p": 0.8584141585841416,
+  "reading": "REVERSED",
+  "n_x_at_one": 0,
+  "x_min": 0.9862188618056353,
+  "x_max": 0.9956764449585879,
+  "dropped_missing": 2,
+  "name": "c_ms_gold"
+ },
+ "descriptive": {
+  "train": {
+   "n": 10,
+   "configs": [
+    "sol6h|D0",
+    "sol6h|H0",
+    "sol6h|H1",
+    "sol6h|H2",
+    "sol6h|R4",
+    "sonnet5m|D0",
+    "sonnet5m|H0",
+    "sonnet5m|H1",
+    "sonnet5m|H2",
+    "sonnet5m|R4"
+   ],
+   "spearman": 0.4265859821389099,
+   "pearson": 0.4101243150074732,
+   "kendall": 0.29019050004400465,
+   "ci": {
+    "lo": -0.43037974683544306,
+    "hi": 0.9114654303753,
+    "valid_draws": 10000
+   },
+   "permutation_p": 0.1100889911008899,
+   "reading": "FAIL",
+   "n_x_at_one": 2,
+   "x_min": 0.8,
+   "x_max": 1.0
+  },
+  "val": {
+   "n": 12,
+   "configs": [
+    "gem31h|D0",
+    "gem31h|H0",
+    "gem31h|H1",
+    "gem31h|H2",
+    "gem31h|R4",
+    "luna6h|D0",
+    "luna6h|H0",
+    "luna6h|H1",
+    "luna6h|H2",
+    "luna6h|R4",
+    "t2_luna|D0",
+    "t2_luna|H2"
+   ],
+   "spearman": 0.6138761363713162,
+   "pearson": 0.8185373501395047,
+   "kendall": 0.5145272509897014,
+   "ci": {
+    "lo": -0.019071419114780174,
+    "hi": 0.9469181139585457,
+    "valid_draws": 10000
+   },
+   "permutation_p": 0.019698030196980302,
+   "reading": "PASS",
+   "n_x_at_one": 5,
+   "x_min": 0.6,
+   "x_max": 1.0
+  }
+ }
+}
