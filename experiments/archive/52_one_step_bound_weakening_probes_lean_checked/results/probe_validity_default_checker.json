@@ -1,0 +1,92 @@
+{
+ "written_utc": "2026-10-18T17:29:06.224994+00:00",
+ "n_valid": 0,
+ "n_declared": 7,
+ "construction": "STOP",
+ "rows": [
+  {
+   "task": "33_MyMinimum",
+   "decl": "minimum_prop",
+   "old": "myMinList xs \u2264 z",
+   "new": "myMinList xs \u2264 (z + 1)",
+   "valid": false,
+   "reason": "probe does not elaborate: <probe>.lean:148:43: error: type mismatch",
+   "reverse": null,
+   "n_checks": 0,
+   "forward_failed": 0,
+   "sha256": "8825cdd63ee5f2a0760763186707984832421fbf4d3352ff98f4d729d17d03c7"
+  },
+  {
+   "task": "18_MyFibonacci",
+   "decl": "fibonacci_increasing_prop",
+   "old": "myFibonacci (n + 1) > myFibonacci n",
+   "new": "myFibonacci (n + 1) \u2265 myFibonacci n",
+   "valid": false,
+   "reason": "forward check failed for fibonacci_increasing_thm: /var/folders/ym/nmb6wx4n4g1c61lp9hwx4h4c0000gn/T/pti_probe_kgadbts4.lean:171:24: error: tactic 'aesop' failed, made no progress",
+   "reverse": "unproved",
+   "n_checks": 6,
+   "forward_failed": 3,
+   "sha256": "b4331652d2d82974bc44c98a9f8610c16c6d92b61791bc0981d781bd894e65fa"
+  },
+  {
+   "task": "humaneval_31_is_prime",
+   "decl": "prime_def_prop",
+   "old": "2 \u2264 d \u2192 d < n \u2192 n % d \u2260 0",
+   "new": "2 \u2264 d \u2192 d + 1 < n \u2192 n % d \u2260 0",
+   "valid": false,
+   "reason": "forward check failed for prime_def_thm: /var/folders/ym/nmb6wx4n4g1c61lp9hwx4h4c0000gn/T/pti_probe_5jwuikjh.lean:193:24: error: tactic 'aesop' failed, made no progress",
+   "reverse": "unproved",
+   "n_checks": 6,
+   "forward_failed": 3,
+   "sha256": "49472d3812d2e78c1e785b4a286f3fcd7222e72466bcaac0875377236e1c52b5"
+  },
+  {
+   "task": "humaneval_3_below_zero",
+   "decl": "monotonicity_prop",
+   "old": "x \u2265 0",
+   "new": "x \u2265 1",
+   "valid": false,
+   "reason": "forward check failed for monotonicity_thm: /var/folders/ym/nmb6wx4n4g1c61lp9hwx4h4c0000gn/T/pti_probe_z0usqd8a.lean:181:24: error: tactic 'aesop' failed, made no progress",
+   "reverse": "unproved",
+   "n_checks": 6,
+   "forward_failed": 3,
+   "sha256": "87d29053b1dc50bc1d158ce1544374144c34c68965394a7a61be947d5f254ecf"
+  },
+  {
+   "task": "13_MyUppercase",
+   "decl": "length_preservation_prop",
+   "old": "(myUppercase s).length = s.length",
+   "new": "(myUppercase s).length \u2264 s.length",
+   "valid": false,
+   "reason": "forward check failed for length_preservation_thm: /var/folders/ym/nmb6wx4n4g1c61lp9hwx4h4c0000gn/T/pti_probe_s0xt8v86.lean:150:24: error: tactic 'aesop' failed, made no progress",
+   "reverse": "unproved",
+   "n_checks": 6,
+   "forward_failed": 2,
+   "sha256": "318dbb8d7c75bec64b98cb0bdc74fdc4059839de89d25d0f22532698dce5aa38"
+  },
+  {
+   "task": "1_MyAdd",
+   "decl": "commutativity_prop",
+   "old": "myAdd a b = myAdd b a",
+   "new": "myAdd a b = myAdd b a \u2228 a = 0",
+   "valid": false,
+   "reason": "probe does not elaborate: <probe>.lean:195:30: error: unsolved goals",
+   "reverse": null,
+   "n_checks": 0,
+   "forward_failed": 0,
+   "sha256": "884ef3a33d6e09f616fe2ba5da1fd809745903812b5394cf8036271afe2a10e6"
+  },
+  {
+   "task": "0_bisect_right",
+   "decl": "Post",
+   "old": "lo \u2264 idx \u2227 idx \u2264 hi",
+   "new": "lo \u2264 idx \u2227 idx \u2264 hi + 1",
+   "valid": false,
+   "reason": "forward check failed for correctness_thm: /var/folders/ym/nmb6wx4n4g1c61lp9hwx4h4c0000gn/T/pti_probe_2ywumxkg.lean:172:247: error: unsolved goals",
+   "reverse": "unproved",
+   "n_checks": 4,
+   "forward_failed": 2,
+   "sha256": "fcc1c252e7b2f4a2dcc50b805c532815bb70b77e8fdc7e2d97018255a7e13b56"
+  }
+ ]
+}
