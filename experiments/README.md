@@ -89,3 +89,5 @@ Reconciliation never overwrites existing files; collisions are preserved under
 provenance paths; executable consumers use the current archive locations.
 
 Completed on 10-09-2026: [47_simulated_panel_v5_label_free_judge_screening](archive/47_simulated_panel_v5_label_free_judge_screening/RESULTS_full_campaign.md) is archived with all original evidence and analyses. No strong-follow-up shortlist; complete-pool common support 0/691, below the frozen 90% gate, leaves gains and 95% intervals undefined (p-val=n/a).
+
+- `56_semantic_margin_training_only_diagnosis_and_revisions`: active training-only cached margin diagnosis and frozen revisions.
