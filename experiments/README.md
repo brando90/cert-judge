@@ -89,3 +89,5 @@ Reconciliation never overwrites existing files; collisions are preserved under
 provenance paths; executable consumers use the current archive locations.
 
 Completed on 10-09-2026: [47_simulated_panel_v5_label_free_judge_screening](archive/47_simulated_panel_v5_label_free_judge_screening/RESULTS_full_campaign.md) is archived with all original evidence and analyses. No strong-follow-up shortlist; complete-pool common support 0/691, below the frozen 90% gate, leaves gains and 95% intervals undefined (p-val=n/a).
+
+- [56_semantic_margin_training_only_diagnosis_and_revisions](archive/56_semantic_margin_training_only_diagnosis_and_revisions/RESULTS_training_diagnosis.md): completed 10-19-2026 — zero-inference training diagnosis. Formatting penalty is 0 on 59/59 task values and the identity baseline is 1, so headroom equals the original margin on 12/12 configurations. Margin versus current-five training agreement is Spearman -0.378, Pearson -0.219, Kendall -0.303 across 12 correlated configurations (p-val=n/a). Pooled selection is unavailable at 25/30 files versus the frozen requirement of 27.

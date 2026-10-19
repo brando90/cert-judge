@@ -1,0 +1,6868 @@
+{
+  "bootstrap_draws": 10000,
+  "common_support": {
+    "declared_items": 30,
+    "items": 25,
+    "missing": [
+      {
+        "configs_without_two_repeats": [
+          "qwen36|H1"
+        ],
+        "item": "3_heappop__agent0",
+        "task": "3_heappop"
+      },
+      {
+        "configs_without_two_repeats": [
+          "qwen36|R4"
+        ],
+        "item": "3_heappop__agent2",
+        "task": "3_heappop"
+      },
+      {
+        "configs_without_two_repeats": [
+          "qwen36|H1"
+        ],
+        "item": "43_replace_spaces__agent0",
+        "task": "43_replace_spaces"
+      },
+      {
+        "configs_without_two_repeats": [
+          "t2_qwen|H2"
+        ],
+        "item": "9_pathTraversal_safe__agent1",
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "configs_without_two_repeats": [
+          "qwen36|H2"
+        ],
+        "item": "bubble_sort__agent1",
+        "task": "bubble_sort"
+      }
+    ],
+    "required_items": 27,
+    "status": "BELOW_90_PERCENT",
+    "tasks": 10
+  },
+  "config_metadata": [
+    {
+      "config": "opus55x|D0",
+      "harness": "vb103_judge",
+      "model_key": "opus55x",
+      "prompt_key": "D0"
+    },
+    {
+      "config": "opus55x|H0",
+      "harness": "vb103_judge",
+      "model_key": "opus55x",
+      "prompt_key": "H0"
+    },
+    {
+      "config": "opus55x|H2",
+      "harness": "vb103_judge",
+      "model_key": "opus55x",
+      "prompt_key": "H2"
+    },
+    {
+      "config": "qwen36|D0",
+      "harness": "vb103_judge",
+      "model_key": "qwen36",
+      "prompt_key": "D0"
+    },
+    {
+      "config": "qwen36|H0",
+      "harness": "vb103_judge",
+      "model_key": "qwen36",
+      "prompt_key": "H0"
+    },
+    {
+      "config": "qwen36|H1",
+      "harness": "vb103_judge",
+      "model_key": "qwen36",
+      "prompt_key": "H1"
+    },
+    {
+      "config": "qwen36|H2",
+      "harness": "vb103_judge",
+      "model_key": "qwen36",
+      "prompt_key": "H2"
+    },
+    {
+      "config": "qwen36|R4",
+      "harness": "vb103_judge",
+      "model_key": "qwen36",
+      "prompt_key": "R4"
+    },
+    {
+      "config": "t2_qwen|D0",
+      "harness": "terminus2",
+      "model_key": "t2_qwen",
+      "prompt_key": "D0"
+    },
+    {
+      "config": "t2_qwen|H2",
+      "harness": "terminus2",
+      "model_key": "t2_qwen",
+      "prompt_key": "H2"
+    },
+    {
+      "config": "t2_sonnet5|D0",
+      "harness": "terminus2",
+      "model_key": "t2_sonnet5",
+      "prompt_key": "D0"
+    },
+    {
+      "config": "t2_sonnet5|H2",
+      "harness": "terminus2",
+      "model_key": "t2_sonnet5",
+      "prompt_key": "H2"
+    }
+  ],
+  "configs": [
+    "opus55x|D0",
+    "opus55x|H0",
+    "opus55x|H2",
+    "qwen36|D0",
+    "qwen36|H0",
+    "qwen36|H1",
+    "qwen36|H2",
+    "qwen36|R4",
+    "t2_qwen|D0",
+    "t2_qwen|H2",
+    "t2_sonnet5|D0",
+    "t2_sonnet5|H2"
+  ],
+  "configuration_metrics": {
+    "current3_mean_0_to_1": {
+      "opus55x|D0": {
+        "bias": -0.11333333333333336,
+        "human_mean": 0.5633333333333331,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.044472222222221795,
+            "lo": -0.2755555555555555,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7222222222222224,
+            "lo": 0.39777777777777784,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.63,
+            "lo": 0.2766666666666666,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7000387843865439,
+            "lo": -0.03943162774134374,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.361111111111111,
+            "lo": 0.16441666666666666,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.7716392547239913,
+            "lo": -0.029827685612253466,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.8314332604318091,
+            "lo": -0.018833685589126997,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.44999999999999996,
+        "kendall": 0.4012013825805315,
+        "mae": 0.2555555555555555,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.48073968740904555,
+        "spearman": 0.5294908206385102,
+        "support": "configuration_observed_items"
+      },
+      "opus55x|H0": {
+        "bias": 0.003333333333333351,
+        "human_mean": 0.5633333333333331,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.13555555555555554,
+            "lo": -0.1288888888888889,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7222222222222224,
+            "lo": 0.39777777777777784,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7466666666666667,
+            "lo": 0.3933333333333333,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7369249359994388,
+            "lo": -0.04224757339018459,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.2788888888888889,
+            "lo": 0.12111111111111113,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.8684229363036419,
+            "lo": 0.12237663043085015,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.8539589658389569,
+            "lo": 0.0013668275869480942,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5666666666666668,
+        "kendall": 0.44072873449080135,
+        "mae": 0.1944444444444444,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.6337381462955471,
+        "spearman": 0.5876897500950411,
+        "support": "configuration_observed_items"
+      },
+      "opus55x|H2": {
+        "bias": 0.07666666666666667,
+        "human_mean": 0.5633333333333331,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.19222222222222224,
+            "lo": -0.026666666666666672,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7222222222222224,
+            "lo": 0.39777777777777784,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7866666666666668,
+            "lo": 0.47333333333333333,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.807318670503838,
+            "lo": 0.2255143498739082,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.2566666666666666,
+            "lo": 0.12111111111111113,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9120908367759266,
+            "lo": 0.2086431998896425,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.8960822164135713,
+            "lo": 0.27087923083182314,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.6400000000000001,
+        "kendall": 0.5664809580861732,
+        "mae": 0.18111111111111108,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.6912127557487511,
+        "spearman": 0.6629218264469805,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|D0": {
+        "bias": -0.12166666666666665,
+        "human_mean": 0.5633333333333331,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": -0.016111111111111118,
+            "lo": -0.2211111111111111,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7222222222222224,
+            "lo": 0.39777777777777784,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.6166666666666667,
+            "lo": 0.2766666666666666,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8411480484437258,
+            "lo": 0.2225555362086266,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.26166666666666666,
+            "lo": 0.12944444444444445,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.898620814843074,
+            "lo": 0.3379747240793845,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9273993340725798,
+            "lo": 0.2827083261728852,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.4416666666666667,
+        "kendall": 0.5749275642125972,
+        "mae": 0.19388888888888886,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.68696143888177,
+        "spearman": 0.6699870519711336,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|H0": {
+        "bias": 0.02666666666666667,
+        "human_mean": 0.5633333333333331,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.10333333333333335,
+            "lo": -0.04333333333333333,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7222222222222224,
+            "lo": 0.39777777777777784,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7233333333333334,
+            "lo": 0.47,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7740701957114297,
+            "lo": 0.3633551389142444,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.18666666666666665,
+            "lo": 0.09888888888888889,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.8917568186579679,
+            "lo": 0.44362480760991135,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.8796038212453731,
+            "lo": 0.4467601876110485,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.59,
+        "kendall": 0.634884716594519,
+        "mae": 0.14222222222222222,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.7640377575989212,
+        "spearman": 0.7623783637345198,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|H1": {
+        "bias": 0.06904761904761905,
+        "human_mean": 0.5630952380952381,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.16282407407407407,
+            "lo": -0.03563218390804596,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7311111111111112,
+            "lo": 0.3850441297208539,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7724137931034485,
+            "lo": 0.4655139257294429,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8365690056469265,
+            "lo": 0.22941535276864122,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.2392857142857143,
+            "lo": 0.10951904761904764,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9297233329656956,
+            "lo": 0.13847803691356156,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9231627184295096,
+            "lo": 0.24598222350910065,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.6321428571428572,
+        "kendall": 0.5985943844216761,
+        "mae": 0.17142857142857146,
+        "n_items": 28,
+        "n_tasks": 10,
+        "pearson": 0.6902058988490228,
+        "spearman": 0.6829536985118777,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|H2": {
+        "bias": 0.016091954022988506,
+        "human_mean": 0.5597701149425286,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.12873563218390804,
+            "lo": -0.09777777777777777,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.724465517241379,
+            "lo": 0.3913518518518518,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7357142857142858,
+            "lo": 0.4068965517241379,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8581519421269787,
+            "lo": 0.32359104550534645,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.2471264367816092,
+            "lo": 0.10229885057471269,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9417218152532889,
+            "lo": 0.1945047202588607,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9394487660241981,
+            "lo": 0.3438190812939311,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5758620689655172,
+        "kendall": 0.6083521099227889,
+        "mae": 0.167816091954023,
+        "n_items": 29,
+        "n_tasks": 10,
+        "pearson": 0.6798667421971832,
+        "spearman": 0.6930096520803259,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|R4": {
+        "bias": 0.12413793103448277,
+        "human_mean": 0.5620689655172414,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.23103448275862065,
+            "lo": 0.018888888888888882,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7250071839080459,
+            "lo": 0.3884954844006568,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7900000000000003,
+            "lo": 0.5931034482758621,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8113263585910682,
+            "lo": 0.1954043459689594,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.26091954022988506,
+            "lo": 0.13333333333333333,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9185173985266875,
+            "lo": 0.3231718974366672,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9042554561548769,
+            "lo": 0.2261163060572813,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.6862068965517242,
+        "kendall": 0.6046724111466071,
+        "mae": 0.19310344827586207,
+        "n_items": 29,
+        "n_tasks": 10,
+        "pearson": 0.7393528329798174,
+        "spearman": 0.7162732746579817,
+        "support": "configuration_observed_items"
+      },
+      "t2_qwen|D0": {
+        "bias": -0.05666666666666669,
+        "human_mean": 0.5633333333333331,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.05111111111111111,
+            "lo": -0.15333333333333332,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7222222222222224,
+            "lo": 0.39777777777777784,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.67,
+            "lo": 0.3433333333333334,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7885552263488602,
+            "lo": 0.07899854647700058,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.23999999999999996,
+            "lo": 0.11777777777777779,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9051518601869284,
+            "lo": 0.19174705354207183,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.8867955022338256,
+            "lo": 0.11079543961159735,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5066666666666666,
+        "kendall": 0.49104214103673216,
+        "mae": 0.17666666666666664,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.6528125241377873,
+        "spearman": 0.584735748494544,
+        "support": "configuration_observed_items"
+      },
+      "t2_qwen|H2": {
+        "bias": 0.010344827586206898,
+        "human_mean": 0.5482758620689655,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.16428571428571428,
+            "lo": -0.15057471264367817,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7037037037037037,
+            "lo": 0.39,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7185185185185186,
+            "lo": 0.38666666666666666,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.744273027742633,
+            "lo": -0.16765478181043236,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.3477777777777778,
+            "lo": 0.13456679894179896,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.8836457169045455,
+            "lo": -0.2446082349728453,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.84663027779229,
+            "lo": -0.2019725201294482,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5586206896551725,
+        "kendall": 0.32434669163990615,
+        "mae": 0.22873563218390805,
+        "n_items": 29,
+        "n_tasks": 10,
+        "pearson": 0.4613210936631722,
+        "spearman": 0.39499259043651774,
+        "support": "configuration_observed_items"
+      },
+      "t2_sonnet5|D0": {
+        "bias": -0.05000000000000002,
+        "human_mean": 0.5633333333333331,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.07999999999999997,
+            "lo": -0.16444444444444445,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7222222222222224,
+            "lo": 0.39777777777777784,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7066666666666668,
+            "lo": 0.33000000000000007,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7988930202186377,
+            "lo": -0.134493165821422,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.3088888888888889,
+            "lo": 0.12555555555555553,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.8880683040202542,
+            "lo": -0.11760265823371388,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9080687688045459,
+            "lo": -0.12519836963020586,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5133333333333333,
+        "kendall": 0.4435883085752575,
+        "mae": 0.2144444444444444,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.5883028314485865,
+        "spearman": 0.5956216086334855,
+        "support": "configuration_observed_items"
+      },
+      "t2_sonnet5|H2": {
+        "bias": 0.030000000000000016,
+        "human_mean": 0.5633333333333331,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.16336111111111074,
+            "lo": -0.09333333333333331,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7222222222222224,
+            "lo": 0.39777777777777784,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7733333333333334,
+            "lo": 0.39333333333333337,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.823460967851676,
+            "lo": 0.22700452817016592,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.2688888888888889,
+            "lo": 0.12000000000000004,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9089389284724209,
+            "lo": 0.13535057548025275,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9097473346587623,
+            "lo": 0.27082640039645406,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5933333333333335,
+        "kendall": 0.5687183024947415,
+        "mae": 0.18777777777777774,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.640414049128786,
+        "spearman": 0.6500651749467291,
+        "support": "configuration_observed_items"
+      }
+    },
+    "current5_mean_0_to_1": {
+      "opus55x|D0": {
+        "bias": -0.159,
+        "human_mean": 0.6089999999999999,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": -0.02633333333333334,
+            "lo": -0.301675,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7323416666666666,
+            "lo": 0.479,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.63,
+            "lo": 0.2766666666666666,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7383826826391622,
+            "lo": -0.025119378613873807,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.35566666666666674,
+            "lo": 0.16099999999999995,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.8149023638784438,
+            "lo": 0.03903571663104716,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.8605138682488404,
+            "lo": -0.022456067008739516,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.44999999999999996,
+        "kendall": 0.4313151274732308,
+        "mae": 0.25033333333333335,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.5385004984869836,
+        "spearman": 0.5442755728681783,
+        "support": "configuration_observed_items"
+      },
+      "opus55x|H0": {
+        "bias": -0.042333333333333306,
+        "human_mean": 0.6089999999999999,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.06834166666666659,
+            "lo": -0.16199999999999998,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7323416666666666,
+            "lo": 0.479,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7466666666666667,
+            "lo": 0.3933333333333333,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7961732487320945,
+            "lo": 0.01135414474802253,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.24800000000000008,
+            "lo": 0.10700000000000003,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9037969656131746,
+            "lo": 0.2621032025546759,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9022914436225454,
+            "lo": 0.05920742377821683,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5666666666666668,
+        "kendall": 0.49609006687290175,
+        "mae": 0.17433333333333337,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.7076118375711695,
+        "spearman": 0.6250681070528772,
+        "support": "configuration_observed_items"
+      },
+      "opus55x|H2": {
+        "bias": 0.03100000000000003,
+        "human_mean": 0.6089999999999999,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.11100000000000004,
+            "lo": -0.04300833333333333,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7323416666666666,
+            "lo": 0.479,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7866666666666668,
+            "lo": 0.47333333333333333,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8345251215504162,
+            "lo": 0.3449887454718345,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.19066666666666673,
+            "lo": 0.11000000000000004,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.942082682264729,
+            "lo": 0.49974986097818974,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.922864692563869,
+            "lo": 0.41521433411445163,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.6400000000000001,
+        "kendall": 0.6566165978592128,
+        "mae": 0.1483333333333334,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.8308272598119144,
+        "spearman": 0.7665936251485127,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|D0": {
+        "bias": -0.16733333333333336,
+        "human_mean": 0.6089999999999999,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": -0.08566666666666668,
+            "lo": -0.2523333333333333,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7323416666666666,
+            "lo": 0.479,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.6166666666666667,
+            "lo": 0.2766666666666666,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8339536604573659,
+            "lo": 0.2791633906598601,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.286,
+            "lo": 0.13933333333333336,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9252003543087644,
+            "lo": 0.5083745643401508,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9282427745094487,
+            "lo": 0.37794863811371915,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.4416666666666667,
+        "kendall": 0.6103530296896387,
+        "mae": 0.21133333333333335,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.7826125142699586,
+        "spearman": 0.7424268175888139,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|H0": {
+        "bias": -0.01899999999999998,
+        "human_mean": 0.6089999999999999,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.039666666666666676,
+            "lo": -0.08099999999999999,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7323416666666666,
+            "lo": 0.479,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7233333333333334,
+            "lo": 0.47,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7932746365341926,
+            "lo": 0.2774811581441753,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.161,
+            "lo": 0.08632499999999999,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9084570577309606,
+            "lo": 0.3780383410249447,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9002600041801113,
+            "lo": 0.317699458809337,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.59,
+        "kendall": 0.6121862943352788,
+        "mae": 0.12166666666666667,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.7493351111116453,
+        "spearman": 0.7333543104146912,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|H1": {
+        "bias": 0.023571428571428597,
+        "human_mean": 0.6085714285714285,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.0877777777777778,
+            "lo": -0.04536114532019704,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7392857142857141,
+            "lo": 0.4660625,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7724137931034485,
+            "lo": 0.4655139257294429,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8617343126100997,
+            "lo": 0.38473350244342613,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.16689913793103447,
+            "lo": 0.09000000000000004,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9419355793776247,
+            "lo": 0.42318447307992274,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9424089883518149,
+            "lo": 0.47749630926522646,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.6321428571428572,
+        "kendall": 0.6801819714489562,
+        "mae": 0.12642857142857147,
+        "n_items": 28,
+        "n_tasks": 10,
+        "pearson": 0.805380289345579,
+        "spearman": 0.7913323759935723,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|H2": {
+        "bias": -0.03068965517241377,
+        "human_mean": 0.6065517241379309,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.04482758620689658,
+            "lo": -0.10555833333333332,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.734831896551724,
+            "lo": 0.4733333333333334,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7357142857142858,
+            "lo": 0.4068965517241379,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8633544802844525,
+            "lo": 0.4676361217880075,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.18620913154533844,
+            "lo": 0.0826666666666667,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9600166376222043,
+            "lo": 0.48901242536613965,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9441633188958237,
+            "lo": 0.5698193397447585,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5758620689655172,
+        "kendall": 0.7038346959642161,
+        "mae": 0.12862068965517245,
+        "n_items": 29,
+        "n_tasks": 10,
+        "pearson": 0.8179987768783694,
+        "spearman": 0.8082909098643426,
+        "support": "configuration_observed_items"
+      },
+      "qwen36|R4": {
+        "bias": 0.07827586206896553,
+        "human_mean": 0.6079310344827585,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.15200172413793106,
+            "lo": -0.004482758620689636,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7349999999999999,
+            "lo": 0.4714285714285715,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7900000000000003,
+            "lo": 0.5931034482758621,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8212539349753558,
+            "lo": 0.07559219523262287,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.1814285714285714,
+            "lo": 0.10448275862068968,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9253789813992906,
+            "lo": 0.2979560689097824,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9137342326569378,
+            "lo": 0.10328623224658119,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.6862068965517242,
+        "kendall": 0.5561335569834895,
+        "mae": 0.14172413793103453,
+        "n_items": 29,
+        "n_tasks": 10,
+        "pearson": 0.7344316365856995,
+        "spearman": 0.6598485399264378,
+        "support": "configuration_observed_items"
+      },
+      "t2_qwen|D0": {
+        "bias": -0.10233333333333335,
+        "human_mean": 0.6089999999999999,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": -0.022999999999999975,
+            "lo": -0.17466666666666664,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7323416666666666,
+            "lo": 0.479,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.67,
+            "lo": 0.3433333333333334,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7789101238770908,
+            "lo": 0.09091978644131087,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.23399999999999999,
+            "lo": 0.13766666666666663,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9260104816130353,
+            "lo": 0.3927213476724908,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.8953257905013855,
+            "lo": 0.14437298514081756,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5066666666666666,
+        "kendall": 0.5225326593118423,
+        "mae": 0.187,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.7673985801203915,
+        "spearman": 0.656617620359171,
+        "support": "configuration_observed_items"
+      },
+      "t2_qwen|H2": {
+        "bias": -0.03862068965517239,
+        "human_mean": 0.5972413793103447,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.07517643678160918,
+            "lo": -0.15767327586206897,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7153578296703296,
+            "lo": 0.47433333333333333,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7185185185185186,
+            "lo": 0.38666666666666666,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7564603132687213,
+            "lo": 0.0,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.2856767857142856,
+            "lo": 0.1167857142857143,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.923834669699601,
+            "lo": 0.05614540956438968,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.8637064348782969,
+            "lo": 0.0056710520543562185,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5586206896551725,
+        "kendall": 0.41982726821656535,
+        "mae": 0.19172413793103454,
+        "n_items": 29,
+        "n_tasks": 10,
+        "pearson": 0.6427625853924015,
+        "spearman": 0.5178592799519132,
+        "support": "configuration_observed_items"
+      },
+      "t2_sonnet5|D0": {
+        "bias": -0.09566666666666665,
+        "human_mean": 0.6089999999999999,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.02133333333333336,
+            "lo": -0.20566666666666666,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7323416666666666,
+            "lo": 0.479,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7066666666666668,
+            "lo": 0.33000000000000007,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.7859276660470795,
+            "lo": -0.012750573044018585,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.289,
+            "lo": 0.16232499999999997,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9058716342938956,
+            "lo": 0.035481612998078386,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9066798687588962,
+            "lo": 0.013215216875487141,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5133333333333333,
+        "kendall": 0.48247820602223207,
+        "mae": 0.22366666666666665,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.6544813132283256,
+        "spearman": 0.6282999510159959,
+        "support": "configuration_observed_items"
+      },
+      "t2_sonnet5|H2": {
+        "bias": -0.015666666666666624,
+        "human_mean": 0.6089999999999999,
+        "intervals": {
+          "bias": {
+            "draws": 10000,
+            "hi": 0.0853416666666666,
+            "lo": -0.11466666666666665,
+            "resampling_unit": "training task"
+          },
+          "human_mean": {
+            "draws": 10000,
+            "hi": 0.7323416666666666,
+            "lo": 0.479,
+            "resampling_unit": "training task"
+          },
+          "judge_mean": {
+            "draws": 10000,
+            "hi": 0.7733333333333334,
+            "lo": 0.39333333333333337,
+            "resampling_unit": "training task"
+          },
+          "kendall": {
+            "draws": 10000,
+            "hi": 0.8483698702277638,
+            "lo": 0.41286303321375517,
+            "resampling_unit": "training task"
+          },
+          "mae": {
+            "draws": 10000,
+            "hi": 0.22600000000000003,
+            "lo": 0.10900000000000004,
+            "resampling_unit": "training task"
+          },
+          "pearson": {
+            "draws": 10000,
+            "hi": 0.9439545765554189,
+            "lo": 0.44236694800680987,
+            "resampling_unit": "training task"
+          },
+          "spearman": {
+            "draws": 10000,
+            "hi": 0.9295286647667591,
+            "lo": 0.4948854887688906,
+            "resampling_unit": "training task"
+          }
+        },
+        "judge_mean": 0.5933333333333335,
+        "kendall": 0.6706889067280043,
+        "mae": 0.1656666666666667,
+        "n_items": 30,
+        "n_tasks": 10,
+        "pearson": 0.7965656985526469,
+        "spearman": 0.776897800998443,
+        "support": "configuration_observed_items"
+      }
+    }
+  },
+  "cross_fitted_selection": {
+    "current3_mean_0_to_1": {
+      "candidates": [
+        "original_S_minus_F",
+        "headroom_normalized",
+        "semantic_specificity",
+        "semantic_auc"
+      ],
+      "reason": "25/30 items are scored by every configuration, below the frozen ceil(0.9*declared) requirement of 27. The threshold is not relaxed.",
+      "status": "UNAVAILABLE_COMMON_SUPPORT"
+    },
+    "current5_mean_0_to_1": {
+      "candidates": [
+        "original_S_minus_F",
+        "headroom_normalized",
+        "semantic_specificity",
+        "semantic_auc"
+      ],
+      "reason": "25/30 items are scored by every configuration, below the frozen ceil(0.9*declared) requirement of 27. The threshold is not relaxed.",
+      "status": "UNAVAILABLE_COMMON_SUPPORT"
+    }
+  },
+  "diagnosis": {
+    "formatting_penalty_exact_zeros": {
+      "observed_task_values": 59,
+      "zero_task_values": 59
+    },
+    "leave_one_group_descriptive": {
+      "harness": [
+        {
+          "group": "terminus2",
+          "mean_bias": -0.06307183908045975,
+          "mean_mae": 0.192014367816092,
+          "mean_spearman": 0.6449186630813808,
+          "n_configurations": 4
+        },
+        {
+          "group": "vb103_judge",
+          "mean_bias": -0.03568862889983578,
+          "mean_mae": 0.1628466748768473,
+          "mean_spearman": 0.7088987823571783,
+          "n_configurations": 8
+        }
+      ],
+      "model_key": [
+        {
+          "group": "opus55x",
+          "mean_bias": -0.05677777777777776,
+          "mean_mae": 0.19100000000000003,
+          "mean_spearman": 0.6453124350231894,
+          "n_configurations": 3
+        },
+        {
+          "group": "qwen36",
+          "mean_bias": -0.023035139573070598,
+          "mean_mae": 0.1459546798029557,
+          "mean_spearman": 0.7470505907575715,
+          "n_configurations": 5
+        },
+        {
+          "group": "t2_qwen",
+          "mean_bias": -0.07047701149425287,
+          "mean_mae": 0.18936206896551727,
+          "mean_spearman": 0.5872384501555421,
+          "n_configurations": 2
+        },
+        {
+          "group": "t2_sonnet5",
+          "mean_bias": -0.055666666666666635,
+          "mean_mae": 0.19466666666666668,
+          "mean_spearman": 0.7025988760072195,
+          "n_configurations": 2
+        }
+      ],
+      "note": "Means within a model or harness. Differences are descriptive; the configurations are correlated and the counts are small."
+    },
+    "per_config_component_means": {
+      "opus55x|D0": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.44,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.44,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.09999999999999998,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.44,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.33333333333333337,
+          "n_tasks": 3
+        }
+      },
+      "opus55x|H0": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.4,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.4,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.0,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.4,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.4,
+          "n_tasks": 3
+        }
+      },
+      "opus55x|H2": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.38,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.38,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.0,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.38,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.36666666666666664,
+          "n_tasks": 3
+        }
+      },
+      "qwen36|D0": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.45666666666666667,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.45666666666666667,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.09999999999999998,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.45666666666666667,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.3666666666666667,
+          "n_tasks": 3
+        }
+      },
+      "qwen36|H0": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.4066666666666667,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.4066666666666667,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.19999999999999996,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.4066666666666667,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.2333333333333334,
+          "n_tasks": 3
+        }
+      },
+      "qwen36|H1": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.2533333333333333,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.2533333333333333,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.19999999999999996,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.2533333333333333,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.0666666666666667,
+          "n_tasks": 3
+        }
+      },
+      "qwen36|H2": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 4
+        },
+        "headroom_normalized": {
+          "mean": 0.32916666666666666,
+          "n_tasks": 4
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.32916666666666666,
+          "n_tasks": 4
+        },
+        "preserving_penalty": {
+          "mean": 0.19999999999999996,
+          "n_tasks": 2
+        },
+        "semantic_drop": {
+          "mean": 0.32916666666666666,
+          "n_tasks": 4
+        },
+        "semantic_specificity": {
+          "mean": 0.12500000000000006,
+          "n_tasks": 2
+        }
+      },
+      "qwen36|R4": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.36,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.36,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.26666666666666666,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.36,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.09999999999999999,
+          "n_tasks": 3
+        }
+      },
+      "t2_qwen|D0": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.43666666666666665,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.43666666666666665,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.0,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.43666666666666665,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.45,
+          "n_tasks": 3
+        }
+      },
+      "t2_qwen|H2": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.26666666666666666,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.26666666666666666,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.19999999999999996,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.26666666666666666,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.0666666666666667,
+          "n_tasks": 3
+        }
+      },
+      "t2_sonnet5|D0": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.4866666666666667,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.4866666666666667,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.0,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.4866666666666667,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.5,
+          "n_tasks": 3
+        }
+      },
+      "t2_sonnet5|H2": {
+        "formatting_penalty": {
+          "mean": 0.0,
+          "n_tasks": 5
+        },
+        "headroom_normalized": {
+          "mean": 0.32,
+          "n_tasks": 5
+        },
+        "identity_baseline": {
+          "mean": 1.0,
+          "n_tasks": 10
+        },
+        "original_S_minus_F": {
+          "mean": 0.32,
+          "n_tasks": 5
+        },
+        "preserving_penalty": {
+          "mean": 0.19999999999999996,
+          "n_tasks": 3
+        },
+        "semantic_drop": {
+          "mean": 0.32,
+          "n_tasks": 5
+        },
+        "semantic_specificity": {
+          "mean": 0.1333333333333334,
+          "n_tasks": 3
+        }
+      }
+    },
+    "property_versus_training_agreement": {
+      "C_ms_gold": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": null,
+          "n_configurations": 0,
+          "p_val": "n/a",
+          "pearson": null,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": null
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": null,
+          "n_configurations": 0,
+          "p_val": "n/a",
+          "pearson": null,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": null
+        }
+      },
+      "formatting_penalty": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": null,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": null,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": null
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": null,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": null,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": null
+        }
+      },
+      "headroom_normalized": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": 0.4545454545454545,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": 0.5756741228653686,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": 0.5874125874125874
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": -0.303030303030303,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": -0.2194216013408004,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": -0.37762237762237766
+        }
+      },
+      "identity_baseline": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": null,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": null,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": null
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": null,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": null,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": null
+        }
+      },
+      "original_S_minus_F": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": 0.4545454545454545,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": 0.5756741228653686,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": 0.5874125874125874
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": -0.303030303030303,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": -0.2194216013408004,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": -0.37762237762237766
+        }
+      },
+      "preserving_penalty": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": -0.3692744729379982,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": -0.4844694240083429,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": -0.5295206859630179
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": 0.1934294858246657,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": 0.20237482835976034,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": 0.3073441743701433
+        }
+      },
+      "repeat_tvd": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": 0.0909090909090909,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": 0.11908722558277754,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": 0.034965034965034975
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": 0.1212121212121212,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": 0.08984488408315632,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": 0.20979020979020982
+        }
+      },
+      "semantic_auc": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": 0.3340213285613425,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": 0.34983517863310026,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": 0.39304183206703214
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": -0.3340213285613425,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": -0.3374342668246772,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": -0.39304183206703214
+        }
+      },
+      "semantic_drop": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": 0.4545454545454545,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": 0.5756741228653686,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": 0.5874125874125874
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": -0.303030303030303,
+          "n_configurations": 12,
+          "p_val": "n/a",
+          "pearson": -0.2194216013408004,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": -0.37762237762237766
+        }
+      },
+      "semantic_specificity": {
+        "versus_mae": {
+          "interval": "unavailable",
+          "kendall": 0.36698792170878686,
+          "n_configurations": 11,
+          "p_val": "n/a",
+          "pearson": 0.5210508466419791,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": 0.48291697043289755
+        },
+        "versus_spearman": {
+          "interval": "unavailable",
+          "kendall": -0.18349396085439343,
+          "n_configurations": 11,
+          "p_val": "n/a",
+          "pearson": -0.1251454146149515,
+          "reason": "The configurations share the same training tasks, so they are not independent samples. No configuration-level interval or test is reported.",
+          "spearman": -0.2277910237891026
+        }
+      }
+    },
+    "task_concentration": {
+      "max_top_abs_share": 0.3037974683544304,
+      "median_top_abs_share": 0.24575783721599082,
+      "rows": [
+        {
+          "config": "opus55x|D0",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.22727272727272727,
+          "top_task": "humaneval_47_median"
+        },
+        {
+          "config": "opus55x|H0",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.23333333333333334,
+          "top_task": "3_heappop"
+        },
+        {
+          "config": "opus55x|H2",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.24561403508771934,
+          "top_task": "3_heappop"
+        },
+        {
+          "config": "qwen36|D0",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.21897810218978103,
+          "top_task": "18_MyFibonacci"
+        },
+        {
+          "config": "qwen36|H0",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.24590163934426232,
+          "top_task": "18_MyFibonacci"
+        },
+        {
+          "config": "qwen36|H1",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.2631578947368421,
+          "top_task": "3_heappop"
+        },
+        {
+          "config": "qwen36|H2",
+          "n_observed_tasks": 4,
+          "top_abs_share": 0.3037974683544304,
+          "top_task": "0_bisect_right"
+        },
+        {
+          "config": "qwen36|R4",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.25925925925925924,
+          "top_task": "3_heappop"
+        },
+        {
+          "config": "t2_qwen|D0",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.22900763358778628,
+          "top_task": "18_MyFibonacci"
+        },
+        {
+          "config": "t2_qwen|H2",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.25,
+          "top_task": "3_heappop"
+        },
+        {
+          "config": "t2_sonnet5|D0",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.22602739726027396,
+          "top_task": "humaneval_47_median"
+        },
+        {
+          "config": "t2_sonnet5|H2",
+          "n_observed_tasks": 5,
+          "top_abs_share": 0.25000000000000006,
+          "top_task": "18_MyFibonacci"
+        }
+      ]
+    }
+  },
+  "existing_comparator_detail": {
+    "opus55x|D0": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "opus55x|H0": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "opus55x|H2": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "qwen36|D0": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "selection_sort__agent1"
+          ],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "qwen36|H0": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "0_bisect_right__agent1"
+          ],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "18_MyFibonacci__agent2"
+          ],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "9_pathTraversal_safe__agent0"
+          ],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "humaneval_13__gcd__agent0"
+          ],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "selection_sort__agent2"
+          ],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "qwen36|H1": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "0_bisect_right__agent0"
+          ],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "18_MyFibonacci__agent1"
+          ],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "3_heappop__agent0"
+          ],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "43_replace_spaces__agent0"
+          ],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "qwen36|H2": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "18_MyFibonacci__agent1"
+          ],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "bubble_sort__agent1"
+          ],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "humaneval_13__gcd__agent0"
+          ],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "humaneval_47_median__agent1"
+          ],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "qwen36|R4": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "3_heappop__agent2"
+          ],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "5_unsafeFormatString_safe__agent1"
+          ],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "bubble_sort__agent1"
+          ],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "humaneval_47_median__agent0"
+          ],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "t2_qwen|D0": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "3_heappop__agent1"
+          ],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "t2_qwen|H2": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "0_bisect_right__agent2"
+          ],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "9_pathTraversal_safe__agent1"
+          ],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 2,
+          "declared_candidates": 3,
+          "excluded_candidates": [
+            "bubble_sort__agent1"
+          ],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "t2_sonnet5|D0": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    },
+    "t2_sonnet5|H2": {
+      "C_ms_gold": [
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "0_bisect_right"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "3_heappop"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "43_replace_spaces"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1
+          ],
+          "observed": 0,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "bubble_sort"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "observed": 0,
+          "task": "humaneval_47_median"
+        },
+        {
+          "declared_levels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "observed": 0,
+          "task": "selection_sort"
+        }
+      ],
+      "repeat_tvd": [
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "0_bisect_right"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "18_MyFibonacci"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "3_heappop"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "43_replace_spaces"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "5_unsafeFormatString_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "9_pathTraversal_safe"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "bubble_sort"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_13__gcd"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "humaneval_47_median"
+        },
+        {
+          "complete_candidates": 3,
+          "declared_candidates": 3,
+          "excluded_candidates": [],
+          "observed": 1,
+          "task": "selection_sort"
+        }
+      ]
+    }
+  },
+  "h2_configs": [
+    "opus55x|H2",
+    "qwen36|H2",
+    "t2_qwen|H2",
+    "t2_sonnet5|H2"
+  ],
+  "limitations": "Training-only historical cached data; no validation/test outcomes or fresh ratings accessed. The frozen 90% common-support comparison is unavailable when recorded as BELOW_90_PERCENT, and that threshold is not relaxed. Per-configuration agreement uses each configuration's observed items. Configuration comparisons are descriptive and correlated.",
+  "per_task_components": {
+    "opus55x|D0": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.09999999999999998,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.30000000000000004,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.09999999999999998,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.30000000000000004,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4666666666666667,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4666666666666667,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4666666666666667,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.43333333333333335,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.43333333333333335,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.43333333333333335,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.5,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.5,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.09999999999999998,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.5,
+        "semantic_specificity": 0.4,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "opus55x|H0": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.4,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.4,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4666666666666667,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4666666666666667,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4666666666666667,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3333333333333333,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3333333333333333,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3333333333333333,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.4,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "opus55x|H2": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3,
+        "semantic_specificity": 0.3,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.4,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4666666666666667,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4666666666666667,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4666666666666667,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3333333333333333,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3333333333333333,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3333333333333333,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.39999999999999997,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.39999999999999997,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.39999999999999997,
+        "semantic_specificity": 0.39999999999999997,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "qwen36|D0": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.20000000000000007,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.5,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.5,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.09999999999999998,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.5,
+        "semantic_specificity": 0.4,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.48333333333333334,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.48333333333333334,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.48333333333333334,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.39999999999999997,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.39999999999999997,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.39999999999999997,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.5,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.5,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.5,
+        "semantic_specificity": 0.5,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "qwen36|H0": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.20000000000000007,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.5,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.5,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.5,
+        "semantic_specificity": 0.30000000000000004,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3333333333333333,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3333333333333333,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3333333333333333,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.20000000000000007,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "qwen36|H1": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3,
+        "semantic_specificity": 0.10000000000000003,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.19999999999999996,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.19999999999999996,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.19999999999999996,
+        "semantic_specificity": 0.0,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3333333333333333,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3333333333333333,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3333333333333333,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.1333333333333333,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.1333333333333333,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 0.6666666666666667,
+        "semantic_drop": 0.1333333333333333,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3,
+        "semantic_specificity": 0.10000000000000003,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "qwen36|H2": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.20000000000000007,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "specificity_observed": 0,
+        "strict_declared": 1,
+        "strict_observed": 0,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.26666666666666666,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.26666666666666666,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.26666666666666666,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.25,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.25,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.25,
+        "semantic_specificity": 0.050000000000000044,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "qwen36|R4": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.4,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.0,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.4,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4666666666666667,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4666666666666667,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4666666666666667,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.2333333333333333,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.2333333333333333,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.2333333333333333,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.4,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3,
+        "semantic_specificity": -0.10000000000000003,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "t2_qwen|D0": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.35,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.35,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.35,
+        "semantic_specificity": 0.35,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.5,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.5,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.5,
+        "semantic_specificity": 0.5,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.43333333333333335,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.43333333333333335,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.43333333333333335,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.5,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.5,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.5,
+        "semantic_specificity": 0.5,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "t2_qwen|H2": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3,
+        "semantic_specificity": 0.10000000000000003,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.19999999999999996,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.19999999999999996,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.19999999999999996,
+        "semantic_specificity": 0.0,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3333333333333333,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3333333333333333,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3333333333333333,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.19999999999999998,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.19999999999999998,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.19999999999999998,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3,
+        "semantic_specificity": 0.10000000000000003,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "t2_sonnet5|D0": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.45,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.45,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.45,
+        "semantic_specificity": 0.45,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.5,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.5,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.5,
+        "semantic_specificity": 0.5,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.5,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.5,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.5,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.43333333333333335,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.43333333333333335,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.43333333333333335,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.55,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.55,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.55,
+        "semantic_specificity": 0.55,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ],
+    "t2_sonnet5|H2": [
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3,
+        "semantic_specificity": 0.10000000000000003,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "0_bisect_right"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.4,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.4,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.4,
+        "semantic_specificity": 0.20000000000000007,
+        "specificity_observed": 1,
+        "strict_declared": 1,
+        "strict_observed": 1,
+        "task": "18_MyFibonacci"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.39999999999999997,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.39999999999999997,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.39999999999999997,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "3_heappop"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.19999999999999996,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.19999999999999996,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.19999999999999996,
+        "specificity_observed": 0,
+        "strict_declared": 3,
+        "strict_observed": 3,
+        "task": "43_replace_spaces"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "5_unsafeFormatString_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 0,
+        "formatting_observed": 0,
+        "identity_baseline": 1.0,
+        "preserving_declared": 0,
+        "preserving_observed": 0,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "9_pathTraversal_safe"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "bubble_sort"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "humaneval_13__gcd"
+      },
+      {
+        "base_observed": 1,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "formatting_penalty": 0.0,
+        "headroom_normalized": 0.3,
+        "identity_baseline": 1.0,
+        "original_S_minus_F": 0.3,
+        "preserving_declared": 1,
+        "preserving_observed": 1,
+        "preserving_penalty": 0.19999999999999996,
+        "semantic_auc": 1.0,
+        "semantic_drop": 0.3,
+        "semantic_specificity": 0.10000000000000003,
+        "specificity_observed": 1,
+        "strict_declared": 2,
+        "strict_observed": 2,
+        "task": "humaneval_47_median"
+      },
+      {
+        "base_observed": 0,
+        "formatting_declared": 2,
+        "formatting_observed": 2,
+        "identity_baseline": 1.0,
+        "preserving_declared": 3,
+        "preserving_observed": 3,
+        "specificity_observed": 0,
+        "strict_declared": 0,
+        "strict_observed": 0,
+        "task": "selection_sort"
+      }
+    ]
+  },
+  "properties": {
+    "opus55x|D0": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.44
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.44
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.225925925925926
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.33333333333333337
+      }
+    },
+    "opus55x|H0": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.4
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.4
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.24444444444444458
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.4
+      }
+    },
+    "opus55x|H2": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.38
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.38
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.2666666666666669
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.36666666666666664
+      }
+    },
+    "qwen36|D0": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.45666666666666667
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.45666666666666667
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.187037037037037
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.3666666666666667
+      }
+    },
+    "qwen36|H0": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.4066666666666667
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.4066666666666667
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.111111111111111
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.2333333333333334
+      }
+    },
+    "qwen36|H1": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.2533333333333333
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.2533333333333333
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.2342592592592592
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.9333333333333333
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.0666666666666667
+      }
+    },
+    "qwen36|H2": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 0.8,
+        "declared_tasks": 5,
+        "observed_tasks": 4,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.32916666666666666
+      },
+      "original_S_minus_F": {
+        "coverage": 0.8,
+        "declared_tasks": 5,
+        "observed_tasks": 4,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.32916666666666666
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.2481481481481482
+      },
+      "semantic_auc": {
+        "coverage": 0.8,
+        "declared_tasks": 5,
+        "observed_tasks": 4,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 0.6666666666666666,
+        "declared_tasks": 3,
+        "observed_tasks": 2,
+        "required_tasks": 3,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      }
+    },
+    "qwen36|R4": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.36
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.36
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.1444444444444444
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.09999999999999999
+      }
+    },
+    "t2_qwen|D0": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.43666666666666665
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.43666666666666665
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.2018518518518517
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.45
+      }
+    },
+    "t2_qwen|H2": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.26666666666666666
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.26666666666666666
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.1851851851851851
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.0666666666666667
+      }
+    },
+    "t2_sonnet5|D0": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.4866666666666667
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.4866666666666667
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.1999999999999998
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.5
+      }
+    },
+    "t2_sonnet5|H2": {
+      "C_ms_gold": {
+        "coverage": 0.0,
+        "declared_tasks": 10,
+        "observed_tasks": 0,
+        "required_tasks": 8,
+        "status": "NOT_COMPUTABLE_COVERAGE",
+        "value": null
+      },
+      "headroom_normalized": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.32
+      },
+      "original_S_minus_F": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 0.32
+      },
+      "repeat_tvd": {
+        "coverage": 1.0,
+        "declared_tasks": 10,
+        "observed_tasks": 10,
+        "required_tasks": 8,
+        "status": "COMPUTED",
+        "value": 0.16666666666666669
+      },
+      "semantic_auc": {
+        "coverage": 1.0,
+        "declared_tasks": 5,
+        "observed_tasks": 5,
+        "required_tasks": 4,
+        "status": "COMPUTED",
+        "value": 1.0
+      },
+      "semantic_specificity": {
+        "coverage": 1.0,
+        "declared_tasks": 3,
+        "observed_tasks": 3,
+        "required_tasks": 3,
+        "status": "COMPUTED",
+        "value": 0.1333333333333334
+      }
+    }
+  },
+  "repeat_summary": {
+    "opus55x|D0": {
+      "repeat_count_mean": 3,
+      "repeat_sd_mean": 0.03553418012614796,
+      "scored_items": 30
+    },
+    "opus55x|H0": {
+      "repeat_count_mean": 3,
+      "repeat_sd_mean": 0.03849001794597506,
+      "scored_items": 30
+    },
+    "opus55x|H2": {
+      "repeat_count_mean": 3,
+      "repeat_sd_mean": 0.003849001794597504,
+      "scored_items": 30
+    },
+    "qwen36|D0": {
+      "repeat_count_mean": 2.966666666666667,
+      "repeat_sd_mean": 0.15265433726761374,
+      "scored_items": 30
+    },
+    "qwen36|H0": {
+      "repeat_count_mean": 2.8333333333333335,
+      "repeat_sd_mean": 0.09078958449725,
+      "scored_items": 30
+    },
+    "qwen36|H1": {
+      "repeat_count_mean": 2.9285714285714284,
+      "repeat_sd_mean": 0.11718242103900194,
+      "scored_items": 28
+    },
+    "qwen36|H2": {
+      "repeat_count_mean": 2.896551724137931,
+      "repeat_sd_mean": 0.08601542289567246,
+      "scored_items": 29
+    },
+    "qwen36|R4": {
+      "repeat_count_mean": 2.896551724137931,
+      "repeat_sd_mean": 0.10883887859745525,
+      "scored_items": 29
+    },
+    "t2_qwen|D0": {
+      "repeat_count_mean": 2.966666666666667,
+      "repeat_sd_mean": 0.08575952852212691,
+      "scored_items": 30
+    },
+    "t2_qwen|H2": {
+      "repeat_count_mean": 2.9310344827586206,
+      "repeat_sd_mean": 0.057248468438263485,
+      "scored_items": 29
+    },
+    "t2_sonnet5|D0": {
+      "repeat_count_mean": 3,
+      "repeat_sd_mean": 0.05551521903460746,
+      "scored_items": 30
+    },
+    "t2_sonnet5|H2": {
+      "repeat_count_mean": 3,
+      "repeat_sd_mean": 0.060552691791031746,
+      "scored_items": 30
+    }
+  },
+  "seed": 20261019,
+  "sensitivity_target": "current3_mean_0_to_1",
+  "status": "COMPLETE_TRAINING_ONLY_EXPLORATORY",
+  "target": "current5_mean_0_to_1"
+}
