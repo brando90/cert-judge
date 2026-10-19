@@ -1,6 +1,6 @@
 # Experiment 57 — PROTOCOL (LOCKED before the synthetic cases are run)
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/57_rating_pool_o1_o2_o3_analysis_synthetic_self_test/PROTOCOL.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/57_rating_pool_o1_o2_o3_analysis_synthetic_self_test/PROTOCOL.md>
 
 **TLDR:** Freeze the rating-pool analysis for outputs O1, O2 and O3 and show that it returns the pre-declared reading on four synthetic cases. No human ratings and no model calls.
 

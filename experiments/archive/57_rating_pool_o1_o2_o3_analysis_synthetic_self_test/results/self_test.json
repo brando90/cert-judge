@@ -1,0 +1,78 @@
+{
+ "written_utc": "2026-10-19T20:21:49.381787+00:00",
+ "tau": 0.9015718800218536,
+ "case1_pass": {
+  "n_declared": 20,
+  "n_computable": 20,
+  "n_missing": 0,
+  "spearman": 1.0,
+  "kendall": 1.0,
+  "pearson": 1.0,
+  "ci": {
+   "lo": 1.0,
+   "hi": 1.0,
+   "valid_draws": 10000
+  },
+  "permutation_p": 9.999000099990002e-05,
+  "reading": "PASS",
+  "reason": "all three gates hold"
+ },
+ "case2_fail": {
+  "n_declared": 20,
+  "n_computable": 20,
+  "n_missing": 0,
+  "spearman": -1.0,
+  "kendall": -1.0,
+  "pearson": -1.0,
+  "ci": {
+   "lo": -1.0,
+   "hi": -1.0,
+   "valid_draws": 10000
+  },
+  "permutation_p": 1.0,
+  "reading": "FAIL",
+  "reason": "a computable association missed at least one gate"
+ },
+ "case3_inconclusive": {
+  "n_declared": 51,
+  "n_computable": 31,
+  "n_missing": 20,
+  "spearman": null,
+  "kendall": null,
+  "pearson": null,
+  "ci": null,
+  "permutation_p": null,
+  "reading": "INCONCLUSIVE",
+  "reason": "more than 14 of the declared units lack a screen or a criterion"
+ },
+ "case4_offset": {
+  "n": 30,
+  "spearman": 1.0,
+  "mae": 0.20000000000000007,
+  "bias": 0.20000000000000007,
+  "judge_mean": 0.7,
+  "human_mean": 0.5,
+  "icc_c1": 1.0,
+  "icc_a1": 0.8216709075487703
+ },
+ "o3_known_rates": {
+  "n": 10,
+  "n_accepted": 5,
+  "false_acceptance": 0.4,
+  "base_rate": 0.5,
+  "difference_base_minus_accepted": 0.09999999999999998
+ },
+ "readings_match": true,
+ "expected_readings": {
+  "case1": "PASS",
+  "case2": "FAIL",
+  "case3": "INCONCLUSIVE"
+ },
+ "got_readings": {
+  "case1": "PASS",
+  "case2": "FAIL",
+  "case3": "INCONCLUSIVE"
+ },
+ "offset_ok": true,
+ "o3_ok": true
+}
