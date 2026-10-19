@@ -1,6 +1,6 @@
 # Experiment 54 — PROTOCOL (LOCKED before any structural number is computed)
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/54_wave1_pinned_candidates_vs_may_rated_pool_structural_screen/PROTOCOL.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/archive/54_wave1_pinned_candidates_vs_may_rated_pool_structural_screen/PROTOCOL.md>
 
 **TLDR:** Do the 124 pinned wave-1 candidate files sit inside the 75-file May rated pool on experiment 110's file-side structural criteria? No model calls. Judge-side criteria are not computed.
 
