@@ -100,4 +100,6 @@ All findings reuse historical training labels and cached judges.
 A favorable training comparison does not establish a better property, correctness, transfer, or validity on fresh raters.
 Candidate 3 uses only the pre-existing audit of redundant weakenings whose guarantee is still stated elsewhere.
 
+The gold-free repeat total variation on these same training rows is in [ADDENDUM_repeat_tvd_10-19-2026.md](ADDENDUM_repeat_tvd_10-19-2026.md): it spans 0.111 to 0.267 and its Spearman with training agreement is 0.210 (p-val=n/a).
+
 **TLDR-end:** [cert-judge: 56 semantic margin training diagnosis] The frozen training-only analysis reports the original margin, both revisions, and the existing comparators without using validation or test outcomes.
