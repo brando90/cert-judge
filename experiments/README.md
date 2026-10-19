@@ -29,6 +29,8 @@ The ignored local `keys/` directory is credential storage, not an experiment.
 
 ## Recent completed work
 
+- [54_wave1_pinned_candidates_vs_may_rated_pool_structural_screen](archive/54_wave1_pinned_candidates_vs_may_rated_pool_structural_screen/RESULTS_wave1_structure.md): completed 10-18-2026 — structural screen of the 124 pinned wave-1 candidates against the 75 May rated files, using experiment 110's file-side criteria unchanged. 7 of 13 in-distribution, task-cluster interval [5, 8], 10,000 draws, seed 54, p-val=n/a. Shifts: length (median 212 vs pool upper 106), statements (11 vs 4), executable tests (34 vs 6.6), sorry rate (0 vs a pool that sits above 0.62). No model calls.
+
 - [53_explicit_proofs_one_step_bound_weakenings](archive/53_explicit_proofs_one_step_bound_weakenings/RESULTS_explicit_proofs.md): completed 10-18-2026 — explicit forward proofs for the five one-step weakenings that already elaborate. 4/5 valid (Fibonacci, is-prime, below-zero, uppercase); each reverse implication unproved. Bisect's renamed postcondition does not unfold. Judge calls 0.
 
 - [52_one_step_bound_weakening_probes_lean_checked](archive/52_one_step_bound_weakening_probes_lean_checked/RESULTS_one_step_weakenings.md): completed 10-18-2026 — seven one-step bound relaxations checked with experiment 42's Lean checker. 0/7 valid, so construction stops and the conditional $50 scoring cap was not spent. Five files elaborate with the reverse implication unproved; the default tactics do not prove the forward direction.
