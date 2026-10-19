@@ -10,7 +10,7 @@ Motivation: the paper's results all come from VeriBench (`05_experiments.tex:4`)
 |---:|---|---|---|---|---|
 | 1 | [verina_property_transfer_no_new_labels](verina_property_transfer_no_new_labels/README.md) | DEFERRED — NOT RUN | UNDECIDED | ~5,184 calls, ~$23 ([quote](verina_property_transfer_no_new_labels/COST_QUOTE.md)) | Paper's exact TI_var pipeline on 24 Verina items, Codex-family panel, compared with VeriBench. |
 | 2 | [verina_human_validation_panel](verina_human_validation_panel/README.md) | DEFERRED — NOT RUN | UNDECIDED | 0 extra; 144 human ratings | Label the 72 Verina pairs under the validation rubric after freezing TI_var: the first real test set. |
-| 3 | [lean_benchmark_breadth_structural_screen](lean_benchmark_breadth_structural_screen/README.md) | DEFERRED — NOT RUN | UNDECIDED | $0 | Which of CLEVER, FVAPPS, miniCodeProps support which probes. |
+| 3 | [lean_benchmark_breadth_structural_screen](lean_benchmark_breadth_structural_screen/README.md) | DONE 10-18-2026 as [experiment 55](../archive/55_lean_benchmark_probe_structural_screen/RESULTS_structural_screen.md) | UNDECIDED | $0 | Which of CLEVER, FVAPPS, miniCodeProps support which probes. |
 | 4 | [vero_repo_level_probe_feasibility](vero_repo_level_probe_feasibility/README.md) | DEFERRED — NOT RUN | UNDECIDED | $0 (scoring quoted separately) | Probes and judge inputs for Vero's 43 multi-module Lake projects. |
 | 5 | [non_lean_dafny_verus_transfer](non_lean_dafny_verus_transfer/README.md) | DEFERRED — NOT RUN | UNDECIDED | $0 | Probes ported to Verus (VeriContest) and Dafny (DafnyBench). |
 
