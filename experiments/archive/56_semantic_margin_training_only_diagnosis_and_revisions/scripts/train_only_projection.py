@@ -8,8 +8,15 @@ import json
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3]
+def repo_root(start: Path) -> Path:
+    for candidate in (start, *start.parents):
+        if (candidate / "pyproject.toml").is_file() and (candidate / "py_src" / "cert_judge").is_dir():
+            return candidate
+    raise RuntimeError("cert-judge root not found")
+
+
 EXP = Path(__file__).resolve().parents[1]
+ROOT = repo_root(EXP)
 OUT = EXP / "results" / "train_only_inputs"
 E39 = ROOT / "experiments/39_label_free_proxy_index_train_val_test_over_judge_families"
 E42 = ROOT / "experiments/42_semantic_weakening_overconstraint_vacuity_probes_on_e39_judges"

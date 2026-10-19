@@ -13,10 +13,17 @@ from scipy.stats import kendalltau, pearsonr, rankdata, spearmanr
 
 import sys
 
+def repo_root(start: Path) -> Path:
+    for candidate in (start, *start.parents):
+        if (candidate / "pyproject.toml").is_file() and (candidate / "py_src" / "cert_judge").is_dir():
+            return candidate
+    raise RuntimeError("cert-judge root not found")
+
+
 EXP = Path(__file__).resolve().parents[1]
 INP = EXP / "results" / "train_only_inputs"
 OUT = EXP / "results"
-ROOT = EXP.parents[1]
+ROOT = repo_root(EXP)
 sys.path.insert(0, str(ROOT / "py_src"))
 from cert_judge.information_properties import complete_repeat_candidates, gold_deletion_monotonicity, repeat_tvd_task, semantic_auc_task
 SEED = 20261019
@@ -116,8 +123,8 @@ def metric(judge, human):
 
 
 def task_bootstrap(scores, human, item_task):
-    tasks = sorted(set(item_task.values()))
     ids = list(scores)
+    tasks = sorted({item_task[item] for item in ids})
     groups = [np.asarray([i for i, item in enumerate(ids) if item_task[item] == task], int) for task in tasks]
     rng = np.random.default_rng(SEED)
     choices = rng.integers(0, len(groups), (DRAWS, len(groups)))
@@ -318,19 +325,28 @@ def analyze():
         item_scores[config] = scores
         repeat_summary[config] = {"scored_items": len(scores), "repeat_count_mean": statistics.mean(repeat_counts) if repeat_counts else None, "repeat_sd_mean": statistics.mean(repeat_sds) if repeat_sds else None}
     common_items = [row["item"] for row in items if all(row["item"] in item_scores[c] for c in configs)]
-    if len(common_items) < math.ceil(.9 * len(items)): raise RuntimeError("original 90% common-support requirement failed")
+    required_items = math.ceil(.9 * len(items))
+    common_ok = len(common_items) >= required_items
+    missing_common = []
+    for row in items:
+        absent = [config for config in configs if row["item"] not in item_scores[config]]
+        if absent:
+            missing_common.append({"item": row["item"], "task": row["task"], "configs_without_two_repeats": absent})
     config_metrics = {}
     for target, ratings in ratings_by_target.items():
         config_metrics[target] = {}
         for config in configs:
-            ids = common_items
+            ids = list(item_scores[config])
             scores = {item: item_scores[config][item] for item in ids}
-            config_metrics[target][config] = metric(list(scores.values()), [ratings[item] for item in ids]) | {"intervals": task_bootstrap(scores, ratings, item_task), "n_items": len(ids), "n_tasks": len({item_task[item] for item in ids})}
+            config_metrics[target][config] = metric(list(scores.values()), [ratings[item] for item in ids]) | {"intervals": task_bootstrap(scores, ratings, item_task), "n_items": len(ids), "n_tasks": len({item_task[item] for item in ids}), "support": "configuration_observed_items"}
     selection_candidates = ("original_S_minus_F", "headroom_normalized", "semantic_specificity", "semantic_auc")
-    folds = {target: {candidate: selection_folds(candidate, configs, h2, details, item_scores, ratings, item_task, tasks) for candidate in selection_candidates} for target, ratings in ratings_by_target.items()}
+    if common_ok:
+        folds = {target: {candidate: selection_folds(candidate, configs, h2, details, item_scores, ratings, item_task, tasks) for candidate in selection_candidates} for target, ratings in ratings_by_target.items()}
+    else:
+        folds = {target: {"status": "UNAVAILABLE_COMMON_SUPPORT", "reason": f"{len(common_items)}/{len(items)} items are scored by every configuration, below the frozen ceil(0.9*declared) requirement of {required_items}. The threshold is not relaxed.", "candidates": list(selection_candidates)} for target in ratings_by_target}
     meta = {row["config"]: row for row in manifest["primary_config_metadata"]}
     diagnosis = build_diagnosis(properties, details, config_metrics["current5_mean_0_to_1"], meta)
-    result = {"status": "COMPLETE_TRAINING_ONLY_EXPLORATORY", "seed": SEED, "bootstrap_draws": DRAWS, "target": "current5_mean_0_to_1", "sensitivity_target": "current3_mean_0_to_1", "configs": configs, "h2_configs": h2, "config_metadata": manifest["primary_config_metadata"], "common_support": {"items": len(common_items), "declared_items": len(items), "tasks": len({item_task[item] for item in common_items}), "required_items": math.ceil(.9 * len(items))}, "properties": properties, "per_task_components": details, "existing_comparator_detail": comparator_detail, "repeat_summary": repeat_summary, "configuration_metrics": config_metrics, "cross_fitted_selection": folds, "diagnosis": diagnosis, "limitations": "Training-only historical cached data; no validation/test outcomes or fresh ratings accessed. Configuration comparisons are descriptive and correlated. Selection differences are conditional on the ten training-task folds; selection was not recomputed inside the item bootstrap."}
+    result = {"status": "COMPLETE_TRAINING_ONLY_EXPLORATORY", "seed": SEED, "bootstrap_draws": DRAWS, "target": "current5_mean_0_to_1", "sensitivity_target": "current3_mean_0_to_1", "configs": configs, "h2_configs": h2, "config_metadata": manifest["primary_config_metadata"], "common_support": {"status": "MEETS_90_PERCENT" if common_ok else "BELOW_90_PERCENT", "items": len(common_items), "declared_items": len(items), "tasks": len({item_task[item] for item in common_items}), "required_items": required_items, "missing": missing_common}, "properties": properties, "per_task_components": details, "existing_comparator_detail": comparator_detail, "repeat_summary": repeat_summary, "configuration_metrics": config_metrics, "cross_fitted_selection": folds, "diagnosis": diagnosis, "limitations": "Training-only historical cached data; no validation/test outcomes or fresh ratings accessed. The frozen 90% common-support comparison is unavailable when recorded as BELOW_90_PERCENT, and that threshold is not relaxed. Per-configuration agreement uses each configuration's observed items. Configuration comparisons are descriptive and correlated."}
     write("training_analysis.json", result)
     return result
 
@@ -359,7 +375,9 @@ def render(result):
         "",
         "## Scope",
         "",
-        f"The analysis used {support['items']}/{support['declared_items']} common training items across {support['tasks']} tasks and the fixed 12-configuration pool.",
+        f"The intersection scored by every configuration is {support['items']}/{support['declared_items']} training items, across {support['tasks']} tasks.",
+        f"The frozen common-support rule needs {support['required_items']}, so the pooled comparison is {support['status']}.",
+        "Per-configuration agreement below uses the items that configuration actually scored.",
         "No validation or test outcomes were opened.",
         "Score intervals are 95% percentile intervals from 10,000 task-cluster bootstrap draws, seed 20261019.",
         "They resample training tasks with their items kept together, and they do not cover judge selection, new raters, or a new task population.",
@@ -387,26 +405,47 @@ def render(result):
     for name, row in diagnosis["property_versus_training_agreement"].items():
         spearman, mae = row["versus_spearman"], row["versus_mae"]
         lines.append(f"| {name} | {spearman['n_configurations']} | {num(spearman['spearman'])} | {num(spearman['pearson'])} | {num(spearman['kendall'])} | {num(mae['spearman'])} |")
+    identity_values = [row["identity_baseline"]["mean"] for row in diagnosis["per_config_component_means"].values() if row["identity_baseline"]["mean"] is not None]
+    raw_values = [row["original_S_minus_F"]["value"] for row in result["properties"].values()]
+    head_values = [row["headroom_normalized"]["value"] for row in result["properties"].values()]
+    identical_headroom = all(a is not None and b is not None and abs(a - b) <= 1e-12 for a, b in zip(raw_values, head_values))
+    auc_values = [row["semantic_auc"]["value"] for row in result["properties"].values() if row["semantic_auc"]["value"] is not None]
     lines += [
         "",
         "These associations are descriptive.",
         "p-val=n/a, and no configuration-level interval is reported, because the configurations are correlated.",
         "",
+        "### Reading",
+        "",
+        f"The identity baseline is {num(min(identity_values)) if identity_values else 'unavailable'} on every configuration's observed tasks, so dividing the margin by it does not change the value." if identity_values and abs(min(identity_values) - max(identity_values)) <= 1e-12 else "The identity baseline varies across configurations.",
+        "Headroom-normalized margin equals the original margin on all 12 configurations." if identical_headroom else "Headroom-normalized margin differs from the original margin on at least one configuration.",
+        f"Semantic-over-format AUC is saturated: {sum(abs(value - 1.0) <= 1e-12 for value in auc_values)} of {len(auc_values)} configurations are exactly 1, because a zero formatting change loses to any positive semantic drop.",
+        f"The original margin's Spearman with training agreement is {num(diagnosis['property_versus_training_agreement']['original_S_minus_F']['versus_spearman']['spearman'])} across {diagnosis['property_versus_training_agreement']['original_S_minus_F']['versus_spearman']['n_configurations']} correlated configurations (Pearson {num(diagnosis['property_versus_training_agreement']['original_S_minus_F']['versus_spearman']['pearson'])}, Kendall {num(diagnosis['property_versus_training_agreement']['original_S_minus_F']['versus_spearman']['kendall'])}; p-val=n/a).",
+        "Specificity does not reverse that direction, and it is computable on only 3 training tasks.",
+        "The two frozen revisions therefore do not provide a training-supported replacement.",
+        "",
         "## Per-configuration current-five training agreement",
         "",
-        "| Configuration | Margin | Headroom | Specificity | Spearman (95% task bootstrap) | Pearson | Kendall | MAE | Bias | Judge mean | Human mean | Repeat SD |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| Configuration | n items | Margin | Headroom | Specificity | Spearman (95% task bootstrap) | Pearson | Kendall | MAE | Bias | Judge mean | Human mean | Repeat SD |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     current = result["configuration_metrics"]["current5_mean_0_to_1"]
     for config, row in current.items():
         prop = result["properties"][config]
         lines.append(
-            f"| {config} | {num(prop['original_S_minus_F']['value'])} | {num(prop['headroom_normalized']['value'])} | {num(prop['semantic_specificity']['value'])} | {interval(row['spearman'], row['intervals'].get('spearman'))} | {num(row['pearson'])} | {num(row['kendall'])} | {num(row['mae'])} | {num(row['bias'])} | {num(row['judge_mean'])} | {num(row['human_mean'])} | {num(result['repeat_summary'][config]['repeat_sd_mean'])} |"
+            f"| {config} | {row['n_items']} | {num(prop['original_S_minus_F']['value'])} | {num(prop['headroom_normalized']['value'])} | {num(prop['semantic_specificity']['value'])} | {interval(row['spearman'], row['intervals'].get('spearman'))} | {num(row['pearson'])} | {num(row['kendall'])} | {num(row['mae'])} | {num(row['bias'])} | {num(row['judge_mean'])} | {num(row['human_mean'])} | {num(result['repeat_summary'][config]['repeat_sd_mean'])} |"
         )
-    lines += ["", "## Cross-fitted training-task selection", "", "Each fold drops one training task from the property, selects the maximum, and scores that judge on the omitted task.", "Ties average the loss across the tied judges.", "The paired difference is selector minus the fixed four-configuration H2 (human-rubric) choice.", "A positive difference is worse absolute error than H2.", "Selection was not recomputed inside the bootstrap, so this difference is conditional on the observed folds: p-val=n/a.", ""]
+    lines += ["", "## Cross-fitted training-task selection", ""]
     for target in ("current5_mean_0_to_1", "current3_mean_0_to_1"):
-        lines += [f"### {target}", "", "| Frozen selector | Mean paired MAE difference | Fold SD | Folds |", "|---|---:|---:|---:|"]
-        for candidate, row in result["cross_fitted_selection"][target].items():
+        block = result["cross_fitted_selection"][target]
+        lines.append(f"### {target}")
+        lines.append("")
+        if block.get("status") == "UNAVAILABLE_COMMON_SUPPORT":
+            lines.append(block["reason"])
+            lines.append("")
+            continue
+        lines += ["Each fold drops one training task from the property, selects the maximum, and scores that judge on the omitted task.", "Ties average the loss across the tied judges.", "The paired difference is selector minus the fixed four-configuration H2 (human-rubric) choice.", "A positive difference is worse absolute error than H2.", "Selection was not recomputed inside the bootstrap, so this difference is conditional on the observed folds: p-val=n/a.", "", "| Frozen selector | Mean paired MAE difference | Fold SD | Folds |", "|---|---:|---:|---:|"]
+        for candidate, row in block.items():
             pair = row["paired_absolute_error"]
             lines.append(f"| {candidate} | {num(pair['mean_difference_selector_minus_H2'])} | {num(pair['fold_sd'])} | {pair['fold_count']} |")
         lines.append("")
