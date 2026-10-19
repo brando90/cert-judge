@@ -29,6 +29,8 @@ The ignored local `keys/` directory is credential storage, not an experiment.
 
 ## Recent completed work
 
+- [57_rating_pool_o1_o2_o3_analysis_synthetic_self_test](archive/57_rating_pool_o1_o2_o3_analysis_synthetic_self_test/RESULTS_synthetic_self_test.md): completed 10-19-2026 — synthetic self-test of the rating-pool analysis. Monotone association PASS, reversed FAIL, 20/51 missing INCONCLUSIVE. Judge = human + 0.2 gives Spearman 1, bias +0.2, ICC(C,1) 1, ICC(A,1) 0.822. Accept threshold read from the freeze file, 0.901572. No model calls and no real ratings.
+
 - [55_lean_benchmark_probe_structural_screen](archive/55_lean_benchmark_probe_structural_screen/RESULTS_structural_screen.md): completed 10-18-2026 — zero-spend structural screen. CLEVER specification removal and alpha-renaming 161/161, bug ladder 44/161 (117 implementations are `sorry`). miniCodeProps specification removal 201/201 and alpha-renaming 200/201, bug ladder 0/201. FVAPPS tasks are not in the GitHub checkout. None of the pinned toolchains (v4.27.0, v4.12.0, v4.9.0) is installed, so nothing was elaborated. No model calls.
 
 - [54_wave1_pinned_candidates_vs_may_rated_pool_structural_screen](archive/54_wave1_pinned_candidates_vs_may_rated_pool_structural_screen/RESULTS_wave1_structure.md): completed 10-18-2026 — structural screen of the 124 pinned wave-1 candidates against the 75 May rated files, using experiment 110's file-side criteria unchanged. 7 of 13 in-distribution, task-cluster interval [5, 8], 10,000 draws, seed 54, p-val=n/a. Shifts: length (median 212 vs pool upper 106), statements (11 vs 4), executable tests (34 vs 6.6), sorry rate (0 vs a pool that sits above 0.62). No model calls.
