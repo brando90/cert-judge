@@ -1,7 +1,7 @@
 # Codex Search Judge checkpoint
 
 Created: 10-21-2026 08:22 PDT
-Last updated: 10-21-2026 08:37 PDT
+Last updated: 10-21-2026 08:39 PDT
 
 ## Goal
 
@@ -10,6 +10,7 @@ Last updated: 10-21-2026 08:37 PDT
 ## What ran
 
 - Commit `04ceea5` added five deterministic EFG regression tests; local and named remote tmux validation each passed 5/5, and a cached direct example scored 0.57 without provider use.
+- Result commit `2e49eec` is pushed and the lifecycle START/DONE email receipts are recorded locally.
 
 ## Results
 
@@ -32,3 +33,4 @@ Last updated: 10-21-2026 08:37 PDT
 10-21-2026 08:22 PDT -- Created the user-requested resumable checkpoint with the initial verified implementation scope.
 10-21-2026 08:30 PDT -- Recorded local regression evidence, cached smoke score, and exact broader-suite environment failures.
 10-21-2026 08:37 PDT -- Recorded the matching 5/5 remote tmux result at the pushed implementation commit.
+10-21-2026 08:39 PDT -- Sent and verified the lifecycle DONE email; session-completion checkpoint refresh.

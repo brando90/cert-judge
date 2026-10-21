@@ -24,6 +24,7 @@ Source: `brando90/cert-judge` at `85e6dd3` on `search-judge-smoke-10-21-2026`.
 | 10-21-2026 08:36 PDT | named remote tmux `cj-search-smoke-10-21-2026` in owned `skampere2` worktree | PASS: exact revision `04ceea558576f0ae0534c517087ab0397ba0c15e`; `PYTHONPATH=py_src uv run --isolated --no-project --with pytest --python 3.11 python -m pytest -q tests/test_efg_judge.py` completed 5/5 in 0.02s. Preserved outputs: `remote-efg.log` SHA-256 `ef0e7ef49e71fa999842be0cb8d22ec1058d3a384ed5c0a2ec6efb8f434975ac`; `remote-efg.status` SHA-256 `19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061`. |
 | 10-21-2026 08:37 PDT | `04ceea5 Harden cached EFG judge scoring` | Pushed to `origin/search-judge-smoke-10-21-2026`; no pull request, merge, or main push. |
 | 10-21-2026 08:38 PDT | remote worktree cleanup | Removed the task-owned `skampere2` worktree and bare clone after copying its output receipts and verifying no tmux session remained. |
+| 10-21-2026 08:39 PDT | lifecycle email receipts | START and DONE notices were accepted by SMTP; durable routing/receipt record: `email-receipts.md`. |
 
 ## Pending evidence
 

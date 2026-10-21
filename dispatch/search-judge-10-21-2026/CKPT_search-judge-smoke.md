@@ -1,7 +1,7 @@
 # Search Judge checkpoint
 
 Created: 10-21-2026 08:22 PDT
-Last updated: 10-21-2026 08:37 PDT
+Last updated: 10-21-2026 08:39 PDT
 
 ## Goal
 
@@ -10,6 +10,7 @@ Last updated: 10-21-2026 08:37 PDT
 ## What ran
 
 - Commit `04ceea5` added `tests/test_efg_judge.py` and fixed `parse_efg_response` plus cache-weight recomputation; the remote named tmux job also passed 5/5 at the exact commit.
+- Result record commit `2e49eec` is pushed; the lifecycle START and DONE emails were accepted by SMTP.
 
 ## Results
 
@@ -32,3 +33,4 @@ Last updated: 10-21-2026 08:37 PDT
 10-21-2026 08:22 PDT -- Replaced the incomplete dispatch placeholder with a resumable state block after runbook and implementation inspection.
 10-21-2026 08:30 PDT -- Local EFG regression run passed 5/5; recorded the parser/cache fixes and the three pre-existing full-suite environment failures.
 10-21-2026 08:37 PDT -- Remote named tmux run passed 5/5 at `04ceea5`; no live provider call was made.
+10-21-2026 08:39 PDT -- Sent and verified the lifecycle DONE email; session-completion checkpoint refresh.
