@@ -192,21 +192,22 @@ def parse_efg_response(text: str) -> Tuple[bool, str]:
     judgement = m.group(1).strip().lower() == "true" if m else False
 
     explanation = ""
-    exp_m = re.search(r"Explanation\s*:\s*(.+?)(?=\n%%|$)", text, re.DOTALL)
+    exp_m = re.search(
+        r"Explanation\s*:\s*(.+?)(?=\n(?:Judgement\s*:|%%)|$)",
+        text,
+        re.DOTALL | re.IGNORECASE,
+    )
     if exp_m:
         explanation = exp_m.group(1).strip()
 
     return judgement, explanation
 
 
-# ---------------------------------------------------------------------------
-# LLM API calling
-# ---------------------------------------------------------------------------
-MAX_RETRIES = 3
-
-
 def _sha256(s: str) -> str:
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
+
+
+MAX_RETRIES = 3
 
 
 def _get_openai_key() -> str:
@@ -387,9 +388,11 @@ def efg_judge_direct(
             mode="direct",
             model=model,
             aspect_scores=entry["aspect_scores"],
-            overall_score=entry["overall_score"],
             weights=weights,
         )
+        # The cache stores primitive aspect scores. Recompute the requested weighted
+        # aggregate instead of silently reusing an aggregate made with old weights.
+        result.compute_overall()
         return result
 
     client, backend = _make_client(model)
@@ -406,20 +409,10 @@ def efg_judge_direct(
         aspect_scores[aspect] = 1.0 if judgement else 0.0
         time.sleep(0.2)
 
-    result = EFGResult(
-        mode="direct",
-        model=model,
-        aspect_scores=aspect_scores,
-        weights=weights,
-    )
+    result = EFGResult(mode="direct", model=model, aspect_scores=aspect_scores, weights=weights)
     result.compute_overall()
-
-    cache[cache_key] = {
-        "aspect_scores": aspect_scores,
-        "overall_score": result.overall_score,
-    }
+    cache[cache_key] = {"aspect_scores": aspect_scores, "overall_score": result.overall_score}
     _save_cache(cache_namespace, cache)
-
     return result
 
 
@@ -454,9 +447,9 @@ def efg_judge_oap_wa(
                 OAPResult(name=o["name"], aspect=o["aspect"], judgement=o["judgement"], explanation="")
                 for o in entry.get("oap_results", [])
             ],
-            overall_score=entry["overall_score"],
             weights=weights,
         )
+        result.compute_overall()
         return result
 
     client, backend = _make_client(model)
@@ -471,26 +464,16 @@ def efg_judge_oap_wa(
         sys_msg = SYSTEM_PROMPT.format(aspect_description=oap_desc)
         raw = _call_llm(client, backend, sys_msg, user_msg, model, temperature)
         judgement, explanation = parse_efg_response(raw)
-        oap_results.append(OAPResult(
-            name=oap_name, aspect=aspect, judgement=judgement, explanation=explanation,
-        ))
+        oap_results.append(OAPResult(name=oap_name, aspect=aspect, judgement=judgement, explanation=explanation))
         time.sleep(0.15)
 
-    # Compute aspect scores as mean of their OAPs (WA = weighted average with equal weights)
     aspect_scores: Dict[str, float] = {}
     for aspect, oap_names in ASPECT_OAPS.items():
         oap_vals = [r.score for r in oap_results if r.name in oap_names]
         aspect_scores[aspect] = sum(oap_vals) / len(oap_vals) if oap_vals else 0.0
 
-    result = EFGResult(
-        mode="oap_wa",
-        model=model,
-        aspect_scores=aspect_scores,
-        oap_results=oap_results,
-        weights=weights,
-    )
+    result = EFGResult(mode="oap_wa", model=model, aspect_scores=aspect_scores, oap_results=oap_results, weights=weights)
     result.compute_overall()
-
     cache[cache_key] = {
         "aspect_scores": aspect_scores,
         "overall_score": result.overall_score,
@@ -500,7 +483,6 @@ def efg_judge_oap_wa(
         ],
     }
     _save_cache(cache_namespace, cache)
-
     return result
 
 
