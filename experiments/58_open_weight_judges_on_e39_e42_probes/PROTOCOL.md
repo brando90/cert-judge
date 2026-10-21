@@ -50,3 +50,7 @@ No paid API of any kind; every charge is $0.00 (`charges_usd: 0.0` in each harve
 ## 10. What would change the plan
 
 Written before the run: if more than 20% of any model's cells are `incomplete` or `parse_error`, that model's units are flagged in the report, not dropped, and the primary analysis is reported with and without them. If fewer than 8 units have both numbers, no correlation is computed (E39's rule). Any other change is an addendum with date and reason.
+
+## Addenda (pre-run, dated; the sections above are unchanged)
+
+- **10-21-2026, before any judge call:** `e58.MODELS` gained `mm_limits` (vLLM `limit_mm_per_prompt` of 0 images and videos) for Gemma 3 and Qwen3.6, which are multimodal checkpoints judged text-only; it reserves no image slots and changes no prompt, sampling rule or panel member. The analysis (`analyze58.py`) and Slurm package were written after this protocol's freeze commit and read no judge output.
