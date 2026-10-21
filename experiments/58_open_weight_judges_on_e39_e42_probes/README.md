@@ -16,9 +16,16 @@
 | `scripts/harvest_lib.py` | Raw output to E39-schema harvest JSON, with E39's own parsers. |
 | `scripts/analyze58.py` | The frozen analysis (gate, clustered permutation, PTI_v0, TI_var, E42 screen, scale curves, TVD-MI, bridge). |
 | `slurm/` | `prepare.sh`, `smoke.sbatch`, `run_model.sbatch`, `submit_all.sh`, `collect.sh`, `SUBMIT.md`, GPU-hour estimates. |
-| `tests/` | CPU tests (no GPU, no model). |
+| `scripts/fetch_models.py`, `verify_prompts.py`, `make_package.py` | Pinned-revision weight download; prompt hash check; builds the upload tarball. |
+| `tests/` | CPU tests (no GPU, no model): panel config, parsers, harvest schema, clustered statistics, a synthetic 117-unit run through the harvest writer and the whole analysis. |
 | `results/` | `REBUILD_REPORT.json` (hash verification), `criterion_items.json`, later the analysis outputs. |
+
+## Run it
+
+1. Upload `e58_pkg.tgz` and follow `slurm/SUBMIT.md` (FarmShare primary, Sherlock fallback): prepare, smoke, `submit_all.sh`, `collect.sh`. About 90 GPU-hours for all 13 models, about 16 for the seven 1-GPU models (`slurm/GPU_HOURS.md`, assumed throughput until the smoke measures it).
+2. `python scripts/analyze58.py --run <runs/main>` writes `results/ANALYSIS.json` and `results/RESULTS_open_weight_judges.md`.
+3. Context for reading the gate: experiment 39's test units gave `C_ms_gold` Spearman 0.558 (permutation p 0.0127) over 18 hosted-judge units.
 
 ## Verified so far (no model call)
 
-Prompts rebuilt byte-identically: probes 249/249; E39 cells 4689/4689; E42 cells 5238/5238 (`results/REBUILD_REPORT.json`). Judge calls so far: 0. Paid API charges: $0.00.
+Prompts rebuilt byte-identically: probes 249/249; E39 cells 4689/4689; E42 cells 5238/5238 (`results/REBUILD_REPORT.json`). CPU tests: 10 pass (`python -m pytest experiments/58_open_weight_judges_on_e39_e42_probes/tests -q`, needs the rebuilt prompts; about 4 minutes). Judge calls so far: 0. Paid API charges: $0.00.
