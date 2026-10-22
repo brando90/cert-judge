@@ -68,6 +68,16 @@ cd ~/cert-judge && uv pip install -e . && uv sync --active
 
 Some dependencies (`vllm`, `sglang`, `unsloth`, `flash-attn`) are Linux-only and excluded on macOS via `pyproject.toml` markers.
 
+## Selecting models and agent harnesses (10-22-2026)
+
+Before choosing a new, unpinned solver, generator or artificial-intelligence judge, read `~/agents-config/workflows/model-and-agent-selection.md` ([shared guide](https://github.com/brando90/agents-config/blob/main/workflows/model-and-agent-selection.md)).
+
+- Select the complete model/version, harness, effort, prompt, tools and fallback policy using relevant measured quality and total task cost; maximum price or effort is not evidence of suitability. Use current primary sources and save the selection rationale and supplied screenshots in the experiment.
+- A coding leaderboard can shortlist a judge, but cannot validate it. Use relevant human/reference agreement, absolute error and signed bias, repeatability and failure rates where measured; keep selection data separate from test claims.
+- Reuse existing results before an authorized bounded comparison. Prefer an affordable system meeting the justified quality criterion; when testing strongest-agent capability, use a credible relevant panel, not merely cheap weak models. Count trajectories, tools, judging, retries and failures in cost.
+- Report observed versus estimated scores, task coverage and missingness. Distinguish repeat standard deviation, uncertainty of the mean and subset-prediction error. Validate smaller subsets or item response theory on held-out systems before relying on them; no universal precision guarantee.
+- Apply this to prospective design. Preserve explicit model choices, frozen settings/denominators, required reference acceptance, project funding routes and shared budgets. It neither resumes paused inference nor authorizes extra model calls.
+
 ## Running Evaluations
 
 The frozen PTI-v0 numerical specification is `docs/spec/PTI_V0.md`. Its zero-spend entry point is:
