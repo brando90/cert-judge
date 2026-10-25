@@ -21,6 +21,7 @@ Self-test (no new data): rename a copy of the cached `qwen36` harvests to a fake
 | Step | Status |
 |---|---|
 | Protocol frozen and pushed | Done 10-24-2026 (before any judge call) |
-| Stage 1 judging (6 models x 9 prompts on E39 cells) | Running from 10-24-2026 19:35 (lane A skampere1 GPU 5: llama31_8b, q25_14b_awq, q3_30b_a3b_fp8, qwen3_8b, qwen3_14b; lane B mercury2 GPU 9: qwen3_4b) |
+| Stage 1 judging (6 models x 9 prompts on E39 cells) | Running from 10-24-2026 19:35 (lane A skampere1 GPU 5: llama31_8b, then llama33_70b_awq (H2 only), q25_14b_awq, q3_30b_a3b_fp8, qwen3_8b, qwen3_14b; lane B mercury2 GPU 9: qwen3_4b, relaunched 19:44 with context 28,672, addendum 2). Live state: `results/STATUS.md` |
+| Open-weight reference arm (addendum 3, Brando's 19:58 request) | Protocol committed 20:25 before any result; references Qwen3.6-27B (saved E39 outputs) and Llama 3.3 70B AWQ (lane A, H2 only) |
 | Analysis script | Written, tested on fake units |
 | Results | Pending |
