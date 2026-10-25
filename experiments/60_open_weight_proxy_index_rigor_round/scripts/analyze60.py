@@ -334,7 +334,9 @@ def f3(v):
 
 
 def ci_s(c):
-    return "n/a" if not c else f"[{c[0]:.2f}, {c[1]:.2f}]"
+    if isinstance(c, dict):
+        c = [c.get("lo"), c.get("hi")]
+    return "n/a" if not c or c[0] is None else f"[{c[0]:.2f}, {c[1]:.2f}]"
 
 
 def write_report(path, R):
@@ -388,6 +390,15 @@ def write_report(path, R):
     L += ["", "Control with T replaced by its per-kind mean (no per-cell frontier judgment), LOTO Spearman vs experts: " + "; ".join(f"{n} {f3(x)}" for n, x in pc["control_kind_mean_target"].items()) + "."]
     v = pc["verdict"]
     L += ["", f"**Verdict (frozen rule):** best of L2/L3 by LOTO = {v['best_of_L2_L3_by_loto']}, Spearman {f3(v['spearman'])} {ci_s(v['ci95'])}; beats L0 (CI excludes 0): {v['beats_L0_ci_excludes_0']}; above the negative-control max: {v['above_negative_control_max']}; **FIT-ROBUST: {v['FIT_ROBUST']}**; PARITY with R_front: {v['PARITY_with_R_front']} (diff CI {ci_s(v['diff_vs_R_front_ci95'])}). Ablations below 0.45 (WEAKENED): {json.dumps(v['WEAKENED'])}."]
+    sa = R.get("partC_seed_averaged")
+    if sa:
+        L += ["", "### Part C again with seed-averaged units (units with a replicate use the mean of the two seeds; 20 random splits, 2,000 bootstrap draws)", "",
+              "| unit set | L0 | L1 | L2 | L3 | R_front |", "|---|---|---|---|---|---|"]
+        for name, row in sa["ablations"].items():
+            if "loto" in row:
+                rr = row["loto"]["rows"]
+                L.append(f"| {name} ({row['n_units']} units) | " + " | ".join(f"{f3(rr[n]['spearman'])} {ci_s(rr[n]['spearman_ci95'])}" for n in ("L0", "L1", "L2", "L3", "R_front")) + " |")
+        L.append(f"\nSeed-averaged FIT-ROBUST: {sa['verdict']['FIT_ROBUST']}; PARITY with R_front: {sa['verdict']['PARITY_with_R_front']}; L0 unit chosen across folds: {json.dumps(R['partC']['ablations']['all_open_units']['L0_unit_choices'])} (single seed), {json.dumps(sa['ablations']['all_open_units']['L0_unit_choices'])} (seed-averaged).")
     if R.get("partD"):
         L += ["", "## Part D: seed test-retest (seed 58 vs seed 1058)", "", "| unit | cell Spearman | cell ICC(A,1) | item-median Spearman | C_ms_gold s0/s1 | F12 s0/s1 | criterion rho s0/s1 |", "|---|---|---|---|---|---|---|"]
         for c, v in R["partD"].items():
@@ -406,9 +417,12 @@ def main():
     ap.add_argument("--draws", type=int, default=10000)
     ap.add_argument("--splits", type=int, default=200)
     ap.add_argument("--out", type=Path, default=HERE.parent / "results")
-    ap.add_argument("--cache", type=Path, default=None)
+    ap.add_argument("--report-only", action="store_true", help="rewrite RESULTS_rigor_round.md from an existing ANALYSIS.json in --out")
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
+    if args.report_only:
+        write_report(args.out / "RESULTS_rigor_round.md", json.loads((args.out / "ANALYSIS.json").read_text()))
+        return 0
     items = AN.load_items()
     manifest = e58.read_json(e58.E39_DIR / "results/probe_manifest.json")
     hosted = M.load_hosted()
@@ -447,7 +461,7 @@ def main():
                 base = c.replace(OTHER_REP_SFX, "")
                 if base in rep_avg:
                     rep_avg[base] = {k: dict(v, score=(v["score"] + tables[c][k]["score"]) / 2) if k in tables[c] else v for k, v in tables[base].items()}
-            R["partC_seed_averaged"] = partC(items, hosted, rep_avg, open_cfgs, args.draws, 0 or 20)
+            R["partC_seed_averaged"] = partC(items, hosted, rep_avg, open_cfgs, min(args.draws, 2000), 20)
     (args.out / "ANALYSIS.json").write_text(json.dumps(R, indent=1, default=float))
     write_report(args.out / "RESULTS_rigor_round.md", R)
     print(json.dumps({"partA_verdict": R["partA"]["gate"]["verdict"], "partB_robust": R["partB"]["robust"], "partC": R["partC"]["verdict"]["FIT_ROBUST"]}))
