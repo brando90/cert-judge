@@ -535,19 +535,24 @@ def write_report(path: Path, res: dict):
     L += ["", "### Units", "", "| unit | criterion rho (45 items) | C_ms_gold | F1_probe | F2_item | status |", "|---|---|---|---|---|---|"]
     for r in p1["unit_table"]:
         L.append(f"| `{r['config']}` | {fmt(r['criterion'])} | {fmt(r['C_ms_gold'])} | {fmt(r['F1_probe'])} | {fmt(r['F2_item'])} | {r['status']} |")
-    L += _part2_lines(res["part2"], "## Part 2: fitting open-weight units to the frontier consensus T")
+    if res["part2"]:
+        L += _part2_lines(res["part2"], "## Part 2: fitting open-weight units to the frontier consensus T")
+    else:
+        L += ["", "## Part 2", "", "Not run in this interim look (`--part1-only`): no learner was fitted and the test split was not read."]
     for arm, blk in res.get("arms", {}).items():
         L += ["", f"## Open-weight reference arm `{arm}` (members {', '.join(ARMS[arm][0])}; protocol Addendum 3)", "",
-              f"Reference vs the frontier consensus: {json.dumps({k: (round(v, 3) if isinstance(v, float) else v) for k, v in blk['part2'].get('reference_vs_frontier', {}).items()})}.", "",
+              f"Reference vs the frontier consensus: {json.dumps({k: (round(v, 3) if isinstance(v, float) else v) for k, v in ((blk['part2'] or {}).get('reference_vs_frontier', {})).items()})}.", "",
               "Part 1 (label-free indices of this arm vs agreement with the expert ratings, over the open-weight units):", "",
               "| index | n units | Spearman | 95% CI | Kendall | Pearson | perm p (one-sided) |", "|---|---|---|---|---|---|---|"]
         for n, a in blk["part1"]["secondary"].items():
             L.append(f"| {n} | {a['n_units']} | {fmt(a['spearman'])} | {ci_s(a['ci'])} | {fmt(a['kendall'])} | {fmt(a['pearson'])} | {fmt(a['permutation_p'], 4)} |")
-        sr = blk["substitute_reading"]
-        L.append(f"\nSubstitute reading (Addendum 3): **{'SUBSTITUTE-OK' if sr['SUBSTITUTE_OK'] else 'NOT SUBSTITUTE-OK'}** (arm chosen-learner test rho {fmt(sr['arm_chosen_test_rho'])}, frontier arm {fmt(sr['frontier_arm_chosen_test_rho'])}, arm FIT-PASS {sr['arm_FIT_PASS']}).")
+        sr = blk.get("substitute_reading")
+        if sr:
+            L.append(f"\nSubstitute reading (Addendum 3): **{'SUBSTITUTE-OK' if sr['SUBSTITUTE_OK'] else 'NOT SUBSTITUTE-OK'}** (arm chosen-learner test rho {fmt(sr['arm_chosen_test_rho'])}, frontier arm {fmt(sr['frontier_arm_chosen_test_rho'])}, arm FIT-PASS {sr['arm_FIT_PASS']}).")
         g = blk["part1"]["gate"]
         L.append(f"\nGate on `{g['index']}` (descriptive, same thresholds as the primary): {g['verdict']}; model-clustered p {fmt((g['model_clustered'] or {}).get('permutation_p'), 4)}.")
-        L += _part2_lines(blk["part2"], f"### Part 2, arm `{arm}`: fit to this reference")
+        if blk["part2"]:
+            L += _part2_lines(blk["part2"], f"### Part 2, arm `{arm}`: fit to this reference")
     path.write_text("\n".join(L) + "\n")
 
 
@@ -574,6 +579,7 @@ def main() -> int:
     ap.add_argument("--run", type=Path, action="append", required=True)
     ap.add_argument("--draws", type=int, default=10000)
     ap.add_argument("--out", type=Path, default=E59 / "results")
+    ap.add_argument("--part1-only", action="store_true", help="interim look: label-free indices vs the criterion only; no learners, no test split read")
     ap.add_argument("--hosted-open", default=",".join(HOSTED_OPEN), help="hosted open-weight models counted in the open set")
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
@@ -599,7 +605,7 @@ def main() -> int:
                           "F1_probe": u["indices"].get("F1_probe"), "F2_item": u["indices"].get("F2_item"), "status": u["criteria"]["heldout"]["status"]}
                          for u in sorted(open_units, key=lambda u: u["config"])]}
     open_cfgs = [u["config"] for u in units if is_open(u)]
-    p2 = part2(items, hosted, new, open_cfgs, args.draws)
+    p2 = None if args.part1_only else part2(items, hosted, new, open_cfgs, args.draws)
     arms = {}
     for arm in ("O_qwen36", "O_llama70", "O_both"):
         if not consensus({c: cell_table(h) for c, h in allh.items()}, None, arm):
@@ -609,8 +615,8 @@ def main() -> int:
         nm = tuple(f"{n}@{arm}" for n in ("F1_probe", "F2_item", "F12"))
         arms[arm] = {"part1": {"n_units": len(subj), "secondary": assoc_block(subj, nm, args.draws),
                                "gate": gate_verdict(subj, f"F12@{arm}", args.draws)},
-                     "part2": part2(items, hosted, new, open_cfgs, args.draws, arm)}
-    for arm, blk in arms.items():     # Addendum 3 reading: the open reference is a usable stand-in iff FIT-PASS and within 0.10 of the frontier arm
+                     "part2": None if args.part1_only else part2(items, hosted, new, open_cfgs, args.draws, arm)}
+    for arm, blk in ([] if args.part1_only else arms.items()):     # Addendum 3 reading: the open reference is a usable stand-in iff FIT-PASS and within 0.10 of the frontier arm
         fr, ar = p2["verdict"]["chosen_by_validation"], blk["part2"]["verdict"]["chosen_by_validation"]
         rf = p2["test"]["rows"].get(fr, {}).get("spearman") if fr else None
         ra = blk["part2"]["test"]["rows"].get(ar, {}).get("spearman") if ar else None
@@ -620,7 +626,7 @@ def main() -> int:
            "status_counts": {u["config"]: u["status_counts"] for u in units if u["config"] in new}}
     (args.out / "ANALYSIS.json").write_text(json.dumps(res, indent=1, default=float))
     write_report(args.out / "RESULTS_open_weight_proxy_fit.md", res)
-    print(json.dumps({"part1_verdict": p1["primary"]["verdict"], "part2_verdict": p2["verdict"]["label"],
+    print(json.dumps({"part1_verdict": p1["primary"]["verdict"], "part2_verdict": p2["verdict"]["label"] if p2 else "not run (--part1-only)",
                       "n_open_units": p1["n_open_units"]}))
     return 0
 
