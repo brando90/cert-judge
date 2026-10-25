@@ -34,3 +34,16 @@ Part 1 only, 22 units from 5 models (Llama 3.1 8B, Qwen3 4B x2 prompts, Qwen2.5 
 - The 70B arm is undefined (constant scores), as above.
 
 Still a plumbing check and a direction: five models, partial prompts, one pass, human ratings are Claude 3.7 Sonnet outputs only.
+
+## 2026-10-24 22:55 (third look, Part 1 only; `results/interim_2026-10-24_2255_part1_only/`)
+
+Done: llama31_8b (9/9), q25_14b_awq (9/9), llama33_70b_awq (H2), qwen3_32b (H2, 521/521, 13 min after load). Running: q3_30b_a3b_fp8 (A100, since 22:41), qwen3_4b (mercury2, 3/9 prompts, about 55 min per prompt, so done about 04:00). Queued: qwen3_8b, qwen3_14b.
+
+Part 1 over 32 open-weight units from 6 models (Llama 3.1 8B x9, Qwen2.5 14B AWQ x9, Qwen3 4B x3, Qwen3-32B H2, Llama 3.3 70B H2, and the saved Qwen3.6-27B x9), still partial and not a verdict (model-clustered test has 1 usable model so far):
+
+- Frozen `C_ms_gold` vs agreement with the experts: Spearman 0.554 [0.17, 0.80] (n = 28 units; it was 0.717 at 22 units, so it moves a lot with the unit set); `F1_probe` 0.712 [0.43, 0.86]; `F2_item` 0.936 [0.84, 0.97]; `F12` 0.903 [0.79, 0.95]; frozen PTI_v0 0.139 [-0.04, 0.40]; TI_var -0.128.
+- Qwen3-32B (thinking, FP8) as a judge: agreement with the experts 0.736 on the 45 items (H2); against the frontier consensus 0.867 on probe cells and 0.682 on the 75 items. As a reference (`O_qwen32`): `F2_item` 0.934 [0.83, 0.97], `F12` 0.913 [0.82, 0.95], `F1_probe` 0.688 [0.39, 0.84] over 30 units. Qwen3.6 + Qwen3-32B together (`O_both`, 21 units): `F2_item` 0.929, `F12` 0.839, `F1_probe` 0.458 [0.01, 0.71].
+- Llama 3.3 70B AWQ arm: undefined (constant scores).
+- Small judges so far agree weakly with the experts (Qwen2.5 14B AWQ: D0 0.56, R4 0.19, H2 0.19; Llama 3.1 8B: up to 0.44; Qwen3 4B: D0 0.46, H0 0.37, R4 0.50).
+
+Reading so far: an agreement-with-a-bigger-open-model index tracks agreement with the human ratings across prompts and models (about 0.9 over the 75 items); the label-free frozen index is weaker and less stable (0.55-0.72 depending on the unit set), and the old PTI/TI_var show nothing. Caveats: partial panel, units differ in model and prompt (the correlation is partly between-model), human ratings are Claude 3.7 Sonnet outputs only, no frontier ratings until Nov 6.
