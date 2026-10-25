@@ -33,6 +33,10 @@ SEED = 59
 FRONT_H2 = ("sol6h", "sonnet5m", "luna6h", "gem31h", "opus55x")          # frontier consensus T (protocol section 2)
 OWN_MODEL = {"t2_luna": "luna6h", "t2_sonnet5": "sonnet5m"}               # agent judges: leave their model out of T too
 HOSTED_OPEN = ("qwen36",)                                                 # cached open-weight units
+# Reference arms (protocol section 2 and Addendum 3): arm -> (members whose H2 unit forms T, minimum members). A unit's own
+# model is always left out of its T. "frontier" is the primary arm; the O_* arms use open-weight references only.
+ARMS = {"frontier": (FRONT_H2, 4), "O_qwen36": (("qwen36",), 1), "O_llama70": (("llama33_70b_awq",), 1),
+        "O_both": (("qwen36", "llama33_70b_awq"), 1)}
 ALPHAS = (0.1, 1.0, 10.0, 100.0, 1000.0)
 TOPK = 5
 GATE_RHO, GATE_P, CLUSTER_P = 0.45, 0.05, 0.10
@@ -128,11 +132,12 @@ def cell_table(h: dict) -> dict[str, dict]:
     return {c["cell"]: c for c in h["cells"] if c["status"] in ("measured", "deterministic") and c.get("score") is not None}
 
 
-def consensus(tables: dict[str, dict], exclude_model: str | None = None) -> dict[str, float]:
-    """T per cell: mean score of the H2 frontier units over cells every remaining member measured."""
-    members = [m for m in FRONT_H2 if m != exclude_model and f"{m}|H2" in tables]
+def consensus(tables: dict[str, dict], exclude_model: str | None = None, arm: str = "frontier") -> dict[str, float]:
+    """T per cell: mean score of the arm's H2 reference units over cells every remaining member measured."""
+    pool, min_members = ARMS[arm]
+    members = [m for m in pool if m != exclude_model and f"{m}|H2" in tables]
     need = [tables[f"{m}|H2"] for m in members]
-    if len(members) < 4:
+    if len(members) < min_members:
         return {}
     cells = set(need[0])
     for t in need[1:]:
@@ -154,15 +159,17 @@ def item_median(table: dict[str, dict], item: str) -> float | None:
         for c in table.values():
             if c["kind"] == "crit":
                 by.setdefault(c["key"], []).append(c["score"])
-        _ITEM_CACHE[key] = {k: float(statistics.median(v)) for k, v in by.items()}
-    return _ITEM_CACHE[key].get(item)
+        _ITEM_CACHE[key] = (table, {k: float(statistics.median(v)) for k, v in by.items()})   # holds the table: its id is not reused
+    return _ITEM_CACHE[key][1].get(item)
 
 
 # ------------------------------------------------------------------ part 1
-def part1(units, items, hosted, newset, draws):
+def part1(units, items, hosted, newset, draws, arm="frontier"):
+    """F1/F2/F12 against the arm's T; the frontier arm keeps the plain index names, the others carry an `@arm` suffix."""
+    sfx = "" if arm == "frontier" else f"@{arm}"
     tables = {c: cell_table(h) for c, h in {**hosted, **newset}.items()}
-    t_all = consensus(tables)
-    t_by_model = {m: consensus(tables, m) for m in set(FRONT_H2)}
+    t_all = consensus(tables, None, arm)
+    t_by_model = {m: consensus(tables, m, arm) for m in set(ARMS[arm][0])}
     ref = tables["sol6h|H2"]                                   # the cell layout (kinds, items) is the same for every unit
     crit_items = [it["item"] for it in items]
     crit_cells = {it: [c for c in ref if ref[c]["kind"] == "crit" and ref[c]["key"] == it] for it in crit_items}
@@ -172,8 +179,10 @@ def part1(units, items, hosted, newset, draws):
         if cfg not in tables or u["kind"] != "llm":
             continue
         model = cfg.split("|")[0]
-        own = model if model in FRONT_H2 else OWN_MODEL.get(model)
+        own = model if model in ARMS[arm][0] else (OWN_MODEL.get(model) if arm == "frontier" else None)
         T = t_by_model[own] if own in t_by_model else t_all
+        if not T:
+            continue
         tab = tables[cfg]
         declared = [c for c in T if c in ref and ref[c]["kind"] != "crit"]
         noncrit = [c for c in declared if c in tab]
@@ -189,8 +198,8 @@ def part1(units, items, hosted, newset, draws):
         f1 = None if f1 is not None and math.isnan(f1) else f1
         f2 = None if f2 is not None and math.isnan(f2) else f2
         f12 = math.sqrt(max(f1, 0) * max(f2, 0)) if f1 is not None and f2 is not None else None
-        u["indices"].update({"F1_probe": f1, "F2_item": f2, "F12": f12})
-        extra[cfg] = {"F1_probe": f1, "F2_item": f2, "F12": f12, "n_probe_cells": len(noncrit), "n_items": len(xs)}
+        u["indices"].update({f"F1_probe{sfx}": f1, f"F2_item{sfx}": f2, f"F12{sfx}": f12})
+        extra[cfg] = {f"F1_probe{sfx}": f1, f"F2_item{sfx}": f2, f"F12{sfx}": f12, "n_probe_cells": len(noncrit), "n_items": len(xs)}
     return extra
 
 
@@ -369,9 +378,20 @@ def evaluate(preds: dict[str, dict], items_eval, draws, pairs):
     return out
 
 
-def part2(items, hosted, newset, open_cfgs, draws):
+def median_by_item(T, cells, items):
+    out = {}
+    for it in items:
+        v = [T[c["cell"]] for c in cells if c["kind"] == "crit" and c["key"] == it["item"] and c["cell"] in T]
+        if v:
+            out[it["item"]] = float(statistics.median(v))
+    return out
+
+
+def part2(items, hosted, newset, open_cfgs, draws, arm="frontier"):
     tables = {c: cell_table(h) for c, h in {**hosted, **newset}.items()}
-    T = consensus(tables)
+    T = consensus(tables, None, arm)
+    Tf = consensus(tables)                                                  # frontier consensus, reference R_front in every arm
+    open_cfgs = [c for c in open_cfgs if c.split("|")[0] not in (ARMS[arm][0] if arm != "frontier" else ())]
     task_split = split_of_tasks(items)
     base = hosted["sol6h|H2"]
     cells = [c for c in base["cells"] if c["cell"] in T and c["task"] in task_split and c["status"] == "measured"]
@@ -399,9 +419,9 @@ def part2(items, hosted, newset, open_cfgs, draws):
     l4f, _ = human_fit(D, items, ["train", "val"], None)
     preds["L4_human_fit"] = {it["item"]: l4f[it["item"]] for it in test_items}
     # references
-    ref_front = {it["item"]: float(statistics.median([T[c["cell"]] for c in D.cells if c["kind"] == "crit" and c["key"] == it["item"]]))
-                 for it in test_items}
-    preds["R_front"] = ref_front
+    preds["R_front"] = median_by_item(Tf, D.cells, test_items)
+    if arm != "frontier":
+        preds["R_ref"] = median_by_item(T, D.cells, test_items)             # the arm's own open reference as a judge
     vsel = [tables["sol6h|H2"], tables["opus55x|H2"]]
     preds["R_validated"] = {it["item"]: float(np.mean([item_median(t, it["item"]) for t in vsel])) for it in test_items}
     if "q25_14b_awq|H2" in tables:
@@ -418,7 +438,8 @@ def part2(items, hosted, newset, open_cfgs, draws):
             best_o = (cfg, r, s)
     if best_o:
         preds["ORACLE_best_open_unit"] = best_o[2]
-    pairs = [(a, b) for a in ("L1", "L2", "L3") for b in ("L0", "R_front")] + [("L4_human_fit", "L2")]
+    rname = "R_front" if arm == "frontier" else "R_ref"
+    pairs = [(a, b) for a in ("L1", "L2", "L3") for b in ("L0", rname)] + [("L4_human_fit", "L2")]
     pairs = [(a, b) for a, b in pairs if a in preds and b in preds]
     ev = evaluate(preds, test_items, draws, pairs)
     res["test"] = {"fit_on": "train+val", "details": df, "oracle_unit": best_o[0] if best_o else None, **ev}
@@ -430,7 +451,7 @@ def part2(items, hosted, newset, open_cfgs, draws):
     no_gain = bool(chosen and not fit_pass and any(ev["rows"][n]["spearman"] >= GATE_RHO for n in ("L1", "L2", "L3")))
     res["verdict"] = {"chosen_by_validation": chosen, "FIT_PASS": fit_pass,
                       "label": "FIT-PASS" if fit_pass else "FIT-NO-GAIN" if no_gain else "FIT-FAIL",
-                      "interval_contains_0_and_R_front": bool(ci and ci[0] <= 0 and ev["rows"]["R_front"]["spearman"] <= ci[1])}
+                      "interval_contains_0_and_reference": bool(ci and ci[0] <= 0 and ev["rows"][rname]["spearman"] <= ci[1])}
     # descriptive 5-fold task-grouped CV over all 25 tasks (alpha fixed to the validation choice)
     tasks = sorted(task_split)
     rng = np.random.default_rng(SEED)
@@ -449,10 +470,18 @@ def part2(items, hosted, newset, open_cfgs, draws):
         for n in cv:
             cv[n].update(item_scores(te_cells, p[n][te], eit))
     cvp = dict(cv)
-    cvp["R_front"] = {it["item"]: float(statistics.median([T[c["cell"]] for c in D.cells if c["kind"] == "crit" and c["key"] == it["item"]]))
-                      for it in items}
+    cvp["R_front"] = median_by_item(Tf, D.cells, items)
+    if arm != "frontier":
+        cvp["R_ref"] = median_by_item(T, D.cells, items)
     cvp["R_validated"] = {it["item"]: float(np.mean([item_median(t, it["item"]) for t in vsel])) for it in items}
     res["cv5_all_tasks"] = evaluate(cvp, items, draws, [])
+    if arm != "frontier":                                                   # how good a stand-in is the open reference?
+        both = [c for c in D.cells if c["cell"] in Tf]
+        pc = [c for c in both if c["kind"] != "crit"]
+        mt, mf = median_by_item(T, D.cells, items), median_by_item(Tf, D.cells, items)
+        res["reference_vs_frontier"] = {
+            "probe_cells_spearman": rho([T[c["cell"]] for c in pc], [Tf[c["cell"]] for c in pc]), "n_probe_cells": len(pc),
+            "items_spearman": rho([mt[k] for k in mt if k in mf], [mf[k] for k in mt if k in mf]), "n_items": len([k for k in mt if k in mf])}
     return res
 
 
@@ -506,8 +535,24 @@ def write_report(path: Path, res: dict):
     L += ["", "### Units", "", "| unit | criterion rho (45 items) | C_ms_gold | F1_probe | F2_item | status |", "|---|---|---|---|---|---|"]
     for r in p1["unit_table"]:
         L.append(f"| `{r['config']}` | {fmt(r['criterion'])} | {fmt(r['C_ms_gold'])} | {fmt(r['F1_probe'])} | {fmt(r['F2_item'])} | {r['status']} |")
-    p2 = res["part2"]
-    L += ["", "## Part 2: fitting open-weight units to the frontier consensus T", "",
+    L += _part2_lines(res["part2"], "## Part 2: fitting open-weight units to the frontier consensus T")
+    for arm, blk in res.get("arms", {}).items():
+        L += ["", f"## Open-weight reference arm `{arm}` (members {', '.join(ARMS[arm][0])}; protocol Addendum 3)", "",
+              f"Reference vs the frontier consensus: {json.dumps({k: (round(v, 3) if isinstance(v, float) else v) for k, v in blk['part2'].get('reference_vs_frontier', {}).items()})}.", "",
+              "Part 1 (label-free indices of this arm vs agreement with the expert ratings, over the open-weight units):", "",
+              "| index | n units | Spearman | 95% CI | Kendall | Pearson | perm p (one-sided) |", "|---|---|---|---|---|---|---|"]
+        for n, a in blk["part1"]["secondary"].items():
+            L.append(f"| {n} | {a['n_units']} | {fmt(a['spearman'])} | {ci_s(a['ci'])} | {fmt(a['kendall'])} | {fmt(a['pearson'])} | {fmt(a['permutation_p'], 4)} |")
+        sr = blk["substitute_reading"]
+        L.append(f"\nSubstitute reading (Addendum 3): **{'SUBSTITUTE-OK' if sr['SUBSTITUTE_OK'] else 'NOT SUBSTITUTE-OK'}** (arm chosen-learner test rho {fmt(sr['arm_chosen_test_rho'])}, frontier arm {fmt(sr['frontier_arm_chosen_test_rho'])}, arm FIT-PASS {sr['arm_FIT_PASS']}).")
+        g = blk["part1"]["gate"]
+        L.append(f"\nGate on `{g['index']}` (descriptive, same thresholds as the primary): {g['verdict']}; model-clustered p {fmt((g['model_clustered'] or {}).get('permutation_p'), 4)}.")
+        L += _part2_lines(blk["part2"], f"### Part 2, arm `{arm}`: fit to this reference")
+    path.write_text("\n".join(L) + "\n")
+
+
+def _part2_lines(p2, title):
+    L = ["", title, "",
           f"Rows {p2['n_rows']} ({json.dumps(p2['rows_by_split'])}); open-weight units {p2['n_open_units']}. Verdict: **{p2['verdict']['label']}** "
           f"(chosen by validation: {p2['verdict']['chosen_by_validation']}; validation Spearman {json.dumps({k: round(v, 3) for k, v in p2['validation']['spearman_vs_expert_val_items'].items() if v == v})}).", "",
           f"Test split: {p2['test']['n_items']} items, {p2['test']['n_tasks']} tasks, fit on train+val, tested once.", "",
@@ -521,7 +566,7 @@ def write_report(path: Path, res: dict):
           "### Descriptive 5-fold task-grouped CV over all 25 tasks (75 items)", "", "| learner | Spearman [95% CI] |", "|---|---|"]
     for n, r in p2["cv5_all_tasks"]["rows"].items():
         L.append(f"| {n} | {fmt(r['spearman'])} {ci_s(r['spearman_ci95'])} |")
-    path.write_text("\n".join(L) + "\n")
+    return L
 
 
 def main() -> int:
@@ -555,7 +600,23 @@ def main() -> int:
                          for u in sorted(open_units, key=lambda u: u["config"])]}
     open_cfgs = [u["config"] for u in units if is_open(u)]
     p2 = part2(items, hosted, new, open_cfgs, args.draws)
-    res = {"experiment": 59, "draws": args.draws, "runs": [str(r) for r in args.run], "part1": p1, "part2": p2,
+    arms = {}
+    for arm in ("O_qwen36", "O_llama70", "O_both"):
+        if not consensus({c: cell_table(h) for c, h in allh.items()}, None, arm):
+            continue                                                         # reference not harvested (yet)
+        extra_o = part1(units, items, hosted, new, args.draws, arm)
+        subj = [u for u in open_units if u["config"].split("|")[0] not in ARMS[arm][0] and f"F12@{arm}" in u["indices"]]
+        nm = tuple(f"{n}@{arm}" for n in ("F1_probe", "F2_item", "F12"))
+        arms[arm] = {"part1": {"n_units": len(subj), "secondary": assoc_block(subj, nm, args.draws),
+                               "gate": gate_verdict(subj, f"F12@{arm}", args.draws)},
+                     "part2": part2(items, hosted, new, open_cfgs, args.draws, arm)}
+    for arm, blk in arms.items():     # Addendum 3 reading: the open reference is a usable stand-in iff FIT-PASS and within 0.10 of the frontier arm
+        fr, ar = p2["verdict"]["chosen_by_validation"], blk["part2"]["verdict"]["chosen_by_validation"]
+        rf = p2["test"]["rows"].get(fr, {}).get("spearman") if fr else None
+        ra = blk["part2"]["test"]["rows"].get(ar, {}).get("spearman") if ar else None
+        blk["substitute_reading"] = {"frontier_arm_chosen_test_rho": rf, "arm_chosen_test_rho": ra, "arm_FIT_PASS": blk["part2"]["verdict"]["FIT_PASS"],
+                                     "SUBSTITUTE_OK": bool(blk["part2"]["verdict"]["FIT_PASS"] and rf is not None and ra is not None and ra >= rf - 0.10)}
+    res = {"experiment": 59, "draws": args.draws, "runs": [str(r) for r in args.run], "part1": p1, "part2": p2, "arms": arms,
            "status_counts": {u["config"]: u["status_counts"] for u in units if u["config"] in new}}
     (args.out / "ANALYSIS.json").write_text(json.dumps(res, indent=1, default=float))
     write_report(args.out / "RESULTS_open_weight_proxy_fit.md", res)

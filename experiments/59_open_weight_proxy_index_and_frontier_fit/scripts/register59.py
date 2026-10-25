@@ -26,10 +26,13 @@ e58.MODELS.update(EXTRA)
 # context is cut to 28,672 (longest E39 prompt ~15k tokens; output budget = context - prompt, so thinking is capped at
 # ~13k tokens on the longest prompts). Recorded in PROTOCOL.md Addendum 2.
 e58.MODELS["qwen3_4b"] = dict(e58.MODELS["qwen3_4b"], max_model_len=28672)
+# Open-weight reference arm (PROTOCOL.md Addendum 3): the largest open judge that fits one free A100 80 GB, run on the H2
+# prompt only. E58 planned it on 2 x L40S (65,536 context); here 1 GPU and 32,768 context (longest prompt ~15k tokens).
+e58.MODELS["llama33_70b_awq"] = dict(e58.MODELS["llama33_70b_awq"], gpus=1, max_model_len=32768)
 e58.MODEL_ORDER = tuple(e58.MODELS)
 
 # Stage 1 panel, in run order. Lane A: skampere1 GPU 5 (A100 80 GB), fastest first. Lane B: mercury2 GPU 9 (16 GB).
-LANE_A = ("llama31_8b", "q25_14b_awq", "q3_30b_a3b_fp8", "qwen3_8b", "qwen3_14b")
+LANE_A = ("llama31_8b", "llama33_70b_awq:H2", "q25_14b_awq", "q3_30b_a3b_fp8", "qwen3_8b", "qwen3_14b")   # "model:prompts"
 LANE_B = ("qwen3_4b",)
-STAGE1 = LANE_A + LANE_B
+STAGE1 = tuple(m.split(":")[0] for m in LANE_A) + LANE_B
 EXP = "e39"                      # experiment 42's semantic probes are not re-scored here
