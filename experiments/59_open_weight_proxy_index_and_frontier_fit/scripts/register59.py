@@ -22,6 +22,10 @@ EXTRA = {
                        "weights_gb": 31.2, "thinking": False, "quantization": "fp8"},
 }
 e58.MODELS.update(EXTRA)
+# Lane B runs on a 16 GB card: vLLM refused qwen3_4b at E58's 40,960-token context (5.62 GiB KV needed, 5.03 free), so the
+# context is cut to 28,672 (longest E39 prompt ~15k tokens; output budget = context - prompt, so thinking is capped at
+# ~13k tokens on the longest prompts). Recorded in PROTOCOL.md Addendum 2.
+e58.MODELS["qwen3_4b"] = dict(e58.MODELS["qwen3_4b"], max_model_len=28672)
 e58.MODEL_ORDER = tuple(e58.MODELS)
 
 # Stage 1 panel, in run order. Lane A: skampere1 GPU 5 (A100 80 GB), fastest first. Lane B: mercury2 GPU 9 (16 GB).
