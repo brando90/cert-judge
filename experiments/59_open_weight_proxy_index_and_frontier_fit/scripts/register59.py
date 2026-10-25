@@ -21,6 +21,11 @@ EXTRA = {
                        "source": "official", "family": "qwen3", "params_b": 30.5, "gpus": 1, "max_model_len": 65536,
                        "weights_gb": 31.2, "thinking": False, "quantization": "fp8"},
 }
+# Addendum 6: the FP8 checkpoint above crashed the vLLM engine on the A100 at its first batch (no output written), so the same
+# model in bf16 replaces it in the lane (the fp8 entry stays registered for the record).
+EXTRA["q3_30b_a3b_bf16"] = {"repo": "Qwen/Qwen3-30B-A3B-Instruct-2507", "revision": "0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe",
+                            "source": "official", "family": "qwen3", "params_b": 30.5, "gpus": 1, "max_model_len": 65536,
+                            "weights_gb": 61.1, "thinking": False}
 e58.MODELS.update(EXTRA)
 # Lane B runs on a 16 GB card: vLLM refused qwen3_4b at E58's 40,960-token context (5.62 GiB KV needed, 5.03 free), so the
 # context is cut to 28,672 (longest E39 prompt ~15k tokens; output budget = context - prompt, so thinking is capped at
@@ -34,7 +39,7 @@ e58.MODELS["qwen3_32b"] = dict(e58.MODELS["qwen3_32b"], gpus=1, max_model_len=32
 e58.MODEL_ORDER = tuple(e58.MODELS)
 
 # Stage 1 panel, in run order. Lane A: skampere1 GPU 5 (A100 80 GB), fastest first. Lane B: mercury2 GPU 9 (16 GB).
-LANE_A = ("llama31_8b", "llama33_70b_awq:H2", "qwen3_32b:H2", "q25_14b_awq", "q3_30b_a3b_fp8", "qwen3_8b", "qwen3_14b")   # "model:prompts"
+LANE_A = ("llama31_8b", "llama33_70b_awq:H2", "qwen3_32b:H2", "q25_14b_awq", "q3_30b_a3b_bf16", "qwen3_8b", "qwen3_14b")   # "model:prompts"
 LANE_B = ("qwen3_4b",)
 STAGE1 = tuple(m.split(":")[0] for m in LANE_A) + LANE_B
 EXP = "e39"                      # experiment 42's semantic probes are not re-scored here
