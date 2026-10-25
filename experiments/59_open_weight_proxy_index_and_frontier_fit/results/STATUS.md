@@ -47,3 +47,14 @@ Part 1 over 32 open-weight units from 6 models (Llama 3.1 8B x9, Qwen2.5 14B AWQ
 - Small judges so far agree weakly with the experts (Qwen2.5 14B AWQ: D0 0.56, R4 0.19, H2 0.19; Llama 3.1 8B: up to 0.44; Qwen3 4B: D0 0.46, H0 0.37, R4 0.50).
 
 Reading so far: an agreement-with-a-bigger-open-model index tracks agreement with the human ratings across prompts and models (about 0.9 over the 75 items); the label-free frozen index is weaker and less stable (0.55-0.72 depending on the unit set), and the old PTI/TI_var show nothing. Caveats: partial panel, units differ in model and prompt (the correlation is partly between-model), human ratings are Claude 3.7 Sonnet outputs only, no frontier ratings until Nov 6.
+
+## 2026-10-25 01:20 (fourth look, Part 1 only; `results/interim_2026-10-25_0120_part1_only/`)
+
+Done: llama31_8b, q25_14b_awq, q3_30b_a3b_bf16 (the bf16 replacement of the crashed FP8 run, addendum 6), qwen3_8b (all 9/9), llama33_70b_awq and qwen3_32b (H2). Running: qwen3_14b on skampere1 GPU 5 (D0 started 01:03; 9 prompts, thinking), qwen3_4b on mercury2 GPU 9 (7 of 9 harvested, P8 under way). No learner is fitted and the test split is not read (`--part1-only`).
+
+Part 1 over 54 open-weight units from 8 models (7 new models plus the saved Qwen3.6-27B), criterion = Spearman with the three-expert mean on the 45 val+test items (human ratings are Claude 3.7 Sonnet outputs only):
+
+- Frozen primary `C_ms_gold`: Spearman 0.453 [0.16, 0.68], n = 50 units, plain permutation p 0.0005, but the model-clustered check is 0.169 (p 0.33, only 3 models fully computable), so the verdict is INCONCLUSIVE (plain PASS, clustered not). On the new units only: 0.356.
+- `F1_probe` (agreement with the frontier consensus on probe cells) 0.652 [0.42, 0.82]; `F2_item` (agreement on the 75 items) 0.937 [0.88, 0.96]; `F12` 0.925 [0.87, 0.95]; frozen `PTI_v0` 0.221 [0.05, 0.41]; `TI_var` 0.038.
+- Open-weight smart reference instead of the frontier consensus: `F12@O_qwen36` 0.877 [0.79, 0.92] (model-clustered p 0.041), `F12@O_qwen32` 0.931 [0.88, 0.95] (p 0.010), `F12@O_both` 0.908 [0.83, 0.94] (p 0.041). Qwen3.6-27B agrees with the frontier consensus (0.858 on 75 items) and with the experts (0.817); Qwen3-32B 0.682 and 0.736. Llama 3.3 70B AWQ is constant (undefined).
+- Reading: an index that asks "does this small judge agree with a bigger open judge" works about as well as asking it against the frontier consensus, and far better than the label-free index; caveat: much of this is between-model and the experts themselves agree with the reference at about 0.8, so it is partly the reference and the experts agreeing with each other. Not a protocol verdict (qwen3_14b and qwen3_4b still running; the full analysis incl. Part 2 runs at the 07:00 cutoff).
