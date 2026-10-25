@@ -36,7 +36,7 @@ HOSTED_OPEN = ("qwen36",)                                                 # cach
 # Reference arms (protocol section 2 and Addendum 3): arm -> (members whose H2 unit forms T, minimum members). A unit's own
 # model is always left out of its T. "frontier" is the primary arm; the O_* arms use open-weight references only.
 ARMS = {"frontier": (FRONT_H2, 4), "O_qwen36": (("qwen36",), 1), "O_llama70": (("llama33_70b_awq",), 1),
-        "O_both": (("qwen36", "llama33_70b_awq"), 1)}
+        "O_both": (("qwen36", "llama33_70b_awq"), 2)}
 ALPHAS = (0.1, 1.0, 10.0, 100.0, 1000.0)
 TOPK = 5
 GATE_RHO, GATE_P, CLUSTER_P = 0.45, 0.05, 0.10
