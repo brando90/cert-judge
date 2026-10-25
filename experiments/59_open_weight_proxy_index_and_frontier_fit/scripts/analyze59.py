@@ -36,7 +36,7 @@ HOSTED_OPEN = ("qwen36",)                                                 # cach
 # Reference arms (protocol section 2 and Addendum 3): arm -> (members whose H2 unit forms T, minimum members). A unit's own
 # model is always left out of its T. "frontier" is the primary arm; the O_* arms use open-weight references only.
 ARMS = {"frontier": (FRONT_H2, 4), "O_qwen36": (("qwen36",), 1), "O_llama70": (("llama33_70b_awq",), 1),
-        "O_both": (("qwen36", "llama33_70b_awq"), 2)}
+        "O_qwen32": (("qwen3_32b",), 1), "O_both": (("qwen36", "qwen3_32b"), 2)}
 ALPHAS = (0.1, 1.0, 10.0, 100.0, 1000.0)
 TOPK = 5
 GATE_RHO, GATE_P, CLUSTER_P = 0.45, 0.05, 0.10
@@ -387,6 +387,22 @@ def median_by_item(T, cells, items):
     return out
 
 
+def reference_check(tables, items, arm):
+    """How good a stand-in the open reference is: its T against the frontier consensus (probe cells and the 75 items), plus
+    the reference used directly as a judge against the experts on the 45 val+test items."""
+    T, Tf = consensus(tables, None, arm), consensus(tables)
+    base = tables["sol6h|H2"]
+    cells = [{"cell": k, "kind": v["kind"], "key": v["key"]} for k, v in base.items() if k in T and k in Tf]
+    pc = [c for c in cells if c["kind"] != "crit"]
+    mt, mf = median_by_item(T, cells, items), median_by_item(Tf, cells, items)
+    common = [k for k in mt if k in mf]
+    ev = [it for it in items if it["split"] in ("val", "test") and it["item"] in mt]
+    return {"probe_cells_spearman": rho([T[c["cell"]] for c in pc], [Tf[c["cell"]] for c in pc]), "n_probe_cells": len(pc),
+            "items_spearman": rho([mt[k] for k in common], [mf[k] for k in common]), "n_items": len(common),
+            "reference_vs_experts_45_items": rho([mt[it["item"]] for it in ev], [it["target_expert"] for it in ev]), "n_items_vs_experts": len(ev),
+            "frontier_vs_experts_45_items": rho([mf[it["item"]] for it in ev if it["item"] in mf], [it["target_expert"] for it in ev if it["item"] in mf])}
+
+
 def part2(items, hosted, newset, open_cfgs, draws, arm="frontier"):
     tables = {c: cell_table(h) for c, h in {**hosted, **newset}.items()}
     T = consensus(tables, None, arm)
@@ -541,7 +557,7 @@ def write_report(path: Path, res: dict):
         L += ["", "## Part 2", "", "Not run in this interim look (`--part1-only`): no learner was fitted and the test split was not read."]
     for arm, blk in res.get("arms", {}).items():
         L += ["", f"## Open-weight reference arm `{arm}` (members {', '.join(ARMS[arm][0])}; protocol Addendum 3)", "",
-              f"Reference vs the frontier consensus: {json.dumps({k: (round(v, 3) if isinstance(v, float) else v) for k, v in ((blk['part2'] or {}).get('reference_vs_frontier', {})).items()})}.", "",
+              f"Reference vs the frontier consensus: {json.dumps({k: (round(v, 3) if isinstance(v, float) else v) for k, v in blk['reference_vs_frontier'].items()})}.", "",
               "Part 1 (label-free indices of this arm vs agreement with the expert ratings, over the open-weight units):", "",
               "| index | n units | Spearman | 95% CI | Kendall | Pearson | perm p (one-sided) |", "|---|---|---|---|---|---|---|"]
         for n, a in blk["part1"]["secondary"].items():
@@ -607,7 +623,7 @@ def main() -> int:
     open_cfgs = [u["config"] for u in units if is_open(u)]
     p2 = None if args.part1_only else part2(items, hosted, new, open_cfgs, args.draws)
     arms = {}
-    for arm in ("O_qwen36", "O_llama70", "O_both"):
+    for arm in ("O_qwen36", "O_llama70", "O_qwen32", "O_both"):
         if not consensus({c: cell_table(h) for c, h in allh.items()}, None, arm):
             continue                                                         # reference not harvested (yet)
         extra_o = part1(units, items, hosted, new, args.draws, arm)
@@ -615,6 +631,7 @@ def main() -> int:
         nm = tuple(f"{n}@{arm}" for n in ("F1_probe", "F2_item", "F12"))
         arms[arm] = {"part1": {"n_units": len(subj), "secondary": assoc_block(subj, nm, args.draws),
                                "gate": gate_verdict(subj, f"F12@{arm}", args.draws)},
+                     "reference_vs_frontier": reference_check({c: cell_table(h) for c, h in allh.items()}, items, arm),
                      "part2": None if args.part1_only else part2(items, hosted, new, open_cfgs, args.draws, arm)}
     for arm, blk in ([] if args.part1_only else arms.items()):     # Addendum 3 reading: the open reference is a usable stand-in iff FIT-PASS and within 0.10 of the frontier arm
         fr, ar = p2["verdict"]["chosen_by_validation"], blk["part2"]["verdict"]["chosen_by_validation"]
