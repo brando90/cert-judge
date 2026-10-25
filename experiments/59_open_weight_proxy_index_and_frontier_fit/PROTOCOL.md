@@ -67,4 +67,4 @@ Cell status counts per unit; wall time and tokens per second per model; the sett
 
 ## Addenda (dated, the sections above unchanged)
 
-(none yet)
+- **10-24-2026, after the freeze and before any new judge output was read:** `scripts/analyze59.py` was written and tested only on a renamed copy of the cached hosted `qwen36` harvests (nine fake units, no new data); it implements sections 3-5 as written. Implementation choices fixed here: the L0 score is the chosen unit's raw score (missing cells imputed by its train median); `R_validated` is the mean of the item medians of `sol6h|H2` and `opus55x|H2` (so it can differ from the paper's 0.826, which is the same two judges on the 30-item split under experiment 100's own aggregation); ICC is the two-rater ICC(C,1) and ICC(A,1) between the learner's item score and the expert mean; intervals for Pearson, Kendall and ICC use 2,000 task-cluster draws, Spearman's 10,000; the clustered permutation p is `analyze58.clustered_stats` (needs models whose nine units are all computable); a validation-time fit on train only picks the learner among L1/L2/L3 by Spearman with the expert mean on the 15 val items.
