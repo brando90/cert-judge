@@ -376,7 +376,7 @@ def write_report(path, R):
             L.append(f"| {n} | {f3(r['spearman'])} {ci_s(r['spearman_ci95'])} | {f3(r['pearson'])} {ci_s(r.get('pearson_ci95'))} | {f3(r['kendall'])} | {f3(r['icc_c1'])} | {f3(r['icc_a1'])} |")
         L += ["", "Paired Spearman differences (95% CI): " + "; ".join(f"{k} {ci_s(v)}" for k, v in row["loto"]["paired_spearman_diff_ci95"].items()), ""]
     rs = pc["random_splits_17_8"]
-    L += ["### 200 random 17/8 task splits (held-out Spearman)", "", "| learner | mean | median | 5th pct | 95th pct | share >= 0.45 |", "|---|---|---|---|---|---|"]
+    L += [f"### {rs['L3']['n_splits']} random 17/8 task splits (held-out Spearman)", "", "| learner | mean | median | 5th pct | 95th pct | share >= 0.45 |", "|---|---|---|---|---|---|"]
     for n in ("L0", "L1", "L2", "L3"):
         v = rs[n]; L.append(f"| {n} | {f3(v['mean'])} | {f3(v['median'])} | {f3(v['p05'])} | {f3(v['p95'])} | {f3(v['share_ge_0.45'])} |")
     for k, v in pc["random_split_refs"].items():
