@@ -3,6 +3,7 @@
 Imported by run61.py and fetch61.py. Contexts are cut for the 16 GB cards (PROTOCOL.md section 2)."""
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -18,4 +19,6 @@ e58.MODELS["q25_14b_awq"] = dict(e58.MODELS["q25_14b_awq"], gpus=2, max_model_le
 e58.MODELS["qwen3_8b"] = dict(e58.MODELS["qwen3_8b"], gpus=2, max_model_len=28672)         # bf16 16.4 GB over 2 x A4000 (tensor parallel 2)
 e58.MODELS["llama31_8b"] = dict(e58.MODELS["llama31_8b"], gpus=2, max_model_len=28672)       # Addendum 2: non-Qwen family, bf16 16.1 GB over 2 x A4000
 e58.MODELS["gemma3_12b"] = dict(e58.MODELS["gemma3_12b"], gpus=2, max_model_len=16384)        # Addendum 2: bf16 24.4 GB over 2 x A4000, short context for KV
+if os.environ.get("E61_GPU_UTIL"):                                                          # Addendum 4: vLLM gpu_memory_utilization override (default 0.90)
+    e58.GPU_MEMORY_UTILIZATION = float(os.environ["E61_GPU_UTIL"])
 e58.MODEL_ORDER = tuple(e58.MODELS)

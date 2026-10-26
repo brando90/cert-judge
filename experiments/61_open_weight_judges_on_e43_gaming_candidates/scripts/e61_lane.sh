@@ -10,7 +10,7 @@ RUN=$W/runs61
 mkdir -p $WT $RUN $W/logs61
 export HF_HOME=/dfs/scratch0/brando9/at1209_hf_cache TOKENIZERS_PARALLELISM=false OMP_NUM_THREADS=4 PYTHONPATH=$C61/scripts
 export E58_VERIBENCH_REPO=$W/code/experiments/58_open_weight_judges_on_e39_e42_probes/private/veribench_min
-export CUDA_VISIBLE_DEVICES=$GPUS
+export CUDA_VISIBLE_DEVICES=$GPUS E61_GPU_UTIL=${E61_GPU_UTIL:-}
 for i in $(seq 1 72); do
   busy=0
   for g in ${GPUS//,/ }; do u=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i $g | head -1); [ "${u:-99999}" -ge 500 ] && busy=1; done
