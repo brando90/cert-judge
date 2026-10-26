@@ -41,3 +41,19 @@ Launch method that worked: `ssh_run` to skampere1, then `ssh mercury1 '(nohup se
 | olmo3_7b | mercury2, 2 empty A4000s picked at launch, TP=2 | waits for 2 empty GPUs | same, thinking mode as in `e58.MODELS` | Same waiter. |
 
 Not run here: `qwen3_4b` (already COMPLETED on FarmShare, job 1862860_0), `gpt_oss_20b` and the 32B/27B/70B judges (do not fit A4000 16 GB; they stay on FarmShare). Every raw cell's meta records `hardware_note`, so a mixed-hardware panel is visible to the analysis. Protocol, prompts, sampling, seeds and analysis are unchanged.
+
+## Update 10-26-2026 14:05 PT (AT-1384): what actually runs, and what failed
+
+Corrections to the table above: `qwen3_4b`-style "2 A4000s fit" claims were wrong for the two larger judges; measured on mercury2 (A4000 16 GB, driver 570, vLLM 0.11.0, venv128, weights in /dev/shm, code in /tmp/brando9_e58):
+
+| Judge | Attempt | Result |
+|---|---|---|
+| gemma3_4b | mercury1 GPU 9, TP=1, util 0.90 | RUNNING since 12:47 PT. E39 D0 (456 cells) took 1,029 s; later E39 configs about 1,100 s per 521 cells (about 28 cells/min); 9,862 cells in total, so about 6 h from start; expected finish about 19:00 PT (estimate). |
+| gemma3_12b | mercury2 TP=2, util 0.90 | FAILED at engine start: weights 12 GB per GPU leave -0.42 GiB KV cache. |
+| gemma3_12b | mercury2 TP=4, util 0.80 | FAILED after 4 min of generation: CUDA illegal memory access in `flash_attn_varlen_func` (vLLM 0.11.0 FA2). |
+| gemma3_12b | mercury2 TP=4, util 0.85 | FAILED: CUDA OOM (770 MiB) at sampler warm-up (262k vocabulary). |
+| olmo3_7b | mercury2 TP=2, util 0.90 | FAILED at engine start: needs 6.25 GiB KV cache, 6.15 GiB available. |
+| olmo3_7b | mercury2 TP=4, util 0.90 | FAILED: OOM in sampler warm-up after CUDA-graph capture, process hung and was killed. |
+| olmo3_7b | mercury2 GPUs 0-3, TP=4, util 0.80 | RUNNING since 13:43 PT. No E39 D0 completion after 18 min (thinking mode, up to 5,000 output tokens per cell); finish not measurable yet, estimate 15-30 h. |
+
+Deviations on mercury2, all recorded in each meta's `hardware_note`: `E58_TP=4` instead of the Slurm plan, `gpu_memory_utilization` 0.80 instead of 0.90 (env `E58_GPU_UTIL`, override added to `judge_vllm.py`; no prompt, sampling, seed or max_model_len change). gemma3_12b stays on FarmShare (job 1862860_8 pending). Failed attempts' logs are in /tmp/brando9_e58/logs on mercury2.
