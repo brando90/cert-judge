@@ -17,9 +17,10 @@ sys.path[:0] = [str(E43 / "scripts")]
 import e43  # noqa: E402
 
 PROMPTS = ("D0", "H2", "P1")
-MODELS = ("qwen3_4b", "q25_14b_awq", "qwen3_8b")
+MODELS = ("qwen3_4b", "q25_14b_awq", "qwen3_8b", "llama31_8b", "gemma3_12b")
 LABEL = {"qwen3_4b": "Qwen3-4B bf16 (thinking)", "q25_14b_awq": "Qwen2.5-14B-Instruct-AWQ int4",
-         "qwen3_8b": "Qwen3-8B bf16 TP2 (thinking)"}
+         "qwen3_8b": "Qwen3-8B bf16 TP2 (thinking)", "llama31_8b": "Llama-3.1-8B-Instruct bf16 TP2",
+         "gemma3_12b": "Gemma-3-12B-it bf16 TP2"}
 BOOT = 10000
 
 
