@@ -90,6 +90,14 @@ Direct Mac SSH to FarmShare returned an authentication failure, and OnDemand sho
 
 All E59/E60 human comparisons still use the existing **75 Claude 3.7 Sonnet zero-shot items across 25 tasks**, not fresh frontier-agent human ratings. Those human data remain the substantive next evidence need; this audit does not weaken or rewrite the paper's claims.
 
+## Raw verification resumed, 10-26-2026
+
+Brando requested continued coordination and independent verification of the original FarmShare archive. The [expected-outcome contract](results/audit_10-26-2026/RAW_VERIFICATION_PLAN.md) was committed before acquiring that archive. Its delivery is requested in [the coworker inbox](https://github.com/brando90/agents-config/issues/68#issuecomment-6427967589); no available authenticated FarmShare session was found on the Mac or via SNAP, and no Duo challenge was triggered.
+
+The new read-only `scripts/verify_raw.py` checks raw and metadata manifest coverage, rejects duplicate/unknown/non-rendered cells, verifies raw prompt hashes, per-cell seeds and generation budgets, and replays the frozen harvester exactly. The existing harvester silently keeps the last raw row for a duplicated cell; the verifier rejects that ambiguity without changing the harvester or any scientific parser. Recorded runtime deviations remain separate from raw replay correctness.
+
+The completed mercury1 smoke provides a real-data control: all three copied source files match independent remote hashes, and all 521 harvest cells reproduce exactly from 20 raw responses, excluding only `written_utc`. There are 19 measured, one parse error, 56 deterministic, nine extraction failures and 436 missing cells. The parse error contains unescaped quotes inside its JSON reason and remains excluded under the original parser. All 20 raw responses were inspected; no generated response was repaired. The [receipt](results/audit_10-26-2026/RAW_SMOKE_REPLAY.json) records code and prompt-file hashes and explicitly labels its locally generated audit manifest. This verifies the smoke, not the pending FarmShare snapshot. The expanded E58 suite passes 46 tests with zero skips.
+
 ## Reproduce or continue
 
 Run from the repository root using the existing `uv` environment and rebuilt prompts:

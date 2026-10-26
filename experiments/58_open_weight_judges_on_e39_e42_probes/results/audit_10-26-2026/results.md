@@ -15,6 +15,8 @@ Updated 10-26-2026. Owner: Codex; no model inference or provider charges.
 | E60 missing/empty input check | 8 tests pass; 6 regression failures before fix | [PR 84](https://github.com/brando90/cert-judge/pull/84) |
 | Newly published FarmShare partial, processed-unit gate check | Exit 0; all four gate/statistic fields match exactly | [E58_FARMSHARE_GATE_CHECK.json](E58_FARMSHARE_GATE_CHECK.json); raw harvest verification pending archive |
 | Combined E58/E60 tests | 40 passed, 0 skipped, 52.74 seconds | Python 3.12; isolated E60 imports |
+| Resumed E58 suite with raw verifier | 46 passed, 0 skipped, 45.90 seconds | 14 new corruption controls; 10-26-2026 14:43 PDT |
+| Raw mercury1 smoke replay | 3 source hashes match; 521/521 cells exactly reproduce from 20 raw responses | [RAW_SMOKE_REPLAY.json](RAW_SMOKE_REPLAY.json); local audit manifest; separate from FarmShare |
 
 Initial full-reproduction attempt used the archive parent instead of its nested `seed0`/`seed1` run roots; it exited 0 with no new units and is not counted as a reproduction. Paths were corrected before interpreting results.
 

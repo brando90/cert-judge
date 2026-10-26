@@ -16,6 +16,7 @@
 | `scripts/harvest_lib.py` | Raw output to E39-schema harvest JSON, with E39's own parsers. |
 | `scripts/analyze58.py` | The frozen analysis (gate, clustered permutation, PTI_v0, TI_var, E42 screen, scale curves, TVD-MI, bridge). |
 | `scripts/analysis_inputs.py` | Declared-panel coverage, input identity/hash verification, recorded runtime checks and failure counts. |
+| `scripts/verify_raw.py` | Read-only raw-response, metadata and harvest replay; checks prompt hashes, seeds, budgets, duplicate cells and manifest coverage. |
 | `slurm/` | `prepare.sh`, `smoke.sbatch`, `run_model.sbatch`, `submit_all.sh`, `collect.sh`, `SUBMIT.md`, GPU-hour estimates. |
 | `scripts/fetch_models.py`, `verify_prompts.py`, `make_package.py` | Pinned-revision weight download; prompt hash check; builds the upload tarball. |
 | `tests/` | CPU tests (no GPU, no model): panel config, parsers, harvest schema, clustered statistics, a synthetic 117-unit run through the harvest writer and the whole analysis. |
@@ -28,6 +29,8 @@
 3. Partial/uncollected inputs: `python scripts/analyze58.py --run <existing partial directory> --out <diagnostic directory> --dry-run`. This writes distinct `ANALYSIS_DRY_RUN.json` and `RESULTS_open_weight_judges_DRY_RUN.md`. Reduced draw counts require `--dry-run`; ordinary analysis uses the frozen 10,000 draws. Dry runs never establish an E58 scientific result.
 4. Context for reading the gate: experiment 39's test units gave `C_ms_gold` Spearman 0.558 (permutation p 0.0127) over 18 hosted-judge units.
 
+For an independent raw-data audit before analysis, run `python scripts/verify_raw.py --run <collected runs/main> --receipt <outside-source>/RAW_VERIFICATION.json` from this experiment folder. It requires the rebuilt prompts and original raw/meta files, preserves all source files, and compares every harvest field except its writing timestamp. A mismatch exits nonzero with a failure receipt. Runtime deviations are listed separately; a successful parser replay does not establish executed weight identity or admit a different runtime condition.
+
 ## Verified so far (no model call)
 
-Prompts rebuilt byte-identically: probes 249/249; E39 cells 4689/4689; E42 cells 5238/5238 (`results/REBUILD_REPORT.json`; reverified 10-26-2026 without changing that frozen receipt). CPU tests: 32 pass, zero skipped (`python -m pytest experiments/58_open_weight_judges_on_e39_e42_probes/tests -q`, needs rebuilt prompts). The audit made zero judge calls and incurred $0.00 in provider charges. [Reproduction receipt](results/audit_10-26-2026/REPRODUCTION.json) records a labelled compatibility dry run on existing E60 inputs, not original E58 observations.
+Prompts rebuilt byte-identically: probes 249/249; E39 cells 4689/4689; E42 cells 5238/5238 (`results/REBUILD_REPORT.json`; reverified 10-26-2026 without changing that frozen receipt). CPU tests: 46 pass, zero skipped (`python -m pytest experiments/58_open_weight_judges_on_e39_e42_probes/tests -q`, needs rebuilt prompts), including 14 raw-verification corruption controls. The audit made zero judge calls and incurred $0.00 in provider charges. [Reproduction receipt](results/audit_10-26-2026/REPRODUCTION.json) records a labelled compatibility dry run on existing E60 inputs, not original E58 observations. [Raw smoke replay](results/audit_10-26-2026/RAW_SMOKE_REPLAY.json) exactly reproduces the mercury1 smoke's 521 harvest cells from 20 raw responses; the FarmShare raw snapshot remains a separate verification target.
