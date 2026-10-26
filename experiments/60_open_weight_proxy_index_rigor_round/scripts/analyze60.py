@@ -38,7 +38,17 @@ OTHER_REP_SFX = f"@s{REP_SEED}"
 def load_dirs(dirs, rename=None):
     out = {}
     for d in dirs:
-        for p in sorted((Path(d) / "harvest" / "e39").glob("*.json")):
+        run = Path(d)
+        if not run.is_dir():
+            raise ValueError(f"Harvest run directory does not exist or is not a directory: {run}")
+        harvest = run / "harvest" / "e39"
+        paths = sorted(harvest.glob("*.json"))
+        if not paths:
+            raise ValueError(
+                f"No harvest JSON files found in {harvest}. "
+                "Pass the run directory containing harvest/e39; extracted archives may nest it under seed0 or seed1."
+            )
+        for p in paths:
             h = e58.read_json(p)
             if rename:
                 m, pk = h["config"].split("|")
