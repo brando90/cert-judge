@@ -29,3 +29,15 @@ One empty A4000: `gemma3_4b`. Two empty A4000s (TP=2): `qwen3_4b`, `qwen3_8b`, `
 ## Launch
 
 `~/e58_run_e58_mercury1.sh <model> <cuda ids> <tp>` refuses to start unless every named GPU has < 500 MiB in use, runs E39 then E42, and is resumable. Results land in `/lfs/mercury1/0/brando9/e58/runs/main`, the layout `collect.sh` and `analyze58.py` read.
+
+## Launches (10-26-2026, AT-1384)
+
+Launch method that worked: `ssh_run` to skampere1, then `ssh mercury1 '(nohup setsid bash <script> > log 2>&1 < /dev/null &)'` (same as AT-979). A background process loses its Kerberos ticket when the ssh session ends, so anything that needs AFS or a hop to another node must finish inside the session; scripts and weights a run needs are on local disk. `/dfs/scratch0` stalls on many small files and is 100% full, so it is not used.
+
+| Judge | Host / GPUs | Started (PT) | Stack and settings | Status |
+|---|---|---|---|---|
+| gemma3_4b | mercury1, GPU 9 (1x A4000), TP=1 | 12:47 | vLLM 0.11.0, torch 2.8.0+cu128, transformers 4.57.6, bf16, no quantization, no thinking mode (Gemma 3), `judge_vllm.py` `vllm_offline`, E39 then E42, resumable | Running. Measured about 16 cells/min on one shared A4000 (E39 D0, 456 cells, then R4 256 of 521 in 16 min), so the 9,862 generated cells need about 10 h; expected finish about 23:00 PT (an estimate). |
+| gemma3_12b | mercury2, 2 empty A4000s picked at launch, TP=2 | waits for 2 empty GPUs | same stack (mercury2 venv128: vLLM 0.11.0, torch 2.8.0+cu128, transformers 4.57.6), bf16, weights in /dev/shm/brando9_e58_models, code in /tmp/brando9_e58 | A waiter polls every 60 s and launches when 2 GPUs have < 500 MiB in use. |
+| olmo3_7b | mercury2, 2 empty A4000s picked at launch, TP=2 | waits for 2 empty GPUs | same, thinking mode as in `e58.MODELS` | Same waiter. |
+
+Not run here: `qwen3_4b` (already COMPLETED on FarmShare, job 1862860_0), `gpt_oss_20b` and the 32B/27B/70B judges (do not fit A4000 16 GB; they stay on FarmShare). Every raw cell's meta records `hardware_note`, so a mixed-hardware panel is visible to the analysis. Protocol, prompts, sampling, seeds and analysis are unchanged.
