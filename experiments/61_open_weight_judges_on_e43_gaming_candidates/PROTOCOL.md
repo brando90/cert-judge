@@ -26,3 +26,7 @@ Cells 15 per unit; texts 77; 6 tasks. Unmeasured, parse-error and over-context c
 
 ## 5. Not claimed
 No claim about frontier judges, about human ratings, or about E58's frozen H1 gate. A transfer finding applies to attacks optimized against Sonnet 5 medium on 15 items only. The label-free index of experiments 39/59/60 is not re-evaluated here.
+
+## Addendum 1 (10-26-2026, 12:52, before any experiment 61 output was parsed)
+- vLLM refused `q25_14b_awq` at `max_model_len` 20,480 on the 16 GB card (KV cache needs about 3.9 GiB, 3.16 GiB free; mercury2 log, 12:48). It is re-run at 14,336 (longest prompt 11,215 tokens, so the 1,024-token output rule still holds for every cell). Set in `scripts/register61.py`. Prompts, sampling and parsing unchanged.
+- vLLM is 0.11.0 (torch 2.8.0+cu128, `at979/venv128` on mercury2; driver 570 allows CUDA 12.8 only); experiments 58-60 recorded other vLLM versions. The versions are in each `meta_<model>.json`.
