@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/58_open_weight_judges_on_e39_e42_probes/README.md>
 
-**TLDR:** The original E58 panel's execution remains unverified as of 10-26-2026; later E59/E60 results already exist and use their own registered settings. This folder defines the 13-model E58 panel on experiment 39's frozen design and experiment 42's semantic probes. Its frozen-analysis implementation has been audited and repaired; see [the findings and exact saved-data reproduction](RESULTS_analysis_audit.md). Read `PROTOCOL.md` first; the Slurm steps are in `slurm/SUBMIT.md`.
+**TLDR:** As of 10-26-2026, [PR 83](https://github.com/brando90/cert-judge/pull/83) reports FarmShare results for four E58 judges (36 configurations); the complete 13-model panel is unfinished. A separate mercury1 smoke and completed later E59/E60 results also exist; the later studies use their own registered settings. This folder defines the 13-model E58 panel on experiment 39's frozen design and experiment 42's semantic probes. Its frozen-analysis implementation has been audited and repaired; see [the findings and exact saved-data reproduction](RESULTS_analysis_audit.md). Read `PROTOCOL.md` first; the Slurm steps are in `slurm/SUBMIT.md`.
 
 ## Layout
 

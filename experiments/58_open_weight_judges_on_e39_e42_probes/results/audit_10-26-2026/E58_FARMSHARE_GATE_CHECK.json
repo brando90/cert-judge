@@ -1,0 +1,100 @@
+{
+  "source_pr": "https://github.com/brando90/cert-judge/pull/83",
+  "source_revision": "63ade61fba704d7fd50779b35ea7531f8e66a052",
+  "source_analysis_sha256": "cfe27ae1da9ed2316e8057c5b4743f0af96a0186dcd32e71f9cdbbd9eb3e67fd",
+  "scope": "Recomputes gate statistics from the 36 published processed unit records; raw harvests and runtime metadata not yet independently checked.",
+  "exact_matches": {
+    "plain": true,
+    "plain_PASS": true,
+    "model_clustered": true,
+    "model_clustered_PASS": true
+  },
+  "gate": {
+    "index": "C_ms_gold",
+    "gate": {
+      "spearman": 0.45,
+      "permutation_p": 0.05
+    },
+    "plain": {
+      "index": "C_ms_gold",
+      "criterion": "heldout",
+      "n_units": 35,
+      "units": [
+        "llama31_8b|D0",
+        "llama31_8b|H1",
+        "llama31_8b|H2",
+        "llama31_8b|LEX",
+        "llama31_8b|P1",
+        "llama31_8b|P4",
+        "llama31_8b|P8",
+        "llama31_8b|R4",
+        "qwen3_14b|D0",
+        "qwen3_14b|H0",
+        "qwen3_14b|H1",
+        "qwen3_14b|H2",
+        "qwen3_14b|LEX",
+        "qwen3_14b|P1",
+        "qwen3_14b|P4",
+        "qwen3_14b|P8",
+        "qwen3_14b|R4",
+        "qwen3_4b|D0",
+        "qwen3_4b|H0",
+        "qwen3_4b|H1",
+        "qwen3_4b|H2",
+        "qwen3_4b|LEX",
+        "qwen3_4b|P1",
+        "qwen3_4b|P4",
+        "qwen3_4b|P8",
+        "qwen3_4b|R4",
+        "qwen3_8b|D0",
+        "qwen3_8b|H0",
+        "qwen3_8b|H1",
+        "qwen3_8b|H2",
+        "qwen3_8b|LEX",
+        "qwen3_8b|P1",
+        "qwen3_8b|P4",
+        "qwen3_8b|P8",
+        "qwen3_8b|R4"
+      ],
+      "spearman": 0.43333333333333335,
+      "kendall": 0.30756302521008405,
+      "pearson": 0.4528442532355809,
+      "ci": {
+        "lo": 0.12010113780025285,
+        "hi": 0.6759870732050021,
+        "valid_draws": 10000
+      },
+      "permutation_p": 0.0051994800519948
+    },
+    "plain_PASS": false,
+    "model_clustered": {
+      "index": "C_ms_gold",
+      "n_models": 3,
+      "models": [
+        "qwen3_14b",
+        "qwen3_4b",
+        "qwen3_8b"
+      ],
+      "spearman": 0.3986568986568987,
+      "permutation_p": 0.32796720327967205,
+      "ci": {
+        "lo": 0.349862258953168,
+        "hi": 0.6333333333333333,
+        "valid_draws": 10000
+      }
+    },
+    "model_clustered_PASS": false,
+    "plain_status": "FAIL",
+    "model_clustered_status": "FAIL",
+    "verdict": "plain FAIL; model-clustered FAIL"
+  },
+  "collection_archive_sha256_reported_by_owner": "3fd6e86cb2b1b68de79c9c7dfb31e0b63dbf111ae210eddea5c4fc0767c486d7",
+  "session": {
+    "host": "skampere1",
+    "name": "cj-e58-farmshare-gate-01a179a8",
+    "started": "10-26-2026 13:10:17 PDT",
+    "ended": "10-26-2026 13:10:21 PDT",
+    "exit_code": 0,
+    "model_calls": 0
+  }
+}
