@@ -4,15 +4,15 @@
 
 **TLDR:** The E58 analysis now retains missing units, distinguishes unavailable statistics from failed gates, computes the promised failure sensitivity, and rejects incompatible or unverifiable inputs. Its repaired implementation exactly reproduces the saved E60 primary association on 26 configurations as an explicitly labelled compatibility dry run; this is not new E58 evidence.
 
-[Google companion](https://docs.google.com/document/d/1YqbZNnLQt2vmsmDEiltRjPjR6lm7cAgWU9llFZsBOeQ/edit) · [machine-readable reproduction receipt](results/audit_10-26-2026/REPRODUCTION.json) · [checkpoint](CKPT_analysis_audit.md).
+[Google companion](https://docs.google.com/document/d/1YqbZNnLQt2vmsmDEiltRjPjR6lm7cAgWU9llFZsBOeQ/edit) · [machine-readable reproduction receipt](results/audit_10-26-2026/REPRODUCTION.json) · [actual E58 partial-smoke receipt](results/audit_10-26-2026/MERCURY1_SMOKE.json) · [checkpoint](CKPT_analysis_audit.md).
 
 ## Project status as verified on 10-26-2026
 
-The statement that the project has no results because E58 is still queued is stale. The repository's main revision `0c21bf1` already contains pull requests 78–80: E58's implementation and the completed E59/E60 studies. A status message is not an execution receipt.
+The statement that the project has no results because E58 is still queued is stale. The repository's main revision `0c21bf1` already contains pull requests 78–80: E58's implementation and the completed E59/E60 studies. During this audit, `523ef0e` added pull request 81's mercury1 E58 smoke log. The coworker has also acknowledged separate ownership of experiment `61_open_weight_judges_on_e43_gaming_candidates`; its inference stays on mercury2 GPUs 0–3 while this audit uses one CPU on skampere1.
 
 | Experiment | Verified evidence | Interpretation |
 |---|---|---|
-| `58_open_weight_judges_on_e39_e42_probes` | Sherlock runner online; no E58/certjudge-named job found in current `squeue` or `sacct` since 10-20-2026; documented `$SCRATCH/e58` and `~/e58` absent. No original E58 harvest found in the inspected repository or these locations. | Original 117-unit E58 completion is unverified. An unrecognized job name or different location is not ruled out; coworker was asked for exact receipts. |
+| `58_open_weight_judges_on_e39_e42_probes` | Sherlock runner online; no E58/certjudge-named job found in current `squeue` or `sacct` since 10-20-2026; documented `$SCRATCH/e58` and `~/e58` absent. No original E58 harvest found in these Sherlock locations. New [mercury1 run log](results/RUN_LOG_mercury1.md) records a 12:35 PDT Gemma3-4B D0 smoke: 20 generated cells, 19 measured and 1 parse error. | Original 117-unit E58 completion is unverified. The new smoke is partial evidence; its documented hardware/serving deviation must remain visible. |
 | `59_open_weight_proxy_index_and_frontier_fit` | `results/STATUS.md` records FINAL 10-25-2026 04:30; final report committed; SNAP harvest archives exist. | Results exist; the README's older “running/pending” rows are stale. |
 | `60_open_weight_proxy_index_rigor_round` | Committed seed-0 archive contains 26 configurations; seed-1 archive contains 36 repeat configurations. SNAP lane logs end successfully on 10-25-2026 at 13:06 and 14:00 PDT. | Saved results exist. These runs use later registered settings and cannot be relabelled as original E58. |
 
@@ -52,6 +52,12 @@ A one-CPU, model-free SNAP dry run used the 26 E60 seed-0 harvests already commi
 
 The primary result is a ranking association, not an absolute score-agreement claim. The compatibility run retains 117 declared units, 26 with observations, and 117 unavailable semantic-screen units. It identifies **42 runtime-field mismatches** across 26 present harvests (for example, Qwen3-32B's later fp8/one-device/32,768-token settings). It therefore cannot produce an ordinary E58 result. Full source and output hashes are in the receipt.
 
+## Actual E58 partial-harvest dry run
+
+After PR 81 appeared during the audit, the mercury1 smoke harvest was copied read-only from `/lfs/mercury1/0/brando9/e58/runs/smoke/harvest/e39/gemma3_4b__D0.json`. The source and local copy both hash to `424a9d9e51e2c36f65f3f944a8f27e97dfd60bbdea5b4e11e19a9d6f56f38399`. Its 521 declared cells contain 19 measured, 1 parse error, 56 deterministic, 9 unmeasured extraction, and 436 unmeasured infrastructure cells. The recorded runtime contract matches; its vLLM 0.11.0 / torch 2.8.0+cu128 / RTX A4000 serving-stack deviation remains recorded in the source and the receipt.
+
+The ordinary 10,000-draw settings with `--dry-run` retain 117 E39 units, only one with a present harvest, zero computable criterion/index pairs, and 117 unavailable E42 units. Both primary gates correctly report `NOT_COMPUTABLE`. The audit did not retry or generate any cells. This is the requested dry run on an actual E58 partial result, independently of the E60 compatibility check.
+
 ## Unresolved protocol gaps, preserved rather than re-decided
 
 1. **E58 §5 uncertainty wording:** the protocol says “task-bootstrap CI” for the across-judge association, while its explicitly imported frozen E39 `association` function bootstraps judge configurations. The per-judge criterion bootstraps tasks. This patch reports the implemented resampling unit and changes neither function.
@@ -78,4 +84,4 @@ python experiments/58_open_weight_judges_on_e39_e42_probes/scripts/analyze58.py 
 
 For partial inputs, use the same command with `--dry-run`; to inspect an empty panel, supply an existing empty directory. Keep E59/E60 diagnostics labelled and separate. No command here launches inference.
 
-**TLDR-end:** [cert-judge: frozen-analysis audit] E58 implementation defects are repaired and tested without new analysis choices; saved later results exist and the 26-unit primary statistic is exactly reproduced. Original E58 execution receipts and the listed protocol discrepancies remain to reconcile with the coworker.
+**TLDR-end:** [cert-judge: frozen-analysis audit] E58 implementation defects are repaired and tested without new analysis choices; saved later results exist and the 26-unit primary statistic is exactly reproduced. E58 full-panel execution and the listed protocol discrepancies remain to reconcile with the coworker; a newly published mercury1 smoke receipt is now available.

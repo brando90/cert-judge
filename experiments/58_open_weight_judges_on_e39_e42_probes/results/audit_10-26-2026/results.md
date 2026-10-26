@@ -10,7 +10,10 @@ Updated 10-26-2026. Owner: Codex; no model inference or provider charges.
 | Frozen prompt rebuild | 9,927/9,927 hashes match | Original rebuild receipt preserved |
 | Empty-run analysis | Both panels retain 117 units, gates NOT_COMPUTABLE | Ignored `private/audit_10-26-2026/empty_analysis/` |
 | E60 26-unit compatibility check | Exit 0; exact primary object match | [REPRODUCTION.json](REPRODUCTION.json) |
-| Full E60 saved-data reproduction | Dispatched; checking completion | SNAP session `cj-e60-reproduction-01a179a8`; one CPU, 3 GiB, 1,800 seconds |
+| Actual E58 mercury1 smoke | Exit 0; 117 units retained; gates NOT_COMPUTABLE | [MERCURY1_SMOKE.json](MERCURY1_SMOKE.json) |
+| Full E60 saved-data reproduction | Running with asserted input counts 47/9/26/36 | SNAP session `cj-e60-reproduction-final-01a179a8`; one CPU, 3 GiB, 1,800 seconds |
+
+Initial full-reproduction attempt used the archive parent instead of its nested `seed0`/`seed1` run roots; it exited 0 with no new units and is not counted as a reproduction. Paths were corrected before interpreting results.
 
 [Findings and protocol gaps](../../RESULTS_analysis_audit.md) · [checkpoint](../../CKPT_analysis_audit.md).
 
