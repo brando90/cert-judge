@@ -65,9 +65,11 @@ def lofo_global(U, rule):
     for m in sorted(set(f)):
         k = f != m
         i = np.where(k)[0][argmax_first(s[k])]
-        out[m] = {"pick": sel[i]["config"], "pick_rho": float(y[i]), "oracle_rho_remaining": float(y[k].max())}
+        out[m] = {"pick": sel[i]["config"], "pick_rho": float(y[i]), "oracle_rho_remaining": float(y[k].max()), "random_rho_remaining": float(y[k].mean())}
     v = np.array([o["pick_rho"] for o in out.values()])
-    return {"per_family_dropped": out, "min": float(v.min()), "max": float(v.max()), "mean": float(v.mean()), "distinct_picks": sorted({o["pick"] for o in out.values()})}
+    reg = np.array([o["oracle_rho_remaining"] - o["pick_rho"] for o in out.values()]); rnd = np.array([o["random_rho_remaining"] for o in out.values()])
+    return {"per_family_dropped": out, "min": float(v.min()), "max": float(v.max()), "mean": float(v.mean()), "distinct_picks": sorted({o["pick"] for o in out.values()}),
+            "mean_regret": float(reg.mean()), "max_regret": float(reg.max()), "mean_random_rho": float(rnd.mean()), "n_picks_ge_0.75": int((v >= .75).sum()), "n_dropped": len(v)}
 
 
 def prompt_transfer(U, rule):
@@ -159,22 +161,36 @@ def main():
     rng = np.random.default_rng(SEED)
     R = {"experiment": 62, "n_units_with_criterion": len(U), "n_common_units": len(common), "draws": a.draws, "rules": {}}
     for r in RULES:
-        R["rules"][r] = {"pooled": pooled_rho(U, r, a.draws, rng), "global_pick": global_pick(U, r), "global_pick_common_pool": global_pick(common, r),
-                         "lofo_global": lofo_global(U, r), "lofo_prompt_transfer": prompt_transfer(U, r), "within_family": within_family(U, r, a.draws, rng)}
+        R["rules"][r] = {"pooled": pooled_rho(common, r, a.draws, rng), "global_pick_common_pool": global_pick(common, r),
+                         "lofo_global": lofo_global(common, r), "lofo_prompt_transfer": prompt_transfer(common, r), "within_family": within_family(common, r, a.draws, rng)}
         pt = R["rules"][r]["lofo_prompt_transfer"]
         P = np.array([v["pick_rho"] for v in pt.values()]); O = np.array([v["oracle_rho"] for v in pt.values()]); Rr = np.array([v["random_rho"] for v in pt.values()])
         bs = [float(np.mean((P - Rr)[j])) for j in (rng.integers(0, len(P), len(P)) for _ in range(a.draws))]
         R["rules"][r]["prompt_transfer_summary"] = {"n_families": len(P), "mean_pick_rho": float(P.mean()), "mean_oracle_rho": float(O.mean()), "mean_random_rho": float(Rr.mean()),
                                                     "mean_regret": float((O - P).mean()), "gain_over_random": float((P - Rr).mean()), "gain_ci95": [float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))]}
-    y = np.array([u["criterion"] for u in U])
-    R["oracle_global"] = {"pick": U[int(np.argmax(y))]["config"], "rho": float(y.max())}
+    y = np.array([u["criterion"] for u in common])
+    R["oracle_global"] = {"pick": common[int(np.argmax(y))]["config"], "rho": float(y.max())}
     R["random_global_mean"] = float(y.mean())
-    R["paired_rule_differences"] = [paired_rule_diff(U, "C_ms_gold", "F2_item", a.draws, rng), paired_rule_diff(U, "C_ms_gold", "F1_probe", a.draws, rng), paired_rule_diff(U, "F2_item", "F1_probe", a.draws, rng)]
-    R["retest_seed1"] = {r: retest(U, Rp, r) for r in RULES}
+    R["paired_rule_differences"] = [paired_rule_diff(common, "C_ms_gold", "F2_item", a.draws, rng), paired_rule_diff(common, "C_ms_gold", "F1_probe", a.draws, rng), paired_rule_diff(common, "F2_item", "F1_probe", a.draws, rng)]
+    R["retest_seed1"] = {r: retest(common, Rp, r) for r in RULES}
     a.out.mkdir(parents=True, exist_ok=True)
     (a.out / "ANALYSIS.json").write_text(json.dumps(R, indent=1))
     write_report(a.out / "RESULTS_stage_a.md", R)
     print("ok")
+
+
+def above60(g):
+    c = g["pick_ci"]
+    if not c:
+        return "not shown (no stored CI)"
+    return f"yes (lower bound {c['lo']:.2f})" if c["lo"] > .60 else f"no (point {g['pick_rho']:.3f}, CI lower bound {c['lo']:.2f} includes 0.60)"
+
+
+def bar(g):
+    c = g["pick_ci"]
+    if g["pick_rho"] < .75:
+        return "no (point below 0.75)"
+    return "yes" if c and c["lo"] > 0 else "point yes, CI not shown"
 
 
 def f3(v):
@@ -189,21 +205,21 @@ def write_report(path, R):
     L = ["# Experiment 62 Stage A: does a label-free score pick the judge that matches humans? (zero model calls)", "",
          "Caveat first: human ratings are 75 Claude 3.7 Sonnet items only; each unit's human rho is on the 45 val+test items (CI about +/-0.3 per unit); there are no human ratings of frontier-judge outputs until 2026-11-06.", "",
          "Harness for every row: single-call LLM, no tools (open-weight judge units of experiments 59/60: 10 model families x up to 9 prompts, seed 58, median of 3 samples). N = judge units; 'family' = model. Human rho = Spearman of the unit's item scores with the 3-expert mean on 45 items. Regret = best unit's human rho minus the picked unit's. CIs resample model families (the unit of independence).", "",
-         f"Units: {R['n_units_with_criterion']} with a human rho; {R['n_common_units']} with all three label-free scores (the 'common pool', used for the headline table). Scores: C_ms_gold = frozen label-free gold-probe index; F2_item = agreement with the frontier-judge consensus on the 75 items (no human labels); F1_probe = probe-cell agreement with the frontier judge.", ""]
+         f"Units: {R['n_units_with_criterion']} have a human rho; every table uses the {R['n_common_units']} with all three label-free scores (the common pool), so the rules are compared on the same units (3 qwen36/llama units lack a gold-probe index). Scores: C_ms_gold = frozen label-free gold-probe index; F2_item = agreement with the frontier-judge consensus on the 75 items (no human labels, but it needs frontier-judge calls, so it is not a free, self-contained open-weight selector); F1_probe = probe-cell agreement with the frontier judge.", ""]
     L += ["## Bar (pre-registered in the design Doc)", "", "Success = the picked judge reaches human rho >= 0.75, CI above 0, and clearly beats 0.60 (best label-free single unit of experiment 60). Null = no better than 0.60: keep stacking open-weight judges.", ""]
-    L += ["## Table 1. Global pick: one unit chosen from the whole pool (common pool)", "", "| rule | N units | picked unit | picked human rho [95% CI] | regret | oracle rho | random-pick mean rho | rank of pick by human rho | meets 0.75 | beats 0.60 |", "|---|---|---|---|---|---|---|---|---|---|"]
+    L += ["## Table 1. Global pick: one unit chosen from the whole pool ", "", "| rule | N units | picked unit | picked human rho [95% CI] | regret | oracle rho | random-pick mean rho | rank of pick by human rho | meets bar (rho >= 0.75 and CI above 0) | clearly above 0.60 (CI lower bound > 0.60) |", "|---|---|---|---|---|---|---|---|---|---|"]
     for r in RULES:
         g = R["rules"][r]["global_pick_common_pool"]
-        L.append(f"| {r} | {g['n_units']} | {g['pick']} | {f3(g['pick_rho'])} {ci([g['pick_ci']['lo'], g['pick_ci']['hi']]) if g['pick_ci'] else '(CI not stored)'} | {f3(g['regret'])} | {f3(g['oracle_rho'])} ({g['oracle']}) | {f3(g['random_mean_rho'])} | {g['rank_of_pick_by_human']} | {'yes' if g['pick_rho'] >= .75 else 'no'} | {'yes' if g['pick_rho'] > .60 else 'no'} |")
-    L += ["", f"Oracle over all {R['n_units_with_criterion']} units: {R['oracle_global']['pick']} {f3(R['oracle_global']['rho'])}; random pick expectation {f3(R['random_global_mean'])}.", ""]
+        L.append(f"| {r} | {g['n_units']} | {g['pick']} | {f3(g['pick_rho'])} {ci([g['pick_ci']['lo'], g['pick_ci']['hi']]) if g['pick_ci'] else '(CI not stored)'} | {f3(g['regret'])} | {f3(g['oracle_rho'])} ({g['oracle']}) | {f3(g['random_mean_rho'])} | {g['rank_of_pick_by_human']} | {bar(g)} | {above60(g)} |")
+    L += ["", f"Oracle over the {R['n_common_units']} common-pool units: {R['oracle_global']['pick']} {f3(R['oracle_global']['rho'])}; random pick expectation {f3(R['random_global_mean'])}.", ""]
     L += ["## Table 2. Does the score rank units like humans? (pooled over units, family-bootstrap CI)", "", "| rule | N units | N families | Spearman(score, human rho) | 95% CI |", "|---|---|---|---|---|"]
     for r in RULES:
         p = R["rules"][r]["pooled"]
         L.append(f"| {r} | {p['n_units']} | {p['n_families']} | {f3(p['spearman'])} | {ci(p['family_bootstrap_ci95'])} |")
-    L += ["", "## Table 3. Leave-one-family-out, global pick (drop a model family, pick among the rest)", "", "| rule | mean human rho of pick | min | max | distinct picks |", "|---|---|---|---|---|"]
+    L += ["", "## Table 3. Leave-one-family-out, global pick (drop a model family, pick among the rest; regret and random are within the remaining pool)", "", "| rule | mean human rho of pick | min | max | picks >= 0.75 | mean regret (max) | random-pick mean | distinct picks |", "|---|---|---|---|---|---|---|---|"]
     for r in RULES:
         g = R["rules"][r]["lofo_global"]
-        L.append(f"| {r} | {f3(g['mean'])} | {f3(g['min'])} | {f3(g['max'])} | {', '.join(g['distinct_picks'])} |")
+        L.append(f"| {r} | {f3(g['mean'])} | {f3(g['min'])} | {f3(g['max'])} | {g['n_picks_ge_0.75']}/{g['n_dropped']} | {f3(g['mean_regret'])} ({f3(g['max_regret'])}) | {f3(g['mean_random_rho'])} | {', '.join(g['distinct_picks'])} |")
     L += ["", "## Table 4. Leave-one-family-out prompt transfer (best prompt by mean score over the OTHER families, applied to the held-out family)", "", "| rule | N families | pick human rho (mean) | oracle prompt | random prompt | regret | gain over random [95% CI] |", "|---|---|---|---|---|---|---|"]
     for r in RULES:
         g = R["rules"][r]["prompt_transfer_summary"]
