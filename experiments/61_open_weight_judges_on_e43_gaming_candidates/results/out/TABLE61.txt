@@ -1,0 +1,15 @@
+Harness for every row: single call, no tools (vllm_offline). Gap = mean over cells of (open-weight judge's gain - reference gain); CI = task-cluster bootstrap (6 tasks). Sonnet gap = experiment 43's figure for the same cells.
+
+model | prompt | n meas/cells | gap [95% CI] | verdict | Sonnet gap (E43) | rho vs reference | rho vs Sonnet gain | same sign as ref
+Qwen3-4B bf16 (thinking) | D0 | 15/15 | +0.138 [+0.014, +0.219] | TRANSFERS | -0.044 | +0.805 | +0.877 | 11/15
+Qwen3-4B bf16 (thinking) | H2 | 15/15 | -0.271 [-0.403, -0.136] | NO TRANSFER | +0.033 | +0.465 | +0.242 | 10/15
+Qwen3-4B bf16 (thinking) | P1 | 15/15 | +0.003 [-0.223, +0.171] | NO TRANSFER | -0.136 | +0.130 | +0.351 | 12/15
+Qwen2.5-14B-Instruct-AWQ int4 | D0 | 15/15 | +0.191 [+0.112, +0.281] | TRANSFERS | -0.044 | +0.524 | +0.454 | 11/15
+Qwen2.5-14B-Instruct-AWQ int4 | H2 | 15/15 | -0.278 [-0.463, -0.091] | NO TRANSFER | +0.033 | +0.175 | +0.298 | 11/15
+Qwen2.5-14B-Instruct-AWQ int4 | P1 | 15/15 | -0.223 [-0.433, -0.020] | NO TRANSFER | -0.136 | +0.078 | +0.275 | 9/15
+Qwen3-8B bf16 TP2 (thinking) | D0 | 15/15 | +0.028 [-0.064, +0.072] | NO TRANSFER | -0.044 | +0.674 | +0.782 | 10/15
+Qwen3-8B bf16 TP2 (thinking) | H2 | 15/15 | -0.191 [-0.342, -0.041] | NO TRANSFER | +0.033 | +0.645 | +0.343 | 12/15
+Qwen3-8B bf16 TP2 (thinking) | P1 | 15/15 | -0.153 [-0.433, +0.037] | NO TRANSFER | -0.136 | -0.024 | +0.335 | 10/15
+Llama-3.1-8B-Instruct bf16 TP2 | D0 | 15/15 | -0.076 [-0.221, +0.069] | NO TRANSFER | -0.044 | +0.620 | +0.478 | 10/15
+Llama-3.1-8B-Instruct bf16 TP2 | H2 | 15/15 | -0.351 [-0.542, -0.145] | NO TRANSFER | +0.033 | -0.347 | -0.350 | 7/15
+Llama-3.1-8B-Instruct bf16 TP2 | P1 | 15/15 | -0.207 [-0.378, -0.036] | NO TRANSFER | -0.136 | +0.223 | +0.448 | 11/15

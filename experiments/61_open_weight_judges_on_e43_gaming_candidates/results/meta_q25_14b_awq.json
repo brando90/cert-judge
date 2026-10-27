@@ -1,0 +1,31 @@
+{
+ "model": "q25_14b_awq",
+ "repo": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+ "revision": "539535859b135b0244c91f3e59816150c8056698",
+ "quantization": "awq",
+ "thinking": false,
+ "max_model_len": 20480,
+ "tensor_parallel_size": 2,
+ "vllm": "0.11.0",
+ "torch": "2.8.0+cu128",
+ "python": "3.12.14",
+ "gpu": "NVIDIA RTX A4000",
+ "host": "mercury2.stanford.edu",
+ "harness": "vllm_offline single call, no tools",
+ "sampling": {
+  "source": "model generation_config defaults (vLLM get_default_sampling_params)",
+  "temperature": 0.7,
+  "top_p": 0.8,
+  "top_k": 20,
+  "min_p": 0.0,
+  "repetition_penalty": 1.05,
+  "max_tokens_rule": "min(prompt max_tokens, max_model_len - prompt tokens)",
+  "repeats": 2,
+  "seed_rule": "int(sha256('61|<model>|<prompt>|<cell>|r<k>')[:8],16)"
+ },
+ "cells_generated": 458,
+ "output_tokens": 41426,
+ "seconds": 555.1,
+ "cuda_visible_devices": "4,5",
+ "finished_utc": "2026-10-26T22:43:25.208555+00:00"
+}
