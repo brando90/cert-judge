@@ -1,7 +1,5 @@
 # Valkyrie: Codex and Claude Code (and Fable)
 
-**Doc link:** [Valkyrie agent contract](https://docs.valkyrie.vals.ai/agents/agent-contract.md)
-
 **TLDR:** Codex and Claude Code are allowed in Valkyrie by design, and the Fable model exists there, but as of 2026-10-28 neither agent can run for us: the org has no raw Anthropic or OpenAI key secret and neither agent is installed. Waiting on Jaewon Jeung (Vals) to restore the keys. Nothing here has been run since the Oct 14 migration.
 
 ## Status (2026-10-28)
@@ -16,13 +14,17 @@
 | Is the Oct 14 403 ("Managed AWS access is not available") still blocking? | No | `daytona` provider is mapped and 400+ runs have finished since Oct 15. |
 | Does Fable work with Codex? | No | The Codex contract lists only GPT models (default `gpt-5.3-codex`). Fable applies to Claude Code only. |
 
-Not tested: a fresh end-to-end Claude Code or Codex run since the migration. It costs money and the weekly Vals spend cap is near.
+Not tested: a fresh end-to-end Claude Code or Codex run since the migration.
 
 ## Route (what makes it work)
 
-1. Jaewon (jaewon@vals.ai) provides a raw key per provider. Earlier keys were capped at $1000 each and expire at the earlier of Brando's last Vals day and Dec 31. Do not store or paste key values in any repo.
-2. Store each key as an org secret (the command prompts for the value and prints the reference):
-   `valkyrie secret set anthropic-api-key` and `valkyrie secret set openai-api-key`
+Reference: [Valkyrie agent contract](https://docs.valkyrie.vals.ai/agents/agent-contract.md) and [Package an agent](https://docs.valkyrie.vals.ai/agents/package-an-agent.md).
+
+Two routes to the key exist. Jaewon's own route (Slack DM) is to create a secret in Secrets Manager under `fellows/brandomiranda/*` and point the agent contract yaml's `secrets` at it. The Valkyrie docs' route is `valkyrie secret set <name>`, which stores an org secret and prints its reference. Both are untested here since the migration, and which one is right is an open question to Jaewon. The secret names below (`anthropic-api-key`, `openai-api-key`) are placeholders taken from the docs' example, not names that exist in our org.
+
+1. Jaewon (jaewon@vals.ai) provides a raw key per provider. Do not store or paste key values in any repo.
+2. Store each key as a secret, by either route. With the Valkyrie CLI (the command prompts for the value and prints the reference):
+   `valkyrie secret set anthropic-api-key` and `valkyrie secret set openai-api-key` (placeholder names)
 3. Install the agent from the public registry (on skampere, `PATH=/dfs/scratch0/brando9/bin`). The path below is from the registry README and is unchecked:
    `valkyrie agent install https://github.com/vals-ai/public-agent-registry/tree/jf/agent-checkpoint/examples/claude_code-v1.0.0`
    (Codex: same registry, `examples/codex-v1.0.0`.)
@@ -35,8 +37,8 @@ Contract facts: the Claude Code contract runs `claude -p --verbose --output-form
 ## Rules for our repos
 
 * Never commit key values, secret values, 1Password share links or Slack message links to any repo.
-* No paid Valkyrie runs while the Vals weekly cap is near without Brando's yes.
-* Use `valkyrie` through the hosted transport described in the repo's Valkyrie transport doc, and sign in as brando@vals.ai.
+* No paid Valkyrie runs without Brando's yes.
+* Sign in to `valkyrie` as brando@vals.ai (org `BrandoMiranda-fellow`); on skampere the binary is under `/dfs/scratch0/brando9/bin`.
 
 ## Who to ask
 
