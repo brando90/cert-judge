@@ -34,6 +34,12 @@ Two routes to the key exist. Jaewon's own route (Slack DM) is to create a secret
 
 Contract facts: the Claude Code contract runs `claude -p --verbose --output-format stream-json`, reads `ANTHROPIC_API_KEY`, and defaults to sonnet-4, so always pass `--model`. The Codex contract reads `OPENAI_API_KEY`. Secrets map to environment variables through the contract's `secrets` field, and `-s ENV_VAR SECRET` overrides it for one run.
 
+## Bucket check (2026-10-28)
+
+Jaewon's Oct 6 note said he would put `grok_build` in the bucket `fellow-brando-miranda`. A read-only listing shows the bucket holds agent bundles, not keys: `agents/claude_code.zip`, `claude_code_no_internet.zip`, `codex.zip`, `codex_no_internet.zip`, `grok_build.zip` and `pi_agent.zip` (uploaded Sep 30), plus benchmark outputs. No Anthropic or OpenAI key is in it. In the `claude_code` and `codex` bundles' `contract.yaml`, the key comes from the Valkyrie secret `prodBenchmarksInfraApiKeys` (`ANTHROPIC_API_KEY` and `OPENAI_API_KEY` respectively), and our org has no secret by that name. The fellow AWS user cannot list or describe Secrets Manager secrets (AccessDenied), so the key cannot be read from there either. The agent bundles are not installed (`valkyrie agent list --all` shows 39 agents, none of them `claude_code` or `codex`).
+
+What is left: a raw key stored as an org secret (`valkyrie secret set`), then install the agent (bundle from the bucket or the public registry) and point `-s ANTHROPIC_API_KEY <secret>` at that secret. Jaewon's Oct 6 mail gave a 1Password share link for a $1k Anthropic key valid until Brando's last Vals day or Dec 31; using it needs Brando's yes.
+
 ## Rules for our repos
 
 * Never commit key values, secret values, 1Password share links or Slack message links to any repo.
