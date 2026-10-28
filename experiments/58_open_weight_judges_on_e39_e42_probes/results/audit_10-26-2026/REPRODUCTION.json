@@ -1,0 +1,97 @@
+{
+  "kind": "saved-data compatibility diagnostic, not E58 inference",
+  "date": "10-26-2026",
+  "analysis_mode": "DRY_RUN",
+  "draws": 10000,
+  "e42_draws": 10000,
+  "n_declared_e39_units": 117,
+  "n_observed_e39_units": 26,
+  "n_declared_e42_units": 117,
+  "e42_verdicts": {
+    "PASS": 0,
+    "FAIL": 0,
+    "NOT_COMPUTABLE": 117
+  },
+  "plain": {
+    "index": "C_ms_gold",
+    "criterion": "heldout",
+    "n_units": 26,
+    "units": [
+      "gemma3_27b|D0",
+      "gemma3_27b|H0",
+      "gemma3_27b|H1",
+      "gemma3_27b|H2",
+      "gemma3_27b|LEX",
+      "gemma3_27b|P1",
+      "gemma3_27b|P4",
+      "gemma3_27b|P8",
+      "gemma3_27b|R4",
+      "gpt_oss_20b|D0",
+      "gpt_oss_20b|H0",
+      "gpt_oss_20b|H1",
+      "gpt_oss_20b|H2",
+      "gpt_oss_20b|LEX",
+      "gpt_oss_20b|P1",
+      "gpt_oss_20b|P4",
+      "gpt_oss_20b|P8",
+      "gpt_oss_20b|R4",
+      "qwen3_32b|D0",
+      "qwen3_32b|H0",
+      "qwen3_32b|H1",
+      "qwen3_32b|LEX",
+      "qwen3_32b|P1",
+      "qwen3_32b|P4",
+      "qwen3_32b|P8",
+      "qwen3_32b|R4"
+    ],
+    "spearman": 0.6998290598290599,
+    "kendall": 0.47692307692307695,
+    "pearson": 0.6624519234998569,
+    "ci": {
+      "lo": 0.45554789800137835,
+      "hi": 0.8205568924028875,
+      "valid_draws": 10000
+    },
+    "permutation_p": 9.999000099990002e-05
+  },
+  "model_clustered": {
+    "index": "C_ms_gold",
+    "n_models": 2,
+    "models": [
+      "gemma3_27b",
+      "gpt_oss_20b"
+    ],
+    "spearman": null,
+    "permutation_p": null,
+    "ci": null
+  },
+  "exact_match_to_e60_primary": true,
+  "runtime_contract": {
+    "status": "MISMATCH",
+    "n_present_harvests": 26,
+    "n_expected_harvests": 234,
+    "n_field_mismatches": 42,
+    "mismatches_by_field": {
+      "engine.tensor_parallel_size": 17,
+      "engine.max_model_len": 17,
+      "engine.quantization": 8
+    }
+  },
+  "failure_flagged_models": [],
+  "deletion_tvd_computable_units": 0,
+  "source_sha256": {
+    "experiments/58_open_weight_judges_on_e39_e42_probes/private/audit_10-26-2026/e60_compatibility_analysis/ANALYSIS_DRY_RUN.json": "e333daa2dd8e08f960c676b890e47b2e1319358f2fd1b6c9b95a039749e7ef2c",
+    "experiments/60_open_weight_proxy_index_rigor_round/results/final_2026-10-25/ANALYSIS.json": "480ff41b58e76d8f3e19b2701610cff1807e9c8f0366edcca0305a31912066c4",
+    "experiments/60_open_weight_proxy_index_rigor_round/results/final_2026-10-25/harvest/e60_harv0.tgz": "77da02ebab8463f93f0a96f8a8ebfc195009fa8e535bdd27e9bb10385d0d856b",
+    "experiments/58_open_weight_judges_on_e39_e42_probes/scripts/analyze58.py": "db7ce8f2530a8fa0342be6b3c271faf35a542934f49712f5fdb24847c93c3890",
+    "experiments/58_open_weight_judges_on_e39_e42_probes/scripts/analysis_inputs.py": "00ee8980d3d0dac9049e20858fcef331967cc8b7c3ff9720068db7c47a27fec9"
+  },
+  "validation": {
+    "pytest_passed": 32,
+    "pytest_skipped": 0,
+    "prompt_hashes_matched": 9927,
+    "snap_exit_code": 0,
+    "new_model_calls": 0,
+    "provider_charges_usd": 0.0
+  }
+}

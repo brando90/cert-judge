@@ -64,10 +64,12 @@ def _fake_parse(prompt_key, text):
 
 
 @pytest.fixture(scope="module")
-def synthetic_run(tmp_path_factory):
+def synthetic_run(tmp_path_factory, request):
     """Fake raw outputs for every (model, prompt, exp): each rendered cell gets text that hashes to a score; two cells per
     configuration are marked over-context and one has no output, to exercise the unmeasured paths."""
     run = tmp_path_factory.mktemp("run")
+    original_parse = H.parse
+    request.addfinalizer(lambda: setattr(H, "parse", original_parse))
     H.parse = _fake_parse
     for exp in e58.EXPS:
         for m in e58.MODEL_ORDER:
@@ -86,6 +88,7 @@ def synthetic_run(tmp_path_factory):
                 rp.parent.mkdir(parents=True, exist_ok=True)
                 rp.write_text("\n".join(json.dumps(x) for x in raw) + "\n")
                 H.harvest_one(run, exp, m, p)
+    H.parse = original_parse
     return run
 
 
@@ -153,7 +156,9 @@ def test_selection_hash_guard_names_the_frozen_file():
 @needs_prompts
 def test_cli_main_writes_analysis_files(synthetic_run, tmp_path, monkeypatch):
     import analyze58 as Z
-    monkeypatch.setattr(sys, "argv", ["analyze58.py", "--run", str(synthetic_run), "--out", str(tmp_path), "--draws", "50", "--e42-draws", "50"])
+    monkeypatch.setattr(sys, "argv", ["analyze58.py", "--run", str(synthetic_run), "--out", str(tmp_path), "--draws", "50", "--e42-draws", "50", "--dry-run"])
     assert Z.main() == 0
-    res = json.loads((tmp_path / "ANALYSIS.json").read_text())
-    assert res["n_units"] == 117 and "verdict" in res["gate"] and (tmp_path / "RESULTS_open_weight_judges.md").exists()
+    res = json.loads((tmp_path / "ANALYSIS_DRY_RUN.json").read_text())
+    assert res["n_units"] == 117 and "verdict" in res["gate"] and (tmp_path / "RESULTS_open_weight_judges_DRY_RUN.md").exists()
+    assert res["analysis_mode"] == "DRY_RUN"
+    assert not (tmp_path / "ANALYSIS.json").exists()

@@ -1,0 +1,42 @@
+{
+  "kind": "actual E58 partial smoke dry run",
+  "date": "10-26-2026",
+  "source_host": "mercury1",
+  "source_path": "/lfs/mercury1/0/brando9/e58/runs/smoke/harvest/e39/gemma3_4b__D0.json",
+  "source_sha256": "424a9d9e51e2c36f65f3f944a8f27e97dfd60bbdea5b4e11e19a9d6f56f38399",
+  "analysis_sha256": "ac3c9725b86cfc1620726a310d064792d70dd892ddcf04a8accac38312dc63e9",
+  "n_units": 117,
+  "analysis_mode": "DRY_RUN",
+  "draws": 10000,
+  "n_observed_harvests": 1,
+  "runtime_status": "MATCH",
+  "status_counts": {
+    "unmeasured_infra": 436,
+    "measured": 19,
+    "deterministic": 56,
+    "parse_error": 1,
+    "unmeasured_extraction": 9
+  },
+  "engine": {
+    "vllm": "0.11.0",
+    "torch": "2.8.0+cu128",
+    "python": "3.12.11",
+    "gpu": "NVIDIA RTX A4000",
+    "tensor_parallel_size": 1,
+    "hardware_note": "mercury1 1x RTX A4000 16GB TP=1, vLLM 0.11.0 torch 2.8.0+cu128 (driver 570); AT-1384 Oct 26",
+    "max_model_len": 65536,
+    "gpu_memory_utilization": 0.9,
+    "quantization": null,
+    "weights_dir": "/lfs/mercury1/0/brando9/e58/models/gemma3_4b",
+    "host": "mercury1.stanford.edu"
+  },
+  "plain_gate": "NOT_COMPUTABLE",
+  "clustered_gate": "NOT_COMPUTABLE",
+  "n_computable_criterion_units": 0,
+  "e42_verdicts": {
+    "PASS": 0,
+    "FAIL": 0,
+    "NOT_COMPUTABLE": 117
+  },
+  "new_model_calls_by_audit": 0
+}

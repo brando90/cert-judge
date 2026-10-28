@@ -17,10 +17,12 @@ from pathlib import Path
 
 sys.path[:0] = [str(Path(__file__).resolve().parent)]
 import e58                                                    # noqa: E402
+from analysis_inputs import failure_counts, load_panel, runtime_contract, verify_collection  # noqa: E402
 
 GATE_RHO, GATE_P = 0.45, 0.05                                 # experiment 39's gates, unchanged
 CLUSTER_SEED = 58
 E39_SELECTION_SHA = "25cb2aabef5c8881792819926060c87028bedd05f7257c62289ef67658dd2a3f"
+E39_PROBES_SHA = "6ca37762d012fc7cb5046c49e7b4ddd208e0ecb5325235b0615d5daa60bd4c7c"
 SELECTED = "C_ms_gold"
 MIN_TASK_COVERAGE = 0.80                                      # a TVD-MI task-mean needs 80% of declared tasks/ladders
 
@@ -106,12 +108,12 @@ def tvd_mi(sc, harvest: dict, probes: dict) -> dict:
             rep.append(IP.repeat_tvd_task(complete))
     repeat_val = mean(rep) if tasks and len(rep) / len(tasks) + 1e-9 >= MIN_TASK_COVERAGE else None
     ladders: dict[str, list[int]] = {}
-    for r in probes.get("bm_gold", []):
+    for r in probes.get("ms_gold", []):
         ladders.setdefault(r["key"], []).append(r["level"])
     dele = []
     for key, levels in ladders.items():
         reps = {0: sc.repeats("ident", key, 0)}
-        reps.update({lv: sc.repeats("bm_gold", key, lv) for lv in sorted(levels)})
+        reps.update({lv: sc.repeats("ms_gold", key, lv) for lv in sorted(levels)})
         reps = {lv: r for lv, r in reps.items() if len(r) >= 2}
         if len(reps) >= 2:
             dele.append(IP.deletion_tvd_task(reps))
@@ -127,8 +129,7 @@ def build_units(A, run: Path, items: list[dict], manifest: dict, draws: int = 10
     descriptive and use 500 draws (their intervals are not reported)."""
     probes = A.valid_probes(manifest)
     units = []
-    for path in sorted((run / "harvest" / "e39").glob("*.json")):
-        h = e58.read_json(path)
+    for h in load_panel(run, "e39"):
         sc = A.Scores(h)
         crit = {"heldout": A.criterion(sc, items, ("val", "test"), draws=draws), "test_items": A.criterion(sc, items, ("test",), draws=500),
                 "val_items": A.criterion(sc, items, ("val",), draws=500)}
@@ -143,6 +144,7 @@ def build_units(A, run: Path, items: list[dict], manifest: dict, draws: int = 10
                 indices[name] = A.candidate_value(name, comps, indices)
         units.append({"config": h["config"], "model_key": h["family"], "prompt_key": h["config"].split("|")[1], "model_family": h.get("model_family"),
                       "params_b": h.get("params_b"), "status_counts": h["status_counts"], "criteria": crit,
+                      "harvest_status": h["harvest_status"],
                       "components": {k: v["value"] for k, v in comps.items()}, "pti_v0": {"status": pti["status"], "value": pti["value"]},
                       "ti_var_raw": raw, "indices": indices, "tvd_mi": tvd_mi(sc, h, probes)})
     return units, {"ti_var_norm": e58.read_json(e58.E39_DIR / "results/SELECTION.json")["ti_var_norm"]}
@@ -152,12 +154,21 @@ def gate_block(A, units: list[dict], draws: int) -> dict:
     plain = A.association(units, SELECTED, "heldout", draws=draws, seed=39)
     clus = clustered_stats(A, units, SELECTED, draws)
     rho, p = plain["spearman"], plain["permutation_p"]
-    plain_pass = bool(rho is not None and p is not None and rho >= GATE_RHO and p < GATE_P)
-    cl_pass = bool(clus["spearman"] is not None and clus["permutation_p"] is not None and clus["spearman"] >= GATE_RHO
-                   and clus["permutation_p"] < GATE_P)
+    plain_pass = None if rho is None or p is None else bool(rho >= GATE_RHO and p < GATE_P)
+    cl_pass = (None if clus["spearman"] is None or clus["permutation_p"] is None else
+               bool(clus["spearman"] >= GATE_RHO and clus["permutation_p"] < GATE_P))
+    plain_status = "NOT_COMPUTABLE" if plain_pass is None else ("PASS" if plain_pass else "FAIL")
+    cl_status = "NOT_COMPUTABLE" if cl_pass is None else ("PASS" if cl_pass else "FAIL")
     return {"index": SELECTED, "gate": {"spearman": GATE_RHO, "permutation_p": GATE_P}, "plain": plain, "plain_PASS": plain_pass,
             "model_clustered": clus, "model_clustered_PASS": cl_pass,
-            "verdict": f"plain {'PASS' if plain_pass else 'FAIL'}; model-clustered {'PASS' if cl_pass else 'FAIL'}"}
+            "plain_status": plain_status, "model_clustered_status": cl_status,
+            "verdict": f"plain {plain_status}; model-clustered {cl_status}"}
+
+
+def failure_sensitivity(A, run: Path, units: list[dict], draws: int) -> dict:
+    counts = failure_counts(run)
+    flagged = set(counts["flagged_models"])
+    return {**counts, "without_flagged_models": gate_block(A, [u for u in units if u["model_key"] not in flagged], draws)}
 
 
 def secondary_block(A, units: list[dict], draws: int) -> dict:
@@ -201,9 +212,6 @@ def tvd_block(A, units: list[dict]) -> dict:
 
 
 def e42_block(run: Path, A, units: list[dict], draws: int) -> dict:
-    d = run / "harvest" / "e42"
-    if not d.exists():
-        return {"status": "no E42 harvests"}
     e42, _, _ = e58.e42_modules()
     sys.path.insert(0, str(e58.E42_DIR / "scripts"))
     import importlib.util
@@ -212,7 +220,8 @@ def e42_block(run: Path, A, units: list[dict], draws: int) -> dict:
     spec.loader.exec_module(mod)
     rows = mod.valid_rows(e58.read_json(e58.E42_DIR / "results/semantic_probe_manifest.json"))
     labels = mod.audit_labels()
-    per = [mod.screen_one(e58.read_json(p), rows, draws, labels) for p in sorted(d.glob("*.json"))]
+    per = [{**mod.screen_one(h, rows, draws, labels), "harvest_status": h["harvest_status"]}
+           for h in load_panel(run, "e42")]
     crit = {u["config"]: (u["criteria"]["heldout"] or {}).get("spearman") for u in units}
     verdicts = {v: sum(u["verdict"] == v for u in per) for v in ("PASS", "FAIL", "NOT_COMPUTABLE")}
     assoc = {}
@@ -265,15 +274,18 @@ def write_report(path: Path, res: dict) -> None:
     g = res["gate"]
     pl, cl = g["plain"], g["model_clustered"]
     lines = ["# Experiment 58 results: open-weight judges on experiment 39's frozen probes", "",
+             "Protocol: <https://github.com/brando90/cert-judge/blob/main/experiments/58_open_weight_judges_on_e39_e42_probes/PROTOCOL.md>", "",
              f"**TLDR:** {g['verdict']}. `C_ms_gold` vs the held-out criterion over {pl['n_units']} units: Spearman {fmt(pl['spearman'])} "
              f"(permutation p {fmt(pl['permutation_p'], 4)}); model-clustered p {fmt(cl['permutation_p'], 4)} over {cl['n_models']} models.", "",
              "## Gate (E39's: rho >= 0.45 and p < 0.05)", "",
              "| Test | n | Spearman | p | 95% CI | Gate |", "|---|---:|---:|---:|---|---|",
-             f"| plain permutation | {pl['n_units']} | {fmt(pl['spearman'])} | {fmt(pl['permutation_p'], 4)} | {ci_str(pl['ci'])} | {'PASS' if g['plain_PASS'] else 'FAIL'} |",
-             f"| model-clustered | {cl['n_models']} models | {fmt(cl['spearman'])} | {fmt(cl['permutation_p'], 4)} | {ci_str(cl['ci'])} | {'PASS' if g['model_clustered_PASS'] else 'FAIL'} |", "",
-             "## Always reported", "", "| Index | n | Spearman | p |", "|---|---:|---:|---:|"]
+             f"| plain permutation | {pl['n_units']} | {fmt(pl['spearman'])} | {fmt(pl['permutation_p'], 4)} | {ci_str(pl['ci'])} | {g['plain_status']} |",
+             f"| model-clustered | {cl['n_models']} models | {fmt(cl['spearman'])} | {fmt(cl['permutation_p'], 4)} | {ci_str(cl['ci'])} | {g['model_clustered_status']} |", "",
+             "Intervals: the imported E39 association resamples judge units; each unit's criterion interval resamples tasks. "
+             "The clustered association resamples whole models. The frozen E39 code and seeds are unchanged.", "",
+             "## Always reported", "", "| Index | n | Spearman | p | 95% CI |", "|---|---:|---:|---:|---|"]
     for n, a in res["secondary"]["always_reported"].items():
-        lines.append(f"| {n} | {a['n_units']} | {fmt(a['spearman'])} | {fmt(a['permutation_p'], 4)} |")
+        lines.append(f"| {n} | {a['n_units']} | {fmt(a['spearman'])} | {fmt(a['permutation_p'], 4)} | {ci_str(a['ci'])} |")
     lines += ["", f"PTI_v0 status counts: {res['secondary']['pti_v0_status_counts']}", "", "## Scale within family (descriptive)", "",
               "| Family | Model | Params (B) | Criterion (mean over prompts) | C_ms_gold (mean) |", "|---|---|---:|---:|---:|"]
     for f, models in res["scale_curves"].items():
@@ -284,10 +296,49 @@ def write_report(path: Path, res: dict) -> None:
     for k, v in res["tvd_mi"].items():
         if isinstance(v, dict):
             lines.append(f"| {k} | {v['n_units']} | {fmt(v['spearman'])} |")
-    lines += ["", "## Bridge: local Qwen3.6-27B vs hosted (E39)", "", "| Prompt | shared cells | cell Spearman | exact agree | crit local | crit hosted | C_ms_gold local | hosted |", "|---|---:|---:|---:|---:|---:|---:|---:|"]
+    lines += ["", "## Bridge: local Qwen3.6-27B vs hosted (E39)", "", "| Prompt | shared cells | cell Spearman | exact agree | mean absolute difference | crit local | crit hosted | C_ms_gold local | hosted |", "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for p, v in res["bridge"]["prompts"].items():
         if "n_shared_measured_cells" in v:
-            lines.append(f"| {p} | {v['n_shared_measured_cells']} | {fmt(v['cell_spearman'])} | {fmt(v['exact_agreement'])} | {fmt(v['criterion_local'])} | {fmt(v['criterion_hosted'])} | {fmt(v['C_ms_gold_local'])} | {fmt(v['C_ms_gold_hosted'])} |")
+            lines.append(f"| {p} | {v['n_shared_measured_cells']} | {fmt(v['cell_spearman'])} | {fmt(v['exact_agreement'])} | {fmt(v['mean_abs_diff'])} | {fmt(v['criterion_local'])} | {fmt(v['criterion_hosted'])} | {fmt(v['C_ms_gold_local'])} | {fmt(v['C_ms_gold_hosted'])} |")
+        else:
+            lines.append(f"| {p} | missing | n/a | n/a | n/a | n/a | n/a | n/a | n/a |")
+    if "analysis_mode" in res:
+        lines[4:4] = [f"**Analysis mode:** {res['analysis_mode']}. Collection: {res['collection']['status']}. "
+                       "A dry run is a diagnostic, not a frozen-protocol result.", "",
+                       f"Recorded runtime settings: {res['runtime_contract']['status']}; "
+                       f"{res['runtime_contract']['n_present_harvests']}/{res['runtime_contract']['n_expected_harvests']} harvests present. "
+                       f"{len(res['runtime_contract']['mismatches'])} mismatched or missing setting fields (listed in JSON).", ""]
+    if "failure_sensitivity" in res:
+        sensitivity = res["failure_sensitivity"]
+        reduced = sensitivity["without_flagged_models"]
+        lines += ["", "## Prespecified failure sensitivity (protocol section 10)", "",
+                  "Flag models with more than 20% incomplete or parse-error cells; denominator is all declared E39 + E42 cells per model. "
+                  "Missing harvests remain unmeasured and are not counted as parse errors.", "",
+                  f"Flagged models: {', '.join(sensitivity['flagged_models']) or 'none'}. "
+                  f"Without these models: {reduced['verdict']}.", "",
+                  "| Model | present / declared harvests | failed / declared cells | failure fraction | flagged |",
+                  "|---|---:|---:|---:|---|"]
+        for m, row in sensitivity["models"].items():
+            lines.append(f"| {m} | {row['n_present_harvests']}/18 | {row['n_failed_cells']}/{row['n_declared_cells']} | "
+                         f"{fmt(row['failure_fraction'])} | {row['flagged']} |")
+        for label, block in (("plain", reduced["plain"]), ("model-clustered", reduced["model_clustered"])):
+            lines.append(f"\nWithout flagged models, {label}: Spearman {fmt(block['spearman'])} "
+                         f"[{ci_str(block['ci'])}], p-val={fmt(block['permutation_p'], 4)} (one-sided permutation).")
+    if "units" in res:
+        lines += ["", "## Complete frozen panel and cell coverage", "",
+                  "Missing units are retained as NOT_COMPUTABLE; n/a is never a zero score. "
+                  "Criterion uses 45 validation + test items, each summarized by the imported E39 median rule.", "",
+                  "| Unit | harvest | criterion items | criterion Spearman [95% task CI] | C_ms_gold | PTI-v0 | cell status counts |",
+                  "|---|---|---:|---|---:|---|---|"]
+        for u in res["units"]:
+            c = u["criteria"]["heldout"]
+            lines.append(f"| {u['config'].replace('|', '/')} | {u['harvest_status']} | {c['n_items']}/{c['n_declared']} | "
+                         f"{fmt(c['spearman'])} [{ci_str(c['ci'])}] | {fmt(u['indices'][SELECTED])} | {u['pti_v0']['status']} | {u['status_counts']} |")
+        lines += ["", "### Semantic-screen coverage", "", "| Unit | harvest | verdict | cell status counts |", "|---|---|---|---|"]
+        for u in res["e42"]["units"]:
+            lines.append(f"| {u['config'].replace('|', '/')} | {u['harvest_status']} | {u['verdict']} | {u['status_counts']} |")
+        lines += ["", "Per-prompt scale curves, semantic metrics and task intervals, descriptive associations, "
+                  "bridge status counts and all index values are preserved in the adjacent JSON analysis."]
     path.write_text("\n".join(lines) + "\n")
 
 
@@ -297,19 +348,35 @@ def main() -> int:
     ap.add_argument("--out", type=Path, default=e58.RESULTS)
     ap.add_argument("--draws", type=int, default=10000)
     ap.add_argument("--e42-draws", type=int, default=10000)
+    ap.add_argument("--dry-run", action="store_true", help="label provisional/uncollected inputs as diagnostics; never a scientific result")
     args = ap.parse_args()
+    if args.draws < 1 or args.e42_draws < 1:
+        ap.error("draw counts must be positive")
+    if not args.dry_run and (args.draws != 10000 or args.e42_draws != 10000):
+        ap.error("the frozen analysis uses 10000 draws; use --dry-run for reduced diagnostic draws")
+    collection = verify_collection(args.run, args.dry_run)
+    runtime = runtime_contract(args.run)
+    if not args.dry_run and runtime["mismatches"]:
+        ap.error("recorded runtime settings differ from the frozen E58 condition; use --dry-run to inspect the mismatches")
     if e58.sha_file(e58.E39_DIR / "results/SELECTION.json") != E39_SELECTION_SHA:
         raise SystemExit("STOP: experiment 39's SELECTION.json is not the frozen file named in PROTOCOL.md")
+    if e58.sha_file(e58.E39_DIR / "results/probe_manifest.json") != E39_PROBES_SHA:
+        raise SystemExit("STOP: experiment 39's probe_manifest.json is not the frozen file named in PROTOCOL.md")
     A = e58.analysis_lib()
     manifest = e58.read_json(e58.E39_DIR / "results/probe_manifest.json")
     items = load_items()
     units, meta = build_units(A, args.run, items, manifest, args.draws)
     res = {"written_utc": e58.stamp(), "experiment": e58.EXPERIMENT, "run": str(args.run), "n_units": len(units), **meta,
+           "analysis_mode": "DRY_RUN" if args.dry_run else "FROZEN_ANALYSIS", "collection": collection,
+           "runtime_contract": runtime,
+           "draws": args.draws, "e42_draws": args.e42_draws,
            "gate": gate_block(A, units, args.draws), "secondary": secondary_block(A, units, args.draws), "scale_curves": scale_curves(units),
+           "failure_sensitivity": failure_sensitivity(A, args.run, units, args.draws),
            "tvd_mi": tvd_block(A, units), "e42": e42_block(args.run, A, units, args.e42_draws), "bridge": bridge_block(A, args.run, units),
            "units": units}
-    e58.write_json(args.out / "ANALYSIS.json", res)
-    write_report(args.out / "RESULTS_open_weight_judges.md", res)
+    suffix = "_DRY_RUN" if args.dry_run else ""
+    e58.write_json(args.out / f"ANALYSIS{suffix}.json", res)
+    write_report(args.out / f"RESULTS_open_weight_judges{suffix}.md", res)
     print(json.dumps({"n_units": len(units), "verdict": res["gate"]["verdict"]}))
     return 0
 

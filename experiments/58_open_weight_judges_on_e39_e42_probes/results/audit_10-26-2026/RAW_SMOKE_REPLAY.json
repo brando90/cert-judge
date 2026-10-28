@@ -1,0 +1,83 @@
+{
+  "status": "VERIFIED_RAW_REPLAY",
+  "written_utc": "2026-10-26T21:44:32.891071+00:00",
+  "collection": {
+    "status": "VERIFIED",
+    "manifest_sha256": "ba4dfb3c64581294bb520a8cfcae10d7723f0440d83d93736f5c603071ce8baa",
+    "n_files": 3,
+    "provenance": "Locally generated audit manifest after all three files matched independent remote sha256sum output; not the FarmShare collection manifest."
+  },
+  "code_sha256": {
+    "verify_raw.py": "b8e6a1f461842e4ed332f14102966fa19771081967d61995085fd48cddbe63f2",
+    "analysis_inputs.py": "00ee8980d3d0dac9049e20858fcef331967cc8b7c3ff9720068db7c47a27fec9",
+    "e58.py": "081bb039d225881a12d9efaae289161f8aef5c1090d473f22fdb9d30aad80527",
+    "harvest_lib.py": "d3d30650d4f3a2bdafb42c4660c1fb6d468cc7cc0af5345ac3e95cf360a27666",
+    "legacy_parser.py": "87da75c62373854ea463d435a08832e04ac70b8be95949aec75e2b7e22c3b5a3",
+    "veribench_prompts.py": "6cc681a6de53125f31e6897b47579cdf4816ad4e707cba9e951f46547165ebd8"
+  },
+  "rebuilt_prompt_file_sha256": {
+    "e39/D0": "1305cd515ee840a09446db0c9efd0ae63b975d5ee9c8865183228e0ad2270c09",
+    "e39/R4": "1318489928e27e73da5ffe6aba8652df7e8e4f97bebb9207aaea898af4dee22c",
+    "e39/H0": "2e23e8bbf04f5f9265982ccfde496cad9522ce8bf9c9d92a47ca07e408b56052",
+    "e39/H1": "7a1a966cb9bfbe5536afcffd75e6a415e066c13c5950ec248a4cf2340b8ea897",
+    "e39/H2": "d12f571d09d1a38e2f3d950017e0bdd86e0568b8307482ea785736769d3eca27",
+    "e39/P1": "e9b9f99e156e9b1d208df22993cb769b413aca102a01f63d19a123948289ec9d",
+    "e39/P4": "9ddaaf30d9eb2b41b3686edb7044ee59c8b36d593ddcde48adbf255b2e7f7ad4",
+    "e39/P8": "e95485fbcbf89a8eb1c9a6fa82efbae1bd6b40e0e6d01958d8490df357234af2",
+    "e39/LEX": "7001d0325e47e062a39c329b0315bde8bdd17e231a34239e96d1d0bbeba570b4",
+    "e42/D0": "45c9cbd7eb3806d67e65a7fee7155e45f83eec187fde8222c0e1b7957072f7df",
+    "e42/R4": "ec8469b8d5373e72a362449beb85db09f10dbdb6fe754d00da381ac9bdc07d20",
+    "e42/H0": "919726df66dc50585fc0d21f36f7baa732b170819e7c72a1182bb31008dad3fc",
+    "e42/H1": "88465a0df3edac9911635a58d716a3f8e71cb8afc59513f788b03b9a60edc24f",
+    "e42/H2": "14647b5e75662fc8d28b572e5ac3e6820913ffbf2671b048ec8c96057588f934",
+    "e42/P1": "6d0a26dec10bbff8e1e3c7b2d64e8b53e7b7af42cc3296cc0b21fad8540ddf41",
+    "e42/P4": "21532db953bbcf6e521765220da6eaabe957b0453adc901a37f2ba2d06110a60",
+    "e42/P8": "e3ddf1c4b52d71d7530451a477aff6f257a28dc07176c3184e8fd94d53e9e4bb",
+    "e42/LEX": "1b99f65efe49fb992ac51fe9fc6572901ff1c7097f4d800a3a0dd5c9315c498d"
+  },
+  "n_replayed_harvests": 1,
+  "n_raw_rows_replayed": 20,
+  "n_cells_replayed": 521,
+  "status_counts": {
+    "unmeasured_infra": 436,
+    "measured": 19,
+    "deterministic": 56,
+    "parse_error": 1,
+    "unmeasured_extraction": 9
+  },
+  "measured_score_histogram": {
+    "0.6": 1,
+    "0.7": 1,
+    "0.8": 9,
+    "0.9": 4,
+    "1.0": 4
+  },
+  "runtime_contract": {
+    "n_present_harvests": 1,
+    "n_expected_harvests": 234,
+    "status": "MATCH",
+    "mismatches": []
+  },
+  "raw_only_without_harvest": [],
+  "harvests": [
+    {
+      "probe_set": "e39",
+      "config": "gemma3_4b|D0",
+      "raw_rows": 20,
+      "n_cells": 521,
+      "status_counts": {
+        "unmeasured_infra": 436,
+        "measured": 19,
+        "deterministic": 56,
+        "parse_error": 1,
+        "unmeasured_extraction": 9
+      },
+      "raw_sha256": "55202224b5fcd56183d930f09a6315cc21231ea9a0b1a11c6fe801393fd3da5b",
+      "meta_sha256": "f5a76978b2aa9b56a5505fe1376dbf4a3ec20e953cd562d650baae70fd372637",
+      "harvest_sha256": "424a9d9e51e2c36f65f3f944a8f27e97dfd60bbdea5b4e11e19a9d6f56f38399",
+      "replay": "EXACT_EXCEPT_WRITTEN_UTC"
+    }
+  ],
+  "limits": "Checks recorded data, not executed weight identity or a fresh generation. Raw-only rows are checked but not admitted as new harvests.",
+  "source": "mercury1:/lfs/mercury1/0/brando9/e58/runs/smoke"
+}
