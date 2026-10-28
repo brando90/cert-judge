@@ -1,6 +1,6 @@
 # FarmShare raw-data verification contract
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/codex/e58-frozen-analysis-fixes/experiments/58_open_weight_judges_on_e39_e42_probes/results/audit_10-26-2026/RAW_VERIFICATION_PLAN.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/58_open_weight_judges_on_e39_e42_probes/results/audit_10-26-2026/RAW_VERIFICATION_PLAN.md>
 
 **TLDR:** Verify the existing collected snapshot byte-for-byte and replay its frozen parser and analysis; make no new model calls or scientific choices.
 

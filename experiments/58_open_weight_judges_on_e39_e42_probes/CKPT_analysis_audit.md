@@ -1,6 +1,6 @@
 # Experiment 58 frozen-analysis audit checkpoint
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/codex/e58-frozen-analysis-fixes/experiments/58_open_weight_judges_on_e39_e42_probes/CKPT_analysis_audit.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/58_open_weight_judges_on_e39_e42_probes/CKPT_analysis_audit.md>
 
 **TLDR:** E58 fixes verified; saved E60 primary statistic exactly reproduced. Complete E60 output and published FarmShare gate statistics exactly reproduced; fixes and receipts published.
 Created: 10-26-2026 12:29 PDT

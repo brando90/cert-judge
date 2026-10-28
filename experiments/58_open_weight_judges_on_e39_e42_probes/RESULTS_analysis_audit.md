@@ -1,6 +1,6 @@
 # Experiment 58: frozen-analysis audit and verified project status
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/codex/e58-frozen-analysis-fixes/experiments/58_open_weight_judges_on_e39_e42_probes/RESULTS_analysis_audit.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/58_open_weight_judges_on_e39_e42_probes/RESULTS_analysis_audit.md>
 
 **TLDR:** The E58 analysis now retains missing units, distinguishes unavailable statistics from failed gates, computes the promised failure sensitivity, and rejects incompatible or unverifiable inputs. Its repaired implementation exactly reproduces the saved E60 primary association on 26 configurations as an explicitly labelled compatibility dry run; this is not new E58 evidence.
 

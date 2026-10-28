@@ -1,6 +1,6 @@
 # E58 audit: live execution record
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/codex/e58-frozen-analysis-fixes/experiments/58_open_weight_judges_on_e39_e42_probes/results/audit_10-26-2026/results.md>
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/58_open_weight_judges_on_e39_e42_probes/results/audit_10-26-2026/results.md>
 
 Updated 10-26-2026. Owner: Codex; no model inference or provider charges.
 
