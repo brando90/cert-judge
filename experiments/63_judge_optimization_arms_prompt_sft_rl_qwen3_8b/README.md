@@ -44,3 +44,20 @@ Success rule from the protocol: test human rho >= 0.75 AND the paired task-clust
 
 ## Files
 `PROTOCOL.md`; `code/` (build_pack.py, sft_lora.py, search_arm1.py, vllm_eval.py, score62.py, launch and eval scripts, sanity.py, ensembles.py); `results/report_test.md|json`, `results/report_ensembles.md|json`, `results/sanity.json`, `results/runs/<run>/{FROZEN.json,curves.json,train_log.jsonl,eval_test.json}`, `results/pack_manifest.json`. LoRA adapters stay on the cluster at `/dfs/scratch0/brando9/e62/runs/<run>/ep<N>` (SNAP).
+
+## Addendum (AT-1631, Oct 27): extra seeds, teacher-only SFT and human-mix SFT, Qwen3-8B
+
+Same recipe and protocol as above (LoRA r16, lr 2e-4, 4 epochs, epoch chosen on validation only, `FROZEN.json` written by the trainer before any test pass, one test pass per run, same 30 human-rated test items, same `score62.py` metrics, task-cluster bootstrap). New runs: teacher-only s3, s4, s5; human-mix s2, s3, s4. They are reported as additional seeds; nothing was selected on test, and the earlier seeds (s0-s2, hm s0-s1) are unchanged. Hardware: mercury1 and mercury2, 3 GPUs per run, no spend. Code: `code/e64_report.py`, `code/e64_extra.py`, `code/lane_e64.sh`; outputs `results/report_e64.md|json`, `results/report_e64_extra.txt`, `results/runs/<run>/`.
+
+| arm | seeds | Spearman, each seed | mean | SD across seeds | seeds >= 0.75 | seed-average 95% CI (task-cluster) | seed-ensemble Spearman [95% CI] |
+|---|---|---|---|---|---|---|---|
+| LoRA SFT, teacher only | 6 | 0.89, 0.65, 0.75, 0.76, 0.63, 0.75 | 0.74 | 0.09 | 2/6 (s2 = 0.748 and s5 = 0.747 are just under 0.75) | [0.41, 0.87] | 0.77 [0.41, 0.90] |
+| LoRA SFT + expert labels (human-mix) | 5 | 0.85, 0.81, 0.85, 0.82, 0.84 | 0.83 | 0.02 | 5/5 | [0.48, 0.95] | 0.83 [0.43, 0.96] |
+
+Reading the 0.75 question with 6 and 5 seeds:
+- Teacher-only SFT: the seed mean fell from 0.76 (3 seeds) to 0.74 (6 seeds) and the SD from 0.12 to 0.09. Per-seed values range 0.63 to 0.89, so one seed is not a judge: a single run clears 0.75 about as often as it misses. Bootstrap probability that the seed-average is >= 0.75: 0.42; that it is above 0.60: 0.83.
+- Human-mix SFT: every seed (0.81 to 0.85) clears 0.75 on the point estimate; the SD is 0.02. Bootstrap probability that the seed-average is >= 0.75: 0.74; above 0.60: 0.92.
+- Human-mix minus teacher-only, seed-average difference: +0.10, paired task-cluster 95% CI [-0.05, 0.26], P(difference > 0) = 0.91. Human-mix is more stable across seeds (SD 0.02 against 0.09) and higher on average, but at n = 30 items from 10 tasks the difference is not significant.
+- Protocol success rule (>= 0.75 and the paired CI of the difference to 0.60 above 0) still fails for both arms on the CI part: the seed-average lower ends are 0.41 and 0.48. The seed-to-seed spread is no longer the main uncertainty; the 30 test items are. The Nov 6 ratings on frontier-agent outputs are what can settle it.
+- Sanity (same as above): train loss falls for every new run (1.72-1.97 -> 0.54-0.76 over 4 epochs, with the same bump pattern in epoch 3 for hm s1 only); frozen epochs 2-4 on val human rho 0.83-0.94; frozen on val before the test file was copied (hm s4 frozen 19:20, test 19:31).
+- Caveat unchanged: all 75 human-rated items are Claude 3.7 Sonnet outputs; human-mix uses train-item expert labels.

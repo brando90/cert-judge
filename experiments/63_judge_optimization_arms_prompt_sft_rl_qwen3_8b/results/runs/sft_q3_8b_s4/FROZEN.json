@@ -1,0 +1,93 @@
+{
+ "frozen_epoch": 2,
+ "adapter": "runs/sft_q3_8b_s4/ep2",
+ "selected_on": "val rho_teacher",
+ "curves": {
+  "prior_ce": 1.6748388922819115,
+  "start": {
+   "val": {
+    "n": 50,
+    "rho_teacher": 0.5077752554574541,
+    "mass": 0.9999999511241913,
+    "rho_human": -0.5557697784009589,
+    "n_human": 15
+   }
+  },
+  "epochs": [
+   {
+    "epoch": 1,
+    "train_loss": 1.8304845974226471,
+    "summary": {
+     "val": {
+      "n": 50,
+      "rho_teacher": 0.8619459570209301,
+      "mass": 0.9988459026813508,
+      "rho_human": 0.6457001632554831,
+      "n_human": 15
+     }
+    }
+   },
+   {
+    "epoch": 2,
+    "train_loss": 1.17030437403124,
+    "summary": {
+     "val": {
+      "n": 50,
+      "rho_teacher": 0.9255448198580148,
+      "mass": 0.9989212465286255,
+      "rho_human": 0.9136927101219647,
+      "n_human": 15
+     }
+    }
+   },
+   {
+    "epoch": 3,
+    "train_loss": 0.770895949275515,
+    "summary": {
+     "val": {
+      "n": 50,
+      "rho_teacher": 0.9114708509716333,
+      "mass": 0.9997811210155487,
+      "rho_human": 0.9208871409103266,
+      "n_human": 15
+     }
+    }
+   },
+   {
+    "epoch": 4,
+    "train_loss": 0.5835026751929735,
+    "summary": {
+     "val": {
+      "n": 50,
+      "rho_teacher": 0.9254480915495172,
+      "mass": 0.9998689758777618,
+      "rho_human": 0.8309567560558028,
+      "n_human": 15
+     }
+    }
+   }
+  ]
+ },
+ "args": {
+  "model": "/dfs/scratch0/brando9/e62/models/Qwen3-8B",
+  "pack": "pack_trainval.jsonl",
+  "out": "runs/sft_q3_8b_s4",
+  "seed": 4,
+  "loss": "soft_ce",
+  "epochs": 4,
+  "lr": 0.0002,
+  "accum": 8,
+  "rank": 16,
+  "shuffle_labels": false,
+  "human_mix": 0.0,
+  "overfit_n": 0,
+  "overfit_steps": 40,
+  "G": 8,
+  "beta": 0.02,
+  "eval_pack": "",
+  "adapter": "",
+  "ngpu": 3,
+  "maxtok": 24000,
+  "name": "s4"
+ }
+}
