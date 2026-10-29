@@ -1,8 +1,17 @@
 # E58 partial result: 8 of 13 open-weight judges (2026-10-29)
 
-**Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/58_open_weight_judges_on_e39_e42_probes/results/partial_8_judges_2026-10-29/REPORT.md>
+## Gate (E39's: rho >= 0.45 and p < 0.05)
 
-**TLDR:** the frozen E58 analysis (`scripts/analyze58.py` from main, unchanged, 10,000 draws) on the 8 one-GPU judges that finished (72 units, 70 with both numbers): the frozen index `C_ms_gold` does not pass E39's gate. Plain Spearman 0.269 [0.035, 0.475], permutation p 0.0132, bar rho >= 0.45: FAIL. Model-clustered (6 complete models): 0.267 [-0.194, 0.546], p 0.185: FAIL. The 5 two-GPU judges produced nothing (vLLM tensor-parallel hang on FarmShare), so this is a partial panel, not the final E58 verdict; they are retained as `unmeasured_infra`, never dropped.
+The frozen index `C_ms_gold` does not pass E39's gate on the 8 judges that finished (72 units, 70 with both numbers; `scripts/analyze58.py` from main, unchanged, 10,000 draws). This is a partial panel, not the final E58 verdict: the 5 two-GPU judges produced no output (vLLM tensor-parallel hang on FarmShare) and are retained as `unmeasured_infra`, never dropped.
+
+| Test | n | Spearman | p | 95% CI | Gate |
+|---|---:|---:|---:|---|---|
+| plain permutation | 70 units | 0.269 | 0.0132 | 0.035 to 0.475 | FAIL |
+| model-clustered | 6 models | 0.267 | 0.1854 | -0.194 to 0.546 | FAIL |
+
+The clustered test uses only models whose 9 prompt units all have both numbers: 6 of the 8. Llama 3.1 8B (H0) and Gemma 3 4B (H2) each have one unit with no computable criterion (under 90% of items scored), so they drop out of the clustered test only; the plain test keeps their other units.
+
+Section 10 failure sensitivity: no model has more than 20% parse-error or incomplete cells (max Llama 3.1 8B, 2.6%), so nothing is flagged and the verdict is the same with and without flagged models.
 
 ## Collection
 
@@ -11,15 +20,6 @@
 - Why missing: Slurm array 1862861 (tasks 3, 4, 6, 9, 11) hit the 2 h partition limit with zero output; every log, including resubmits 1862862, 1864455, 1876088 and 1893305, ends in a repeating vLLM "No available shared memory broadcast block found in 60 seconds" (tensor-parallel hang on 2 GPUs). A plain resubmit cannot work. The 5 models are being run on another route (follow-up task); until then the Qwen3.6 bridge check (section 8 of the protocol) is `missing`.
 - The 4-model partial of 2026-10-26 (`partial_4_judges_2026-10-26`) is contained in this run: the Qwen3 4B/8B/14B and Llama 3.1 8B rows are identical.
 - Mercury copies of gemma3_4b (tgz sha 071fd456...ef185d) and olmo3_7b (sha b8413d68...3da67) are replicates only; the FarmShare run is the frozen one-run-per-model.
-
-## Gate (E39's: rho >= 0.45 and p < 0.05)
-
-| Test | n | Spearman | p | 95% CI | Gate |
-|---|---:|---:|---:|---|---|
-| plain permutation | 70 units | 0.269 | 0.0132 | 0.035 to 0.475 | FAIL |
-| model-clustered | 6 models | 0.267 | 0.1854 | -0.194 to 0.546 | FAIL |
-
-Section 10 failure sensitivity: no model has more than 20% parse-error or incomplete cells (max Llama 3.1 8B, 2.6%), so nothing is flagged and the verdict is the same with and without flagged models.
 
 ## Per judge (mean over the 9 prompts; criterion = Spearman with the three-expert coverage ratings on the 45 held-out items)
 
