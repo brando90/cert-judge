@@ -9,6 +9,13 @@ Fetch and follow the global rules from brando90/agents-config before doing anyth
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Login checks and machine access (Brando, 10-29-2026)
+
+- **Valkyrie is already signed in as Brando on skampere1.** Check there first with `valkyrie whoami` (expect `brando@vals.ai`) and `valkyrie run list`. Do not report "no Valkyrie login" before running both.
+- **If a one-time-password or config login fails**, check Sherlock, FarmShare and snap to see whether the Valkyrie login works or is signed in on one of them, then run from there.
+- **The agent has no access to Brando's Mac.** Never leave work queued behind the Mac lane. Start it now on free GPUs and the other clusters, and record in the experiment folder which host runs it.
+- Keys, tokens and passwords never go in repos, messages or logs.
+
 ## Email (Brando, 10-06-2026)
 
 Send from whichever of Brando's accounts you are signed in to (mail connector, else uutils SMTP); his request is the go-ahead. CC `brando.science@gmail.com`, `brandojazz@gmail.com` and `brando@vals.ai`, skipping the sender. Internal notifications follow agents-config Trigger Rule 26. Refinements (Brando, 10-13-2026): email to Vals people (vals.ai addresses) CCs only `brando@vals.ai` and BCCs the other two; every email at least BCCs `brandojazz@gmail.com` unless it is the sender.
