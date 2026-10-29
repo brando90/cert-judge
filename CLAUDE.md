@@ -75,6 +75,11 @@ cd ~/cert-judge && uv pip install -e . && uv sync --active
 
 Some dependencies (`vllm`, `sglang`, `unsloth`, `flash-attn`) are Linux-only and excluded on macOS via `pyproject.toml` markers.
 
+## New runs: full int_ref evaluation, all per-task results saved (Brando, 10-29-2026)
+
+- For every NEW run, run the full int_ref evaluation (internal plus reference), never internal only. Save every per-task factor (IC_tests, IC_proofs, FSC, RC_tests, RC_proofs; an unmeasured factor is null, never 0) and the raw outputs, so Harsh int, Smooth int, Harsh int_ref and Smooth int_ref are all recomputed from the saved files. Harsh int and Smooth int use the first three factors of the same per-task rows, so no separate internal run is needed.
+- Old runs stay as they are: no recompute, and their `_ref` cells read `not computed`.
+
 ## Selecting models and agent harnesses (10-22-2026)
 
 Before choosing a new, unpinned solver, generator or artificial-intelligence judge, read `~/agents-config/workflows/model-and-agent-selection.md` ([shared guide](https://github.com/brando90/agents-config/blob/main/workflows/model-and-agent-selection.md)).
