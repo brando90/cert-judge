@@ -2,7 +2,7 @@
 
 ## Gate (E39's: rho >= 0.45 and p < 0.05)
 
-The frozen index `C_ms_gold` passes E39's gate on all 13 judges, narrowly: plain PASS, model-clustered PASS (117 units, 114 with both numbers; `scripts/analyze58.py` from main, unchanged, 10,000 draws, nothing dropped, no `unmeasured_infra`). The 8-judge partial of 2026-10-29 (`partial_8_judges_2026-10-29`, FAIL at 0.269) is superseded by this run; the verdict moved because the 5 added judges (2 of them the strongest, Qwen3.6-27B and Qwen3 32B) have a much stronger association (0.699 on their 44 units alone).
+The frozen index `C_ms_gold` passes E39's gate on all 13 judges, narrowly: plain PASS, model-clustered PASS. The 8-judge partial of 2026-10-29 (`partial_8_judges_2026-10-29`, FAIL at 0.269) is superseded by this run; the verdict moved because the 5 added judges (2 of them the strongest, Qwen3.6-27B and Qwen3 32B) have a much stronger association (0.699 on their 44 units alone).
 
 | Test | n | Spearman | p | 95% CI | Gate |
 |---|---:|---:|---:|---|---|
@@ -25,6 +25,7 @@ Local `qwen36_27b` (vLLM, A100 TP=2) against E39's hosted Qwen3.6, cells measure
 
 ## Collection
 
+- Analysis: `scripts/analyze58.py` from main, unchanged, 10,000 draws (permutation and bootstrap), on 117 units (13 models x 9 prompts), 114 with both numbers; nothing dropped, no `unmeasured_infra`.
 - Judges 1 to 8 (gemma3_4b, gemma3_12b, gpt_oss_20b, llama31_8b, olmo3_7b, qwen3_4b, qwen3_8b, qwen3_14b): FarmShare run, tarball sha256 `faf4ecb469f6420b97e2ec792c2ef5867d6481249b6e2edf81134108ceb452a3`, 144 harvests.
 - Judges 9 to 13 (qwen3_32b, qwen36_27b, llama33_70b_awq, gemma3_27b, olmo3_32b): skampere1 run, tarball `e58_2gpu_results.tgz` sha256 `c44d9e2e5bb95e445a671be0f3824c377a3704e7e0ee7a955aae908a8ee93b0c` (verified after transfer), 90 of 90 harvests, 281 files with its own manifest, verified.
 - Runtime deviation (hardware only): the 5 two-GPU judges ran on 2x A100-SXM4-80GB TP=2 on skampere1, not 2x L40S on FarmShare, because FarmShare TP=2 hung (vLLM shared-memory broadcast timeout). Same package, unchanged `judge_vllm.py`, pinned revisions, seeds, sampling; vLLM 0.32.0, torch 2.13.0+cu130 (`RUNTIME_2gpu.md`). The runtime-contract check matches on all 234 harvests (0 mismatches).
