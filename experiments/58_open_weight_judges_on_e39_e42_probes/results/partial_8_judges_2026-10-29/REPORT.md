@@ -1,5 +1,7 @@
 # E58 partial result: 8 of 13 open-weight judges (2026-10-29)
 
+Superseded 2026-10-30 by `../full_13_judges_2026-10-30/REPORT.md` (13 of 13 judges, gate PASS).
+
 ## Gate (E39's: rho >= 0.45 and p < 0.05)
 
 The frozen index `C_ms_gold` does not pass E39's gate on the 8 judges that finished (72 units, 70 with both numbers; `scripts/analyze58.py` from main, unchanged, 10,000 draws). This is a partial panel, not the final E58 verdict: the 5 two-GPU judges produced no output (vLLM tensor-parallel hang on FarmShare) and are retained as `unmeasured_infra`, never dropped.
