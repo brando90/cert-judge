@@ -7,7 +7,8 @@ Then calls E58's own run_config (judge_vllm.py, imported, never copied): E58's c
 --dry-run tokenizes and counts only (tokenizer files, no GPU) and compares each unit's call and over-context counts with the run plan (exit 1 on any difference).
 Needs this repo (E39, E58 scripts), the VeriBench clone E58 rebuilt from (E58_VERIBENCH_REPO, imported by E39 at load), and for a dry run python with transformers (e.g. ~/.venvs/l32/bin/python); a real run needs vllm and the weights.
   dry run, all 13 models x 9 families:  run_setN_judge.py --run ~/e64/run --prompts-dir setN_prompts --weights-root ~/tok --dry-run
-  one unit smoke on GPU:                run_setN_judge.py --run ~/e64/smoke --prompts-dir setN_prompts --weights-root ~/e58/models --model qwen3_8b --prompts H2 --limit-cells 4"""
+  one unit smoke on GPU:                run_setN_judge.py --run ~/e64/smoke --prompts-dir setN_prompts --weights-root ~/e58/models --model qwen3_8b --prompts H2 --limit-cells 4
+On skampere1 set VLLM_USE_FLASHINFER_SAMPLER=0 before a real run: the FlashInfer sampler needs nvcc there and fails without it (hit in the AT-2239 smoke)."""
 from __future__ import annotations
 
 import argparse
