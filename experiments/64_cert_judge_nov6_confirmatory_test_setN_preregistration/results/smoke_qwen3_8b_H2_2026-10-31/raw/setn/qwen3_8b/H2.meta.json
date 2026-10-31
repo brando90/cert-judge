@@ -1,0 +1,28 @@
+{
+ "timing": [
+  {
+   "utc": "2026-10-31T19:46:45.791137+00:00",
+   "cells_generated": 3,
+   "output_tokens": 2588,
+   "seconds": 17.1,
+   "gpus": 1
+  }
+ ],
+ "sampling": {
+  "source": "model generation_config defaults (vLLM get_default_sampling_params)",
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "min_p": 0.0,
+  "repetition_penalty": 1.0,
+  "max_tokens_rule": "min(32000, max_model_len - prompt tokens)",
+  "min_generation_budget": 1024,
+  "seed_rule": "int(sha256('58|<config>|<cell>')[:8], 16)",
+  "skip_special_tokens": true
+ },
+ "run_ids": {
+  "slurm_job_id": null,
+  "slurm_array_task_id": null
+ },
+ "limit_cells": 4
+}
