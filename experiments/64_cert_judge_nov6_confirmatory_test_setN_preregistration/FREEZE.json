@@ -1,0 +1,198 @@
+{
+ "frozen_for": "E64 confirmatory test on the Nov 6 set-N human ratings",
+ "repo_head_before": "69d8183fee8ded853e716ff3a6dbe2d9ee07d0aa",
+ "A_human_mix_sft": {
+  "base_model": "Qwen/Qwen3-8B (local copy /dfs/scratch0/brando9/e62/models/Qwen3-8B)",
+  "base_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
+  "base_index_sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc",
+  "lora": "r=16 alpha=32 all linear",
+  "prompt": "E39 H2 with one-digit instruction, EV readout, thinking off",
+  "adapters": [
+   {
+    "name": "sft_q3_8b_hm_s0",
+    "arm": "human_mix_sft",
+    "epoch": "ep3",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_hm_s0/ep3/adapter_model.safetensors",
+    "sha256": "80c5adf82d0d5a1ed56543b9779f501b657c3741c96cf2eaf8ac22a9d0d7fc43",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_hm_s0/FROZEN.json",
+    "frozen_json_sha256": "321ec1aecd15d6516cff845382f15f0f9cb1c01fdbe3082e62690dcb2b4bb11b"
+   },
+   {
+    "name": "sft_q3_8b_hm_s1",
+    "arm": "human_mix_sft",
+    "epoch": "ep4",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_hm_s1/ep4/adapter_model.safetensors",
+    "sha256": "e5c06f756e887990b1b4c6d3275efe14341160c302d41699131ee2fd7eb73cbc",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_hm_s1/FROZEN.json",
+    "frozen_json_sha256": "11d280c7e8b8eb708a91b05710b608fb1e869e70c6976327da4a0df54f7ece0d"
+   },
+   {
+    "name": "sft_q3_8b_hm_s2",
+    "arm": "human_mix_sft",
+    "epoch": "ep4",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_hm_s2/ep4/adapter_model.safetensors",
+    "sha256": "762972f2a3dda203b46adbdd70f67812144b35d000a491bb942108631c11ab1a",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_hm_s2/FROZEN.json",
+    "frozen_json_sha256": "77f3dfe3ea8a9ac882df0c15565615274072e46f912f9419de6cde8a5c205dc4"
+   },
+   {
+    "name": "sft_q3_8b_hm_s3",
+    "arm": "human_mix_sft",
+    "epoch": "ep4",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_hm_s3/ep4/adapter_model.safetensors",
+    "sha256": "656c8fefae48ca226f51290bc3c66f203e4a8aad6b9562b708b423a548ea5a1d",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_hm_s3/FROZEN.json",
+    "frozen_json_sha256": "546066c1dd5dd38925c10f16d28b3fa92fb3f2888a79d66dba2033434a83429c"
+   },
+   {
+    "name": "sft_q3_8b_hm_s4",
+    "arm": "human_mix_sft",
+    "epoch": "ep3",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_hm_s4/ep3/adapter_model.safetensors",
+    "sha256": "c97d388e200b2a2d5890eb757b5ff01a727e125564ca66f73b0eff25852af30d",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_hm_s4/FROZEN.json",
+    "frozen_json_sha256": "8e7dccc8f34ffcab512983ec2b8196c49562dfe8d4e05ac2a8119a6cd4795956"
+   }
+  ]
+ },
+ "B_teacher_only_sft": {
+  "adapters": [
+   {
+    "name": "sft_q3_8b_s0",
+    "arm": "teacher_only_sft",
+    "epoch": "ep4",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_s0/ep4/adapter_model.safetensors",
+    "sha256": "bdf0122257b1a43ed931b90888da3f4aca84c28b44c41c89aa7d3bd25ab59384",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_s0/FROZEN.json",
+    "frozen_json_sha256": "096c5944306b2b5bfffae3e73e0a2d777e28b2351a87fcbf9e94c85e73227d95"
+   },
+   {
+    "name": "sft_q3_8b_s1",
+    "arm": "teacher_only_sft",
+    "epoch": "ep2",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_s1/ep2/adapter_model.safetensors",
+    "sha256": "fbea8e924ef8819616d1bf0c01767026204ab109dde68a9b2739a45b66cdcf26",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_s1/FROZEN.json",
+    "frozen_json_sha256": "ed0f036d30c10fc226f607124ffc850332d745025eaa9ce23331da95c49ee8c9"
+   },
+   {
+    "name": "sft_q3_8b_s2",
+    "arm": "teacher_only_sft",
+    "epoch": "ep3",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_s2/ep3/adapter_model.safetensors",
+    "sha256": "4fc70bacaa9055731c0a448db1dd54f463aaaed8f54a8ea8eb18a4fd5217bad8",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_s2/FROZEN.json",
+    "frozen_json_sha256": "9457ae2ff80d471e2ad4e17b8009f053f2185f8c3754497013f196db79ce5d43"
+   },
+   {
+    "name": "sft_q3_8b_s3",
+    "arm": "teacher_only_sft",
+    "epoch": "ep2",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_s3/ep2/adapter_model.safetensors",
+    "sha256": "330bae60e1f0a50e76b43580f5f20a3729e6d7ba7b04c386329b12a3fccc031a",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_s3/FROZEN.json",
+    "frozen_json_sha256": "791c50d4ded28f1a02e41a01296d8b913a7f14f26fbcec8df076e541f35228b5"
+   },
+   {
+    "name": "sft_q3_8b_s4",
+    "arm": "teacher_only_sft",
+    "epoch": "ep2",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_s4/ep2/adapter_model.safetensors",
+    "sha256": "8bd17b10affaec7fc2a45512880d316fbb2da78c8d94ebe1590da1556a89552b",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_s4/FROZEN.json",
+    "frozen_json_sha256": "3ee0175f64767784eb5464a56c0ae625afee0b29d1088e1d7dcdd1705a28b1a1"
+   },
+   {
+    "name": "sft_q3_8b_s5",
+    "arm": "teacher_only_sft",
+    "epoch": "ep3",
+    "host": "skampere1.stanford.edu (/dfs/scratch0, user brando9)",
+    "path": "/dfs/scratch0/brando9/e62/runs/sft_q3_8b_s5/ep3/adapter_model.safetensors",
+    "sha256": "a8d63fff915171e2bfa5a8424905663961dde984eb1f52c913dee0f56abfd9aa",
+    "frozen_json": "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/results/runs/sft_q3_8b_s5/FROZEN.json",
+    "frozen_json_sha256": "c839c19294f655e9d8ac56fc4a1138bdf8812d2c34d78c9bd5a16011f643b109"
+   }
+  ]
+ },
+ "C_qwen36_27b_checklist_think": {
+  "model": "Qwen/Qwen3.6-27B-FP8",
+  "variant": "checklist__think",
+  "field": "stated",
+  "selected_by": "max mean-over-agents Spearman on the 45-item search split only (FarmShare run 2026-10-28)",
+  "repo": "brando90/veribench",
+  "commit": "6d838cfb000bb0df5d664143b812a6882ee94360",
+  "code_tree": "docs/judge-validation/code (tree c08aa8687048ab789283eab9821cecaec5e28603)",
+  "final_json": "docs/judge-validation/results_farmshare_oct28/final.json (blob 8635d32c09d6ef546021d4fef289debc917d1fd9)",
+  "note": "the max-min pick (mirror__nothink/score) is NOT a frozen candidate"
+ },
+ "D_index": {
+  "index": "C_ms_gold",
+  "analysis_json_path": "experiments/58_open_weight_judges_on_e39_e42_probes/results/full_13_judges_2026-10-30/ANALYSIS.json",
+  "analysis_json_sha256": "ce3f458016018d0eda8c33a599e1f4f4d1bcf2696eb1c9e6fc162cd6df8d1dcd",
+  "e58_collection_manifest_sha256": "a1863fee1c18b7649dd81c71221e61e09bdca886fd607ac9eab71a54652f8e10",
+  "gate": "spearman >= 0.45 and permutation p < 0.05, plain and model-clustered, unchanged from E39/E58",
+  "tvd_mi": "exploratory only, not frozen"
+ },
+ "old_test_items": {
+  "source": "experiments/58_open_weight_judges_on_e39_e42_probes/results/criterion_items.json",
+  "source_sha256": "de12ae8a7486da60788f6c7d48a98a56136aff96a9c2c6f23ec3a9db04672954",
+  "item_ids": [
+   "0_unsafeCopy_safe__agent0",
+   "0_unsafeCopy_safe__agent1",
+   "0_unsafeCopy_safe__agent2",
+   "1_MyAdd__agent0",
+   "1_MyAdd__agent1",
+   "1_MyAdd__agent2",
+   "1_bisect_left__agent0",
+   "1_bisect_left__agent1",
+   "1_bisect_left__agent2",
+   "33_MyMinimum__agent0",
+   "33_MyMinimum__agent1",
+   "33_MyMinimum__agent2",
+   "4_json_decoder__agent0",
+   "4_json_decoder__agent1",
+   "4_json_decoder__agent2",
+   "4_unsafeCounter_safe__agent0",
+   "4_unsafeCounter_safe__agent1",
+   "4_unsafeCounter_safe__agent2",
+   "humaneval_31_is_prime__agent0",
+   "humaneval_31_is_prime__agent1",
+   "humaneval_31_is_prime__agent2",
+   "humaneval_3_below_zero__agent0",
+   "humaneval_3_below_zero__agent1",
+   "humaneval_3_below_zero__agent2",
+   "insertion_sort__agent0",
+   "insertion_sort__agent1",
+   "insertion_sort__agent2",
+   "merge_sort__agent0",
+   "merge_sort__agent1",
+   "merge_sort__agent2"
+  ],
+  "rule": "no test read, selection or refit on these 30 items in E64"
+ },
+ "code_sha256": {
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/build_pack.py": "1d62eac7fba1bf44916d68a09f151b1bbdb1e223fc49c2e1af43d54b7a4820c3",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/e62util.py": "b2662cb9bc3ff72850b8e19ec7424e74b8c0c39f69e7e09a70dd0d5bb3e72c94",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/e64_extra.py": "e88bdd31f3f65294c6ae864f7a0e83f99ba1bd40a076df1ba1f4f09fae5c38a0",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/e64_report.py": "c2e7fb41fd800329caf90ec17677492e7e25a094fde2bfa36871afb9afec36c5",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/ensembles.py": "0e3d8a4f3825df050ac84c81f92523df29ca95ee847135cff9421f60ec47c0ce",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/sanity.py": "3fe352024eaeac731b13305b9e818496bf9a687d6ac6c661be33a85a4d90a0f6",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/score62.py": "baaf828b68fa7e2d79b8af95c545e338aec60e37a8421c7a1056340d5a0c628f",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/search_arm1.py": "51818c5fca046f2e2892fa69dcb6d90a3f092943bdcaf159cf51ef9ad0310b2f",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/sft_lora.py": "3357ecbb189ccc99edcd56d1a66fe191b67323543d7c4f0bc0b74fba69879886",
+  "experiments/63_judge_optimization_arms_prompt_sft_rl_qwen3_8b/code/vllm_eval.py": "76708436072472b09aac4cb002336759418ffcfb179a671f0893d3fe36b36e6d",
+  "experiments/64_cert_judge_nov6_confirmatory_test_setN_preregistration/code/confirm64.py": "f151ee074f27c8032768ba9186ce53ddb874574215d91e9e5b2bdcf42f65158c",
+  "experiments/58_open_weight_judges_on_e39_e42_probes/scripts/analyze58.py": "db7ce8f2530a8fa0342be6b3c271faf35a542934f49712f5fdb24847c93c3890",
+  "experiments/58_open_weight_judges_on_e39_e42_probes/scripts/e58.py": "081bb039d225881a12d9efaae289161f8aef5c1090d473f22fdb9d30aad80527"
+ }
+}
