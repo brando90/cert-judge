@@ -9,6 +9,16 @@ Fetch and follow the global rules from brando90/agents-config before doing anyth
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Lean specification integrity
+
+Use the following prompt when authoring or reviewing a Lean reference, assessing a submission, or building a judge that credits Lean evidence. Include it in new authoring and judging prompts. Keep private obligations and controls out of solver inputs.
+
+> For each scored claim, identify the intended source behavior and the exact Lean declaration that expresses it. Check the declaration's elaborated type and follow the definitions it depends on, including imports and aliases, against the trusted original. Show a reachable input for the premises. For a behavioral obligation, show how it distinguishes the intended result from a concrete wrong result or implementation. A total function may legitimately have `Pre := True`. A postcondition that unfolds to `True`, a reflexive equality unrelated to the behavior, or a premise that assumes the conclusion cannot establish that behavior.
+>
+> Independently replay each claimed proof against the pinned declarations. Inspect transitive dependencies with `#print axioms` and check their provenance against the pinned Lean environment. Permit only the standard `propext`, `Classical.choice` and `Quot.sound` when used. Reject a fresh or shadowed axiom, `sorryAx`, or an untrusted reduction oracle in a credited proof. A clean axiom list alone says nothing about whether the statement captures the source.
+>
+> Return the declaration, witness, discriminating case, replay evidence and decision. Withhold credit for a demonstrated shortcut. If evidence is missing or search times out, mark the claim unresolved. Keep intentionally false tasks and correctly checked refutations labeled separately.
+
 ## Login checks and machine access (Brando, 10-29-2026)
 
 - **Valkyrie is already signed in as Brando on skampere1.** Check there first with `valkyrie whoami` (expect `brando@vals.ai`) and `valkyrie run list`. Do not report "no Valkyrie login" before running both.
