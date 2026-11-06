@@ -128,6 +128,13 @@ def level1(configs, arts):
         have = [a for a in scored if a["item"] in med]
         cov = len(have) / len(scored)
         per = []
+        if cov + 1e-9 < CFG["min_criterion_coverage"]:
+            # code guard (post-freeze, no definitional change): below-coverage configurations are not scored
+            c["criterion"] = {"coverage": round(cov, 4), "n": len(have), "status": "NOT_COMPUTABLE",
+                              "G_P_crossfit": None, "G_P_raw": None, "G_P_constant": None, "rank_auc": None,
+                              "rank_spearman": None, "gemini_prover_auc_tiny256": None, "n_gemini": 0}
+            c["per"] = []
+            continue
         for f in (0, 1):
             tr = [a for a in have if fold_of(a["task"]) != f]
             te = [a for a in have if fold_of(a["task"]) == f]

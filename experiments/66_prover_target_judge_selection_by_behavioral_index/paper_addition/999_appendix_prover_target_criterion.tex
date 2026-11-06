@@ -1,0 +1,27 @@
+% !TEX root = main.tex
+% PROPOSED ADDITION (experiment 66), not in main.tex's \input list. Evidence: experiments/66_prover_target_judge_selection_by_behavioral_index/RESULTS_prover_target_selection.md
+\section{Proposed addition: a prover-outcome criterion (retrospective)}\label{app:prover-target}
+This appendix replaces the human criterion with the recorded outcome of a fixed proving procedure; it does not change the human-target study in the main text.
+For an artifact $z$ and a procedure $P$, let $Y_P(z)\in\{0,1\}$ record whether $P$ proved that the candidate's formal specification implies the gold's.
+A failed search is an operational zero, not a proof of non-coverage.
+For a configuration $\theta$ with forecast $q_\theta(z)$, the prover criterion is $G_P(\theta)=1-\mathrm{mean}_z\,(q_\theta(z)-Y_P(z))^2$.
+Judge scores are not elicited probabilities, so $q_\theta$ is a logistic map of the median score fitted on training-split tasks only.
+
+\paragraph{Constructed target.}
+The procedure is a fixed Lean~4.22 automation that tries each changed theorem's reverse implication, with implementations replaced by axioms, on 194 Lean-valid weakening, over-constraint, vacuity, identity and formatting probes of 24 \textsc{VeriBench} references.
+Identity and formatting probes are covered, and every other valid probe is unproved, so $Y_P$ is constant within a probe family.
+Across the 16 test-split configurations (four judge models), the label-free missing-statement index $C_{\mathrm{ms\_gold}}$ is associated with $G_P$ at Spearman $0.705$ $[0.593, 0.880]$ (Pearson $0.801$, Kendall $0.477$; two-level bootstrap over judge models and evaluation tasks), with one-sided permutation $p=0.0016$ and within-model permutation $p=0.0038$.
+Selecting the configuration with the highest index gives $G_P=0.904$, against $0.907$ for the best configuration in the pool, $0.876$ for the fixed H2 rubric, $0.859$ for a random choice and $0.782$ for a constant forecast.
+The index computed only from training-task ladders gives Spearman $0.731$, whereas $\mathrm{TI}_{\mathrm{var}}$, whose bug-monotonicity term is not expected to track statement coverage, gives $-0.148$.
+A post hoc check shows that the association mainly separates legacy and lexical prompts from the rubric prompts: among the 10 held-out rubric-prompt configurations it is Spearman $0.170$ $[-0.327, 0.842]$, although every rubric configuration already lies between $0.868$ and $0.907$.
+Deterministic theorem-count, name-overlap and edit-distance controls reach the maximal index value yet only the constant-forecast criterion, so the index is informative within a pool of language-model judges and not across judge types.
+
+\paragraph{Natural outputs.}
+On 99 natural solver outputs matched by file hash to a historical Lean entailment pipeline (95 outcomes, 60 accepted), all 26 judge configurations with complete scores beat the constant forecast ($G_P$ from $0.752$ to $0.819$, against $0.743$).
+These configurations were never scored on the index's deletion ladders, so the index cannot be tested across them.
+A label-free consensus signal did not select prover-agreeing judges (Spearman $-0.213$, one-sided $p=0.85$).
+On the 36 outputs that a second prover also checked, the two provers disagree on 15 outputs, and judge rankings against the two provers are unrelated (Spearman $-0.126$).
+
+\paragraph{Scope.}
+Both analyses are retrospective: the constructed target is theorem-level and family-determined, and the natural target relies on agent-written bridges without a trusted kernel replay.
+A prospective test with a validated fresh target and the open-weight judge panel is prepared but not run.

@@ -182,6 +182,11 @@ def corr_triplet(x, y):
 
 
 def g_from(per_probe_by_task, tasks, key):
+    """Criterion recomputed on resampled tasks: 1 - mean error for Brier keys; AUC of raw scores for 'auc'.
+    Deviation 1 (post-run code fix): the first run recomputed the Brier criterion for the rank analysis."""
+    if key == "auc":
+        rows = [r for t in tasks for r in per_probe_by_task.get(t, [])]
+        return auc([r["s"] for r in rows], [r["y"] for r in rows])
     num = den = 0.0
     for t in tasks:
         rows = per_probe_by_task.get(t, [])
@@ -246,6 +251,8 @@ def analyse_pool(units, index, rng_seed, draws, crit_key="G_P_fitted", err_key="
         bu = [u for f in fs for u in us if u["family"] == f]
         gx = [u["index"][index] for u in bu]
         gy = [g_from(by_task[u["config"]], ts, err_key) for u in bu]
+        if any(v is None for v in gy):
+            continue
         if len(set(gx)) > 1 and len(set(gy)) > 1:
             rho_d.append(A.spearman(gx, gy))
         gg = {id(u): v for u, v in zip(bu, gy)}
@@ -273,14 +280,18 @@ def main():
         j["index"]["C_ms_gold_fit_tasks_only"] = fit_index[j["config"]]["value"]
         j["human_heldout_spearman"] = u["criteria"]["heldout"]["spearman"]
     llm = [j for j in judges if j["kind"] != "control"]
+    rubric = ("D0", "H0", "H1", "H2", "R4")
     pools = {"test_llm": [j for j in llm if j["split"] == "test"],
-             "train_val_llm": [j for j in llm if j["split"] in ("train", "val")], "all_llm": llm}
+             "train_val_llm": [j for j in llm if j["split"] in ("train", "val")], "all_llm": llm,
+             "posthoc_test_rubric_prompts_only": [j for j in llm if j["split"] == "test" and j["prompt"] in rubric],
+             "posthoc_all_rubric_prompts_only": [j for j in llm if j["prompt"] in rubric],
+             "posthoc_all_with_controls": judges}
     analyses = {}
     for pname, pool in pools.items():
         for index in [CFG["primary_index"]] + CFG["secondary_indices"]:
             analyses[f"{pname}|{index}|G_P_fitted"] = analyse_pool(pool, index, CFG["seed"], CFG["bootstrap_draws"])
         analyses[f"{pname}|{CFG['primary_index']}|rank_auc"] = analyse_pool(
-            pool, CFG["primary_index"], CFG["seed"], 2000, crit_key="rank_auc", err_key="e_fit")
+            pool, CFG["primary_index"], CFG["seed"], 2000, crit_key="rank_auc", err_key="auc")
         analyses[f"{pname}|{CFG['primary_index']}|G_P_raw"] = analyse_pool(
             pool, CFG["primary_index"], CFG["seed"], 2000, crit_key="G_P_raw", err_key="e_raw")
     hum = [(j["criterion"]["G_P_fitted"], j["human_heldout_spearman"]) for j in llm
