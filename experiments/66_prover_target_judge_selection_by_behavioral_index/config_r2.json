@@ -1,0 +1,43 @@
+{
+  "description": "Experiment 66 retrospective condition R2: 99 natural solver outputs from VeriBench experiment 106 v5 (groups G01, G02) joined by exact candidate sha256 to recorded Lean entailment prover outcomes; 32 committed judge configurations; zero model calls.",
+  "version": "e66_r2_v1_11-06-2026",
+  "veribench_repo": "~/veribench",
+  "veribench_revision": "ec1f9b2a44",
+  "e106": "experiments/106_simulated_expert_raters_icl_from_human_labels_leave_one_agent_out_fsc_judge/expt_v5",
+  "groups": ["G01", "G02"],
+  "e145": "experiments/145_entailment_vacuity_axiom_check_tiny256_11-01-2026/results/per_run.csv",
+  "e158": "experiments/158_gemini_lean_prover_tiny256_11-01-2026/results/g_per_run.csv",
+  "tiny_manifest": "experiments/138_tiny256_dt_10-31-2026/inputs/solver_sha_manifest.json",
+  "core_batches": {
+    "144_core614_dt_first_batch_claude_code_11-01-2026": "claude_code",
+    "147_core614_dt_batch1_codex_11-01-2026": "codex",
+    "150_core614_dt_security238_claude_code_11-01-2026": "claude_code",
+    "151_core614_dt_security238_codex_11-01-2026": "codex"
+  },
+  "retry_converted_runs": {"150_core614_dt_security238_claude_code_11-01-2026": ["S077"]},
+  "runs": {
+    "F_H2_sol_high": {"field": "score", "scale": 1, "family": "openai", "model": "gpt-6-sol-high", "fixed_rubric": true, "e39_unit": "sol6h|H2"},
+    "F_H2_opus55_max": {"field": "score", "scale": 1, "family": "anthropic", "model": "claude-opus-5-5-max", "fixed_rubric": true, "e39_unit": "opus55x|H2"},
+    "Z_H0_sol_high": {"field": "score", "scale": 1, "family": "openai", "model": "gpt-6-sol-high", "e39_unit": "sol6h|H0"},
+    "Z_H0_opus55_max": {"field": "score", "scale": 1, "family": "anthropic", "model": "claude-opus-5-5-max", "e39_unit": "opus55x|H0"},
+    "L_c0_H2_sol_high": {"field": "score", "scale": 1, "family": "openai", "model": "gpt-6-sol-high"},
+    "L_c0_H2_opus55_max": {"field": "score", "scale": 1, "family": "anthropic", "model": "claude-opus-5-5-max"},
+    "L_persona_H2_sol_high": {"field": "score", "scale": 1, "family": "openai", "model": "gpt-6-sol-high"},
+    "L_persona_H2_opus55_max": {"field": "score", "scale": 1, "family": "anthropic", "model": "claude-opus-5-5-max"},
+    "S2_astra": {"field": "score_0_5", "scale": 5, "family": "openai", "model": "gpt-6-astra", "frames": ["P1", "P2", "P3", "C0"]},
+    "S2_fable51": {"field": "score_0_5", "scale": 5, "family": "anthropic", "model": "claude-fable-5-1", "frames": ["P1", "P2", "P3", "C0"]},
+    "S2_grok47": {"field": "score_0_5", "scale": 5, "family": "xai", "model": "grok-4.7", "frames": ["P1", "P2", "P3", "C0"]},
+    "S2_kimik3": {"field": "score_0_5", "scale": 5, "family": "moonshot", "model": "kimi-k3", "frames": ["P1", "P2", "P3", "C0"]},
+    "S2_mimo26pro": {"field": "score_0_5", "scale": 5, "family": "xiaomi", "model": "mimo-v2.6-pro", "frames": ["P1", "P2", "P3", "C0"]},
+    "S2_qwen38max": {"field": "score_0_5", "scale": 5, "family": "alibaba", "model": "qwen3.8-max", "frames": ["P1", "P2", "P3", "C0"]}
+  },
+  "fold_salt": "e66-r2-crossfit-v1",
+  "map_slope_ridge": 0.01,
+  "min_criterion_coverage": 0.9,
+  "primary_criterion": "G_P_crossfit",
+  "primary_label_free_signal": "consensus_other_families",
+  "bootstrap_draws": 10000,
+  "seed": 66,
+  "new_model_call_cap": 0,
+  "measured_inference_cost_usd": 0
+}
