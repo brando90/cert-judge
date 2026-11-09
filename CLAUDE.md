@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+## Research workflow: no branches
+
+This is a research project. Each experiment lives in its own numbered experiment folder (`experiments/NN_<setup_name>/`). Commit and push straight to `main`. Do not create branches or pull requests. If a leftover branch turns up, merge it into `main` (no force-push) and delete it. If two experiments pick the same number, keep the one already on `main` and renumber the new folder to the next free number, updating its internal references.
+
 ## Global Agent Rules (load first, every session)
 
 Fetch and follow the global rules from brando90/agents-config before doing anything else:
