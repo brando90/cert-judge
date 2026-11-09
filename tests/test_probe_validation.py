@@ -195,8 +195,12 @@ def test_lean_compiler_accepts_valid_code_and_rejects_invalid_code() -> None:
         / "bin"
         / "lake"
     )
-    if not project_root.is_dir() or not lake_bin.is_file():
-        pytest.skip("pinned Lean 4.22 project is unavailable")
+    mathlib_build = project_root / ".lake" / "packages" / "mathlib" / ".lake" / "build"
+    if not project_root.is_dir() or not lake_bin.is_file() or not mathlib_build.is_dir():
+        pytest.skip(
+            "needs the pinned Lean 4.22 toolchain and a built Mathlib in "
+            "data/veribench_dataset/lean_src/.lake (the Mac/Lean environment)"
+        )
 
     compiler = LeanCompiler(project_root, lake_bin)
     assert compiler.compile("def ptiProbe (x : Nat) : Nat := x + 1\n").ok

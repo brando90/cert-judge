@@ -1,6 +1,8 @@
 """TLDR: The locked one-step edits each occur once in the named declaration. No Lean."""
 from pathlib import Path
 
+import pytest
+
 ROOT = Path("/Users/brandomiranda/veribench/experiments/100_karpathy_recipe_tc_judge_search_human_train_val_test/inputs/references/annotation")
 EDITS = [
     ("33_MyMinimum", "minimum_prop", "myMinList xs ≤ z"),
@@ -14,6 +16,8 @@ EDITS = [
 
 
 def test_each_old_string_occurs_in_its_file():
+    if not ROOT.is_dir():
+        pytest.skip(f"needs the Mac checkout of veribench ({ROOT}); not present here")
     for task, _decl, old in EDITS:
         text = (ROOT / f"{task}.lean").read_text(encoding="utf-8")
         assert text.count(old) >= 1, task
