@@ -38,6 +38,25 @@ Send from whichever of Brando's accounts you are signed in to (mail connector, e
 
 The cert-judge paper is being made as strong as possible, and its known gap is human data: a fresh, pre-registered human rating round (shared with VeriBench's set-N round, experiment 102) that tests the judge-trust index on new items and new judges is being prepared and run. Never "rewrite the paper's claims" to fit the current evidence, retire a claim, or pick a new framing on your own because an intermediate experiment (39, 41, 42, 43, 44, 45) came out weak or null: those results feed the next human-data round and the limitations section, and the framing is Brando's call after that round. A result-consistent interim draft may be prepared on a branch, labelled as such and left unmerged. Brando, 10-13-2026: "we are not 'rewriting the paper's claims'. We are trying to make the paper as high quality as possible. I thought the issue was that we need more human data, which is what we are preparing and having people go through."
 
+## How we choose (learn) a judge: the formulations (Brando, 11-09-2026)
+
+**Any agent that prepares or dispatches the human-rating task packet reads this first and keeps the packet (instructions, rating scale, splits, what the ratings are used for) consistent with it.** Full notes and sources: judge paper Q&A Doc, Part 3 (<https://docs.google.com/document/d/1zB-gYk-zU1wToS_E_carGSRGtUcF1NgZ-jWF5t1SJws/edit>).
+
+Brando's four formulations, from his handwritten pages (Θ = the judge search space; S^tr, R^tr = train tasks and ratings; S^val, R^val = validation tasks and ratings; p^H = the human rating distribution; p^AJ = the judge's):
+
+1. argmax over judge in Θ of Corr(p^AJ, p^H), train data helps, Corr evaluated on S^val, R^val. "This is what people are doing" (his TODO: check by deep research).
+2. argmax over judge in Θ of Corr(p^AJ, p^H), using S^tr, R^tr only (e.g. optimizing the system with an agent or prompt optimization).
+3. argmin over judge in Θ of Loss(p^AJ, p^H) on the validation set S^val, R^val, train data helps.
+4. argmin over judge in Θ of Loss(p^AJ, p^H) on S^tr, R^tr only. "What we do in practice": train (or tune) on the train set only, choose hyperparameters on validation or historical hyperparameters.
+
+His conjectures (not tested): (a) 3 gives better evaluation results than 4 (it uses general machine learning knowledge instead of a hack on human correlations); (b) 3 is more principled, or at least easier to think about, since it uses the successful machine learning framework. He does not think 2 is needed. His question: do both experiments, and which is best? He also wrote that "the two main formulations" are "2 & 4"; whether he meant 3 and 4 or 2 and 4 is being clarified. Until he answers, treat 3 vs 4 as the main pair (our reading) and keep all four.
+
+Our recommendation (an idea, not a result): run 3 and 4 in one repeated 5-fold cross-validation loop over tasks with an untouched test fold; test cross-entropy is the primary metric; 3 wins only if the paired 95% interval of the difference excludes 0 and the gain exceeds a margin fixed beforehand; ties go to 4. No such experiment has been run.
+
+What the literature check found (about 90 papers read by abstract and key passages, none end to end; 6 re-checked by the author; 11-09-2026): the usual justification of an LLM judge is agreement with humans on a test set (accuracy, kappa, Pearson/Spearman/Kendall). I did not find a paper that states formulation 1 or 2 as its principle. In the 21 Chinese-company papers opened (Seed1.5-Thinking, MiniMax-M1, LongCat-Flash-Thinking, DeepSeek-GRM, Kimi k1.5 and others) I did not find one choosing a judge by maximum correlation; they report accuracy on a human-labeled test set. Baidu ERNIE 4.5 could not be opened. The 3/4 direction (a loss against the human rating distribution) appears in 2025-26 papers, each also reporting correlation or accuracy; two papers report that correlation alone selects poorly (arXiv 2510.09738; arXiv 2503.05965, "as much as 31%" worse judges). I did not find a source comparing 3 against 4 at about 25 tasks, so conjecture (a) is neither supported nor refuted.
+
+For packets: keep the validation and test splits by task family, solver and rater; keep test ratings out of judge selection; record which ratings were available to the judge search (train, validation, test) so 3 and 4 can be run later without re-collecting; use "rating" for the data and "judge" for the model (one term per concept).
+
 ## Project Purpose
 
 `cert-judge` studies LLM-based judges for Lean 4 theorem/specification scoring. Keep these scientific objects distinct:
