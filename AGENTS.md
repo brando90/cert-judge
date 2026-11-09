@@ -100,6 +100,15 @@ Before choosing a new, unpinned solver, generator or artificial-intelligence jud
 - Report observed versus estimated scores, task coverage and missingness. Distinguish repeat standard deviation, uncertainty of the mean and subset-prediction error. Validate smaller subsets or item response theory on held-out systems before relying on them; no universal precision guarantee.
 - Apply this to prospective design. Preserve explicit model choices, frozen settings/denominators, required reference acceptance, project funding routes and shared budgets. It neither resumes paused inference nor authorizes extra model calls.
 
+## Internet policy for evaluations (Brando, 11-03-2026)
+
+- **Default: no internet for every evaluation run**, including every judge or rater-model run and any solver or generator agent being evaluated. Block all outside network access at run time (egress blocked, as on Valkyrie); the allowlist is empty unless a result says otherwise.
+- **Why:** with internet, it is hard to predict how a model behaves; it may do something odd, bad or cheat (for example fetch the gold or related Lean files or search for the answer). No internet tests the model's own reasoning, not search.
+- **Task generation:** with or without internet is fine; no internet is usually safer.
+- **Allowed before the run only:** package installs and the Lean/Mathlib cache. Nothing is fetched while a solver or judge runs.
+- **Say which evaluation type was run:** every result, report, table and paper states "no internet" or "internet (allowed hosts: ...)" next to the judge name and prompt (and the DT / no DT tag where one is used). If a run did not record it, write "not recorded"; never assume.
+- **Exceptions** are an explicit choice by Brando, with the exact allowed hosts and the reason written next to the result.
+
 ## Running Evaluations
 
 The frozen PTI-v0 numerical specification is `docs/spec/PTI_V0.md`. Its zero-spend entry point is:
