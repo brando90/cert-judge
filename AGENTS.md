@@ -1,4 +1,16 @@
-# AGENTS.md
+# Project: cert-judge
+
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/AGENTS.md>
+
+**TLDR:** Load the shared rules and preserve the project's scientific protocols. Human-rating forms and exports use verified names first and stable IDs second.
+
+## Human-rating identity and collection — Brando, 11-11-2026
+
+- Every active personal human-rating Google Sheet and comma-separated values (CSV) form/export begins with `rater_name`, then `rater_id`. Prefill the actual name from the verified roster on every assigned row; keep the stable ID for joins and duplicate detection. Apply this to every participant.
+- Keep Google Sheets and their CSV exports consistent in column names, order and values. Warm-up and main forms use the same schema within a study, with different assigned rows. Import/export by column name; verify identities and that scores, notes and other source fields survive unchanged.
+- [trustworthy-theorem-judges experiment 09](https://github.com/brando90/trustworthy-theorem-judges/tree/main/experiments/09_human_rating_collection) owns the shared VeriBench collection. Read its [identity/import workflow](https://github.com/brando90/trustworthy-theorem-judges/blob/main/experiments/09_human_rating_collection/IDENTITY_AND_IMPORT.md) and current form amendment before preparing or importing shared ratings. Link to that collection and its named files rather than starting a competing collection workflow here.
+- Track the authorized named rating artifacts in that collection; do not anonymize names, ignore the files or move them into `private/` by default. Keep original imports, source receipts and delivered archives unchanged; make schema revisions as new versions. Copies are not new observations. Preserve consent, provenance, prior exposure and sealed splits; credentials, private correspondence, consent records and sealed data remain protected.
+- Names are roster metadata, not ratings. Never invent scores, rationales, assistance disclosures or human attestations to fill gaps. Collection changes do not authorize collaborator emails or change frozen evaluation protocols.
 
 ## Research workflow: no branches
 
@@ -11,7 +23,7 @@ Fetch and follow the global rules from brando90/agents-config before doing anyth
 - **Local optimization:** if `~/agents-config/` exists locally, read `~/agents-config/INDEX_RULES.md` instead (faster, same content). Run `git -C ~/agents-config pull` first to ensure it's current.
 - **Sync discipline:** after any git commit+push in this repo, also pull agents-config (`git -C ~/agents-config pull` or re-fetch the URL) so all agents stay on the latest rules. If you edit agents-config itself, commit+push there too.
 
-This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
+This file provides shared guidance to Codex, Claude Code and Cursor when working in this repository.
 
 ## Lean specification integrity
 
