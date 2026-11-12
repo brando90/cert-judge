@@ -4,6 +4,8 @@
 
 ## Benchmark transfer ([issue #45](https://github.com/brando90/cert-judge/issues/45))
 
+Issue #45 was closed on 11-11-2026 with no pull requests or issues left open (Brando, 11-11-2026). Its content is this section: ideas 1 to 5 below, none run (idea 1 needs a spend ceiling from Brando; idea 2 needs 144 human ratings; ideas 3 to 5 are $0 structural screens that need the Verina, CLEVER, FVAPPS, miniCodeProps, Vero, VeriContest and DafnyBench data plus a Lean, Dafny or Verus toolchain). The limitations sentence naming the VeriBench-only scope is done (commit 543c524).
+
 Motivation: the paper's results all come from VeriBench (`05_experiments.tex:4`), and NeurIPS 2025 MATH-AI reviewer ivJs flagged "finite perturbations on one benchmark". The limitations section now names Verina and Vero as untested (commit 543c524).
 
 | Priority | Idea | Execution | Paper inclusion | Judge-call spend | One-line setup |
