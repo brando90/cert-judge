@@ -1,0 +1,43 @@
+### Light QA Audit Report — Experiment 68 & Owned Changes (Base `2df283ac`)
+
+#### 1. Deterministic & Structural Checks
+- **Unit tests (`11/11` passed, `0.396s`):** `python3 -m unittest discover -s experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/tests -p 'test_*.py' -v` — **PASS**.
+- **Repository layout check:** `python3 py_src/cert_judge/experiment_layout.py --check` (`Layout OK: 15 active experiments; no retired directories at the active level.`) — **PASS**.
+- **Diff hygiene check:** `git diff 2df283ac6947cde013676f905d4a15e4573507cf --check` — **PASS** (exit 0; only the 5 owned paths modified/added).
+- **CSV-to-JSON parity:** All 4 exported CSVs (`study_a_e63_summary.csv`, `study_b_e39_units.csv`, `study_b_e39_meta.csv`, `study_c_paper_loto.csv`) match their backing JSONs to `< 1e-12` — **PASS**.
+
+#### 2. Metric Mathematics, Leakage Audit & Reproduction Checks
+- **Core metrics ([metrics.py](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/scripts/metrics.py)):** Independently verified against textbook formulas over random test inputs to `< 1e-12`–`1e-14`:
+  - `rps_item` / `rps_decomp` (equal artifact weighting, individual-rating mean over `{0..5}`, exact `dist_err + disagreement` decomposition), `ce_item` (`1e-12` floor), `tvd_item` (against empirical `p_hat`, not one-hot average), `brier_item`, `icc_two_way_both` (`ICC(A,1)` and `ICC(C,1)` exact single-pass algebra for `k=2`), `quadratic_weighted_kappa`, and `leave_one_rater_out_ceiling` (smoothed vs empirical cleanly separated).
+- **Zero train/test leakage ([run_expansion.py](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/scripts/run_expansion.py)):** Verified task splits in `items.jsonl` are strictly disjoint (`train`: 10 tasks, `val`: 5 tasks, `test`: 10 tasks). Study A fits `CONST_trainval` on `train+val` only; Study B fits `CONST`/`CE_fit`/`Pearson_fit` strictly on `train` (30 items) and evaluates on `val+test` (45 items); Studies C & D LOTO hold out complete tasks per fold.
+- **Exact reproduction assertions:**
+  - E64 frozen Spearman (`report_e64.json`): max seed diff `<= 2.22e-16`, ensemble diff `<= 1.11e-16` — **PASS**.
+  - E39 frozen `expert3` held-out Spearman: `0.00e+00` max diff across all `59` eligible units — **PASS**.
+  - `archive/51` (`rescore_proper_results.json`): `2.22e-16` max error across all `36` checks — **PASS**.
+  - Exp 67 cross-checks ([exp67_independent_crosscheck.json](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/results/exp67_independent_crosscheck.json)): `216` LOTO scalars `max_err = 9.14e-07`, `12` `TI_var` permutation checks `max_rho_err = 1.11e-16` / `max_p_err = 0.0`, `new_summary.json` `0.0` / `1.11e-16` — **PASS**.
+
+#### 3. Data/Claim Consistency, Exp 67 Fix & Privacy Scan
+- **Exp 67 line 111 fix ([RESULTS.md](file:///Users/brandomiranda/cert-judge/experiments/67_new_vb_team_ratings_rps_ce_tvd_rerun_of_the_certjudge_panel/RESULTS.md#L111)):** All 9 `TI_var` Spearman numbers match [05_experiments.tex](file:///Users/brandomiranda/cert-judge/paper_latex/ICLR_2027_submission/05_experiments.tex#L87-L89) Table 1 exactly (`Codex 0.833 / 0.905 / 0.738`, `Claude Opus 0.643 / 0.810 / 0.595`, `Qwen3-Coder 0.905 / 0.476 / 0.857`) — **PASS**.
+- **Headline tables in [README.md](file:///Users/brandomiranda/cert-judge/README.md#L118), [experiments/README.md](file:///Users/brandomiranda/cert-judge/experiments/README.md#L19), [layout.json](file:///Users/brandomiranda/cert-judge/experiments/archive/layout.json#L17), and Study A/B/C/D main tables:** All headline numbers match `results/*.json` and `results/*.csv` — **PASS**, except for 3 specific prose discrepancies in `RESULTS_proper_scoring_expansion_11-24-2026.md` listed below.
+- **Privacy & secrets scan:** Zero raw per-rater Sheet rows, personal emails, candidate rationales, item notes, `.lean` filenames/item IDs in Study D output, or API keys/secrets in any output JSON/CSV/markdown file — **PASS**.
+
+#### 4. Findings Requiring Fixes Before Final Sign-Off
+**Major issues (3 prose/parameter mismatches vs. saved artifacts/code):**
+1. **Stale Study C LORO 95% CIs ([RESULTS_proper_scoring_expansion_11-24-2026.md](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/RESULTS_proper_scoring_expansion_11-24-2026.md#L148)):** Prose states `RPS 0.1492 [0.1235, 0.1753], CE 1.7195 [1.5318, 1.9188], TVD 0.7755 [0.7333, 0.8184]`, whereas [study_c_paper_decomposition.json](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/results/study_c_paper_decomposition.json) (and independent recomputation) gives `[0.1296, 0.1691]`, `[1.5542, 1.8732]`, and `[0.7345, 0.8117]`.
+2. **Study B selection-regret transcription typo ([RESULTS_proper_scoring_expansion_11-24-2026.md](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/RESULTS_proper_scoring_expansion_11-24-2026.md#L138)):** Prose reports `t2_sonnet5|D0 (C_ms_gold = 0.9947 in test_llm)`, whereas [study_b_e39_proper_scores.json](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/results/study_b_e39_proper_scores.json) and [study_b_e39_units.csv](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/results/study_b_e39_units.csv) record `0.9957` (`0.995676`).
+3. **Misreported resampling draw counts ([RESULTS_proper_scoring_expansion_11-24-2026.md](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/RESULTS_proper_scoring_expansion_11-24-2026.md#L19) & [L45](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/RESULTS_proper_scoring_expansion_11-24-2026.md#L45)):**
+   - Line 19 says Study C paired task sign-flip permutation tests use `MC 10,000 draws`, whereas [run_expansion.py](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/scripts/run_expansion.py#L543) passes `draws=PAPER_BOOT_DRAWS` (`2,000`).
+   - Line 45 says LORO single-draw Spearman averages across `200` draws (copied from a stale comment at [metrics.py](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/scripts/metrics.py#L409)), whereas [metrics.py](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/scripts/metrics.py#L411) runs `500` draws.
+
+**Minor hardening notes (zero impact on current results):**
+- `_selection_regret` at [run_expansion.py](file:///Users/brandomiranda/cert-judge/experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_24Nov2026/scripts/run_expansion.py#L323) breaks exact index ties using `-float(r["metrics"][loss_key])` (a held-out metric). Verified `n_tied_at_max == 1` for every `(subset, index)` pair in Study B, so **zero leakage occurred**; still recommend switching to a label-free tie-breaker (e.g., `r["config"]` or mean across ties) if reused.
+- `RESULTS_proper_scoring_expansion_11-24-2026.md` line 210 still contains the pending-QA placeholder and can be updated after reconciling the 3 prose items above.
+
+---
+
+VERDICT: PASS_WITH_FIXES
+CRITICAL_ISSUES: none
+MAJOR_ISSUES: 3
+FIXES_APPLIED: none (read-only audit)
+STRUCTURAL: unittest 11/11 PASS (0.396s); experiment_layout.py --check PASS (15 active); git diff --check PASS; CSV-vs-JSON parity PASS; E64/E39/archive51/Exp67 reproduction PASS; Exp67 L111 vs 05_experiments.tex Table 1 PASS; privacy/secrets scan PASS.
+SUMMARY: Core metric math, zero-leakage split/LOTO design, all reproduction cross-checks, the Exp 67 line-111 correction, headline README tables, and privacy/secrets safeguards are all clean and verified. Three prose-vs-artifact discrepancies in RESULTS_proper_scoring_expansion_11-24-2026.md should be reconciled: Study C LORO 95% CIs on line 148 ([0.1296, 0.1691] / [1.5542, 1.8732] / [0.7345, 0.8117] in JSON vs older bounds in text), the C_ms_gold typo on line 138 (0.9947 vs 0.9957), and the Study C sign-flip (2,000 vs 10,000) and LORO single-draw (500 vs 200) draw counts on lines 19 and 45.
