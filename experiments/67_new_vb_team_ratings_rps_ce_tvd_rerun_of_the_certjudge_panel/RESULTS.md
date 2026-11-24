@@ -9,7 +9,7 @@
 - **No new judge numbers can be made yet: none of the 100 new files has a judge score.** The VeriBench team has returned 247 of 3,300 ratings (5 rater ids; only T05 and T08 are complete, 100 files each, 25 tasks). New model calls on those files were not run (about $27 at list prices; plan lanes first), so the judge numbers below are the old 72-item panel, re-scored.
 - **On the corrected VeriBench labels (59 artifacts, 20 tasks, 4.5 ratings each) the judges' correlations are not 0.6 to 0.9; they are negative:** the headline series Spearman = -0.24 [-0.60, +0.20] (Codex), -0.21 [-0.51, +0.11] (Opus), -0.35 [-0.59, -0.06] (Qwen), task-bootstrap 95%. The paper's old-prompt labels, behind the 0.833 / 0.905 / 0.738 and the "0.6, 0.8, 0.8" splits, have Spearman -0.04 with the corrected labels on the same 59 artifacts.
 - **RPS, CE and TVD agree:** after calibrating each judge's score on training tasks (leave-one-task-out), held-out RPS is 0.1725 (CE-fit) and 0.1724 (Pearson-fit) against 0.1737 for a constant forecast; 0 of 24 judge series are significantly better than the constant.
-- **More tasks do shrink the intervals the way 1/sqrt(k) predicts** (learning-curve widths about 1.0 at 4 tasks, 0.5 to 0.8 at 20); more data does not make a wrong judge right.
+- **More tasks shrink the intervals** (learning-curve widths 1.1 to 1.4 at 4 tasks, 0.5 to 0.8 at 20, the point estimate stable); the 1/sqrt(k) shape is not established (see Deviations 3). More data does not make a wrong judge right.
 
 ## What the pre-registration said, and what happened
 
@@ -113,10 +113,10 @@
 - **One annotator, old prompt.** The paper labels are one annotator's two old-prompt passes. On the same 59 artifacts they have Spearman -0.04 with the corrected VeriBench panel (T3 below), so a high correlation with them says little about the corrected rubric.
 - **Few distinct judge scores.** The headline series take only 8 (Codex), 5 (Opus) and 4 (Qwen) distinct values over the 59 artifacts, so ties dominate rank correlations.
 - **Few tasks.** 20 tasks: a random 4-task subset gives a Spearman spread of 1.0 to 1.4 in width, and the 20-task bootstrap width is 0.5 to 0.8 (T5).
-- **Reference bytes.** Experiment 41 found that for only 7 of the 24 scored tasks the reference file the judge saw matches what the rater saw; part of the negative numbers on corrected labels may be this mismatch, not the judge. I did not re-test it here.
+- **Reference bytes (caveat on the whole corrected-label result).** Experiment 41 found that for only 7 of the 24 scored tasks the reference file the judge saw matches what the rater saw; part of the negative numbers on corrected labels may be this mismatch (the judge seeing a different reference file than the raters did), not the judge. Untested here.
 
 ## Do more data remove the problem? (Brando's question)
-- **Old alone** (59 artifacts, 20 tasks, 4.5 ratings): interval width of the headline Spearman 0.53 to 0.80; human ceiling about 0.84.
+- **Old alone** (59 artifacts, 20 tasks, 4.5 ratings): interval width of the headline Spearman 0.53 to 0.80; split-half reliability 0.70, ceiling on judge-human correlation about 0.84. **Pooled ceiling: not computed** (4.5 vs 2.0 ratings per artifact are not comparable halves).
 - **New alone** (100 files, 25 tasks, 2.0 to 2.5 ratings): no judge scores yet, so no judge interval; the judge-free edit-distance baseline has width 0.46 (vs 0.70 on old) and the two complete raters agree at Spearman 0.62, within 1 point on 100% of files, weighted kappa 0.75; 73% of ratings are 5, so there is little spread to rank (a ceiling effect that caps any correlation).
 - **Pooled** (45 tasks, 159 artifacts): the baseline interval width falls to 0.43 with within-set ranks; the raw pooled correlation +0.50 is a **set-mixing artifact** (old items have mean rating 3.05 and edit similarity 0.06, new ones 4.57 and 0.23: a between-set difference, while within each set the sign is negative). Pool only after ranking within each set or stratifying, and judge scores on the new files are needed to do it for the judges.
 - **Learning curve** (T5, T6): spread falls from about 1.0 at 4 to 10 tasks to about 0.3 at 30 tasks and 0.16 at 40 of 45; the point estimate stays near -0.2 to -0.35 for the judges at every size: the estimate was already stable, the interval was the weak part.
