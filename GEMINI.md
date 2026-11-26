@@ -17,3 +17,5 @@ Prefer a numbered experiment folder on `main` over a separate git branch. This r
 ## Also load
 
 Read `AGENTS.md` before preparing ratings, judging Lean, choosing a model, or launching a run. It holds human-rating identity, the four judge-learning formulations, the label-free proxy versus the human-grounded criterion, the no-internet evaluation default, and the Vals spending pause.
+
+Experiment 69A is `experiments/69_proxy_target_proper_score/`. Trustworthy-theorem-judges experiment 09 owns the canonical ratings. Read `COORDINATION.md` there before touching those ratings. Do not start a correlation-maximization sweep.
