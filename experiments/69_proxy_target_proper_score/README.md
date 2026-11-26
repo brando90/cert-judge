@@ -11,4 +11,4 @@ PYTHONPATH=experiments/68_proper_scoring_expansion_e39_e63_and_vb_ratings_start_
   python3 experiments/69_proxy_target_proper_score/scripts/run_69a.py
 ```
 
-Results land in `results/` and `RESULTS.md` after the pre-registration commit.
+Results for 69A are in `RESULTS.md`. 69B and 69C are `69b/` and `69c/`. The scoring commands are in `69b/RUN.md`. This checkout did not call a model.
