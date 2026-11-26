@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/experiments/69_proxy_target_proper_score/README.md>
 
-**TLDR:** Zero-spend experiment 69A. Pre-registration is `PREREG.md`. The 2026-11-26 human snapshot is under `data/`. Saved-score selection runs on the 59-artifact panel. No judge calls.
+**TLDR:** Zero-spend experiment 69A is done. No primary-pool proxy passes the frozen rule. `TI_var` on the 24 paper series is worse than the constant forecast. Held-out `C_ms_gold` beats that forecast and is unresolved against best-on-val. Numbers: `RESULTS.md`.
 
 Canonical human ratings remain trustworthy-theorem-judges experiment 09. Coordination with other agents, including Gemini Antigravity (`agy`), is `COORDINATION.md`.
 

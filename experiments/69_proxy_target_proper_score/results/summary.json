@@ -1,0 +1,3778 @@
+{
+  "n_artifacts": 59,
+  "n_tasks": 20,
+  "n250": {
+    "counts_ok": true,
+    "n": 250,
+    "by_rater": {
+      "T08": 100,
+      "T06": 16,
+      "V02": 1,
+      "T12": 30,
+      "T05": 100,
+      "V04": 3
+    },
+    "hist": {
+      "0": 0,
+      "1": 7,
+      "2": 1,
+      "3": 15,
+      "4": 42,
+      "5": 185
+    },
+    "share_5": 0.74,
+    "mean_score": 4.588,
+    "attest": {
+      "partial": 100,
+      "yes": 118,
+      "(blank)": 32
+    },
+    "t05_t08_n": 100,
+    "t05_t08_spearman": 0.6351162133478999,
+    "t05_t08_pearson": 0.826337806325213,
+    "t05_t08_qwk": 0.7570903361344538,
+    "t05_t08_exact": 66,
+    "t05_t08_within1": 99,
+    "n_files": 100,
+    "n_tasks": 25,
+    "const_loto_rps": {
+      "val": 0.06981126359585456,
+      "lo": 0.042516866693381505,
+      "hi": 0.09892370901497945
+    },
+    "const_loto_ce": {
+      "val": 0.8715672915373964,
+      "lo": 0.6186089823405078,
+      "hi": 1.1376855493383717
+    },
+    "const_loto_tvd": {
+      "val": 0.36359646416053715,
+      "lo": 0.307821187496651,
+      "hi": 0.4226193719823214
+    }
+  },
+  "selections": [
+    {
+      "pool": "paper_all",
+      "n_judges": 24,
+      "proxy": "TI_var",
+      "selected": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|BAD_STRINGY",
+      "selected_proxy": 0.9822580348997942,
+      "best_on_val_by_task": [
+        "Claude Opus::random_r1",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Claude Opus::random_r1",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1"
+      ],
+      "rps_proxy": 0.27099537037037025,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.21509722222222222,
+      "vs_const_rps": {
+        "diff": 0.09638544417447883,
+        "lo": 0.04124088790992246,
+        "hi": 0.14883507087708905
+      },
+      "regret_rps": {
+        "diff": 0.055898148148148016,
+        "lo": 0.014383564814814702,
+        "hi": 0.09511481481481467
+      },
+      "vs_const_ce": {
+        "diff": 0.49661292270281726,
+        "lo": 0.29280439118864615,
+        "hi": 0.6740848194751262
+      },
+      "regret_ce": {
+        "diff": 0.17712303357399103,
+        "lo": 0.006471119038659152,
+        "hi": 0.35468878328147446
+      },
+      "vs_const_tvd": {
+        "diff": 0.19290084506827948,
+        "lo": 0.13222569262787445,
+        "hi": 0.24761338859465523
+      },
+      "regret_tvd": {
+        "diff": 0.057916666666666596,
+        "lo": -0.006944444444444494,
+        "hi": 0.11902777777777769
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "Claude Opus::claude-opus-4-7|BAD_STRINGY",
+          "proxy": 0.9416529293381941,
+          "loto_rps": 0.27560648148148137,
+          "loto_ce": 2.258762194991884,
+          "loto_tvd": 0.673611111111111,
+          "spearman": -0.3525698884115763,
+          "pearson": -0.33404888505050107
+        },
+        {
+          "judge": "Claude Opus::claude-opus-4-7|P1_BASELINE",
+          "proxy": 0.9726859812893992,
+          "loto_rps": 0.20555092592592591,
+          "loto_ce": 2.0656238227050063,
+          "loto_tvd": 0.5927777777777778,
+          "spearman": 0.1581766829859403,
+          "pearson": 0.20321876810508926
+        },
+        {
+          "judge": "Claude Opus::claude-opus-4-7|P4_CHECKLIST",
+          "proxy": 0.9700393244927282,
+          "loto_rps": 0.2513657407407407,
+          "loto_ce": 2.2355599932726595,
+          "loto_tvd": 0.6638888888888889,
+          "spearman": -0.28547615441248786,
+          "pearson": -0.2993394224254151
+        },
+        {
+          "judge": "Claude Opus::claude-opus-4-7|P8_STRICT_B",
+          "proxy": 0.9697872352598351,
+          "loto_rps": 0.27025462962962954,
+          "loto_ce": 2.3002074055782655,
+          "loto_tvd": 0.6879166666666666,
+          "spearman": -0.21330924330813128,
+          "pearson": -0.23791028797376695
+        },
+        {
+          "judge": "Claude Opus::editdist_e1",
+          "proxy": 0.9283177667225558,
+          "loto_rps": 0.313236111111111,
+          "loto_ce": 2.347882143458689,
+          "loto_tvd": 0.7066666666666667,
+          "spearman": -0.5585874146314019,
+          "pearson": -0.46845665499501754
+        },
+        {
+          "judge": "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+          "proxy": 0.006209936268133793,
+          "loto_rps": 0.19593981481481482,
+          "loto_ce": 1.9387372943405137,
+          "loto_tvd": 0.552638888888889,
+          "spearman": -0.2092335848203736,
+          "pearson": -0.2778422157610399
+        },
+        {
+          "judge": "Claude Opus::gpt-4o-mini|P8_STRICT_B",
+          "proxy": 0.43322379284439266,
+          "loto_rps": 0.20018055555555553,
+          "loto_ce": 1.9772203874567844,
+          "loto_tvd": 0.5645833333333333,
+          "spearman": -0.21431214030545956,
+          "pearson": -0.24388053957755995
+        },
+        {
+          "judge": "Claude Opus::random_r1",
+          "proxy": 0.007890635786479541,
+          "loto_rps": 0.1965972222222222,
+          "loto_ce": 1.997618316628732,
+          "loto_tvd": 0.5790277777777778,
+          "spearman": 0.18134471895639925,
+          "pearson": 0.258701655626808
+        },
+        {
+          "judge": "Codex::editdist_e1",
+          "proxy": 0.9283177667225558,
+          "loto_rps": 0.4336875000000001,
+          "loto_ce": 2.970716252231642,
+          "loto_tvd": 0.818125,
+          "spearman": -0.5585874146314019,
+          "pearson": -0.46845665499501754
+        },
+        {
+          "judge": "Codex::gpt-4o-mini|P4_CHECKLIST",
+          "proxy": 0.007032029150673533,
+          "loto_rps": 0.19936574074074076,
+          "loto_ce": 2.008413148944906,
+          "loto_tvd": 0.5762500000000002,
+          "spearman": -0.033829133972624346,
+          "pearson": -0.07036891556159743
+        },
+        {
+          "judge": "Codex::gpt-4o-mini|P8_STRICT_B",
+          "proxy": 0.3244743981272317,
+          "loto_rps": 0.20666203703703703,
+          "loto_ce": 1.9584857733383536,
+          "loto_tvd": 0.5584722222222223,
+          "spearman": -0.3347912048301008,
+          "pearson": -0.3668431112632826
+        },
+        {
+          "judge": "Codex::gpt-5.3-codex|BAD_STRINGY",
+          "proxy": 0.9403081484251283,
+          "loto_rps": 0.28418055555555544,
+          "loto_ce": 2.2631742628530596,
+          "loto_tvd": 0.6716666666666666,
+          "spearman": -0.4711098883514222,
+          "pearson": -0.41338880259552124
+        },
+        {
+          "judge": "Codex::gpt-5.3-codex|P1_BASELINE",
+          "proxy": 0.957848127705814,
+          "loto_rps": 0.24972685185185176,
+          "loto_ce": 2.2146693472128414,
+          "loto_tvd": 0.6577777777777777,
+          "spearman": -0.2072307626393843,
+          "pearson": -0.07061192731833306
+        },
+        {
+          "judge": "Codex::gpt-5.3-codex|P4_CHECKLIST",
+          "proxy": 0.9576235694459158,
+          "loto_rps": 0.2634398148148147,
+          "loto_ce": 2.288302307016147,
+          "loto_tvd": 0.6783333333333332,
+          "spearman": -0.3399705278516376,
+          "pearson": -0.29733329713031903
+        },
+        {
+          "judge": "Codex::gpt-5.3-codex|P8_STRICT_B",
+          "proxy": 0.9497698349714596,
+          "loto_rps": 0.24374537037037025,
+          "loto_ce": 2.261595136050239,
+          "loto_tvd": 0.6704166666666667,
+          "spearman": -0.24081380014647966,
+          "pearson": -0.1006763158959805
+        },
+        {
+          "judge": "Codex::random_r1",
+          "proxy": 0.007890635786479541,
+          "loto_rps": 0.23883333333333337,
+          "loto_ce": 2.4407172359816824,
+          "loto_tvd": 0.6608333333333334,
+          "spearman": 0.18134471895639925,
+          "pearson": 0.258701655626808
+        },
+        {
+          "judge": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|BAD_STRINGY",
+          "proxy": 0.9822580348997942,
+          "loto_rps": 0.27099537037037025,
+          "loto_ce": 2.2669446856390776,
+          "loto_tvd": 0.6777777777777777,
+          "spearman": -0.2530354387152907,
+          "pearson": -0.28865847498984004
+        },
+        {
+          "judge": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|P1_BASELINE",
+          "proxy": 0.9160817666579485,
+          "loto_rps": 0.21988425925925922,
+          "loto_ce": 2.108190910083414,
+          "loto_tvd": 0.6165277777777778,
+          "spearman": -0.28165577898467237,
+          "pearson": -0.31933971144675566
+        },
+        {
+          "judge": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|P4_CHECKLIST",
+          "proxy": 0.9525545202887855,
+          "loto_rps": 0.20605092592592594,
+          "loto_ce": 2.0600840568399637,
+          "loto_tvd": 0.6073611111111112,
+          "spearman": -0.1722654899382446,
+          "pearson": -0.23067948072213526
+        },
+        {
+          "judge": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|P8_STRICT_B",
+          "proxy": 0.9326646497531501,
+          "loto_rps": 0.21805092592592595,
+          "loto_ce": 2.1044867577097657,
+          "loto_tvd": 0.6168055555555556,
+          "spearman": -0.3465055623201813,
+          "pearson": -0.37299458817426445
+        },
+        {
+          "judge": "Qwen3-Coder::editdist_e1",
+          "proxy": 0.9283177667225558,
+          "loto_rps": 0.313236111111111,
+          "loto_ce": 2.347882143458689,
+          "loto_tvd": 0.7066666666666667,
+          "spearman": -0.5585874146314019,
+          "pearson": -0.46845665499501754
+        },
+        {
+          "judge": "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+          "proxy": 0.0072120918151479755,
+          "loto_rps": 0.19356944444444443,
+          "loto_ce": 1.9644331574562952,
+          "loto_tvd": 0.5690277777777777,
+          "spearman": -0.03038550774267506,
+          "pearson": -0.050313770102384636
+        },
+        {
+          "judge": "Qwen3-Coder::gpt-4o-mini|P8_STRICT_B",
+          "proxy": 0.6510538563905359,
+          "loto_rps": 0.20452314814814815,
+          "loto_ce": 2.000062263954447,
+          "loto_tvd": 0.5704166666666668,
+          "spearman": -0.16114989833110752,
+          "pearson": -0.18191143968862006
+        },
+        {
+          "judge": "Qwen3-Coder::random_r1",
+          "proxy": 0.007890635786479541,
+          "loto_rps": 0.1965972222222222,
+          "loto_ce": 1.997618316628732,
+          "loto_tvd": 0.5790277777777778,
+          "spearman": 0.18134471895639925,
+          "pearson": 0.258701655626808
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": -0.589107257129744,
+      "proxy_pearson_vs_neg_rps": -0.5288417534660229
+    },
+    {
+      "pool": "paper_Codex",
+      "n_judges": 8,
+      "proxy": "TI_var",
+      "selected": "Codex::gpt-5.3-codex|P1_BASELINE",
+      "selected_proxy": 0.957848127705814,
+      "best_on_val_by_task": [
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST",
+        "Codex::gpt-4o-mini|P4_CHECKLIST"
+      ],
+      "rps_proxy": 0.24972685185185176,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.19936574074074076,
+      "vs_const_rps": {
+        "diff": 0.07511692565596036,
+        "lo": 0.026005754223839096,
+        "hi": 0.12205720346120351
+      },
+      "regret_rps": {
+        "diff": 0.05036111111111101,
+        "lo": 0.01684236111111103,
+        "hi": 0.08218611111111097
+      },
+      "vs_const_ce": {
+        "diff": 0.4443375842765812,
+        "lo": 0.2638792098714748,
+        "hi": 0.6078536445896143
+      },
+      "regret_ce": {
+        "diff": 0.20625619826793531,
+        "lo": 0.07244629837099599,
+        "hi": 0.33496757967825785
+      },
+      "vs_const_tvd": {
+        "diff": 0.17290084506827946,
+        "lo": 0.12380248471091693,
+        "hi": 0.22082095328890716
+      },
+      "regret_tvd": {
+        "diff": 0.08152777777777771,
+        "lo": 0.03499652777777771,
+        "hi": 0.1302881944444443
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "Codex::editdist_e1",
+          "proxy": 0.9283177667225558,
+          "loto_rps": 0.4336875000000001,
+          "loto_ce": 2.970716252231642,
+          "loto_tvd": 0.818125,
+          "spearman": -0.5585874146314019,
+          "pearson": -0.46845665499501754
+        },
+        {
+          "judge": "Codex::gpt-4o-mini|P4_CHECKLIST",
+          "proxy": 0.007032029150673533,
+          "loto_rps": 0.19936574074074076,
+          "loto_ce": 2.008413148944906,
+          "loto_tvd": 0.5762500000000002,
+          "spearman": -0.033829133972624346,
+          "pearson": -0.07036891556159743
+        },
+        {
+          "judge": "Codex::gpt-4o-mini|P8_STRICT_B",
+          "proxy": 0.3244743981272317,
+          "loto_rps": 0.20666203703703703,
+          "loto_ce": 1.9584857733383536,
+          "loto_tvd": 0.5584722222222223,
+          "spearman": -0.3347912048301008,
+          "pearson": -0.3668431112632826
+        },
+        {
+          "judge": "Codex::gpt-5.3-codex|BAD_STRINGY",
+          "proxy": 0.9403081484251283,
+          "loto_rps": 0.28418055555555544,
+          "loto_ce": 2.2631742628530596,
+          "loto_tvd": 0.6716666666666666,
+          "spearman": -0.4711098883514222,
+          "pearson": -0.41338880259552124
+        },
+        {
+          "judge": "Codex::gpt-5.3-codex|P1_BASELINE",
+          "proxy": 0.957848127705814,
+          "loto_rps": 0.24972685185185176,
+          "loto_ce": 2.2146693472128414,
+          "loto_tvd": 0.6577777777777777,
+          "spearman": -0.2072307626393843,
+          "pearson": -0.07061192731833306
+        },
+        {
+          "judge": "Codex::gpt-5.3-codex|P4_CHECKLIST",
+          "proxy": 0.9576235694459158,
+          "loto_rps": 0.2634398148148147,
+          "loto_ce": 2.288302307016147,
+          "loto_tvd": 0.6783333333333332,
+          "spearman": -0.3399705278516376,
+          "pearson": -0.29733329713031903
+        },
+        {
+          "judge": "Codex::gpt-5.3-codex|P8_STRICT_B",
+          "proxy": 0.9497698349714596,
+          "loto_rps": 0.24374537037037025,
+          "loto_ce": 2.261595136050239,
+          "loto_tvd": 0.6704166666666667,
+          "spearman": -0.24081380014647966,
+          "pearson": -0.1006763158959805
+        },
+        {
+          "judge": "Codex::random_r1",
+          "proxy": 0.007890635786479541,
+          "loto_rps": 0.23883333333333337,
+          "loto_ce": 2.4407172359816824,
+          "loto_tvd": 0.6608333333333334,
+          "spearman": 0.18134471895639925,
+          "pearson": 0.258701655626808
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": -0.5714285714285714,
+      "proxy_pearson_vs_neg_rps": -0.5218472478999934
+    },
+    {
+      "pool": "paper_Claude Opus",
+      "n_judges": 8,
+      "proxy": "TI_var",
+      "selected": "Claude Opus::claude-opus-4-7|P1_BASELINE",
+      "selected_proxy": 0.9726859812893992,
+      "best_on_val_by_task": [
+        "Claude Opus::random_r1",
+        "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Claude Opus::random_r1",
+        "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Claude Opus::random_r1",
+        "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Claude Opus::random_r1",
+        "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+        "Claude Opus::random_r1",
+        "Claude Opus::random_r1",
+        "Claude Opus::random_r1",
+        "Claude Opus::random_r1"
+      ],
+      "rps_proxy": 0.20555092592592591,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.22283796296296296,
+      "vs_const_rps": {
+        "diff": 0.03094099973003451,
+        "lo": -0.0015406464354799632,
+        "hi": 0.06053106023423253
+      },
+      "regret_rps": {
+        "diff": -0.017287037037037038,
+        "lo": -0.039778935185185195,
+        "hi": 0.005871064814814785
+      },
+      "vs_const_ce": {
+        "diff": 0.2952920597687466,
+        "lo": 0.11316852290899894,
+        "hi": 0.4514966500238665
+      },
+      "regret_ce": {
+        "diff": -0.039675564837403345,
+        "lo": -0.21520343833414493,
+        "hi": 0.12578922674444454
+      },
+      "vs_const_tvd": {
+        "diff": 0.10790084506827953,
+        "lo": 0.04637352875713924,
+        "hi": 0.1678010762037523
+      },
+      "regret_tvd": {
+        "diff": -0.02541666666666667,
+        "lo": -0.1014201388888889,
+        "hi": 0.03722222222222218
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "Claude Opus::claude-opus-4-7|BAD_STRINGY",
+          "proxy": 0.9416529293381941,
+          "loto_rps": 0.27560648148148137,
+          "loto_ce": 2.258762194991884,
+          "loto_tvd": 0.673611111111111,
+          "spearman": -0.3525698884115763,
+          "pearson": -0.33404888505050107
+        },
+        {
+          "judge": "Claude Opus::claude-opus-4-7|P1_BASELINE",
+          "proxy": 0.9726859812893992,
+          "loto_rps": 0.20555092592592591,
+          "loto_ce": 2.0656238227050063,
+          "loto_tvd": 0.5927777777777778,
+          "spearman": 0.1581766829859403,
+          "pearson": 0.20321876810508926
+        },
+        {
+          "judge": "Claude Opus::claude-opus-4-7|P4_CHECKLIST",
+          "proxy": 0.9700393244927282,
+          "loto_rps": 0.2513657407407407,
+          "loto_ce": 2.2355599932726595,
+          "loto_tvd": 0.6638888888888889,
+          "spearman": -0.28547615441248786,
+          "pearson": -0.2993394224254151
+        },
+        {
+          "judge": "Claude Opus::claude-opus-4-7|P8_STRICT_B",
+          "proxy": 0.9697872352598351,
+          "loto_rps": 0.27025462962962954,
+          "loto_ce": 2.3002074055782655,
+          "loto_tvd": 0.6879166666666666,
+          "spearman": -0.21330924330813128,
+          "pearson": -0.23791028797376695
+        },
+        {
+          "judge": "Claude Opus::editdist_e1",
+          "proxy": 0.9283177667225558,
+          "loto_rps": 0.313236111111111,
+          "loto_ce": 2.347882143458689,
+          "loto_tvd": 0.7066666666666667,
+          "spearman": -0.5585874146314019,
+          "pearson": -0.46845665499501754
+        },
+        {
+          "judge": "Claude Opus::gpt-4o-mini|P4_CHECKLIST",
+          "proxy": 0.006209936268133793,
+          "loto_rps": 0.19593981481481482,
+          "loto_ce": 1.9387372943405137,
+          "loto_tvd": 0.552638888888889,
+          "spearman": -0.2092335848203736,
+          "pearson": -0.2778422157610399
+        },
+        {
+          "judge": "Claude Opus::gpt-4o-mini|P8_STRICT_B",
+          "proxy": 0.43322379284439266,
+          "loto_rps": 0.20018055555555553,
+          "loto_ce": 1.9772203874567844,
+          "loto_tvd": 0.5645833333333333,
+          "spearman": -0.21431214030545956,
+          "pearson": -0.24388053957755995
+        },
+        {
+          "judge": "Claude Opus::random_r1",
+          "proxy": 0.007890635786479541,
+          "loto_rps": 0.1965972222222222,
+          "loto_ce": 1.997618316628732,
+          "loto_tvd": 0.5790277777777778,
+          "spearman": 0.18134471895639925,
+          "pearson": 0.258701655626808
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": -0.5238095238095238,
+      "proxy_pearson_vs_neg_rps": -0.7067756692409113
+    },
+    {
+      "pool": "paper_Qwen3-Coder",
+      "n_judges": 8,
+      "proxy": "TI_var",
+      "selected": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|BAD_STRINGY",
+      "selected_proxy": 0.9822580348997942,
+      "best_on_val_by_task": [
+        "Qwen3-Coder::random_r1",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::random_r1",
+        "Qwen3-Coder::random_r1",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::random_r1",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::random_r1",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+        "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST"
+      ],
+      "rps_proxy": 0.27099537037037025,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.21331944444444445,
+      "vs_const_rps": {
+        "diff": 0.09638544417447883,
+        "lo": 0.04124088790992246,
+        "hi": 0.14883507087708905
+      },
+      "regret_rps": {
+        "diff": 0.05767592592592581,
+        "lo": 0.01754675925925919,
+        "hi": 0.0964678240740739
+      },
+      "vs_const_ce": {
+        "diff": 0.49661292270281726,
+        "lo": 0.29280439118864615,
+        "hi": 0.6740848194751262
+      },
+      "regret_ce": {
+        "diff": 0.1875687602957507,
+        "lo": 0.016776656008522944,
+        "hi": 0.3641469646725525
+      },
+      "vs_const_tvd": {
+        "diff": 0.19290084506827948,
+        "lo": 0.13222569262787445,
+        "hi": 0.24761338859465523
+      },
+      "regret_tvd": {
+        "diff": 0.06263888888888883,
+        "lo": -0.0012534722222223113,
+        "hi": 0.12194791666666661
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|BAD_STRINGY",
+          "proxy": 0.9822580348997942,
+          "loto_rps": 0.27099537037037025,
+          "loto_ce": 2.2669446856390776,
+          "loto_tvd": 0.6777777777777777,
+          "spearman": -0.2530354387152907,
+          "pearson": -0.28865847498984004
+        },
+        {
+          "judge": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|P1_BASELINE",
+          "proxy": 0.9160817666579485,
+          "loto_rps": 0.21988425925925922,
+          "loto_ce": 2.108190910083414,
+          "loto_tvd": 0.6165277777777778,
+          "spearman": -0.28165577898467237,
+          "pearson": -0.31933971144675566
+        },
+        {
+          "judge": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|P4_CHECKLIST",
+          "proxy": 0.9525545202887855,
+          "loto_rps": 0.20605092592592594,
+          "loto_ce": 2.0600840568399637,
+          "loto_tvd": 0.6073611111111112,
+          "spearman": -0.1722654899382446,
+          "pearson": -0.23067948072213526
+        },
+        {
+          "judge": "Qwen3-Coder::Qwen/Qwen3-Coder-30B-A3B-Instruct|P8_STRICT_B",
+          "proxy": 0.9326646497531501,
+          "loto_rps": 0.21805092592592595,
+          "loto_ce": 2.1044867577097657,
+          "loto_tvd": 0.6168055555555556,
+          "spearman": -0.3465055623201813,
+          "pearson": -0.37299458817426445
+        },
+        {
+          "judge": "Qwen3-Coder::editdist_e1",
+          "proxy": 0.9283177667225558,
+          "loto_rps": 0.313236111111111,
+          "loto_ce": 2.347882143458689,
+          "loto_tvd": 0.7066666666666667,
+          "spearman": -0.5585874146314019,
+          "pearson": -0.46845665499501754
+        },
+        {
+          "judge": "Qwen3-Coder::gpt-4o-mini|P4_CHECKLIST",
+          "proxy": 0.0072120918151479755,
+          "loto_rps": 0.19356944444444443,
+          "loto_ce": 1.9644331574562952,
+          "loto_tvd": 0.5690277777777777,
+          "spearman": -0.03038550774267506,
+          "pearson": -0.050313770102384636
+        },
+        {
+          "judge": "Qwen3-Coder::gpt-4o-mini|P8_STRICT_B",
+          "proxy": 0.6510538563905359,
+          "loto_rps": 0.20452314814814815,
+          "loto_ce": 2.000062263954447,
+          "loto_tvd": 0.5704166666666668,
+          "spearman": -0.16114989833110752,
+          "pearson": -0.18191143968862006
+        },
+        {
+          "judge": "Qwen3-Coder::random_r1",
+          "proxy": 0.007890635786479541,
+          "loto_rps": 0.1965972222222222,
+          "loto_ce": 1.997618316628732,
+          "loto_tvd": 0.5790277777777778,
+          "spearman": 0.18134471895639925,
+          "pearson": 0.258701655626808
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": -0.7142857142857143,
+      "proxy_pearson_vs_neg_rps": -0.5495463461152192
+    },
+    {
+      "pool": "e39_test_llm",
+      "n_judges": 11,
+      "proxy": "C_ms_gold",
+      "selected": "opus55x|H2",
+      "selected_proxy": 0.9941692216139022,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H0",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H0",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.14497685185185183,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.1469925925925926,
+      "vs_const_rps": {
+        "diff": -0.029633074344039556,
+        "lo": -0.05807951147780481,
+        "hi": -0.005464942267381552
+      },
+      "regret_rps": {
+        "diff": -0.002015740740740743,
+        "lo": -0.011330949074074077,
+        "hi": 0.007059328703703665
+      },
+      "vs_const_ce": {
+        "diff": 0.059654502409245067,
+        "lo": -0.1201443424719013,
+        "hi": 0.23990793345955772
+      },
+      "regret_ce": {
+        "diff": 0.10735904437413868,
+        "lo": -0.007090111935788304,
+        "hi": 0.24211534466325232
+      },
+      "vs_const_tvd": {
+        "diff": 0.03359528951272396,
+        "lo": -0.049217529694221406,
+        "hi": 0.11848069961037035
+      },
+      "regret_tvd": {
+        "diff": 0.05194444444444444,
+        "lo": 0.0002777777777777953,
+        "hi": 0.10416666666666666
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.9909760021360442,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.9941692216139022,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": 0.8597652187702444,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.6662313887051631,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.9862188618056353,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "qwen36|H1",
+          "proxy": 0.9866745516741889,
+          "loto_rps": 0.14392060185185185,
+          "loto_ce": 1.7032529955621407,
+          "loto_tvd": 0.47000000000000003,
+          "spearman": 0.72958687011449,
+          "pearson": 0.7477769801961679
+        },
+        {
+          "judge": "qwen36|P1",
+          "proxy": 0.6579824201298708,
+          "loto_rps": 0.20823379629629626,
+          "loto_ce": 2.0016784562616645,
+          "loto_tvd": 0.5868055555555556,
+          "spearman": 0.24924908022650863,
+          "pearson": 0.3324714503612565
+        },
+        {
+          "judge": "qwen36|P4",
+          "proxy": 0.8342990997630507,
+          "loto_rps": 0.2085400462962963,
+          "loto_ce": 2.087063139480996,
+          "loto_tvd": 0.5947222222222222,
+          "spearman": 0.22192040837727248,
+          "pearson": 0.19726431202848896
+        },
+        {
+          "judge": "qwen36|P8",
+          "proxy": 0.8328911108727723,
+          "loto_rps": 0.21897476851851846,
+          "loto_ce": 2.0560326199679797,
+          "loto_tvd": 0.5943055555555555,
+          "spearman": 0.1475483928683949,
+          "pearson": 0.18438083546359968
+        },
+        {
+          "judge": "t2_qwen|H2",
+          "proxy": 0.992981524907632,
+          "loto_rps": 0.15013402777777776,
+          "loto_ce": 1.72409534256859,
+          "loto_tvd": 0.47791666666666666,
+          "spearman": 0.6591642479726911,
+          "pearson": 0.715225578134518
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.991983862487052,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": 0.6454545454545455,
+      "proxy_pearson_vs_neg_rps": 0.7976720735870552
+    },
+    {
+      "pool": "e39_test_llm",
+      "n_judges": 13,
+      "proxy": "TI_var_trainnorm",
+      "selected": "opus55x|H0",
+      "selected_proxy": 0.7577287527037836,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.15722685185185187,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.14759976851851853,
+      "vs_const_rps": {
+        "diff": -0.017383074344039552,
+        "lo": -0.04812053176143337,
+        "hi": 0.013087526642288816
+      },
+      "regret_rps": {
+        "diff": 0.009627083333333342,
+        "lo": -0.006594780092592567,
+        "hi": 0.02779858796296297
+      },
+      "vs_const_ce": {
+        "diff": 0.07537733510193508,
+        "lo": -0.1216260431028713,
+        "hi": 0.2637904156511165
+      },
+      "regret_ce": {
+        "diff": 0.1746021564311387,
+        "lo": 0.03478467906001331,
+        "hi": 0.31461430846307015
+      },
+      "vs_const_tvd": {
+        "diff": 0.039984178401612856,
+        "lo": -0.048403823873858234,
+        "hi": 0.12555206538981345
+      },
+      "regret_tvd": {
+        "diff": 0.06763888888888889,
+        "lo": 0.010552083333333354,
+        "hi": 0.12916666666666665
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.7577287527037836,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.007507691942441556,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": 0.5301763168088018,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.007009266974883748,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.09989552539337367,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "qwen36|H1",
+          "proxy": 0.006858361571329773,
+          "loto_rps": 0.14392060185185185,
+          "loto_ce": 1.7032529955621407,
+          "loto_tvd": 0.47000000000000003,
+          "spearman": 0.72958687011449,
+          "pearson": 0.7477769801961679
+        },
+        {
+          "judge": "qwen36|H2",
+          "proxy": 0.007373853425006694,
+          "loto_rps": 0.13821273148148144,
+          "loto_ce": 1.5717908892914683,
+          "loto_tvd": 0.4144444444444444,
+          "spearman": 0.7588279164664079,
+          "pearson": 0.7928194188100371
+        },
+        {
+          "judge": "qwen36|P1",
+          "proxy": 0.010000000000000004,
+          "loto_rps": 0.20823379629629626,
+          "loto_ce": 2.0016784562616645,
+          "loto_tvd": 0.5868055555555556,
+          "spearman": 0.24924908022650863,
+          "pearson": 0.3324714503612565
+        },
+        {
+          "judge": "qwen36|P4",
+          "proxy": 0.010000000000000004,
+          "loto_rps": 0.2085400462962963,
+          "loto_ce": 2.087063139480996,
+          "loto_tvd": 0.5947222222222222,
+          "spearman": 0.22192040837727248,
+          "pearson": 0.19726431202848896
+        },
+        {
+          "judge": "qwen36|P8",
+          "proxy": 0.009351716491264876,
+          "loto_rps": 0.21897476851851846,
+          "loto_ce": 2.0560326199679797,
+          "loto_tvd": 0.5943055555555555,
+          "spearman": 0.1475483928683949,
+          "pearson": 0.18438083546359968
+        },
+        {
+          "judge": "qwen36|R4",
+          "proxy": 0.007418492772640592,
+          "loto_rps": 0.14635625000000002,
+          "loto_ce": 1.7462877513704007,
+          "loto_tvd": 0.48597222222222225,
+          "spearman": 0.7021738190568821,
+          "pearson": 0.7390073826163175
+        },
+        {
+          "judge": "t2_qwen|H2",
+          "proxy": 0.007525673080749456,
+          "loto_rps": 0.15013402777777776,
+          "loto_ce": 1.72409534256859,
+          "loto_tvd": 0.47791666666666666,
+          "spearman": 0.6591642479726911,
+          "pearson": 0.715225578134518
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.0074860580619930985,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": -0.3768916907982997,
+      "proxy_pearson_vs_neg_rps": -0.1993241355598101
+    },
+    {
+      "pool": "e39_test_llm",
+      "proxy": "PTI_v0_frozen",
+      "status": "NOT_COMPUTABLE",
+      "reason": "6 judges with full P59 coverage"
+    },
+    {
+      "pool": "e39_test_llm",
+      "n_judges": 13,
+      "proxy": "C_bm_gold",
+      "selected": "opus55x|H0",
+      "selected_proxy": 0.8635364152988628,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.15722685185185187,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.14759976851851853,
+      "vs_const_rps": {
+        "diff": -0.017383074344039552,
+        "lo": -0.04812053176143337,
+        "hi": 0.013087526642288816
+      },
+      "regret_rps": {
+        "diff": 0.009627083333333342,
+        "lo": -0.006594780092592567,
+        "hi": 0.02779858796296297
+      },
+      "vs_const_ce": {
+        "diff": 0.07537733510193508,
+        "lo": -0.1216260431028713,
+        "hi": 0.2637904156511165
+      },
+      "regret_ce": {
+        "diff": 0.1746021564311387,
+        "lo": 0.03478467906001331,
+        "hi": 0.31461430846307015
+      },
+      "vs_const_tvd": {
+        "diff": 0.039984178401612856,
+        "lo": -0.048403823873858234,
+        "hi": 0.12555206538981345
+      },
+      "regret_tvd": {
+        "diff": 0.06763888888888889,
+        "lo": 0.010552083333333354,
+        "hi": 0.12916666666666665
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.8635364152988628,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.4358775168671107,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": 0.31547931119989614,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.405342645279573,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.4549357351573465,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "qwen36|H1",
+          "proxy": 0.3479490811720123,
+          "loto_rps": 0.14392060185185185,
+          "loto_ce": 1.7032529955621407,
+          "loto_tvd": 0.47000000000000003,
+          "spearman": 0.72958687011449,
+          "pearson": 0.7477769801961679
+        },
+        {
+          "judge": "qwen36|H2",
+          "proxy": 0.4358775168671107,
+          "loto_rps": 0.13821273148148144,
+          "loto_ce": 1.5717908892914683,
+          "loto_tvd": 0.4144444444444444,
+          "spearman": 0.7588279164664079,
+          "pearson": 0.7928194188100371
+        },
+        {
+          "judge": "qwen36|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.20823379629629626,
+          "loto_ce": 2.0016784562616645,
+          "loto_tvd": 0.5868055555555556,
+          "spearman": 0.24924908022650863,
+          "pearson": 0.3324714503612565
+        },
+        {
+          "judge": "qwen36|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.2085400462962963,
+          "loto_ce": 2.087063139480996,
+          "loto_tvd": 0.5947222222222222,
+          "spearman": 0.22192040837727248,
+          "pearson": 0.19726431202848896
+        },
+        {
+          "judge": "qwen36|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.21897476851851846,
+          "loto_ce": 2.0560326199679797,
+          "loto_tvd": 0.5943055555555555,
+          "spearman": 0.1475483928683949,
+          "pearson": 0.18438083546359968
+        },
+        {
+          "judge": "qwen36|R4",
+          "proxy": 0.48202151714943525,
+          "loto_rps": 0.14635625000000002,
+          "loto_ce": 1.7462877513704007,
+          "loto_tvd": 0.48597222222222225,
+          "spearman": 0.7021738190568821,
+          "pearson": 0.7390073826163175
+        },
+        {
+          "judge": "t2_qwen|H2",
+          "proxy": 0.436152798480199,
+          "loto_rps": 0.15013402777777776,
+          "loto_ce": 1.72409534256859,
+          "loto_tvd": 0.47791666666666666,
+          "spearman": 0.6591642479726911,
+          "pearson": 0.715225578134518
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.4321203398550164,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": 0.4924045827395817,
+      "proxy_pearson_vs_neg_rps": 0.4941322303811103
+    },
+    {
+      "pool": "e39_test_llm",
+      "n_judges": 13,
+      "proxy": "semantic_margin_train",
+      "selected": "qwen36|H0",
+      "selected_proxy": 0.4066666666666667,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.14042407407407406,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.14759976851851853,
+      "vs_const_rps": {
+        "diff": -0.03418585212181734,
+        "lo": -0.05789518953778007,
+        "hi": -0.01257159575824807
+      },
+      "regret_rps": {
+        "diff": -0.007175694444444436,
+        "lo": -0.017279710648148122,
+        "hi": 0.0035724479166666517
+      },
+      "vs_const_ce": {
+        "diff": -0.11903060358274709,
+        "lo": -0.2546715554847122,
+        "hi": 0.021212392830037664
+      },
+      "regret_ce": {
+        "diff": -0.019805782253543493,
+        "lo": -0.11943069854692441,
+        "hi": 0.0752022047255282
+      },
+      "vs_const_tvd": {
+        "diff": -0.04334915493172048,
+        "lo": -0.10232039565599226,
+        "hi": 0.017922265490105067
+      },
+      "regret_tvd": {
+        "diff": -0.015694444444444434,
+        "lo": -0.057499999999999996,
+        "hi": 0.02875347222222221
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.4,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.38,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": -0.04333333333333334,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.4066666666666667,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "qwen36|H1",
+          "proxy": 0.2533333333333333,
+          "loto_rps": 0.14392060185185185,
+          "loto_ce": 1.7032529955621407,
+          "loto_tvd": 0.47000000000000003,
+          "spearman": 0.72958687011449,
+          "pearson": 0.7477769801961679
+        },
+        {
+          "judge": "qwen36|H2",
+          "proxy": 0.32916666666666666,
+          "loto_rps": 0.13821273148148144,
+          "loto_ce": 1.5717908892914683,
+          "loto_tvd": 0.4144444444444444,
+          "spearman": 0.7588279164664079,
+          "pearson": 0.7928194188100371
+        },
+        {
+          "judge": "qwen36|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.20823379629629626,
+          "loto_ce": 2.0016784562616645,
+          "loto_tvd": 0.5868055555555556,
+          "spearman": 0.24924908022650863,
+          "pearson": 0.3324714503612565
+        },
+        {
+          "judge": "qwen36|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.2085400462962963,
+          "loto_ce": 2.087063139480996,
+          "loto_tvd": 0.5947222222222222,
+          "spearman": 0.22192040837727248,
+          "pearson": 0.19726431202848896
+        },
+        {
+          "judge": "qwen36|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.21897476851851846,
+          "loto_ce": 2.0560326199679797,
+          "loto_tvd": 0.5943055555555555,
+          "spearman": 0.1475483928683949,
+          "pearson": 0.18438083546359968
+        },
+        {
+          "judge": "qwen36|R4",
+          "proxy": 0.36,
+          "loto_rps": 0.14635625000000002,
+          "loto_ce": 1.7462877513704007,
+          "loto_tvd": 0.48597222222222225,
+          "spearman": 0.7021738190568821,
+          "pearson": 0.7390073826163175
+        },
+        {
+          "judge": "t2_qwen|H2",
+          "proxy": 0.26666666666666666,
+          "loto_rps": 0.15013402777777776,
+          "loto_ce": 1.72409534256859,
+          "loto_tvd": 0.47791666666666666,
+          "spearman": 0.6591642479726911,
+          "pearson": 0.715225578134518
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.32,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": 0.7187326649702849,
+      "proxy_pearson_vs_neg_rps": 0.9216863935131455
+    },
+    {
+      "pool": "e39_all_llm",
+      "n_judges": 44,
+      "proxy": "C_ms_gold",
+      "selected": "gem31h|H2",
+      "selected_proxy": 0.9941832960078871,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "sonnet5m|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "sonnet5m|H2",
+        "sonnet5m|H2",
+        "sonnet5m|H2",
+        "sonnet5m|H2",
+        "t2_sonnet5|H2",
+        "sonnet5m|H2",
+        "t2_sonnet5|H2",
+        "sonnet5m|H2",
+        "t2_sonnet5|H2",
+        "sonnet5m|H2",
+        "sonnet5m|H2",
+        "sonnet5m|H2",
+        "sonnet5m|H2",
+        "t2_sonnet5|H2",
+        "sonnet5m|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.14718518518518517,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.14832685185185185,
+      "vs_const_rps": {
+        "diff": -0.027424741010706223,
+        "lo": -0.05456839915237486,
+        "hi": -0.00399424960205514
+      },
+      "regret_rps": {
+        "diff": -0.0011416666666666671,
+        "lo": -0.01040671296296296,
+        "hi": 0.007588773148148152
+      },
+      "vs_const_ce": {
+        "diff": 0.03060274190184924,
+        "lo": -0.14845256690261482,
+        "hi": 0.2067558420216851
+      },
+      "regret_ce": {
+        "diff": 0.04289454637659159,
+        "lo": -0.06971925115439943,
+        "hi": 0.1753620910088529
+      },
+      "vs_const_tvd": {
+        "diff": 0.017484178401612836,
+        "lo": -0.06326186315483119,
+        "hi": 0.10132146843995876
+      },
+      "regret_tvd": {
+        "diff": 0.011944444444444447,
+        "lo": -0.035861111111111114,
+        "hi": 0.0627847222222222
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "gem31h|H0",
+          "proxy": 0.990387252748123,
+          "loto_rps": 0.15287500000000004,
+          "loto_ce": 1.8461539491482888,
+          "loto_tvd": 0.5201388888888889,
+          "spearman": 0.6480591178504318,
+          "pearson": 0.7281692711905957
+        },
+        {
+          "judge": "gem31h|H1",
+          "proxy": 0.9915583764989209,
+          "loto_rps": 0.1461805555555556,
+          "loto_ce": 1.8143782434027707,
+          "loto_tvd": 0.5126388888888889,
+          "spearman": 0.7729281065302077,
+          "pearson": 0.7973267676331249
+        },
+        {
+          "judge": "gem31h|H2",
+          "proxy": 0.9941832960078871,
+          "loto_rps": 0.14718518518518517,
+          "loto_ce": 1.8009345048381096,
+          "loto_tvd": 0.5023611111111111,
+          "spearman": 0.7597310016241264,
+          "pearson": 0.7881409635129811
+        },
+        {
+          "judge": "gem31h|LEX",
+          "proxy": 0.8495808613684755,
+          "loto_rps": 0.273736111111111,
+          "loto_ce": 2.239995816838669,
+          "loto_tvd": 0.6625,
+          "spearman": -0.358866009947406,
+          "pearson": -0.31114310576926135
+        },
+        {
+          "judge": "gem31h|P1",
+          "proxy": 0.7778008231720664,
+          "loto_rps": 0.243449074074074,
+          "loto_ce": 2.126593278014648,
+          "loto_tvd": 0.6368055555555555,
+          "spearman": 0.10496925130505153,
+          "pearson": 0.17160971005721784
+        },
+        {
+          "judge": "gem31h|P4",
+          "proxy": 0.6827599642253975,
+          "loto_rps": 0.2623564814814814,
+          "loto_ce": 2.144423150087019,
+          "loto_tvd": 0.6381944444444445,
+          "spearman": 0.19471138854862843,
+          "pearson": 0.2581881242817089
+        },
+        {
+          "judge": "gem31h|P8",
+          "proxy": 0.8910932975587308,
+          "loto_rps": 0.27545833333333325,
+          "loto_ce": 2.196118925719244,
+          "loto_tvd": 0.64625,
+          "spearman": -0.08457000539896678,
+          "pearson": -0.0025582812733115396
+        },
+        {
+          "judge": "gem31h|R4",
+          "proxy": 0.9882631312275462,
+          "loto_rps": 0.1478842592592593,
+          "loto_ce": 1.814937954190825,
+          "loto_tvd": 0.5081944444444444,
+          "spearman": 0.6808901184025095,
+          "pearson": 0.7795708984683221
+        },
+        {
+          "judge": "luna6h|H0",
+          "proxy": 0.9612623630610081,
+          "loto_rps": 0.15029166666666668,
+          "loto_ce": 1.781428640736901,
+          "loto_tvd": 0.48916666666666664,
+          "spearman": 0.6592244209511005,
+          "pearson": 0.6992622104560205
+        },
+        {
+          "judge": "luna6h|H1",
+          "proxy": 0.9839597021320291,
+          "loto_rps": 0.14908796296296298,
+          "loto_ce": 1.8155077586135686,
+          "loto_tvd": 0.5068055555555555,
+          "spearman": 0.7039900327642852,
+          "pearson": 0.7330203647630259
+        },
+        {
+          "judge": "luna6h|H2",
+          "proxy": 0.9719558392782752,
+          "loto_rps": 0.14923611111111112,
+          "loto_ce": 1.7670506244595057,
+          "loto_tvd": 0.4929166666666666,
+          "spearman": 0.7415961092167256,
+          "pearson": 0.7008169846465099
+        },
+        {
+          "judge": "luna6h|LEX",
+          "proxy": 0.832052167438511,
+          "loto_rps": 0.2856898148148147,
+          "loto_ce": 2.2647924397200065,
+          "loto_tvd": 0.6715277777777777,
+          "spearman": -0.4209237496571616,
+          "pearson": -0.37737464248341107
+        },
+        {
+          "judge": "luna6h|P1",
+          "proxy": 0.7772460894023424,
+          "loto_rps": 0.2735972222222221,
+          "loto_ce": 2.2428286564793924,
+          "loto_tvd": 0.6595833333333333,
+          "spearman": -0.2933805919733625,
+          "pearson": -0.23249405414056235
+        },
+        {
+          "judge": "luna6h|P4",
+          "proxy": 0.7785649118319843,
+          "loto_rps": 0.2876342592592592,
+          "loto_ce": 2.299643052060453,
+          "loto_tvd": 0.6854166666666666,
+          "spearman": 0.14553841579748236,
+          "pearson": 0.1252512747863203
+        },
+        {
+          "judge": "luna6h|P8",
+          "proxy": 0.824102674498965,
+          "loto_rps": 0.26390277777777765,
+          "loto_ce": 2.2346244962235753,
+          "loto_tvd": 0.6552777777777777,
+          "spearman": -0.317327191240858,
+          "pearson": -0.2662476284677767
+        },
+        {
+          "judge": "luna6h|R4",
+          "proxy": 0.9741422563468496,
+          "loto_rps": 0.15949537037037037,
+          "loto_ce": 1.8077992755710202,
+          "loto_tvd": 0.4968055555555556,
+          "spearman": 0.40510801831137694,
+          "pearson": 0.44100804475789296
+        },
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.9909760021360442,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.9941692216139022,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": 0.8597652187702444,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.6662313887051631,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.9862188618056353,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "qwen36|H1",
+          "proxy": 0.9866745516741889,
+          "loto_rps": 0.14392060185185185,
+          "loto_ce": 1.7032529955621407,
+          "loto_tvd": 0.47000000000000003,
+          "spearman": 0.72958687011449,
+          "pearson": 0.7477769801961679
+        },
+        {
+          "judge": "qwen36|P1",
+          "proxy": 0.6579824201298708,
+          "loto_rps": 0.20823379629629626,
+          "loto_ce": 2.0016784562616645,
+          "loto_tvd": 0.5868055555555556,
+          "spearman": 0.24924908022650863,
+          "pearson": 0.3324714503612565
+        },
+        {
+          "judge": "qwen36|P4",
+          "proxy": 0.8342990997630507,
+          "loto_rps": 0.2085400462962963,
+          "loto_ce": 2.087063139480996,
+          "loto_tvd": 0.5947222222222222,
+          "spearman": 0.22192040837727248,
+          "pearson": 0.19726431202848896
+        },
+        {
+          "judge": "qwen36|P8",
+          "proxy": 0.8328911108727723,
+          "loto_rps": 0.21897476851851846,
+          "loto_ce": 2.0560326199679797,
+          "loto_tvd": 0.5943055555555555,
+          "spearman": 0.1475483928683949,
+          "pearson": 0.18438083546359968
+        },
+        {
+          "judge": "sol6h|H0",
+          "proxy": 0.9606088504290803,
+          "loto_rps": 0.1690694444444444,
+          "loto_ce": 1.8707646456980125,
+          "loto_tvd": 0.5241666666666667,
+          "spearman": 0.3734373858162515,
+          "pearson": 0.3770521534924843
+        },
+        {
+          "judge": "sol6h|H1",
+          "proxy": 0.9015718800218536,
+          "loto_rps": 0.1531435185185185,
+          "loto_ce": 1.8459558426900409,
+          "loto_tvd": 0.5215277777777778,
+          "spearman": 0.698715745304905,
+          "pearson": 0.6800547407033712
+        },
+        {
+          "judge": "sol6h|H2",
+          "proxy": 0.9778136013509137,
+          "loto_rps": 0.14806944444444445,
+          "loto_ce": 1.840047489927274,
+          "loto_tvd": 0.5234722222222222,
+          "spearman": 0.7336233203365525,
+          "pearson": 0.7513693278569001
+        },
+        {
+          "judge": "sol6h|LEX",
+          "proxy": 0.8182130966531899,
+          "loto_rps": 0.2706435185185184,
+          "loto_ce": 2.2564109679896402,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.5158183307165561,
+          "pearson": -0.4275277319271722
+        },
+        {
+          "judge": "sol6h|P1",
+          "proxy": 0.726079489211795,
+          "loto_rps": 0.28509722222222206,
+          "loto_ce": 2.289729662266981,
+          "loto_tvd": 0.67875,
+          "spearman": -0.1692606677035007,
+          "pearson": -0.13625421656522932
+        },
+        {
+          "judge": "sol6h|P4",
+          "proxy": 0.6478829577193624,
+          "loto_rps": 0.29385648148148136,
+          "loto_ce": 2.289799197257646,
+          "loto_tvd": 0.6768055555555554,
+          "spearman": -0.0970105141662843,
+          "pearson": -0.1335054982792787
+        },
+        {
+          "judge": "sol6h|P8",
+          "proxy": 0.8666481813586925,
+          "loto_rps": 0.26181018518518506,
+          "loto_ce": 2.250539578799054,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.4291263372104959,
+          "pearson": -0.3821669694898331
+        },
+        {
+          "judge": "sol6h|R4",
+          "proxy": 0.9601500056211373,
+          "loto_rps": 0.18573611111111107,
+          "loto_ce": 1.8971008250612293,
+          "loto_tvd": 0.5408333333333333,
+          "spearman": 0.25296999001852377,
+          "pearson": 0.30896014283079604
+        },
+        {
+          "judge": "sonnet5m|H0",
+          "proxy": 0.9809312119633178,
+          "loto_rps": 0.16353425925925924,
+          "loto_ce": 1.7940422786483494,
+          "loto_tvd": 0.5052777777777778,
+          "spearman": 0.47384701928074735,
+          "pearson": 0.5080449061134947
+        },
+        {
+          "judge": "sonnet5m|H1",
+          "proxy": 0.9888248433490742,
+          "loto_rps": 0.14174537037037035,
+          "loto_ce": 1.6738815420805246,
+          "loto_tvd": 0.45666666666666655,
+          "spearman": 0.7495364556684924,
+          "pearson": 0.7596586687486173
+        },
+        {
+          "judge": "sonnet5m|H2",
+          "proxy": 0.9829081533474157,
+          "loto_rps": 0.13883240740740738,
+          "loto_ce": 1.6568012600389899,
+          "loto_tvd": 0.44847222222222227,
+          "spearman": 0.7594448459794814,
+          "pearson": 0.7820069736537055
+        },
+        {
+          "judge": "sonnet5m|LEX",
+          "proxy": 0.8735333302721782,
+          "loto_rps": 0.31572685185185173,
+          "loto_ce": 2.346108527561082,
+          "loto_tvd": 0.7059722222222222,
+          "spearman": -0.12290072550952905,
+          "pearson": -0.27114529536694965
+        },
+        {
+          "judge": "sonnet5m|P1",
+          "proxy": 0.6701470960758492,
+          "loto_rps": 0.2732824074074073,
+          "loto_ce": 2.294123576069627,
+          "loto_tvd": 0.68625,
+          "spearman": 0.1839104427091072,
+          "pearson": 0.14180401286728797
+        },
+        {
+          "judge": "sonnet5m|P4",
+          "proxy": 0.6505992824340332,
+          "loto_rps": 0.29691203703703695,
+          "loto_ce": 2.312085485044463,
+          "loto_tvd": 0.6915277777777777,
+          "spearman": -0.050191863708982855,
+          "pearson": -0.14747196129032553
+        },
+        {
+          "judge": "sonnet5m|P8",
+          "proxy": 0.5481401356749188,
+          "loto_rps": 0.28388425925925914,
+          "loto_ce": 2.2795761059062594,
+          "loto_tvd": 0.6766666666666666,
+          "spearman": -0.11888514050860553,
+          "pearson": -0.20181166852978472
+        },
+        {
+          "judge": "sonnet5m|R4",
+          "proxy": 0.987043409269749,
+          "loto_rps": 0.15312037037037038,
+          "loto_ce": 1.735219491735468,
+          "loto_tvd": 0.47861111111111115,
+          "spearman": 0.7100087088288147,
+          "pearson": 0.721591947927378
+        },
+        {
+          "judge": "t2_luna|H2",
+          "proxy": 0.9783010661968371,
+          "loto_rps": 0.1479953703703704,
+          "loto_ce": 1.7617852965063023,
+          "loto_tvd": 0.4951388888888889,
+          "spearman": 0.7627286635141951,
+          "pearson": 0.735429943249186
+        },
+        {
+          "judge": "t2_qwen|H2",
+          "proxy": 0.992981524907632,
+          "loto_rps": 0.15013402777777776,
+          "loto_ce": 1.72409534256859,
+          "loto_tvd": 0.47791666666666666,
+          "spearman": 0.6591642479726911,
+          "pearson": 0.715225578134518
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.991983862487052,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": 0.8304439746300212,
+      "proxy_pearson_vs_neg_rps": 0.814183669924426
+    },
+    {
+      "pool": "e39_all_llm",
+      "n_judges": 46,
+      "proxy": "TI_var_trainnorm",
+      "selected": "opus55x|H0",
+      "selected_proxy": 0.7577287527037836,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.15722685185185187,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.15234050925925924,
+      "vs_const_rps": {
+        "diff": -0.017383074344039552,
+        "lo": -0.04812053176143337,
+        "hi": 0.013087526642288816
+      },
+      "regret_rps": {
+        "diff": 0.0048863425925926,
+        "lo": -0.009032274305555544,
+        "hi": 0.0204397974537037
+      },
+      "vs_const_ce": {
+        "diff": 0.07537733510193508,
+        "lo": -0.1216260431028713,
+        "hi": 0.2637904156511165
+      },
+      "regret_ce": {
+        "diff": 0.12969117740357278,
+        "lo": 0.002877059562578757,
+        "hi": 0.2658520953894003
+      },
+      "vs_const_tvd": {
+        "diff": 0.039984178401612856,
+        "lo": -0.048403823873858234,
+        "hi": 0.12555206538981345
+      },
+      "regret_tvd": {
+        "diff": 0.05041666666666668,
+        "lo": 0.0006840277777777933,
+        "hi": 0.10513888888888889
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "gem31h|H0",
+          "proxy": 0.007481168710401982,
+          "loto_rps": 0.15287500000000004,
+          "loto_ce": 1.8461539491482888,
+          "loto_tvd": 0.5201388888888889,
+          "spearman": 0.6480591178504318,
+          "pearson": 0.7281692711905957
+        },
+        {
+          "judge": "gem31h|H1",
+          "proxy": 0.007422811796503411,
+          "loto_rps": 0.1461805555555556,
+          "loto_ce": 1.8143782434027707,
+          "loto_tvd": 0.5126388888888889,
+          "spearman": 0.7729281065302077,
+          "pearson": 0.7973267676331249
+        },
+        {
+          "judge": "gem31h|H2",
+          "proxy": 0.007462685204058604,
+          "loto_rps": 0.14718518518518517,
+          "loto_ce": 1.8009345048381096,
+          "loto_tvd": 0.5023611111111111,
+          "spearman": 0.7597310016241264,
+          "pearson": 0.7881409635129811
+        },
+        {
+          "judge": "gem31h|LEX",
+          "proxy": 0.005203264924709166,
+          "loto_rps": 0.273736111111111,
+          "loto_ce": 2.239995816838669,
+          "loto_tvd": 0.6625,
+          "spearman": -0.358866009947406,
+          "pearson": -0.31114310576926135
+        },
+        {
+          "judge": "gem31h|P1",
+          "proxy": 0.010000000000000004,
+          "loto_rps": 0.243449074074074,
+          "loto_ce": 2.126593278014648,
+          "loto_tvd": 0.6368055555555555,
+          "spearman": 0.10496925130505153,
+          "pearson": 0.17160971005721784
+        },
+        {
+          "judge": "gem31h|P4",
+          "proxy": 0.3152649840601251,
+          "loto_rps": 0.2623564814814814,
+          "loto_ce": 2.144423150087019,
+          "loto_tvd": 0.6381944444444445,
+          "spearman": 0.19471138854862843,
+          "pearson": 0.2581881242817089
+        },
+        {
+          "judge": "gem31h|P8",
+          "proxy": 0.009351716491264876,
+          "loto_rps": 0.27545833333333325,
+          "loto_ce": 2.196118925719244,
+          "loto_tvd": 0.64625,
+          "spearman": -0.08457000539896678,
+          "pearson": -0.0025582812733115396
+        },
+        {
+          "judge": "gem31h|R4",
+          "proxy": 0.00717369905264686,
+          "loto_rps": 0.1478842592592593,
+          "loto_ce": 1.814937954190825,
+          "loto_tvd": 0.5081944444444444,
+          "spearman": 0.6808901184025095,
+          "pearson": 0.7795708984683221
+        },
+        {
+          "judge": "luna6h|H0",
+          "proxy": 0.24564817089197122,
+          "loto_rps": 0.15029166666666668,
+          "loto_ce": 1.781428640736901,
+          "loto_tvd": 0.48916666666666664,
+          "spearman": 0.6592244209511005,
+          "pearson": 0.6992622104560205
+        },
+        {
+          "judge": "luna6h|H1",
+          "proxy": 0.006364907464795486,
+          "loto_rps": 0.14908796296296298,
+          "loto_ce": 1.8155077586135686,
+          "loto_tvd": 0.5068055555555555,
+          "spearman": 0.7039900327642852,
+          "pearson": 0.7330203647630259
+        },
+        {
+          "judge": "luna6h|H2",
+          "proxy": 0.006364907464795486,
+          "loto_rps": 0.14923611111111112,
+          "loto_ce": 1.7670506244595057,
+          "loto_tvd": 0.4929166666666666,
+          "spearman": 0.7415961092167256,
+          "pearson": 0.7008169846465099
+        },
+        {
+          "judge": "luna6h|LEX",
+          "proxy": 0.455747662486339,
+          "loto_rps": 0.2856898148148147,
+          "loto_ce": 2.2647924397200065,
+          "loto_tvd": 0.6715277777777777,
+          "spearman": -0.4209237496571616,
+          "pearson": -0.37737464248341107
+        },
+        {
+          "judge": "luna6h|P1",
+          "proxy": 7.43245080366254e-05,
+          "loto_rps": 0.2735972222222221,
+          "loto_ce": 2.2428286564793924,
+          "loto_tvd": 0.6595833333333333,
+          "spearman": -0.2933805919733625,
+          "pearson": -0.23249405414056235
+        },
+        {
+          "judge": "luna6h|P4",
+          "proxy": 0.266032704385551,
+          "loto_rps": 0.2876342592592592,
+          "loto_ce": 2.299643052060453,
+          "loto_tvd": 0.6854166666666666,
+          "spearman": 0.14553841579748236,
+          "pearson": 0.1252512747863203
+        },
+        {
+          "judge": "luna6h|P8",
+          "proxy": 0.2712435161843079,
+          "loto_rps": 0.26390277777777765,
+          "loto_ce": 2.2346244962235753,
+          "loto_tvd": 0.6552777777777777,
+          "spearman": -0.317327191240858,
+          "pearson": -0.2662476284677767
+        },
+        {
+          "judge": "luna6h|R4",
+          "proxy": 0.3650892726596846,
+          "loto_rps": 0.15949537037037037,
+          "loto_ce": 1.8077992755710202,
+          "loto_tvd": 0.4968055555555556,
+          "spearman": 0.40510801831137694,
+          "pearson": 0.44100804475789296
+        },
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.7577287527037836,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.007507691942441556,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": 0.5301763168088018,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.007009266974883748,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.09989552539337367,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "qwen36|H1",
+          "proxy": 0.006858361571329773,
+          "loto_rps": 0.14392060185185185,
+          "loto_ce": 1.7032529955621407,
+          "loto_tvd": 0.47000000000000003,
+          "spearman": 0.72958687011449,
+          "pearson": 0.7477769801961679
+        },
+        {
+          "judge": "qwen36|H2",
+          "proxy": 0.007373853425006694,
+          "loto_rps": 0.13821273148148144,
+          "loto_ce": 1.5717908892914683,
+          "loto_tvd": 0.4144444444444444,
+          "spearman": 0.7588279164664079,
+          "pearson": 0.7928194188100371
+        },
+        {
+          "judge": "qwen36|P1",
+          "proxy": 0.010000000000000004,
+          "loto_rps": 0.20823379629629626,
+          "loto_ce": 2.0016784562616645,
+          "loto_tvd": 0.5868055555555556,
+          "spearman": 0.24924908022650863,
+          "pearson": 0.3324714503612565
+        },
+        {
+          "judge": "qwen36|P4",
+          "proxy": 0.010000000000000004,
+          "loto_rps": 0.2085400462962963,
+          "loto_ce": 2.087063139480996,
+          "loto_tvd": 0.5947222222222222,
+          "spearman": 0.22192040837727248,
+          "pearson": 0.19726431202848896
+        },
+        {
+          "judge": "qwen36|P8",
+          "proxy": 0.009351716491264876,
+          "loto_rps": 0.21897476851851846,
+          "loto_ce": 2.0560326199679797,
+          "loto_tvd": 0.5943055555555555,
+          "spearman": 0.1475483928683949,
+          "pearson": 0.18438083546359968
+        },
+        {
+          "judge": "qwen36|R4",
+          "proxy": 0.007418492772640592,
+          "loto_rps": 0.14635625000000002,
+          "loto_ce": 1.7462877513704007,
+          "loto_tvd": 0.48597222222222225,
+          "spearman": 0.7021738190568821,
+          "pearson": 0.7390073826163175
+        },
+        {
+          "judge": "sol6h|H0",
+          "proxy": 0.4543192653435995,
+          "loto_rps": 0.1690694444444444,
+          "loto_ce": 1.8707646456980125,
+          "loto_tvd": 0.5241666666666667,
+          "spearman": 0.3734373858162515,
+          "pearson": 0.3770521534924843
+        },
+        {
+          "judge": "sol6h|H1",
+          "proxy": 0.15444242293402052,
+          "loto_rps": 0.1531435185185185,
+          "loto_ce": 1.8459558426900409,
+          "loto_tvd": 0.5215277777777778,
+          "spearman": 0.698715745304905,
+          "pearson": 0.6800547407033712
+        },
+        {
+          "judge": "sol6h|H2",
+          "proxy": 0.15444242293402052,
+          "loto_rps": 0.14806944444444445,
+          "loto_ce": 1.840047489927274,
+          "loto_tvd": 0.5234722222222222,
+          "spearman": 0.7336233203365525,
+          "pearson": 0.7513693278569001
+        },
+        {
+          "judge": "sol6h|LEX",
+          "proxy": 0.46612839841958803,
+          "loto_rps": 0.2706435185185184,
+          "loto_ce": 2.2564109679896402,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.5158183307165561,
+          "pearson": -0.4275277319271722
+        },
+        {
+          "judge": "sol6h|P1",
+          "proxy": 0.17753648873421826,
+          "loto_rps": 0.28509722222222206,
+          "loto_ce": 2.289729662266981,
+          "loto_tvd": 0.67875,
+          "spearman": -0.1692606677035007,
+          "pearson": -0.13625421656522932
+        },
+        {
+          "judge": "sol6h|P4",
+          "proxy": 0.0031265541997092475,
+          "loto_rps": 0.29385648148148136,
+          "loto_ce": 2.289799197257646,
+          "loto_tvd": 0.6768055555555554,
+          "spearman": -0.0970105141662843,
+          "pearson": -0.1335054982792787
+        },
+        {
+          "judge": "sol6h|P8",
+          "proxy": 0.3724837387363548,
+          "loto_rps": 0.26181018518518506,
+          "loto_ce": 2.250539578799054,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.4291263372104959,
+          "pearson": -0.3821669694898331
+        },
+        {
+          "judge": "sol6h|R4",
+          "proxy": 0.4623130065444294,
+          "loto_rps": 0.18573611111111107,
+          "loto_ce": 1.8971008250612293,
+          "loto_tvd": 0.5408333333333333,
+          "spearman": 0.25296999001852377,
+          "pearson": 0.30896014283079604
+        },
+        {
+          "judge": "sonnet5m|H0",
+          "proxy": 0.3307748620843075,
+          "loto_rps": 0.16353425925925924,
+          "loto_ce": 1.7940422786483494,
+          "loto_tvd": 0.5052777777777778,
+          "spearman": 0.47384701928074735,
+          "pearson": 0.5080449061134947
+        },
+        {
+          "judge": "sonnet5m|H1",
+          "proxy": 0.10016327279827492,
+          "loto_rps": 0.14174537037037035,
+          "loto_ce": 1.6738815420805246,
+          "loto_tvd": 0.45666666666666655,
+          "spearman": 0.7495364556684924,
+          "pearson": 0.7596586687486173
+        },
+        {
+          "judge": "sonnet5m|H2",
+          "proxy": 0.11492176840267156,
+          "loto_rps": 0.13883240740740738,
+          "loto_ce": 1.6568012600389899,
+          "loto_tvd": 0.44847222222222227,
+          "spearman": 0.7594448459794814,
+          "pearson": 0.7820069736537055
+        },
+        {
+          "judge": "sonnet5m|LEX",
+          "proxy": 0.27053023413912525,
+          "loto_rps": 0.31572685185185173,
+          "loto_ce": 2.346108527561082,
+          "loto_tvd": 0.7059722222222222,
+          "spearman": -0.12290072550952905,
+          "pearson": -0.27114529536694965
+        },
+        {
+          "judge": "sonnet5m|P1",
+          "proxy": 0.2282690697209663,
+          "loto_rps": 0.2732824074074073,
+          "loto_ce": 2.294123576069627,
+          "loto_tvd": 0.68625,
+          "spearman": 0.1839104427091072,
+          "pearson": 0.14180401286728797
+        },
+        {
+          "judge": "sonnet5m|P4",
+          "proxy": 0.005567710202188943,
+          "loto_rps": 0.29691203703703695,
+          "loto_ce": 2.312085485044463,
+          "loto_tvd": 0.6915277777777777,
+          "spearman": -0.050191863708982855,
+          "pearson": -0.14747196129032553
+        },
+        {
+          "judge": "sonnet5m|P8",
+          "proxy": 0.2653652023138403,
+          "loto_rps": 0.28388425925925914,
+          "loto_ce": 2.2795761059062594,
+          "loto_tvd": 0.6766666666666666,
+          "spearman": -0.11888514050860553,
+          "pearson": -0.20181166852978472
+        },
+        {
+          "judge": "sonnet5m|R4",
+          "proxy": 0.47734176831043484,
+          "loto_rps": 0.15312037037037038,
+          "loto_ce": 1.735219491735468,
+          "loto_tvd": 0.47861111111111115,
+          "spearman": 0.7100087088288147,
+          "pearson": 0.721591947927378
+        },
+        {
+          "judge": "t2_luna|H2",
+          "proxy": 0.1596896803666856,
+          "loto_rps": 0.1479953703703704,
+          "loto_ce": 1.7617852965063023,
+          "loto_tvd": 0.4951388888888889,
+          "spearman": 0.7627286635141951,
+          "pearson": 0.735429943249186
+        },
+        {
+          "judge": "t2_qwen|H2",
+          "proxy": 0.007525673080749456,
+          "loto_rps": 0.15013402777777776,
+          "loto_ce": 1.72409534256859,
+          "loto_tvd": 0.47791666666666666,
+          "spearman": 0.6591642479726911,
+          "pearson": 0.715225578134518
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.0074860580619930985,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": -0.22539555779283524,
+      "proxy_pearson_vs_neg_rps": -0.16651757454110824
+    },
+    {
+      "pool": "e39_all_llm",
+      "n_judges": 36,
+      "proxy": "PTI_v0_frozen",
+      "selected": "t2_sonnet5|H2",
+      "selected_proxy": 0.0,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H0",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "qwen36|H0",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.13908796296296294,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.1469925925925926,
+      "vs_const_rps": {
+        "diff": -0.03552196323292845,
+        "lo": -0.06187719967426999,
+        "hi": -0.012216284533643554
+      },
+      "regret_rps": {
+        "diff": -0.007904629629629626,
+        "lo": -0.01854722222222222,
+        "hi": 0.0
+      },
+      "vs_const_ce": {
+        "diff": -0.09547639841754602,
+        "lo": -0.26227501519412616,
+        "hi": 0.07176990124552164
+      },
+      "regret_ce": {
+        "diff": -0.04777185645265241,
+        "lo": -0.150017287445448,
+        "hi": 0.009228725692766549
+      },
+      "vs_const_tvd": {
+        "diff": -0.03418248826505382,
+        "lo": -0.11211774362555081,
+        "hi": 0.045642115484662196
+      },
+      "regret_tvd": {
+        "diff": -0.015833333333333338,
+        "lo": -0.0497222222222222,
+        "hi": 0.0019444444444444125
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "gem31h|H0",
+          "proxy": 0.0,
+          "loto_rps": 0.15287500000000004,
+          "loto_ce": 1.8461539491482888,
+          "loto_tvd": 0.5201388888888889,
+          "spearman": 0.6480591178504318,
+          "pearson": 0.7281692711905957
+        },
+        {
+          "judge": "gem31h|H1",
+          "proxy": 0.0,
+          "loto_rps": 0.1461805555555556,
+          "loto_ce": 1.8143782434027707,
+          "loto_tvd": 0.5126388888888889,
+          "spearman": 0.7729281065302077,
+          "pearson": 0.7973267676331249
+        },
+        {
+          "judge": "gem31h|H2",
+          "proxy": 0.0,
+          "loto_rps": 0.14718518518518517,
+          "loto_ce": 1.8009345048381096,
+          "loto_tvd": 0.5023611111111111,
+          "spearman": 0.7597310016241264,
+          "pearson": 0.7881409635129811
+        },
+        {
+          "judge": "gem31h|LEX",
+          "proxy": 0.0,
+          "loto_rps": 0.273736111111111,
+          "loto_ce": 2.239995816838669,
+          "loto_tvd": 0.6625,
+          "spearman": -0.358866009947406,
+          "pearson": -0.31114310576926135
+        },
+        {
+          "judge": "gem31h|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.243449074074074,
+          "loto_ce": 2.126593278014648,
+          "loto_tvd": 0.6368055555555555,
+          "spearman": 0.10496925130505153,
+          "pearson": 0.17160971005721784
+        },
+        {
+          "judge": "gem31h|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.2623564814814814,
+          "loto_ce": 2.144423150087019,
+          "loto_tvd": 0.6381944444444445,
+          "spearman": 0.19471138854862843,
+          "pearson": 0.2581881242817089
+        },
+        {
+          "judge": "gem31h|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.27545833333333325,
+          "loto_ce": 2.196118925719244,
+          "loto_tvd": 0.64625,
+          "spearman": -0.08457000539896678,
+          "pearson": -0.0025582812733115396
+        },
+        {
+          "judge": "gem31h|R4",
+          "proxy": 0.0,
+          "loto_rps": 0.1478842592592593,
+          "loto_ce": 1.814937954190825,
+          "loto_tvd": 0.5081944444444444,
+          "spearman": 0.6808901184025095,
+          "pearson": 0.7795708984683221
+        },
+        {
+          "judge": "luna6h|H0",
+          "proxy": 0.0,
+          "loto_rps": 0.15029166666666668,
+          "loto_ce": 1.781428640736901,
+          "loto_tvd": 0.48916666666666664,
+          "spearman": 0.6592244209511005,
+          "pearson": 0.6992622104560205
+        },
+        {
+          "judge": "luna6h|H1",
+          "proxy": 0.0,
+          "loto_rps": 0.14908796296296298,
+          "loto_ce": 1.8155077586135686,
+          "loto_tvd": 0.5068055555555555,
+          "spearman": 0.7039900327642852,
+          "pearson": 0.7330203647630259
+        },
+        {
+          "judge": "luna6h|H2",
+          "proxy": 0.0,
+          "loto_rps": 0.14923611111111112,
+          "loto_ce": 1.7670506244595057,
+          "loto_tvd": 0.4929166666666666,
+          "spearman": 0.7415961092167256,
+          "pearson": 0.7008169846465099
+        },
+        {
+          "judge": "luna6h|LEX",
+          "proxy": 0.0,
+          "loto_rps": 0.2856898148148147,
+          "loto_ce": 2.2647924397200065,
+          "loto_tvd": 0.6715277777777777,
+          "spearman": -0.4209237496571616,
+          "pearson": -0.37737464248341107
+        },
+        {
+          "judge": "luna6h|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.2735972222222221,
+          "loto_ce": 2.2428286564793924,
+          "loto_tvd": 0.6595833333333333,
+          "spearman": -0.2933805919733625,
+          "pearson": -0.23249405414056235
+        },
+        {
+          "judge": "luna6h|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.2876342592592592,
+          "loto_ce": 2.299643052060453,
+          "loto_tvd": 0.6854166666666666,
+          "spearman": 0.14553841579748236,
+          "pearson": 0.1252512747863203
+        },
+        {
+          "judge": "luna6h|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.26390277777777765,
+          "loto_ce": 2.2346244962235753,
+          "loto_tvd": 0.6552777777777777,
+          "spearman": -0.317327191240858,
+          "pearson": -0.2662476284677767
+        },
+        {
+          "judge": "luna6h|R4",
+          "proxy": 0.0,
+          "loto_rps": 0.15949537037037037,
+          "loto_ce": 1.8077992755710202,
+          "loto_tvd": 0.4968055555555556,
+          "spearman": 0.40510801831137694,
+          "pearson": 0.44100804475789296
+        },
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.0,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.0,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": 0.0,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.0,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "sol6h|H0",
+          "proxy": 0.0,
+          "loto_rps": 0.1690694444444444,
+          "loto_ce": 1.8707646456980125,
+          "loto_tvd": 0.5241666666666667,
+          "spearman": 0.3734373858162515,
+          "pearson": 0.3770521534924843
+        },
+        {
+          "judge": "sol6h|H1",
+          "proxy": 0.0,
+          "loto_rps": 0.1531435185185185,
+          "loto_ce": 1.8459558426900409,
+          "loto_tvd": 0.5215277777777778,
+          "spearman": 0.698715745304905,
+          "pearson": 0.6800547407033712
+        },
+        {
+          "judge": "sol6h|H2",
+          "proxy": 0.0,
+          "loto_rps": 0.14806944444444445,
+          "loto_ce": 1.840047489927274,
+          "loto_tvd": 0.5234722222222222,
+          "spearman": 0.7336233203365525,
+          "pearson": 0.7513693278569001
+        },
+        {
+          "judge": "sol6h|LEX",
+          "proxy": 0.0,
+          "loto_rps": 0.2706435185185184,
+          "loto_ce": 2.2564109679896402,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.5158183307165561,
+          "pearson": -0.4275277319271722
+        },
+        {
+          "judge": "sol6h|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.28509722222222206,
+          "loto_ce": 2.289729662266981,
+          "loto_tvd": 0.67875,
+          "spearman": -0.1692606677035007,
+          "pearson": -0.13625421656522932
+        },
+        {
+          "judge": "sol6h|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.29385648148148136,
+          "loto_ce": 2.289799197257646,
+          "loto_tvd": 0.6768055555555554,
+          "spearman": -0.0970105141662843,
+          "pearson": -0.1335054982792787
+        },
+        {
+          "judge": "sol6h|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.26181018518518506,
+          "loto_ce": 2.250539578799054,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.4291263372104959,
+          "pearson": -0.3821669694898331
+        },
+        {
+          "judge": "sol6h|R4",
+          "proxy": 0.0,
+          "loto_rps": 0.18573611111111107,
+          "loto_ce": 1.8971008250612293,
+          "loto_tvd": 0.5408333333333333,
+          "spearman": 0.25296999001852377,
+          "pearson": 0.30896014283079604
+        },
+        {
+          "judge": "sonnet5m|H1",
+          "proxy": 0.0,
+          "loto_rps": 0.14174537037037035,
+          "loto_ce": 1.6738815420805246,
+          "loto_tvd": 0.45666666666666655,
+          "spearman": 0.7495364556684924,
+          "pearson": 0.7596586687486173
+        },
+        {
+          "judge": "sonnet5m|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.2732824074074073,
+          "loto_ce": 2.294123576069627,
+          "loto_tvd": 0.68625,
+          "spearman": 0.1839104427091072,
+          "pearson": 0.14180401286728797
+        },
+        {
+          "judge": "sonnet5m|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.29691203703703695,
+          "loto_ce": 2.312085485044463,
+          "loto_tvd": 0.6915277777777777,
+          "spearman": -0.050191863708982855,
+          "pearson": -0.14747196129032553
+        },
+        {
+          "judge": "sonnet5m|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.28388425925925914,
+          "loto_ce": 2.2795761059062594,
+          "loto_tvd": 0.6766666666666666,
+          "spearman": -0.11888514050860553,
+          "pearson": -0.20181166852978472
+        },
+        {
+          "judge": "sonnet5m|R4",
+          "proxy": 0.0,
+          "loto_rps": 0.15312037037037038,
+          "loto_ce": 1.735219491735468,
+          "loto_tvd": 0.47861111111111115,
+          "spearman": 0.7100087088288147,
+          "pearson": 0.721591947927378
+        },
+        {
+          "judge": "t2_luna|H2",
+          "proxy": 0.0,
+          "loto_rps": 0.1479953703703704,
+          "loto_ce": 1.7617852965063023,
+          "loto_tvd": 0.4951388888888889,
+          "spearman": 0.7627286635141951,
+          "pearson": 0.735429943249186
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.0,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": NaN,
+      "proxy_pearson_vs_neg_rps": NaN
+    },
+    {
+      "pool": "e39_all_llm",
+      "n_judges": 46,
+      "proxy": "C_bm_gold",
+      "selected": "opus55x|H0",
+      "selected_proxy": 0.8635364152988628,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.15722685185185187,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.15234050925925924,
+      "vs_const_rps": {
+        "diff": -0.017383074344039552,
+        "lo": -0.04812053176143337,
+        "hi": 0.013087526642288816
+      },
+      "regret_rps": {
+        "diff": 0.0048863425925926,
+        "lo": -0.009032274305555544,
+        "hi": 0.0204397974537037
+      },
+      "vs_const_ce": {
+        "diff": 0.07537733510193508,
+        "lo": -0.1216260431028713,
+        "hi": 0.2637904156511165
+      },
+      "regret_ce": {
+        "diff": 0.12969117740357278,
+        "lo": 0.002877059562578757,
+        "hi": 0.2658520953894003
+      },
+      "vs_const_tvd": {
+        "diff": 0.039984178401612856,
+        "lo": -0.048403823873858234,
+        "hi": 0.12555206538981345
+      },
+      "regret_tvd": {
+        "diff": 0.05041666666666668,
+        "lo": 0.0006840277777777933,
+        "hi": 0.10513888888888889
+      },
+      "pass": false,
+      "judges": [
+        {
+          "judge": "gem31h|H0",
+          "proxy": 0.4248967661005668,
+          "loto_rps": 0.15287500000000004,
+          "loto_ce": 1.8461539491482888,
+          "loto_tvd": 0.5201388888888889,
+          "spearman": 0.6480591178504318,
+          "pearson": 0.7281692711905957
+        },
+        {
+          "judge": "gem31h|H1",
+          "proxy": 0.42444558472609,
+          "loto_rps": 0.1461805555555556,
+          "loto_ce": 1.8143782434027707,
+          "loto_tvd": 0.5126388888888889,
+          "spearman": 0.7729281065302077,
+          "pearson": 0.7973267676331249
+        },
+        {
+          "judge": "gem31h|H2",
+          "proxy": 0.4248967661005668,
+          "loto_rps": 0.14718518518518517,
+          "loto_ce": 1.8009345048381096,
+          "loto_tvd": 0.5023611111111111,
+          "spearman": 0.7597310016241264,
+          "pearson": 0.7881409635129811
+        },
+        {
+          "judge": "gem31h|LEX",
+          "proxy": 0.16192243990430513,
+          "loto_rps": 0.273736111111111,
+          "loto_ce": 2.239995816838669,
+          "loto_tvd": 0.6625,
+          "spearman": -0.358866009947406,
+          "pearson": -0.31114310576926135
+        },
+        {
+          "judge": "gem31h|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.243449074074074,
+          "loto_ce": 2.126593278014648,
+          "loto_tvd": 0.6368055555555555,
+          "spearman": 0.10496925130505153,
+          "pearson": 0.17160971005721784
+        },
+        {
+          "judge": "gem31h|P4",
+          "proxy": 0.07759576278120671,
+          "loto_rps": 0.2623564814814814,
+          "loto_ce": 2.144423150087019,
+          "loto_tvd": 0.6381944444444445,
+          "spearman": 0.19471138854862843,
+          "pearson": 0.2581881242817089
+        },
+        {
+          "judge": "gem31h|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.27545833333333325,
+          "loto_ce": 2.196118925719244,
+          "loto_tvd": 0.64625,
+          "spearman": -0.08457000539896678,
+          "pearson": -0.0025582812733115396
+        },
+        {
+          "judge": "gem31h|R4",
+          "proxy": 0.4248967661005668,
+          "loto_rps": 0.1478842592592593,
+          "loto_ce": 1.814937954190825,
+          "loto_tvd": 0.5081944444444444,
+          "spearman": 0.6808901184025095,
+          "pearson": 0.7795708984683221
+        },
+        {
+          "judge": "luna6h|H0",
+          "proxy": 0.5374197916904625,
+          "loto_rps": 0.15029166666666668,
+          "loto_ce": 1.781428640736901,
+          "loto_tvd": 0.48916666666666664,
+          "spearman": 0.6592244209511005,
+          "pearson": 0.6992622104560205
+        },
+        {
+          "judge": "luna6h|H1",
+          "proxy": 0.2655959313204741,
+          "loto_rps": 0.14908796296296298,
+          "loto_ce": 1.8155077586135686,
+          "loto_tvd": 0.5068055555555555,
+          "spearman": 0.7039900327642852,
+          "pearson": 0.7330203647630259
+        },
+        {
+          "judge": "luna6h|H2",
+          "proxy": 0.2655959313204741,
+          "loto_rps": 0.14923611111111112,
+          "loto_ce": 1.7670506244595057,
+          "loto_tvd": 0.4929166666666666,
+          "spearman": 0.7415961092167256,
+          "pearson": 0.7008169846465099
+        },
+        {
+          "judge": "luna6h|LEX",
+          "proxy": 0.3382383649936655,
+          "loto_rps": 0.2856898148148147,
+          "loto_ce": 2.2647924397200065,
+          "loto_tvd": 0.6715277777777777,
+          "spearman": -0.4209237496571616,
+          "pearson": -0.37737464248341107
+        },
+        {
+          "judge": "luna6h|P1",
+          "proxy": 0.41057843001156724,
+          "loto_rps": 0.2735972222222221,
+          "loto_ce": 2.2428286564793924,
+          "loto_tvd": 0.6595833333333333,
+          "spearman": -0.2933805919733625,
+          "pearson": -0.23249405414056235
+        },
+        {
+          "judge": "luna6h|P4",
+          "proxy": 0.45106965590668047,
+          "loto_rps": 0.2876342592592592,
+          "loto_ce": 2.299643052060453,
+          "loto_tvd": 0.6854166666666666,
+          "spearman": 0.14553841579748236,
+          "pearson": 0.1252512747863203
+        },
+        {
+          "judge": "luna6h|P8",
+          "proxy": 0.3048790200133494,
+          "loto_rps": 0.26390277777777765,
+          "loto_ce": 2.2346244962235753,
+          "loto_tvd": 0.6552777777777777,
+          "spearman": -0.317327191240858,
+          "pearson": -0.2662476284677767
+        },
+        {
+          "judge": "luna6h|R4",
+          "proxy": 0.6730700600754773,
+          "loto_rps": 0.15949537037037037,
+          "loto_ce": 1.8077992755710202,
+          "loto_tvd": 0.4968055555555556,
+          "spearman": 0.40510801831137694,
+          "pearson": 0.44100804475789296
+        },
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.8635364152988628,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.4358775168671107,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": 0.31547931119989614,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.405342645279573,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.4549357351573465,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "qwen36|H1",
+          "proxy": 0.3479490811720123,
+          "loto_rps": 0.14392060185185185,
+          "loto_ce": 1.7032529955621407,
+          "loto_tvd": 0.47000000000000003,
+          "spearman": 0.72958687011449,
+          "pearson": 0.7477769801961679
+        },
+        {
+          "judge": "qwen36|H2",
+          "proxy": 0.4358775168671107,
+          "loto_rps": 0.13821273148148144,
+          "loto_ce": 1.5717908892914683,
+          "loto_tvd": 0.4144444444444444,
+          "spearman": 0.7588279164664079,
+          "pearson": 0.7928194188100371
+        },
+        {
+          "judge": "qwen36|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.20823379629629626,
+          "loto_ce": 2.0016784562616645,
+          "loto_tvd": 0.5868055555555556,
+          "spearman": 0.24924908022650863,
+          "pearson": 0.3324714503612565
+        },
+        {
+          "judge": "qwen36|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.2085400462962963,
+          "loto_ce": 2.087063139480996,
+          "loto_tvd": 0.5947222222222222,
+          "spearman": 0.22192040837727248,
+          "pearson": 0.19726431202848896
+        },
+        {
+          "judge": "qwen36|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.21897476851851846,
+          "loto_ce": 2.0560326199679797,
+          "loto_tvd": 0.5943055555555555,
+          "spearman": 0.1475483928683949,
+          "pearson": 0.18438083546359968
+        },
+        {
+          "judge": "qwen36|R4",
+          "proxy": 0.48202151714943525,
+          "loto_rps": 0.14635625000000002,
+          "loto_ce": 1.7462877513704007,
+          "loto_tvd": 0.48597222222222225,
+          "spearman": 0.7021738190568821,
+          "pearson": 0.7390073826163175
+        },
+        {
+          "judge": "sol6h|H0",
+          "proxy": 0.644227605288508,
+          "loto_rps": 0.1690694444444444,
+          "loto_ce": 1.8707646456980125,
+          "loto_tvd": 0.5241666666666667,
+          "spearman": 0.3734373858162515,
+          "pearson": 0.3770521534924843
+        },
+        {
+          "judge": "sol6h|H1",
+          "proxy": 0.26312974463635597,
+          "loto_rps": 0.1531435185185185,
+          "loto_ce": 1.8459558426900409,
+          "loto_tvd": 0.5215277777777778,
+          "spearman": 0.698715745304905,
+          "pearson": 0.6800547407033712
+        },
+        {
+          "judge": "sol6h|H2",
+          "proxy": 0.26312974463635597,
+          "loto_rps": 0.14806944444444445,
+          "loto_ce": 1.840047489927274,
+          "loto_tvd": 0.5234722222222222,
+          "spearman": 0.7336233203365525,
+          "pearson": 0.7513693278569001
+        },
+        {
+          "judge": "sol6h|LEX",
+          "proxy": 0.5140311445737527,
+          "loto_rps": 0.2706435185185184,
+          "loto_ce": 2.2564109679896402,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.5158183307165561,
+          "pearson": -0.4275277319271722
+        },
+        {
+          "judge": "sol6h|P1",
+          "proxy": 0.22700797561905436,
+          "loto_rps": 0.28509722222222206,
+          "loto_ce": 2.289729662266981,
+          "loto_tvd": 0.67875,
+          "spearman": -0.1692606677035007,
+          "pearson": -0.13625421656522932
+        },
+        {
+          "judge": "sol6h|P4",
+          "proxy": 0.3763014779088804,
+          "loto_rps": 0.29385648148148136,
+          "loto_ce": 2.289799197257646,
+          "loto_tvd": 0.6768055555555554,
+          "spearman": -0.0970105141662843,
+          "pearson": -0.1335054982792787
+        },
+        {
+          "judge": "sol6h|P8",
+          "proxy": 0.16319392935145405,
+          "loto_rps": 0.26181018518518506,
+          "loto_ce": 2.250539578799054,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.4291263372104959,
+          "pearson": -0.3821669694898331
+        },
+        {
+          "judge": "sol6h|R4",
+          "proxy": 0.6488539372284248,
+          "loto_rps": 0.18573611111111107,
+          "loto_ce": 1.8971008250612293,
+          "loto_tvd": 0.5408333333333333,
+          "spearman": 0.25296999001852377,
+          "pearson": 0.30896014283079604
+        },
+        {
+          "judge": "sonnet5m|H0",
+          "proxy": 0.6716259854395001,
+          "loto_rps": 0.16353425925925924,
+          "loto_ce": 1.7940422786483494,
+          "loto_tvd": 0.5052777777777778,
+          "spearman": 0.47384701928074735,
+          "pearson": 0.5080449061134947
+        },
+        {
+          "judge": "sonnet5m|H1",
+          "proxy": 0.26430494099249785,
+          "loto_rps": 0.14174537037037035,
+          "loto_ce": 1.6738815420805246,
+          "loto_tvd": 0.45666666666666655,
+          "spearman": 0.7495364556684924,
+          "pearson": 0.7596586687486173
+        },
+        {
+          "judge": "sonnet5m|H2",
+          "proxy": 0.37550471658202567,
+          "loto_rps": 0.13883240740740738,
+          "loto_ce": 1.6568012600389899,
+          "loto_tvd": 0.44847222222222227,
+          "spearman": 0.7594448459794814,
+          "pearson": 0.7820069736537055
+        },
+        {
+          "judge": "sonnet5m|LEX",
+          "proxy": 0.4308080765511306,
+          "loto_rps": 0.31572685185185173,
+          "loto_ce": 2.346108527561082,
+          "loto_tvd": 0.7059722222222222,
+          "spearman": -0.12290072550952905,
+          "pearson": -0.27114529536694965
+        },
+        {
+          "judge": "sonnet5m|P1",
+          "proxy": 0.3941308444319435,
+          "loto_rps": 0.2732824074074073,
+          "loto_ce": 2.294123576069627,
+          "loto_tvd": 0.68625,
+          "spearman": 0.1839104427091072,
+          "pearson": 0.14180401286728797
+        },
+        {
+          "judge": "sonnet5m|P4",
+          "proxy": 0.380542234690971,
+          "loto_rps": 0.29691203703703695,
+          "loto_ce": 2.312085485044463,
+          "loto_tvd": 0.6915277777777777,
+          "spearman": -0.050191863708982855,
+          "pearson": -0.14747196129032553
+        },
+        {
+          "judge": "sonnet5m|P8",
+          "proxy": 0.34200213424478315,
+          "loto_rps": 0.28388425925925914,
+          "loto_ce": 2.2795761059062594,
+          "loto_tvd": 0.6766666666666666,
+          "spearman": -0.11888514050860553,
+          "pearson": -0.20181166852978472
+        },
+        {
+          "judge": "sonnet5m|R4",
+          "proxy": 0.7339716495155699,
+          "loto_rps": 0.15312037037037038,
+          "loto_ce": 1.735219491735468,
+          "loto_tvd": 0.47861111111111115,
+          "spearman": 0.7100087088288147,
+          "pearson": 0.721591947927378
+        },
+        {
+          "judge": "t2_luna|H2",
+          "proxy": 0.3187252319039459,
+          "loto_rps": 0.1479953703703704,
+          "loto_ce": 1.7617852965063023,
+          "loto_tvd": 0.4951388888888889,
+          "spearman": 0.7627286635141951,
+          "pearson": 0.735429943249186
+        },
+        {
+          "judge": "t2_qwen|H2",
+          "proxy": 0.436152798480199,
+          "loto_rps": 0.15013402777777776,
+          "loto_ce": 1.72409534256859,
+          "loto_tvd": 0.47791666666666666,
+          "spearman": 0.6591642479726911,
+          "pearson": 0.715225578134518
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.4321203398550164,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": 0.24596496518378386,
+      "proxy_pearson_vs_neg_rps": 0.33346802154579097
+    },
+    {
+      "pool": "e39_all_llm",
+      "n_judges": 46,
+      "proxy": "semantic_margin_train",
+      "selected": "qwen36|H0",
+      "selected_proxy": 0.4066666666666667,
+      "best_on_val_by_task": [
+        "qwen36|H0",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "sonnet5m|H2",
+        "qwen36|H2",
+        "qwen36|H2",
+        "t2_sonnet5|H2"
+      ],
+      "rps_proxy": 0.14042407407407406,
+      "rps_const": 0.17460992619589139,
+      "rps_best": 0.15234050925925924,
+      "vs_const_rps": {
+        "diff": -0.03418585212181734,
+        "lo": -0.05789518953778007,
+        "hi": -0.01257159575824807
+      },
+      "regret_rps": {
+        "diff": -0.01191643518518518,
+        "lo": -0.022615769675925917,
+        "hi": -0.001739461805555552
+      },
+      "vs_const_ce": {
+        "diff": -0.11903060358274709,
+        "lo": -0.2546715554847122,
+        "hi": 0.021212392830037664
+      },
+      "regret_ce": {
+        "diff": -0.0647167612811094,
+        "lo": -0.1482574030999851,
+        "hi": 0.010565268213538181
+      },
+      "vs_const_tvd": {
+        "diff": -0.04334915493172048,
+        "lo": -0.10232039565599226,
+        "hi": 0.017922265490105067
+      },
+      "regret_tvd": {
+        "diff": -0.03291666666666666,
+        "lo": -0.07111805555555556,
+        "hi": 0.005697916666666647
+      },
+      "pass": true,
+      "judges": [
+        {
+          "judge": "gem31h|H0",
+          "proxy": 0.4,
+          "loto_rps": 0.15287500000000004,
+          "loto_ce": 1.8461539491482888,
+          "loto_tvd": 0.5201388888888889,
+          "spearman": 0.6480591178504318,
+          "pearson": 0.7281692711905957
+        },
+        {
+          "judge": "gem31h|H1",
+          "proxy": 0.38,
+          "loto_rps": 0.1461805555555556,
+          "loto_ce": 1.8143782434027707,
+          "loto_tvd": 0.5126388888888889,
+          "spearman": 0.7729281065302077,
+          "pearson": 0.7973267676331249
+        },
+        {
+          "judge": "gem31h|H2",
+          "proxy": 0.38,
+          "loto_rps": 0.14718518518518517,
+          "loto_ce": 1.8009345048381096,
+          "loto_tvd": 0.5023611111111111,
+          "spearman": 0.7597310016241264,
+          "pearson": 0.7881409635129811
+        },
+        {
+          "judge": "gem31h|LEX",
+          "proxy": -0.07833333333333334,
+          "loto_rps": 0.273736111111111,
+          "loto_ce": 2.239995816838669,
+          "loto_tvd": 0.6625,
+          "spearman": -0.358866009947406,
+          "pearson": -0.31114310576926135
+        },
+        {
+          "judge": "gem31h|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.243449074074074,
+          "loto_ce": 2.126593278014648,
+          "loto_tvd": 0.6368055555555555,
+          "spearman": 0.10496925130505153,
+          "pearson": 0.17160971005721784
+        },
+        {
+          "judge": "gem31h|P4",
+          "proxy": 0.09,
+          "loto_rps": 0.2623564814814814,
+          "loto_ce": 2.144423150087019,
+          "loto_tvd": 0.6381944444444445,
+          "spearman": 0.19471138854862843,
+          "pearson": 0.2581881242817089
+        },
+        {
+          "judge": "gem31h|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.27545833333333325,
+          "loto_ce": 2.196118925719244,
+          "loto_tvd": 0.64625,
+          "spearman": -0.08457000539896678,
+          "pearson": -0.0025582812733115396
+        },
+        {
+          "judge": "gem31h|R4",
+          "proxy": 0.4,
+          "loto_rps": 0.1478842592592593,
+          "loto_ce": 1.814937954190825,
+          "loto_tvd": 0.5081944444444444,
+          "spearman": 0.6808901184025095,
+          "pearson": 0.7795708984683221
+        },
+        {
+          "judge": "luna6h|H0",
+          "proxy": 0.29333333333333333,
+          "loto_rps": 0.15029166666666668,
+          "loto_ce": 1.781428640736901,
+          "loto_tvd": 0.48916666666666664,
+          "spearman": 0.6592244209511005,
+          "pearson": 0.6992622104560205
+        },
+        {
+          "judge": "luna6h|H1",
+          "proxy": 0.29333333333333333,
+          "loto_rps": 0.14908796296296298,
+          "loto_ce": 1.8155077586135686,
+          "loto_tvd": 0.5068055555555555,
+          "spearman": 0.7039900327642852,
+          "pearson": 0.7330203647630259
+        },
+        {
+          "judge": "luna6h|H2",
+          "proxy": 0.31333333333333335,
+          "loto_rps": 0.14923611111111112,
+          "loto_ce": 1.7670506244595057,
+          "loto_tvd": 0.4929166666666666,
+          "spearman": 0.7415961092167256,
+          "pearson": 0.7008169846465099
+        },
+        {
+          "judge": "luna6h|LEX",
+          "proxy": -0.06666666666666667,
+          "loto_rps": 0.2856898148148147,
+          "loto_ce": 2.2647924397200065,
+          "loto_tvd": 0.6715277777777777,
+          "spearman": -0.4209237496571616,
+          "pearson": -0.37737464248341107
+        },
+        {
+          "judge": "luna6h|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.2735972222222221,
+          "loto_ce": 2.2428286564793924,
+          "loto_tvd": 0.6595833333333333,
+          "spearman": -0.2933805919733625,
+          "pearson": -0.23249405414056235
+        },
+        {
+          "judge": "luna6h|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.2876342592592592,
+          "loto_ce": 2.299643052060453,
+          "loto_tvd": 0.6854166666666666,
+          "spearman": 0.14553841579748236,
+          "pearson": 0.1252512747863203
+        },
+        {
+          "judge": "luna6h|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.26390277777777765,
+          "loto_ce": 2.2346244962235753,
+          "loto_tvd": 0.6552777777777777,
+          "spearman": -0.317327191240858,
+          "pearson": -0.2662476284677767
+        },
+        {
+          "judge": "luna6h|R4",
+          "proxy": 0.29333333333333333,
+          "loto_rps": 0.15949537037037037,
+          "loto_ce": 1.8077992755710202,
+          "loto_tvd": 0.4968055555555556,
+          "spearman": 0.40510801831137694,
+          "pearson": 0.44100804475789296
+        },
+        {
+          "judge": "opus55x|H0",
+          "proxy": 0.4,
+          "loto_rps": 0.15722685185185187,
+          "loto_ce": 1.8457090980381956,
+          "loto_tvd": 0.5248611111111112,
+          "spearman": 0.6289430109014909,
+          "pearson": 0.6665068504865888
+        },
+        {
+          "judge": "opus55x|H2",
+          "proxy": 0.38,
+          "loto_rps": 0.14497685185185183,
+          "loto_ce": 1.8299862653455055,
+          "loto_tvd": 0.5184722222222222,
+          "spearman": 0.7934839334581345,
+          "pearson": 0.8018344859228633
+        },
+        {
+          "judge": "opus55x|LEX",
+          "proxy": -0.04333333333333334,
+          "loto_rps": 0.26379166666666654,
+          "loto_ce": 2.2484652285900277,
+          "loto_tvd": 0.6697222222222222,
+          "spearman": -0.49555705353511553,
+          "pearson": -0.4202355192070298
+        },
+        {
+          "judge": "opus55x|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.25028240740740737,
+          "loto_ce": 2.242558963110679,
+          "loto_tvd": 0.6618055555555555,
+          "spearman": -0.08325777639632523,
+          "pearson": -0.11177669406977515
+        },
+        {
+          "judge": "qwen36|H0",
+          "proxy": 0.4066666666666667,
+          "loto_rps": 0.14042407407407406,
+          "loto_ce": 1.651301159353513,
+          "loto_tvd": 0.4415277777777778,
+          "spearman": 0.7316965797401062,
+          "pearson": 0.755813403483672
+        },
+        {
+          "judge": "qwen36|H1",
+          "proxy": 0.2533333333333333,
+          "loto_rps": 0.14392060185185185,
+          "loto_ce": 1.7032529955621407,
+          "loto_tvd": 0.47000000000000003,
+          "spearman": 0.72958687011449,
+          "pearson": 0.7477769801961679
+        },
+        {
+          "judge": "qwen36|H2",
+          "proxy": 0.32916666666666666,
+          "loto_rps": 0.13821273148148144,
+          "loto_ce": 1.5717908892914683,
+          "loto_tvd": 0.4144444444444444,
+          "spearman": 0.7588279164664079,
+          "pearson": 0.7928194188100371
+        },
+        {
+          "judge": "qwen36|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.20823379629629626,
+          "loto_ce": 2.0016784562616645,
+          "loto_tvd": 0.5868055555555556,
+          "spearman": 0.24924908022650863,
+          "pearson": 0.3324714503612565
+        },
+        {
+          "judge": "qwen36|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.2085400462962963,
+          "loto_ce": 2.087063139480996,
+          "loto_tvd": 0.5947222222222222,
+          "spearman": 0.22192040837727248,
+          "pearson": 0.19726431202848896
+        },
+        {
+          "judge": "qwen36|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.21897476851851846,
+          "loto_ce": 2.0560326199679797,
+          "loto_tvd": 0.5943055555555555,
+          "spearman": 0.1475483928683949,
+          "pearson": 0.18438083546359968
+        },
+        {
+          "judge": "qwen36|R4",
+          "proxy": 0.36,
+          "loto_rps": 0.14635625000000002,
+          "loto_ce": 1.7462877513704007,
+          "loto_tvd": 0.48597222222222225,
+          "spearman": 0.7021738190568821,
+          "pearson": 0.7390073826163175
+        },
+        {
+          "judge": "sol6h|H0",
+          "proxy": 0.33333333333333337,
+          "loto_rps": 0.1690694444444444,
+          "loto_ce": 1.8707646456980125,
+          "loto_tvd": 0.5241666666666667,
+          "spearman": 0.3734373858162515,
+          "pearson": 0.3770521534924843
+        },
+        {
+          "judge": "sol6h|H1",
+          "proxy": 0.3333333333333333,
+          "loto_rps": 0.1531435185185185,
+          "loto_ce": 1.8459558426900409,
+          "loto_tvd": 0.5215277777777778,
+          "spearman": 0.698715745304905,
+          "pearson": 0.6800547407033712
+        },
+        {
+          "judge": "sol6h|H2",
+          "proxy": 0.3333333333333333,
+          "loto_rps": 0.14806944444444445,
+          "loto_ce": 1.840047489927274,
+          "loto_tvd": 0.5234722222222222,
+          "spearman": 0.7336233203365525,
+          "pearson": 0.7513693278569001
+        },
+        {
+          "judge": "sol6h|LEX",
+          "proxy": -0.05899999999999998,
+          "loto_rps": 0.2706435185185184,
+          "loto_ce": 2.2564109679896402,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.5158183307165561,
+          "pearson": -0.4275277319271722
+        },
+        {
+          "judge": "sol6h|P1",
+          "proxy": 0.0,
+          "loto_rps": 0.28509722222222206,
+          "loto_ce": 2.289729662266981,
+          "loto_tvd": 0.67875,
+          "spearman": -0.1692606677035007,
+          "pearson": -0.13625421656522932
+        },
+        {
+          "judge": "sol6h|P4",
+          "proxy": 0.0,
+          "loto_rps": 0.29385648148148136,
+          "loto_ce": 2.289799197257646,
+          "loto_tvd": 0.6768055555555554,
+          "spearman": -0.0970105141662843,
+          "pearson": -0.1335054982792787
+        },
+        {
+          "judge": "sol6h|P8",
+          "proxy": 0.0,
+          "loto_rps": 0.26181018518518506,
+          "loto_ce": 2.250539578799054,
+          "loto_tvd": 0.6663888888888889,
+          "spearman": -0.4291263372104959,
+          "pearson": -0.3821669694898331
+        },
+        {
+          "judge": "sol6h|R4",
+          "proxy": 0.31333333333333335,
+          "loto_rps": 0.18573611111111107,
+          "loto_ce": 1.8971008250612293,
+          "loto_tvd": 0.5408333333333333,
+          "spearman": 0.25296999001852377,
+          "pearson": 0.30896014283079604
+        },
+        {
+          "judge": "sonnet5m|H0",
+          "proxy": 0.33999999999999997,
+          "loto_rps": 0.16353425925925924,
+          "loto_ce": 1.7940422786483494,
+          "loto_tvd": 0.5052777777777778,
+          "spearman": 0.47384701928074735,
+          "pearson": 0.5080449061134947
+        },
+        {
+          "judge": "sonnet5m|H1",
+          "proxy": 0.30666666666666664,
+          "loto_rps": 0.14174537037037035,
+          "loto_ce": 1.6738815420805246,
+          "loto_tvd": 0.45666666666666655,
+          "spearman": 0.7495364556684924,
+          "pearson": 0.7596586687486173
+        },
+        {
+          "judge": "sonnet5m|H2",
+          "proxy": 0.29333333333333333,
+          "loto_rps": 0.13883240740740738,
+          "loto_ce": 1.6568012600389899,
+          "loto_tvd": 0.44847222222222227,
+          "spearman": 0.7594448459794814,
+          "pearson": 0.7820069736537055
+        },
+        {
+          "judge": "sonnet5m|LEX",
+          "proxy": -0.03999999999999999,
+          "loto_rps": 0.31572685185185173,
+          "loto_ce": 2.346108527561082,
+          "loto_tvd": 0.7059722222222222,
+          "spearman": -0.12290072550952905,
+          "pearson": -0.27114529536694965
+        },
+        {
+          "judge": "sonnet5m|P1",
+          "proxy": -0.04,
+          "loto_rps": 0.2732824074074073,
+          "loto_ce": 2.294123576069627,
+          "loto_tvd": 0.68625,
+          "spearman": 0.1839104427091072,
+          "pearson": 0.14180401286728797
+        },
+        {
+          "judge": "sonnet5m|P4",
+          "proxy": -0.1,
+          "loto_rps": 0.29691203703703695,
+          "loto_ce": 2.312085485044463,
+          "loto_tvd": 0.6915277777777777,
+          "spearman": -0.050191863708982855,
+          "pearson": -0.14747196129032553
+        },
+        {
+          "judge": "sonnet5m|P8",
+          "proxy": -0.07999999999999999,
+          "loto_rps": 0.28388425925925914,
+          "loto_ce": 2.2795761059062594,
+          "loto_tvd": 0.6766666666666666,
+          "spearman": -0.11888514050860553,
+          "pearson": -0.20181166852978472
+        },
+        {
+          "judge": "sonnet5m|R4",
+          "proxy": 0.37333333333333335,
+          "loto_rps": 0.15312037037037038,
+          "loto_ce": 1.735219491735468,
+          "loto_tvd": 0.47861111111111115,
+          "spearman": 0.7100087088288147,
+          "pearson": 0.721591947927378
+        },
+        {
+          "judge": "t2_luna|H2",
+          "proxy": 0.35333333333333333,
+          "loto_rps": 0.1479953703703704,
+          "loto_ce": 1.7617852965063023,
+          "loto_tvd": 0.4951388888888889,
+          "spearman": 0.7627286635141951,
+          "pearson": 0.735429943249186
+        },
+        {
+          "judge": "t2_qwen|H2",
+          "proxy": 0.26666666666666666,
+          "loto_rps": 0.15013402777777776,
+          "loto_ce": 1.72409534256859,
+          "loto_tvd": 0.47791666666666666,
+          "spearman": 0.6591642479726911,
+          "pearson": 0.715225578134518
+        },
+        {
+          "judge": "t2_sonnet5|H2",
+          "proxy": 0.32,
+          "loto_rps": 0.13908796296296294,
+          "loto_ce": 1.6748553645187143,
+          "loto_tvd": 0.4506944444444444,
+          "spearman": 0.7642364683098981,
+          "pearson": 0.7823032166933556
+        }
+      ],
+      "proxy_spearman_vs_neg_rps": 0.7899748271477394,
+      "proxy_pearson_vs_neg_rps": 0.9381443312493456
+    }
+  ],
+  "spend_usd": 0
+}

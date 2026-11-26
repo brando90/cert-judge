@@ -87,8 +87,10 @@ def load_hvb() -> dict[tuple[str, str], list[int]]:
     for path in paths:
         with path.open() as handle:
             for row in csv.DictReader(handle, delimiter="\t"):
-                score = row["human_score_0_5"].strip()
-                gold, cand = row["gold_file"].strip(), row["candidate_file"].strip()
+                raw_score = row.get("human_score_0_5")
+                score = "" if raw_score is None else str(raw_score).strip()
+                gold = "" if row.get("gold_file") is None else str(row["gold_file"]).strip()
+                cand = "" if row.get("candidate_file") is None else str(row["candidate_file"]).strip()
                 if gold and cand and score != "":
                     bags[(gold, cand)].append(int(round(float(score))))
     return {key: vals for key, vals in bags.items() if len(vals) >= 4}
@@ -106,7 +108,9 @@ def load_paper() -> dict[str, dict]:
                 gold, cand = row["item_key"].split("::", 1)
                 detail[row["judge_id"]][(gold, cand)] = [float(x) for x in json.loads(row["repeat_scores"])]
         for judge_id, scores in detail.items():
-            judges[judge_id] = {"family": family, "pool": "paper", "TI_var": ti.get(judge_id), "scores": scores}
+            # The same control id is stored in each family file with that family's index.
+            key = f"{family}::{judge_id}"
+            judges[key] = {"family": family, "pool": "paper", "TI_var": ti.get(judge_id), "scores": scores}
     return judges
 
 
@@ -378,10 +382,12 @@ def write_results(payload: dict) -> None:
 
 def main() -> None:
     hvb = load_hvb()
-    artifacts = sorted(hvb)
+    paper = load_paper()
+    judged = set().union(*(set(judge["scores"]) for judge in paper.values()))
+    # P59 is the saved-score intersection: >=4 corrected ratings and a paper-panel score.
+    artifacts = sorted(key for key in hvb if key in judged)
     tasks = [gold for gold, _cand in artifacts]
     needed = {cand[:-5] if cand.endswith(".lean") else cand for _gold, cand in artifacts}
-    paper = load_paper()
     e39_meta = load_e39_indices()
     e39_scores = load_e39_scores(needed)
     stem = {key: (key[1][:-5] if key[1].endswith(".lean") else key[1]) for key in artifacts}
