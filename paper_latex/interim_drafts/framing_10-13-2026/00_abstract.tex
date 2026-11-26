@@ -1,0 +1,21 @@
+% !TEX root = main.tex
+\begin{abstract}
+% CS197 move 1a: problem motivation (failure mode) -- agents write the trust artifacts (tests, formal specifications) for their own code, so the artifacts must be checked at scale. Kept from the 09-25-2026 abstract (Brando's live edit).
+When AI agents write the trust artifacts for their own code, such as tests and formal specifications, those artifacts need checking at scale.
+% CS197 move 1b: problem motivation (why a language-model judge, and why its reliability matters) -- end-to-end autoformalization: the agent chooses its own theorem statements, so the reference's checks fit none; a judge compares meaning; every evaluation inherits its errors.
+In end-to-end autoformalization the agent chooses its own theorem statements, so a language-model judge must compare the meaning of candidate and reference specifications, and every evaluation built on it inherits its errors.
+% CS197 move 2: assumption (setup bit) -- the standard evidence is agreement with human ratings, collected again for every new model and prompt.
+The standard evidence that such a judge can be trusted is agreement with human ratings, collected again for every new model and prompt.
+% CS197 move 3: contribution (bit flip) -- the question this version answers: do label-free behavioral properties (scripted edits whose required score response is fixed by construction) predict agreement for judges they were NOT selected on? Framing decided 10-13-2026 (docs/PAPER_FRAMING_DECISION_10-13-2026.md): what transfers and what does not.
+We ask whether label-free behavioral properties, scripted edits of a gold reference whose required score response is fixed by construction, predict that agreement for judges they were not selected on.
+% CS197 move 4: instantiation -- 56 configurations (six models, nine prompts, single-call and agent harnesses), 28,591 Lean-validated probe cells, split BY JUDGE MODEL into train / validation / test; select on the first two, one sealed test on the third. Provenance: experiments/archive/39_label_free_proxy_index_train_val_test_over_judge_families/PROTOCOL.md, results.md.
+We score 56 judge configurations on 28{,}591 Lean-validated probe cells, split them by judge model into train, validation and test sets, select a screen on the first two and test it once on the third.
+% CS197 move 5a: evaluation (headline, with interval) -- C_ms_gold test Spearman 0.558 [0.078, 0.762], one-sided permutation p 0.0127, 16 of 18 declared test configurations. Provenance: experiments/archive/39_.../results/TEST_RECEIPT.json.
+One component transfers: the fall in score as theorem statements are deleted from the reference predicts held-out judges' agreement with expert ratings (Spearman $0.56$ $[0.08, 0.76]$, one-sided permutation $p = 0.013$, 16 configurations).
+% CS197 move 5b: evaluation (scope limit) -- without LEX 0.453 (p 0.055, 14 configurations); fuller-context prompts only -0.371 (10). Provenance: same units_test.json, recomputed 10-13-2026 (docs/PAPER_FRAMING_DECISION_10-13-2026.md).
+The association shrinks without a deliberately lexical prompt ($0.45$) and reverses within the ten fuller-context prompts ($-0.37$), and our two pre-registered indices do not transfer ($-0.33$ and $-0.27$).
+% CS197 move 5c: evaluation (selection utility, semantic screen, gaming) -- experiment 44: proxy 0.768 vs fixed H2 0.853, paired difference -0.086 [-0.308, 0.058]; experiment 42: 15 of 56 pass; experiment 43: gaps -0.162 to +0.033, 59 of 62 edited candidates flagged and credited by the reference too.
+Choosing a judge by the screen does not beat a fixed human-mirror prompt ($0.77$ versus $0.85$, paired difference $-0.09$ $[-0.31, 0.06]$), a semantic screen passes 15 of 56 configurations, and a score-optimizing attacker inflates attacked judges and validated reference alike.
+% CS197 move 6: implication (north star) -- screens rule judges out and expose failures that human agreement hides; they do not yet replace a human panel for choosing among deployable judges.
+Label-free screens can rule judges out and expose failures that human agreement hides, but they do not yet replace a human panel for choosing among the judges one would deploy.
+\end{abstract}

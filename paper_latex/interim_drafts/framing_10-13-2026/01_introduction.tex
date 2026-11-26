@@ -1,0 +1,59 @@
+% !TEX root = main.tex
+\section{Introduction}
+% CS197 move 1a: problem motivation (failure mode) -- agents now write the trust artifacts for their own code; trusting an AI-written trust artifact means checking the artifact and checking whatever judge checks it. Why formal specifications first: the proof assistant fixes the meaning, so only intent coverage is left to judge. Source: Brando's handwritten note, 09-25-2026 (experiments/archive/34_iclr_mega_rewrite_astra/notes/abstract_moves_1_2_handwritten_09-25-2026.jpg).
+AI agents now write the trust artifacts for their own code: the tests~\citep{haque2026agentictests} and formal specifications~\citep{yang2024formalreasoning} on which trust in that code rests.
+A formal specification states the guarantees a program should satisfy, such as returning a sorted permutation of its input.
+To trust an AI-written trust artifact, one must check the artifact and check whatever judge performs that check.
+We start with formal specifications because the proof assistant fixes what each theorem statement means, leaving one question: whether the statements capture the intent.
+
+% CS197 move 1b: problem motivation (why a language-model judge) -- correct solutions take many forms; Lean settles whether the proofs establish the candidate's own theorems but not whether those theorems cover the reference's guarantees; rerunning the reference's checks fails across representations; what remains is a comparison of meaning, and LLMs already serve as that judge.
+In end-to-end autoformalization, an agent receives source code and writes the Lean~4 implementation, tests, theorem statements, and proofs without a scaffold~\citep{miranda2026veribench}.
+Correct solutions take many forms, because none need share the reference's interfaces, data representations, or decomposition into theorem statements.
+Two questions then decide whether a solution is right: do its proofs establish its own theorem statements, and do those statements express the reference's guarantees?
+Lean settles the first.
+It cannot settle the second, because a proof establishes the theorem that was stated, not that the stated theorem covers the intent~\citep{lahiri2024evaluating}.
+Rerunning the reference's tests and theorems cannot settle it either: they fail against a different representation whether or not the solution is correct~\citep{miranda2026veribench}.
+What remains is a comparison of meaning between the candidate's and the reference's specifications.
+Large language models (LLMs) already make that comparison at scale~\citep{miranda2026veribench,lin2025goedelprover}.
+Every evaluation built on such a judge inherits its errors, so the judge's reliability decides what the benchmark measures.
+
+% CS197 move 2: assumption (setup bit) -- a judge counts as trustworthy once it agrees with human ratings; agreement is configuration dependent, so the check is repeated per configuration; reusing one rated set risks adaptive overfitting, measured on our own earlier panel (experiment 40: best of 8 on half the problems overstates by 0.153). Provenance: experiments/archive/40_best_of_k_judge_selection_bias_validation_set/REPORT.md.
+How do we know that such a judge can be trusted?
+The standard evidence is agreement with human ratings: a judge counts as reliable once its scores correlate with expert annotations~\citep{chen2026reform} or rubric-based ratings~\citep{Liu2023GEval,Zheng2023MTBench}.
+Agreement varies across models, tasks, and rated properties, so evidence for one judge configuration does not carry over to the next~\citep{Kocmi2024HumanVsLLM}.
+The check is therefore repeated for every new model and prompt, and each repetition costs expert ratings.
+Reusing one rated set is cheaper, but choosing among many configurations against the same ratings risks adaptive overfitting~\citep{dwork2015reusableholdout}.
+On our own earlier panel, the best of eight configurations chosen on half of the problems overstates its agreement on the other half by $0.15$ in Spearman correlation (Appendix~\ref{app:selection-bias}).
+
+% CS197 move 3: contribution (bit flip) -- label-free properties fix the required score response by construction; the open question is transfer: does a screen selected on some judges predict agreement for judges it was not selected on? We make the selection and the test two different sets of judge models.
+Label-free behavioral properties offer a way out.
+A property fixes, by construction, how a judge's score must respond when a scripted edit preserves or damages a gold reference: a copy must score the maximum, deleting theorem statements must not raise the score, and renaming a bound variable must not change it.
+Checking these responses costs judge calls, not ratings.
+An earlier version of this paper showed that such properties track human agreement on the judges they were tuned on, which is not evidence that they transfer.
+Here we make transfer the question: we select a screen on one set of judge models, check it on a second, and test it once on a third that neither step touched.
+
+% CS197 move 4: instantiation -- 56 configurations; probes; the criterion; the pre-registered family, including TI_var and PTI_v0; the gates. Provenance: experiments/archive/39_.../PROTOCOL.md.
+We instantiate this test for Lean~4 formal specifications judged against a gold reference (Section~\ref{sec:property-protocol}).
+Fifty-six judge configurations, six models with nine prompts in a single-call harness and in the Terminus2 agent harness, score 28{,}591 Lean-validated probe cells: identity and empty candidates, cumulative deletion and bug ladders built from the gold references, rewrites of candidates, and repeated calls.
+Each configuration's agreement with the mean of three expert ratings on 45 held-out VeriBench candidates is the criterion.
+A pre-registered family of 22 indices, which includes the two indices this paper previously proposed, is ranked on the train judges, chosen on the validation judges, and tested once on the held-out judges under gates fixed before any call.
+
+% CS197 move 5: evaluation -- what transfers (C_ms_gold with its lower bound and scope limit), what does not (TI_var, PTI_v0), selection utility, the two characterizations. Provenance: experiments/archive/39_.../results/TEST_RECEIPT.json; 44_.../RESULTS_selection_utility.md; 42_.../REPORT.md; 43_.../REPORT.md.
+One component transfers.
+The fall in score as theorem statements are deleted from the reference, selected on the train and validation judges, predicts the held-out judges' agreement with the experts (Spearman $0.56$, 95\% interval $[0.08, 0.76]$, one-sided permutation $p = 0.013$, 16 configurations).
+The association has a wide interval and a scope limit: it shrinks to $0.45$ when a deliberately lexical prompt is excluded and reverses to $-0.37$ within the ten fuller-context prompts.
+The two pre-registered indices from our earlier work, $\mathrm{TI}_{\mathrm{var}}$ and $\mathrm{PTI}_{v0}$, do not transfer ($-0.33$ and $-0.27$).
+Choosing a judge by the transferred screen does not beat choosing a fixed human-mirror prompt (expected agreement $0.77$ versus $0.85$, paired difference $-0.09$ $[-0.31, 0.06]$).
+Two further studies characterize the judges rather than the screen: a Lean-validated semantic screen that 15 of 56 configurations pass, and a score-optimizing attacker that inflates the attacked judges and the validated reference alike.
+
+% CS197 move 6: implications and contributions -- what the evidence supports: rule out, expose; not yet: choose among deployable judges. Five contributions mirror the five claims of docs/PAPER_FRAMING_DECISION_10-13-2026.md.
+The evidence supports a narrower use than our earlier version claimed.
+Label-free screens can rule judges out and expose failures that human agreement hides; they do not yet replace a human panel for choosing among the judges one would deploy.
+Our contributions are:
+\begin{itemize}
+\item A pre-registered train, validation and test evaluation of label-free judge screens over 56 configurations, with Lean-validated probes and one sealed test on held-out judge models (Sections~\ref{sec:property-protocol} and~\ref{sec:transfer}).
+\item A positive transfer result for gold deletion monotonicity, reported with its interval and its prompt-group sensitivity, and a negative transfer result for the two pre-registered indices (Section~\ref{sec:transfer}).
+\item A selection-utility comparison showing no demonstrated advantage over a fixed human-mirror prompt (Section~\ref{sec:selection-utility}).
+\item Two characterizations of current judges: a semantic screen for vacuous, weakened and over-constrained specifications, and a score-optimizing attack (Sections~\ref{sec:semantic-screen} and~\ref{sec:gaming}).
+\item A provenance audit and a selection-bias analysis of our earlier 72-pair validation set, whose results move to Appendix~\ref{app:validation-set-72} with their caveats.
+\end{itemize}

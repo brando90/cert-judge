@@ -1,0 +1,16 @@
+---
+description: Put each experiment in a numbered folder on main. Do not open a git branch.
+alwaysApply: true
+---
+
+# Experiment folders on main
+
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/.cursor/rules/experiment-folders-on-main.mdc>
+
+**TLDR:** Prefer a numbered experiment folder on `main` over a separate git branch, so Cursor, Claude Code, and Gemini Antigravity (Agy) share one tree.
+
+Read `AGENTS.md` section "Research workflow: experiment folders on `main`" before adding an experiment, editing the paper, or touching another agent's folder. `CLAUDE.md` and `GEMINI.md` state the same rule.
+
+- Put each experiment in `experiments/NN_<setup_name>/`, register it in `experiments/archive/layout.json`, and add its row to `experiments/README.md`. Fetch and fast-forward `main` before editing. Commit straight to `main`.
+- One writer per experiment folder. Read that folder's `README.md` and `CKPT_*.md` first. Put your own run in the next free number, and name the agent and the date in the folder README.
+- A leftover branch's unique work lands on `main` as its own experiment folder, or as `paper_latex/interim_drafts/<date>_<name>/` when it is an interim paper draft. Leave live experiment paths and `paper_latex/ICLR_2027_submission/` in place when the branch would move or rewrite them. The 10-13-2026 framing draft is `paper_latex/interim_drafts/framing_10-13-2026/` and is not the paper's claims.

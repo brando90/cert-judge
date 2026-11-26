@@ -1,0 +1,38 @@
+% !TEX root = main.tex
+\section{Problem Setup}\label{sec:problem-setup}
+\paragraph{Trust artifacts, intent, and formal specification.}
+An item consists of an informal problem statement, a gold Lean~4 artifact $g$, and a candidate artifact $x$ written by an agent.
+We call the informal requirement the \emph{intent}.
+An artifact is a Lean source file with an implementation and, potentially, theorem statements, predicates, unit tests, and proofs; its theorem statements and tests are its trust artifacts.
+Its \emph{formal specification} is the set of theorem statements about the implementation together with the predicates they use.
+A sorting specification, for example, can require both ordered output and preservation of the input elements.
+A proof establishes a theorem under its stated assumptions; it does not determine whether that theorem captures the intent.
+A unit test checks one concrete case and is not part of the specification in our terminology (Appendix~\ref{app:spec-vs-tests}).
+We use ``specification'' in this sense whether an agent, a person, or a script wrote it.
+
+\paragraph{What the judge must decide.}
+The target is \emph{reference-based specification quality}: how completely and correctly the candidate specification captures the guarantees of the gold reference.
+A candidate can type-check yet omit a requirement, impose an unintended assumption, or assert a vacuous property.
+The judge prompts ask which reference guarantees the candidate captures and assign zero to trivial statements such as \texttt{True} (Appendix~\ref{app:judge-prompts}).
+This instruction does not establish that judges detect every such failure.
+When a candidate shares the reference's interface, automated proof attempts in both implication directions can sometimes establish equivalence with the reference specification~\citep{lahiri2024evaluating,poiroux2025beq}.
+Such attempts do not decide equivalence in general, and a failed attempt does not show inequivalence.
+Across differing representations, these checks need a specified correspondence.
+BEq+ reports both false positives and false negatives relative to human judgments~\citep{poiroux2025beq}.
+We did not benchmark such a tool against the graded reference-coverage ratings studied here.
+A gold reference gives the judge a concrete comparison target, but it does not make the judge immune to strategic manipulation~\citep{robertson2025stepbystep}.
+
+\paragraph{Judge configuration.}
+A judge configuration is $\theta=(\text{model},\text{prompt},\text{harness},n_{\mathrm{repeats}},\text{aggregation})$ with score $J_\theta(x,g)\in[0,1]$.
+Every panel in this paper takes the median over repeated calls.
+Two prompt families render the inputs differently.
+The legacy prompts of our earlier version fill a field labelled ``REFERENCE IMPLEMENTATION'' with the gold file's final theorem block and show the full candidate file.
+The fuller-context prompts of \textsc{VeriBench}'s judge show the complete reference, the task's Python source, and the full candidate.
+The measured task therefore depends on the rendering as well as on the nominal rubric, and a changed rendering requires a new assessment.
+A harness is either one gateway call that carries the prompt bytes, or the Terminus2 agent harness, which receives the same bytes as its task and writes a verdict file from inside a sandbox.
+
+\paragraph{Two levels of agreement.}
+\emph{Artifact-level agreement} is the correlation between one judge's scores and the human ratings over candidate--gold pairs; on the 45 held-out items of Section~\ref{sec:setup} we call it the \emph{criterion}.
+\emph{Judge-level association} is the correlation, across judge configurations, between their artifact-level agreement and a label-free component or index.
+The first says how well one judge tracks the raters; the second says whether the screen orders judges the way the raters would.
+A screen \emph{transfers} when the judge-level association measured on the judges it was selected on persists on judges it was not.

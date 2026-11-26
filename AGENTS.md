@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/cert-judge/blob/main/AGENTS.md>
 
-**TLDR:** Load the shared rules and preserve the project's scientific protocols. Human-rating forms and exports use verified names first and stable IDs second.
+**TLDR:** Load the shared rules and preserve the project's scientific protocols. New work is an experiment folder on `main`, shared by every agent. Human-rating forms and exports use verified names first and stable IDs second.
 
 ## Human-rating identity and collection — Brando, 11-11-2026
 
@@ -12,9 +12,15 @@
 - Track the authorized named rating artifacts in that collection; do not anonymize names, ignore the files or move them into `private/` by default. Keep original imports, source receipts and delivered archives unchanged; make schema revisions as new versions. Copies are not new observations. Preserve consent, provenance, prior exposure and sealed splits; credentials, private correspondence, consent records and sealed data remain protected.
 - Names are roster metadata, not ratings. Never invent scores, rationales, assistance disclosures or human attestations to fill gaps. Collection changes do not authorize collaborator emails or change frozen evaluation protocols.
 
-## Research workflow: no branches
+## Research workflow: experiment folders on `main`
 
-This is a research project. Each experiment lives in its own numbered experiment folder (`experiments/NN_<setup_name>/`). Commit and push straight to `main`. Do not create branches or pull requests. If a leftover branch turns up, merge it into `main` (no force-push) and delete it. If two experiments pick the same number, keep the one already on `main` and renumber the new folder to the next free number, updating its internal references.
+**Prefer a numbered experiment folder on `main` over a separate git branch.** This repository stays one `main` so Cursor, Claude Code, Gemini Antigravity (Agy), Codex, and collaborators see the same tree and build on each other's work. A new experiment is a new folder.
+
+- Put each experiment in `experiments/NN_<setup_name>/`. Register it in `experiments/archive/layout.json` with its current task, and add its row to `experiments/README.md`. If two efforts pick the same number, keep the folder already on `main` and renumber the new folder to the next free number, updating its internal references.
+- Commit and push straight to `main`. Fetch and fast-forward `main` before editing, so another agent's folder is already in your tree. Do not open a branch or a pull request for an experiment, a paper edit, or an agent session.
+- Coordinate with the other agents on this repo, including Gemini Agy. One writer per experiment folder. Read that folder's `README.md` and `CKPT_*.md` before changing it, and put your own run in the next free numbered folder. Name the agent and the date in the folder README. Gemini Agy reads `GEMINI.md`; Claude Code reads `CLAUDE.md`; Cursor reads this file and `.cursor/rules/experiment-folders-on-main.mdc`. All three state this same rule.
+- When a leftover branch turns up, bring its unique files onto `main` and keep them. A branch that is a separate experiment becomes `experiments/NN_<setup_name>/`. A branch that is an interim paper draft becomes `paper_latex/interim_drafts/<date>_<name>/` and leaves the active manuscript `paper_latex/ICLR_2027_submission/` in place. Live experiment folders and the active manuscript stay as they are when the branch would move or rewrite them. After the files are on `origin/main`, delete the leftover branch. No force-push.
+- The 10-13-2026 framing draft is the worked example. It lives at `paper_latex/interim_drafts/framing_10-13-2026/` (copy of `paper/framing-10-13-2026` at `5ac4c03`, closed pull request 64). It is an interim draft. It is not the paper's claims, and it does not replace the active manuscript. The same branch also archived experiments 39, 41, 42 and 43; that move stays off `main` while those folders are still the live paths later experiments use.
 
 ## Global Agent Rules (load first, every session)
 
@@ -48,7 +54,7 @@ Send from whichever of Brando's accounts you are signed in to (mail connector, e
 
 ## Paper plan: more human data, not weaker claims (Brando, 10-13-2026)
 
-The cert-judge paper is being made as strong as possible, and its known gap is human data: a fresh, pre-registered human rating round (shared with VeriBench's set-N round, experiment 102) that tests the judge-trust index on new items and new judges is being prepared and run. Never "rewrite the paper's claims" to fit the current evidence, retire a claim, or pick a new framing on your own because an intermediate experiment (39, 41, 42, 43, 44, 45) came out weak or null: those results feed the next human-data round and the limitations section, and the framing is Brando's call after that round. A result-consistent interim draft may be prepared on a branch, labelled as such and left unmerged. Brando, 10-13-2026: "we are not 'rewriting the paper's claims'. We are trying to make the paper as high quality as possible. I thought the issue was that we need more human data, which is what we are preparing and having people go through."
+The cert-judge paper is being made as strong as possible, and its known gap is human data: a fresh, pre-registered human rating round (shared with VeriBench's set-N round, experiment 102) that tests the judge-trust index on new items and new judges is being prepared and run. Never "rewrite the paper's claims" to fit the current evidence, retire a claim, or pick a new framing on your own because an intermediate experiment (39, 41, 42, 43, 44, 45) came out weak or null: those results feed the next human-data round and the limitations section, and the framing is Brando's call after that round. A result-consistent interim draft goes in `paper_latex/interim_drafts/<date>_<name>/`, labelled as a draft, and stays out of the active manuscript until Brando decides the framing after the human-data round. The 10-13-2026 draft is `paper_latex/interim_drafts/framing_10-13-2026/`. Brando, 10-13-2026: "we are not 'rewriting the paper's claims'. We are trying to make the paper as high quality as possible. I thought the issue was that we need more human data, which is what we are preparing and having people go through."
 
 ## How we choose (learn) a judge: the formulations (Brando, 11-09-2026)
 

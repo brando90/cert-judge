@@ -1,0 +1,113 @@
+% ICLR 2027 submission. Started 2026-09-17 as a port of the accepted ICML 2026 DL4C paper
+% (paper_latex/ICML_2026_DL4C/main.tex) and since rewritten for ICLR: see git log and
+% experiments/31_final_iclr_paper_writing/notes.md for the decisions. Prose is one sentence per line.
+% 10-13-2026: reframed around the held-out-judge transfer study (experiments 39, 41, 42, 43, 44) for a TMLR submission;
+% the framing and every number's source are in docs/PAPER_FRAMING_DECISION_10-13-2026.md. The ICLR style file is kept
+% until the TMLR conversion at submission time (CHANGES.md).
+\documentclass{article}
+
+% ICLR 2027 style file: single column; prints "Anonymous authors / Paper under
+% double-blind review" unless \iclrfinalcopy is enabled below.
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{iclr2027_conference,times}
+
+% Encoding & typography
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % (only if using pdfLaTeX; not needed for XeLaTeX/LuaLaTeX)
+\usepackage{microtype}
+
+% Colors (options passed above, before the style file loads xcolor)
+\usepackage{xcolor}
+
+% Math & symbols
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools,bm}
+\usepackage{nicefrac,xfrac}
+
+% Tables & figures
+\usepackage{graphicx}
+\usepackage{subcaption} % loads caption
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{rotating}
+\usepackage{arydshln}
+
+% Code
+\usepackage{listings}
+
+% TikZ & icons
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Bibliography: natbib is loaded by iclr2027_conference.sty.
+% Hyperlinks (load last)
+\usepackage{url}
+\usepackage{hyperref}
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+
+% Listings
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  frame=single,
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  keepspaces=true
+}
+
+\lstdefinestyle{promptstyle}{
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=none,
+  numbers=none,
+  xleftmargin=0pt,
+  xrightmargin=0pt,
+  aboveskip=0.4\baselineskip,
+  belowskip=0.4\baselineskip
+}
+
+\title{Checking the Checks: Behavioral Screens\\ for LLM Judges of Formal Specifications}
+
+\author{Anonymous authors}
+
+\begin{document}
+
+\maketitle
+
+\input{00_abstract}
+\input{01_introduction}
+\input{02_related_work}
+\input{03_problem_setup}
+\input{04_property_protocol}
+\input{05_experiments}
+\input{06_limitations}
+\input{07_conclusion}
+\input{08_statements}
+% References
+\bibliographystyle{iclr2027_conference}
+\bibliography{refs} % expects refs.bib in the same directory
+
+
+\clearpage
+\appendix
+\input{995_appendix_judge_prompts}
+\input{998_appendix_index_definitions}
+\input{999_appendix_validation_set_72_pairs}
+\input{990_appendix_additional_results}
+\input{997_appendix_human_alignment}
+\input{996_appendix_judge_cert_plots}
+\input{994_appendix_tests_as_ground_theorems}
+\end{document}
