@@ -1,5 +1,7 @@
 # PR 64 (interim paper-framing draft): record kept in the repo, 11-11-2026
 
+**Doc link:** <https://github.com/brando90/cert-judge/blob/main/docs/PR64_INTERIM_FRAMING_DRAFT_RECORD_11-11-2026.md>
+
 **TLDR:** PR 64 was closed on 11-11-2026, not merged (Brando, 11-11-2026: no open pull requests or issues in this repo). The paper framing is still Brando's call after the new human rating round. The interim draft now also lives on `main` at `paper_latex/interim_drafts/framing_10-13-2026/` (copy of branch `paper/framing-10-13-2026` at `5ac4c03`, added 11-26-2026). The decision record is `docs/PAPER_FRAMING_DECISION_10-13-2026.md`, and the PR text is below. The active manuscript is still `paper_latex/ICLR_2027_submission/`.
 
 ## Where each part of the PR lives
@@ -9,7 +11,7 @@
 - Archive of experiments 39, 41, 42 and 43 into `experiments/archive/`: branch commit c9963c1. It still conflicts with `main`. Those four folders remain the live paths under `experiments/`, because later experiments import them there and `experiments/archive/layout.json` still lists them as active. The move stays off `main` until they are ready to archive.
 - Master checkpoint update: branch commit 24d1947, saved beside the draft as `paper_latex/interim_drafts/framing_10-13-2026/CKPT_MASTER_branch_5ac4c03.md`. The live checkpoint `experiments/CKPT_MASTER_tmux1_cc_6043a46f.md` is unchanged.
 
-11-26-2026: the branch ref can be deleted once this folder is on `origin/main`. Until then it remains the commit-history pointer. No force-push.
+11-26-2026: verified byte-for-byte parity of all 73 copied manuscript files plus `CKPT_MASTER_branch_5ac4c03.md` (75 files total including the newly added `README.md`) in `paper_latex/interim_drafts/framing_10-13-2026/` against `5ac4c03`; remote branches `paper/framing-10-13-2026` and merged PR #89 branch `cursor/merge-branches-experiment-folders-d31c` are deleted on `origin`, leaving `main` as the sole remote branch. No force-push.
 
 ## The PR text, as it stood (10-13-2026)
 
