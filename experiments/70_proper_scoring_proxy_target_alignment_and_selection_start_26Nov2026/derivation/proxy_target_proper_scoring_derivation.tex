@@ -1,0 +1,135 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+
+\title{Mathematical Derivation: Proper-Scoring Proxy-vs-Target Alignment and Label-Free Judge Selection}
+\author{Brando Miranda \\ \small (Experiment 70, \texttt{cert-judge}, 11-26-2026)}
+\date{November 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formalize why evaluating a label-free behavioral proxy $P(j)$ for theorem-proving Large Language Model (LLM) judges via rank correlation with human rank correlation---$\rho_s(P, \rho_s(s_j, H))$---is mathematically blind to scale drift, harshness bias, distributional shape, and adversarial control hijacking. Building on proper scoring theory and the \texttt{judges-dont-need-psychometrics-or-corr} framework, we derive: (1) exact monotone invariance of the double-correlation objective; (2) the strict proper-scoring decomposition of Ranked Probability Score (\texttt{RPS}), Cross-Entropy (\texttt{CE}), and Brier score over discrete human ratings $r \in \{0,\dots,5\}$; (3) the strict properness of our label-free binary and ordinal behavioral probe proxies ($P_{\mathrm{e42\_fullcov\_brier}}$, $P_{\mathrm{e39\_probe\_rps}}$, $P_{\mathrm{dsti\_proper}}$) against Lean-verified semantic ground truth; and (4) the decision-theoretic regret, utility-weighted accuracy ($\mathrm{UWA}$), and held-out Beat-Constant Meta-Brier criteria for proxy-vs-target similarity.
+\end{abstract}
+
+\section{Scope, Symbols, and Metric Limits}
+
+Let $i \in \{1,\dots,N\}$ index candidate Lean artifacts, each paired with a source task and gold reference, and let $j \in \mathcal{J}$ index judge configurations (model $\times$ prompt $\times$ harness). For artifact $i$, human raters provide $R_i \ge 1$ integer ratings $r_{i,1}, \dots, r_{i,R_i} \in \{0,1,2,3,4,5\}$, with empirical distribution $\hat p_i(c) = \frac{1}{R_i}\sum_{u=1}^{R_i}\mathbf{1}\{r_{i,u}=c\}$ and empirical cumulative distribution $F_{\hat p_i}(k) = \sum_{c=0}^k \hat p_i(c)$.
+
+\begin{center}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lll>{\raggedright\arraybackslash}p{6.1cm}@{}}
+\toprule
+Symbol / Metric & Domain / Range & Optimal Value & Key Limit / Caveat \\
+\midrule
+$q_i \in \Delta^5$ & Simplex over $\{0..5\}$ & $p^*(r \mid x_i)$ & Binned repeats need $\alpha$-smoothing or calibration \\
+$\mathrm{RPS}_i(q_i)$ & $[0, 1]$, lower better & Rater noise floor & Cumulative mass distance; ignores tail log-blowup \\
+$\mathrm{CE}_i(q_i)$ & $[0, \infty)$ nats, lower better & $H(p^*_i)$ & Sensitive to small $q_i(r)$ ($10^{-12}$ floor) \\
+$\mathrm{Brier}_i(q_i)$ & $[0, 2]$, lower better & $1 - \|p^*_i\|_2^2$ & Proper for full 6-class distribution, unordered \\
+$\mathrm{TVD}_i(q_i)$ & $[0, 1]$, lower better & $0$ (vs $p^*_i$) & Plug-in $\hat p_i$ carries finite-$R_i$ upward bias \\
+$P_{\mathrm{e42\_fullcov\_brier}}(j)$ & $[0, 1]$, higher better & $1.000$ ($m\to\infty$) & Binary full-coverage Brier ($0.9844$ at $m=3$ due to $\alpha=0.5$) \\
+$P_{\mathrm{e39\_fullcov\_brier}}(j)$ & $[0, 1]$, higher better & $1.000$ ($m\to\infty$) & Deletion only; finite-$m$ ceiling $0.9609$ ($m=3$ ident, $m=1$ leaf) \\
+$\mathrm{Regret}_T(P)$ & $[0, \infty)$, lower better & $0.000$ & Label-free tie-averaging over $\arg\max_j P(j)$ \\
+$\mathrm{UWA}_T(P)$ & $[0, 1]$, higher better & $1.000$ & Utility-weighted pairwise accuracy ($0.5$ random) \\
+$\mathrm{MetaBrier}(P)$ & $[0, 1]$, lower better & $0.000$ & Needs held-out train$\to$test split over judge families \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Double-Correlation Invariance and Failure Modes}
+
+In early proxy validation, a judge configuration $j$ emits scalar scores $s_j(x_i) \in [0, 1]$ and is scored against mean human ratings $\bar r_i = \frac{1}{R_i}\sum_u r_{i,u}$ by Spearman correlation $\rho_s(s_j, \bar r)$. A behavioral proxy $P(j)$ is then scored by meta-Spearman $\rho_s\bigl(P(j), \rho_s(s_j, \bar r)\bigr)$.
+
+\begin{proposition}[Affine and Monotone Blindness of Double Correlation]
+Let $T_j: \mathbb{R} \to \mathbb{R}$ be any strictly increasing transformation applied independently per judge $j$, and let $\Phi: \mathbb{R} \to \mathbb{R}$ be any strictly increasing transformation of the proxy. Then:
+\begin{enumerate}
+\item Item-level rank order is invariant: $\rho_s(T_j \circ s_j, \bar r) = \rho_s(s_j, \bar r)$ for every $j$.
+\item Meta-level rank order is invariant: $\rho_s(\Phi \circ P, \rho_s(T_j \circ s_j, \bar r)) = \rho_s(P, \rho_s(s_j, \bar r))$.
+\end{enumerate}
+Consequently, replacing a calibrated judge distribution $q_j$ by a harshly shifted scalar $0.1\,s_j$, a two-point collapse, or an overconfident forecast with catastrophic cross-entropy ($\mathrm{CE} \gg \mathrm{CE}_{\mathrm{const}}$) leaves $\rho_s(s_j, \bar r)$ and the meta-Spearman unchanged while raw $\mathrm{RPS}$, $\mathrm{CE}$, $\mathrm{Brier}$, and $\mathrm{ICC}(A,1)$ degrade arbitrarily.
+\end{proposition}
+
+\begin{proof}
+Spearman correlation is Pearson correlation on midranks $\mathrm{rk}(\cdot)$. Since $T_j$ and $\Phi$ are strictly increasing, $\mathrm{rk}(T_j(s_j(x_i))) = \mathrm{rk}(s_j(x_i))$ for all $i$ and $\mathrm{rk}(\Phi(P(j))) = \mathrm{rk}(P(j))$ for all $j$. Invariance of both inner and outer Spearman correlations follows immediately. Meanwhile, for any non-trivial rating distribution, shifting $q_j$ toward $0$ increases the expected cumulative error $\mathbb{E}[(F_{q_j}(k) - \mathbf{1}\{r \le k\})^2]$ and can drive $-\log q_j(r)$ to $-\log(10^{-12}) \approx 27.63$ nats.
+\end{proof}
+
+\section{Proper-Scoring Decomposition for Discrete Judge Forecasts}
+
+\begin{proposition}[Individual-Rating RPS Decomposition]
+For any forecast $q_i \in \Delta^5$ with cumulative distribution $F_{q_i}(k) = \sum_{c=0}^k q_i(c)$ and human ratings $r_{i,1},\dots,r_{i,R_i} \in \{0,\dots,5\}$,
+\begin{align}
+\mathrm{RPS}_i(q_i)
+&= \frac{1}{R_i}\sum_{u=1}^{R_i}\frac{1}{5}\sum_{k=0}^{4}\bigl(F_{q_i}(k) - \mathbf{1}\{r_{i,u}\le k\}\bigr)^2 \nonumber \\
+&= \underbrace{\frac{1}{5}\sum_{k=0}^{4}\bigl(F_{q_i}(k) - F_{\hat p_i}(k)\bigr)^2}_{\text{distributional CDF error } D_{\mathrm{RPS}}(q_i, \hat p_i)}
++ \underbrace{\frac{1}{5}\sum_{k=0}^{4} F_{\hat p_i}(k)\bigl(1 - F_{\hat p_i}(k)\bigr)}_{\text{irreducible rater disagreement}}.
+\end{align}
+Taking expectation over $r \sim p^*(\cdot \mid x_i)$, expected $\mathrm{RPS}$ is uniquely minimized at $q_i = p^*(\cdot \mid x_i)$.
+\end{proposition}
+
+\begin{proof}
+Expanding the square at each threshold $k \in \{0,\dots,4\}$ and noting that $\frac{1}{R_i}\sum_{u=1}^{R_i} \mathbf{1}\{r_{i,u}\le k\} = F_{\hat p_i}(k)$ gives
+\[
+\frac{1}{R_i}\sum_{u=1}^{R_i}\bigl(F_{q_i}(k) - \mathbf{1}\{r_{i,u}\le k\}\bigr)^2
+= F_{q_i}(k)^2 - 2 F_{q_i}(k) F_{\hat p_i}(k) + F_{\hat p_i}(k)
+= \bigl(F_{q_i}(k) - F_{\hat p_i}(k)\bigr)^2 + F_{\hat p_i}(k)\bigl(1 - F_{\hat p_i}(k)\bigr).
+\]
+Averaging over $k=0,\dots,4$ yields the exact identity. In population, $D_{\mathrm{RPS}}(q_i, p^*_i) = 0$ if and only if $F_{q_i}(k) = F_{p^*_i}(k)$ for all $k=0,\dots,4$ (and $F_{q_i}(5)=1$), hence if and only if $q_i = p^*_i$.
+\end{proof}
+
+\section{Proper-Scoring Label-Free Behavioral Proxies}
+
+Rather than scoring only ordinal rank reversals along a deletion ladder ($C_{\mathrm{ms\_gold}}$, where a trivial lexical heuristic such as token overlap or theorem count achieves $1.000$ without understanding semantics), we score the judge's probabilistic forecast directly on Lean-verified behavioral probes $p \in \mathcal{P}$ whose ground-truth full-coverage status $y_{\mathrm{full}}(p) \in \{0,1\}$ is certified by Lean 4 elaboration and implication proofs:
+\begin{itemize}
+\item Positive class ($y_{\mathrm{full}} = 1$): identity golds and Lean-verified declaration-identical formatting edits (\texttt{identity}, \texttt{formatting} in E42; \texttt{ident} in E39).
+\item Negative class ($y_{\mathrm{full}} = 0$): Lean-proved non-equivalent semantic degradations (\texttt{vacuity}, \texttt{weakening}, \texttt{overconstraint} in E42) or missing-spec leaves (\texttt{blank} and fully deleted \texttt{ms\_gold} in E39).
+\end{itemize}
+For repeat scores $s_{p,1},\dots,s_{p,m} \in [0,1]$, define the Laplace-smoothed full-coverage forecast
+\begin{equation}
+\hat q_{\mathrm{full}}(p) = \frac{\sum_{r=1}^m \mathbf{1}\{s_{p,r} \ge 0.999\} + \alpha}{m + 2\alpha} \in (0, 1), \qquad \alpha = 0.5,
+\end{equation}
+and balanced class-mean Brier score
+\begin{equation}
+P_{\mathrm{e42\_fullcov\_brier}}(j) = 1 - \frac{1}{2}\Bigl(\overline{\mathrm{Brier}}_{+}(j) + \overline{\mathrm{Brier}}_{-}(j)\Bigr),
+\end{equation}
+where $\overline{\mathrm{Brier}}_{+} = \frac{1}{2}(\overline{\mathrm{Brier}}_{\mathrm{ident}} + \overline{\mathrm{Brier}}_{\mathrm{fmt}})$ and $\overline{\mathrm{Brier}}_{-} = \frac{1}{3}(\overline{\mathrm{Brier}}_{\mathrm{vac}} + \overline{\mathrm{Brier}}_{\mathrm{weak}} + \overline{\mathrm{Brier}}_{\mathrm{overc}})$, with $\mathrm{Brier}(\hat q, y) = (\hat q - y)^2$.
+
+\begin{theorem}[Properness and Control Rejection of $P_{\mathrm{e42\_fullcov\_brier}}$]
+Under balanced probe priors ($\pi_+ = \pi_- = 1/2$), maximizing $P_{\mathrm{e42\_fullcov\_brier}}$ is equivalent to minimizing binary Brier risk against Lean-verified full-coverage ground truth. Specifically:
+\begin{enumerate}
+\item An oracle judge ($\hat q_{\mathrm{full}} \to 1$ on $y_{\mathrm{full}}=1$, $\hat q_{\mathrm{full}} \to 0$ on $y_{\mathrm{full}}=0$) achieves the unique global maximum ($1 - (\frac{0.5}{m+1})^2$, approaching $1.0$ as $m$ grows).
+\item A degenerate lexical control that scores $1.0$ on identity/formatting AND $1.0$ on semantically weakened or over-constrained probes ($\hat q_{\mathrm{full}} = \frac{m+0.5}{m+1}$ on $y=0$) incurs Brier loss $\ge \frac{2}{3}\bigl(\frac{m+0.5}{m+1}\bigr)^2 \approx 0.510$ on the negative class for $m=3$, bounding $P_{\mathrm{e42\_fullcov\_brier}} \le 0.745$ (strictly below the uninformative uniform forecast $0.750$).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For any binary distribution with $\mathbb{P}(Y=1) = \eta$, $\mathbb{E}[(q - Y)^2] = \eta(1-\eta) + (q - \eta)^2$, uniquely minimized at $q = \eta \in \{0,1\}$ on deterministic Lean-certified probes. Substituting $m=3, \alpha=0.5$ into a control that predicts $1.0$ on \texttt{weakening} and \texttt{overconstraint} (and $0.0$ on \texttt{vacuity}) gives $\hat q_{\mathrm{full}} = 3.5/4 = 0.875$ on \texttt{weakening} and \texttt{overconstraint} ($0.875^2 = 0.765625$ each) and $0.125^2 = 0.015625$ on \texttt{vacuity} and positives, yielding $\overline{\mathrm{Brier}}_{-} = \frac{1}{3}(0.015625 + 2 \times 0.765625) = 0.515625$ and $P_{\mathrm{e42\_fullcov\_brier}} = 1 - \frac{1}{2}(0.015625 + 0.515625) = 0.734375 < 0.750$.
+\end{proof}
+
+\section{Decision-Theoretic Proxy-vs-Target Similarity}
+
+To measure how well a label-free proxy $P(j)$ approximates a human-grounded target risk $T(j)$ (e.g., $\mathrm{ce\_cal\_RPS}(j)$ or $\mathrm{raw\_RPS}(j)$, lower better) without relying solely on rank correlation:
+\begin{enumerate}
+\item \textbf{Label-free Top-1 and Subpool Selection Regret:} Letting $\mathcal{J}^*(P) = \arg\max_{j \in \mathcal{J}} P(j)$ (all ties within $10^{-12}$),
+\begin{equation}
+\mathrm{Regret}_T(P; \mathcal{J}) = \frac{1}{|\mathcal{J}^*(P)|}\sum_{j \in \mathcal{J}^*(P)} T(j) - \min_{j \in \mathcal{J}} T(j).
+\end{equation}
+Expected subpool regret averages $\mathrm{Regret}_T(P; S)$ over random subsets $S \subset \mathcal{J}$ of size $m \in \{5, 10\}$.
+\item \textbf{Utility-Weighted Pairwise Decision Accuracy ($\mathrm{UWA}_T$):}
+\begin{equation}
+\mathrm{UWA}_T(P) = \frac{\sum_{j_1 < j_2} |T(j_1) - T(j_2)|\bigl(\mathbf{1}\{\text{correct order}\} + 0.5\,\mathbf{1}\{P(j_1)=P(j_2)\}\bigr)}{\sum_{j_1 < j_2} |T(j_1) - T(j_2)|} \in [0, 1],
+\end{equation}
+which weights swaps proportionally to the actual proper-score risk difference $|T(j_1) - T(j_2)|$ rather than treating near-tied judges equally.
+\item \textbf{Held-Out Beat-Constant Meta-Brier \& Meta-CE:} A 1D logistic model $q_{\mathrm{meta}}(P(j)) = \sigma(\alpha + \beta P(j))$ fit strictly on train/validation judge families predicts $Y_{\mathrm{const}}(j) = \mathbf{1}\{T(j) < T_{\mathrm{CONST}}\}$ on held-out test judge families, evaluated by strictly proper Meta-Brier and Meta-CE against the train base-rate forecast.
+\end{enumerate}
+
+\end{document}

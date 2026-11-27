@@ -1,0 +1,49 @@
+%% title: Proper-scoring proxy-target alignment and behavioral judge selection (11-26-2026)
+%% result-date: 11-26-2026
+%% result-time: 16:24
+%% experiment: 70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026
+%% headline: Proper E42/E39 behavioral proxies fix control hijack (\texttt{C\_ms\_gold} regret 0.1243 raw vs 0.0110) and reach UWA 0.9173 raw / Meta-Brier 0.0549 on held-out test judges (\$0 spend)
+% Result fragment only (compiled inside mega_tech_report.tex). No rater names or personal emails in public repo.
+
+\subsection*{Bottom line}
+Across live VeriBench ratings (\texttt{native\_main}, $N=100$ files, $250$ non-\texttt{A1} ratings, $33/33$ public Sheets unchanged vs commit \texttt{460466d}, \texttt{CONST\_loto RPS} $= 0.0698$, \texttt{CE} $= 0.8716$, \texttt{TVD} $= 0.3636$), \texttt{E39+E42} ($60$ units), \texttt{E60} ($62$ open-weight harvests), \texttt{E58} ($117$ units), and \texttt{E63} ($6$ arms), evaluating proxies against proper-scoring targets via decision-theoretic regret, utility-weighted pairwise accuracy (\texttt{UWA}), and held-out \texttt{Beat-CONST Meta-Brier} eliminates double-correlation bias and control hijacking. On held-out \texttt{test\_llm} ($n=18$), label-free \texttt{P\_e42\_probe\_rps} achieves \texttt{UWA\_RPS} $= 0.8614$ ($95\%$ CI $[0.650, 0.974]$) on \texttt{ce\_cal\_all5\_rps} and $0.9173$ ($[0.742, 0.981]$) on \texttt{raw\_all5\_rps}, and \texttt{P\_e42\_strict\_brier} achieves held-out \texttt{Beat-CONST Meta-Brier} $= 0.0549$ (vs base rate $0.256$, $\mathrm{AUROC} = 0.883$) and $0.0453$ (vs $0.251$) with controls added. On \texttt{E60 seed1} ($n=36$), \texttt{P\_e39\_fullcov\_brier} beats \texttt{C\_ms\_gold} on both \texttt{ce\_cal\_all5\_rps} (\texttt{UWA} $0.7686$ vs $0.6755$, Spearman $0.5271$ $[0.258, 0.715]$ $p=0.0016$ vs $0.3073$ $p=0.0688$) and \texttt{raw\_all5\_rps} (\texttt{UWA} $0.8514$ vs $0.6164$).
+
+\subsection*{Results}
+\FitWidth{\begin{tabular}{@{}l l r r r r r r r@{}}
+\toprule
+Subset & Proxy & $n$ & Top-1 Regret & Sub-10 Regret & \texttt{UWA\_RPS} & \texttt{Meta-Brier} (base) & \texttt{Meta-RMSE} (const) & Spearman \\ \midrule
+\texttt{test\_llm} (\texttt{ce\_cal}) & \texttt{TI\_var\_trainnorm} & 18 & 0.0392 & 0.0321 & 0.3362 & 0.1154 (0.116) & 0.0206 (0.021) & -0.2554 \\
+\texttt{test\_llm} (\texttt{ce\_cal}) & \texttt{C\_ms\_gold} & 16 & 0.0071 & 0.0111 & 0.8264 & 0.0865 (0.123) & 0.0142 (0.021) & 0.5887 \\
+\texttt{test\_llm} (\texttt{ce\_cal}) & \texttt{P\_e42\_fullcov\_brier} & 18 & 0.0202 & 0.0162 & 0.8171 & 0.1106 (0.116) & 0.0134 (0.021) & 0.6020 \\
+\texttt{test\_llm} (\texttt{ce\_cal}) & \texttt{P\_e42\_strict\_brier} & 18 & 0.0146 & 0.0138 & 0.8173 & 0.1133 (0.116) & 0.0139 (0.021) & 0.5600 \\
+\texttt{test\_llm} (\texttt{ce\_cal}) & \texttt{P\_e42\_probe\_rps} & 18 & 0.0084 & 0.0061 & 0.8614 & 0.0994 (0.116) & 0.0162 (0.021) & 0.6388 \\
+\texttt{test\_llm} (\texttt{ce\_cal}) & \texttt{P\_dsti\_proper} & 18 & 0.0202 & 0.0169 & 0.8039 & 0.1215 (0.116) & 0.0159 (0.021) & 0.5607 \\
+\texttt{common\_support} (\texttt{ce\_cal}) & \texttt{P\_e42\_probe\_rps} & 16 & 0.0071 & 0.0074 & 0.8531 & 0.1092 (0.123) & 0.0162 (0.021) & 0.6118 \\
+\texttt{common\_support} (\texttt{ce\_cal}) & \texttt{P\_dsti\_gated} & 16 & 0.0379 & 0.0237 & 0.8022 & 0.0963 (0.123) & 0.0124 (0.021) & 0.5971 \\
+\texttt{test\_llm} (\texttt{raw}) & \texttt{C\_ms\_gold} & 16 & 0.0110 & 0.0153 & 0.8307 & 0.0673 (0.254) & 0.0392 (0.054) & 0.5607 \\
+\texttt{test\_llm} (\texttt{raw}) & \texttt{P\_e42\_strict\_brier} & 18 & 0.0183 & 0.0170 & 0.8810 & 0.0549 (0.256) & 0.0311 (0.056) & 0.5725 \\
+\texttt{test\_llm} (\texttt{raw}) & \texttt{P\_e42\_probe\_rps} & 18 & 0.0110 & 0.0084 & 0.9173 & 0.1286 (0.256) & 0.0329 (0.056) & 0.6656 \\
+\texttt{test\_llm+ctrl} (\texttt{ce\_cal}) & \texttt{C\_ms\_gold} & 20 & 0.0390 & 0.0353 & 0.6795 & 0.1129 (0.162) & 0.0204 (0.020) & 0.3789 \\
+\texttt{test\_llm+ctrl} (\texttt{ce\_cal}) & \texttt{P\_e42\_probe\_rps} & 22 & 0.0084 & 0.0068 & 0.8847 & 0.1263 (0.153) & 0.0183 (0.021) & 0.7173 \\
+\texttt{test\_llm+ctrl} (\texttt{raw}) & \texttt{C\_ms\_gold} & 20 & 0.1243 & 0.1106 & 0.5637 & 0.1597 (0.248) & 0.0773 (0.056) & 0.1379 \\
+\texttt{test\_llm+ctrl} (\texttt{raw}) & \texttt{P\_e42\_strict\_brier} & 22 & 0.0183 & 0.0166 & 0.9049 & 0.0453 (0.251) & 0.0486 (0.057) & 0.7169 \\
+\texttt{e60\_seed1\_36} (\texttt{raw}) & \texttt{C\_ms\_gold} & 36 & 0.0695 & 0.0297 & 0.6164 & {---} & {---} & 0.3344 \\
+\texttt{e60\_seed1\_36} (\texttt{raw}) & \texttt{P\_e39\_fullcov\_brier} & 36 & 0.0268 & 0.0187 & 0.8514 & {---} & {---} & 0.6969 \\
+\bottomrule
+\end{tabular}}
+
+On live \texttt{native\_main} ($N=100$), \texttt{H2\_astra} (\texttt{LOTO CE-fit RPS} $0.0433$, \texttt{CE} $0.6564$, \texttt{TVD} $0.2771$, $p=0.0005$ vs \texttt{CONST} $0.0698$), \texttt{H2\_opus} ($0.0440$, \texttt{CE} $0.6712$, \texttt{TVD} $0.2959$, $p=0.0005$), and \texttt{H3\_astra\_native\_probs} (\texttt{raw RPS} $0.0414$, \texttt{CE} $0.7652$, \texttt{TVD} $0.2246$) all beat \texttt{CONST\_loto}, whereas \texttt{Exp 67} \texttt{P8\_STRICT\_B} runs (\texttt{raw RPS} $0.1263$--$0.2428$) fail \texttt{CONST}. All three pipeline parity checks against \texttt{Exp 68} (\texttt{study\_b} $0.0$, \texttt{study\_a E63} $0.0$) and \texttt{Exp 62} (\texttt{C\_ms\_gold} $2.22 \times 10^{-16}$) pass.
+
+\subsection*{Caveats}
+\begin{itemize}
+  \item \texttt{ctl|editdist} achieves \texttt{P\_e42\_fullcov\_brier} $= 0.8195$ (above the pre-registered $0.78$ bound) because edit similarity rejects every modified defective file; Top-1 LLM selection ($0.9553$--$0.9844$) and formatting-aware \texttt{P\_e42\_disc} separate real judges.
+  \item In the zero-leakage head-to-head (\texttt{38} \texttt{train+val} LLMs), \texttt{Arm B} (\texttt{Meta-Proper-RPS}) picked \texttt{P\_dsti\_gated}, which missed \texttt{qwen36|H2}/\texttt{R4} and lost out-of-sample on \texttt{test\_llm} to \texttt{Arm A}'s \texttt{P\_e42\_strict\_brier} (\texttt{Top-1} $0.0379$ vs $0.0146$, \texttt{Sub-10} $0.0237$ vs $0.0138$). With $\alpha = 0.5$, finite-$m$ ceilings are $0.9844$ (\texttt{P\_e42\_fullcov\_brier}) and $0.9609$ (\texttt{P\_e39\_fullcov\_brier}).
+  \item Live \texttt{native\_main} ($250$ non-\texttt{A1} ratings) has a $74.0\%$ score-5 ceiling ($185/250$); Google Drive and Gmail MCP connectors returned \texttt{Unauthorized: rejected by transport} (companion Doc staged locally).
+  \item Fresh paid judge probes remain paused under the \texttt{10-15-2026} Valkyrie spending pause; \texttt{claude-opus-4-7|P8\_STRICT\_B} maps to same-family \texttt{opus55x|P4}.
+\end{itemize}
+
+\subsection*{Appendix: methods, harness and model}
+\begin{itemize}
+  \item CPU-only analysis ($0$ API calls, Python 3.11; \texttt{no internet} for cached harvests, read-only public Google Sheet CSV check for Study 1, \texttt{no DT applicable}); zero rater names, sheet IDs, or secrets in repo.
+  \item \texttt{test\_llm} ($n \le 18$) and \texttt{test\_llm+ctrl} ($n \le 22$) supervised meta-calibrators fit strictly on $38$ \texttt{train+val} LLMs (\texttt{seed=69}); see \texttt{results.md}, \texttt{GDOC\_COMPANION\_11-26-2026.md}, and \texttt{derivation/proxy\_target\_proper\_scoring\_derivation.pdf}.
+\end{itemize}
