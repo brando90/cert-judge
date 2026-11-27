@@ -1,0 +1,56 @@
+{
+  "dry_run": false,
+  "arms": {
+    "snap_qwen3_8b": {
+      "status": "MEASURED",
+      "chosen": {
+        "rps_4": "ce_map",
+        "ce_4": "ce_map",
+        "pearson_4": "ce_map",
+        "rps_3": "const",
+        "ce_3": "const",
+        "pearson_3": "native"
+      },
+      "rps3_minus_rps4": {
+        "diff": 0.0022515562745570056,
+        "lo": -0.0036739655645922904,
+        "hi": 0.007979793505814426,
+        "wins": false,
+        "selected_a": "const",
+        "selected_b": "ce_map",
+        "test_rps_a": 0.05200967702169625,
+        "test_rps_b": 0.04975812074713924
+      },
+      "ce3_minus_ce4": {
+        "diff": 0.0022515562745570056,
+        "lo": -0.003571277826040689,
+        "hi": 0.0076531251727262745,
+        "wins": false,
+        "selected_a": "const",
+        "selected_b": "ce_map",
+        "test_rps_a": 0.05200967702169625,
+        "test_rps_b": 0.04975812074713924
+      },
+      "rps3_minus_pearson3": {
+        "diff": -0.26046692114104747,
+        "lo": -0.32734007879425897,
+        "hi": -0.18586539835083998,
+        "wins": true,
+        "selected_a": "const",
+        "selected_b": "native",
+        "test_rps_a": 0.05200967702169625,
+        "test_rps_b": 0.3124765981627437
+      },
+      "rps4_minus_pearson4": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wins": false,
+        "selected_a": "ce_map",
+        "selected_b": "ce_map",
+        "test_rps_a": 0.04975812074713924,
+        "test_rps_b": 0.04975812074713924
+      }
+    }
+  }
+}

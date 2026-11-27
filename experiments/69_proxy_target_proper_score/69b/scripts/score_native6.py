@@ -42,14 +42,20 @@ def pack_prompts(items: list[dict], packet: Path | None) -> list[dict]:
 
 
 def openai_one(base: str, key: str, model: str, system: str, user: str) -> tuple[list[tuple[str, float]], dict]:
-    body = json.dumps({
+    req_obj = {
         "model": model,
         "temperature": 0,
-        "max_tokens": 1,
         "logprobs": True,
-        "top_logprobs": 10,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
-    }).encode()
+    }
+    if model.startswith("gpt-5"):
+        req_obj["max_completion_tokens"] = 16
+        req_obj["reasoning_effort"] = "none"
+        req_obj["top_logprobs"] = 5
+    else:
+        req_obj["max_tokens"] = 1
+        req_obj["top_logprobs"] = 10
+    body = json.dumps(req_obj).encode()
     req = urllib.request.Request(
         base.rstrip("/") + "/chat/completions",
         data=body,

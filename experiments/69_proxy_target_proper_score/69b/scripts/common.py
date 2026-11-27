@@ -103,7 +103,7 @@ def digit_probs_from_top(pairs: list[tuple[str, float]]) -> tuple[np.ndarray | N
     mass = np.zeros(6, dtype=float)
     for token, logp in pairs:
         dig = token.strip()
-        if dig in "012345":
+        if len(dig) == 1 and dig in "012345":
             mass[int(dig)] += np.exp(logp)
     total = float(mass.sum())
     if total <= 0:
