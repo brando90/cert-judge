@@ -1,0 +1,63 @@
+{
+ "experiment": "70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026",
+ "date": "11-26-2026",
+ "mega_qa_mode": "3-stage sequential agy (gemini-pro-orchestrator -> gemini-4-carbon-high -> gemini-pro-orchestrator fresh context)",
+ "missing_company_diversity": true,
+ "missing_company_diversity_note": "All 3 QA reviewers ran on Google-family models via included Antigravity subscription (zero OpenAI/Anthropic external QA spend); disclosed explicitly.",
+ "qa_base_initial": "f6047849853e65fd533a6e5df2416d6a9d9447d6",
+ "qa_base_rebased": "3755590e19f38012da111d0d343bd465c5b0566b",
+ "stages": [
+  {
+   "stage": 1,
+   "role": "orchestrator_initial_audit",
+   "model": "gemini-pro-orchestrator",
+   "commit_audited": "80a15229edb9c68bed489b102c1ee938e0f54406 (pre-rebase local commit; later cleanly squashed onto 3755590)",
+   "log_file": "results/qa_stage1_orchestrator_carbon_11-26-2026.txt",
+   "verdict": "NEEDS_FIX",
+   "findings": {
+    "blocker": 1,
+    "major": 4,
+    "minor": 6
+   },
+   "disposition": "All resolved before Stage 2 (commit 9d10b1e): removed participant name, email domains, and Sheet URL from run_exp70.py/test_exp70.py; fixed Study 3 [0.258, 0.715] CI; aligned all JSON<->MD<->LaTeX rounding; added common_support_test_llm & negative head-to-head finding to LaTeX; added calibrated_auroc; normalized LF CSVs; fixed fig1/fig2 labels; documented finite-m ceiling."
+  },
+  {
+   "stage": 2,
+   "role": "independent_high_reviewer",
+   "model": "gemini-4-carbon-high",
+   "commit_audited": "9d10b1e0a7dd9108be019ba6d86db70b88b9047b (preceded by one 600s print timeout retry succeeded at 1200s)",
+   "log_file": "results/qa_stage2_carbon_high_11-26-2026.txt",
+   "verdict": "NEEDS_FIX",
+   "findings": {
+    "blocker": 2,
+    "major": 0,
+    "minor": 5
+   },
+   "disposition": "All resolved in clean squashed commit e643cef3 on top of origin/main 3755590 (coordination rebase with Cursor's 69_proxy_target_proper_score -> renumbered to Exp 70): redacted quoted T30 ID in Stage 1 log, expanded privacy test to *.txt & latex/**/*.tex & manifest IDs, squashed pre-rebase local commits cleanly onto 3755590 (0 PII across git diff origin/main..HEAD), exported beat_const_calibrated_auroc to CSV, enforced strict-subset coverage guard in proxy_metrics.py, fixed brando90 URL, documented Exp 67 247-rating interim provenance & common_support non-PTI_v0 support."
+  },
+  {
+   "stage": 3,
+   "role": "orchestrator_fresh_context_signoff",
+   "model": "gemini-pro-orchestrator",
+   "commit_audited": "e643cef3d21b7359fa4ce70dbd5faeade0c322cf",
+   "log_file": "results/qa_stage3_orchestrator_carbon_fresh_11-26-2026.txt",
+   "verdict": "PASS",
+   "findings": {
+    "blocker": 0,
+    "major": 0,
+    "minor": 2
+   },
+   "disposition": "VERDICT: PASS. Fixed Minor #1 stale inline comment in run_exp70.py:885 (247-rating 11-24-2026 interim snapshot); Minor #2 (generated '1 results' macro in mega_tech_report.tex:8) left as standard build_mega_report.py template text."
+  }
+ ],
+ "deterministic_checks_final": {
+  "unittest_exp70": "6/6 OK",
+  "experiment_layout_check": "Layout OK: 17 active experiments",
+  "json_csv_md_latex_parity": "130/130 decimal tokens (>=3dp) matched results.md; 0 CSV/MD/LaTeX mismatches",
+  "git_diff_origin_main_privacy_scan": "PASSED (0 non-A1 names, 0 emails, 0 sheet IDs, 0 API keys/secrets)",
+  "pdfs_built": [
+   "experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/derivation/proxy_target_proper_scoring_derivation.pdf",
+   "latex/mega_tech_report.pdf"
+  ]
+ }
+}

@@ -21,3 +21,4 @@ Date: 11-26-2026
 - Code & tests: `experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/{scripts/proxy_metrics.py,scripts/run_exp70.py,tests/test_exp70.py}`.
 - Mathematical derivation PDF: `derivation/proxy_target_proper_scoring_derivation.pdf`.
 - Mega Tech Report: `~/cert-judge/latex/mega_tech_report.pdf`.
+- 3-stage `agy` Mega QA (`PASS`, `missing_company_diversity: true`): `results/MEGA_QA_RECEIPT_11-26-2026.json`.

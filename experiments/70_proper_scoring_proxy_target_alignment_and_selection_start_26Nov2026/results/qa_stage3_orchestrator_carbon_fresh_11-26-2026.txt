@@ -1,0 +1,62 @@
+# Stage 3 Fresh-Context Mega QA Sign-Off — `3755590e..e643cef3` (`origin/main..HEAD`)
+
+**Reviewer:** Gemini Pro Orchestrator (Stage 3 Fresh-Context Read-Only Sign-Off; `0` files modified)
+**Commit audited:** `e643cef3d21b7359fa4ce70dbd5faeade0c322cf` on top of `3755590e19f38012da111d0d343bd465c5b0566b` (`1` squashed commit; `33` changed files strictly within owned paths; `0` touches to `experiments/69_proxy_target_proper_score`).
+
+---
+
+## BLOCKER
+
+None (`0` blockers).
+
+---
+
+## MAJOR
+
+None (`0` major issues).
+
+---
+
+## MINOR
+
+1. **Stale inline code comment in `run_exp70.py` (`250` vs `247` interim ratings)**
+   - [run_exp70.py:885](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/scripts/run_exp70.py#L885) still has the inline comment `# Read Exp 67 interim P8_STRICT_B rows on the same 100 items (250 ratings)`, whereas [results.md:155](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results.md#L155) accurately records the `11-24-2026` `247`-rating interim snapshot provenance (`prior to V04's 3 ratings in 460466d`; `CONST_loto` Ranked Probability Score (`RPS`) rounds to `0.0698` on both). Non-blocking code-comment nit.
+2. **Singular/plural header template in `mega_tech_report.tex`**
+   - [mega_tech_report.tex:8](file:///Users/brandomiranda/cert-judge/latex/mega_tech_report.tex#L8) renders `Built 11-26-2026 (1 results)` on page 1 of [mega_tech_report.pdf](file:///Users/brandomiranda/cert-judge/latex/mega_tech_report.pdf). Standard generated macro text; non-blocking.
+
+---
+
+## INFO (Independently Verified Clean)
+
+- **Stage 2 Privacy & Commit-History BLOCKERs Resolved:**
+  - `git rev-list 3755590..e643cef` confirms a single clean squashed commit (`e643cef3d21b7359fa4ce70dbd5faeade0c322cf`) with no leftover unpushed PII commits.
+  - Full `git diff 3755590..e643cef` (file contents across all `33` owned files) plus extracted text of both compiled Portable Document Format (`PDF`) files contain **zero** non-author (`A1`) participant names (cross-checked against `109` dynamic roster tokens from sibling `trustworthy-theorem-judges` Experiment 09), **zero** personal emails (`<REDACTED_AUTHOR_EMAIL>` appears only in the Git commit `Author:` header), **zero** Google Spreadsheet IDs outside `<REDACTED_SHEET_ID>` (cross-checked against `46` manifest Sheet IDs), and **zero** Application Programming Interface (`API`) keys or secrets.
+  - [test_exp70.py:141-177](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/tests/test_exp70.py#L141-L177) scans `*.md`, `scripts/*.py`, `tests/*.py`, `derivation/*.tex`, `results/*.json`, `results/*.csv`, `results/*.txt`, and `latex/**/*.tex`, flags unredacted `spreadsheets/d/` IDs, and dynamically loads `RAW_MANIFEST.json` roster names and `spreadsheet_id`s.
+- **Complete 69 → 70 Renumbering & Scope Discipline:**
+  - Verified across [PROTOCOL.md](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/PROTOCOL.md), [README.md](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/README.md), [results.md](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results.md), [RESULTS_proper_scoring_proxy_target_11-26-2026.md](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/RESULTS_proper_scoring_proxy_target_11-26-2026.md), [GDOC_COMPANION_11-26-2026.md](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/GDOC_COMPANION_11-26-2026.md), [run_exp70.py](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/scripts/run_exp70.py), [test_exp70.py](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/tests/test_exp70.py), [70_proper_scoring_proxy_target_alignment.tex](file:///Users/brandomiranda/cert-judge/latex/results/70_proper_scoring_proxy_target_alignment.tex), [mega_results.tex](file:///Users/brandomiranda/cert-judge/latex/mega_results.tex), [proxy_target_proper_scoring_derivation.pdf](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/derivation/proxy_target_proper_scoring_derivation.pdf), [mega_tech_report.pdf](file:///Users/brandomiranda/cert-judge/latex/mega_tech_report.pdf), [README.md](file:///Users/brandomiranda/cert-judge/README.md), [experiments/README.md](file:///Users/brandomiranda/cert-judge/experiments/README.md), and [layout.json](file:///Users/brandomiranda/cert-judge/experiments/archive/layout.json). Visual inspection of [fig1](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/figures/fig1_proxy_vs_proper_target_e39_e42.png), [fig2](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/figures/fig2_meta_metrics_comparison_and_regret.png), and [fig3](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/figures/fig3_native_main_100files_bridge.png) confirms `Experiment 70` titles and clean label placement. Only intentional `69` references remain (renumbering provenance, frozen `seed=69`, `69_proxy_target_proper_score` cross-references, and archival Stage 1/2 QA logs).
+- **Stage 2 MINOR Fixes Verified:**
+  - [study2_meta_comparison.csv](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results/study2_meta_comparison.csv) exports `beat_const_calibrated_auroc` (`736` non-empty rows, `19` negative-slope divergences from raw Area Under the Receiver Operating Characteristic Curve (`AUROC`), `0` mismatches vs JSON).
+  - [proxy_metrics.py:192-262](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/scripts/proxy_metrics.py#L192-L262) enforces `min(strict_cov_by_fam.values()) + 1e-9 >= coverage_min` for `P_e42_strict_brier` (verified directly: full weakening coverage `0.80` yields `P_e42_fullcov_brier = 0.9375`, while strict weakening coverage `0.00` returns `P_e42_strict_brier = None`).
+  - `common_support_test_llm` (`n=16` non-`PTI_v0` common support) is documented in [run_exp70.py:528](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/scripts/run_exp70.py#L528) and [results.md:73](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results.md#L73); Exp 67 `247`-rating interim provenance is documented in [results.md:155](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results.md#L155); and [RESULTS_proper_scoring_proxy_target_11-26-2026.md:5](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/RESULTS_proper_scoring_proxy_target_11-26-2026.md#L5) uses `https://github.com/brando90/cert-judge/...`.
+- **Independent Deterministic Checks & Exact Parity:**
+  - `unittest` on [test_exp70.py](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/tests/test_exp70.py): `6/6 OK` (`1.668s`, Python `3.11.6`, `numpy 2.2.6`, `scipy 1.16.3`).
+  - [experiment_layout.py](file:///Users/brandomiranda/cert-judge/py_src/cert_judge/experiment_layout.py) `--check`: `Layout OK: 17 active experiments; no retired directories at the active level.`
+  - `git diff --check`: exit `0` (`0` whitespace errors); `0` Carriage Return (`CR`)/`CRLF` bytes across all text files.
+  - JavaScript Object Notation (`JSON`) $\leftrightarrow$ Comma-Separated Values (`CSV`) $\leftrightarrow$ Markdown $\leftrightarrow$ LaTeX numeric parity: `0` mismatches across [study2_e39_e42_units.csv](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results/study2_e39_e42_units.csv) (`60` rows), [study2_meta_comparison.csv](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results/study2_meta_comparison.csv) (`980` rows), [study3_e60_meta.csv](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results/study3_e60_meta.csv) (`80` rows), [study4_native_main_bridge.csv](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results/study4_native_main_bridge.csv) (`6` rows), [results.md](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/results.md) Tables 2A (`9`), 2B (`31`), 3 (`11`), and 4 (`9`), and [70_proper_scoring_proxy_target_alignment.tex](file:///Users/brandomiranda/cert-judge/latex/results/70_proper_scoring_proxy_target_alignment.tex) (`17` rows).
+  - Compiled PDFs clean: [proxy_target_proper_scoring_derivation.pdf](file:///Users/brandomiranda/cert-judge/experiments/70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026/derivation/proxy_target_proper_scoring_derivation.pdf) (`4` pages, `315,177` B, `0` undefined refs) and [mega_tech_report.pdf](file:///Users/brandomiranda/cert-judge/latex/mega_tech_report.pdf) (`3` pages, `185,160` B, `0` undefined refs).
+
+**TLDR-end:** [cert-judge: exp70 Stage 3 Mega QA] Commit `e643cef3` resolves all Stage 2 privacy, renumbering (`69 -> 70`), strict-coverage, calibrated-`AUROC`, provenance, and link findings with `6/6` unit tests passing, `Layout OK` (`17` active experiments), `0` JSON/CSV/Markdown/LaTeX parity mismatches, and clean PDFs/figures.
+
+**Snapshot (deterministic verification summary):**
+```text
+Commits in range: ['e643cef3d21b7359fa4ce70dbd5faeade0c322cf']
+Changed files: 33; outside owned scope: []; touches to 69_proxy_target_proper_score: []
+Emails in git diff: []; Sheet IDs (non-redacted): []; API keys: []; CRLF files: []
+Ran 6 tests in 1.668s — OK
+Layout OK: 17 active experiments; no retired directories at the active level.
+CSV parity: units=60 (0 err), s2_meta=980 (0 err, 736 cal_auroc), s3=80 (0 err), s4=6 (0 err)
+MD/LaTeX parity: T2A=9, T2B=31, T3=11, T4=9, LaTeX=17 — 0 mismatches
+PDFs: derivation (4 pp, 0 undef), mega_tech_report (3 pp, 0 undef)
+```
+
+VERDICT: PASS

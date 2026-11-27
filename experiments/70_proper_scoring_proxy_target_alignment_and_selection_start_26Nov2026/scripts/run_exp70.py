@@ -882,7 +882,7 @@ def run_study_4_native_bridge(native_mem: dict, study2_rows: list[dict], rv1_ite
         rp = np.vstack([M.binned_repeats_to_probs([v], alpha=0.5) for v in vec])
         native_evals.append(eval_loto_panel(bname, rp, vec, proxy_ref_cfg=ref_cfg))
 
-    # Read Exp 67 interim P8_STRICT_B rows on the same 100 items (250 ratings) + bridge to E39/E42 proxies
+    # Read Exp 67 interim P8_STRICT_B rows (11-24-2026 247-rating snapshot on the same 100 items) + bridge to E39/E42 proxies
     exp67_b1 = list(csv.DictReader(open(E67_DIR / "results/interim_11-24-2026/judged_B1_per_set_and_pooled.csv")))
     exp67_new_rows = [dict(r) for r in exp67_b1 if r["set"].startswith("new")]
     p8_bridge_map = {

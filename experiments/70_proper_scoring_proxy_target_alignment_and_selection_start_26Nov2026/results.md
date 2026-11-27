@@ -1,6 +1,6 @@
 # Experiment 70 Ledger — Proper-Scoring Proxy-vs-Target Alignment & Selection (`11-26-2026`)
 
-**Status:** DONE (`11-26-2026 16:24 PST`; `$0` API / Valkyrie spend, CPU-only + read-only public CSV Sheet verification; Stage 1 & Stage 2 Mega QA reconciled; Stage 3 fresh-context sign-off next)
+**Status:** DONE (`11-26-2026 17:00 PST`; `$0` API / Valkyrie spend, CPU-only + read-only public CSV Sheet verification; 3-stage Mega QA `PASS` on `e643cef` + final comment nit applied)
 **Renumbering & coordination note (`AGENTS.md`):** Originally pre-registered as Experiment 69 (`seed=69`) and renumbered to `70_proper_scoring_proxy_target_alignment_and_selection_start_26Nov2026` after Cursor's `69_proxy_target_proper_score` landed on `main` (`3755590`); both independently confirm identical `native_main` N250 stats (`250` ratings, `T05–T08` QWK `0.757`, `CONST_loto RPS = 0.0698`).
 **Pre-Exp-70 base on `main` (`QA_BASE`):** `3755590e19f38012da111d0d343bd465c5b0566b` (`seed=69` kept from initial freeze prior to execution)
 
@@ -21,7 +21,7 @@
 | Phase 1 — Freeze Protocol | DONE | Pre-registered `PROTOCOL.md` before execution; renumbered `69` -> `70` on `3755590`; `experiment_layout.py --check` (`17 active experiments`) |
 | Phase 2 — Implement & Unit-Test | DONE | Vectorized `proxy_metrics.py`, leak-free `run_exp70.py`, `6/6` `unittest` cases `OK` (covering O(n^2) UWA parity & repo-wide privacy scan) |
 | Phase 3 — Run All 4 Studies & Derivation | DONE | All 4 parity checks passed (`0.0`, `2.22e-16`, `0.0`); generated `4` JSONs, `4` CSVs, `3` PNGs, and `derivation/proxy_target_proper_scoring_derivation.pdf` (4 pages) |
-| Phase 4 — Reports, Mega Tech Report & Mega QA | IN PROGRESS | Stage 1 (`gemini-pro-orchestrator`) & Stage 2 (`gemini-4-carbon-high`) Mega QA reconciled cleanly onto `3755590`; Stage 3 fresh-context sign-off next |
+| Phase 4 — Reports, Mega Tech Report & Mega QA | DONE | Built `mega_tech_report.pdf` (`130/130` decimal tokens matched); 3-stage `agy` Mega QA completed (`Stage 1 NEEDS_FIX` -> `Stage 2 NEEDS_FIX` -> `Stage 3 PASS`, receipt saved, `missing_company_diversity: true`) |
 
 ---
 
@@ -166,4 +166,14 @@
 6. **Google Drive & Gmail OAuth Connectors + `T30`:** Both MCP connectors returned `Unauthorized: rejected by transport`; `GDOC_COMPANION_11-26-2026.md` is staged locally and email notification uses `uutils.emailing` SMTP. The private `T30` Sheet URL is omitted from committed files (`t30_status = skipped_no_local_id` in automated re-runs; manually verified `401 Unauthorized`).
 7. **Fresh judge calls paused:** Per `10-15-2026` Valkyrie spend pause, fresh probe cells for `P8_STRICT_B` and new-cohort `N=100` judge inferences remain unrun; `claude-opus-4-7|P8_STRICT_B` maps to same-family `opus55x|P4`.
 
-**TLDR-end:** [cert-judge: exp70 proper-scoring proxy-target] Live VeriBench `native_main` remains at `250` non-`A1` ratings (`33/33` public Sheets unchanged, `CONST_loto RPS=0.0698`). On `E39+E42` (`n=60`), `C_ms_gold` is hijacked on `+ctrl` (`Top-1 ce_cal RPS regret=0.0390`, `raw=0.1243`) and blind to #1/#2 test judges (`qwen36|H2`/`R4`), whereas proper-scoring label-free behavioral proxies (`P_e42_probe_rps` `UWA=0.8614`/`0.9173`, `P_e42_strict_brier` `Meta-Brier=0.0549` vs `0.256` on `rawRPS`, `P_e42_fullcov_brier` `Meta-RMSE=0.0282` vs `0.056`, `E60 seed1` `UWA=0.8514` vs `C_ms_gold` `0.6164`) reject controls at Top-1 and calibrate risk across raw & calibrated targets, while `ctl|editdist` (`0.8195`) exposes a change-detector loophole and `74.0%` native score-5 ceiling limits `N=100` discrimination (`$0` spend, CPU-only + read-only public Sheets).
+---
+
+## 3-Stage Mega QA Summary (Verbatim Audit Record)
+
+- **Receipt:** [results/MEGA_QA_RECEIPT_11-26-2026.json](results/MEGA_QA_RECEIPT_11-26-2026.json)
+- **Company diversity disclosure:** `missing_company_diversity: true` (all 3 sequential stages ran via included `agy` subscription on Google-family models: `gemini-pro-orchestrator`, `gemini-4-carbon-high`, and fresh `gemini-pro-orchestrator`).
+- **Stage 1 (`gemini-pro-orchestrator`, [qa_stage1_orchestrator_carbon_11-26-2026.txt](results/qa_stage1_orchestrator_carbon_11-26-2026.txt)):** `VERDICT: NEEDS_FIX` (`1 BLOCKER, 4 MAJOR, 6 MINOR`) — caught hardcoded participant name/domains/Sheet ID in initial script/tests, `[0.258, 0.715]` Study 3 CI typo, table truncation-vs-rounding differences, omitted `common_support_test_llm` table & negative head-to-head finding in `.tex`, raw vs calibrated `AUROC` split, and finite-`m` ceilings. All reconciled and pipeline re-run cleanly.
+- **Stage 2 (`gemini-4-carbon-high`, [qa_stage2_carbon_high_11-26-2026.txt](results/qa_stage2_carbon_high_11-26-2026.txt)):** `VERDICT: NEEDS_FIX` (`2 BLOCKER, 0 MAJOR, 5 MINOR`) — verified zero remaining math/split-leakage/rounding defects; caught quoted Sheet ID in Stage 1 log, unpushed pre-rebase git history PII, `brando90` URL typo, CSV `beat_const_calibrated_auroc` omission, strict-subset coverage guard, and Exp 67 `247`-rating provenance note. Resolved cleanly by squashing onto `origin/main` `3755590` and renumbering to Experiment `70` (`e643cef3`).
+- **Stage 3 (`gemini-pro-orchestrator` fresh context, [qa_stage3_orchestrator_carbon_fresh_11-26-2026.txt](results/qa_stage3_orchestrator_carbon_fresh_11-26-2026.txt)):** **`VERDICT: PASS`** (`0 BLOCKER, 0 MAJOR, 2 MINOR`) — verified `6/6` unit tests (`test_exp70.py`), `0` PII/secrets/Sheet-IDs across `git diff 3755590..e643cef` and compiled PDFs, `Layout OK` (`17` active experiments), and `0` parity mismatches across JSON/CSV/Markdown/LaTeX. Resolved Minor #1 inline comment (`247`-rating snapshot) in `run_exp70.py:885`.
+
+**TLDR-end:** [cert-judge: exp70 proper-scoring proxy-target] Live VeriBench `native_main` remains at `250` non-`A1` ratings (`33/33` public Sheets unchanged, `CONST_loto RPS=0.0698`). On `E39+E42` (`n=60`), `C_ms_gold` is hijacked on `+ctrl` (`Top-1 ce_cal RPS regret=0.0390`, `raw=0.1243`) and blind to #1/#2 test judges (`qwen36|H2`/`R4`), whereas proper-scoring label-free behavioral proxies (`P_e42_probe_rps` `UWA=0.8614`/`0.9173`, `P_e42_strict_brier` `Meta-Brier=0.0549` vs `0.256` on `rawRPS`, `P_e42_fullcov_brier` `Meta-RMSE=0.0282` vs `0.056`, `E60 seed1` `UWA=0.8514` vs `C_ms_gold` `0.6164`) reject controls at Top-1 and calibrate risk across raw & calibrated targets, while `ctl|editdist` (`0.8195`) exposes a change-detector loophole and `74.0%` native score-5 ceiling limits `N=100` discrimination (`$0` spend, CPU-only + read-only public Sheets; 3-stage `agy` Mega QA `PASS`).
