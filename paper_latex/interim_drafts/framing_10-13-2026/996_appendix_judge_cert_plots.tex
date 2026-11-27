@@ -1,0 +1,38 @@
+% !TEX root = main.tex
+\section{Property Diagnostics and Probe Validity}\label{app:failure-diagnostics}
+\paragraph{Historical generator limitations.}
+The recorded experiments use string-edit generators without Lean elaboration checks.
+The alpha routine rewrites names in the theorem signature, leaves proof-body references unchanged, and can duplicate the \texttt{:=} marker.
+Consequently, its low scores cannot establish failure of invariance under valid alpha-renaming.
+The renaming and reordering routines also lack checks against variable capture and dependent-binder errors.
+The bug ladder changes relations and connectives, removes a theorem block, and introduces trivial statements; unavailable edits fall back to comments.
+In each of the Codex, Opus, Qwen, and Leanstral panels, every configuration has 24 ladders with five levels: the extracted reference text and four cumulative edits.
+Each configuration also has 96 identity-probe rows, comprising four rewrite types per reference.
+The 24 unedited self-comparisons are recorded at bug-ladder level 0.
+Compilation of the edited text was not checked, so a score drop can reflect malformed text rather than semantic damage.
+Thus cumulative edit level is an intended damage order, not a formally verified ordering of semantic quality.
+These limitations apply to the archived property statistics throughout the paper.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/codex_rewrite_diagnostics.pdf}
+\caption{Recorded alpha scores differ sharply from the other rewrite scores for the semantic Codex prompts.
+Each marker averages repeat-median scores over 24 problems; these unvalidated transformations do not establish semantic sensitivity.}
+\label{fig:app-exp19-main-and-alpha}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/codex_reversal_counts.pdf}
+\caption{Local increases reveal behavior hidden by the aggregate bug trend.
+Bars count ladders with at least one increase in the recorded repeat-aggregated score; all configurations have 24 ladders, matching Table~\ref{tab:codex_configs}.}
+\label{fig:app-exp19-reversals}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/opus_bug_curves.pdf}
+\caption{Claude Opus also assigns lower mean scores as historical bug edits accumulate.
+Each point averages repeat-median scores over 24 problems under the same unvalidated string-edit construction; its trend does not establish semantic validity of every ladder.}
+\label{fig:lowvar_mono_codex_opus}
+\end{figure}

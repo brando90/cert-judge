@@ -1,0 +1,44 @@
+% !TEX root = main.tex
+\section{Limitations and a Decisive Test}\label{sec:limitations-test}
+\paragraph{What the transfer result shows and what it does not.}
+% Provenance: experiments/archive/39_.../results/TEST_RECEIPT.json; docs/PAPER_FRAMING_DECISION_10-13-2026.md (sensitivity rows).
+The registered gates test whether the association on the held-out judges is positive; they do not test whether the population association exceeds $0.45$, and the interval's lower bound is $0.078$.
+The association is carried largely by the difference between prompts that see the whole reference and prompts that see its last theorem block, and it reverses within the ten fuller-context test configurations.
+% Provenance: experiments/archive/48_c_ms_gold_heldout_judge_association_cluster_bootstrap_and_criterion_sensitivity/RESULTS_heldout_association_sensitivity.md on main (pull request 66); stratified permutations and the judge-model cluster bootstrap, 10{,}000 draws, seed 48.
+The same limit appears when the criterion is permuted inside groups, rather than when prompts are dropped after the fact.
+Permuting within judge model gives a one-sided $p$ of $0.0701$ on the 16 configurations where the screen is defined.
+Permuting within prompt family gives $0.9136$ on those same 16 configurations.
+Resampling the four held-out judge models puts the Spearman of $0.558$ in $[-0.842, 0.656]$.
+The screen therefore separates judge groups one can already tell apart; within the group one would deploy, the evidence does not show that it ranks judges.
+The configurations inside each split share judge models and prompt families, so the configuration bootstrap understates uncertainty, and the test judges were two single-call models and two agent harnesses rather than an independent sample of judges.
+
+\paragraph{No demonstrated selection advantage.}
+% Provenance: experiments/archive/44_.../RESULTS_selection_utility.md; experiments/archive/45_.../RESULTS_five_rater_comparison.md.
+Choosing by the screen did not beat a fixed human-mirror prompt on cached scores (paired difference $-0.086$ $[-0.308, 0.058]$), and the five-rater sensitivity leaves the comparison unresolved ($-0.012$ $[-0.198, 0.186]$).
+Both comparisons reuse the criterion items, condition on a fixed pool of twelve configurations, and run no hypothesis test; they cannot show that the screen is useless, only that its usefulness is not established.
+
+\paragraph{Coverage of the probes.}\label{sec:limitations-finite}
+% Provenance: experiments/archive/39_.../results.md "Deviations" (3/75 candidates elaborate; reorder 0/75); PROTOCOL.md "Legacy-prompt limitation".
+Only three of the 75 rated candidates elaborate under the pinned toolchain, so the candidate-side invariance components (alpha-renaming, proof-to-\texttt{sorry}, reordering, spam, candidate deletion) rest on three candidates or none, and every pre-registered aggregate that contains reordering was undefined.
+The family effectively reduced to the gold-side components and the single components, and we claim nothing about rewrite invariance.
+Elaboration failures reflect retired imports and Markdown fences in the stored candidates, not necessarily invalidity under the environments in which they were generated.
+The gold deletion ladders remove theorem statements and unit tests alike (Appendix~\ref{app:spec-vs-tests}), and the legacy prompts can see only the first deletion level.
+
+\paragraph{The criterion.}
+% Provenance: docs/project_assessment_10-05-2026.md (read-only counts from VeriBench experiment 100 inputs/items.jsonl, SHA-256 ad9ed552..., matching results/probe_manifest.json); results.md "Human ceiling".
+The criterion is one human panel: 45 candidates from 15 tasks, 18 with two expert ratings and 27 with three, and a leave-one-expert-out ceiling of $0.747$.
+Nine of the 45 candidates come from three tasks whose reference was a placeholder at rating time, and nine from three tasks whose reference statements changed within the rating window.
+The reference-quality views of the selection-utility study did not change its reading, but a criterion restricted to ordinary references has not been used for the transfer test itself.
+Prompt families and rated items recur across the judge splits, so the result supports transfer to new judge configurations on this panel, not to new candidate generators, domains, or independent panels.
+
+\paragraph{The characterizations' own limits.}
+% Provenance: experiments/archive/42_.../REPORT.md ("Reading", items 4 and 5; "Caution"); experiments/archive/43_.../REPORT.md section 7.
+The semantic screen is necessary, not sufficient: a change detector passes it, about half of its weakening probes are redundant at file level, and two references contain mutually inconsistent \texttt{sorry}-proved theorems.
+The gaming study used one attacked model, six prompts, 15 items from six tasks, and a model ensemble as its reference, so a near-zero gap can hide a blind spot the reference shares, and its six-point association can detect only very strong relations.
+The edited candidates have no human ratings; an expert re-rating is the only way to settle whether their gains were genuine.
+Presentation, including redundant theorems and unnecessary abstraction, is unassessed, and all candidates and probes come from \textsc{VeriBench} in Lean~4.
+
+\paragraph{A decisive test.}
+A decisive test of the screen as a selector would freeze the probes, the rubric, the extraction, and a selection rule, then have independent raters rate new candidate--gold pairs under the frozen rubric for configurations fixed before any rating is examined.
+It would report the selection loss against the best available judge and a false-acceptance rate, with a sample size chosen from clustered precision rather than an arbitrary judge count.
+Human adjudication of weakened and attacker-edited files, which both model judges and the model reference credited, would test the shared blind spot that no model-only study can.

@@ -1,0 +1,37 @@
+% !TEX root = main.tex
+\section{Additional Validation-Set Results}\label{app:moved-results}
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Protocol}           & \textbf{Fit Spearman} & \textbf{Test Spearman} \\
+    \midrule
+    pass1 \(\rightarrow\) pass2 & 0.881                 & 0.810                  \\
+    pass2 \(\rightarrow\) pass1 & 0.857                 & 0.786                  \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{Cross-pass robustness of a weight-tuned geometric variant} (not \(\mathrm{TI}_{\mathrm{var}}\)).
+  Weights over six property scores are tuned on one pass by random search; \emph{Fit Spearman} is the in-sample judge-level Spearman between the tuned index and human agreement on that pass, and \emph{Test Spearman} is the same statistic on the other pass.
+  Both passes are one annotator's ratings of the same 72 pairs at two rubric strictness levels, so the test pass checks robustness to rubric strictness, not generalization to new items or raters.}
+  \label{tab:cross_pass_generalization}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Threshold} & \textbf{Flip Rate (95\% CI)}                        & \textbf{Pass Rate (95\% CI)} \\
+    \midrule
+    0.60               & 0.058 \([0.048, 0.069]\)                            & 0.583 \([0.559, 0.608]\)     \\
+    0.70               & 0.049 \([0.040, 0.059]\)                            & 0.559 \([0.537, 0.581]\)     \\
+    0.80               & 0.051 \([0.042, 0.061]\)                            & 0.544 \([0.523, 0.566]\)     \\
+    0.85               & \textbf{0.046} \([\textbf{0.037}, \textbf{0.057}]\) & 0.536 \([0.515, 0.557]\)     \\
+    \bottomrule
+  \end{tabular}
+  \caption{\textbf{Threshold selection.} Stricter thresholds slightly reduce decision flips across repeated calls at a moderate cost in pass rate; bug-ladder ranking is unchanged (\(\rho_{\text{bug}}=-0.790\) at every threshold).}
+  \label{tab:exp13_threshold_sweep}
+\end{table}
+

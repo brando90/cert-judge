@@ -1,13 +1,15 @@
 # PR 64 (interim paper-framing draft): record kept in the repo, 11-11-2026
 
-**TLDR:** PR 64 was closed on 11-11-2026, not merged (Brando, 11-11-2026: no open pull requests or issues in this repo). The paper framing is still Brando's call after the new human rating round. Everything the PR held stays reachable: the branch `paper/framing-10-13-2026` is kept (not deleted), the decision record is `docs/PAPER_FRAMING_DECISION_10-13-2026.md` (copied unchanged from that branch), and the PR text is below.
+**TLDR:** PR 64 was closed on 11-11-2026, not merged (Brando, 11-11-2026: no open pull requests or issues in this repo). The paper framing is still Brando's call after the new human rating round. The interim draft now also lives on `main` at `paper_latex/interim_drafts/framing_10-13-2026/` (copy of branch `paper/framing-10-13-2026` at `5ac4c03`, added 11-26-2026). The decision record is `docs/PAPER_FRAMING_DECISION_10-13-2026.md`, and the PR text is below. The active manuscript is still `paper_latex/ICLR_2027_submission/`.
 
 ## Where each part of the PR lives
 
-- Paper rewrite (interim, result-consistent draft, not the paper's new claims): branch `paper/framing-10-13-2026`, commits d0ea926, 86b7b62, dae1111, 5ac4c03, 359d76a. Not on `main` on purpose.
-- Decision record with every number, interval, denominator and source file: `docs/PAPER_FRAMING_DECISION_10-13-2026.md`.
-- Archive of experiments 39, 41, 42 and 43 into `experiments/archive/`: branch commit c9963c1. It conflicts with `main` in `experiments/archive/layout.json` and the READMEs, so it is not cherry-picked here; redo it on `main` when those experiments are archived.
-- Master checkpoint update: branch commit 24d1947.
+- Paper rewrite (interim, result-consistent draft, not the paper's new claims): `paper_latex/interim_drafts/framing_10-13-2026/`, copied from branch `paper/framing-10-13-2026` at `5ac4c03` (commits d0ea926, 86b7b62, dae1111, 5ac4c03, 359d76a). It does not replace the active manuscript.
+- Decision record with every number, interval, denominator and source file: `docs/PAPER_FRAMING_DECISION_10-13-2026.md` (already on `main`; identical to the branch copy).
+- Archive of experiments 39, 41, 42 and 43 into `experiments/archive/`: branch commit c9963c1. It still conflicts with `main`. Those four folders remain the live paths under `experiments/`, because later experiments import them there and `experiments/archive/layout.json` still lists them as active. The move stays off `main` until they are ready to archive.
+- Master checkpoint update: branch commit 24d1947, saved beside the draft as `paper_latex/interim_drafts/framing_10-13-2026/CKPT_MASTER_branch_5ac4c03.md`. The live checkpoint `experiments/CKPT_MASTER_tmux1_cc_6043a46f.md` is unchanged.
+
+11-26-2026: the branch ref can be deleted once this folder is on `origin/main`. Until then it remains the commit-history pointer. No force-push.
 
 ## The PR text, as it stood (10-13-2026)
 

@@ -1,0 +1,10 @@
+% !TEX root = main.tex
+\section{Unit Tests as Ground Theorems: A Definition We Do Not Adopt}\label{app:spec-vs-tests}
+Section~\ref{sec:problem-setup} follows common formal-methods usage: the formal specification consists of theorem statements about the implementation, and unit tests are not part of it.
+We record a competing view that we do not adopt.
+In Lean~4, a unit test is often itself a closed theorem.
+The gold \texttt{myAdd} artifact states its tests as, e.g., \texttt{example : myAdd 1 2 = 3 := by native\_decide}, an anonymous theorem with no free variables.
+On this view, a unit test specifies the implementation at one concrete input, and specifications range from such ground instances to universally quantified properties such as \(\forall n,\ \texttt{myAdd}\ n\ 0 = n\).
+The choice changes terminology, not our measurements.
+The P3 ladder removes theorem statements and unit tests alike; under the adopted definition, only the removed theorems count as missing specification.
+
